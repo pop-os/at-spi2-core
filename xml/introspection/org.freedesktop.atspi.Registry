@@ -1,0 +1,14 @@
+<interface name="org.freedesktop.atspi.Registry">
+  <method name="getApplications">
+    <arg direction="out" name="applications" type="as"/>
+  </method>
+  <signal name="updateApplications">
+    <arg direction="out" name="app" type="is"/>
+  </signal>
+  <method name="registerApplication">
+    <arg direction="in" name="app" type="s"/>
+  </method>
+  <method name="deregisterApplication">
+    <arg direction="in" name="app" type="s"/>
+  </method>
+</interface>

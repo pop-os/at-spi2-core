@@ -1,0 +1,15 @@
+<interface name="org.freedesktop.atspi.Image">
+  <method name="getImageExtents">
+    <arg direction="in" name="coordType" type="u"/>
+    <arg direction="out" type="(iiii)"/>
+  </method>
+  <method name="getImagePosition">
+    <arg direction="out" name="x" type="i"/>
+    <arg direction="out" name="y" type="i"/>
+    <arg direction="in" name="coordType" type="u"/>
+  </method>
+  <method name="getImageSize">
+    <arg direction="out" name="width" type="i"/>
+    <arg direction="out" name="height" type="i"/>
+  </method>
+</interface>

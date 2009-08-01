@@ -1,0 +1,14 @@
+<interface name="org.freedesktop.atspi.Tree">
+  <method name="getRoot">
+    <arg name="root" type="o" direction="out"/>
+  </method>
+  <method name="getTree">
+    <arg name="nodes" type="a(ooaoassusau)" direction="out"/>
+  </method>
+  <signal name="updateAccessible">
+    <arg name="nodesAdded" type="(ooaoassusau)"/>
+  </signal>
+  <signal name="removeAccessible">
+    <arg name="nodeRemoved" type="o"/>
+  </signal>
+</interface>

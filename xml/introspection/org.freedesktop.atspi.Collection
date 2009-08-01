@@ -1,0 +1,31 @@
+<interface name="org.freedesktop.atspi.Collection">
+  <method name="getMatches">
+    <arg direction="in" name="rule" type="(auuasuauusub)"/>
+    <arg direction="in" name="sortby" type="u"/>
+    <arg direction="in" name="count" type="i"/>
+    <arg direction="in" name="traverse" type="b"/>
+    <arg direction="out" type="ao"/>
+  </method>
+  <method name="getMatchesTo">
+    <arg direction="in" name="current_object" type="o"/>
+    <arg direction="in" name="rule" type="(auuasuauusub)"/>
+    <arg direction="in" name="sortby" type="u"/>
+    <arg direction="in" name="tree" type="u"/>
+    <arg direction="in" name="recurse" type="b"/>
+    <arg direction="in" name="count" type="i"/>
+    <arg direction="in" name="traverse" type="b"/>
+    <arg direction="out" type="ao"/>
+  </method>
+  <method name="getMatchesFrom">
+    <arg direction="in" name="current_object" type="o"/>
+    <arg direction="in" name="rule" type="(auuasuauusub)"/>
+    <arg direction="in" name="sortby" type="u"/>
+    <arg direction="in" name="tree" type="u"/>
+    <arg direction="in" name="count" type="i"/>
+    <arg direction="in" name="traverse" type="b"/>
+    <arg direction="out" type="ao"/>
+  </method>
+  <method name="getActiveDescendant">
+    <arg direction="out" type="o"/>
+  </method>
+</interface>

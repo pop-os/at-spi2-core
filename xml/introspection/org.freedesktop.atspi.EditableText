@@ -1,0 +1,30 @@
+<interface name="org.freedesktop.atspi.EditableText">
+  <method name="setTextContents">
+    <arg direction="in" name="newContents" type="s"/>
+    <arg direction="out" type="b"/>
+  </method>
+  <method name="insertText">
+    <arg direction="in" name="position" type="i"/>
+    <arg direction="in" name="text" type="s"/>
+    <arg direction="in" name="length" type="i"/>
+    <arg direction="out" type="b"/>
+  </method>
+  <method name="copyText">
+    <arg direction="in" name="startPos" type="i"/>
+    <arg direction="in" name="endPos" type="i"/>
+  </method>
+  <method name="cutText">
+    <arg direction="in" name="startPos" type="i"/>
+    <arg direction="in" name="endPos" type="i"/>
+    <arg direction="out" type="b"/>
+  </method>
+  <method name="deleteText">
+    <arg direction="in" name="startPos" type="i"/>
+    <arg direction="in" name="endPos" type="i"/>
+    <arg direction="out" type="b"/>
+  </method>
+  <method name="pasteText">
+    <arg direction="in" name="position" type="i"/>
+    <arg direction="out" type="b"/>
+  </method>
+</interface>

@@ -1,0 +1,11 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: dbind
+Description: Client side bindings helper library for libdbus
+Requires: dbus-1
+Version: 0.1
+Libs: -ldbind -L${libdir}
+Cflags: -I${includedir}/dbind-0.1 -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include  

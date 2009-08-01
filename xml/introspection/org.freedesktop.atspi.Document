@@ -1,0 +1,12 @@
+<interface name="org.freedesktop.atspi.Document">
+  <method name="getLocale">
+    <arg direction="out" type="s"/>
+  </method>
+  <method name="getAttributeValue">
+    <arg direction="in" name="attributename" type="s"/>
+    <arg direction="out" type="s"/>
+  </method>
+  <method name="getAttributes">
+    <arg direction="out" type="{ss}"/>
+  </method>
+</interface>

@@ -1,0 +1,4238 @@
+<?xml version="1.0"?>
+<tp:spec xmlns:tp="http://telepathy.freedesktop.org/wiki/DbusSpec#extensions-v0" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+
+<tp:version>1.24.0</tp:version>
+
+
+
+
+
+<tp:docstring>
+ !\mainpage AT-SPI Interfaces and Subinterfaces
+
+  This is the main documentation page for the 
+  Assistive Technology Service Provider Interface (AT-SPI). 
+  
+  \section apps Applications and Interface Components
+  Namespace Accessibility includes service APIs implemented by
+  participating applications and their user interface components:\n\n
+  Accessibility::Accessible\n 
+  Accessibility::Application\n
+  Accessibility::Desktop\n
+  Accessibility::Collecgtion\n
+  Accessibility::Component\n
+  Accessibility::Hypertext\n
+  Accessibility::Image\n
+  Accessibility::Selection\n
+  Accessibility::Table\n
+  Accessibility::Text\n
+  Accessibility::EditableText\n
+  Accessibility::Value
+ 
+  \section types Enumerated Types
+  Accessibility defines a number of key enumerated types, including:\n\n
+  Accessibility::RelationType\n
+  Accessibility::Role\n
+  Accessibility::StateType\n
+  Accessibility::Event\n
+  Accessibility::EventDetails \n
+ 
+  \section Registry
+  Accessibility also includes Accessibility::Registry,
+  which is the service used by assistive technologies and related
+  AT-SPI clients to register interest in certain classes of events,
+  enumerate the currently available desktop and application list,
+  and to synthesize certain kinds of device events.
+ 
+  \section listeners Event Listener Interfaces
+  Accessibility::EventListener\n
+  Accessibility::DeviceEventListener
+ 
+  \section helpers Helper Interfaces
+ 
+  The following interfaces may be implemented by assistive technologies 
+  themselves, in order to export their services in a consistent manner or
+  in order to interoperate with other applications or desktop services.\n
+ 
+  Accessibility::LoginHelper : Implemented by adaptive technologies which 
+  need to participate in user-authentication or login activities, and which
+  therefore may need negotiation with authentication agents or processes.\n
+ 
+  Accessibility::Selector [NEW]: Implemented by user agents or assistive 
+  technologies which export lists of choices from which the end-user is 
+  expected to make selections.  Useful for various types of remote
+  activation or intercommunication between multiple ATs.
+</tp:docstring>
+
+<!-- Accessibility interfaces and subinterfaces -->
+
+<node name="/node">
+
+<tp:enum name="LOCALE_TYPE" type="u">
+  <tp:docstring>
+  Used by Text and Document interfaces these correspond to the POSIX 'setlocale' enum values. 
+  </tp:docstring>
+  <tp:enumvalue suffix="LOCALE_TYPE_MESSAGES"/>
+  <tp:enumvalue suffix="LOCALE_TYPE_COLLATE" value="1"/>
+  <tp:enumvalue suffix="LOCALE_TYPE_CTYPE" value="2"/>
+  <tp:enumvalue suffix="LOCALE_TYPE_MONETARY" value="3"/>
+  <tp:enumvalue suffix="LOCALE_TYPE_NUMERIC" value="4"/>
+  <tp:enumvalue suffix="LOCALE_TYPE_TIME" value="5"/>
+</tp:enum>
+
+<tp:enum name="COORD_TYPE" type="u">
+  <tp:docstring>
+  Used by Component, Image, and Text interfaces to specify whether coordinates are relative to the window or the screen.
+  </tp:docstring>
+  <tp:enumvalue suffix="COORD_TYPE_SCREEN"/>
+  <tp:enumvalue suffix="COORD_TYPE_WINDOW" value="1"/>
+</tp:enum>
+
+<tp:struct name="BoundingBox">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    Used by Component and Text interfaces, a struct defining a bounding rectangle. 
+    The relevant coordinate system is determined by the context of the
+    API call which returned or receives the value.
+  </tp:docstring>
+  <tp:member type="i" tp:name="x">
+  <tp:docstring>
+    The value corresponding to the minimum or leftmost x position. 
+  </tp:docstring>
+  </tp:member>
+  <tp:member type="i" tp:name="y">
+  <tp:docstring>
+    The value corresponding to the minimum y value.  
+  </tp:docstring>
+  </tp:member>
+  <tp:member type="i" tp:name="width">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    The horizontal extent of the bounding box,
+    that is, the difference between the maximum and minimum
+    x coordinate bounds.
+  </tp:docstring>
+  </tp:member>
+  <tp:member type="i" tp:name="height">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      The vertical extent of the bounding box, 
+      that is, the difference between the maximum and minimum
+      y coordinate bounds.
+  </tp:docstring>
+  </tp:member>
+</tp:struct>
+<interface name="org.freedesktop.atspi.Accessible">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The base interface which is implemented by all accessible objects. 
+      All objects support interfaces for querying their contained 'children' 
+      and position in the accessible-object hierarchy, whether or not they
+      actually have children.  </p>
+
+    <p>Events that may be emitted by instances of Accessible include:
+      "object:property-change" A base (strongly-typed) object attribute has changed,
+      for instance "object:property-change:accessible-name".
+      Notifed property subtypes include accessible-name, accessible-description,
+      accessible-parent and accessible-role.</p>
+
+    <p>"object:children-changed" The number or identity of an object's children
+      has changed.
+      
+      "object:state-changed" The object's StateSet has had a state added
+      or removed.
+      
+      "object:active-descendant-changed" If the object includes 
+      STATE_MANAGES_DESCENDANTS, this event is fired to indicate that the 
+      descendant having STATE_ACTIVE has changed; this corresponds to
+      "micro" keyboard focus when the containing/emitting object has
+      "macro" or technical keyboard focus.  For instance, this event is
+      usually emitted while traversing tables and/or spreadsheet cells.
+      
+      "object:attribute-change" A weakly-typed property, as contained in the
+      AttributeSet returned by Accessible::getAttributes, has changed in value,
+      been added, or been removed from the object.
+      ("object:attribute-change" notifications were added in AT-SPI 1.7.0)</p>
+
+  </tp:docstring>
+  <tp:property name="name" type="s" access="readwrite">
+  <tp:docstring>
+    A (short) string representing the object's name.
+  </tp:docstring>
+  </tp:property>
+  <tp:property name="description" type="s" access="readwrite">
+  <tp:docstring>
+    A string describing the object in more detail than name.
+  </tp:docstring>
+  </tp:property>
+  <tp:property name="parent" type="o" access="read">
+  <tp:docstring>
+    The Accessible object which is this object's containing object.
+  </tp:docstring>
+  </tp:property>
+  <tp:property name="childCount" type="i" access="read">
+  <tp:docstring>
+    The number of children contained by this object.
+  </tp:docstring>
+  </tp:property>
+  <method name="getChildAtIndex">
+    <tp:docstring>
+      Get the accessible child of this object at \c index.
+    </tp:docstring>
+    <arg direction="in" name="index" type="i">
+    <tp:docstring>
+      an in parameter indicating which child is requested (zero-indexed).
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="o" tp:type="Accessible">
+    <tp:docstring>
+      the 'nth' ::Accessible child of this object.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getIndexInParent">
+    <tp:docstring>
+      Get the index of this object in its parent's child list.
+    </tp:docstring>
+    <arg direction="out" type="i">
+    <tp:docstring>
+      A long integer indicating this object's index in the parent's list.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getRelationSet">
+    <tp:docstring>
+      Get a set defining this object's relationship to other accessible objects.
+    </tp:docstring>
+    <arg direction="out" type="a(uao)" tp:type="RelationSet">
+    <tp:docstring>
+      A RelationSet defining this object's relationships.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getRole">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      Get the Role indicating the type of UI role played by this object.
+    </tp:docstring>
+    <arg direction="out" type="u" tp:type="Role">
+    <tp:docstring>
+      A Role indicating the type of UI role played by this object.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getRoleName">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      Get a string indicating the type of UI role played by this object.
+    </tp:docstring>
+    <arg direction="out" type="s">
+    <tp:docstring>
+      A UTF-8 string indicating the type of UI role played by this object.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getLocalizedRoleName">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      Get a string indicating the type of UI role played by this object,
+      translated to the current locale.
+    </tp:docstring>
+    <arg direction="out" type="s">
+    <tp:docstring>
+      A UTF-8 string indicating the type of UI role played by this object.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getState">
+    <tp:docstring>
+      Get the current state of the object as a StateSet.
+    </tp:docstring>
+    <arg direction="out" type="au" tp:type="StateSet">
+    <tp:docstring>
+      A StateSet encapsulating the currently true states of the object.
+      Returns an array of (currently two) 32-bit integers giving bitwise flags.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getAttributes">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Get a list of properties applied to this object as a whole, as an 
+        AttributeSet consisting of name-value pairs. As such these attributes
+        may be considered weakly-typed properties or annotations, as distinct
+        from the strongly-typed interface instance data declared using the IDL 
+        "attribute" keyword.</p>
+
+      <p>Not all objects have explicit "name-value pair" AttributeSet properties.      </p>
+
+      <p>Attribute names and values may have any UTF-8 string value, however where possible,
+        in order to facilitate consistent use and exposure of "attribute" properties by
+        applications and AT clients, attribute names and values should chosen from  
+        a publicly-specified namespace where appropriate.</p>
+
+      <p>Where possible, the names and values in the name-value pairs
+        should be chosen from well-established attribute namespaces
+        using standard semantics.       
+        For example, attributes of Accessible objects corresponding to XHTML content 
+        elements should correspond to attribute names and values specified in the w3c 
+        XHTML specification, at http://www.w3.org/TR/xhtml2, where such values are not 
+        already exposed via a more strongly-typed aspect of the AT-SPI API.
+        Metadata names and
+        values should be chosen from the 'Dublin Core' Metadata
+        namespace using Dublin Core semantics:
+        http://dublincore.org/dcregistry/
+        Similarly, relevant structural metadata should be exposed
+        using attribute names and values chosen from the CSS2 and WICD specification:
+        http://www.w3.org/TR/1998/REC-CSS2-19980512
+        WICD (http://www.w3.org/TR/2005/WD-WICD-20051121/).    </p>
+
+      <p>Clients seeking semantic or typographical attributes associated with
+        specific character spans of text content should use Text.getAttributeRun instead.
+        The attributes returned by Accessible.getAttributes do not include
+        "text attributes". (See Text.getAttributeRun)</p>
+
+    </tp:docstring>
+    <arg direction="out" type="{ss}" tp:type="AttributeSet">
+    <tp:docstring>
+      An AttributeSet encapsulating any "attribute values" currently defined for the object.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getApplication">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Get the containing Application for this object.</p>
+    </tp:docstring>
+    <arg direction="out" type="o" tp:type="Application">
+    <tp:docstring>
+      The Application instance to which this object belongs.
+    </tp:docstring>
+    </arg>
+  </method>
+</interface>
+</node>
+<node name="/node">
+
+<interface name="org.freedesktop.atspi/Action">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An interface through which a user-actionable user interface
+      component can be manipulated.  Components which react to mouse or
+      keyboard input from the user, (with the exception of pure text entry
+      fields with no other function), should implement this interface.
+      Typical actions include "click", "press", "release" (for instance for
+      buttons), "menu" (for objects which have context menus invokable from 
+      mouse or keyboard), "open" for icons representing files folders, and others.</p>
+  </tp:docstring>
+  <tp:struct name="Action">
+    <tp:member type="s" tp:name="name">
+      <tp:docstring>
+      A string containing the description of the specified action.
+      </tp:docstring>
+    </tp:member>
+    <tp:member type="s" tp:name="description">
+      <tp:docstring>
+	The description of the specified action. The description of an actionmay provide information about the result of action invocation, unlike the action name.
+    </tp:docstring>
+  </tp:member>
+    <tp:member type="s" tp:name="keyBinding">
+      <tp:docstring>
+        A string containing the key binding for the specified action,or an empty string ("") if none exists.
+      </tp:docstring>
+    </tp:member>
+  </tp:struct>
+
+  <tp:property name="nActions" type="i" access="read">
+    <tp:docstring>The number of actions this object supports</tp:docstring>
+  </tp:property>
+
+  <method name="getDescription">
+    <tp:docstring>
+      <p>Get the description for the specified action. The description of an action may provide information about the result of action invocation, unlike the action name.</p>
+    </tp:docstring>
+    <arg type="i" name="index" direction="in">
+      <tp:docstring>The index of the action</tp:docstring>
+    </arg>
+    <arg type="s" direction="out">
+      <tp:docstring>A string containing the description of the specified action</tp:docstring>
+    </arg>
+  </method>
+
+  <method name="getName">
+    <tp:docstring>
+      <p>Get the name of the specified action.  Action names generally describe the user action, i.e. "click" or "press", rather than the result of invoking the action.</p>
+    </tp:docstring>
+    <arg type="i" name="index" direction="in">
+      <tp:docstring>The index of the action</tp:docstring>
+    </arg>
+    <arg type="s" direction="out">
+      <tp:docstring>A string containing the name of the specified action</tp:docstring>
+    </arg>
+  </method>
+
+  <method name="getKeyBinding">
+    <tp:docstring>
+      <p>Get the key binding associated with a specific action.</p>
+    </tp:docstring>
+    <arg type="i" name="index" direction="in">
+      <tp:docstring>The index of the action</tp:docstring>
+    </arg>
+    <arg type="s" direction="out">
+      <tp:docstring>A string containing the key binding for the specified action, or an empty string ("") if none exists.</tp:docstring>
+    </arg>
+  </method>
+
+  <method name="getActions">
+    <tp:docstring>
+      Retrieves the actions associated with the object.
+    </tp:docstring>
+    <arg direction="out" name="index" type="a(sss)" tp:type="Action"/>
+  </method>
+  <method name="doAction">
+    <tp:docstring>
+      Causes the object to perform the specified action.
+    </tp:docstring>
+    <arg direction="in" name="index" type="i">
+    <tp:docstring>
+      The 0-based index of the action to perform.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+      A boolean indicating success or failure.
+    </tp:docstring>
+    </arg>
+  </method>
+</interface>
+</node>
+<node name="/node">
+<interface name="org.freedesktop.atspi.Collection">
+  <tp:enum name="SortOrder" type="u">
+    <tp:enumvalue suffix="SORT_ORDER_INVALID"/>
+    <tp:enumvalue suffix="SORT_ORDER_CANONICAL" value="1"/>
+    <tp:enumvalue suffix="SORT_ORDER_FLOW" value="2"/>
+    <tp:enumvalue suffix="SORT_ORDER_TAB" value="3"/>
+    <tp:enumvalue suffix="SORT_ORDER_REVERSE_CANONICAL" value="4"/>
+    <tp:enumvalue suffix="SORT_ORDER_REVERSE_FLOW" value="5"/>
+    <tp:enumvalue suffix="SORT_ORDER_REVERSE_TAB" value="6"/>
+    <tp:enumvalue suffix="SORT_ORDER_LAST_DEFINED" value="7"/>
+  </tp:enum>
+  <tp:enum name="MatchType" type="u">
+    <tp:enumvalue suffix="MATCH_INVALID"/>
+    <tp:enumvalue suffix="MATCH_ALL" value="1"/>
+    <tp:enumvalue suffix="MATCH_ANY" value="2"/>
+    <tp:enumvalue suffix="MATCH_NONE" value="3"/>
+    <tp:enumvalue suffix="MATCH_EMPTY" value="4"/>
+    <tp:enumvalue suffix="MATCH_LAST_DEFINED" value="5"/>
+  </tp:enum>
+  <tp:enum name="TreeTraversalType" type="u">
+    <tp:enumvalue suffix="TREE_RESTRICT_CHILDREN"/>
+    <tp:enumvalue suffix="TREE_RESTRICT_SIBLING" value="1"/>
+    <tp:enumvalue suffix="TREE_INORDER" value="2"/>
+    <tp:enumvalue suffix="TREE_LAST_DEFINED" value="3"/>
+  </tp:enum>
+  <method name="getMatches">
+    <arg direction="in" name="rule" type="(auuasuauusub)" tp:type="MatchRule"/>
+    <arg direction="in" name="sortby" type="u" tp:type="SortOrder"/>
+    <arg direction="in" name="count" type="i"/>
+    <arg direction="in" name="traverse" type="b" tp:type="boolean"/>
+    <arg direction="out" type="ao" tp:type="AccessibleSet"/>
+  </method>
+  <method name="getMatchesTo">
+    <arg direction="in" name="current_object" type="o" tp:type="Accessible"/>
+    <arg direction="in" name="rule" type="(auuasuauusub)" tp:type="MatchRule"/>
+    <arg direction="in" name="sortby" type="u" tp:type="SortOrder"/>
+    <arg direction="in" name="tree" type="u" tp:type="TreeTraversalType"/>
+    <arg direction="in" name="recurse" type="b" tp:type="boolean"/>
+    <arg direction="in" name="count" type="i"/>
+    <arg direction="in" name="traverse" type="b" tp:type="boolean"/>
+    <arg direction="out" type="ao" tp:type="AccessibleSet"/>
+  </method>
+  <method name="getMatchesFrom">
+    <arg direction="in" name="current_object" type="o" tp:type="Accessible"/>
+    <arg direction="in" name="rule" type="(auuasuauusub)" tp:type="MatchRule"/>
+    <arg direction="in" name="sortby" type="u" tp:type="SortOrder"/>
+    <arg direction="in" name="tree" type="u" tp:type="TreeTraversalType"/>
+    <arg direction="in" name="count" type="i"/>
+    <arg direction="in" name="traverse" type="b" tp:type="boolean"/>
+    <arg direction="out" type="ao" tp:type="AccessibleSet"/>
+  </method>
+  <method name="getActiveDescendant">
+    <arg direction="out" type="o" tp:type="Accessible"/>
+  </method>
+</interface>
+</node>
+<node name="/node">
+<tp:enum name="ComponentLayer" type="u">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The ComponentLayer of a Component instance indicates its relative stacking order
+      with respect to the onscreen visual representation of the UI.
+      ComponentLayer, in combination with Component bounds information, can be used
+      to compute the visibility of all or part of a component.  This is important in
+      programmatic determination of region-of-interest for magnification, and in
+      ¨flat screen review¨ models of the screen, as well as for other uses.
+      Objects residing in two of the ComponentLayer categories support
+      further z-ordering information, with respect to their peers in the same layer:
+      namely, LAYER_WINDOW and LAYER_MDI.  Relative stacking order for other objects within
+      the same layer is not available; the recommended heuristic is ¨first child paints first¨, 
+      in other words, assume that the first siblings in the child list are subject to being
+      overpainted by later siblings if their bounds intersect.  </p>
+
+    <p>The order of layers, from bottom to top, is:
+	    <ol>
+	    	<li>LAYER_BACKGROUND</li>
+	    	<li>LAYER_WINDOW</li>
+	    	<li>LAYER_MDI</li>
+	    	<li>LAYER_CANVAS</li>
+	    	<li>LAYER_WIDGET</li>
+	    	<li>LAYER_POPUP</li>
+	    	<li>LAYER_OVERLAY</li>
+	    </ol>
+    </p>
+  </tp:docstring>
+  <tp:enumvalue suffix="LAYER_INVALID">
+  <tp:docstring>
+    Indicates an error condition or uninitialized value. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="LAYER_BACKGROUND" value="1">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The bottom-most layer, over which everything else is painted. 
+      The 'desktop background' is generally in this layer. </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="LAYER_CANVAS" value="2">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The 'background' layer for most content renderers and UI Component 
+      containers. </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="LAYER_WIDGET" value="3">
+  <tp:docstring>
+    The layer in which the majority of ordinary 'foreground' widgets reside.
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="LAYER_MDI" value="4">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>A special layer between LAYER_CANVAS and LAYER_WIDGET, in which the
+      'pseudo windows' (e.g. the MDI frames) reside. 
+      (See Component.getMDIZOrder) </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="LAYER_POPUP" value="5">
+  <tp:docstring>
+    A layer for popup window content, above LAYER_WIDGET. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="LAYER_OVERLAY" value="6">
+  <tp:docstring>
+    The topmost layer. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="LAYER_WINDOW" value="7">
+  <tp:docstring>
+    The layer in which a toplevel window background usually resides. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="LAYER_LAST_DEFINED" value="8">
+  <tp:docstring>
+    Used only to determine the end of the enumeration. 
+  </tp:docstring>
+  </tp:enumvalue>
+</tp:enum>
+<interface name="org.freedesktop.atspi.Component">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The Component interface is implemented by objects which occupy on-screen space, e.g. objects
+      which have onscreen visual representations.  The methods in Component allow clients to identify
+      where the objects lie in the onscreen coordinate system, their relative size, stacking order, and
+      position.  It also provides a mechanism whereby keyboard focus may be transferred to specific
+      user interface elements programmatically.  This is a 2D API, coordinates of 3D objects are projected into the
+      2-dimensional screen view for purposes of this interface.  </p>
+
+    <p>Events emitted by Component instances include:
+	    <ol>
+		    <li><code>"object:bounds-changed"</code></li>
+		    <li><code>"object:visible-data-changed"</code></li>
+	    </ol>
+    </p>
+  </tp:docstring>
+  <method name="contains">
+    <arg direction="in" name="x" type="i"/>
+    <arg direction="in" name="y" type="i"/>
+    <arg direction="in" name="coord_type" type="u" tp:type="COORD_TYPE"/>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+	    <code>True</code>if the specified point lies within the Component's bounding box, <code>False</code> otherwise. 
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getAccessibleAtPoint">
+    <arg direction="in" name="x" type="i"/>
+    <arg direction="in" name="y" type="i"/>
+    <arg direction="in" name="coord_type" type="u" tp:type="COORD_TYPE"/>
+    <arg direction="out" type="o" tp:type="Accessible">
+    <tp:docstring>
+      The Accessible child whose bounding box contains the specified point. 
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getExtents">
+    <tp:docstring>
+      Obtain the Component's bounding box, in pixels, relative to the specified coordinate system. 
+    </tp:docstring>
+    <arg direction="in" name="coord_type" type="u" tp:type="COORD_TYPE"/>
+    <arg direction="out" type="(iiii)" tp:type="BoundingBox">
+    <tp:docstring>
+      A BoundingBox which entirely contains the object's onscreen visual representation.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getPosition">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Obtain the position of the current component in the coordinate system specified
+	 by <code>coord_type.</code>
+      </p>
+    </tp:docstring>
+    <arg direction="in" name="coord_type" type="u" tp:type="COORD_TYPE">
+	    <tp:docstring>
+      	    <ol>
+	      <li>0 indicates coord_type_xy_screen, coordinates are relative to the display screen, in pixels.</li>
+	      <li>1 indicates coord_type_xy_window, coordinates are relative to the current toplevel window, in pixels.</li>
+	    </ol>
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" name="x" type="i">
+	    <tp:docstring>
+        	An out parameter which will be back-filled with the returned x coordinate.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" name="y" type="i">
+	    <tp:docstring>
+		    <p>An out parameter which will be back-filled with the returned y coordinate.</p>
+	    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getSize">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Obtain the size, in the coordinate system specified by \c coord_type, 
+        of the rectangular area which fully contains the object's 
+        visual representation, without accounting for viewport clipping. 
+      </p>
+    </tp:docstring>
+    <arg direction="out" name="width" type="i">
+	    <tp:docstring>
+		The object's horizontal extents in the specified coordinate system.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" name="height" type="i">
+	    <tp:docstring>
+		    <p>The object's vertical extents in the specified coordinate system.</p>
+	    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getLayer">
+    <arg direction="out" type="u" tp:type="ComponentLayer">
+    <tp:docstring>
+      The ComponentLayer in which this object resides. 
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getMDIZOrder">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Obtain the relative stacking order (i.e. 'Z' order) of an object.
+        Larger values indicate that an object is on "top" of the stack, therefore
+        objects with smaller MDIZOrder may be obscured by objects with a larger MDIZOrder,
+        but not vice-versa. This is only relevant for objects in LAYER_MDI or LAYER_WINDOW </p>
+    </tp:docstring>
+    <arg direction="out" type="n" tp:type="short">
+    <tp:docstring>
+      An integer indicating the object's place in the stacking order.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="grabFocus">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Request that the object obtain keyboard focus.</p>
+    </tp:docstring>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+	    <code>True</code> if keyboard focus was successfully transferred to the Component. 
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getAlpha">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Obtain the alpha value of the component.  An alpha value of 1.0 or greater
+        indicates that the object is fully opaque, and an alpha value of 0.0 indicates
+        that the object is fully transparent.  Negative alpha values have no defined
+        meaning at this time.    </p>
+
+      <p>Alpha values are used in conjunction with Z-order calculations to
+        determine whether an object wholly or partially obscures another object's 
+        visual intersection, in the event that their bounds intersect.    </p>
+
+    </tp:docstring>
+    <arg direction="out" type="d"/>
+  </method>
+</interface>
+</node>
+<node name="/node">
+<interface name="org.freedesktop.atspi.Document">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Primarily a 'tagging' interface which indicates the start of 
+      document content in the Accessibility hierarchy.  
+      Accessible objects below the node implementing
+      Document are normally assumed to be part of the document content.
+      Attributes of Document are those attributes associated with the document 
+      as a whole.  Objects that implement Document are normally expected to
+      implement Collection as well.  </p>
+  </tp:docstring>
+  <method name="getLocale">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Gets the locale associated with the document's content.
+        e.g. the locale for LOCALE_TYPE_MESSAGES.    </p>
+    </tp:docstring>
+    <arg direction="out" type="s">
+    <tp:docstring>
+      A string compliant with the POSIX standard for locale description.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getAttributeValue">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Gets the value of a single attribute, if specified for the document as a whole.    </p>
+    </tp:docstring>
+    <arg direction="in" name="attributename" type="s">
+    <tp:docstring>
+      A string indicating the name of a specific attribute (name-value pair) being queried.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="s">
+    <tp:docstring>
+      A string corresponding to the value of the specified attribute, oran empty string if the attribute is unspecified for the object.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getAttributes">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Gets all attributes specified for a document as a whole.  
+        For attributes which change within 
+        the document content, see Text.getAttributes instead.    </p>
+    </tp:docstring>
+    <arg direction="out" type="{ss}" tp:type="AttributeSet">
+    <tp:docstring>
+      A list of strings containing the attributes of the document, as name-value pairs.
+    </tp:docstring>
+    </arg>
+  </method>
+</interface>
+</node>
+<node name="/node">
+<interface name="org.freedesktop.atspi.Hyperlink">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Instances of Hyperlink are returned by Hypertext objects, and are
+      the means by which end users and clients interact with linked, and in
+      some cases embedded, content.  Hyperlinks may have multiple "anchors",
+      where an anchor corresponds to a reference to a particular resource with
+      a corresponding resource identified (URI).  Hyperlinks may be 
+      queried for their URIs, or queried for the objects corresponding to their
+      anchors.  The objects thus obtained are instances of Accessible,
+      and may be queried, and manipulated via the Action interface.   </p>
+
+    <p>A Hyperlink implementor is normally NOT an Accessible; 
+      the preferred usage is for a Hyperlink's associated 'objects'
+      (accessed via the getObject method) are Accessibles.  This means
+      that Actions such as 'open link' are normally invoked on
+      the result of Hyperlink.getObject rather than directly on the 
+      Hyperlink instance. For historical reasons some implementors of Hyperlink
+      implement Action as well.  This usage on the part of implementing
+      applications and toolkits is discouraged, but clients of Hyperlink
+      should be aware of it and prepared to handle such usage.</p>
+  </tp:docstring>
+  <tp:property name="nAnchors" type="n" access="read">
+  <tp:docstring>
+    The number of separate anchors associated with this Hyperlink 
+  </tp:docstring>
+  </tp:property>
+  <tp:property name="startIndex" type="i" access="read">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The starting offset within the containing Hypertext content 
+      with which this Hyperlink is associated </p>
+  </tp:docstring>
+  </tp:property>
+  <tp:property name="endIndex" type="i" access="read">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The ending offset within the containing Hypertext content 
+      with which this Hyperlink is associated; that is, the offset of the
+      first element past the range within the Hypertext associated with
+      this Hyperlink. </p>
+  </tp:docstring>
+  </tp:property>
+  <method name="getObject">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Gets the i'th object, (where i is an integer between 0 and
+        Hyperlink.numAnchors - 1, inclusive) associated with a Hyperlink.
+        The objects returned are usually actionable (i.e. they should implement
+        Accessibility.Action), and the available actions often include
+        'open', 'bookmark', 'save link as', etc.  They may also implement
+        Accessibility.StreamableContent, although clients can normally use 
+        getURI to obtain a resource locator via which the object's
+        data may be accessed.    </p>
+
+      <p>The most common application for 'multi anchor'
+        hyperlinks in HTML is probably 'client side imagemaps'.
+        A clickable image which uses the HTML 'usemap' attribute
+        should have one anchor for every area; element that
+        includes an HREF.  The objects corresponding to these map
+        areas may implement Accessibility.Component, to represent
+        their onscreen bounding box, and may expose their 'shape' as
+        as name-value pair via Accessible.getAttributeSet.</p>
+    </tp:docstring>
+    <arg direction="in" name="i" type="i"/>
+    <arg direction="out" type="o" tp:type="Accessible">
+    <tp:docstring>
+      An Accessible object instance representing theHyperlink's ith anchor, or through which the content associated with the ith anchor can beaccessed.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getURI">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Obtain a resource locator ('URI') which can be used to 
+        access the content to which this link "points" or is connected.</p>
+    </tp:docstring>
+    <arg direction="in" name="i" type="i"/>
+    <arg direction="out" type="s">
+    <tp:docstring>
+      A string corresponding to the URI of the Hyperlink's'ith' anchor, if one exists, or a NIL string otherwise.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="isValid">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Check the hyperlink to see if a connection to its backing
+	 content can be established, or if its URI is valid. </p>
+      <p>Instances of invalid hyperlinks include links with malformed
+        URIs, or for which a contact to the service provider
+        specified in the URI cannot be established.</p>
+    </tp:docstring>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+	    <code>True</code> if the object's content is available, or\c False if the hyperlink's URI is invalid, or a connection to the resource can not be established.
+    </tp:docstring>
+    </arg>
+  </method>
+</interface>
+</node>
+<node name="/node">
+<interface name="org.freedesktop.atspi.Image">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An interface implemented by objects which render image data or 
+      pictorial information to the screen.  When onscreen components include
+      graphical information that is not purely intended to enhance "3d effect"
+      or visual layout, but which conveys some semantic or informational 
+      content to the sighted user, they should implement Image, and that 
+      semantic content should be conveyed textually to the extent possible 
+      via the image description, as well as the Accessible.name and 
+      Accessible.description properties.  </p>
+  </tp:docstring>
+  <tp:property name="imageDescription" type="s" access="read">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>A UTF-8 string providing a textual description
+      of what is visually depicted in the image.  </p>
+
+    <p>It is recommended that imageDescription be the shorter
+      of the available image descriptions, for instance "alt text"
+      in HTML images, and a longer description be provided in
+      Accessible.description, if available.
+      A short, one or two word label for the image should be provided in
+      Accessible.name.</p>
+  </tp:docstring>
+  </tp:property>
+  <tp:property name="imageLocale" type="s" access="read">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>A string corresponding to the POSIX LC_MESSAGES locale used 
+      by the imageDescription.</p>
+  </tp:docstring>
+  </tp:property>
+  <method name="getImageExtents">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Obtain a bounding box which entirely contains the image contents,
+        as displayed on screen.  The bounds returned do not account for
+        any viewport clipping or the fact that the image may be
+        partially or wholly obscured by other onscreen content.
+      </p>
+      <p>This method returns the bounds of the current onscreen
+        view, and not the nominal size of the source data in the
+        event that the original image has been rescaled.    </p>
+    </tp:docstring>
+    <arg direction="in" name="coordType" type="u" tp:type="COORD_TYPE">
+	    <tp:docstring>
+      <p>If 0, the returned bounding box position is returned
+        relative to the screen; if 1, the bounding box position is returned 
+        relative to the containing window.</p>
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" type="(iiii)" tp:type="BoundingBox">
+    <tp:docstring>
+      A BoundingBox enclosing the image's onscreen representation.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getImagePosition">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Get the coordinates of the current image position on screen.    </p>
+
+    </tp:docstring>
+    <arg direction="out" name="x" type="i">
+    	<tp:docstring>
+        Back-filled with the x coordinate of the 
+        onscreen image (i.e. the minimum x coordinate)
+    	</tp:docstring>
+    </arg>
+    <arg direction="out" name="y" type="i">
+    	<tp:docstring>
+        Back-filled with the y coordinate of the 
+        onscreen image (i.e. the minimum y coordinate)
+    	</tp:docstring>
+    </arg>
+    <arg direction="in" name="coordType" type="u" tp:type="COORD_TYPE">
+    	<tp:docstring>
+        If 0, the returned x and y coordinates are 
+        returned relative to the screen; 
+        if 1, they are returned relative to the containing window.
+    	</tp:docstring>
+    </arg>
+  </method>
+  <method name="getImageSize">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Obtain the width and height of the current onscreen view of the
+        image.  The extents returned do not account for
+        any viewport clipping or the fact that the image may be
+        partially or wholly obscured by other onscreen content.
+      </p>
+      <p>This method returns the size of the current onscreen
+        view, and not the nominal or "original" size of the source 
+	image, in the event that the original image has been rescaled.
+      </p>
+
+    </tp:docstring>
+    <arg direction="out" name="width" type="i">
+	    <tp:docstring>
+        Back-filled with the x extents of the 
+        onscreen image (i.e. the image width in pixels)
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" name="height" type="i">
+	    <tp:docstring>
+        Back-filled with the y extents of the 
+        onscreen image (i.e. the image height in pixels)
+	    </tp:docstring>
+    </arg>
+  </method>
+</interface>
+</node>
+<node name="/node">
+<interface name="org.freedesktop.atspi.Selection">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An interface which indicates that an object exposes a 'selection' model,
+      allowing the selection of one or more of its children.  Read-only Selection
+      instances are possible, in which case the interface is used to programmatically
+      determine the selected-ness of its children.  A selected child has State.STATE_SELECTED,
+      and a child which may hypothetically be selected (though possibly not programmatically
+      selectable) has State.STATE_SELECTABLE.</p>
+      <p>Events emitted by implementors of Selection include:
+      <code>object:selection-changed</code> An instance of Selection has undergone a change in the
+      'selected-ness' of its children, i.e. had a selection added,
+      removed, and/or modified.  Usually accompanied by
+      corresponding <code>object:state-changed:selected</code> events
+      from the corresponding children, unless the children are
+      previously un-queried via AT-SPI and the Selection instance
+      has State.STATE_MANAGES_DESCENDANTS.</p>
+  </tp:docstring>
+  <tp:property name="nSelectedChildren" type="i" access="read">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The number of children of a Selection implementor which are
+      currently selected.</p>
+  </tp:docstring>
+  </tp:property>
+  <method name="getSelectedChild">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+	    <p>Get the i-th selected Accessible child of a Selection.</p>
+	    <p><code>selectedChildIndex</code> refers to the index in the list of 
+        'selected' children as opposed to the more general 'child index'
+        of an object;  as such it generally differs from that used in
+        Accessible.getChildAtIndex() or returned by
+        Accessible.getIndexInParent(). 
+	<code>selectedChildIndex</code> must lie between 0
+        and Selection.nSelectedChildren-1, inclusive.</p>
+    </tp:docstring>
+    <arg direction="in" name="selectedChildIndex" type="i">
+    <tp:docstring>
+      A long integer indicating which of the selected children of an object is being requested.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="o" tp:type="Accessible">
+    <tp:docstring>
+	    A pointer to a selected Accessible child object,specified by <code>selectedChildIndex</code>.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="selectChild">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+	    <p>Add a child to the selected children list of a Selection.</p>
+	    <p>For Selection implementors that only allow
+        single selections, this call may result in the
+        replacement of the (single) current
+	selection.  The call may return <code>False</code> if
+        the child is not selectable (i.e. does not have State.STATE_SELECTABLE), 
+        if the user does not have permission to change the selection, 
+        or if the Selection instance does not have State.STATE_SENSITIVE.    </p>
+    </tp:docstring>
+    <arg direction="in" name="childIndex" type="i">
+    <tp:docstring>
+      A long integer indicating which child of theSelection is to be selected.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+	    <code>True</code> if the child was successfully selected, <code>False</code> otherwise.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="deselectSelectedChild">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+	    <p>Remove a child to the selected children list of a Selection.</p>
+	    <p><code>childIndex</code> is the index in the selected-children list,
+		    not the index in the parent container. <code>selectedChildIndex</code> in this
+		    method, and <code>childIndex</code> in Selection.selectChild
+        	    are asymmettric.</p>
+    </tp:docstring>
+    <arg direction="in" name="selectedChildIndex" type="i">
+    <tp:docstring>
+      A long integer indicating which of the selected children of the Selection is to be deselected.  The indexis a zero-offset index into the 'selected child list', nota zero-offset index into the list of all children of the Selection.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+	    <code>True</code> if the child was successfully deselected, <code>False</code> otherwise, see deselectChild
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="isChildSelected">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Determine whether a particular child of an Selection implementor
+	      is currently selected.  Note that <code>childIndex</code> is the zero-offset
+        index into the standard Accessible container's list of children.    </p>
+    </tp:docstring>
+    <arg direction="in" name="childIndex" type="i">
+    <tp:docstring>
+      An index into the Selection's list of children.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+	    <code>True</code> if the specified child is currently selected,<code>False</code> otherwise.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="selectAll">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Attempt to select all of the children of a Selection implementor.
+        Not all Selection implementors support this operation (for instance, 
+        implementations which support only "single selection" do not support this operation).</p>
+    </tp:docstring>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+      <code>True</code> if successful, <code>False</code> otherwise.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="clearSelection">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Attempt to clear all selections (i.e. deselect all children) of a Selection.
+        Not all Selection implementations allow the removal of all selections.    </p>
+
+      <p>This operation may fail if the object must have at least one selected child,
+        if the user does not have permission to change the selection, or if the Selection
+        does not have State.STATE_SENSITIVE.    </p>
+    </tp:docstring>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+      <code>True</code> if the selections were successfully cleared, <code>False</code> otherwise.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="deselectChild">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Remove a child from the selected children list of a Selection,
+        if the child is currently selected.    </p>
+
+	<p>Unlike deselectSelectedChild, <code>childIndex</code> is the zero-offset
+        index into the Accessible instance's list of children,
+        not the index into the 'selected child list'.    </p>
+    </tp:docstring>
+    <arg direction="in" name="childIndex" type="i">
+    <tp:docstring>
+      a long integer (the zero offset index into the Accessibleobject's list of children) indicating which child of theSelection is to be selected.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+      <code>True</code> if the child was successfully selected, <code>False</code> otherwise, see deselectSelectedChild.
+    </tp:docstring>
+    </arg>
+  </method>
+</interface>
+</node>
+<node name="/node">
+<interface name="org.freedesktop.atspi.Table">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An interface used by containers whose contained data is arranged in 
+      a "tabular" (i.e. row/column) fashion.  Tables may resemble a two-dimensional
+      grid, as in a spreadsheet, or may feature objects which span multiple rows and/or
+      columns, but whose bounds are aligned on a row/column matrix.  Thus, the Table
+      interface may be used to represent "spreadsheets" as well as "frames".  </p>
+
+    <p>Objects within tables are children of the Table instance, and they may be referenced
+      either via a child index or via a row/column pair.  
+      Their role may be ROLE_TABLE_CELL, but table 'cells' may have other roles as well.
+      These 'cells' may implement other interfaces, such as Text, Action, Image, 
+      and Component, and should do so as appropriate to their onscreen representation
+      and/or behavior.</p>
+  </tp:docstring>
+  <tp:property name="nRows" type="i" access="read">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The total number of rows in this table (including empty rows),
+      exclusive of any rows which are programmatically hidden.
+      Rows which are merely scrolled out of view are included.</p>
+  </tp:docstring>
+  </tp:property>
+  <tp:property name="nColumns" type="i" access="read">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The total number of columns in this table (including empty columns),
+      exclusive of columns which are programmatically hidden.
+      Columns which are scrolled out of view or clipped by the current
+      viewport are included. </p>
+  </tp:docstring>
+  </tp:property>
+  <tp:property name="caption" type="o" access="read">
+  <tp:docstring>
+    An Accessible which represents of a caption for a Table.
+  </tp:docstring>
+  </tp:property>
+  <tp:property name="summary" type="o" access="read">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An accessible object which summarizes the contents of a Table.
+      This object is frequently itself a Table instance, albeit a simplified one.</p>
+  </tp:docstring>
+  </tp:property>
+  <tp:property name="nSelectedRows" type="i" access="read">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The number of rows currently selected.  
+      A selected row is one in which all included cells are selected.
+      Not all tables support row selection.</p>
+  </tp:docstring>
+  </tp:property>
+  <tp:property name="nSelectedColumns" type="i" access="read">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The number of columns currently selected.  
+      A selected column is one in which all included cells are selected.
+      Not all tables support column selection.</p>
+  </tp:docstring>
+  </tp:property>
+  <method name="getAccessibleAt">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Get the table cell at the specified row and column indices.
+        To get the accessible object at a particular (x, y) screen coordinate,
+        use Accessible.getAccessibleAtPoint ().</p>
+    </tp:docstring>
+    <arg direction="in" name="row" type="i">
+    <tp:docstring>
+      The specified table row, zero-indexed.
+    </tp:docstring>
+    </arg>
+    <arg direction="in" name="column" type="i">
+    <tp:docstring>
+      The specified table column, zero-indexed.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="o" tp:type="Accessible">
+    <tp:docstring>
+      An Accessible object representing the specified table cell.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getIndexAt">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Get the 1-D child index corresponding to the specified 2-D row and column indices.
+        To get the accessible object at a particular (x, y) screen coordinate,
+        use Accessible.getAccessibleAtPoint.    </p>
+    </tp:docstring>
+    <arg direction="in" name="row" type="i">
+    <tp:docstring>
+      The specified table row, zero-indexed.
+    </tp:docstring>
+    </arg>
+    <arg direction="in" name="column" type="i">
+    <tp:docstring>
+      The specified table column, zero-indexed.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="i">
+    <tp:docstring>
+	    A long integer which serves as the index of a specified cell in the table, 
+	    in a form usable by Accessible.getChildAtIndex.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getRowAtIndex">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Get the table row index occupied by the child at a particular 1-D child index.</p>
+    </tp:docstring>
+    <arg direction="in" name="index" type="i">
+    <tp:docstring>
+      The specified child index, zero-indexed.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="i">
+    <tp:docstring>
+      A long integer indicating the first row spanned by the child of atable, at the specified 1-D (zero-offset) index.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getColumnAtIndex">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Get the table column index occupied by the child at a particular 1-D child index.</p>
+    </tp:docstring>
+    <arg direction="in" name="index" type="i">
+    <tp:docstring>
+      The specified child index, zero-indexed.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="i">
+    <tp:docstring>
+	    A long integer indicating the first column spanned by the child of a table, 
+	    at the specified 1-D (zero-offset) index.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getRowDescription">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Get a text description of a particular table row. This differs from
+        AccessibleTable.getRowHeader, which returns an Accessible.</p>
+    </tp:docstring>
+    <arg direction="in" name="row" type="i">
+    <tp:docstring>
+      The specified table row, zero-indexed.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="s">
+    <tp:docstring>
+      A UTF-8 string describing the specified table row, if available.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getColumnDescription">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Get a text description of a particular table column. This differs from
+        AccessibleTable.getColumnHeader, which returns an Accessible.</p>
+    </tp:docstring>
+    <arg direction="in" name="column" type="i">
+    <tp:docstring>
+      The specified table column, zero-indexed.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="s">
+    <tp:docstring>
+      A UTF-8 string describing the specified table column, if available.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getRowExtentAt">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Get the number of rows spanned by the table cell at the specific row and column.
+        (some tables can have cells which span multiple rows and/or columns).</p>
+    </tp:docstring>
+    <arg direction="in" name="row" type="i">
+    <tp:docstring>
+      The specified table row, zero-indexed.
+    </tp:docstring>
+    </arg>
+    <arg direction="in" name="column" type="i">
+    <tp:docstring>
+      The specified table column, zero-indexed.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="i">
+    <tp:docstring>
+      A long integer indicating the number of rows spanned by the specified cell.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getColumnExtentAt">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Get the number of columns spanned by the table cell at the specific row and column.
+        (some tables can have cells which span multiple rows and/or columns).</p>
+    </tp:docstring>
+    <arg direction="in" name="row" type="i">
+    <tp:docstring>
+      The specified table row, zero-indexed.
+    </tp:docstring>
+    </arg>
+    <arg direction="in" name="column" type="i">
+    <tp:docstring>
+      The specified table column, zero-indexed.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="i">
+    <tp:docstring>
+      A long integer indicating the number of columns spanned by the specified cell.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getRowHeader">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Get the header associated with a table row, if available.  This differs from
+        getRowDescription, which returns a string.</p>
+    </tp:docstring>
+    <arg direction="in" name="row" type="i">
+    <tp:docstring>
+      The specified table row, zero-indexed.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="o" tp:type="Accessible">
+    <tp:docstring>
+      An Accessible representatin of the specified table row, if available.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getColumnHeader">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Get the header associated with a table column, if available, as an 
+        instance of Accessible. This differs from
+        getColumnDescription, which returns a string.</p>
+    </tp:docstring>
+    <arg direction="in" name="column" type="i">
+    <tp:docstring>
+      The specified table column, zero-indexed.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="o" tp:type="Accessible">
+    <tp:docstring>
+      An Accessible representatin of the specified table column, if available.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getSelectedRows">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Obtain the indices of all rows which are currently selected.  
+         Not all tables support row selection.    </p>
+    </tp:docstring>
+    <arg direction="out" type="ai" tp:type="LongSeq">
+    <tp:docstring>
+      A sequence of integers comprising the indices of rows currently selected.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getSelectedColumns">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Obtain the indices of all columns which are currently selected.  
+         Not all tables support column selection.    </p>
+    </tp:docstring>
+    <arg direction="out" type="ai" tp:type="LongSeq">
+    <tp:docstring>
+      A sequence of integers comprising the indices of columns currently selected.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="isRowSelected">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Determine whether a table row is selected.  
+         Not all tables support row selection.    </p>
+    </tp:docstring>
+    <arg direction="in" name="row" type="i">
+    <tp:docstring>
+      The row being queried.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+       <code>True</code> if the specified row is currently selected, <code>False</code> if not.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="isColumnSelected">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Determine whether a table column is selected.  
+         Not all tables support column selection.    </p>
+    </tp:docstring>
+    <arg direction="in" name="column" type="i">
+    <tp:docstring>
+      The column being queried.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+      <code>True</code> if the specified column is currently selected, <code>False</code> if not.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="isSelected">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+	    <p>Determine whether the cell at a specific row and column is selected.</p>
+    </tp:docstring>
+    <arg direction="in" name="row" type="i">
+	    <tp:docstring>
+        A row occupied by the cell whose state is being queried.
+	    </tp:docstring>
+    </arg>
+    <arg direction="in" name="column" type="i">
+	    <tp:docstring>
+        A column occupied by the cell whose state is being queried.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+      <code>True</code> if the specified cell is currently selected, <code>False</code> if not.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="addRowSelection">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Select the specified row, adding it to the current row selection,
+        if the table's selection model permits it.    </p>
+    </tp:docstring>
+    <arg direction="in" name="row" type="i">
+	    <tp:docstring>
+      <p>
+        Possible reasons for addRowSelection to return <code>False</code>
+        include:
+	<ol>
+		<li>The table does not support Selection</li>
+		<li>The table row includes cells which do not have STATE_SELECTABLE</li>
+		<li>The table does not support selection by row</li>
+		<li>The table does not support selection of multiple rows, and one row is already selected.</li>
+		<li>The table does not support non-contiguous selections (i.e.  does not include STATE_MULTISELECTABLE), and the specified row would result in selection of non-contiguous rows.</li>
+		<li>The table does not support user-instigated selection</li>
+	</ol>
+	</p>
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+      <code>True</code> if the specified row was successfully selected, <code>False</code> if not. 
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="addColumnSelection">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Select the specified column, adding it to the current column selection,
+        if the table's selection model permits it.    </p>
+    </tp:docstring>
+    <arg direction="in" name="column" type="i">
+	    <tp:docstring>
+      <p>
+        Possible reasons for addColumnSelection to return <code>False</code>
+        include:
+	<ol>
+		<li>The table does not support Selection</li>
+		<li>The table column includes cells which do not have STATE_SELECTABLE</li>
+		<li>The table does not support selection by column</li>
+		<li>The table does not support selection of multiple column, and one column is already selected.</li>
+		<li>The table does not support non-contiguous selections (i.e.  does not include STATE_MULTISELECTABLE), and the specified column would result in selection of non-contiguous columns.</li>
+		<li>The table does not support user-instigated selection</li>
+	</ol>
+	</p>
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+      <code>True</code> if the specified column was successfully selected, <code>False</code> if not. 
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="removeRowSelection">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Remove the specified row from current row selection,
+        if the table's selection model permits it.    </p>
+
+    </tp:docstring>
+    <arg direction="in" name="row" type="i">
+	    <tp:docstring>
+      <p>
+        Possible reasons for removeRowSelection to return <code>False</code>
+        include:
+	<ol>
+		<li>The table does not support user-instigated Selection</li>
+		<li>The table has no selected rows or does not support deselection by row </li>
+	</ol>
+      </p>
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+      <code>True</code> if the specified row was successfully de-selected, <code>False</code> if not. 
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="removeColumnSelection">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Remove the specified column from current column selection,
+        if the table's selection model permits it.    </p>
+
+    </tp:docstring>
+    <arg direction="in" name="column" type="i">
+	    <tp:docstring>
+      <p>
+        Possible reasons for removeColumnSelection to return \c <code>False</code>
+        include:
+	<ol>
+		<li>The table does not support user-instigated modification of selection state</li>
+		<li>The table has no selected columns or does not support deselection by column.</li>
+	</ol>
+      </p>
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+      <code>True</code> if the specified column was successfully de-selected, <code>False</code> if not. 
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getRowColumnExtentsAtIndex">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Given a child index, determine the row and column indices and 
+        extents, and whether the cell is currently selected.  If
+        the child at index is not a cell (for instance, if it is 
+        a summary, caption, etc.), <code>False</code> is returned.    </p>
+
+
+      <p>Example:
+        If the Table child at index '6' extends across columns 5 and 6 of
+        row 2 of a Table instance, and is currently selected, then
+	<code>
+        retval = table::getRowColumnExtentsAtIndex (6, row, col, 
+        row_extents,
+        col_extents,
+        is_selected);
+	</code>
+        will return <code>True</code>, and after the call
+	<code> row, col, row_extents, col_extents, </code>
+	<code>is_selected </code> will contain <code>2,  5,  1,  2,</code> and 
+	<code>True</code>, respectively.
+      </p>
+    </tp:docstring>
+    <arg direction="in" name="index" type="i">
+	    <tp:docstring>
+        Ihe index of the Table child whose row/column 
+        extents are requested.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" name="row" type="i">
+	    <tp:docstring>
+        Back-filled with the first table row associated with
+        the cell with child index index.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" name="col" type="i">
+	    <tp:docstring>
+        Back-filled with the first table column associated 
+        with the cell with child index index.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" name="row_extents" type="i">
+	    <tp:docstring>
+        Back-filled with the number of table rows 
+        across which child i extends.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" name="col_extents" type="i">
+	    <tp:docstring>
+        Back-filled with the number of table columns
+        across which child i extends.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" name="is_selected" type="b" tp:type="boolean">
+	    <tp:docstring>
+        A boolean which is back-filled with <code>True</code>
+        if the child at index i corresponds to a selected table cell,
+        <code>False</code> otherwise.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+	    <code>True</code> if the index is associated with a valid table-cell,
+	    <code>False</code> if the index does not correspond to a cell.
+	    If <code>False</code> is returned, the values of the out parameters are undefined.
+    </tp:docstring>
+    </arg>
+  </method>
+</interface>
+</node>
+<node name="/node">
+<tp:enum name="TEXT_BOUNDARY_TYPE" type="u">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Specifies the boundary conditions determining a run of text as returned from
+      getTextAtOffset, getTextAfterOffset, and getTextBeforeOffset.</p>
+  </tp:docstring>
+  <tp:enumvalue suffix="TEXT_BOUNDARY_CHAR">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Text is bounded by this character only. 
+      Start and end offsets differ by one, by definition, for this value. </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="TEXT_BOUNDARY_WORD_START" value="1">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Boundary condition is start of a word; i.e. range is from start of
+      one word to the start of another word. </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="TEXT_BOUNDARY_WORD_END" value="2">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Boundary condition is the end of a word; i.e. range is from 
+	    the end of one word to the end of another.</p>
+    <p>Some locales may not distinguish between words and
+      characters or glyphs, in particular those locales which use
+      wholly or partially ideographic character sets.  In these cases,
+      characters may be returned in lieu of multi-character substrings.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="TEXT_BOUNDARY_SENTENCE_START" value="3">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Boundary condition is start of a sentence, as determined 
+	    by the application.</p>
+      <p>Some locales or character sets may not include explicit sentence
+      delimiters, so this boundary type can not always be honored.
+      Some locales will return lines of text instead of grammatical sentences.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="TEXT_BOUNDARY_SENTENCE_END" value="4">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Boundary condition is end of a sentence, as determined by the application, 
+	    including the sentence-delimiting character, for instance '.'</p>
+      <p>Some locales or character sets may not include explicit sentence
+      delimiters, so this boundary type can not always be honored.
+      Some locales will return lines of text instead of grammatical sentences.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="TEXT_BOUNDARY_LINE_START" value="5">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p> Boundary condition is the start of a line; i.e. range is 
+      from start of one line to the start of another.  This generally 
+      means that an end-of-line character will appear at the end of the range. </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="TEXT_BOUNDARY_LINE_END" value="6">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p> Boundary condition is the end of a line; i.e. range is
+      from start of one line to the start of another.  This generally 
+      means that an end-of-line character will be the first character of the range. </p>
+  </tp:docstring>
+  </tp:enumvalue>
+</tp:enum>
+<tp:enum name="TEXT_CLIP_TYPE" type="u">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>TEXT_CLIP_TYPE:
+      CLIP_MIN means text clipped by min coordinate is omitted,
+      CLIP_MAX clips text interescted by the max coord, and CLIP_BOTH
+      will retain only text falling fully within the min/max bounds.  </p>
+  </tp:docstring>
+  <tp:enumvalue suffix="TEXT_CLIP_NONE"/>
+  <tp:enumvalue suffix="TEXT_CLIP_MIN" value="1">
+  <tp:docstring>
+    Characters/glyphs clipped by the minimum coordinate are omitted 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="TEXT_CLIP_MAX" value="2">
+  <tp:docstring>
+    Characters/glyphs which intersect the maximum coordinate are omitted 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="TEXT_CLIP_BOTH" value="3">
+  <tp:docstring>
+    Only glyphs falling entirely within the region bounded by min and max are retained. 
+  </tp:docstring>
+  </tp:enumvalue>
+</tp:enum>
+<interface name="org.freedesktop.atspi.Text">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The text interface should be implemented by objects which place textual information onscreen as character
+      strings or glyphs.  The text interface allows access to textual content, including display attributes and
+      semantic hints associated with runs of text, and access to bounding box information for glyphs and substrings.
+      It also allows portions of textual content to be selected, if the object's StateSet includes
+      STATE_SELECTABLE_TEXT.   </p>
+
+    <p>In some cases a Text object may have, as its content, an empty string.  In particular this can
+      occur in the case of Hypertext objects which do not display explicitly textual information onscreen,
+      as Hypertext is derived from the Text interface, see Hypertext.  </p>
+
+    <p>Typographic and semantic attributes of onscreen textual content, for instance typeface, weight, 
+      language, and such qualities as 'emphasis' or 'blockquote', are represented as text attributes.
+      Contiguous sequences of characters over which these attributes are unchanged are referred to as
+      'attribute runs', and are available via Text.getAttributeRun.  Where possible, implementing clients
+      will report textual attributes which are the same over the entire text object, for instance those
+      inherited from a default or document-scope style, via getDefaultAttributes instead of reporting them
+      explicitly for each character.  Therefore, for any span of text, the attributes in effect are the union
+      of the set returned by Text.getDefaultAttributes, and the set returned at a particular character
+      offset via Text.getAttributeRun.  </p>
+
+    <p>Events that may be emitted by instances of Text include:
+	    <ol>
+		    <li>'object:text-attributes-changed' The attributes of a range of text, or the range 
+			    over which attributes apply, has changed.</li>
+		    <li>'object:text-changed' The text content of this object has changed.</li>
+		    <li>'object:text-bounds-changed' The character bounds of a text object have changed,
+			    for instance in response to a reformatting or reflow operation.</li>
+		    <li>'object:text-caret-moved' The character offset of the text caret 
+			    (visible or notional) within this object has changed.  Events of this
+			    type may also be generated when an onscreen text caret appears or disappears.</li>
+		    <li>'object:text-selection-changed' The range or number of text selections within
+			    this text object has changed.</li>
+	    </ol>
+    </p>
+
+    <p>In some cases, objects which are not onscreen may implement Text, but if such objects
+      implement Component, their potential visibility should be examined (via comparison with STATE_VISIBLE 
+      and STATE_SHOWING) before exposing them to the user.  Objects which implement Text but not Component 
+      may be encountered in special-purpose interfaces or as special 'accessibility' extensions to visual 
+      interfaces to allow non-graphical access to application features.  These instances should be considered 
+      the exception, rather than the rule.</p>
+  </tp:docstring>
+  <tp:struct name="Range">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>A structure used to define a continguous range of text, including its 
+        (unattributed) textual content. </p>
+    </tp:docstring>
+    <tp:member type="i" tp:name="startOffset"/>
+    <tp:member type="i" tp:name="endOffset"/>
+    <tp:member type="s" tp:name="content"/>
+    <tp:member type="v" tp:name="data"/>
+  </tp:struct>
+  <tp:property name="characterCount" type="i" access="read">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The total current number of characters in the Text object, 
+      including whitespace and non-spacing characters.  </p>
+  </tp:docstring>
+  </tp:property>
+  <tp:property name="caretOffset" type="i" access="read">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The current offset of the text caret in the Text object.  
+      This caret may be virtual, e.g. non-visual and notional-only, but if an
+      onscreen representation of the caret position is visible, it will correspond to this offset.
+      The caret offset is given as a character offset, as opposed to a byte offset into 
+      a text buffer or a column offset. </p>
+  </tp:docstring>
+  </tp:property>
+  <method name="getText">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Obtain all or part of the onscreen textual content of a Text object.  If endOffset is specified as 
+        "-1", then this method will return the entire onscreen textual contents of the Text object.
+        onscreen' in this context means "potentially onscreen", this method does not perform any sort 
+        of coordinate visibility clipping or window-stack-ordering clipping.  The text thus reported 
+        corresponds to the text which would be presented onscreen if the object implementing the Text interface
+        were entirely unobscured. </p>
+    </tp:docstring>
+    <arg direction="in" name="startOffset" type="i"/>
+    <arg direction="in" name="endOffset" type="i"/>
+    <arg direction="out" type="s">
+    <tp:docstring>
+      The textual content of the current Text object beginning startOffset (inclusive) up to but not including the character at endOffset.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="setCaretOffset">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+	    <p>Programmatically move the text caret (visible or virtual, as above) to a given position.</p> 
+    </tp:docstring>
+    <arg direction="in" name="offset" type="i">
+	    <tp:docstring>
+        A long int indicating the desired character offset.  Not all implementations of
+        Text will honor setCaretOffset requests, so the return value below should be checked by the client.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+      <code>True</code> if the request was carried out, or <code>False</code> if the caret could not be moved to the requested position.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getTextBeforeOffset">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+	    <p>Obtain a subset of the text content of an object which entirely precedes <code>offset</code>,
+		    delimited by character, word, line, or sentence boundaries as specified by <code>type</code>. The
+		    starting and ending offsets of the resulting substring are returned in <code>startOffset</code>
+		    and <code>startOffset</code>.  By definition, if such a substring exists, <code>startOffset</code>
+		    is less than or equal to <code>offset.</code></p>
+    </tp:docstring>
+    <arg direction="in" name="offset" type="i">
+	    <tp:docstring>
+        The offset from which the substring search begins.
+	    </tp:docstring>
+    </arg>
+    <arg direction="in" name="type" type="u" tp:type="TEXT_BOUNDARY_TYPE">
+	    <tp:docstring>
+        The text-boundary delimiter which determines whether the returned text constitures
+        a character, word, line, or sentence (and possibly attendant whitespace), 
+        and whether the start or ending of such a substring forms the boundary condition.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" type="s">
+    <tp:docstring>
+      A string which is a substring of the text content of the object, delimited by the specified boundary condition.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" name="startOffset" type="i">
+	    <tp:docstring>
+        Back-filled with the starting offset of the resulting substring, if one exists.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" name="endOffset" type="i">
+	    <tp:docstring>
+        Back-filled with the offset of the character immediately following the resulting
+        substring, if one exists.
+	    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getTextAtOffset">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+	    <p>Obtain a subset of the text content of an object which includes the specified <code>offset</code>, 
+	      delimited by character, word, line, or sentence boundaries as specified by <code>type</code>.  The
+	starting and ending offsets of the resulting substring are returned in <code>startOffset</code>
+	and <code>endOffset</code>.</p>
+    </tp:docstring>
+    <arg direction="in" name="offset" type="i">
+	    <tp:docstring>
+        The offset from which the substring search begins, and which must 
+        lie within the returned substring.
+	    </tp:docstring>
+    </arg>
+    <arg direction="in" name="type" type="u" tp:type="TEXT_BOUNDARY_TYPE">
+	    <tp:docstring>
+        The text-boundary delimiter which determines whether the returned text constitutes
+        a character, word, line, or sentence (and possibly attendant whitespace), 
+        and whether the start or ending of such a substring forms the boundary condition.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" type="s">
+    <tp:docstring>
+      A string which is a substring of the text content of the object, delimited by the specified boundary condition.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" name="startOffset" type="i">
+	    <tp:docstring>
+        Back-filled with the starting offset of the resulting substring, if one exists.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" name="endOffset" type="i">
+	    <tp:docstring>
+        Back-filled with the offset of the character immediately following the resulting
+        substring, if one exists.
+	    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getTextAfterOffset">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+	    <p>Obtain a subset of the text content of an object which entirely follows <code>offset</code>,
+		    delimited by character, word, line, or sentence boundaries as specified by <code>type</code>. The
+		    starting and ending offsets of the resulting substring are returned in <code>startOffset</code>
+		    and <code>endOffset</code>. By definition, if such a substring exists, <code>startOffset</code>
+		    must be greater than <code>offset</code>.</p>
+    </tp:docstring>
+    <arg direction="in" name="offset" type="i">
+	    <tp:docstring>
+        The offset from which the substring search begins, and which must 
+        lie before the returned substring.
+    	    </tp:docstring>
+    </arg>
+    <arg direction="in" name="type" type="u" tp:type="TEXT_BOUNDARY_TYPE">
+	    <tp:docstring>
+        The text-boundary delimiter which determines whether the returned text constitures
+        a character, word, line, or sentence (and possibly attendant whitespace), 
+        and whether the start or ending of such a substring forms the boundary condition.
+    	    </tp:docstring>
+    </arg>
+    <arg direction="out" type="s">
+    <tp:docstring>
+      A string which is a substring of the text content of the object, delimited by the specified boundary condition.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" name="startOffset" type="i">
+	    <tp:docstring>
+        Back-filled with the starting offset of the resulting substring, if one exists.
+    	    </tp:docstring>
+    </arg>
+    <arg direction="out" name="endOffset" type="i">
+	    <tp:docstring>
+        Back-filled with the offset of the character immediately following the resulting
+        substring, if one exists.
+    	    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getCharacterAtOffset">
+    <arg name="offset" type="i" direction="in"/>
+    <arg type="i" direction="out">
+      <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+        An unsigned long integer whose value corresponds to the UCS-4 representation of the
+        character at the specified text offset, or 0 if offset is out of range.
+        long instead of wchar, to allow unicode chars 16 bits
+      </tp:docstring>
+    </arg>
+  </method>
+  <method name="getAttributeValue">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Get the string value of a named attribute at a given offset, if defined.</p>
+    </tp:docstring>
+    <arg direction="in" name="offset" type="i">
+	    <tp:docstring>
+        The offset of the character for which the attribute run is to be obtained.
+	    </tp:docstring>
+    </arg>
+    <arg direction="in" name="attributeName" type="s">
+	    <tp:docstring>
+        The name of the attribute for which the value is to be returned, if defined.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" type="s">
+    <tp:docstring>
+      The value of attribute (name-value pair) corresponding to "name", if defined. 
+    </tp:docstring>
+    </arg>
+    <arg direction="out" name="startOffset" type="i">
+	    <tp:docstring>
+        Back-filled with the offset of the first character in the attribute run
+	containing the character at <code>offset</code>.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" name="endOffset" type="i">
+	    <tp:docstring>
+        Back-filled with the offset of the first character past the end of the
+	attribute run containing the character at <code>offset</code>.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" name="defined" type="b" tp:type="boolean">
+	    <tp:docstring>
+	Back-filled with <code>True</code> if the attributeName has a defined value at <code>offset</code>,
+        <code>False</code> otherwise.
+	    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getAttributes">
+    <tp:docstring>
+      getAttributes is deprecated in favor of getAttributeRun.
+    </tp:docstring>
+    <arg direction="in" name="offset" type="i"/>
+    <arg direction="out" type="{ss}">
+    <tp:docstring>
+      The attributes at offset, as a semicolon-delimited set of colon-delimited name-value pairs. @see getAttributeRun
+    </tp:docstring>
+    </arg>
+    <arg direction="out" name="startOffset" type="i"/>
+    <arg direction="out" name="endOffset" type="i"/>
+  </method>
+  <method name="getDefaultAttributes">
+    <tp:docstring>
+      Deprecated in favor of getDefaultAttributeSet.
+    </tp:docstring>
+    <arg direction="out" type="{ss}">
+    <tp:docstring>
+      The attributes which apply to the entire text content, but which were not explicitlyspecified by the content creator.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getCharacterExtents">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Obtain a the bounding box, as x, y, width, and height, of the character or glyph at a particular 
+        character offset in this object's text content.  The coordinate system in which the results are
+        reported is specified by coordType.  If an onscreen glyph corresponds to multiple character offsets,
+        for instance if the glyph is a ligature, the bounding box reported will include the entire glyph and
+	therefore may apply to more than one character offset.</p>
+    </tp:docstring>
+    <arg direction="in" name="offset" type="i">
+	    <tp:docstring>
+        The character offset of the character or glyph being queried.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" name="x" type="i">
+	    <tp:docstring>
+        The minimum horizontal coordinate of the bounding box of the glyph representing 
+	the character at <code>offset</code>.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" name="y" type="i">
+	    <tp:docstring>
+        The minimum vertical coordinate of the bounding box of the glyph representing 
+	the character at <code>offset</code>.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" name="width" type="i">
+	    <tp:docstring>
+        The horizontal extent of the bounding box of the glyph representing 
+	the character at <code>offset</code>.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" name="height" type="i">
+	    <tp:docstring>
+        The vertical extent of the bounding box of the glyph representing 
+	the character at <code>offset</code>.
+	    </tp:docstring>
+    </arg>
+    <arg direction="in" name="coordType" type="u" tp:type="COORD_TYPE">
+	    <tp:docstring>
+		    <p>If 0, the results will be reported in screen coordinates, i.e. in pixels
+        relative to the upper-left corner of the screen, with the x axis pointing right
+        and the y axis pointing down.
+        If 1, the results will be reported relative to the containing toplevel window,
+        with the x axis pointing right and the y axis pointing down.</p>
+	    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getOffsetAtPoint">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Get the offset of the character at a given onscreen coordinate.  The coordinate system used to interpret
+        x and y is determined by parameter coordType.</p>
+    </tp:docstring>
+    <arg direction="in" name="x" type="i"/>
+    <arg direction="in" name="y" type="i"/>
+    <arg direction="in" name="coordType" type="u" tp:type="COORD_TYPE">
+	    <tp:docstring>
+        If 0, the input coordinates are interpreted relative to the entire screen, if 1,
+        they are relative to the toplevel window containing this Text object.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" type="i">
+    <tp:docstring>
+      The text offset (as an offset into the character array) of the glyph whose onscreen bounds contain the point x,y, or -1 if the point is outside the bounds of any glyph.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getNSelections">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Obtain the number of separate, contiguous selections in the current Text object.
+        Text objects which do not implement selection of discontiguous text regions will always
+        return '0' or '1'.  Note that "contiguous" is defined by continuity of the offsets, i.e.
+        a text 'selection' is defined by a start/end offset pair.  In the case of bidirectional text,
+        this means that a continguous selection may appear visually discontiguous, and vice-versa.    </p>
+    </tp:docstring>
+    <arg direction="out" type="i">
+    <tp:docstring>
+      The number of contiguous selections in the current Text object.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getSelection">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>The result of calling getSelection with an out-of-range selectionNum (i.e. for a selection 
+        which does not exist) is not strictly defined, but should set endOffset equal to startOffset.</p>
+    </tp:docstring>
+    <arg direction="in" name="selectionNum" type="i"/>
+    <arg direction="out" name="startOffset" type="i"/>
+    <arg direction="out" name="endOffset" type="i"/>
+  </method>
+  <method name="addSelection">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>The result of calling addSelection on objects which already have one selection present, and which
+        do not include STATE_MULTISELECTABLE, is undefined, other than the return value.</p>
+    </tp:docstring>
+    <arg direction="in" name="startOffset" type="i"/>
+    <arg direction="in" name="endOffset" type="i"/>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+      <code>True</code> of the selection was successfully added, <code>False</code> otherwise. Selection mayfail if the object does not support selection of text (see STATE_SELECTABLE_TEXT), if theobject does not support multiple selections and a selection is already defined, or for other reasons(for instance if the user does not have permission to copy the text into the relevant selection buffer).
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="removeSelection">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Deselect the text contained in the specified selectionNum, if such a selection
+        exists, otherwise do nothing.  Removal of a non-existant selectionNum has no effect.</p>
+    </tp:docstring>
+    <arg direction="in" name="selectionNum" type="i"/>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+      <code>True</code> if the selection was successfully removed, <code>False</code> otherwise.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="setSelection">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Modify an existing selection's start or ending offset.     </p>
+
+      <p>Calling setSelection for a selectionNum that is not already defined has no effect.
+        The result of calling setSelection with a selectionNum greater than 0 for objects that
+        do not include STATE_MULTISELECTABLE is undefined.</p>
+    </tp:docstring>
+    <arg direction="in" name="selectionNum" type="i">
+	    <tp:docstring>
+        Indicates which of a set of non-contiguous selections to modify.
+	    </tp:docstring>
+    </arg>
+    <arg direction="in" name="startOffset" type="i">
+	    <tp:docstring>
+        The new starting offset for the selection
+	    </tp:docstring>
+    </arg>
+    <arg direction="in" name="endOffset" type="i">
+	    <tp:docstring>
+        The new ending offset for the selection
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+	    <code>True</code> if the selection corresponding to selectionNum is successfully 
+	    modified, <code>False</code> otherwise.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getRangeExtents">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Obtain the bounding box which entirely contains a given text range.
+        Negative values may be returned for the bounding box parameters in the event
+        that all or part of the text range is offscreen or not mapped to the screen.</p>
+    </tp:docstring>
+    <arg direction="in" name="startOffset" type="i">
+    <tp:docstring>
+        @param startOffset the offset of the first character in the specified range.
+    </tp:docstring>
+    </arg>
+    <arg direction="in" name="endOffset" type="i">
+    <tp:docstring>
+        The offset of the character immediately after the last 
+        character in the specified range.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" name="x" type="i">
+    <tp:docstring>
+        An integer parameter which is back-filled with the minimum
+        horizontal coordinate of the resulting bounding box.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" name="y" type="i">
+    <tp:docstring>
+        An integer parameter which is back-filled with the minimum
+        vertical coordinate of the resulting bounding box.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" name="width" type="i">
+    <tp:docstring>
+        An integer parameter which is back-filled with the
+        horizontal extent of the bounding box.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" name="height" type="i">
+    <tp:docstring>
+    </tp:docstring>
+        An integer parameter which is back-filled with the
+        vertical extent of the bounding box.
+    </arg>
+    <arg direction="in" name="coordType" type="u" tp:type="COORD_TYPE">
+    <tp:docstring>
+        If 0, the above coordinates are reported in pixels relative to
+        corner of the screen; if 1, the coordinates are reported relative to the
+        corner of the containing toplevel window.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getBoundedRanges">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Return the text content within a bounding box, 
+        as a list of Range structures.
+        Depending on the TEXT_CLIP_TYPE parameters, glyphs which are clipped by the
+        bounding box (i.e. which lie partially inside and partially outside it)
+        may or may not be included in the ranges returned.  
+        This method may be of particular interest to screen review algorithms.</p>
+    </tp:docstring>
+    <arg direction="in" name="x" type="i">
+	    <tp:docstring>
+        The minimum x ( i.e. leftmost)  coordinate of the bounding box.
+	    </tp:docstring>
+    </arg>
+    <arg direction="in" name="y" type="i">
+	    <tp:docstring>
+        The minimum y coordinate of the bounding box.
+	    </tp:docstring>
+    </arg>
+    <arg direction="in" name="width" type="i">
+	    <tp:docstring>
+        The horizontal size of the bounding box.  The rightmost bound of the bounding box
+        is (x + width);
+	    </tp:docstring>
+    </arg>
+    <arg direction="in" name="height" type="i">
+	    <tp:docstring>
+        The vertical size of the bounding box.  The maximum y value of the bounding box
+        is (y + height);
+	    </tp:docstring>
+    </arg>
+    <arg direction="in" name="coordType" type="u" tp:type="COORD_TYPE">
+	    <tp:docstring>
+        If 0, the above coordinates are interpreted as pixels relative to
+        corner of the screen; if 1, the coordinates are interpreted as pixels relative to the
+        corner of the containing toplevel window.
+	    </tp:docstring>
+    </arg>
+    <arg direction="in" name="xClipType" type="u" tp:type="TEXT_CLIP_TYPE">
+	    <tp:docstring>
+        Determines whether text which intersects the bounding box in the x direction
+        is included.
+	    </tp:docstring>
+    </arg>
+    <arg direction="in" name="yClipType" type="u" tp:type="TEXT_CLIP_TYPE">
+	    <tp:docstring>
+        Determines whether text which intersects the bounding box in the y direction
+        is included.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" type="a(iisv)" tp:type="RangeList"/>
+  </method>
+  <method name="getAttributeRun">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Query a particular text object for the text attributes defined at a given offset, 
+        obtaining the start and end of the "attribute run" over which these attributes are currently 
+        invariant.  Text attributes are those presentational, typographic, or semantic attributes or 
+        qualitites which apply to a range of text specifyable by starting and ending offsets.  
+        Attributes relevant to localization should be provided in 
+        accordance with the w3c "Internationalization and Localization Markup Requirements", 
+        http://www.w3.org/TR/2005/WD-itsreq-20051122/
+        Other text attributes should choose their names and value semantics in accordance with relevant
+        standards such as CSS level 2 (http://www.w3.org/TR/1998/REC-CSS2-19980512), 
+        XHTML 1.0 (http://www.w3.org/TR/2002/REC-xhtml1-20020801), and
+        WICD (http://www.w3.org/TR/2005/WD-WICD-20051121/).  Those attributes from the aforementioned
+        specifications and recommendations which do not concern typographic, presentational, or 
+        semantic aspects of text should be exposed via the more general Accessible::getAttributes() API
+        (if at all).</p>
+
+      <p>For example, CSS attributes which should be exposed on text (either as default attributes, or 
+        as explicitly-set attributes when non-default values are specified in the content view) include
+        the Font attributes (i.e. "css2:font-weight", "css2:font-style"), 
+        the "css2:color" and "css2:background-color" attributes, and "css2:text-decoration" attribute.     </p>
+
+      <p>If includeDefaults is <code>True</code>, then this AttributeSet should include the default
+        attributes as well as those which are explicitly assigned to the attribute run in question.
+        startOffset and endOffset will be back-filled to indicate the start and end of the attribute run
+        which contains 'offset' - an attribute run is a contiguous section of text whose attributes are
+        homogeneous.   </p>
+
+      <p>Clients seeking annotations or properties of a more general nature, which 
+        are not specific to the onscreen textual content of objects and cannot logically be applied
+        to specific character offset ranges,
+        should use Accessible.getAttributes instead.
+        The attributes returned by Text.getAttributeRun (with or without 'default attributes'), 
+        are distinct from the properties/attributes returned by Accessible.getAttributes.    </p>
+    </tp:docstring>
+    <arg direction="in" name="offset" type="i">
+	    <tp:docstring>
+        The offset of the character whose attributes will be reported.
+	    </tp:docstring>
+    </arg>
+    <arg direction="in" name="includeDefaults" type="b" tp:type="boolean">
+	    <tp:docstring>
+        If False, the call should only return those attributes which are
+        explicitly set on the current attribute run, omitting any attributes which are inherited from 
+        the default values. See also Text.getDefaultAttributes. 
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" type="{ss}" tp:type="AttributeSet">
+    <tp:docstring>
+      The AttributeSet defined at offset, optionally including the 'default' attributes.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" name="startOffset" type="i">
+	    <tp:docstring>
+        Backfilled with the starting offset of the character range over which all
+	text attributes match those of <code>offset</code>, i.e. the start of the homogeneous
+	attribute run including <code>offset</code>.
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" name="endOffset" type="i">
+	    <tp:docstring>
+        Backfilled with the offset of the first character past the character range over which all
+	text attributes match those of <code>offset</code>, i.e. the character immediately after 
+        the homogeneous attribute run including <code>offset</code>.
+	    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getDefaultAttributeSet">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Return an AttributeSet containing the text attributes which apply to all text in the object
+        by virtue of the default settings of the document, view, or user agent; e.g. those
+        attributes which are implied rather than explicitly applied to the text object.
+        For instance, an object whose entire text content has been explicitly marked as 'bold' will
+        report the 'bold' attribute via getAttributeRun(), whereas an object whose text weight is
+        inspecified may report the default or implied text weight in the default AttributeSet.    </p>
+    </tp:docstring>
+    <arg direction="out" type="as" tp:type="AttributeSet"/>
+  </method>
+</interface>
+</node>
+<node name="/node">
+	<tp:struct name="AccessibleProxy" array-name="AccessibleProxyArray">
+		<tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+			<p>The wire structure of an Accessible object proxy</p>
+		</tp:docstring>
+	
+		<tp:member type="o" tp:name="path">
+			<tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+				<p>D-Bus path of the object.</p>
+			</tp:docstring>
+  		</tp:member>
+	
+		<tp:member type="o" tp:name="parent">
+			<tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+				<p>D-Bus path of the parent accessible.</p>
+			</tp:docstring>
+  		</tp:member>
+		
+		<tp:member type="ao" tp:name="children">
+			<tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+				<p>Array of all the child accessibles.</p>
+			</tp:docstring>
+  		</tp:member>
+	
+		<tp:member type="as" tp:name="interfaces">
+			<tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+				<p>Names of all the interfaces this accessible object supports.</p>
+			</tp:docstring>
+  		</tp:member>
+	
+		<tp:member type="s" tp:name="name">
+			<tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+				<p>Names of the object.</p>
+			</tp:docstring>
+  		</tp:member>
+	
+		<tp:member type="u" tp:name="role">
+			<tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+				<p>Accessible role of object.</p>
+			</tp:docstring>
+  		</tp:member>
+	
+		<tp:member type="s" tp:name="description">
+			<tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+				<p>Extended description of the object.</p>
+			</tp:docstring>
+  		</tp:member>
+
+		<tp:member type="au" tp:name="states">
+			<tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+				<p>The object's states.  Each integer contains a bitmask of 32 states (the first item contains states 0-31, and the second item contains states 32-63).</p>
+			</tp:docstring>
+  		</tp:member>
+	</tp:struct>
+
+	<interface name="org.freedesktop.atspi.Tree">
+		<tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+			<p>The Tree interface provides access to all
+			of the Accessible objects that an application
+			has available. Information about the objects is 
+			transferred as a collection to reduce IPC usage.</p>
+		</tp:docstring>
+
+		<method name="getRoot">
+			<tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+				<p>Gets the D-Bus object path of the 
+				root accessible object of the application.</p>
+			</tp:docstring>
+			<arg name="root" type="o" direction="out">
+				<tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+					<p>Path of root Accessible object.</p>
+				</tp:docstring>
+			</arg>
+		</method>
+
+		<method name="getTree">
+			<tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+				<p>Transfers structures representing ALL
+				Accessible objects that currently exist in the
+				application. This should be used to create
+				a mirror of the tree of Accessibles within the AT.</p>
+			</tp:docstring>
+			<arg name="nodes" type="a(ooaoassusau)" direction="out" tp:type="AccessibleProxy[]">
+				<tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+					<p>Array of Accessible Object proxy structures.</p>
+				</tp:docstring>
+			</arg>
+		</method>
+
+		<signal name="updateAccessible">
+			<tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+				<p>Updates all mirrors. Re-sends all all the 
+				accessible objects that have changed since the last
+				updateTree signal was send</p>
+			</tp:docstring>
+			<arg name="nodesAdded" type="(ooaoassusau)" tp:type="AccessibleProxy[]">
+				<tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+					<p>Array of Accessible Object proxy structures to be added.</p>
+				</tp:docstring>
+			</arg>
+		</signal>
+
+		<signal name="removeAccessible">
+			<arg name="nodeRemoved" type="o">
+				<tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+					<p>Accessible Object proxy structure to be removed.</p>
+				</tp:docstring>
+			</arg>
+		</signal>
+	</interface>
+</node>
+<node name="/node">
+<interface name="org.freedesktop.atspi.Value">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An interface supporting controls which allow a
+      one-dimensional, scalar quantity to be modified or which
+      reflect a scalar quantity. (If STATE_EDITABLE is not present, 
+      the valuator is treated as "read only".  </p>
+
+    <p>Events generated by Image instances include:
+      'object:value-changed'</p>
+  </tp:docstring>
+  <tp:property name="minimumValue" type="d" access="read">
+  <tp:docstring>
+    The minimum value allowed by this valuator.
+  </tp:docstring>
+  </tp:property>
+  <tp:property name="maximumValue" type="d" access="read">
+  <tp:docstring>
+    The maximum value allowed by this valuator.
+  </tp:docstring>
+  </tp:property>
+  <tp:property name="minimumIncrement" type="d" access="read">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The smallest incremental change which this valuator allows.
+      If 0, the incremental changes to the valuator are 
+      limited only by the precision of a double precision value
+      on the platform.</p>
+  </tp:docstring>
+  </tp:property>
+  <tp:property name="currentValue" type="d" access="readwrite">
+  <tp:docstring>
+    The current value of the valuator.
+  </tp:docstring>
+  </tp:property>
+</interface>
+</node>
+
+<!-- Interfaces derived from Accessibility::Text -->
+<node name="/node">
+<interface name="org.freedesktop.atspi.EditableText">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Derived from interface Text, EditableText provides methods for
+      modifying textual content of components which support editing.
+      EditableText also interacts with the system clipboard via copyText,
+      cutText, and pasteText.  </p>
+
+    <p>Read-only instances of EditableText are possible; 
+      These may be instances of a general-purpose component type which are
+      sometimes, but not always, user-editable, or may be
+      components which are temporarily or circumstantially
+      in a non-editable state. </p>
+  </tp:docstring>
+  <method name="setTextContents">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Replace the text contents with a new string, discarding the old contents.    </p>
+    </tp:docstring>
+    <arg direction="in" name="newContents" type="s">
+    <tp:docstring>
+      A UTF-8 string with which the text object's contents will be replaced.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+	    <code>True</code> if the text content was successfully changed, <code>False</code> otherwise.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="insertText">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Insert new text contents into an existing text object at a given location, while retaining
+        the old contents.
+      </p>
+    </tp:docstring>
+    <arg direction="in" name="position" type="i">
+	    <tp:docstring>
+        The character offset into the Text implementor's content at which the
+        new content will be inserted.
+	    </tp:docstring>
+    </arg>
+    <arg direction="in" name="text" type="s">
+	    <tp:docstring>
+		    A UTF-8 string of which <code>length</code> characters will be inserted into the text 
+        object's text buffer.
+	    </tp:docstring>
+    </arg>
+    <arg direction="in" name="length" type="i">
+	    <tp:docstring>
+		    The number of characters of <code>text</code> to insert.  If the character count
+		    of <code>text</code> is less than or equal to <code>length</code>, the entire contents
+		    of <code>text</code> will be inserted.    
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+	    <code>True</code> if the text content was successfully inserted, <code>False</code> otherwise.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="copyText">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Copy a range of text into the system clipboard.
+      </p>
+    </tp:docstring>
+    <arg direction="in" name="startPos" type="i">
+	    <tp:docstring>
+        The character offset of the first character in the range of text being
+        copied.
+    	    </tp:docstring>
+    </arg>
+    <arg direction="in" name="endPos" type="i">
+	    <tp:docstring>
+        The offset of the first character past the end of the range of text
+	being copied.
+    	    </tp:docstring>
+    </arg>
+  </method>
+  <method name="cutText">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Excise a range of text from a Text object, copying it into the system clipboard.  </p>
+    </tp:docstring>
+    <arg direction="in" name="startPos" type="i">
+    <tp:docstring>
+        The character offset of the first character in the range of text being
+        cut.
+    </tp:docstring>
+    </arg>
+    <arg direction="in" name="endPos" type="i">
+    <tp:docstring>
+        The offset of the first character past the end of the range of text
+	being cut.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+      <code>True</code> if the text was successfully cut, <code>False</code> otherwise.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="deleteText">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Excise a range of text from a Text object without copying it into the system clipboard.  </p>
+    </tp:docstring>
+    <arg direction="in" name="startPos" type="i">
+    <tp:docstring>
+        The character offset of the first character in the range of text being
+        deleted.
+    </tp:docstring>
+    </arg>
+    <arg direction="in" name="endPos" type="i">
+    <tp:docstring>
+        The offset of the first character past the end of the range of text
+	being deleted.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+      <code>True</code> if the text was successfully deleted, <code>False</code> otherwise.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="pasteText">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Copy the text contents of the system clipboard, if any, into a Text object, 
+        inserting it at a particular character offset.    </p>
+    </tp:docstring>
+    <arg direction="in" name="position" type="i">
+	    <tp:docstring>
+      		<p>The character offset before which the text will be inserted.</p>
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+      <code>True</code> if the text was successfully pasted into the Text object, <code>False</code> otherwise.
+    </tp:docstring>
+    </arg>
+  </method>
+</interface>
+</node>
+<node name="/node">
+<interface name="org.freedesktop.atspi.Hypertext">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An interface used for objects which implement linking between
+      multiple resource or content locations, or multiple 'markers'
+      within a single document.  A Hypertext instance is associated with
+      one or more Hyperlinks, which are associated with particular
+      offsets within the Hypertext's included content.  </p>
+
+    <p>While this interface is derived from Text, 
+      there is no requirement that Hypertext instances have
+      textual content; they may implement Image as well,
+      and Hyperlinks need not have non-zero text offsets.</p>
+  </tp:docstring>
+  <method name="getNLinks">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Query the hypertext object for the number of Hyperlinks it
+        contains.</p>
+    </tp:docstring>
+    <arg direction="out" type="i">
+    <tp:docstring>
+      The number of Hyperlinks associated with this Hypertextobject, as a long integer.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getLink">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Get one of the Hyperlinks associated with this Hypertext object,
+        by index.</p>
+    </tp:docstring>
+    <arg direction="in" name="linkIndex" type="i">
+	    <tp:docstring>
+      		<p>An integer from 0 to getNLinks() - 1.</p>
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" type="o" tp:type="Hyperlink">
+    <tp:docstring>
+      The Hyperlink in this Hypertext object.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getLinkIndex">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Get the hyperlink index, if any, associated with a 
+        particular character offset in the Hypertext object.
+        For Hypertext implementors without textual content, all
+        hyperlinks are associated with character offset '0'.    </p>
+
+    </tp:docstring>
+    <arg direction="in" name="characterIndex" type="i"/>
+    <arg direction="out" type="i">
+      <tp:docstring>
+        <p>The index of the Hyperlink associated with character
+           offset <code>characterIndex</code>, or -1 if no Hyperlink is associated
+	   with that character offset.
+        </p>
+      </tp:docstring>
+    </arg>
+  </method>
+</interface>
+</node>
+<node name="/node">
+<tp:enum name="StateType" type="u">
+  <tp:enumvalue suffix="STATE_INVALID"/>
+  <tp:enumvalue suffix="STATE_ACTIVE" value="1">
+  <tp:docstring>
+    Indicates a window is currently the active window, or is an active subelement within a container or table 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_ARMED" value="2">
+  <tp:docstring>
+    Indicates that the object is armed 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_BUSY" value="3">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Indicates the current object is busy, i.e. onscreen representation is in the process of changing, or
+      the object is temporarily unavailable for interaction due to activity already in progress.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_CHECKED" value="4">
+  <tp:docstring>
+    Indicates this object is currently checked 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_COLLAPSED" value="5">
+  <tp:docstring>
+    Indicates this object is collapsed 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_DEFUNCT" value="6">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Indicates that this object no longer has a valid backing widget 
+      (for instance, if its peer object has been destroyed) </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_EDITABLE" value="7">
+  <tp:docstring>
+    Indicates the user can change the contents of this object 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_ENABLED" value="8">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Indicates that this object is enabled, i.e. that it currently reflects some application state. 
+      Objects that are "greyed out" may lack this state, and may lack the STATE_SENSITIVE if direct user
+      interaction cannot cause them to acquire STATE_ENABLED.  @see STATE_SENSITIVE.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_EXPANDABLE" value="9">
+  <tp:docstring>
+    Indicates this object allows progressive disclosure of its children 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_EXPANDED" value="10">
+  <tp:docstring>
+    Indicates this object its expanded 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_FOCUSABLE" value="11">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Indicates this object can accept keyboard focus, which means all
+      events resulting from typing on the keyboard will normally be passed
+      to it when it has focus</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_FOCUSED" value="12">
+  <tp:docstring>
+    Indicates this object currently has the keyboard focus 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_HAS_TOOLTIP" value="13">
+  <tp:docstring>
+    Indicates that the object has an associated tooltip 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_HORIZONTAL" value="14">
+  <tp:docstring>
+    Indicates the orientation of thsi object is horizontal 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_ICONIFIED" value="15">
+  <tp:docstring>
+    Indicates this object is minimized and is represented only by an icon 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_MODAL" value="16">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Indicates something must be done with this object before the user can
+      interact with an object in a different window.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_MULTI_LINE" value="17">
+  <tp:docstring>
+    Indicates this (text) object can contain multiple lines of text 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_MULTISELECTABLE" value="18">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Indicates this object allows more than one of its children to be
+      selected at the same time, or in the case of text objects, 
+      that the object supports non-contiguous text selections.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_OPAQUE" value="19">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Indicates this object paints every pixel within its rectangular region.
+      It also indicates an alpha value of unity, if it supports alpha blending. </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_PRESSED" value="20">
+  <tp:docstring>
+    Indicates this object is currently pressed 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_RESIZABLE" value="21">
+  <tp:docstring>
+    Indicates the size of this object's size is not fixed 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_SELECTABLE" value="22">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Indicates this object is the child of an object that allows its
+      children to be selected and that this child is one of those children
+      that can be selected.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_SELECTED" value="23">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Indicates this object is the child of an object that allows its
+      children to be selected and that this child is one of those children
+      that has been selected.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_SENSITIVE" value="24">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Indicates this object is sensitive, e.g. to user interaction. 
+      STATE_SENSITIVE usually accompanies STATE_ENABLED for user-actionable controls,
+      but may be found in the absence of STATE_ENABLED if the current visible state of the 
+      control is "disconnected" from the application state.  In such cases, direct user interaction
+      can often result in the object gaining STATE_SENSITIVE, for instance if a user makes 
+      an explicit selection using an object whose current state is ambiguous or undefined.
+      @see STATE_ENABLED, STATE_INDETERMINATE. </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_SHOWING" value="25">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Indicates this object, the object's parent, the object's parent's
+      parent, and so on, are all 'shown' to the end-user, i.e.
+      subject to "exposure" if blocking or obscuring objects do not interpose
+      between this object and the top of the window stack.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_SINGLE_LINE" value="26">
+  <tp:docstring>
+    Indicates this (text) object can contain only a single line of text 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_STALE" value="27">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Indicates that the information returned for this object may no longer be
+      synchronized with the application state.  This can occur if the object has STATE_TRANSIENT,
+      and can also occur towards the end of the object peer's lifecycle. </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_TRANSIENT" value="28">
+  <tp:docstring>
+    Indicates this object is transient 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_VERTICAL" value="29">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Indicates the orientation of this object is vertical; for example this state may appear on 
+      such objects as scrollbars, text objects (with vertical text flow), separators, etc.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_VISIBLE" value="30">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+	  <p>Indicates this object is visible, e.g. has been explicitly marked for exposure to the user.</p>
+	  <p>STATE_VISIBLE is no guarantee that the object is actually unobscured on the screen, only
+      that it is 'potentially' visible, barring obstruction, being scrolled or clipped out of the 
+      field of view, or having an ancestor container that has not yet made visible.
+      A widget is potentially onscreen if it has both STATE_VISIBLE and STATE_SHOWING.
+      The absence of STATE_VISIBLE and STATE_SHOWING is semantically equivalent to saying 
+      that an object is 'hidden'.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_MANAGES_DESCENDANTS" value="31">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Indicates that "active-descendant-changed" event is sent when children
+      become 'active' (i.e. are selected or navigated to onscreen).  Used to
+      prevent need to enumerate all children in very large containers, like
+      tables.  The presence of STATE_MANAGES_DESCENDANTS is an indication to the client.
+      that the children should not, and need not, be enumerated by the client.
+      Objects implementing this state are expected to provide relevant state
+      notifications to listening clients, for instance notifications of visibility
+      changes and activation of their contained child objects, without the client 
+      having previously requested references to those children.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_INDETERMINATE" value="32">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Indicates that a check box or other boolean indicator is in a state other than 
+      checked or not checked.  This usually means that the boolean value reflected or 
+      controlled by the object does not apply consistently to the entire current context.
+      For example, a checkbox for the "Bold" attribute of text may have STATE_INDETERMINATE
+      if the currently selected text contains a mixture of weight attributes.  
+      In many cases interacting with a STATE_INDETERMINATE object will cause 
+      the context's corresponding boolean attribute to be homogenized, whereupon the object
+      will lose STATE_INDETERMINATE and a corresponding state-changed event will be fired.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_REQUIRED" value="33">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Indicates that user interaction with this object is 'required' from the user, 
+      for instance before completing the processing of a form.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_TRUNCATED" value="34">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+	  <p>Indicates that an object's onscreen content is truncated, e.g. a text value in a spreadsheet cell.</p> 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_ANIMATED" value="35">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Indicates this object's visual representation is dynamic, not static.
+      This state may be applied to an object during an animated 'effect' and 
+      be removed from the object once its visual representation becomes static.</p>
+    <p>some applications, notably content viewers, may not be able to detect
+      all kinds of animated content.  Therefore the absence of this state should not
+      be taken as definitive evidence that the object's visual representation is
+      static; this state is advisory.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_INVALID_ENTRY" value="36">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>This object has indicated an error condition due to failure of input
+      validation.  For instance, a form control may acquire this state in response
+      to invalid or malformed user input.  </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_SUPPORTS_AUTOCOMPLETION" value="37">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>This state indicates that the object in question implements some form of ¨typeahead¨ or 
+      pre-selection behavior whereby entering the first character of one or more sub-elements
+      causes those elements to scroll into view or become selected.  Subsequent character input
+      may narrow the selection further as long as one or more sub-elements match the string.
+      This state is normally only useful and encountered on objects that implement Selection.
+      In some cases the typeahead behavior may result in full or partial ¨completion¨ of 
+      the data in the input field, in which case these input events may trigger text-changed
+      events from the source.  </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_SELECTABLE_TEXT" value="38">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>This state indicates that the object in question supports text selection. 
+      It should only be exposed on objects which implement the Text interface, 
+      in order to distinguish this state from STATE_SELECTABLE, which infers that
+      the object in question is a selectable child of an object which implements
+      Selection.  While similar, text selection and subelement selection are
+      distinct operations.  </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_IS_DEFAULT" value="39">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>This state indicates that the object in question is the 'default' interaction object 
+      in a dialog, i.e. the one that gets activated if the user presses "Enter" when the
+      dialog is initially posted.  </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_VISITED" value="40">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>This state indicates that the object (typically a hyperlink)
+      has already been activated or invoked, with the result that some backing data
+      has been downloaded or rendered.  </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="STATE_LAST_DEFINED" value="41">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>This value of the enumeration should not be used as a parameter, it indicates the number of
+      items in the StateType enumeration.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+</tp:enum>
+<interface name="org.freedesktop.atspi.StateSet">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The StateSet interface encapsulates a collection of state information.
+      It allows comparison of state information between object instances, and comparisons
+      of an object's state with some hypothetical collection of states.</p>
+  </tp:docstring>
+  <method name="contains">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+	    <p>Query a StateSet for a specific StateType.</p>
+    </tp:docstring>
+    <arg direction="in" name="state" type="u" tp:type="StateType">
+	    <tp:docstring>
+	    <p>The StateType being queried for.</p>
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+	    <Code>True</Code> if the StateSet contains StateType state.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="add">
+    <tp:docstring>
+      Add a StateType to an existing StateSet, if not already present. 
+    </tp:docstring>
+    <arg direction="in" name="state" type="u" tp:type="StateType"/>
+  </method>
+  <method name="remove">
+    <tp:docstring>
+      Remove a StateType to an existing StateSet, if it is present. 
+    </tp:docstring>
+    <arg direction="in" name="state" type="u" tp:type="StateType"/>
+  </method>
+  <method name="equals">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+	    <p>Compare two statesets for equivalence.</p>
+    </tp:docstring>
+    <arg direction="in" name="tarStateSet" type="o" tp:type="StateSet">
+	    <tp:docstring>
+	    <p>The StateSet to be compared with this one.</p>
+	    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+	    <code>True</code> if the two StateSet objects are composed of the same StateTypes. 
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="compare">
+    <tp:docstring>
+      Compare two StateSet instances and obtain their differences.
+    </tp:docstring>
+    <arg direction="in" name="compareState" type="o" tp:type="StateSet"/>
+    <arg direction="out" type="o" tp:type="StateSet">
+    <tp:docstring>
+      A 'difference set', i.e. a StateSet consisting of those states not shared by the two sets being compared. 
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="isEmpty">
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+	    <code>True</code> if the StateSet contains no states. 
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="getStates">
+    <arg direction="out" type="au" tp:type="StateSeq"/>
+  </method>
+</interface>
+</node>
+
+<!-- Utility interfaces and interfaces derived from Accessibility::Accessible -->
+
+<node name="/node">
+<interface name="org.freedesktop.atspi.Application">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An interface identifying an object which is the root of the
+      user interface Accessible hierarchy associated with a running application.
+      Children of Application are typically, but not exclusively, 
+      top-level windows.</p>
+      
+    <p>It is possible for an element deeper in an Accessibility stack to
+      implement Application, for instance in the case of "embedded applications"
+      which draw into toplevel windows associated with other applications
+      from the user's point of view.</p>
+  </tp:docstring>
+  <tp:property name="toolkitName" type="s" access="read">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>A string indicating the type of user interface toolkit
+       which is used by the application.</p>
+      <p>Ordinarily clients of the Application should be
+      toolkit-agnostic, dependencies on this property should
+      be avoided where possible.</p>
+  </tp:docstring>
+  </tp:property>
+  <tp:property name="version" type="s" access="read">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>A string indicating the version number of the application's
+      accessibility bridge implementation.</p>
+  </tp:docstring>
+  </tp:property>
+  <method name="getLocale">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Gets the locale in which the application is currently operating.
+        For the current message locale, use \a lctype LOCALE_TYPE_MESSAGES.    </p>
+
+    </tp:docstring>
+    <arg direction="in" name="lctype" type="u" tp:type="LOCALE_TYPE">
+    <tp:docstring>
+      <p>The LocaleType for which the locale is queried.</p>
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="s">
+    <tp:docstring>
+      A string compliant with the POSIX standard for locale description.
+    </tp:docstring>
+    </arg>
+  </method>
+</interface>
+</node>
+<node name="/node">
+<interface name="org.freedesktop.atspi.Registry">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The Registry is a service through which applications providing 
+      accessibility services (servers) can rendezvous with consumers of those
+      services (Assistive Technologies).  The Registry is the first "port of call" for 
+      accessible applications and for assistive technologies wishing to query and
+      interact with those applications.  </p>
+
+    <p>The Registry service provides four basic functions to Assistive Technology (AT) clients:
+        <ol>
+            <li>It provides a list of the applications who have registered with the
+                AT-SPI framework, thereby announcing their participation in the AT-SPI framework.</li>
+            <li>It gives access to system device events via the associated DeviceEventController interface.</li>
+        </ol>
+    </p>
+
+    <p>From the point of view of accessible applications (i.e. AT-SPI service producers), 
+      the Registry is primarily a registration and event delivery service.  Applications 
+      normally only call the registerApplication and deregisterApplication Registry methods,
+      and its inherited EventListener::notifyEvent method.  </p>
+
+    <p>Although all application events are dispatched via the Registry, other AT client 
+      calls are serviced directly by the applications, rather than being relayed via the
+      Registry.  The AT client obtains references to these application objects
+      via the enumeration of Desktop instances whose children are Application instances
+      (Registry.getDesktopList) and via examination of the 'source' member of the Event 
+      structure.   </p>
+
+    <p>The Registry normally lives in its own process space; communication via Registry and
+      both application services and AT clients takes place via IPC.  A process space diagram
+      illustrating the relationship between applications, Registry, and AT is shown at:
+      http://developer.gnome.org/projects/gap/tech-docs/SPIBlockDiagram.png  </p>
+  </tp:docstring>
+
+  <method name="getApplications">
+    <tp:docstring>
+        Gets all the currently registered applications.
+    </tp:docstring>
+    <arg direction="out" name="applications" type="as">
+        <tp:docstring>
+            A list of strings containing the D-Bus bus names of the applications.
+        </tp:docstring>
+    </arg>
+  </method>
+
+  <signal name="updateApplications">
+    <tp:docstring>
+        Updates an AT about recently added or removed applications.
+    </tp:docstring>
+    <arg direction="out" name="app" type="is">
+        <tp:docstring>
+                Unique bus name of the application that has been removed or added.
+                The integer is an enumeration:
+                           0 : The application has been removed.
+                           1 : The application has been added.
+        </tp:docstring>
+    </arg>
+  </signal>
+
+  <method name="registerApplication">
+    <tp:docstring>
+      Register a new application with the accessibility registry.
+   </tp:docstring>
+   <arg direction="in" name="app" type="s" tp:type="Application">
+      <tp:docstring>
+         D-Bus Bus name of the application that wishes to be made accessible.
+      </tp:docstring>
+   </arg>
+  </method>
+
+  <method name="deregisterApplication">
+   <tp:docstring>
+      De-register an application from accessibility registry.
+   </tp:docstring>
+   <arg direction="in" name="app" type="s" tp:type="Application">
+      <tp:docstring>
+         D-Bus Bus name of the application that wishes to be made accessible.
+      </tp:docstring>
+   </arg>
+  </method>
+
+</interface>
+</node>
+<node name="/node">
+<tp:enum name="KeyEventType" type="u">
+  <tp:docstring>
+    Deprecated, DO NOT USE! 
+  </tp:docstring>
+  <tp:enumvalue suffix="KEY_PRESSED"/>
+  <tp:enumvalue suffix="KEY_RELEASED" value="1"/>
+</tp:enum>
+<tp:enum name="EventType" type="u">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Used to specify the event types of interest to an EventListener, or
+      to identify the type of an event for which notification has been sent. 
+      @see EventTypeSeq, DeviceEvent::type</p>
+  </tp:docstring>
+  <tp:enumvalue suffix="KEY_PRESSED_EVENT">
+  <tp:docstring>
+    &lt; key on a keyboard device was pressed. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="KEY_RELEASED_EVENT" value="1">
+  <tp:docstring>
+    &lt; key on a keyboard device was released. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="BUTTON_PRESSED_EVENT" value="2">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>&lt; button on a non-keyboard human interface device 
+      (HID) was pressed </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="BUTTON_RELEASED_EVENT" value="3">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>&lt; button on a non-keyboard human interface device 
+      (HID) was pressed </p>
+  </tp:docstring>
+  </tp:enumvalue>
+</tp:enum>
+<tp:enum name="KeySynthType" type="u">
+  <tp:docstring>
+    Used when synthesizing keyboard input via DeviceEventController:generateKeyboardEvent.
+  </tp:docstring>
+  <tp:enumvalue suffix="KEY_PRESS">
+  <tp:docstring>
+    emulate the pressing of a hardware keyboard key. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="KEY_RELEASE" value="1">
+  <tp:docstring>
+    emulate the release of a hardware keyboard key. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="KEY_PRESSRELEASE" value="2">
+  <tp:docstring>
+    a hardware keyboard key is pressed and immediately released. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="KEY_SYM" value="3">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>a symbolic key event is generated, without specifying a hardware key. 
+      @note if the keysym is not present in the current keyboard map,
+      the DeviceEventController instance has a limited ability to generate
+      such keysyms on-the-fly.  Reliability of generateKeyboardEvent calls
+      using out-of-keymap keysyms will vary from system to system, and on the
+      number of different out-of-keymap being generated in quick succession.
+      In practice this is rarely significant, since the keysyms of interest to
+      AT clients and keyboard emulators are usually part of the current keymap, i.e.
+      present on the system keyboard for the current locale (even if a physical
+      hardware keyboard is not connected.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="KEY_STRING" value="4">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>a string is converted to its equivalent keyboard events and emitted. 
+      If the string consists of complex character or composed characters
+      which are not in the current keymap, string emission is subject to the
+      out-of-keymap limitations described for KeySynthType::KEY_SYM.
+      In practice this limitation primarily effects Chinese and Japanese locales.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+</tp:enum>
+<tp:enum name="ModifierType" type="u">
+  <tp:enumvalue suffix="MODIFIER_SHIFT">
+  <tp:docstring>
+    The left or right 'Shift' key 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="MODIFIER_SHIFTLOCK" value="1">
+  <tp:docstring>
+    The ShiftLock or CapsLock key 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="MODIFIER_CONTROL" value="2">
+  <tp:docstring>
+    'Control'/'Ctrl' 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="MODIFIER_ALT" value="3">
+  <tp:docstring>
+    The Alt key (as opposed to AltGr) 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="MODIFIER_META" value="4">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>depending on the platform this may map to 'Window', 'Function', 'Meta',
+      'Menu', or 'NumLock'.  
+      Such 'Meta keys' will map to one of META, META2, META3.
+      On X Windows platforms these META values map to 
+      the modifier masks Mod1Mask, Mod2Mask, Mod3Mask, e.g. an event having
+      ModifierType::MODIFIER_META2 means that the 'Mod2Mask' bit is
+      set in the corresponding XEvent.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="MODIFIER_META2" value="5"/>
+  <tp:enumvalue suffix="MODIFIER_META3" value="6"/>
+  <tp:enumvalue suffix="MODIFIER_NUMLOCK" value="7">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>A symbolic meta key name that is mapped by AT-SPI to the 
+      appropriate META value, for the convenience of the client.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+</tp:enum>
+<tp:struct name="EventListenerMode">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>A structure that encapsulates the characteristics of the event notifications
+      that should be sent to an EventListener in response to a call to
+      DeviceEventController::registerKeystrokeListener or 
+      DeviceEventController::registerDeviceEventListener. </p>
+  </tp:docstring>
+  <tp:member type="b" tp:name="synchronous">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>&lt; If \c True, specifies that
+      DeviceEventController should block while waiting 
+      for client to process the requested event notifications; 
+      ordinarily should be used only when client needs to perform
+      operations synchronously with event delivery. Note that because
+      of the architecture of device event systems in general,
+      use of this flag may not block delivery of the event to 
+      the currently focussed application unless it is used in 
+      conjunction with the preemptive flag. </p>
+  </tp:docstring>
+  </tp:member>
+  <tp:member type="b" tp:name="preemptive">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>&lt; If \c True, specifies that 
+      Listener is allowed to pre-empt the delivery of the event,
+      effectively "consuming" it such that it is not delivered 
+      to the currently focussed desktop application. 
+      Key events consumed via this API will not be 
+      available for use by other applications or services, so this
+      option should be used sparingly. </p>
+  </tp:docstring>
+  </tp:member>
+  <tp:member type="b" tp:name="global">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>&lt; If \c True, specifies that
+      Event notifications should be sent regardless of whether the
+      currently focussed application participates in the AT-SPI 
+      infrastructure.  On systems with the XEvIE X extension, this flag
+      also allows access to events which are already subject to 
+      interception via a "system keygrab" (as described in the X Window System
+      documentation for XGrabKey).  The 'global' and 'preemptive' flags
+      should only be used together for the purposes of registering
+      "system global key shortcuts" i.e. command keys for use by the
+      assistive technology. </p>
+  </tp:docstring>
+  </tp:member>
+</tp:struct>
+<tp:struct name="DeviceEvent">
+  <tp:docstring>
+    A structure which encapsulates information about a device event. 
+  </tp:docstring>
+  <tp:member type="u" tp:name="type">
+  <tp:docstring>
+    &lt; Identifies the type of the containing DeviceEvent. 
+  </tp:docstring>
+  </tp:member>
+  <tp:member type="i" tp:name="id">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>&lt; an identifier which identifies this event in the event stream. 
+      On X Window systems this corresponds to the XEvent serial number.</p>
+  </tp:docstring>
+  </tp:member>
+  <tp:member type="n" tp:name="hw_code">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>&lt; a numeric code which is hardware and system-dependent, identifying the
+      specific hardware button or key on the device for which the event has
+      occurred. On X Window systems, for global key notifications and for most
+      non-global key notifications as well, this code corresponds to the
+      XKeycode.  For switch and button events it indicates the switch
+      or button number.
+      @note
+      For technical reasons, this code may differ from the XKeycode
+      when generated by Java applications for consumption by non-global
+      key listeners.  This is subject to change in future versions of the
+      DeviceEventController implementation.</p>
+  </tp:docstring>
+  </tp:member>
+  <tp:member type="n" tp:name="modifiers">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>&lt; an unsigned short int consisting of zero or more of the following
+      values OR'ed together:
+      \li \c 1&lt;&lt;::MODIFIER_SHIFT   (=1, corresponds to Xlib's ShiftMask)
+      \li \c 1&lt;&lt;::MODIFIER_SHIFTLOCK    (=2, corresponds to Xlib's LockMask)
+      \li \c 1&lt;&lt;::MODIFIER_CONTROL (=4, corresponds to Xlib's ControlMask)
+      \li \c 1&lt;&lt;::MODIFIER_ALT    (=8, corresponds to Xlib's Mod1Mask)
+      \li \c 1&lt;&lt;::MODIFIER_META    (=16, corresponds to Xlib's Mod2Mask)
+      \li \c 1&lt;&lt;::MODIFIER_META2    (=32, corresponds to Xlib's Mod3Mask)
+      \li \c 1&lt;&lt;::MODIFIER_META3    (=64, corresponds to Xlib's Mod4Mask)</p>
+  </tp:docstring>
+  </tp:member>
+  <tp:member type="i" tp:name="timestamp">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>&lt; an unsigned integer representing the time that the 
+      event occurred.  On X Window systems this event is 
+      a time in milliseconds from some arbitrary starting
+      point; it therefore has a cycle time of approximately
+      50 days.</p>
+  </tp:docstring>
+  </tp:member>
+  <tp:member type="s" tp:name="event_string">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>&lt; A string representation of the event.  If is_text is
+      \c True, then this string represents the character or typographic
+      sequence that would be received by a focussed text input field.
+      event_string is in general suitable for exposure to the
+      end-user for purposes of keyboard echo.</p>
+  </tp:docstring>
+  </tp:member>
+  <tp:member type="b" tp:name="is_text">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>&lt; \c True if the event results in the insertion of characters 
+      into an input text buffer, or would do so if delivered to a focussed
+      text input field. ¨Typographical¨ key events have this field set to
+      \c True, whereas ¨control¨ key events generally do not.</p>
+  </tp:docstring>
+  </tp:member>
+</tp:struct>
+<tp:struct name="KeyDefinition">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>A structure which defines the identity of a key for which notifications
+      are to be requested.  The data in the members of a ::KeyDefinition are used to
+      determine which keyboard events 'match' the notification request filed by a client.  </p>
+
+    <p>@note Ordinarily a KeyDefinition specifies one and only one of the criteria below; 
+      the result of using a KeyDefinition with multiple members defined as nonzero is
+      undefined.  </p>
+
+    <p>@param keycode if nonzero, the numeric, system-dependent value corresponding to a 
+      physical key on the keyboard.  Keycode values have no semantic meaning to the end-user,
+      and may depend on the user's hardware and operating environment.  They therefore are
+      rarely useful "as-is" to AT clients, unless the client has used operating system
+      services to identify the hardward keycode associated with a particular key symbol.
+      Notifications for key events requested by keycode are less dependent on modifier state
+      than \c keysym based notifications, but some hardware (notably many laptops) may generate
+      more than one keycode for the same physical key, depending on the state of physical 
+      shift/modifier keys.
+      @param keysym if nonzero, the numeric value corresponding to the X Keysym of the key for which 
+      notification is requested.  Note that the presence of active modifiers will affect
+      whether notification for key events requested via "keysym" specification takes place, 
+      since the keysym depends on the modifier state for most keys.
+      @param keystring if non-NULL, the string value of the inserted characters if the corresponding
+      key event has ::KeyEvent:is_text set to \c True, or the string representing the
+      'name' of the key.  On X11 systems, the string 'name' of non-printing keysyms corresponds
+      to the values in "keysymdef.h" as provided by Xlib, with the leading "XK_" stripped off.</p>
+  </tp:docstring>
+  <tp:member type="i" tp:name="keycode"/>
+  <tp:member type="i" tp:name="keysym"/>
+  <tp:member type="s" tp:name="keystring"/>
+  <tp:member type="i" tp:name="unused"/>
+</tp:struct>
+</node>
+<node name="/node">
+<interface name="org.freedesktop.atspi.Desktop">
+</interface>
+</node>
+<node name="/node">
+<interface name="org.freedesktop.atspi.DeviceEventController">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The interface via which clients request notification of device events, and
+      through which device events may be simulated.</p>
+  </tp:docstring>
+  <method name="registerKeystrokeListener">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Register to intercept keyboard events, and either pass them on or
+        consume them.     </p>
+    </tp:docstring>
+    <arg direction="in" name="listener" type="o" tp:type="DeviceEventListener">
+    <tp:docstring>
+      A DeviceEventListener which will intercept key events.
+    </tp:docstring>
+    </arg>
+    <arg direction="in" name="keys" type="a(iisi)" tp:type="KeySet">
+    <tp:docstring>
+      A KeySet indicating which keys to intercept, or KEYSET_ALL_KEYS.
+    </tp:docstring>
+    </arg>
+    <arg direction="in" name="mask" type="u" tp:type="ControllerEventMask">
+    <tp:docstring>
+      A ControllerEventMask filtering the intercepted key events.
+    </tp:docstring>
+    </arg>
+    <arg direction="in" name="type" type="au" tp:type="KeyEventTypeSeq">
+    <tp:docstring>
+      A KeyEventTypeSeq that may created by ORing event types together.
+    </tp:docstring>
+    </arg>
+    <arg direction="in" name="mode" type="(bbb)" tp:type="EventListenerMode">
+    <tp:docstring>
+      An EventListenerMode indicating whether the listener should receive the events synchronously, potentially consuming them,or just be notified asynchronously of those events that havebeen generated.@note Some platforms have limited support for global, preemptive EventListenerMode.Such a registration may fail if another client already has priority for preemptiveaccess to one or more of the members of the KeySet.  AT consumers have the optionof re-trying the request without the global flag, or without the preemptive flag,or of re-trying with a different KeySet.  The best support for pre-emptiveglobal keyboard listeners is provided on platforms whose Xserver implementationprovides the XEvIE extension.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+	    <code>True</code> if the DeviceEventListener was successfully registeredfor the requested KeySet, ControllerEventMask, event types, and EventListenerMode; otherwise returns <code>False</code>.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="deregisterKeystrokeListener">
+    <tp:docstring>
+      De-register a previously registered keyboard eventlistener.
+    </tp:docstring>
+    <arg direction="in" name="listener" type="o" tp:type="DeviceEventListener">
+    <tp:docstring>
+      A DeviceEventListener which will intercept key events.
+    </tp:docstring>
+    </arg>
+    <arg direction="in" name="keys" type="a(iisi)" tp:type="KeySet">
+    <tp:docstring>
+      A KeySet indicating which keys to intercept, or KEYSET_ALL_KEYS.
+    </tp:docstring>
+    </arg>
+    <arg direction="in" name="mask" type="u" tp:type="ControllerEventMask">
+    <tp:docstring>
+      A ControllerEventMask filtering the intercepted key events.
+    </tp:docstring>
+    </arg>
+    <arg direction="in" name="type" type="u" tp:type="KeyEventTypeSeq">
+    <tp:docstring>
+      An EventType mask that may created by ORing event types together.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="registerDeviceEventListener">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Register to intercept events, and either pass them on or
+        consume them. To listen to keyboard events use registerKeystrokeListener
+        instead.</p>
+    </tp:docstring>
+    <arg direction="in" name="listener" type="o" tp:type="DeviceEventListener">
+    <tp:docstring>
+      A DeviceEventListener which will intercept events.
+    </tp:docstring>
+    </arg>
+    <arg direction="in" name="types" type="u" tp:type="EventTypeSeq">
+    <tp:docstring>
+      An EventTypeSeq indicating which event types to listen for.
+    </tp:docstring>
+    </arg>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+	    <code>True</code> if successful, <code>False</code> if not.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="deregisterDeviceEventListener">
+    <tp:docstring>
+      De-register a previously registered keyboard eventlistener.
+    </tp:docstring>
+    <arg direction="in" name="listener" type="o" tp:type="DeviceEventListener">
+    <tp:docstring>
+      a DeviceEventListener which will intercept events.
+    </tp:docstring>
+    </arg>
+    <arg direction="in" name="types" type="u" tp:type="EventTypeSeq">
+    <tp:docstring>
+      An EventTypeSeq indicating which event types to stoplistening for.
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="notifyListenersSync">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Notify the Registry instance that a device event has taken place, and
+        allow pre-emptive listeners the opportunity to 'consume' the event
+        and thus prevent its further issuance/forwarding.  This is the 
+        method used by accessibility bridges to forward "toolkit dependent"
+        device events to the Registry from the application's process space.    </p>
+
+      <p>AT clients do not normally need to use this method, it is intended for use
+        by toolkit bridges and special-purpose applications.    </p>
+    </tp:docstring>
+    <arg direction="in" name="event" type="(uinnisb)" tp:type="DeviceEvent"/>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+	    <code>True</code> if the event was consumed by a (pre-emptive) listener, <code>False</code> if not (in which case the device event will be forwardedas normal to any application which would normally receive it, e.g.the currently active application in the case of mouse or keyboard events).
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="notifyListenersAsync">
+    <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+      <p>Notify the Registry instance that a device event has taken place in
+        an asynchronous manner.  This is the 
+        method used by accessibility bridges to forward "toolkit dependent"
+        device events to the Registry from the application's process space.
+        If the event in question is potentially pre-emptible.
+        notifyListenersSync should be used instead.    </p>
+
+      <p>AT clients do not normally need to use this method, it is intended for use
+        by toolkit bridges and special-purpose applications.</p>
+    </tp:docstring>
+    <arg direction="in" name="event" type="(uinnisb)" tp:type="DeviceEvent"/>
+  </method>
+  <method name="generateKeyboardEvent">
+    <tp:docstring>
+      Synthesize a keyboard event.
+    </tp:docstring>
+    <arg direction="in" name="keycode" type="i">
+    <tp:docstring>
+      A long integer indicating the keycode ofthe keypress to be synthesized.
+    </tp:docstring>
+    </arg>
+    <arg direction="in" name="keystring" type="s">
+    <tp:docstring>
+      An optional UTF-8 string indicating a complexkeyboard input event.
+    </tp:docstring>
+    </arg>
+    <arg direction="in" name="type" type="u" tp:type="KeySynthType">
+    <tp:docstring>
+	    <p>A KeySynthType indicating the type of event(s) to be synthesized: a key press, release, press-release pair,or a complex input string (for instance from aninternationalized or complex text input method, ora composed character).</p>
+	    
+	    <p>Keycode may be truncated before beingprocessed, as keycode length may be platform-dependentand keycode ranges are generally much smaller thanCORBA_long. One or the other of keycode or keystring are generally NULL, (but not both), depending on the value of <code>type</code>.</p>
+    </tp:docstring>
+    </arg>
+  </method>
+  <method name="generateMouseEvent">
+    <tp:docstring>
+      Synthesize a mouse event.
+    </tp:docstring>
+    <arg direction="in" name="x" type="i">
+    <tp:docstring>
+      A long integer indicating the screen x coord for the mouse event.
+    </tp:docstring>
+    </arg>
+    <arg direction="in" name="y" type="i">
+    <tp:docstring>
+      A long integer indicating the screen y coord for the mouse event.
+    </tp:docstring>
+    </arg>
+    <arg direction="in" name="eventName" type="s">
+    <tp:docstring>
+      A string indicating the type of mouse event, e.g. "button1up"
+    </tp:docstring>
+    </arg>
+  </method>
+</interface>
+</node>
+<node name="/node">
+
+<interface name="org.freedesktop.atspi.DeviceEventListener">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>This interface should be implemented by AT-SPI clients who wish to 
+      make use of the DeviceEventController to receive device event notifications.
+      DeviceEvents include keyboard events and mouse button/motion events.</p>
+  </tp:docstring>
+  <method name="notifyEvent">
+    <tp:docstring>
+      Notify an interested DeviceEventListener that a DeviceEvent has occurred.
+    </tp:docstring>
+    <arg direction="in" name="event" type="(uinnisb)" tp:type="DeviceEvent"/>
+    <arg direction="out" type="b" tp:type="boolean">
+    <tp:docstring>
+	    <code>True</code> if the recipient/consumer wishes to consume the event, i.e.prevent it from being delivered to the desktop, <code>False</code> if the event should continue to be delivered as normal.
+    </tp:docstring>
+    </arg>
+  </method>
+</interface>
+</node>
+<node name="/node">
+<tp:enum name="RelationType" type="u">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>RelationType specifies a relationship between objects (possibly one-to-many or many-to-one)
+      outside of the normal parent/child hierarchical relationship.  It allows better semantic
+      identification of how objects are associated with one another.
+      For instance the RELATION_LABELLED_BY relationship may be used to identify labelling information
+      that should accompany the accessibleName property when presenting an object's content or identity
+      to the end user.  Similarly, RELATION_CONTROLLER_FOR can be used to further specify the context
+      in which a valuator is useful, and/or the other UI components which are directly effected by
+      user interactions with the valuator. Common examples include association of scrollbars with
+      the viewport or panel which they control.</p>
+  </tp:docstring>
+  <tp:enumvalue suffix="RELATION_NULL">
+  <tp:docstring>
+    Not a meaningful relationship; clients should not normally encounter this RelationType value. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="RELATION_LABEL_FOR" value="1">
+  <tp:docstring>
+    Object is a label for one or more other objects. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="RELATION_LABELLED_BY" value="2">
+  <tp:docstring>
+    Object is labelled by one or more other objects. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="RELATION_CONTROLLER_FOR" value="3">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Object is an interactive object which modifies the state, onscreen location, or other attributes
+      of one or more target objects. </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="RELATION_CONTROLLED_BY" value="4">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Object state, position, etc. is modified/controlled by user interaction with one or 
+      more other objects.   For instance a viewport or scroll pane may be CONTROLLED_BY scrollbars. </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="RELATION_MEMBER_OF" value="5">
+  <tp:docstring>
+    Object has a grouping relationship (e.g. 'same group as') to one or more other objects.  
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="RELATION_TOOLTIP_FOR" value="6">
+  <tp:docstring>
+    Object is a tooltip associated with another object. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="RELATION_NODE_CHILD_OF" value="7">
+  <tp:docstring>
+    Reserved for future use. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="RELATION_EXTENDED" value="8">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Used to indicate that a relationship exists, but its type is not specified in the enumeration
+      and must be obtained via a call to getRelationTypeName.  </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="RELATION_FLOWS_TO" value="9">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Object renders content which flows logically to another object.  
+      For instance, text in a paragraph may flow to another object which is not the 
+      'next sibling' in the accessibility hierarchy. </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="RELATION_FLOWS_FROM" value="10">
+  <tp:docstring>
+    Reciprocal of RELATION_FLOWS_TO. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="RELATION_SUBWINDOW_OF" value="11">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Object is visually and semantically considered a subwindow of another object, even though
+      it is not the object's child.  Useful when dealing with embedded applications and other cases
+      where the widget hierarchy does not map cleanly to the onscreen presentation.  </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="RELATION_EMBEDS" value="12">
+  <tp:docstring>
+    Similar to SUBWINDOW_OF, but specifically used for cross-process embedding.  
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="RELATION_EMBEDDED_BY" value="13">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Reciprocal of RELATION_EMBEDS; Used to denote content rendered by embedded renderers that
+      live in a separate process space from the embedding context.  </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="RELATION_POPUP_FOR" value="14">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Denotes that the object is a transient window or frame associated with another onscreen object.
+      Similar to TOOLTIP_FOR, but more general.  Useful for windows which are technically 
+      toplevels but which, for one or more reasons, do not explicitly cause their associated
+      window to lose 'window focus'. Creation of a ROLE_WINDOW object with the POPUP_FOR relation
+      usually requires some presentation action on the part of assistive technology clients, even though
+      the previous toplevel ROLE_FRAME object may still be the active window.  </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="RELATION_PARENT_WINDOW_OF" value="15">
+  <tp:docstring>
+    This is the reciprocal relation to RELATION_POPUP_FOR. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="RELATION_DESCRIPTION_FOR" value="16">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Indicates that an object provides descriptive information 
+      about another object; more verbose than RELATION_LABEL_FOR. </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="RELATION_DESCRIBED_BY" value="17">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>Indicates that another object provides descriptive information 
+      about this object; more verbose than RELATION_LABELLED_BY. </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="RELATION_LAST_DEFINED" value="18">
+  <tp:docstring>
+    Do not use as a parameter value, used to determine the size of the enumeration. 
+  </tp:docstring>
+  </tp:enumvalue>
+</tp:enum>
+</node>
+<node name="/node">
+<tp:enum name="Role" type="u">
+  <tp:enumvalue suffix="ROLE_INVALID">
+  <tp:docstring>
+    A Role indicating an error condition, such as uninitialized Role data. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_ACCELERATOR_LABEL" value="1">
+  <tp:docstring>
+    Object is a label indicating the keyboard accelerators for the parent  
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_ALERT" value="2">
+  <tp:docstring>
+    Object is used to alert the user about something 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_ANIMATION" value="3">
+  <tp:docstring>
+    Object contains a dynamic or moving image of some kind 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_ARROW" value="4">
+  <tp:docstring>
+    Object is a 2d directional indicator 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_CALENDAR" value="5">
+  <tp:docstring>
+    Object contains one or more dates, usually arranged into a 2d list 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_CANVAS" value="6">
+  <tp:docstring>
+    Object that can be drawn into and is used to trap events 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_CHECK_BOX" value="7">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>A choice that can be checked or unchecked and provides a separate
+      indicator for the current state.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_CHECK_MENU_ITEM" value="8">
+  <tp:docstring>
+    A menu item that behaves like a check box (see ROLE_CHECK_BOX) 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_COLOR_CHOOSER" value="9">
+  <tp:docstring>
+    A specialized dialog that lets the user choose a color. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_COLUMN_HEADER" value="10">
+  <tp:docstring>
+    The header for a column of data 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_COMBO_BOX" value="11">
+  <tp:docstring>
+    A list of choices the user can select from 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_DATE_EDITOR" value="12">
+  <tp:docstring>
+    An object which allows entry of a date 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_DESKTOP_ICON" value="13">
+  <tp:docstring>
+    An inconifed internal frame within a DESKTOP_PANE 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_DESKTOP_FRAME" value="14">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>A pane that supports internal frames and iconified versions of those
+      internal frames.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_DIAL" value="15">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An object that allows a value to be changed via rotating a visual element,
+      or which displays a value via such a rotating element. </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_DIALOG" value="16">
+  <tp:docstring>
+    A top level window with title bar and a border 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_DIRECTORY_PANE" value="17">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>A pane that allows the user to navigate through and select the contents
+      of a directory</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_DRAWING_AREA" value="18">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>A specialized dialog that displays the files in the directory and lets
+      the user select a file, browse a different directory, or specify a
+      filename.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_FILE_CHOOSER" value="19">
+  <tp:docstring>
+    An object used for drawing custom user interface elements.
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_FILLER" value="20">
+  <tp:docstring>
+    A object that fills up space in a user interface
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_FOCUS_TRAVERSABLE" value="21">
+  <tp:docstring>
+    Don't use, reserved for future use. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_FONT_CHOOSER" value="22">
+  <tp:docstring>
+    Allows selection of a display font 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_FRAME" value="23">
+  <tp:docstring>
+    A top level window with a title bar, border, menubar, etc. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_GLASS_PANE" value="24">
+  <tp:docstring>
+    A pane that is guaranteed to be painted on top of all panes beneath it 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_HTML_CONTAINER" value="25">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>A document container for HTML, whose children
+      represent the document content.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_ICON" value="26">
+  <tp:docstring>
+    A small fixed size picture, typically used to decorate components 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_IMAGE" value="27">
+  <tp:docstring>
+    An image, typically static. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_INTERNAL_FRAME" value="28">
+  <tp:docstring>
+    A frame-like object that is clipped by a desktop pane. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_LABEL" value="29">
+  <tp:docstring>
+    An object used to present an icon or short string in an interface 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_LAYERED_PANE" value="30">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>A specialized pane that allows its children to be drawn in layers,
+      providing a form of stacking order.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_LIST" value="31">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An object that presents a list of objects to the user and allows the
+      user to select one or more of them.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_LIST_ITEM" value="32">
+  <tp:docstring>
+    An object that represents an element of a list. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_MENU" value="33">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An object usually found inside a menu bar that contains a list of
+      actions the user can choose from.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_MENU_BAR" value="34">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An object usually drawn at the top of the primary dialog box of an
+      application that contains a list of menus the user can choose from.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_MENU_ITEM" value="35">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An object usually contained in a menu that presents an action the
+      user can choose.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_OPTION_PANE" value="36">
+  <tp:docstring>
+    A specialized pane whose primary use is inside a DIALOG 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_PAGE_TAB" value="37">
+  <tp:docstring>
+    An object that is a child of a page tab list 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_PAGE_TAB_LIST" value="38">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An object that presents a series of panels (or page tabs), one at a time,
+      through some mechanism provided by the object.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_PANEL" value="39">
+  <tp:docstring>
+    A generic container that is often used to group objects. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_PASSWORD_TEXT" value="40">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>A text object uses for passwords, or other places where the text
+      content is not shown visibly to the user.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_POPUP_MENU" value="41">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>A temporary window that is usually used to offer the user a list of
+      choices, and then hides when the user selects one of those choices.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_PROGRESS_BAR" value="42">
+  <tp:docstring>
+    An object used to indicate how much of a task has been completed. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_PUSH_BUTTON" value="43">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An object the user can manipulate to tell the application to do
+      something.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_RADIO_BUTTON" value="44">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>A specialized check box that will cause other radio buttons in the
+      same group to become uncghecked when this one is checked.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_RADIO_MENU_ITEM" value="45">
+  <tp:docstring>
+    Object is both a menu item and a "radio button" (see ROLE_RADIO_BUTTON) 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_ROOT_PANE" value="46">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>A specialized pane that has a glass pane and a layered pane as its
+      children.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_ROW_HEADER" value="47">
+  <tp:docstring>
+    The header for a row of data 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_SCROLL_BAR" value="48">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An object usually used to allow a user to incrementally view a large
+      amount of data by moving the bounds of a viewport along a one-dimensional axis.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_SCROLL_PANE" value="49">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An object that allows a user to incrementally view a large amount
+      of information.  ROLE_SCROLL_PANE objects are usually accompanied by
+      ROLE_SCROLL_BAR controllers, on which the RELATION_CONTROLLER_FOR and
+      RELATION_CONTROLLED_BY reciprocal relations are set; \see 
+      Accessibility::RelationSet.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_SEPARATOR" value="50">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An object usually contained in a menu to provide a visible and
+      logical separation of the contents in a menu.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_SLIDER" value="51">
+  <tp:docstring>
+    An object that allows the user to select from a bounded range 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_SPIN_BUTTON" value="52">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An object which allows one of a set of choices to be selected, 
+      and which displays the current choice.  Unlike ROLE_SCROLL_BAR,
+      ROLE_SLIDER objects need not control 'viewport'-like objects.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_SPLIT_PANE" value="53">
+  <tp:docstring>
+    A specialized panel that presents two other panels at the same time. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_STATUS_BAR" value="54">
+  <tp:docstring>
+    Object displays non-quantitative status information (c.f. ROLE_PROGRESS_BAR) 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_TABLE" value="55">
+  <tp:docstring>
+    An object used to repesent information in terms of rows and columns. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_TABLE_CELL" value="56">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>A 'cell' or discrete child within a Table. \note Table cells need not have ROLE_TABLE_CELL, 
+      other RoleType values are valid as well.  </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_TABLE_COLUMN_HEADER" value="57">
+  <tp:docstring>
+    An object which labels a particular column in a Table. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_TABLE_ROW_HEADER" value="58">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An object which labels a particular row in a Table. Table rows and columns may also be 
+      labelled via the RELATION_LABEL_FOR/RELATION_LABELLED_BY relationships; 
+      see Accessibility.RelationSet. </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_TEAROFF_MENU_ITEM" value="59">
+  <tp:docstring>
+    Object allows menu to be removed from menubar and shown in its own window. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_TERMINAL" value="60">
+  <tp:docstring>
+    An object that emulates a terminal 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_TEXT" value="61">
+  <tp:docstring>
+    An object that presents text to the user, of nonspecific type. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_TOGGLE_BUTTON" value="62">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>A specialized push button that can be checked or unchecked, but does
+      not procide a separate indicator for the current state.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_TOOL_BAR" value="63">
+  <tp:docstring>
+    A bar or palette usually composed of push buttons or toggle buttons
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_TOOL_TIP" value="64">
+  <tp:docstring>
+    An object that provides information about another object
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_TREE" value="65">
+  <tp:docstring>
+    An object used to repsent hierarchical information to the user. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_TREE_TABLE" value="66">
+  <tp:docstring>
+    An object that presents both tabular and hierarchical info to the user 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_UNKNOWN" value="67">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The object contains some Accessible information, but its role is
+      not known.  </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_VIEWPORT" value="68">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An object usually used in a scroll pane, or to otherwise clip a larger object or 
+      content renderer to a specific onscreen viewport. </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_WINDOW" value="69">
+  <tp:docstring>
+    A ¨top level window¨ with no title or border. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_EXTENDED" value="70">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>means that the role for this item is known, but not included in the 
+      core enumeration </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_HEADER" value="71">
+  <tp:docstring>
+    An object that serves as a document header. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_FOOTER" value="72">
+  <tp:docstring>
+    An object that serves as a document footer. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_PARAGRAPH" value="73">
+  <tp:docstring>
+    An object which is contains a single paragraph of text content. See also ROLE_TEXT. 
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_RULER" value="74">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An object which describes margins and tab stops, etc. 
+      for text objects which it controls 
+      (should have CONTROLLER_FOR relation to such). </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_APPLICATION" value="75">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>An object corresponding to the toplevel accessible of an 
+      application, which may contain ROLE_FRAME objects or other
+      accessible objects.  Children of AccessibleDesktop objects 
+      are generally ROLE_APPLICATION objects.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_AUTOCOMPLETE" value="76">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The object is a dialog or list containing items for insertion 
+      into an entry widget, for instance a list of words for completion 
+      of a text entry.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_EDITBAR" value="77">
+  <tp:docstring>
+    The object is an editable text object in a toolbar.
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_EMBEDDED" value="78">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The object is an embedded component container.  This role is a 
+      "grouping" hint that the contained objects share a context which is 
+      different from the container in which this accessible is embedded.
+      In particular, it is used for some kinds of document embedding, and
+      for embedding of out-of-process component, "panel applets", etc.</p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_ENTRY" value="79">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The object is a component whose textual content may be entered or modified by the user,
+	    provided STATE_EDITABLE is present. </p> 
+    <p>A readonly ROLE_ENTRY object (i.e. where STATE_EDITABLE is not present) implies a
+      read-only 'text field' in a form, as opposed to a title, label, or caption.  </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_CHART" value="80">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The object is a graphical depiction of quantitative data.  It may contain multiple
+      subelements whose attributes and/or description may be queried to obtain both the
+      quantitative data and information about how the data is being presented.
+      The LABELLED_BY relation is particularly important in interpreting objects of this type,
+      as is the accessible-description property.  
+      See ROLE_CAPTION  </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_CAPTION" value="81">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The object contains descriptive information, usually textual, about another user interface
+      element such as a table, chart, or image.  </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_DOCUMENT_FRAME" value="82">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The object is a visual frame or container which contains a view of document content.  
+      Document frames may occur within another Document instance, in which case the second 
+      document may be said to be embedded in the containing instance.  HTML frames are
+      often ROLE_DOCUMENT_FRAME.  Either this object, or a singleton descendant, should implement
+      the Document interface.  </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_HEADING" value="83">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The object serves as a heading for content which follows it in a document.
+      The 'heading level' of the heading, if availabe,  may be obtained by
+      querying the object's attributes.   </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_PAGE" value="84">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The object is a containing instance which encapsulates a page of 
+      information.  ROLE_PAGE is used in documents and content which support
+      a paginated navigation model.  </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_SECTION" value="85">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The object is a containing instance of document content which constitutes
+      a particular 'logical' section of the document.  The type of content within
+      a section, and the nature of the section division itself, may be obtained
+      by querying the object's attributes.  Sections may be nested.  </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_REDUNDANT_OBJECT" value="86">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The object is redundant with another object in the hierarchy, 
+      and is exposed for purely technical reasons.  Objects of this role 
+      should be ignored by clients, if they are encountered at all.   </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_FORM" value="87">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The object is a containing instance of document content which
+      has within it components with which the user can interact in order to
+      input information; i.e. the object is a container for pushbuttons,
+      comboboxes, text input fields, and other 'GUI' components.
+      ROLE_FORM should not, in general, be used for toplevel GUI containers
+      or dialogs, but should be reserved for 'GUI' containers which occur within
+      document content, for instance within Web documents, presentations, or 
+      text documents.  Unlike other GUI containers and dialogs which occur inside
+      application instances, ROLE_FORM containers' components are associated with
+      the current document, rather than the current foreground application or
+      viewer instance.  </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_LINK" value="88">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The object is a hypertext anchor, i.e. a "link" in a
+      hypertext document.  Such objects are distinct from 'inline'
+      content which may also use the Hypertext/Hyperlink interfaces
+      to indicate the range/location within a text object where
+      an inline or embedded object lies.  </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_INPUT_METHOD_WINDOW" value="89">
+  <tp:docstring xmlns="http://www.w3.org/1999/xhtml">
+    <p>The object is a window or similar viewport which is used
+      to allow composition or input of a 'complex character',
+      in other words it is an "input method window."  </p>
+  </tp:docstring>
+  </tp:enumvalue>
+  <tp:enumvalue suffix="ROLE_LAST_DEFINED" value="90">
+  <tp:docstring>
+    Not a valid role, used for finding end of enumeration. 
+  </tp:docstring>
+  </tp:enumvalue>
+</tp:enum>
+</node>
+</tp:spec>
