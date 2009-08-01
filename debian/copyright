@@ -1,0 +1,39 @@
+Format-Specification: http://wiki.debian.org/Proposals/CopyrightFormat?action=recall&rev=143
+Upstream-Name: at-spi2-core
+Upstream-Source: https://projects.codethink.co.uk/index.php/p/at-spi2/downloads/
+Files: registryd/registry.c
+Copyright: Copyright 2008, Codethink Ltd.
+Copyright: Copyright 2001, 2002 Sun Microsystems Inc.,
+Copyright: Copyright 2001, 2002 Ximian, Inc.
+License: LGPL-2+
+ On Debian systems the full text of the GNU Library General Public License can
+ be found in the `/usr/share/common-licenses/LGPL-2' file.
+Files: droute/droute.*
+Copyright: Copyright 2008 Novell, Inc.
+Copyright: Copyright 2008 Codethink Ltd.
+License: LGPL-2+
+ On Debian systems the full text of the GNU Library General Public License can
+ be found in the `/usr/share/common-licenses/LGPL-2' file.
+Files: droute/droute-pairhash.*
+Copyright: Copyright 2008 Codethink Ltd.
+License: LGPL-2+
+ On Debian systems the full text of the GNU Library General Public License can
+ be found in the `/usr/share/common-licenses/LGPL-2' file.
+Files: droute/droute-variant.*, registryd/de-marshaller.c
+Copyright: Copyright 2008 Novell, Inc.
+License: LGPL-2+
+ On Debian systems the full text of the GNU Library General Public License can
+ be found in the `/usr/share/common-licenses/LGPL-2' file.
+Files: registryd/deviceeventcontroller.c, registryd/reentrant-list.c,
+ registryd/registry-main.c
+Copyright: Copyright 2001, 2002 Sun Microsystems Inc.
+Copyright: Copyright 2001, 2002 Ximian, Inc.
+License: LGPL-2+
+ On Debian systems the full text of the GNU Lesser General Public License can
+ be found in the `/usr/share/common-licenses/LGPL-2' file.
+Files: debian/*
+Copyright: Copyright 2009, Mario Lang <mlang@debian.org>
+License: GPL-2
+ On Debian systems the full text of the GNU General Public License can be found
+ in the `/usr/share/common-licenses/GPL-2' file.
+

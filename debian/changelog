@@ -1,0 +1,5 @@
+at-spi2-core (0.1.0-1) UNRELEASED; urgency=low
+
+  * Initial upstream release.
+
+ -- Mario Lang <mlang@debian.org>  Sat, 01 Aug 2009 09:25:17 +0200

@@ -1,0 +1,40 @@
+Source: at-spi2-core
+Section: misc
+Priority: optional
+Maintainer: Debian Accessibility Team <debian-accessibility@lists.debian.org>
+Uploaders: Mario Lang <mlang@debian.org>
+Build-Depends: debhelper (>= 7),
+               libdbus-1-dev, libdbus-glib-1-dev,
+               libglib2.0-dev, libgtk2.0-dev,
+               libxtst-dev, libxevie-dev
+Standards-Version: 3.8.2
+
+Package: libdbind0
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Client side bindings helper library for libdbus
+
+Package: libdbind-dev
+Architecture: any
+Section: libdevel
+Depends: ${misc:Depends}
+Description: Client side bindings helper library for libdbus (development files)
+ Files necessary to develop using libdbind
+
+Package: libdroute0
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Server side bindings helper library for libdbus
+
+Package: libdroute-dev
+Architecture: any
+Section: libdevel
+Depends: ${misc:Depends}
+Description: Server side bindings helper library for libdbus (development files)
+ Files necessary to develop using libdroute
+
+Package: at-spi2-core
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Assistive Technology Service Provider Interface (dbus core)
+ This package contains the core components of GNOME Accessibility.
