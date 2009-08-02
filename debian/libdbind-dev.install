@@ -1,4 +1,3 @@
-usr/lib/libdbind*.la
 usr/lib/libdbind*.so
 usr/include/dbind-0.1
 usr/lib/pkgconfig/dbind-0.1.pc

@@ -1,4 +1,3 @@
-usr/lib/libdroute*.la
 usr/lib/libdroute*.so
 usr/include/droute-0.1
 usr/lib/pkgconfig/droute-0.1.pc
