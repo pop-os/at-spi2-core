@@ -21,7 +21,7 @@ Description: Client side bindings helper library for libdbus
 Package: libdbind-dev
 Architecture: any
 Section: libdevel
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, libdbind0
 Description: Client side bindings helper library for libdbus (development files)
  Files necessary to develop using libdbind
 
@@ -33,7 +33,7 @@ Description: Server side bindings helper library for libdbus
 Package: libdroute-dev
 Architecture: any
 Section: libdevel
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, libdroute0
 Description: Server side bindings helper library for libdbus (development files)
  Files necessary to develop using libdroute
 
