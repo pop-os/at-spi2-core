@@ -58,7 +58,8 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libdrouteincludedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libdroute_la_LIBADD =
+am__DEPENDENCIES_1 =
+libdroute_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
 am_libdroute_la_OBJECTS = libdroute_la-droute.lo \
 	libdroute_la-droute-variant.lo libdroute_la-droute-pairhash.lo
 libdroute_la_OBJECTS = $(am_libdroute_la_OBJECTS)
@@ -174,11 +175,6 @@ PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
-PYTHON = @PYTHON@
-PYTHON_EXEC_PREFIX = @PYTHON_EXEC_PREFIX@
-PYTHON_PLATFORM = @PYTHON_PLATFORM@
-PYTHON_PREFIX = @PYTHON_PREFIX@
-PYTHON_VERSION = @PYTHON_VERSION@
 RANLIB = @RANLIB@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
@@ -235,13 +231,9 @@ mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
 pdfdir = @pdfdir@
-pkgpyexecdir = @pkgpyexecdir@
-pkgpythondir = @pkgpythondir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
-pyexecdir = @pyexecdir@
-pythondir = @pythondir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -269,6 +261,7 @@ libdroute_la_SOURCES = \
 		droute-pairhash.c\
 		droute-pairhash.h
 
+libdroute_la_LIBADD = $(DBUS_GLIB_LIBS)
 droute_test_SOURCES = droute-test.c
 droute_test_CFLAGS = $(DBUS_GLIB_CFLAGS) \
 		     -I$(top_builddir)\
