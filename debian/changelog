@@ -1,5 +1,5 @@
-at-spi2-core (0.1.0-1) UNRELEASED; urgency=low
+at-spi2-core (0.1.1-1) UNRELEASED; urgency=low
 
   * Initial Debian package. (Closes: Bug#540332)
 
- -- Mario Lang <mlang@debian.org>  Fri, 07 Aug 2009 15:19:33 +0200
+ -- Mario Lang <mlang@debian.org>  Fri, 14 Aug 2009 10:26:26 +0200
