@@ -1,6 +1,0 @@
-<interface name="org.freedesktop.atspi.Application">
-  <method name="getLocale">
-    <arg direction="in" name="lctype" type="u"/>
-    <arg direction="out" type="s"/>
-  </method>
-</interface>

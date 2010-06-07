@@ -1,6 +1,0 @@
-<interface name="org.freedesktop.atspi.DeviceEventListener">
-  <method name="notifyEvent">
-    <arg direction="in" name="event" type="(uinnisb)"/>
-    <arg direction="out" type="b"/>
-  </method>
-</interface>

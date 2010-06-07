@@ -1,24 +1,12 @@
-AC_INIT([at-spi2-core], [0.1.1], [accessibility-atspi@lists.linux-foundation.org])
+AC_INIT([at-spi2-core], [0.3.3], [accessibility-atspi@lists.linux-foundation.org])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_MACRO_DIR([m4])
 
 AT_SPI_CORE_MAJOR_VERSION=0
 AT_SPI_CORE_MINOR_VERSION=1
-AT_SPI_CORE_MICRO_VERSION=1
+AT_SPI_CORE_MICRO_VERSION=3
 AT_SPI_CORE_VERSION="$AT_SPI_CORE_MAJOR_VERSION.$AT_SPI_CORE_MINOR_VERSION"
 AC_SUBST(AT_SPI_CORE_VERSION)
-
-DBIND_MAJOR_VERSION=0
-DBIND_MINOR_VERSION=1
-DBIND_MICRO_VERSION=1
-DBIND_VERSION="$DBIND_MAJOR_VERSION.$DBIND_MINOR_VERSION"
-AC_SUBST(DBIND_VERSION)
-
-DROUTE_MAJOR_VERSION=0
-DROUTE_MINOR_VERSION=1
-DROUTE_MICRO_VERSION=1
-DROUTE_VERSION="$DROUTE_MAJOR_VERSION.$DROUTE_MINOR_VERSION"
-AC_SUBST(DROUTE_VERSION) 
 
 LT_RELEASE=$AT_SPI_CORE_VERSION
 LT_CURRENT=0
@@ -56,13 +44,7 @@ PKG_CHECK_MODULES(GOBJ, [gobject-2.0 >= 2.0.0])
 AC_SUBST(GOBJ_LIBS)
 AC_SUBST(GOBJ_CFLAGS)
 
-PKG_CHECK_MODULES(GMODULE, [gmodule-2.0 >= 2.0.0])	
-AC_SUBST(GMODULE_LIBS)
-AC_SUBST(GMODULE_CFLAGS)
-
-PKG_CHECK_MODULES(GDK, [gdk-2.0 >= 2.0.0])
-AC_SUBST(GDK_LIBS)
-AC_SUBST(GDK_CFLAGS)
+AC_CHECK_LIB(dl, dlopen)
 
 AC_PATH_XTRA
 
@@ -119,26 +101,22 @@ if test x$enable_xevie = xyes ; then
 	AC_SUBST(XEVIE_LIBS)
 fi
 
-dnl Allow disabling SMlib
-AC_ARG_ENABLE(sm, [  --enable-sm  Enable session management support [default=yes]], enable_sm="$enableval", enable_sm=yes)
-
-if test x$enable_sm = xyes ; then
-	have_sm=
-	AC_CHECK_LIB(SM, SmcSaveYourselfDone, have_sm="yes")
-	if test x$have_sm = xyes ; then
-		SM_LIBS="-lSM -lICE"
-		AC_DEFINE(HAVE_SM, , [Building with SM support])
-	fi
-	AC_SUBST(SM_LIBS)
-fi
-
-
 AC_ARG_VAR([DEFAULT_ATSPI_INTROSPECTION_PATH],
 	   [Set the default path for the install ofDBus introspection XML
 	    relative to the pkgdatadir.])
 if test -z "$DEFAULT_ATSPI_INTROSPECTION_PATH"; then
-	  DEFAULT_ATSPI_INTROSPECTION_PATH=dbus
+	  DEFAULT_ATSPI_INTROSPECTION_PATH=at-spi2/dbus
 fi
+
+AS_AC_EXPAND(EXPANDED_BINDIR, "$bindir")
+AC_ARG_WITH(dbus_daemondir, AS_HELP_STRING([--with-dbus-daemondir=[dirname]],[Directory where the DBUS daemon is installed]))
+if test -z "$with_dbus_daemondir" ; then
+    DBUS_DAEMONDIR=$EXPANDED_BINDIR
+else
+    DBUS_DAEMONDIR=$with_dbus_daemondir
+fi
+AC_SUBST(DBUS_DAEMONDIR)
+AC_DEFINE_UNQUOTED(DBUS_DAEMONDIR,"$DBUS_DAEMONDIR", [Directory for installing the DBUS daemon])
 
 AC_ARG_WITH(dbus-services,
            [AC_HELP_STRING([--with-dbus-services=<dir>],
@@ -150,33 +128,16 @@ else
 fi
 AC_SUBST(DBUS_SERVICES_DIR)
 
-dnl find sizes & alignments
-orig_CPPFLAGS=$CPPFLAGS
-CPPFLAGS="$CPPFLAGS $DBUS_CFLAGS"
-DBIND_CHECK_ALIGNOF(char)
-DBIND_CHECK_ALIGNOF(dbus_bool_t)
-DBIND_CHECK_ALIGNOF(dbus_int16_t)
-DBIND_CHECK_ALIGNOF(dbus_int32_t)
-DBIND_CHECK_ALIGNOF(dbus_int64_t)
-DBIND_CHECK_ALIGNOF(double)
-DBIND_CHECK_ALIGNOF(dbind_pointer)
-DBIND_CHECK_ALIGNOF(dbind_struct)
-CPPFLAGS=$orig_CPPFLAGS 
-
 AC_SUBST(LIBTOOL_EXPORT_OPTIONS)
 
+AC_ARG_ENABLE(relocate, [  --enable-relocate  Relocate to coexist with CORBA [default=no]], enable_relocate="$enableval", enable_relocate=no)
+if test x$enable_relocate = xyes ; then
+	AC_DEFINE(RELOCATE, , [Relocate to coexist with CORBA])
+fi
+AM_CONDITIONAL(RELOCATE, test x$enable_relocate = xyes)
+
 AC_CONFIG_FILES([Makefile
-                 pkgconfig/dbind-0.1.pc
-                 pkgconfig/dbind-0.1-uninstalled.pc
-                 pkgconfig/droute-0.1.pc
-                 pkgconfig/droute-0.1-uninstalled.pc
-                 pkgconfig/Makefile
 		 xml/Makefile
-		 tools/Makefile
-		 droute/Makefile
-		 registryd/Makefile
-		 registryd/at-spi-registryd.desktop.in
-		 dbind/Makefile
-		 dbind/dbind-config.h])
+		 registryd/Makefile])
 
 AC_OUTPUT

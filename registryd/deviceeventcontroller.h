@@ -25,8 +25,7 @@
 #define SPI_DEVICE_EVENT_CONTROLLER_H_
 
 #include <X11/Xlib.h>
-#include <gdk/gdk.h>
-#include <droute/droute.h>
+#include <dbus/dbus.h>
 
 typedef struct _SpiDEController SpiDEController;
 
@@ -49,6 +48,8 @@ struct _SpiDEController {
 	GList          *mouse_listeners;
 	GList          *keygrabs_list;
 	Display        *xevie_display;
+	GQueue *message_queue;
+	guint message_queue_idle;
 };
 
 typedef struct {
@@ -57,15 +58,14 @@ typedef struct {
 
 GType            spi_device_event_controller_get_type (void);
 SpiDEController *spi_device_event_controller_new      (SpiRegistry    *registry,
-                                                       DBusConnection *bus,
-                                                       DRouteContext  *droute);
+                                                       DBusConnection *bus);
 
 void spi_device_event_controller_start_poll_mouse (SpiRegistry *registry);
 void spi_device_event_controller_stop_poll_mouse (void);
 
 void spi_remove_device_listeners (SpiDEController *controller, const char *bus_name);
 
-SpiDEController *spi_registry_dec_new (SpiRegistry *reg, DBusConnection *bus, DRouteContext *droute);
+SpiDEController *spi_registry_dec_new (SpiRegistry *reg, DBusConnection *bus);
 G_END_DECLS
 
 #endif /* DEVICEEVENTCONTROLLER_H_ */
