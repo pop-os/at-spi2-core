@@ -25,8 +25,11 @@
 #include <config.h>
 #include <string.h>
 #include <glib.h>
+#include <stdio.h>
+#include <dlfcn.h>
 
-#include <droute/droute.h>
+#include <dbus/dbus.h>
+#include <dbus/dbus-glib.h>
 
 #include "paths.h"
 #include "registry.h"
@@ -36,30 +39,262 @@
     #error "No introspection XML directory defined"
 #endif
 
-#ifdef HAVE_SM
-#include <X11/SM/SMlib.h>
+#ifdef RELOCATE
+#define DBUS_GCONF_KEY  "/desktop/gnome/interface/at-spi-dbus"
+#else
+#define CORBA_GCONF_KEY  "/desktop/gnome/interface/at-spi-corba"
 #endif
 
+static gboolean need_to_quit ();
 
+static GMainLoop *mainloop;
 static gchar *dbus_name = NULL;
+static gboolean use_gnome_session = FALSE;
 
-static void registry_session_init (const char *previous_client_id, const char *exe);
 static GOptionEntry optentries[] =
 {
   {"dbus-name", 0, 0, G_OPTION_ARG_STRING, &dbus_name, "Well-known name to register with D-Bus", NULL},
+  {"use-gnome-session", 0, 0, G_OPTION_ARG_NONE, &use_gnome_session, "Should register with gnome session manager", NULL},
   {NULL}
 };
+
+static DBusGConnection *bus_connection = NULL;
+static DBusGProxy      *sm_proxy = NULL;
+static char            *client_id = NULL;
+static DBusGProxy      *client_proxy = NULL;
+
+#define SM_DBUS_NAME      "org.gnome.SessionManager"
+#define SM_DBUS_PATH      "/org/gnome/SessionManager"
+#define SM_DBUS_INTERFACE "org.gnome.SessionManager"
+
+#define SM_CLIENT_DBUS_INTERFACE "org.gnome.SessionManager.ClientPrivate"
+
+static void registry_session_init (const char *previous_client_id, const char *exe);
+
+static gboolean
+session_manager_connect (void)
+{
+
+        if (bus_connection == NULL) {
+                GError *error;
+
+                error = NULL;
+                bus_connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
+                if (bus_connection == NULL) {
+                        g_message ("Failed to connect to the session bus: %s",
+                                   error->message);
+                        g_error_free (error);
+                        exit (1);
+                }
+        }
+
+        sm_proxy = dbus_g_proxy_new_for_name (bus_connection,
+                                              SM_DBUS_NAME,
+                                              SM_DBUS_PATH,
+                                              SM_DBUS_INTERFACE);
+        return (sm_proxy != NULL);
+}
+
+static void
+stop_cb (gpointer data)
+{
+        g_main_loop_quit (mainloop);
+}
+
+static gboolean
+end_session_response (gboolean is_okay, const gchar *reason)
+{
+        gboolean ret;
+        GError *error = NULL;
+
+        ret = dbus_g_proxy_call (client_proxy, "EndSessionResponse",
+                                 &error,
+                                 G_TYPE_BOOLEAN, is_okay,
+                                 G_TYPE_STRING, reason,
+                                 G_TYPE_INVALID,
+                                 G_TYPE_INVALID);
+
+        if (!ret) {
+                g_warning ("Failed to send session response %s", error->message);
+                g_error_free (error);
+        }
+
+        return ret;
+}
+
+static void
+query_end_session_cb (guint flags, gpointer data)
+{
+        end_session_response (TRUE, NULL);
+}
+
+static void
+end_session_cb (guint flags, gpointer data)
+{
+        end_session_response (TRUE, NULL);
+        g_main_loop_quit (mainloop);
+}
+static gboolean
+register_client (void)
+{
+        GError     *error;
+        gboolean    res;
+        const char *startup_id;
+        const char *app_id;
+
+        startup_id = g_getenv ("DESKTOP_AUTOSTART_ID");
+        app_id = "at-spi-registryd.desktop";
+
+        error = NULL;
+        res = dbus_g_proxy_call (sm_proxy,
+                                 "RegisterClient",
+                                 &error,
+                                 G_TYPE_STRING, app_id,
+                                 G_TYPE_STRING, startup_id,
+                                 G_TYPE_INVALID,
+                                 DBUS_TYPE_G_OBJECT_PATH, &client_id,
+                                 G_TYPE_INVALID);
+        if (! res) {
+                g_warning ("Failed to register client: %s", error->message);
+                g_error_free (error);
+                return FALSE;
+        }
+
+        client_proxy = dbus_g_proxy_new_for_name (bus_connection,
+                                                  SM_DBUS_NAME,
+                                                  client_id,
+                                                  SM_CLIENT_DBUS_INTERFACE);
+
+        dbus_g_proxy_add_signal (client_proxy, "Stop", G_TYPE_INVALID);
+        dbus_g_proxy_connect_signal (client_proxy, "Stop",
+                                     G_CALLBACK (stop_cb), NULL, NULL);
+
+        dbus_g_proxy_add_signal (client_proxy, "QueryEndSession", G_TYPE_UINT, G_TYPE_INVALID);
+        dbus_g_proxy_connect_signal (client_proxy, "QueryEndSession",
+                                     G_CALLBACK (query_end_session_cb), NULL, NULL);
+
+        dbus_g_proxy_add_signal (client_proxy, "EndSession", G_TYPE_UINT, G_TYPE_INVALID);
+        dbus_g_proxy_connect_signal (client_proxy, "EndSession",
+                                     G_CALLBACK (end_session_cb), NULL, NULL);
+
+        g_unsetenv ("DESKTOP_AUTOSTART_ID");
+
+        return TRUE;
+}
+
+/*---------------------------------------------------------------------------*/
+
+/*
+ * Returns a 'canonicalized' value for DISPLAY,
+ * with the screen number stripped off if present.
+ *
+ */
+static const gchar*
+spi_display_name (void)
+{
+    static const char *canonical_display_name = NULL;
+    if (!canonical_display_name)
+      {
+        const gchar *display_env = g_getenv ("AT_SPI_DISPLAY");
+        if (!display_env)
+          {
+            display_env = g_getenv ("DISPLAY");
+            if (!display_env || !display_env[0]) 
+                canonical_display_name = ":0";
+            else
+              {
+                gchar *display_p, *screen_p;
+                canonical_display_name = g_strdup (display_env);
+                display_p = strrchr (canonical_display_name, ':');
+                screen_p = strrchr (canonical_display_name, '.');
+                if (screen_p && display_p && (screen_p > display_p))
+                  {
+                    *screen_p = '\0';
+                  }
+              }
+          }
+        else
+          {
+            canonical_display_name = display_env;
+          }
+      }
+    return canonical_display_name;
+}
+
+/*---------------------------------------------------------------------------*/
+
+/*
+ * Gets the IOR from the XDisplay.
+ * Not currently used in D-Bus version, but something similar
+ * may be employed in the future for accessing the registry daemon
+ * bus name.
+ */
+
+static DBusConnection *
+spi_get_bus (void)
+{
+     Atom AT_SPI_BUS;
+     Atom actual_type;
+     Display *bridge_display;
+     int actual_format;
+     unsigned char *data = NULL;  
+     unsigned long nitems;
+     unsigned long leftover;
+
+     DBusConnection *bus = NULL;
+     DBusError       error;
+
+     bridge_display = XOpenDisplay (spi_display_name ());
+     if (!bridge_display)
+	g_error ("AT_SPI: Could not get the display");
+
+     AT_SPI_BUS = XInternAtom (bridge_display, "AT_SPI_BUS", FALSE); 
+     XGetWindowProperty(bridge_display, 
+                        XDefaultRootWindow (bridge_display),
+                        AT_SPI_BUS, 0L,
+                        (long)BUFSIZ, False,
+                        (Atom) 31, &actual_type, &actual_format,
+                        &nitems, &leftover, &data);
+
+     dbus_error_init (&error);
+
+     if (data == NULL)
+     {
+         g_warning ("AT-SPI: Accessibility bus bus not found - Using session bus.\n");
+         bus = dbus_bus_get (DBUS_BUS_SESSION, &error);
+         if (!bus)
+             g_error ("AT-SPI: Couldn't connect to bus: %s\n", error.message);
+     }
+     else
+     {
+	 bus = dbus_connection_open (data, &error);
+         if (!bus)
+         {
+             g_error ("AT-SPI: Couldn't connect to bus: %s\n", error.message);
+         }
+	 else
+         {
+	     if (!dbus_bus_register (bus, &error))
+	         g_error ("AT-SPI: Couldn't register with bus: %s\n", error.message);
+         } 
+     }
+
+     return bus;
+}
+
+/*---------------------------------------------------------------------------*/
+
+typedef GObject *(*gconf_client_get_default_t) ();
+typedef gboolean (*gconf_client_get_bool_t)(GObject *, const char *, void *);
 
 int
 main (int argc, char **argv)
 {
   SpiRegistry *registry;
   SpiDEController *dec;
-  DRouteContext *droute;
   gchar *introspection_directory;
 
-  GMainLoop *mainloop;
-  DBusConnection *bus;
+  DBusConnection *bus = NULL;
 
   GOptionContext *opt;
 
@@ -67,10 +302,10 @@ main (int argc, char **argv)
   DBusError error;
   int ret;
 
-  g_type_init();
+  if (need_to_quit ())
+    return 0;
 
-  /* We depend on GDK as well as XLib for device event processing */
-  gdk_init(&argc, &argv);
+  g_type_init();
 
   /*Parse command options*/
   opt = g_option_context_new(NULL);
@@ -84,13 +319,14 @@ main (int argc, char **argv)
 
   dbus_error_init (&error);
   bus = dbus_bus_get(DBUS_BUS_SESSION, &error);
+  bus = spi_get_bus ();
   if (!bus)
   {
-    g_warning("Couldn't connect to dbus: %s\n", error.message);
+    return 0;
   }
 
   mainloop = g_main_loop_new (NULL, FALSE);
-  dbus_connection_setup_with_g_main(bus, g_main_context_default());
+  dbus_connection_setup_with_g_main(bus, NULL);
 
   ret = dbus_bus_request_name(bus, dbus_name, DBUS_NAME_FLAG_DO_NOT_QUEUE, &error);
   if (ret == DBUS_REQUEST_NAME_REPLY_EXISTS)
@@ -107,112 +343,58 @@ main (int argc, char **argv)
   if (introspection_directory == NULL)
       introspection_directory = ATSPI_INTROSPECTION_PATH;
 
-  /* Set up D-Route for use by the dec */
-  droute = droute_new (bus, introspection_directory);
+  registry = spi_registry_new (bus);
+  dec = spi_registry_dec_new (registry, bus);
 
-  registry = spi_registry_new (bus, droute);
-  dec = spi_registry_dec_new (registry, bus, droute);
+  if (use_gnome_session)
+    {
+      if (!session_manager_connect ())
+          g_warning ("Unable to connect to session manager");
 
-
-      /* If DESKTOP_AUTOSTART_ID exists, assume we're started by session
-       * manager and connect to it. */
-      const char *desktop_autostart_id = g_getenv ("DESKTOP_AUTOSTART_ID");
-      if (desktop_autostart_id != NULL) {
-        char *client_id = g_strdup (desktop_autostart_id);
-        /* Unset DESKTOP_AUTOSTART_ID in order to avoid child processes to
-         * use the same client id. */
-        g_unsetenv ("DESKTOP_AUTOSTART_ID");
-        registry_session_init (client_id, argv[0]);
-        g_free (client_id);
-      }
-
+      if (!register_client ())
+          g_warning ("Unable to register client with session manager");
+    }
 
   g_main_loop_run (mainloop);
   return 0;
 }
 
-void
-registry_session_init (const char *previous_client_id, const char *exe)
+static gboolean
+need_to_quit ()
 {
-#ifdef HAVE_SM
-  char buf[256];
-  char *client_id;
+  void *gconf = NULL;
+  gconf_client_get_default_t gconf_client_get_default = NULL;
+  gconf_client_get_bool_t gconf_client_get_bool = NULL;
+  GObject *gconf_client;	/* really a GConfClient */
+  gboolean ret;
 
-  SmcConn session_connection =
-  SmcOpenConnection (NULL, /* use SESSION_MANAGER env */
-                     NULL, /* means use existing ICE connection */
-                     SmProtoMajor,
-                     SmProtoMinor,
-                     0,
-                     NULL,
-                     (char*) previous_client_id,
-                     &client_id,
-                     255, buf);
+  g_type_init ();
 
-  if (session_connection != NULL) {
-    SmProp prop1, prop2, prop3, prop4, prop5, prop6, *props[6];
-    SmPropValue prop1val, prop2val, prop3val, prop4val, prop5val, prop6val;
-    char pid[32];
-    char hint = SmRestartImmediately;
-    char priority = 1; /* low to run before other apps */
-
-    prop1.name = SmProgram;
-    prop1.type = SmARRAY8;
-    prop1.num_vals = 1;
-    prop1.vals = &prop1val;
-    prop1val.value = exe;
-    prop1val.length = strlen (exe);
-
-    /* twm sets getuid() for this, but the SM spec plainly
-     * says pw_name, twm is on crack
-     */
-    prop2.name = SmUserID;
-    prop2.type = SmARRAY8;
-    prop2.num_vals = 1;
-    prop2.vals = &prop2val;
-    prop2val.value = (char*) g_get_user_name ();
-    prop2val.length = strlen (prop2val.value);
-
-    prop3.name = SmRestartStyleHint;
-    prop3.type = SmCARD8;
-    prop3.num_vals = 1;
-    prop3.vals = &prop3val;
-    prop3val.value = &hint;
-    prop3val.length = 1;
-
-    sprintf (pid, "%d", getpid ());
-    prop4.name = SmProcessID;
-    prop4.type = SmARRAY8;
-    prop4.num_vals = 1;
-    prop4.vals = &prop4val;
-    prop4val.value = pid;
-    prop4val.length = strlen (prop4val.value);
-
-    /* Always start in home directory */
-    prop5.name = SmCurrentDirectory;
-    prop5.type = SmARRAY8;
-    prop5.num_vals = 1;
-    prop5.vals = &prop5val;
-    prop5val.value = (char*) g_get_home_dir ();
-    prop5val.length = strlen (prop5val.value);
-
-    prop6.name = "_GSM_Priority";
-    prop6.type = SmCARD8;
-    prop6.num_vals = 1;
-    prop6.vals = &prop6val;
-    prop6val.value = &priority;
-    prop6val.length = 1;
-
-    props[0] = &prop1;
-    props[1] = &prop2;
-    props[2] = &prop3;
-    props[3] = &prop4;
-    props[4] = &prop5;
-    props[5] = &prop6;
-
-    SmcSetProperties (session_connection, 6, props);
+  gconf = dlopen ("libgconf-2.so", RTLD_LAZY);
+  if (gconf)
+    {
+      gconf_client_get_default = dlsym (gconf, "gconf_client_get_default");
+      gconf_client_get_bool = dlsym (gconf, "gconf_client_get_bool");
   }
 
-#endif
-}
+  if (!gconf_client || !gconf_client_get_bool)
+    {
+      if (gconf)
+        dlclose (gconf);
+      return FALSE;
+    }
 
+  /* If we've been relocated, we will exit if the at-spi-corba gconf key
+ * has been set.  If we have not been relocated, we will only run if the
+ * at-spi-dbus gconf key has been set.
+   */
+  gconf_client = gconf_client_get_default ();
+#ifdef RELOCATE
+  ret = !gconf_client_get_bool (gconf_client, DBUS_GCONF_KEY, NULL);
+#else
+  ret = gconf_client_get_bool (gconf_client, CORBA_GCONF_KEY, NULL);
+#endif
+  g_object_unref (gconf_client);
+
+  return ret;
+}

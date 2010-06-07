@@ -1,3 +1,3 @@
-SUBDIRS=pkgconfig xml tools dbind droute registryd
+SUBDIRS=registryd xml
 
 ACLOCAL_AMFLAGS=-I m4
