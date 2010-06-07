@@ -5,36 +5,12 @@ Maintainer: Debian Accessibility Team <debian-accessibility@lists.debian.org>
 Uploaders: Mario Lang <mlang@debian.org>
 Vcs-Browser: http://git.debian.org/?p=pkg-a11y/at-spi2-core.git;a=summary
 Vcs-Git: git://git.debian.org/git/pkg-a11y/at-spi2-core.git
-Homepage: https://projects.codethink.co.uk/index.php/p/at-spi2/
+Homepage: http://live.gnome.org/Accessibility/GNOME3
 Build-Depends: debhelper (>= 7.0.50),
                libdbus-1-dev, libdbus-glib-1-dev,
-               libglib2.0-dev, libgtk2.0-dev,
-               libxtst-dev, libxevie-dev
-Standards-Version: 3.8.3
-
-Package: libdbind0
-Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}
-Description: Client side bindings helper library for libdbus
-
-Package: libdbind-dev
-Architecture: any
-Section: libdevel
-Depends: ${misc:Depends}, libdbind0
-Description: Client side bindings helper library for libdbus (development files)
- Files necessary to develop using libdbind
-
-Package: libdroute0
-Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}
-Description: Server side bindings helper library for libdbus
-
-Package: libdroute-dev
-Architecture: any
-Section: libdevel
-Depends: ${misc:Depends}, libdroute0
-Description: Server side bindings helper library for libdbus (development files)
- Files necessary to develop using libdroute
+               libglib2.0-dev,
+               libxtst-dev
+Standards-Version: 3.8.4
 
 Package: at-spi2-core
 Architecture: any
