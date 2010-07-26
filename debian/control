@@ -10,7 +10,7 @@ Build-Depends: debhelper (>= 7.0.50),
                libdbus-1-dev, libdbus-glib-1-dev,
                libglib2.0-dev,
                libxtst-dev
-Standards-Version: 3.9.0
+Standards-Version: 3.9.1
 
 Package: at-spi2-core
 Architecture: any
