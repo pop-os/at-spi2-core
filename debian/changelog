@@ -2,4 +2,4 @@ at-spi2-core (0.3.4-1) UNRELEASED; urgency=low
 
   * Initial Debian package. (Closes: Bug#540332)
 
- -- Mario Lang <mlang@debian.org>  Fri, 14 Aug 2009 10:26:26 +0200
+ -- Mario Lang <mlang@debian.org>  Tue, 27 Jul 2010 01:26:54 +0200
