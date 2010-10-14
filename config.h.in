@@ -1,16 +1,13 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
-/* Directory for installing the DBUS daemon */
-#undef DBUS_DAEMONDIR
-
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #undef HAVE_DLFCN_H
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
 
-/* Define to 1 if you have the `dl' library (-ldl). */
-#undef HAVE_LIBDL
+/* Define to 1 if you have the `glib-2.0' library (-lglib-2.0). */
+#undef HAVE_LIBGLIB_2_0
 
 /* Define to 1 if you have the <memory.h> header file. */
 #undef HAVE_MEMORY_H
