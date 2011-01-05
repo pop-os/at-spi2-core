@@ -1,4 +1,4 @@
-AC_INIT([at-spi2-core], [1.91.2], [accessibility-atspi@lists.linux-foundation.org])
+AC_INIT([at-spi2-core], [1.91.4], [accessibility-atspi@lists.linux-foundation.org])
 AC_PREREQ([2.59])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_MACRO_DIR([m4])
@@ -32,7 +32,7 @@ PKG_CHECK_MODULES(DBUS, [dbus-1 >= 1.0])
 AC_SUBST(DBUS_LIBS)
 AC_SUBST(DBUS_CFLAGS)
 
-PKG_CHECK_MODULES(GLIB, [glib-2.0])
+PKG_CHECK_MODULES(GLIB, [glib-2.0 >= 2.26.0])
 AC_SUBST(GLIB_LIBS)
 AC_SUBST(GLIB_CFLAGS)
 AC_CHECK_LIB([glib-2.0], [g_ptr_array_new_with_free_func], [],
@@ -160,6 +160,8 @@ else
 fi
 AC_SUBST(DBUS_SERVICES_DIR)
 
+GOBJECT_INTROSPECTION_CHECK([0.9.6])
+
 AC_SUBST(LIBTOOL_EXPORT_OPTIONS)
 
 AC_ARG_ENABLE([relocate],
@@ -173,8 +175,24 @@ fi
 AM_CONDITIONAL(RELOCATE, test x$enable_relocate = xyes)
 AC_SUBST(enable_relocate)
 
+dnl find sizes & alignments
+orig_CPPFLAGS=$CPPFLAGS
+CPPFLAGS="$CPPFLAGS $DBUS_CFLAGS"
+DBIND_CHECK_ALIGNOF(char)
+DBIND_CHECK_ALIGNOF(dbus_bool_t)
+DBIND_CHECK_ALIGNOF(dbus_int16_t)
+DBIND_CHECK_ALIGNOF(dbus_int32_t)
+DBIND_CHECK_ALIGNOF(dbus_int64_t)
+DBIND_CHECK_ALIGNOF(double)
+DBIND_CHECK_ALIGNOF(dbind_pointer)
+DBIND_CHECK_ALIGNOF(dbind_struct)
+
+CPPFLAGS=$orig_CPPFLAGS 
 AC_CONFIG_FILES([Makefile
 	xml/Makefile
+	dbind/Makefile
+dbind/dbind-config.h
+	atspi/Makefile
 	registryd/Makefile
 	bus/at-spi-dbus-bus
 	bus/Makefile])
