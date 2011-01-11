@@ -601,6 +601,17 @@ impl_get_ChildCount (DBusMessageIter * iter, void *user_data)
   return result;
 }
 
+static dbus_bool_t
+impl_get_ToolkitName (DBusMessageIter * iter, void *user_data)
+{
+  return return_v_string (iter, "at-spi-registry");
+}
+
+impl_get_ToolkitVersion (DBusMessageIter * iter, void *user_data)
+{
+  return return_v_string (iter, "2.0");
+}
+
 static DBusMessage *
 impl_GetChildAtIndex (DBusConnection * bus,
                       DBusMessage * message, void *user_data)
@@ -792,6 +803,21 @@ impl_GetInterfaces (DBusConnection * bus,
     dbus_message_iter_append_basic (&iter_array, DBUS_TYPE_STRING, &com);
   dbus_message_iter_close_container (&iter, &iter_array);
 
+  return reply;
+}
+
+static DBusMessage *
+impl_GetItems (DBusConnection * bus, DBusMessage * message, void *user_data)
+{
+  DBusMessage *reply;
+  DBusMessageIter iter, iter_array;
+
+  reply = dbus_message_new_method_return (message);
+
+  dbus_message_iter_init_append (reply, &iter);
+  dbus_message_iter_open_container (&iter, DBUS_TYPE_ARRAY,
+                                    "((so)(so)(so)a(so)assusau)", &iter_array);
+  dbus_message_iter_close_container (&iter, &iter_array);
   return reply;
 }
 
@@ -1126,6 +1152,23 @@ handle_method_root (DBusConnection *bus, DBusMessage *message, void *user_data)
                       reply = dbus_message_new_error (message, DBUS_ERROR_FAILED, "Property unavailable");
                     }
                 }
+              else if (!strcmp (prop_iface, SPI_DBUS_INTERFACE_APPLICATION))
+                {
+                  if (!strcmp (prop_member, "ToolkitName"))
+                    impl_get_ToolkitName (&iter, user_data);
+                  else if (!strcmp (prop_member, "ToolkitVersion"))
+                    impl_get_ToolkitVersion (&iter, user_data);
+                  else
+                    {
+                      dbus_message_unref (reply); 
+                      reply = dbus_message_new_error (message, DBUS_ERROR_FAILED, "Property unavailable");
+                    }
+                }
+              else
+                {
+                  dbus_message_unref (reply); 
+                  reply = dbus_message_new_error (message, DBUS_ERROR_FAILED, "Property unavailable");
+                }
             }
           else
             {
@@ -1234,6 +1277,44 @@ handle_method_root (DBusConnection *bus, DBusMessage *message, void *user_data)
 }
 
 static DBusHandlerResult
+handle_method_cache (DBusConnection *bus, DBusMessage *message, void *user_data)
+{
+  DBusHandlerResult result = DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+
+  const gchar *iface   = dbus_message_get_interface (message);
+  const gchar *member  = dbus_message_get_member (message);
+  const gint   type    = dbus_message_get_type (message);
+
+  DBusMessage *reply = NULL;
+
+  /* Check for basic reasons not to handle */
+  if (type   != DBUS_MESSAGE_TYPE_METHOD_CALL ||
+      member == NULL ||
+      iface  == NULL)
+      return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+
+  if (!strcmp (iface, SPI_DBUS_INTERFACE_CACHE))
+    {
+      result = DBUS_HANDLER_RESULT_HANDLED;
+      if      (!strcmp (member, "GetItems"))
+          reply = impl_GetItems (bus, message, user_data);
+      else
+         result = DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+    }
+
+  if (result == DBUS_HANDLER_RESULT_HANDLED)
+    {
+      if (!reply)
+        {
+          reply = dbus_message_new_method_return (message);
+        }
+
+      dbus_connection_send (bus, reply, NULL);
+      dbus_message_unref (reply);
+    }
+}
+
+static DBusHandlerResult
 handle_method_registry (DBusConnection *bus, DBusMessage *message, void *user_data)
 {
   DBusHandlerResult result = DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
@@ -1308,6 +1389,13 @@ static DBusObjectPathVTable registry_vtable =
   NULL, NULL, NULL, NULL
 };
 
+static DBusObjectPathVTable cache_vtable =
+{
+  NULL,
+  &handle_method_cache,
+  NULL, NULL, NULL, NULL
+};
+
 static gchar *app_sig_match_name_owner =
        "type='signal', interface='org.freedesktop.DBus', member='NameOwnerChanged'";
 
@@ -1322,6 +1410,8 @@ spi_registry_new (DBusConnection *bus)
   dbus_connection_add_filter (bus, signal_filter, reg, NULL);
 
   dbus_connection_register_object_path (bus, SPI_DBUS_PATH_ROOT, &root_vtable, reg);
+
+  dbus_connection_register_object_path (bus, SPI_DBUS_PATH_CACHE, &cache_vtable, reg);
 
   dbus_connection_register_object_path (bus, SPI_DBUS_PATH_REGISTRY, &registry_vtable, reg);
 

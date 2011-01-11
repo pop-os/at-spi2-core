@@ -39,10 +39,14 @@ AtspiRect *
 atspi_rect_copy (AtspiRect *src)
 {
   AtspiRect *dst = g_new (AtspiRect, 1);
-  dst->x = src->x;
-  dst->y = src->y;
-  dst->height = src->height;
-  dst->width = src->width;
+  if (dst)
+  {
+    dst->x = src->x;
+    dst->y = src->y;
+    dst->height = src->height;
+    dst->width = src->width;
+  }
+  return dst;
 }
 
 G_DEFINE_BOXED_TYPE (AtspiRect, atspi_rect, atspi_rect_copy, atspi_rect_free)
@@ -51,8 +55,12 @@ AtspiPoint *
 atspi_point_copy (AtspiPoint *src)
 {
   AtspiPoint *dst = g_new (AtspiPoint, 1);
-  dst->x = src->x;
-  dst->y = src->y;
+  if (dst)
+  {
+    dst->x = src->x;
+    dst->y = src->y;
+  }
+  return dst;
 }
 
 G_DEFINE_BOXED_TYPE (AtspiPoint, atspi_point, atspi_point_copy, g_free)
@@ -138,7 +146,7 @@ atspi_component_get_extents (AtspiComponent *obj,
   dbus_uint32_t d_ctype = ctype;
   AtspiRect bbox;
 
-  bbox.x = bbox.y = bbox.width = bbox.height = 0;
+  bbox.x = bbox.y = bbox.width = bbox.height = -1;
   g_return_val_if_fail (obj != NULL, atspi_rect_copy (&bbox));
 
   _atspi_dbus_call (obj, atspi_interface_component, "GetExtents", error, "u=>(iiii)", d_ctype, &bbox);
@@ -163,7 +171,7 @@ atspi_component_get_position (AtspiComponent *obj,
   dbus_uint16_t d_ctype = ctype;
   AtspiPoint ret;
 
-  ret.x = ret.y = 0;
+  ret.x = ret.y = -1;
 
   if (!obj)
     return atspi_point_copy (&ret);
@@ -189,7 +197,7 @@ atspi_component_get_size (AtspiComponent *obj, GError **error)
   dbus_int32_t d_w, d_h;
   AtspiPoint ret;
 
-  ret.x = ret.y = 0;
+  ret.x = ret.y = -1;
   if (!obj)
     return atspi_point_copy (&ret);
 
@@ -211,7 +219,7 @@ atspi_component_get_size (AtspiComponent *obj, GError **error)
 AtspiComponentLayer
 atspi_component_get_layer (AtspiComponent *obj, GError **error)
 {
-  dbus_uint32_t zlayer = 0;
+  dbus_uint32_t zlayer = -1;
 
   _atspi_dbus_call (obj, atspi_interface_component, "GetLayer", error, "=>u", &zlayer);
 

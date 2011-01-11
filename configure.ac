@@ -1,4 +1,4 @@
-AC_INIT([at-spi2-core], [1.91.4], [accessibility-atspi@lists.linux-foundation.org])
+AC_INIT([at-spi2-core], [1.91.5], [accessibility-atspi@lists.linux-foundation.org])
 AC_PREREQ([2.59])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_MACRO_DIR([m4])
@@ -27,6 +27,13 @@ LT_INIT([disable-static])
 PKG_PROG_PKG_CONFIG
 
 AC_CONFIG_HEADERS([config.h])
+
+dnl translation of at-spi strings
+IT_PROG_INTLTOOL([0.40.0])
+
+
+GETTEXT_PACKAGE="${PACKAGE}"
+AC_SUBST(GETTEXT_PACKAGE)
 
 PKG_CHECK_MODULES(DBUS, [dbus-1 >= 1.0])
 AC_SUBST(DBUS_LIBS)
@@ -187,14 +194,19 @@ DBIND_CHECK_ALIGNOF(double)
 DBIND_CHECK_ALIGNOF(dbind_pointer)
 DBIND_CHECK_ALIGNOF(dbind_struct)
 
+GTK_DOC_CHECK([1.09])
+
 CPPFLAGS=$orig_CPPFLAGS 
-AC_CONFIG_FILES([Makefile
+AC_CONFIG_FILES([Makefile po/Makefile.in
 	xml/Makefile
 	dbind/Makefile
 dbind/dbind-config.h
 	atspi/Makefile
 	registryd/Makefile
 	bus/at-spi-dbus-bus
-	bus/Makefile])
+	bus/Makefile
+doc/Makefile
+doc/libatspi/Makefile
+])
 
 AC_OUTPUT

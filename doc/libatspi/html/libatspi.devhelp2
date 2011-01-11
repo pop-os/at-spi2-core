@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+<book xmlns="http://www.devhelp.net/book" title="libatspi Reference Manual" link="index.html" author="" name="libatspi" version="2" language="c">
+  <chapters>
+    <sub name="[Insert title here]" link="ch01.html">
+      <sub name="atspi-text" link="libatspi-atspi-text.html"/>
+      <sub name="AtspiStateSet" link="AtspiStateSet.html"/>
+      <sub name="AtspiApplication" link="libatspi-AtspiApplication.html"/>
+      <sub name="atspi-collection" link="libatspi-atspi-collection.html"/>
+      <sub name="AtspiRelation" link="AtspiRelation.html"/>
+      <sub name="atspi-image" link="libatspi-atspi-image.html"/>
+      <sub name="AtspiMatchRule" link="AtspiMatchRule.html"/>
+      <sub name="atspi-document" link="libatspi-atspi-document.html"/>
+      <sub name="AtspiObject" link="AtspiObject.html"/>
+      <sub name="AtspiAccessible" link="AtspiAccessible.html"/>
+      <sub name="AtspiDeviceListener" link="AtspiDeviceListener.html"/>
+      <sub name="AtspiHyperlink" link="AtspiHyperlink.html"/>
+      <sub name="atspi-editabletext" link="libatspi-atspi-editabletext.html"/>
+      <sub name="atspi-value" link="libatspi-atspi-value.html"/>
+      <sub name="atspi-table" link="libatspi-atspi-table.html"/>
+      <sub name="atspi-selection" link="libatspi-atspi-selection.html"/>
+      <sub name="AtspiEventListener" link="AtspiEventListener.html"/>
+      <sub name="atspi-hypertext" link="libatspi-atspi-hypertext.html"/>
+      <sub name="atspi-component" link="libatspi-atspi-component.html"/>
+      <sub name="atspi-registry" link="libatspi-atspi-registry.html"/>
+      <sub name="atspi-types" link="libatspi-atspi-types.html"/>
+      <sub name="atspi-constants" link="libatspi-atspi-constants.html"/>
+      <sub name="atspi-misc" link="libatspi-atspi-misc.html"/>
+      <sub name="atspi-misc-private" link="libatspi-atspi-misc-private.html"/>
+      <sub name="atspi-listener-private" link="libatspi-atspi-listener-private.html"/>
+    </sub>
+    <sub name="Object Hierarchy" link="object-tree.html"/>
+    <sub name="API Index" link="api-index-full.html"/>
+    <sub name="Annotation Glossary" link="annotation-glossary.html"/>
+  </chapters>
+  <functions>
+    <keyword type="struct" name="AtspiRange" link="libatspi-atspi-text.html#AtspiRange"/>
+    <keyword type="macro" name="ATSPI_TYPE_RANGE" link="libatspi-atspi-text.html#ATSPI-TYPE-RANGE:CAPS"/>
+    <keyword type="function" name="atspi_range_copy ()" link="libatspi-atspi-text.html#atspi-range-copy"/>
+    <keyword type="struct" name="AtspiTextRange" link="libatspi-atspi-text.html#AtspiTextRange"/>
+    <keyword type="macro" name="ATSPI_TYPE_TEXT_RANGE" link="libatspi-atspi-text.html#ATSPI-TYPE-TEXT-RANGE:CAPS"/>
+    <keyword type="function" name="atspi_text_get_type ()" link="libatspi-atspi-text.html#atspi-text-get-type"/>
+    <keyword type="struct" name="AtspiText" link="libatspi-atspi-text.html#AtspiText-struct"/>
+    <keyword type="function" name="atspi_text_range_get_type ()" link="libatspi-atspi-text.html#atspi-text-range-get-type"/>
+    <keyword type="function" name="atspi_text_get_character_count ()" link="libatspi-atspi-text.html#atspi-text-get-character-count"/>
+    <keyword type="function" name="atspi_text_get_text ()" link="libatspi-atspi-text.html#atspi-text-get-text"/>
+    <keyword type="function" name="atspi_text_get_caret_offset ()" link="libatspi-atspi-text.html#atspi-text-get-caret-offset"/>
+    <keyword type="function" name="atspi_text_get_attributes ()" link="libatspi-atspi-text.html#atspi-text-get-attributes"/>
+    <keyword type="function" name="atspi_text_get_attribute_run ()" link="libatspi-atspi-text.html#atspi-text-get-attribute-run"/>
+    <keyword type="function" name="atspi_text_get_attribute_value ()" link="libatspi-atspi-text.html#atspi-text-get-attribute-value"/>
+    <keyword type="function" name="atspi_text_get_default_attributes ()" link="libatspi-atspi-text.html#atspi-text-get-default-attributes"/>
+    <keyword type="function" name="atspi_text_set_caret_offset ()" link="libatspi-atspi-text.html#atspi-text-set-caret-offset"/>
+    <keyword type="function" name="atspi_text_get_text_before_offset ()" link="libatspi-atspi-text.html#atspi-text-get-text-before-offset"/>
+    <keyword type="function" name="atspi_text_get_text_at_offset ()" link="libatspi-atspi-text.html#atspi-text-get-text-at-offset"/>
+    <keyword type="function" name="atspi_text_get_text_after_offset ()" link="libatspi-atspi-text.html#atspi-text-get-text-after-offset"/>
+    <keyword type="function" name="atspi_text_get_character_at_offset ()" link="libatspi-atspi-text.html#atspi-text-get-character-at-offset"/>
+    <keyword type="function" name="atspi_text_get_character_extents ()" link="libatspi-atspi-text.html#atspi-text-get-character-extents"/>
+    <keyword type="function" name="atspi_text_get_offset_at_point ()" link="libatspi-atspi-text.html#atspi-text-get-offset-at-point"/>
+    <keyword type="function" name="atspi_text_get_range_extents ()" link="libatspi-atspi-text.html#atspi-text-get-range-extents"/>
+    <keyword type="function" name="atspi_text_get_bounded_ranges ()" link="libatspi-atspi-text.html#atspi-text-get-bounded-ranges"/>
+    <keyword type="function" name="atspi_text_get_n_selections ()" link="libatspi-atspi-text.html#atspi-text-get-n-selections"/>
+    <keyword type="function" name="atspi_text_get_selection ()" link="libatspi-atspi-text.html#atspi-text-get-selection"/>
+    <keyword type="function" name="atspi_text_add_selection ()" link="libatspi-atspi-text.html#atspi-text-add-selection"/>
+    <keyword type="function" name="atspi_text_remove_selection ()" link="libatspi-atspi-text.html#atspi-text-remove-selection"/>
+    <keyword type="function" name="atspi_text_set_selection ()" link="libatspi-atspi-text.html#atspi-text-set-selection"/>
+    <keyword type="struct" name="AtspiStateSet" link="AtspiStateSet.html#AtspiStateSet-struct"/>
+    <keyword type="struct" name="AtspiStateSetClass" link="AtspiStateSet.html#AtspiStateSetClass"/>
+    <keyword type="function" name="atspi_state_set_new ()" link="AtspiStateSet.html#atspi-state-set-new"/>
+    <keyword type="function" name="atspi_state_set_set_by_name ()" link="AtspiStateSet.html#atspi-state-set-set-by-name"/>
+    <keyword type="function" name="atspi_state_set_add ()" link="AtspiStateSet.html#atspi-state-set-add"/>
+    <keyword type="function" name="atspi_state_set_compare ()" link="AtspiStateSet.html#atspi-state-set-compare"/>
+    <keyword type="function" name="atspi_state_set_contains ()" link="AtspiStateSet.html#atspi-state-set-contains"/>
+    <keyword type="function" name="atspi_state_set_equals ()" link="AtspiStateSet.html#atspi-state-set-equals"/>
+    <keyword type="function" name="atspi_state_set_get_states ()" link="AtspiStateSet.html#atspi-state-set-get-states"/>
+    <keyword type="function" name="atspi_state_set_is_empty ()" link="AtspiStateSet.html#atspi-state-set-is-empty"/>
+    <keyword type="function" name="atspi_state_set_remove ()" link="AtspiStateSet.html#atspi-state-set-remove"/>
+    <keyword type="struct" name="AtspiApplication" link="libatspi-AtspiApplication.html#AtspiApplication"/>
+    <keyword type="struct" name="AtspiApplicationClass" link="libatspi-AtspiApplication.html#AtspiApplicationClass"/>
+    <keyword type="struct" name="AtspiCollection" link="libatspi-atspi-collection.html#AtspiCollection-struct"/>
+    <keyword type="function" name="atspi_collection_is_ancestor_of ()" link="libatspi-atspi-collection.html#atspi-collection-is-ancestor-of"/>
+    <keyword type="function" name="atspi_collection_get_matches ()" link="libatspi-atspi-collection.html#atspi-collection-get-matches"/>
+    <keyword type="function" name="atspi_collection_get_matches_to ()" link="libatspi-atspi-collection.html#atspi-collection-get-matches-to"/>
+    <keyword type="function" name="atspi_collection_get_matches_from ()" link="libatspi-atspi-collection.html#atspi-collection-get-matches-from"/>
+    <keyword type="function" name="atspi_collection_get_active_descendant ()" link="libatspi-atspi-collection.html#atspi-collection-get-active-descendant"/>
+    <keyword type="struct" name="AtspiRelation" link="AtspiRelation.html#AtspiRelation-struct"/>
+    <keyword type="struct" name="AtspiRelationClass" link="AtspiRelation.html#AtspiRelationClass"/>
+    <keyword type="function" name="atspi_relation_get_relation_type ()" link="AtspiRelation.html#atspi-relation-get-relation-type"/>
+    <keyword type="function" name="atspi_relation_get_n_targets ()" link="AtspiRelation.html#atspi-relation-get-n-targets"/>
+    <keyword type="function" name="atspi_relation_get_target ()" link="AtspiRelation.html#atspi-relation-get-target"/>
+    <keyword type="struct" name="AtspiImage" link="libatspi-atspi-image.html#AtspiImage-struct"/>
+    <keyword type="function" name="atspi_image_get_image_description ()" link="libatspi-atspi-image.html#atspi-image-get-image-description"/>
+    <keyword type="function" name="atspi_image_get_image_size ()" link="libatspi-atspi-image.html#atspi-image-get-image-size"/>
+    <keyword type="function" name="atspi_image_get_image_position ()" link="libatspi-atspi-image.html#atspi-image-get-image-position"/>
+    <keyword type="function" name="atspi_image_get_image_extents ()" link="libatspi-atspi-image.html#atspi-image-get-image-extents"/>
+    <keyword type="function" name="atspi_image_get_image_locale ()" link="libatspi-atspi-image.html#atspi-image-get-image-locale"/>
+    <keyword type="struct" name="AtspiMatchRule" link="AtspiMatchRule.html#AtspiMatchRule-struct"/>
+    <keyword type="struct" name="AtspiMatchRuleClass" link="AtspiMatchRule.html#AtspiMatchRuleClass"/>
+    <keyword type="function" name="atspi_match_rule_new ()" link="AtspiMatchRule.html#atspi-match-rule-new"/>
+    <keyword type="struct" name="AtspiDocument" link="libatspi-atspi-document.html#AtspiDocument-struct"/>
+    <keyword type="function" name="atspi_document_get_locale ()" link="libatspi-atspi-document.html#atspi-document-get-locale"/>
+    <keyword type="function" name="atspi_document_get_attribute_value ()" link="libatspi-atspi-document.html#atspi-document-get-attribute-value"/>
+    <keyword type="function" name="atspi_document_get_attributes ()" link="libatspi-atspi-document.html#atspi-document-get-attributes"/>
+    <keyword type="struct" name="AtspiObject" link="AtspiObject.html#AtspiObject-struct"/>
+    <keyword type="struct" name="AtspiObjectClass" link="AtspiObject.html#AtspiObjectClass"/>
+    <keyword type="struct" name="AtspiAccessible" link="AtspiAccessible.html#AtspiAccessible-struct"/>
+    <keyword type="struct" name="AtspiAccessibleClass" link="AtspiAccessible.html#AtspiAccessibleClass"/>
+    <keyword type="function" name="atspi_accessible_new ()" link="AtspiAccessible.html#atspi-accessible-new"/>
+    <keyword type="function" name="atspi_role_get_name ()" link="AtspiAccessible.html#atspi-role-get-name"/>
+    <keyword type="function" name="atspi_accessible_get_name ()" link="AtspiAccessible.html#atspi-accessible-get-name"/>
+    <keyword type="function" name="atspi_accessible_get_description ()" link="AtspiAccessible.html#atspi-accessible-get-description"/>
+    <keyword type="function" name="atspi_accessible_get_parent ()" link="AtspiAccessible.html#atspi-accessible-get-parent"/>
+    <keyword type="function" name="atspi_accessible_get_child_count ()" link="AtspiAccessible.html#atspi-accessible-get-child-count"/>
+    <keyword type="function" name="atspi_accessible_get_child_at_index ()" link="AtspiAccessible.html#atspi-accessible-get-child-at-index"/>
+    <keyword type="function" name="atspi_accessible_get_index_in_parent ()" link="AtspiAccessible.html#atspi-accessible-get-index-in-parent"/>
+    <keyword type="function" name="atspi_accessible_get_relation_set ()" link="AtspiAccessible.html#atspi-accessible-get-relation-set"/>
+    <keyword type="function" name="atspi_accessible_get_role ()" link="AtspiAccessible.html#atspi-accessible-get-role"/>
+    <keyword type="function" name="atspi_accessible_get_role_name ()" link="AtspiAccessible.html#atspi-accessible-get-role-name"/>
+    <keyword type="function" name="atspi_accessible_get_localized_role_name ()" link="AtspiAccessible.html#atspi-accessible-get-localized-role-name"/>
+    <keyword type="function" name="atspi_accessible_get_state_set ()" link="AtspiAccessible.html#atspi-accessible-get-state-set"/>
+    <keyword type="function" name="atspi_accessible_get_attributes ()" link="AtspiAccessible.html#atspi-accessible-get-attributes"/>
+    <keyword type="function" name="atspi_accessible_get_attributes_as_array ()" link="AtspiAccessible.html#atspi-accessible-get-attributes-as-array"/>
+    <keyword type="function" name="atspi_accessible_get_toolkit_name ()" link="AtspiAccessible.html#atspi-accessible-get-toolkit-name"/>
+    <keyword type="function" name="atspi_accessible_get_toolkit_version ()" link="AtspiAccessible.html#atspi-accessible-get-toolkit-version"/>
+    <keyword type="function" name="atspi_accessible_get_application ()" link="AtspiAccessible.html#atspi-accessible-get-application"/>
+    <keyword type="function" name="atspi_accessible_get_action ()" link="AtspiAccessible.html#atspi-accessible-get-action"/>
+    <keyword type="function" name="atspi_accessible_get_collection ()" link="AtspiAccessible.html#atspi-accessible-get-collection"/>
+    <keyword type="function" name="atspi_accessible_get_component ()" link="AtspiAccessible.html#atspi-accessible-get-component"/>
+    <keyword type="function" name="atspi_accessible_get_document ()" link="AtspiAccessible.html#atspi-accessible-get-document"/>
+    <keyword type="function" name="atspi_accessible_get_editable_text ()" link="AtspiAccessible.html#atspi-accessible-get-editable-text"/>
+    <keyword type="function" name="atspi_accessible_get_hyperlink ()" link="AtspiAccessible.html#atspi-accessible-get-hyperlink"/>
+    <keyword type="function" name="atspi_accessible_get_hypertext ()" link="AtspiAccessible.html#atspi-accessible-get-hypertext"/>
+    <keyword type="function" name="atspi_accessible_get_image ()" link="AtspiAccessible.html#atspi-accessible-get-image"/>
+    <keyword type="function" name="atspi_accessible_get_selection ()" link="AtspiAccessible.html#atspi-accessible-get-selection"/>
+    <keyword type="function" name="atspi_accessible_get_table ()" link="AtspiAccessible.html#atspi-accessible-get-table"/>
+    <keyword type="function" name="atspi_accessible_get_text ()" link="AtspiAccessible.html#atspi-accessible-get-text"/>
+    <keyword type="function" name="atspi_accessible_get_value ()" link="AtspiAccessible.html#atspi-accessible-get-value"/>
+    <keyword type="function" name="atspi_accessible_get_interfaces ()" link="AtspiAccessible.html#atspi-accessible-get-interfaces"/>
+    <keyword type="function" name="AtspiDeviceListenerCB ()" link="AtspiDeviceListener.html#AtspiDeviceListenerCB"/>
+    <keyword type="function" name="AtspiDeviceListenerSimpleCB ()" link="AtspiDeviceListener.html#AtspiDeviceListenerSimpleCB"/>
+    <keyword type="struct" name="AtspiDeviceListener" link="AtspiDeviceListener.html#AtspiDeviceListener-struct"/>
+    <keyword type="struct" name="AtspiDeviceListenerClass" link="AtspiDeviceListener.html#AtspiDeviceListenerClass"/>
+    <keyword type="function" name="atspi_device_listener_new ()" link="AtspiDeviceListener.html#atspi-device-listener-new"/>
+    <keyword type="function" name="atspi_device_listener_new_simple ()" link="AtspiDeviceListener.html#atspi-device-listener-new-simple"/>
+    <keyword type="function" name="atspi_device_listener_add_callback ()" link="AtspiDeviceListener.html#atspi-device-listener-add-callback"/>
+    <keyword type="function" name="atspi_device_listener_remove_callback ()" link="AtspiDeviceListener.html#atspi-device-listener-remove-callback"/>
+    <keyword type="struct" name="AtspiHyperlink" link="AtspiHyperlink.html#AtspiHyperlink-struct"/>
+    <keyword type="struct" name="AtspiHyperlinkClass" link="AtspiHyperlink.html#AtspiHyperlinkClass"/>
+    <keyword type="function" name="atspi_hyperlink_new ()" link="AtspiHyperlink.html#atspi-hyperlink-new"/>
+    <keyword type="function" name="atspi_hyperlink_get_n_anchors ()" link="AtspiHyperlink.html#atspi-hyperlink-get-n-anchors"/>
+    <keyword type="function" name="atspi_hyperlink_get_uri ()" link="AtspiHyperlink.html#atspi-hyperlink-get-uri"/>
+    <keyword type="function" name="atspi_hyperlink_get_object ()" link="AtspiHyperlink.html#atspi-hyperlink-get-object"/>
+    <keyword type="function" name="atspi_hyperlink_get_index_range ()" link="AtspiHyperlink.html#atspi-hyperlink-get-index-range"/>
+    <keyword type="function" name="atspi_hyperlink_get_start_index ()" link="AtspiHyperlink.html#atspi-hyperlink-get-start-index"/>
+    <keyword type="function" name="atspi_hyperlink_get_end_index ()" link="AtspiHyperlink.html#atspi-hyperlink-get-end-index"/>
+    <keyword type="function" name="atspi_hyperlink_is_valid ()" link="AtspiHyperlink.html#atspi-hyperlink-is-valid"/>
+    <keyword type="struct" name="AtspiEditableText" link="libatspi-atspi-editabletext.html#AtspiEditableText-struct"/>
+    <keyword type="function" name="atspi_editable_text_set_attributes ()" link="libatspi-atspi-editabletext.html#atspi-editable-text-set-attributes"/>
+    <keyword type="function" name="atspi_editable_text_insert_text ()" link="libatspi-atspi-editabletext.html#atspi-editable-text-insert-text"/>
+    <keyword type="function" name="atspi_editable_text_copy_text ()" link="libatspi-atspi-editabletext.html#atspi-editable-text-copy-text"/>
+    <keyword type="function" name="atspi_editable_text_cut_text ()" link="libatspi-atspi-editabletext.html#atspi-editable-text-cut-text"/>
+    <keyword type="function" name="atspi_editable_text_delete_text ()" link="libatspi-atspi-editabletext.html#atspi-editable-text-delete-text"/>
+    <keyword type="function" name="atspi_editable_text_paste_text ()" link="libatspi-atspi-editabletext.html#atspi-editable-text-paste-text"/>
+    <keyword type="struct" name="AtspiValue" link="libatspi-atspi-value.html#AtspiValue-struct"/>
+    <keyword type="function" name="atspi_value_get_minimum_value ()" link="libatspi-atspi-value.html#atspi-value-get-minimum-value"/>
+    <keyword type="function" name="atspi_value_get_current_value ()" link="libatspi-atspi-value.html#atspi-value-get-current-value"/>
+    <keyword type="function" name="atspi_value_get_maximum_value ()" link="libatspi-atspi-value.html#atspi-value-get-maximum-value"/>
+    <keyword type="function" name="atspi_value_set_current_value ()" link="libatspi-atspi-value.html#atspi-value-set-current-value"/>
+    <keyword type="function" name="atspi_value_get_minimum_increment ()" link="libatspi-atspi-value.html#atspi-value-get-minimum-increment"/>
+    <keyword type="struct" name="AtspiTable" link="libatspi-atspi-table.html#AtspiTable-struct"/>
+    <keyword type="function" name="atspi_table_get_caption ()" link="libatspi-atspi-table.html#atspi-table-get-caption"/>
+    <keyword type="function" name="atspi_table_get_summary ()" link="libatspi-atspi-table.html#atspi-table-get-summary"/>
+    <keyword type="function" name="atspi_table_get_n_rows ()" link="libatspi-atspi-table.html#atspi-table-get-n-rows"/>
+    <keyword type="function" name="atspi_table_get_n_columns ()" link="libatspi-atspi-table.html#atspi-table-get-n-columns"/>
+    <keyword type="function" name="atspi_table_get_accessible_at ()" link="libatspi-atspi-table.html#atspi-table-get-accessible-at"/>
+    <keyword type="function" name="atspi_table_get_index_at ()" link="libatspi-atspi-table.html#atspi-table-get-index-at"/>
+    <keyword type="function" name="atspi_table_get_row_at_index ()" link="libatspi-atspi-table.html#atspi-table-get-row-at-index"/>
+    <keyword type="function" name="atspi_table_get_column_at_index ()" link="libatspi-atspi-table.html#atspi-table-get-column-at-index"/>
+    <keyword type="function" name="atspi_table_get_row_description ()" link="libatspi-atspi-table.html#atspi-table-get-row-description"/>
+    <keyword type="function" name="atspi_table_get_column_description ()" link="libatspi-atspi-table.html#atspi-table-get-column-description"/>
+    <keyword type="function" name="atspi_table_get_row_extent_at ()" link="libatspi-atspi-table.html#atspi-table-get-row-extent-at"/>
+    <keyword type="function" name="atspi_table_get_column_extent_at ()" link="libatspi-atspi-table.html#atspi-table-get-column-extent-at"/>
+    <keyword type="function" name="atspi_table_get_row_header ()" link="libatspi-atspi-table.html#atspi-table-get-row-header"/>
+    <keyword type="function" name="atspi_table_get_column_header ()" link="libatspi-atspi-table.html#atspi-table-get-column-header"/>
+    <keyword type="function" name="atspi_table_get_n_selected_rows ()" link="libatspi-atspi-table.html#atspi-table-get-n-selected-rows"/>
+    <keyword type="function" name="atspi_table_get_selected_rows ()" link="libatspi-atspi-table.html#atspi-table-get-selected-rows"/>
+    <keyword type="function" name="atspi_table_get_selected_columns ()" link="libatspi-atspi-table.html#atspi-table-get-selected-columns"/>
+    <keyword type="function" name="atspi_table_get_n_selected_columns ()" link="libatspi-atspi-table.html#atspi-table-get-n-selected-columns"/>
+    <keyword type="function" name="atspi_table_is_row_selected ()" link="libatspi-atspi-table.html#atspi-table-is-row-selected"/>
+    <keyword type="function" name="atspi_table_is_column_selected ()" link="libatspi-atspi-table.html#atspi-table-is-column-selected"/>
+    <keyword type="function" name="atspi_table_add_row_selection ()" link="libatspi-atspi-table.html#atspi-table-add-row-selection"/>
+    <keyword type="function" name="atspi_table_add_column_selection ()" link="libatspi-atspi-table.html#atspi-table-add-column-selection"/>
+    <keyword type="function" name="atspi_table_remove_row_selection ()" link="libatspi-atspi-table.html#atspi-table-remove-row-selection"/>
+    <keyword type="function" name="atspi_table_remove_column_selection ()" link="libatspi-atspi-table.html#atspi-table-remove-column-selection"/>
+    <keyword type="function" name="atspi_table_get_row_column_extents_at_index ()" link="libatspi-atspi-table.html#atspi-table-get-row-column-extents-at-index"/>
+    <keyword type="function" name="atspi_table_is_selected ()" link="libatspi-atspi-table.html#atspi-table-is-selected"/>
+    <keyword type="struct" name="AtspiSelection" link="libatspi-atspi-selection.html#AtspiSelection-struct"/>
+    <keyword type="function" name="atspi_selection_get_n_selected_children ()" link="libatspi-atspi-selection.html#atspi-selection-get-n-selected-children"/>
+    <keyword type="function" name="atspi_selection_get_selected_child ()" link="libatspi-atspi-selection.html#atspi-selection-get-selected-child"/>
+    <keyword type="function" name="atspi_selection_select_child ()" link="libatspi-atspi-selection.html#atspi-selection-select-child"/>
+    <keyword type="function" name="atspi_selection_deselect_selected_child ()" link="libatspi-atspi-selection.html#atspi-selection-deselect-selected-child"/>
+    <keyword type="function" name="atspi_selection_deselect_child ()" link="libatspi-atspi-selection.html#atspi-selection-deselect-child"/>
+    <keyword type="function" name="atspi_selection_is_child_selected ()" link="libatspi-atspi-selection.html#atspi-selection-is-child-selected"/>
+    <keyword type="function" name="atspi_selection_select_all ()" link="libatspi-atspi-selection.html#atspi-selection-select-all"/>
+    <keyword type="function" name="atspi_selection_clear_selection ()" link="libatspi-atspi-selection.html#atspi-selection-clear-selection"/>
+    <keyword type="function" name="AtspiEventListenerCB ()" link="AtspiEventListener.html#AtspiEventListenerCB"/>
+    <keyword type="function" name="AtspiEventListenerSimpleCB ()" link="AtspiEventListener.html#AtspiEventListenerSimpleCB"/>
+    <keyword type="struct" name="AtspiEventListener" link="AtspiEventListener.html#AtspiEventListener-struct"/>
+    <keyword type="struct" name="AtspiEventListenerClass" link="AtspiEventListener.html#AtspiEventListenerClass"/>
+    <keyword type="function" name="atspi_event_listener_get_type ()" link="AtspiEventListener.html#atspi-event-listener-get-type"/>
+    <keyword type="function" name="atspi_event_listener_new_simple ()" link="AtspiEventListener.html#atspi-event-listener-new-simple"/>
+    <keyword type="function" name="atspi_event_listener_register ()" link="AtspiEventListener.html#atspi-event-listener-register"/>
+    <keyword type="function" name="atspi_event_listener_register_from_callback ()" link="AtspiEventListener.html#atspi-event-listener-register-from-callback"/>
+    <keyword type="function" name="atspi_event_listener_register_no_data ()" link="AtspiEventListener.html#atspi-event-listener-register-no-data"/>
+    <keyword type="function" name="atspi_event_listener_deregister ()" link="AtspiEventListener.html#atspi-event-listener-deregister"/>
+    <keyword type="function" name="atspi_event_listener_deregister_from_callback ()" link="AtspiEventListener.html#atspi-event-listener-deregister-from-callback"/>
+    <keyword type="function" name="atspi_event_listener_deregister_no_data ()" link="AtspiEventListener.html#atspi-event-listener-deregister-no-data"/>
+    <keyword type="struct" name="AtspiHypertext" link="libatspi-atspi-hypertext.html#AtspiHypertext-struct"/>
+    <keyword type="function" name="atspi_hypertext_get_n_links ()" link="libatspi-atspi-hypertext.html#atspi-hypertext-get-n-links"/>
+    <keyword type="function" name="atspi_hypertext_get_link ()" link="libatspi-atspi-hypertext.html#atspi-hypertext-get-link"/>
+    <keyword type="function" name="atspi_hypertext_get_link_index ()" link="libatspi-atspi-hypertext.html#atspi-hypertext-get-link-index"/>
+    <keyword type="struct" name="AtspiRect" link="libatspi-atspi-component.html#AtspiRect"/>
+    <keyword type="macro" name="ATSPI_TYPE_RECT" link="libatspi-atspi-component.html#ATSPI-TYPE-RECT:CAPS"/>
+    <keyword type="function" name="atspi_rect_copy ()" link="libatspi-atspi-component.html#atspi-rect-copy"/>
+    <keyword type="struct" name="AtspiPoint" link="libatspi-atspi-component.html#AtspiPoint"/>
+    <keyword type="macro" name="ATSPI_TYPE_POINT" link="libatspi-atspi-component.html#ATSPI-TYPE-POINT:CAPS"/>
+    <keyword type="function" name="atspi_point_get_type ()" link="libatspi-atspi-component.html#atspi-point-get-type"/>
+    <keyword type="function" name="atspi_point_copy ()" link="libatspi-atspi-component.html#atspi-point-copy"/>
+    <keyword type="function" name="atspi_component_get_type ()" link="libatspi-atspi-component.html#atspi-component-get-type"/>
+    <keyword type="struct" name="AtspiComponent" link="libatspi-atspi-component.html#AtspiComponent-struct"/>
+    <keyword type="function" name="atspi_component_contains ()" link="libatspi-atspi-component.html#atspi-component-contains"/>
+    <keyword type="function" name="atspi_component_get_accessible_at_point ()" link="libatspi-atspi-component.html#atspi-component-get-accessible-at-point"/>
+    <keyword type="function" name="atspi_component_get_extents ()" link="libatspi-atspi-component.html#atspi-component-get-extents"/>
+    <keyword type="function" name="atspi_component_get_position ()" link="libatspi-atspi-component.html#atspi-component-get-position"/>
+    <keyword type="function" name="atspi_component_get_size ()" link="libatspi-atspi-component.html#atspi-component-get-size"/>
+    <keyword type="function" name="atspi_component_get_layer ()" link="libatspi-atspi-component.html#atspi-component-get-layer"/>
+    <keyword type="function" name="atspi_component_get_mdi_z_order ()" link="libatspi-atspi-component.html#atspi-component-get-mdi-z-order"/>
+    <keyword type="function" name="atspi_component_grab_focus ()" link="libatspi-atspi-component.html#atspi-component-grab-focus"/>
+    <keyword type="function" name="atspi_component_get_alpha ()" link="libatspi-atspi-component.html#atspi-component-get-alpha"/>
+    <keyword type="function" name="atspi_key_definition_get_type ()" link="libatspi-atspi-registry.html#atspi-key-definition-get-type"/>
+    <keyword type="function" name="atspi_get_desktop_count ()" link="libatspi-atspi-registry.html#atspi-get-desktop-count"/>
+    <keyword type="function" name="atspi_get_desktop ()" link="libatspi-atspi-registry.html#atspi-get-desktop"/>
+    <keyword type="function" name="atspi_get_desktop_list ()" link="libatspi-atspi-registry.html#atspi-get-desktop-list"/>
+    <keyword type="function" name="atspi_register_keystroke_listener ()" link="libatspi-atspi-registry.html#atspi-register-keystroke-listener"/>
+    <keyword type="function" name="atspi_deregister_keystroke_listener ()" link="libatspi-atspi-registry.html#atspi-deregister-keystroke-listener"/>
+    <keyword type="function" name="atspi_register_device_event_listener ()" link="libatspi-atspi-registry.html#atspi-register-device-event-listener"/>
+    <keyword type="function" name="atspi_deregister_device_event_listener ()" link="libatspi-atspi-registry.html#atspi-deregister-device-event-listener"/>
+    <keyword type="function" name="atspi_generate_keyboard_event ()" link="libatspi-atspi-registry.html#atspi-generate-keyboard-event"/>
+    <keyword type="function" name="atspi_generate_mouse_event ()" link="libatspi-atspi-registry.html#atspi-generate-mouse-event"/>
+    <keyword type="struct" name="AtspiAccessible" link="libatspi-atspi-types.html#AtspiAccessible-struct"/>
+    <keyword type="struct" name="AtspiAction" link="libatspi-atspi-types.html#AtspiAction-struct"/>
+    <keyword type="struct" name="AtspiCollection" link="libatspi-atspi-types.html#AtspiCollection-struct"/>
+    <keyword type="struct" name="AtspiComponent" link="libatspi-atspi-types.html#AtspiComponent-struct"/>
+    <keyword type="struct" name="AtspiDocument" link="libatspi-atspi-types.html#AtspiDocument-struct"/>
+    <keyword type="struct" name="AtspiEditableText" link="libatspi-atspi-types.html#AtspiEditableText-struct"/>
+    <keyword type="struct" name="AtspiHyperlink" link="libatspi-atspi-types.html#AtspiHyperlink-struct"/>
+    <keyword type="struct" name="AtspiHypertext" link="libatspi-atspi-types.html#AtspiHypertext-struct"/>
+    <keyword type="struct" name="AtspiImage" link="libatspi-atspi-types.html#AtspiImage-struct"/>
+    <keyword type="struct" name="AtspiSelection" link="libatspi-atspi-types.html#AtspiSelection-struct"/>
+    <keyword type="struct" name="AtspiTable" link="libatspi-atspi-types.html#AtspiTable-struct"/>
+    <keyword type="struct" name="AtspiText" link="libatspi-atspi-types.html#AtspiText-struct"/>
+    <keyword type="struct" name="AtspiValue" link="libatspi-atspi-types.html#AtspiValue-struct"/>
+    <keyword type="typedef" name="AtspiControllerEventMask" link="libatspi-atspi-types.html#AtspiControllerEventMask"/>
+    <keyword type="typedef" name="AtspiKeyMaskType" link="libatspi-atspi-types.html#AtspiKeyMaskType"/>
+    <keyword type="typedef" name="AtspiKeyEventMask" link="libatspi-atspi-types.html#AtspiKeyEventMask"/>
+    <keyword type="typedef" name="AtspiDeviceEventMask" link="libatspi-atspi-types.html#AtspiDeviceEventMask"/>
+    <keyword type="struct" name="AtspiDeviceEvent" link="libatspi-atspi-types.html#AtspiDeviceEvent"/>
+    <keyword type="struct" name="AtspiEventListenerMode" link="libatspi-atspi-types.html#AtspiEventListenerMode"/>
+    <keyword type="struct" name="AtspiKeyDefinition" link="libatspi-atspi-types.html#AtspiKeyDefinition"/>
+    <keyword type="struct" name="AtspiEvent" link="libatspi-atspi-types.html#AtspiEvent"/>
+    <keyword type="macro" name="ATSPI_TYPE_EVENT" link="libatspi-atspi-types.html#ATSPI-TYPE-EVENT:CAPS"/>
+    <keyword type="typedef" name="AtspiKeystrokeListener" link="libatspi-atspi-types.html#AtspiKeystrokeListener"/>
+    <keyword type="enum" name="enum AtspiKeyListenerSyncType" link="libatspi-atspi-types.html#AtspiKeyListenerSyncType"/>
+    <keyword type="enum" name="enum AtspiLocaleType" link="libatspi-atspi-constants.html#AtspiLocaleType"/>
+    <keyword type="macro" name="ATSPI_LOCALE_TYPE" link="libatspi-atspi-constants.html#ATSPI-LOCALE-TYPE:CAPS"/>
+    <keyword type="enum" name="enum AtspiCoordType" link="libatspi-atspi-constants.html#AtspiCoordType"/>
+    <keyword type="macro" name="ATSPI_COORD_TYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-COORD-TYPE-COUNT:CAPS"/>
+    <keyword type="enum" name="enum AtspiCollectionSortOrder" link="libatspi-atspi-constants.html#AtspiCollectionSortOrder"/>
+    <keyword type="macro" name="ATSPI_SORTORDER_COUNT" link="libatspi-atspi-constants.html#ATSPI-SORTORDER-COUNT:CAPS"/>
+    <keyword type="enum" name="enum AtspiCollectionMatchType" link="libatspi-atspi-constants.html#AtspiCollectionMatchType"/>
+    <keyword type="macro" name="ATSPI_MATCHTYPES_COUNT" link="libatspi-atspi-constants.html#ATSPI-MATCHTYPES-COUNT:CAPS"/>
+    <keyword type="enum" name="enum AtspiCollectionTreeTraversalType" link="libatspi-atspi-constants.html#AtspiCollectionTreeTraversalType"/>
+    <keyword type="macro" name="ATSPI_TREETRAVERSALTYPE" link="libatspi-atspi-constants.html#ATSPI-TREETRAVERSALTYPE:CAPS"/>
+    <keyword type="enum" name="enum AtspiComponentLayer" link="libatspi-atspi-constants.html#AtspiComponentLayer"/>
+    <keyword type="macro" name="ATSPI_COMPONENTLAYER_COUNT" link="libatspi-atspi-constants.html#ATSPI-COMPONENTLAYER-COUNT:CAPS"/>
+    <keyword type="enum" name="enum AtspiTextBoundaryType" link="libatspi-atspi-constants.html#AtspiTextBoundaryType"/>
+    <keyword type="macro" name="ATSPI_TEXT_BOUNDARY_TYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-TEXT-BOUNDARY-TYPE-COUNT:CAPS"/>
+    <keyword type="enum" name="enum AtspiTextClipType" link="libatspi-atspi-constants.html#AtspiTextClipType"/>
+    <keyword type="macro" name="ATSPI_TEXT_CLIP_TYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-TEXT-CLIP-TYPE-COUNT:CAPS"/>
+    <keyword type="enum" name="enum AtspiStateType" link="libatspi-atspi-constants.html#AtspiStateType"/>
+    <keyword type="macro" name="ATSPI_STATETYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-STATETYPE-COUNT:CAPS"/>
+    <keyword type="enum" name="enum AtspiKeyEventType" link="libatspi-atspi-constants.html#AtspiKeyEventType"/>
+    <keyword type="macro" name="ATSPI_KEYEVENTTYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-KEYEVENTTYPE-COUNT:CAPS"/>
+    <keyword type="enum" name="enum AtspiEventType" link="libatspi-atspi-constants.html#AtspiEventType"/>
+    <keyword type="macro" name="ATSPI_EVENTTYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-EVENTTYPE-COUNT:CAPS"/>
+    <keyword type="enum" name="enum AtspiKeySynthType" link="libatspi-atspi-constants.html#AtspiKeySynthType"/>
+    <keyword type="macro" name="ATSPI_KEYSYNTHTYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-KEYSYNTHTYPE-COUNT:CAPS"/>
+    <keyword type="enum" name="enum AtspiModifierType" link="libatspi-atspi-constants.html#AtspiModifierType"/>
+    <keyword type="macro" name="ATSPI_MODIFIERTYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-MODIFIERTYPE-COUNT:CAPS"/>
+    <keyword type="enum" name="enum AtspiRelationType" link="libatspi-atspi-constants.html#AtspiRelationType"/>
+    <keyword type="macro" name="ATSPI_RELATIONTYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-RELATIONTYPE-COUNT:CAPS"/>
+    <keyword type="enum" name="enum AtspiRole" link="libatspi-atspi-constants.html#AtspiRole"/>
+    <keyword type="macro" name="ATSPI_ROLE_COUNT" link="libatspi-atspi-constants.html#ATSPI-ROLE-COUNT:CAPS"/>
+    <keyword type="function" name="atspi_init ()" link="libatspi-atspi-misc.html#atspi-init"/>
+    <keyword type="function" name="atspi_event_main ()" link="libatspi-atspi-misc.html#atspi-event-main"/>
+    <keyword type="function" name="atspi_event_quit ()" link="libatspi-atspi-misc.html#atspi-event-quit"/>
+    <keyword type="function" name="atspi_exit ()" link="libatspi-atspi-misc.html#atspi-exit"/>
+    <keyword type="macro" name="ATSPI_CACHE_PARENT" link="libatspi-atspi-misc-private.html#ATSPI-CACHE-PARENT:CAPS"/>
+    <keyword type="macro" name="ATSPI_CACHE_CHILDREN" link="libatspi-atspi-misc-private.html#ATSPI-CACHE-CHILDREN:CAPS"/>
+    <keyword type="macro" name="ATSPI_CACHE_NAME" link="libatspi-atspi-misc-private.html#ATSPI-CACHE-NAME:CAPS"/>
+    <keyword type="macro" name="ATSPI_CACHE_DESCRIPTION" link="libatspi-atspi-misc-private.html#ATSPI-CACHE-DESCRIPTION:CAPS"/>
+    <keyword type="macro" name="ATSPI_CACHE_STATES" link="libatspi-atspi-misc-private.html#ATSPI-CACHE-STATES:CAPS"/>
+    <keyword type="macro" name="ATSPI_CACHE_ROLE" link="libatspi-atspi-misc-private.html#ATSPI-CACHE-ROLE:CAPS"/>
+    <keyword type="macro" name="ATSPI_CACHE_INTERFACES" link="libatspi-atspi-misc-private.html#ATSPI-CACHE-INTERFACES:CAPS"/>
+    <keyword type="struct" name="AtspiReference" link="libatspi-atspi-misc-private.html#AtspiReference"/>
+    <keyword type="macro" name="ATSPI_DBUS_NAME_REGISTRY" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-NAME-REGISTRY:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_PATH_REGISTRY" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-PATH-REGISTRY:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_REGISTRY" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-REGISTRY:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_PATH_NULL" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-PATH-NULL:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_PATH_ROOT" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-PATH-ROOT:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_PATH_DEC" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-PATH-DEC:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_DEC" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-DEC:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_DEVICE_EVENT_LISTENER" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-DEVICE-EVENT-LISTENER:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_CACHE" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-CACHE:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_ACCESSIBLE" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-ACCESSIBLE:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_ACTION" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-ACTION:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_APPLICATION" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-APPLICATION:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_COLLECTION" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-COLLECTION:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_COMPONENT" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-COMPONENT:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_DOCUMENT" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-DOCUMENT:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_EDITABLE_TEXT" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-EDITABLE-TEXT:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_EVENT_KEYBOARD" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-EVENT-KEYBOARD:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_EVENT_MOUSE" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-EVENT-MOUSE:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_EVENT_OBJECT" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-EVENT-OBJECT:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_HYPERLINK" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-HYPERLINK:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_HYPERTEXT" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-HYPERTEXT:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_IMAGE" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-IMAGE:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_SELECTION" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-SELECTION:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_TABLE" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-TABLE:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_TEXT" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-TEXT:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_VALUE" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-VALUE:CAPS"/>
+    <keyword type="macro" name="ATSPI_DBUS_INTERFACE_SOCKET" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-SOCKET:CAPS"/>
+    <keyword type="variable" name="atspi_path_dec" link="libatspi-atspi-misc-private.html#atspi-path-dec"/>
+    <keyword type="variable" name="atspi_path_registry" link="libatspi-atspi-misc-private.html#atspi-path-registry"/>
+    <keyword type="variable" name="atspi_path_root" link="libatspi-atspi-misc-private.html#atspi-path-root"/>
+    <keyword type="variable" name="atspi_bus_registry" link="libatspi-atspi-misc-private.html#atspi-bus-registry"/>
+    <keyword type="variable" name="atspi_interface_accessible" link="libatspi-atspi-misc-private.html#atspi-interface-accessible"/>
+    <keyword type="variable" name="atspi_interface_action" link="libatspi-atspi-misc-private.html#atspi-interface-action"/>
+    <keyword type="variable" name="atspi_interface_application" link="libatspi-atspi-misc-private.html#atspi-interface-application"/>
+    <keyword type="variable" name="atspi_interface_collection" link="libatspi-atspi-misc-private.html#atspi-interface-collection"/>
+    <keyword type="variable" name="atspi_interface_component" link="libatspi-atspi-misc-private.html#atspi-interface-component"/>
+    <keyword type="variable" name="atspi_interface_dec" link="libatspi-atspi-misc-private.html#atspi-interface-dec"/>
+    <keyword type="variable" name="atspi_interface_device_event_listener" link="libatspi-atspi-misc-private.html#atspi-interface-device-event-listener"/>
+    <keyword type="variable" name="atspi_interface_document" link="libatspi-atspi-misc-private.html#atspi-interface-document"/>
+    <keyword type="variable" name="atspi_interface_editable_text" link="libatspi-atspi-misc-private.html#atspi-interface-editable-text"/>
+    <keyword type="variable" name="atspi_interface_hyperlink" link="libatspi-atspi-misc-private.html#atspi-interface-hyperlink"/>
+    <keyword type="variable" name="atspi_interface_hypertext" link="libatspi-atspi-misc-private.html#atspi-interface-hypertext"/>
+    <keyword type="variable" name="atspi_interface_image" link="libatspi-atspi-misc-private.html#atspi-interface-image"/>
+    <keyword type="variable" name="atspi_interface_registry" link="libatspi-atspi-misc-private.html#atspi-interface-registry"/>
+    <keyword type="variable" name="atspi_interface_selection" link="libatspi-atspi-misc-private.html#atspi-interface-selection"/>
+    <keyword type="variable" name="atspi_interface_table" link="libatspi-atspi-misc-private.html#atspi-interface-table"/>
+    <keyword type="variable" name="atspi_interface_text" link="libatspi-atspi-misc-private.html#atspi-interface-text"/>
+    <keyword type="variable" name="atspi_interface_cache" link="libatspi-atspi-misc-private.html#atspi-interface-cache"/>
+    <keyword type="variable" name="atspi_interface_value" link="libatspi-atspi-misc-private.html#atspi-interface-value"/>
+    <keyword type="function" name="atspi_dbus_handle_deviceEvent ()" link="libatspi-atspi-listener-private.html#atspi-dbus-handle-deviceEvent"/>
+    <keyword type="constant" name="ATSPI_KEYLISTENER_NOSYNC" link="libatspi-atspi-types.html#ATSPI-KEYLISTENER-NOSYNC:CAPS"/>
+    <keyword type="constant" name="ATSPI_KEYLISTENER_SYNCHRONOUS" link="libatspi-atspi-types.html#ATSPI-KEYLISTENER-SYNCHRONOUS:CAPS"/>
+    <keyword type="constant" name="ATSPI_KEYLISTENER_CANCONSUME" link="libatspi-atspi-types.html#ATSPI-KEYLISTENER-CANCONSUME:CAPS"/>
+    <keyword type="constant" name="ATSPI_KEYLISTENER_ALL_WINDOWS" link="libatspi-atspi-types.html#ATSPI-KEYLISTENER-ALL-WINDOWS:CAPS"/>
+    <keyword type="constant" name="ATSPI_KEY_PRESS" link="libatspi-atspi-constants.html#ATSPI-KEY-PRESS:CAPS"/>
+    <keyword type="constant" name="ATSPI_KEY_RELEASE" link="libatspi-atspi-constants.html#ATSPI-KEY-RELEASE:CAPS"/>
+    <keyword type="constant" name="ATSPI_KEY_PRESSRELEASE" link="libatspi-atspi-constants.html#ATSPI-KEY-PRESSRELEASE:CAPS"/>
+    <keyword type="constant" name="ATSPI_KEY_SYM" link="libatspi-atspi-constants.html#ATSPI-KEY-SYM:CAPS"/>
+    <keyword type="constant" name="ATSPI_KEY_STRING" link="libatspi-atspi-constants.html#ATSPI-KEY-STRING:CAPS"/>
+  </functions>
+</book>

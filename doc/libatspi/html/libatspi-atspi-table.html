@@ -1,0 +1,1144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>atspi-table</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="libatspi Reference Manual">
+<link rel="up" href="ch01.html" title="[Insert title here]">
+<link rel="prev" href="libatspi-atspi-value.html" title="atspi-value">
+<link rel="next" href="libatspi-atspi-selection.html" title="atspi-selection">
+<meta name="generator" content="GTK-Doc V1.14 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="libatspi-atspi-value.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">libatspi Reference Manual</th>
+<td><a accesskey="n" href="libatspi-atspi-selection.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#libatspi-atspi-table.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#libatspi-atspi-table.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#libatspi-atspi-table.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#libatspi-atspi-table.implementations" class="shortcut">Known Implementations</a>
+</td></tr>
+</table>
+<div class="refentry" title="atspi-table">
+<a name="libatspi-atspi-table"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="libatspi-atspi-table.top_of_page"></a>atspi-table</span></h2>
+<p>atspi-table</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="libatspi-atspi-table.synopsis"></a><h2>Synopsis</h2>
+<a name="AtspiTable"></a><pre class="synopsis">                    <a class="link" href="libatspi-atspi-table.html#AtspiTable-struct" title="AtspiTable">AtspiTable</a>;
+<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   <a class="link" href="libatspi-atspi-table.html#atspi-table-get-caption" title="atspi_table_get_caption ()">atspi_table_get_caption</a>             (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   <a class="link" href="libatspi-atspi-table.html#atspi-table-get-summary" title="atspi_table_get_summary ()">atspi_table_get_summary</a>             (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-n-rows" title="atspi_table_get_n_rows ()">atspi_table_get_n_rows</a>              (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-n-columns" title="atspi_table_get_n_columns ()">atspi_table_get_n_columns</a>           (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   <a class="link" href="libatspi-atspi-table.html#atspi-table-get-accessible-at" title="atspi_table_get_accessible_at ()">atspi_table_get_accessible_at</a>       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-index-at" title="atspi_table_get_index_at ()">atspi_table_get_index_at</a>            (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-at-index" title="atspi_table_get_row_at_index ()">atspi_table_get_row_at_index</a>        (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> index</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-column-at-index" title="atspi_table_get_column_at_index ()">atspi_table_get_column_at_index</a>     (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> index</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gchar</span> *             <a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-description" title="atspi_table_get_row_description ()">atspi_table_get_row_description</a>     (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gchar</span> *             <a class="link" href="libatspi-atspi-table.html#atspi-table-get-column-description" title="atspi_table_get_column_description ()">atspi_table_get_column_description</a>  (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-extent-at" title="atspi_table_get_row_extent_at ()">atspi_table_get_row_extent_at</a>       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-column-extent-at" title="atspi_table_get_column_extent_at ()">atspi_table_get_column_extent_at</a>    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   <a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-header" title="atspi_table_get_row_header ()">atspi_table_get_row_header</a>          (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   <a class="link" href="libatspi-atspi-table.html#atspi-table-get-column-header" title="atspi_table_get_column_header ()">atspi_table_get_column_header</a>       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-n-selected-rows" title="atspi_table_get_n_selected_rows ()">atspi_table_get_n_selected_rows</a>     (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">GArray</span> *            <a class="link" href="libatspi-atspi-table.html#atspi-table-get-selected-rows" title="atspi_table_get_selected_rows ()">atspi_table_get_selected_rows</a>       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">GArray</span> *            <a class="link" href="libatspi-atspi-table.html#atspi-table-get-selected-columns" title="atspi_table_get_selected_columns ()">atspi_table_get_selected_columns</a>    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-n-selected-columns" title="atspi_table_get_n_selected_columns ()">atspi_table_get_n_selected_columns</a>  (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-table.html#atspi-table-is-row-selected" title="atspi_table_is_row_selected ()">atspi_table_is_row_selected</a>         (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-table.html#atspi-table-is-column-selected" title="atspi_table_is_column_selected ()">atspi_table_is_column_selected</a>      (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-table.html#atspi-table-add-row-selection" title="atspi_table_add_row_selection ()">atspi_table_add_row_selection</a>       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-table.html#atspi-table-add-column-selection" title="atspi_table_add_column_selection ()">atspi_table_add_column_selection</a>    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-table.html#atspi-table-remove-row-selection" title="atspi_table_remove_row_selection ()">atspi_table_remove_row_selection</a>    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-table.html#atspi-table-remove-column-selection" title="atspi_table_remove_column_selection ()">atspi_table_remove_column_selection</a> (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-column-extents-at-index" title="atspi_table_get_row_column_extents_at_index ()">atspi_table_get_row_column_extents_at_index</a>
+                                                        (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> index</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> *row</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> *col</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> *row_extents</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> *col_extents</code></em>,
+                                                         <em class="parameter"><code><span class="type">gboolean</span> *is_selected</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-table.html#atspi-table-is-selected" title="atspi_table_is_selected ()">atspi_table_is_selected</a>             (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+</pre>
+</div>
+<div class="refsect1" title="Object Hierarchy">
+<a name="libatspi-atspi-table.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GInterface
+   +----AtspiTable
+</pre>
+</div>
+<div class="refsect1" title="Known Implementations">
+<a name="libatspi-atspi-table.implementations"></a><h2>Known Implementations</h2>
+<p>
+AtspiTable is implemented by
+ <a class="link" href="AtspiAccessible.html" title="AtspiAccessible">AtspiAccessible</a>.</p>
+</div>
+<div class="refsect1" title="Description">
+<a name="libatspi-atspi-table.description"></a><h2>Description</h2>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="libatspi-atspi-table.details"></a><h2>Details</h2>
+<div class="refsect2" title="AtspiTable">
+<a name="AtspiTable-struct"></a><h3>AtspiTable</h3>
+<pre class="programlisting">typedef struct _AtspiTable AtspiTable;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_get_caption ()">
+<a name="atspi-table-get-caption"></a><h3>atspi_table_get_caption ()</h3>
+<pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_table_get_caption             (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Get an accessible representation of the caption for an <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an <span class="type">Accessible</span> object that serves as the table's
+         caption.. <acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>. </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_get_summary ()">
+<a name="atspi-table-get-summary"></a><h3>atspi_table_get_summary ()</h3>
+<pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_table_get_summary             (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Get an accessible object which summarizes the contents of an <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object that serves as the
+         table's summary (often a reduced <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>).. <acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>. </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_get_n_rows ()">
+<a name="atspi-table-get-n-rows"></a><h3>atspi_table_get_n_rows ()</h3>
+<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_n_rows              (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Get the number of rows in an <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>,
+       exclusive of any rows that are programmatically hidden, but inclusive
+       of rows that may be outside of the current scrolling window or viewport.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an integer indicating the number of rows in the table.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_get_n_columns ()">
+<a name="atspi-table-get-n-columns"></a><h3>atspi_table_get_n_columns ()</h3>
+<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_n_columns           (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Get the number of columns in an <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>,
+       exclusive of any columns that are programmatically hidden, but inclusive
+       of columns that may be outside of the current scrolling window or viewport.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an integer indicating the number of columns in the table.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_get_accessible_at ()">
+<a name="atspi-table-get-accessible-at"></a><h3>atspi_table_get_accessible_at ()</h3>
+<pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_table_get_accessible_at       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Get the table cell at the specified row and column indices.
+         To get the accessible object at a particular (x, y) screen coordinate,
+         use #<a class="link" href="libatspi-atspi-component.html#atspi-component-get-accessible-at-point" title="atspi_component_get_accessible_at_point ()"><code class="function">atspi_component_get_accessible_at_point()</code></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>row</code></em> :</span></p></td>
+<td>the specified table row, zero-indexed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>column</code></em> :</span></p></td>
+<td>the specified table column, zero-indexed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object representing the
+         specified table cell.. <acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>. </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_get_index_at ()">
+<a name="atspi-table-get-index-at"></a><h3>atspi_table_get_index_at ()</h3>
+<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_index_at            (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Get the 1-D child index corresponding to the specified 2-D row and column indices.
+         To get the accessible object at a particular (x, y) screen coordinate,
+         use #<code class="function">Accessible_getAccessibleAtPoint()</code>.
+<em class="parameter"><code>see</code></em> #<code class="function">atspi_table_getRowAtIndex()</code>, #<code class="function">atspi_table_getColumnAtIndex()</code>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>row</code></em> :</span></p></td>
+<td>the specified table row, zero-indexed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>column</code></em> :</span></p></td>
+<td>the specified table column, zero-indexed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a long integer which serves as the index of a specified cell in the
+         table, in a form usable by #<code class="function">Accessible_getChildAtIndex()</code>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_get_row_at_index ()">
+<a name="atspi-table-get-row-at-index"></a><h3>atspi_table_get_row_at_index ()</h3>
+<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_row_at_index        (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> index</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Get the table row index occupied by the child at a particular 1-D child index.
+</p>
+<p>
+<em class="parameter"><code>see</code></em> #<code class="function">atspi_table_get_indexAt()</code>, #<code class="function">atspi_table_get_columnAtIndex()</code>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>index</code></em> :</span></p></td>
+<td>the specified child index, zero-indexed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a long integer indicating the first row spanned by the child of a
+         table, at the specified 1-D (zero-offset) <em class="parameter"><code>index</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_get_column_at_index ()">
+<a name="atspi-table-get-column-at-index"></a><h3>atspi_table_get_column_at_index ()</h3>
+<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_column_at_index     (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> index</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Get the table column index occupied by the child at a particular 1-D child index.
+</p>
+<p>
+<em class="parameter"><code>see</code></em> #<code class="function">atspi_table_getIndexAt()</code>, #<code class="function">atspi_table_getRowAtIndex()</code>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>index</code></em> :</span></p></td>
+<td>the specified child index, zero-indexed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a long integer indicating the first column spanned by the child of a
+         table, at the specified 1-D (zero-offset) <em class="parameter"><code>index</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_get_row_description ()">
+<a name="atspi-table-get-row-description"></a><h3>atspi_table_get_row_description ()</h3>
+<pre class="programlisting"><span class="returnvalue">gchar</span> *             atspi_table_get_row_description     (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Get a text description of a particular table row.  This differs from
+atspi_table_get_row_header, which returns an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>row</code></em> :</span></p></td>
+<td>the specified table row, zero-indexed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a UTF-8 string describing the specified table row, if available.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_get_column_description ()">
+<a name="atspi-table-get-column-description"></a><h3>atspi_table_get_column_description ()</h3>
+<pre class="programlisting"><span class="returnvalue">gchar</span> *             atspi_table_get_column_description  (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Get a text description of a particular table column.  This differs from
+atspi_table_get_column_header, which returns an <span class="type">Accessible</span>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>column</code></em> :</span></p></td>
+<td>the specified table column, zero-indexed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a UTF-8 string describing the specified table column, if available.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_get_row_extent_at ()">
+<a name="atspi-table-get-row-extent-at"></a><h3>atspi_table_get_row_extent_at ()</h3>
+<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_row_extent_at       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Get the number of rows spanned by the table cell at the specific row and column.
+(some tables can have cells which span multiple rows and/or columns).
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>row</code></em> :</span></p></td>
+<td>the specified table row, zero-indexed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>column</code></em> :</span></p></td>
+<td>the specified table column, zero-indexed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a long integer indicating the number of rows spanned by the specified cell.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_get_column_extent_at ()">
+<a name="atspi-table-get-column-extent-at"></a><h3>atspi_table_get_column_extent_at ()</h3>
+<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_column_extent_at    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Get the number of columns spanned by the table cell at the specific row and column.
+(some tables can have cells which span multiple rows and/or columns).
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>row</code></em> :</span></p></td>
+<td>the specified table row, zero-indexed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>column</code></em> :</span></p></td>
+<td>the specified table column, zero-indexed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a long integer indicating the number of columns spanned by the specified cell.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_get_row_header ()">
+<a name="atspi-table-get-row-header"></a><h3>atspi_table_get_row_header ()</h3>
+<pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_table_get_row_header          (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Get the header associated with a table row, if available.  This differs from
+atspi_table_get_row_description, which returns a string.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>row</code></em> :</span></p></td>
+<td>the specified table row, zero-indexed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <span class="type">Accessible</span> representatin of the specified
+         table row, if available.. <acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>. </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_get_column_header ()">
+<a name="atspi-table-get-column-header"></a><h3>atspi_table_get_column_header ()</h3>
+<pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_table_get_column_header       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Get the header associated with a table column, if available.  This differs from
+atspi_table_get_column_description, which returns a string.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>column</code></em> :</span></p></td>
+<td>the specified table column, zero-indexed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> representation of the
+         specified table column, if available.. <acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>. </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_get_n_selected_rows ()">
+<a name="atspi-table-get-n-selected-rows"></a><h3>atspi_table_get_n_selected_rows ()</h3>
+<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_n_selected_rows     (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Query a table to find out how many rows are currently selected.  Not all tables
+ support row selection.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a long integer indicating the number of rows currently selected.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_get_selected_rows ()">
+<a name="atspi-table-get-selected-rows"></a><h3>atspi_table_get_selected_rows ()</h3>
+<pre class="programlisting"><span class="returnvalue">GArray</span> *            atspi_table_get_selected_rows       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Query a table for a list of indices of rows which are currently selected.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an array of integers,
+         specifying which rows are currently selected.. <acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gint. <acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym> gint. </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_get_selected_columns ()">
+<a name="atspi-table-get-selected-columns"></a><h3>atspi_table_get_selected_columns ()</h3>
+<pre class="programlisting"><span class="returnvalue">GArray</span> *            atspi_table_get_selected_columns    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Query a table for a list of indices of columns which are currently selected.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an array of integers,
+         specifying which columns are currently selected.. <acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gint. <acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym> gint. </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_get_n_selected_columns ()">
+<a name="atspi-table-get-n-selected-columns"></a><h3>atspi_table_get_n_selected_columns ()</h3>
+<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_n_selected_columns  (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Query a table to find out how many columns are currently selected.  Not all tables
+ support column selection.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a long integer indicating the number of columns currently selected.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_is_row_selected ()">
+<a name="atspi-table-is-row-selected"></a><h3>atspi_table_is_row_selected ()</h3>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_table_is_row_selected         (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Determine whether a table row is selected.  Not all tables support row selection.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>row</code></em> :</span></p></td>
+<td>the zero-indexed row number of the row being queried.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <span class="type">TRUE</span> if the specified row is currently selected, <span class="type">FALSE</span> if not.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_is_column_selected ()">
+<a name="atspi-table-is-column-selected"></a><h3>atspi_table_is_column_selected ()</h3>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_table_is_column_selected      (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Determine whether specified table column is selected.
+Not all tables support column selection.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>column</code></em> :</span></p></td>
+<td>the zero-indexed column number of the column being queried.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <span class="type">TRUE</span> if the specified column is currently selected, <span class="type">FALSE</span> if not.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_add_row_selection ()">
+<a name="atspi-table-add-row-selection"></a><h3>atspi_table_add_row_selection ()</h3>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_table_add_row_selection       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Select the specified row, adding it to the current row selection.
+Not all tables support row selection.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>row</code></em> :</span></p></td>
+<td>the zero-indexed row number of the row being selected.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <span class="type">TRUE</span> if the specified row was successfully selected, <span class="type">FALSE</span> if not.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_add_column_selection ()">
+<a name="atspi-table-add-column-selection"></a><h3>atspi_table_add_column_selection ()</h3>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_table_add_column_selection    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Select the specified column, adding it to the current column selection.
+Not all tables support column selection.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>column</code></em> :</span></p></td>
+<td>the zero-indexed column number of the column being selected.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <span class="type">TRUE</span> if the specified column was successfully selected, <span class="type">FALSE</span> if not.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_remove_row_selection ()">
+<a name="atspi-table-remove-row-selection"></a><h3>atspi_table_remove_row_selection ()</h3>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_table_remove_row_selection    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+De-select the specified row, removing it to the current row selection.
+Not all tables support row selection.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>row</code></em> :</span></p></td>
+<td>the zero-indexed number of the row being deselected.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <span class="type">TRUE</span> if the specified row was successfully de-selected, <span class="type">FALSE</span> if not.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_remove_column_selection ()">
+<a name="atspi-table-remove-column-selection"></a><h3>atspi_table_remove_column_selection ()</h3>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_table_remove_column_selection (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+De-select the specified column, removing it to the current column selection.
+Not all tables support column selection.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>column</code></em> :</span></p></td>
+<td>the zero-indexed column number of the column being de-selected.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <span class="type">TRUE</span> if the specified column was successfully de-selected, <span class="type">FALSE</span> if not.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_get_row_column_extents_at_index ()">
+<a name="atspi-table-get-row-column-extents-at-index"></a><h3>atspi_table_get_row_column_extents_at_index ()</h3>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_table_get_row_column_extents_at_index
+                                                        (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> index</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> *row</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> *col</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> *row_extents</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> *col_extents</code></em>,
+                                                         <em class="parameter"><code><span class="type">gboolean</span> *is_selected</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Given a child index, determine the row and column indices and 
+extents, and whether the cell is currently selected.  If
+the child at \c index is not a cell (for instance, if it is 
+a summary, caption, etc.), \c False is returned.
+</p>
+<p>
+Example:
+If the Table child at index '6' extends across columns 5 and 6 of
+row 2 of a Table instance, and is currently selected, then
+</p>
+<p>
+retval = table::getRowColumnExtentsAtIndex (6, row, col, 
+                                            row_extents,
+                                            col_extents,
+                                            is_selected);
+</p>
+<p>
+will return True, and after the call
+row, col, row_extents, col_extents,
+and \c is_selected will contain 2, 5, 1, 2, and 
+True, respectively.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>index</code></em> :</span></p></td>
+<td>the index of the Table child whose row/column 
+extents are requested.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>row</code></em> :</span></p></td>
+<td>back-filled with the first table row associated with
+the cell with child index \c index.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>col</code></em> :</span></p></td>
+<td>back-filled with the first table column associated 
+with the cell with child index \c index.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>row_extents</code></em> :</span></p></td>
+<td>back-filled with the number of table rows 
+across which child \c i extends.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>col_extents</code></em> :</span></p></td>
+<td>back-filled with the number of table columns
+across which child \c i extends.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>is_selected</code></em> :</span></p></td>
+<td>a boolean which is back-filled with \c True
+if the child at index \c i corresponds to a selected table cell,
+\c False otherwise.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> \c True if the index is associated with a valid table
+cell, \c False if the index does not correspond to a cell.  If 
+\c False is returned, the values of the out parameters are 
+undefined.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="atspi_table_is_selected ()">
+<a name="atspi-table-is-selected"></a><h3>atspi_table_is_selected ()</h3>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_table_is_selected             (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Determine whether the cell at a specific row and column is selected.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> implementor on which to operate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>row</code></em> :</span></p></td>
+<td>the zero-indexed row of the cell being queried.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>column</code></em> :</span></p></td>
+<td>the zero-indexed column of the cell being queried.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <span class="type">TRUE</span> if the specified cell is currently selected, <span class="type">FALSE</span> if not.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.14</div>
+</body>
+</html>
