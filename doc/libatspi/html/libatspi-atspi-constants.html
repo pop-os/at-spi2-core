@@ -1,0 +1,641 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>atspi-constants</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="libatspi Reference Manual">
+<link rel="up" href="ch01.html" title="[Insert title here]">
+<link rel="prev" href="libatspi-atspi-types.html" title="atspi-types">
+<link rel="next" href="libatspi-atspi-misc.html" title="atspi-misc">
+<meta name="generator" content="GTK-Doc V1.14 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="libatspi-atspi-types.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">libatspi Reference Manual</th>
+<td><a accesskey="n" href="libatspi-atspi-misc.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#libatspi-atspi-constants.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#libatspi-atspi-constants.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry" title="atspi-constants">
+<a name="libatspi-atspi-constants"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="libatspi-atspi-constants.top_of_page"></a>atspi-constants</span></h2>
+<p>atspi-constants</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="libatspi-atspi-constants.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">enum                <a class="link" href="libatspi-atspi-constants.html#AtspiLocaleType" title="enum AtspiLocaleType">AtspiLocaleType</a>;
+#define             <a class="link" href="libatspi-atspi-constants.html#ATSPI-LOCALE-TYPE:CAPS" title="ATSPI_LOCALE_TYPE">ATSPI_LOCALE_TYPE</a>
+enum                <a class="link" href="libatspi-atspi-constants.html#AtspiCoordType" title="enum AtspiCoordType">AtspiCoordType</a>;
+#define             <a class="link" href="libatspi-atspi-constants.html#ATSPI-COORD-TYPE-COUNT:CAPS" title="ATSPI_COORD_TYPE_COUNT">ATSPI_COORD_TYPE_COUNT</a>
+enum                <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionSortOrder" title="enum AtspiCollectionSortOrder">AtspiCollectionSortOrder</a>;
+#define             <a class="link" href="libatspi-atspi-constants.html#ATSPI-SORTORDER-COUNT:CAPS" title="ATSPI_SORTORDER_COUNT">ATSPI_SORTORDER_COUNT</a>
+enum                <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionMatchType" title="enum AtspiCollectionMatchType">AtspiCollectionMatchType</a>;
+#define             <a class="link" href="libatspi-atspi-constants.html#ATSPI-MATCHTYPES-COUNT:CAPS" title="ATSPI_MATCHTYPES_COUNT">ATSPI_MATCHTYPES_COUNT</a>
+enum                <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionTreeTraversalType" title="enum AtspiCollectionTreeTraversalType">AtspiCollectionTreeTraversalType</a>;
+#define             <a class="link" href="libatspi-atspi-constants.html#ATSPI-TREETRAVERSALTYPE:CAPS" title="ATSPI_TREETRAVERSALTYPE">ATSPI_TREETRAVERSALTYPE</a>
+enum                <a class="link" href="libatspi-atspi-constants.html#AtspiComponentLayer" title="enum AtspiComponentLayer">AtspiComponentLayer</a>;
+#define             <a class="link" href="libatspi-atspi-constants.html#ATSPI-COMPONENTLAYER-COUNT:CAPS" title="ATSPI_COMPONENTLAYER_COUNT">ATSPI_COMPONENTLAYER_COUNT</a>
+enum                <a class="link" href="libatspi-atspi-constants.html#AtspiTextBoundaryType" title="enum AtspiTextBoundaryType">AtspiTextBoundaryType</a>;
+#define             <a class="link" href="libatspi-atspi-constants.html#ATSPI-TEXT-BOUNDARY-TYPE-COUNT:CAPS" title="ATSPI_TEXT_BOUNDARY_TYPE_COUNT">ATSPI_TEXT_BOUNDARY_TYPE_COUNT</a>
+enum                <a class="link" href="libatspi-atspi-constants.html#AtspiTextClipType" title="enum AtspiTextClipType">AtspiTextClipType</a>;
+#define             <a class="link" href="libatspi-atspi-constants.html#ATSPI-TEXT-CLIP-TYPE-COUNT:CAPS" title="ATSPI_TEXT_CLIP_TYPE_COUNT">ATSPI_TEXT_CLIP_TYPE_COUNT</a>
+enum                <a class="link" href="libatspi-atspi-constants.html#AtspiStateType" title="enum AtspiStateType">AtspiStateType</a>;
+#define             <a class="link" href="libatspi-atspi-constants.html#ATSPI-STATETYPE-COUNT:CAPS" title="ATSPI_STATETYPE_COUNT">ATSPI_STATETYPE_COUNT</a>
+enum                <a class="link" href="libatspi-atspi-constants.html#AtspiKeyEventType" title="enum AtspiKeyEventType">AtspiKeyEventType</a>;
+#define             <a class="link" href="libatspi-atspi-constants.html#ATSPI-KEYEVENTTYPE-COUNT:CAPS" title="ATSPI_KEYEVENTTYPE_COUNT">ATSPI_KEYEVENTTYPE_COUNT</a>
+enum                <a class="link" href="libatspi-atspi-constants.html#AtspiEventType" title="enum AtspiEventType">AtspiEventType</a>;
+#define             <a class="link" href="libatspi-atspi-constants.html#ATSPI-EVENTTYPE-COUNT:CAPS" title="ATSPI_EVENTTYPE_COUNT">ATSPI_EVENTTYPE_COUNT</a>
+enum                <a class="link" href="libatspi-atspi-constants.html#AtspiKeySynthType" title="enum AtspiKeySynthType">AtspiKeySynthType</a>;
+#define             <a class="link" href="libatspi-atspi-constants.html#ATSPI-KEYSYNTHTYPE-COUNT:CAPS" title="ATSPI_KEYSYNTHTYPE_COUNT">ATSPI_KEYSYNTHTYPE_COUNT</a>
+enum                <a class="link" href="libatspi-atspi-constants.html#AtspiModifierType" title="enum AtspiModifierType">AtspiModifierType</a>;
+#define             <a class="link" href="libatspi-atspi-constants.html#ATSPI-MODIFIERTYPE-COUNT:CAPS" title="ATSPI_MODIFIERTYPE_COUNT">ATSPI_MODIFIERTYPE_COUNT</a>
+enum                <a class="link" href="libatspi-atspi-constants.html#AtspiRelationType" title="enum AtspiRelationType">AtspiRelationType</a>;
+#define             <a class="link" href="libatspi-atspi-constants.html#ATSPI-RELATIONTYPE-COUNT:CAPS" title="ATSPI_RELATIONTYPE_COUNT">ATSPI_RELATIONTYPE_COUNT</a>
+enum                <a class="link" href="libatspi-atspi-constants.html#AtspiRole" title="enum AtspiRole">AtspiRole</a>;
+#define             <a class="link" href="libatspi-atspi-constants.html#ATSPI-ROLE-COUNT:CAPS" title="ATSPI_ROLE_COUNT">ATSPI_ROLE_COUNT</a>
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="libatspi-atspi-constants.description"></a><h2>Description</h2>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="libatspi-atspi-constants.details"></a><h2>Details</h2>
+<div class="refsect2" title="enum AtspiLocaleType">
+<a name="AtspiLocaleType"></a><h3>enum AtspiLocaleType</h3>
+<pre class="programlisting">typedef enum {
+    ATSPI_LOCALE_TYPE_MESSAGES,
+    ATSPI_LOCALE_TYPE_COLLATE,
+    ATSPI_LOCALE_TYPE_CTYPE,
+    ATSPI_LOCALE_TYPE_MONETARY,
+    ATSPI_LOCALE_TYPE_NUMERIC,
+    ATSPI_LOCALE_TYPE_TIME,
+} AtspiLocaleType;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="ATSPI_LOCALE_TYPE">
+<a name="ATSPI-LOCALE-TYPE:CAPS"></a><h3>ATSPI_LOCALE_TYPE</h3>
+<pre class="programlisting">#define ATSPI_LOCALE_TYPE _COUNT(5+1)
+</pre>
+<p>
+   Used by Text and Document interfaces these correspond to the POSIX 'setlocale' enum values.    
+</p>
+<p>
+Bitfield/set of flags generated from the AT-SPI specification.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ATSPI_LOCALE_TYPE_MESSAGES</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ATSPI_LOCALE_TYPE_COLLATE</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ATSPI_LOCALE_TYPE_CTYPE</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ATSPI_LOCALE_TYPE_MONETARY</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ATSPI_LOCALE_TYPE_NUMERIC</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ATSPI_LOCALE_TYPE_TIME</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="enum AtspiCoordType">
+<a name="AtspiCoordType"></a><h3>enum AtspiCoordType</h3>
+<pre class="programlisting">typedef enum {
+    ATSPI_COORD_TYPE_SCREEN,
+    ATSPI_COORD_TYPE_WINDOW,
+} AtspiCoordType;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="ATSPI_COORD_TYPE_COUNT">
+<a name="ATSPI-COORD-TYPE-COUNT:CAPS"></a><h3>ATSPI_COORD_TYPE_COUNT</h3>
+<pre class="programlisting">#define ATSPI_COORD_TYPE_COUNT (1+1)
+</pre>
+<p>
+1 higher than the highest valid value of <a class="link" href="libatspi-atspi-constants.html#AtspiCoordType" title="enum AtspiCoordType"><span class="type">AtspiCoordType</span></a>.
+</p>
+</div>
+<hr>
+<div class="refsect2" title="enum AtspiCollectionSortOrder">
+<a name="AtspiCollectionSortOrder"></a><h3>enum AtspiCollectionSortOrder</h3>
+<pre class="programlisting">typedef enum {
+    ATSPI_Collection_SORT_ORDER_INVALID,
+    ATSPI_Collection_SORT_ORDER_CANONICAL,
+    ATSPI_Collection_SORT_ORDER_FLOW,
+    ATSPI_Collection_SORT_ORDER_TAB,
+    ATSPI_Collection_SORT_ORDER_REVERSE_CANONICAL,
+    ATSPI_Collection_SORT_ORDER_REVERSE_FLOW,
+    ATSPI_Collection_SORT_ORDER_REVERSE_TAB,
+    ATSPI_Collection_SORT_ORDER_LAST_DEFINED,
+} AtspiCollectionSortOrder;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="ATSPI_SORTORDER_COUNT">
+<a name="ATSPI-SORTORDER-COUNT:CAPS"></a><h3>ATSPI_SORTORDER_COUNT</h3>
+<pre class="programlisting">#define ATSPI_SORTORDER_COUNT (7+1)
+</pre>
+<p>
+1 higher than the highest valid value of <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionSortOrder" title="enum AtspiCollectionSortOrder"><span class="type">AtspiCollectionSortOrder</span></a>.
+</p>
+</div>
+<hr>
+<div class="refsect2" title="enum AtspiCollectionMatchType">
+<a name="AtspiCollectionMatchType"></a><h3>enum AtspiCollectionMatchType</h3>
+<pre class="programlisting">typedef enum {
+    ATSPI_Collection_MATCH_INVALID,
+    ATSPI_Collection_MATCH_ALL,
+    ATSPI_Collection_MATCH_ANY,
+    ATSPI_Collection_MATCH_NONE,
+    ATSPI_Collection_MATCH_EMPTY,
+    ATSPI_Collection_MATCH_LAST_DEFINED,
+} AtspiCollectionMatchType;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="ATSPI_MATCHTYPES_COUNT">
+<a name="ATSPI-MATCHTYPES-COUNT:CAPS"></a><h3>ATSPI_MATCHTYPES_COUNT</h3>
+<pre class="programlisting">#define ATSPI_MATCHTYPES_COUNT (5+1)
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="enum AtspiCollectionTreeTraversalType">
+<a name="AtspiCollectionTreeTraversalType"></a><h3>enum AtspiCollectionTreeTraversalType</h3>
+<pre class="programlisting">typedef enum {
+    ATSPI_Collection_TREE_RESTRICT_CHILDREN,
+    ATSPI_Collection_TREE_RESTRICT_SIBLING,
+    ATSPI_Collection_TREE_INORDER,
+    ATSPI_Collection_TREE_LAST_DEFINED,
+} AtspiCollectionTreeTraversalType;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="ATSPI_TREETRAVERSALTYPE">
+<a name="ATSPI-TREETRAVERSALTYPE:CAPS"></a><h3>ATSPI_TREETRAVERSALTYPE</h3>
+<pre class="programlisting">#define ATSPI_TREETRAVERSALTYPE _COUNT(3+1)
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="enum AtspiComponentLayer">
+<a name="AtspiComponentLayer"></a><h3>enum AtspiComponentLayer</h3>
+<pre class="programlisting">typedef enum {
+    ATSPI_LAYER_INVALID,
+    ATSPI_LAYER_BACKGROUND,
+    ATSPI_LAYER_CANVAS,
+    ATSPI_LAYER_WIDGET,
+    ATSPI_LAYER_MDI,
+    ATSPI_LAYER_POPUP,
+    ATSPI_LAYER_OVERLAY,
+    ATSPI_LAYER_WINDOW,
+    ATSPI_LAYER_LAST_DEFINED,
+} AtspiComponentLayer;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="ATSPI_COMPONENTLAYER_COUNT">
+<a name="ATSPI-COMPONENTLAYER-COUNT:CAPS"></a><h3>ATSPI_COMPONENTLAYER_COUNT</h3>
+<pre class="programlisting">#define ATSPI_COMPONENTLAYER_COUNT (8+1)
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="enum AtspiTextBoundaryType">
+<a name="AtspiTextBoundaryType"></a><h3>enum AtspiTextBoundaryType</h3>
+<pre class="programlisting">typedef enum {
+    ATSPI_TEXT_BOUNDARY_CHAR,
+    ATSPI_TEXT_BOUNDARY_WORD_START,
+    ATSPI_TEXT_BOUNDARY_WORD_END,
+    ATSPI_TEXT_BOUNDARY_SENTENCE_START,
+    ATSPI_TEXT_BOUNDARY_SENTENCE_END,
+    ATSPI_TEXT_BOUNDARY_LINE_START,
+    ATSPI_TEXT_BOUNDARY_LINE_END,
+} AtspiTextBoundaryType;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="ATSPI_TEXT_BOUNDARY_TYPE_COUNT">
+<a name="ATSPI-TEXT-BOUNDARY-TYPE-COUNT:CAPS"></a><h3>ATSPI_TEXT_BOUNDARY_TYPE_COUNT</h3>
+<pre class="programlisting">#define ATSPI_TEXT_BOUNDARY_TYPE_COUNT (6+1)
+</pre>
+<p>
+1 higher than the highest valid value of <span class="type">AtspiTextBOundaryType</span>.
+</p>
+</div>
+<hr>
+<div class="refsect2" title="enum AtspiTextClipType">
+<a name="AtspiTextClipType"></a><h3>enum AtspiTextClipType</h3>
+<pre class="programlisting">typedef enum {
+    ATSPI_TEXT_CLIP_NONE,
+    ATSPI_TEXT_CLIP_MIN,
+    ATSPI_TEXT_CLIP_MAX,
+    ATSPI_TEXT_CLIP_BOTH,
+} AtspiTextClipType;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="ATSPI_TEXT_CLIP_TYPE_COUNT">
+<a name="ATSPI-TEXT-CLIP-TYPE-COUNT:CAPS"></a><h3>ATSPI_TEXT_CLIP_TYPE_COUNT</h3>
+<pre class="programlisting">#define ATSPI_TEXT_CLIP_TYPE_COUNT (3+1)
+</pre>
+<p>
+1 higher than the highest valid value of <a class="link" href="libatspi-atspi-constants.html#AtspiTextClipType" title="enum AtspiTextClipType"><span class="type">AtspiTextClipType</span></a>.
+</p>
+</div>
+<hr>
+<div class="refsect2" title="enum AtspiStateType">
+<a name="AtspiStateType"></a><h3>enum AtspiStateType</h3>
+<pre class="programlisting">typedef enum {
+    ATSPI_STATE_INVALID,
+    ATSPI_STATE_ACTIVE,
+    ATSPI_STATE_ARMED,
+    ATSPI_STATE_BUSY,
+    ATSPI_STATE_CHECKED,
+    ATSPI_STATE_COLLAPSED,
+    ATSPI_STATE_DEFUNCT,
+    ATSPI_STATE_EDITABLE,
+    ATSPI_STATE_ENABLED,
+    ATSPI_STATE_EXPANDABLE,
+    ATSPI_STATE_EXPANDED,
+    ATSPI_STATE_FOCUSABLE,
+    ATSPI_STATE_FOCUSED,
+    ATSPI_STATE_HAS_TOOLTIP,
+    ATSPI_STATE_HORIZONTAL,
+    ATSPI_STATE_ICONIFIED,
+    ATSPI_STATE_MODAL,
+    ATSPI_STATE_MULTI_LINE,
+    ATSPI_STATE_MULTISELECTABLE,
+    ATSPI_STATE_OPAQUE,
+    ATSPI_STATE_PRESSED,
+    ATSPI_STATE_RESIZABLE,
+    ATSPI_STATE_SELECTABLE,
+    ATSPI_STATE_SELECTED,
+    ATSPI_STATE_SENSITIVE,
+    ATSPI_STATE_SHOWING,
+    ATSPI_STATE_SINGLE_LINE,
+    ATSPI_STATE_STALE,
+    ATSPI_STATE_TRANSIENT,
+    ATSPI_STATE_VERTICAL,
+    ATSPI_STATE_VISIBLE,
+    ATSPI_STATE_MANAGES_DESCENDANTS,
+    ATSPI_STATE_INDETERMINATE,
+    ATSPI_STATE_REQUIRED,
+    ATSPI_STATE_TRUNCATED,
+    ATSPI_STATE_ANIMATED,
+    ATSPI_STATE_INVALID_ENTRY,
+    ATSPI_STATE_SUPPORTS_AUTOCOMPLETION,
+    ATSPI_STATE_SELECTABLE_TEXT,
+    ATSPI_STATE_IS_DEFAULT,
+    ATSPI_STATE_VISITED,
+    ATSPI_STATE_LAST_DEFINED,
+} AtspiStateType;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="ATSPI_STATETYPE_COUNT">
+<a name="ATSPI-STATETYPE-COUNT:CAPS"></a><h3>ATSPI_STATETYPE_COUNT</h3>
+<pre class="programlisting">#define ATSPI_STATETYPE_COUNT (41+1)
+</pre>
+<p>
+1 higher than the highest valid value of <a class="link" href="libatspi-atspi-constants.html#AtspiStateType" title="enum AtspiStateType"><span class="type">AtspiStateType</span></a>.
+</p>
+</div>
+<hr>
+<div class="refsect2" title="enum AtspiKeyEventType">
+<a name="AtspiKeyEventType"></a><h3>enum AtspiKeyEventType</h3>
+<pre class="programlisting">typedef enum {
+    ATSPI_KEY_PRESSED,
+    ATSPI_KEY_RELEASED,
+} AtspiKeyEventType;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="ATSPI_KEYEVENTTYPE_COUNT">
+<a name="ATSPI-KEYEVENTTYPE-COUNT:CAPS"></a><h3>ATSPI_KEYEVENTTYPE_COUNT</h3>
+<pre class="programlisting">#define ATSPI_KEYEVENTTYPE_COUNT (1+1)
+</pre>
+<p>
+1 higher than the highest valid value of <a class="link" href="libatspi-atspi-constants.html#AtspiKeyEventType" title="enum AtspiKeyEventType"><span class="type">AtspiKeyEventType</span></a>.
+</p>
+</div>
+<hr>
+<div class="refsect2" title="enum AtspiEventType">
+<a name="AtspiEventType"></a><h3>enum AtspiEventType</h3>
+<pre class="programlisting">typedef enum {
+    ATSPI_KEY_PRESSED_EVENT,
+    ATSPI_KEY_RELEASED_EVENT,
+    ATSPI_BUTTON_PRESSED_EVENT,
+    ATSPI_BUTTON_RELEASED_EVENT,
+} AtspiEventType;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="ATSPI_EVENTTYPE_COUNT">
+<a name="ATSPI-EVENTTYPE-COUNT:CAPS"></a><h3>ATSPI_EVENTTYPE_COUNT</h3>
+<pre class="programlisting">#define ATSPI_EVENTTYPE_COUNT (3+1)
+</pre>
+<p>
+1 higher than the highest valid value of <a class="link" href="libatspi-atspi-constants.html#AtspiEventType" title="enum AtspiEventType"><span class="type">AtspiEventType</span></a>.
+</p>
+</div>
+<hr>
+<div class="refsect2" title="enum AtspiKeySynthType">
+<a name="AtspiKeySynthType"></a><h3>enum AtspiKeySynthType</h3>
+<pre class="programlisting">typedef enum {
+    ATSPI_KEY_PRESS,
+    ATSPI_KEY_RELEASE,
+    ATSPI_KEY_PRESSRELEASE,
+    ATSPI_KEY_SYM,
+    ATSPI_KEY_STRING,
+} AtspiKeySynthType;
+</pre>
+<p>
+     Used when synthesizing keyboard input via DeviceEventController:GenerateKeyboardEvent.   
+</p>
+<p>
+Bitfield/set of flags generated from the AT-SPI specification.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="ATSPI-KEY-PRESS:CAPS"></a><span class="term"><code class="literal">ATSPI_KEY_PRESS</code></span></p></td>
+<td>     emulate the pressing of a hardware keyboard key.    
+</td>
+</tr>
+<tr>
+<td><p><a name="ATSPI-KEY-RELEASE:CAPS"></a><span class="term"><code class="literal">ATSPI_KEY_RELEASE</code></span></p></td>
+<td>     emulate the release of a hardware keyboard key.    
+</td>
+</tr>
+<tr>
+<td><p><a name="ATSPI-KEY-PRESSRELEASE:CAPS"></a><span class="term"><code class="literal">ATSPI_KEY_PRESSRELEASE</code></span></p></td>
+<td>     a hardware keyboard key is pressed and immediately released.    
+</td>
+</tr>
+<tr>
+<td><p><a name="ATSPI-KEY-SYM:CAPS"></a><span class="term"><code class="literal">ATSPI_KEY_SYM</code></span></p></td>
+<td>     a symbolic key event is generated, without specifying a hardware key.        @note if the keysym is not present in the current keyboard map,       the DeviceEventController instance has a limited ability to generate       such keysyms on-the-fly.  Reliability of GenerateKeyboardEvent calls       using out-of-keymap keysyms will vary from system to system, and on the       number of different out-of-keymap being generated in quick succession.       In practice this is rarely significant, since the keysyms of interest to       AT clients and keyboard emulators are usually part of the current keymap, i.e.       present on the system keyboard for the current locale (even if a physical       hardware keyboard is not connected.   
+</td>
+</tr>
+<tr>
+<td><p><a name="ATSPI-KEY-STRING:CAPS"></a><span class="term"><code class="literal">ATSPI_KEY_STRING</code></span></p></td>
+<td>     a string is converted to its equivalent keyboard events and emitted.        If the string consists of complex character or composed characters       which are not in the current keymap, string emission is subject to the       out-of-keymap limitations described for KeySynthType::KEY_SYM.       In practice this limitation primarily effects Chinese and Japanese locales.   
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="ATSPI_KEYSYNTHTYPE_COUNT">
+<a name="ATSPI-KEYSYNTHTYPE-COUNT:CAPS"></a><h3>ATSPI_KEYSYNTHTYPE_COUNT</h3>
+<pre class="programlisting">#define ATSPI_KEYSYNTHTYPE_COUNT (4+1)
+</pre>
+<p>
+1 higher than the highest valid value of <a class="link" href="libatspi-atspi-constants.html#AtspiKeySynthType" title="enum AtspiKeySynthType"><span class="type">AtspiKeySynthType</span></a>.
+</p>
+</div>
+<hr>
+<div class="refsect2" title="enum AtspiModifierType">
+<a name="AtspiModifierType"></a><h3>enum AtspiModifierType</h3>
+<pre class="programlisting">typedef enum {
+    ATSPI_MODIFIER_SHIFT,
+    ATSPI_MODIFIER_SHIFTLOCK,
+    ATSPI_MODIFIER_CONTROL,
+    ATSPI_MODIFIER_ALT,
+    ATSPI_MODIFIER_META,
+    ATSPI_MODIFIER_META2,
+    ATSPI_MODIFIER_META3,
+    ATSPI_MODIFIER_NUMLOCK,
+} AtspiModifierType;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="ATSPI_MODIFIERTYPE_COUNT">
+<a name="ATSPI-MODIFIERTYPE-COUNT:CAPS"></a><h3>ATSPI_MODIFIERTYPE_COUNT</h3>
+<pre class="programlisting">#define ATSPI_MODIFIERTYPE_COUNT (7+1)
+</pre>
+<p>
+1 higher than the highest valid value of <a class="link" href="libatspi-atspi-constants.html#AtspiModifierType" title="enum AtspiModifierType"><span class="type">AtspiModifierType</span></a>.
+</p>
+</div>
+<hr>
+<div class="refsect2" title="enum AtspiRelationType">
+<a name="AtspiRelationType"></a><h3>enum AtspiRelationType</h3>
+<pre class="programlisting">typedef enum {
+    ATSPI_RELATION_NULL,
+    ATSPI_RELATION_LABEL_FOR,
+    ATSPI_RELATION_LABELLED_BY,
+    ATSPI_RELATION_CONTROLLER_FOR,
+    ATSPI_RELATION_CONTROLLED_BY,
+    ATSPI_RELATION_MEMBER_OF,
+    ATSPI_RELATION_TOOLTIP_FOR,
+    ATSPI_RELATION_NODE_CHILD_OF,
+    ATSPI_RELATION_NODE_PARENT_OF,
+    ATSPI_RELATION_EXTENDED,
+    ATSPI_RELATION_FLOWS_TO,
+    ATSPI_RELATION_FLOWS_FROM,
+    ATSPI_RELATION_SUBWINDOW_OF,
+    ATSPI_RELATION_EMBEDS,
+    ATSPI_RELATION_EMBEDDED_BY,
+    ATSPI_RELATION_POPUP_FOR,
+    ATSPI_RELATION_PARENT_WINDOW_OF,
+    ATSPI_RELATION_DESCRIPTION_FOR,
+    ATSPI_RELATION_DESCRIBED_BY,
+    ATSPI_RELATION_LAST_DEFINED,
+} AtspiRelationType;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="ATSPI_RELATIONTYPE_COUNT">
+<a name="ATSPI-RELATIONTYPE-COUNT:CAPS"></a><h3>ATSPI_RELATIONTYPE_COUNT</h3>
+<pre class="programlisting">#define ATSPI_RELATIONTYPE_COUNT (19+1)
+</pre>
+<p>
+1 higher than the highest valid value of <a class="link" href="libatspi-atspi-constants.html#AtspiRelationType" title="enum AtspiRelationType"><span class="type">AtspiRelationType</span></a>.
+</p>
+</div>
+<hr>
+<div class="refsect2" title="enum AtspiRole">
+<a name="AtspiRole"></a><h3>enum AtspiRole</h3>
+<pre class="programlisting">typedef enum {
+    ATSPI_ROLE_INVALID,
+    ATSPI_ROLE_ACCELERATOR_LABEL,
+    ATSPI_ROLE_ALERT,
+    ATSPI_ROLE_ANIMATION,
+    ATSPI_ROLE_ARROW,
+    ATSPI_ROLE_CALENDAR,
+    ATSPI_ROLE_CANVAS,
+    ATSPI_ROLE_CHECK_BOX,
+    ATSPI_ROLE_CHECK_MENU_ITEM,
+    ATSPI_ROLE_COLOR_CHOOSER,
+    ATSPI_ROLE_COLUMN_HEADER,
+    ATSPI_ROLE_COMBO_BOX,
+    ATSPI_ROLE_DATE_EDITOR,
+    ATSPI_ROLE_DESKTOP_ICON,
+    ATSPI_ROLE_DESKTOP_FRAME,
+    ATSPI_ROLE_DIAL,
+    ATSPI_ROLE_DIALOG,
+    ATSPI_ROLE_DIRECTORY_PANE,
+    ATSPI_ROLE_DRAWING_AREA,
+    ATSPI_ROLE_FILE_CHOOSER,
+    ATSPI_ROLE_FILLER,
+    ATSPI_ROLE_FOCUS_TRAVERSABLE,
+    ATSPI_ROLE_FONT_CHOOSER,
+    ATSPI_ROLE_FRAME,
+    ATSPI_ROLE_GLASS_PANE,
+    ATSPI_ROLE_HTML_CONTAINER,
+    ATSPI_ROLE_ICON,
+    ATSPI_ROLE_IMAGE,
+    ATSPI_ROLE_INTERNAL_FRAME,
+    ATSPI_ROLE_LABEL,
+    ATSPI_ROLE_LAYERED_PANE,
+    ATSPI_ROLE_LIST,
+    ATSPI_ROLE_LIST_ITEM,
+    ATSPI_ROLE_MENU,
+    ATSPI_ROLE_MENU_BAR,
+    ATSPI_ROLE_MENU_ITEM,
+    ATSPI_ROLE_OPTION_PANE,
+    ATSPI_ROLE_PAGE_TAB,
+    ATSPI_ROLE_PAGE_TAB_LIST,
+    ATSPI_ROLE_PANEL,
+    ATSPI_ROLE_PASSWORD_TEXT,
+    ATSPI_ROLE_POPUP_MENU,
+    ATSPI_ROLE_PROGRESS_BAR,
+    ATSPI_ROLE_PUSH_BUTTON,
+    ATSPI_ROLE_RADIO_BUTTON,
+    ATSPI_ROLE_RADIO_MENU_ITEM,
+    ATSPI_ROLE_ROOT_PANE,
+    ATSPI_ROLE_ROW_HEADER,
+    ATSPI_ROLE_SCROLL_BAR,
+    ATSPI_ROLE_SCROLL_PANE,
+    ATSPI_ROLE_SEPARATOR,
+    ATSPI_ROLE_SLIDER,
+    ATSPI_ROLE_SPIN_BUTTON,
+    ATSPI_ROLE_SPLIT_PANE,
+    ATSPI_ROLE_STATUS_BAR,
+    ATSPI_ROLE_TABLE,
+    ATSPI_ROLE_TABLE_CELL,
+    ATSPI_ROLE_TABLE_COLUMN_HEADER,
+    ATSPI_ROLE_TABLE_ROW_HEADER,
+    ATSPI_ROLE_TEAROFF_MENU_ITEM,
+    ATSPI_ROLE_TERMINAL,
+    ATSPI_ROLE_TEXT,
+    ATSPI_ROLE_TOGGLE_BUTTON,
+    ATSPI_ROLE_TOOL_BAR,
+    ATSPI_ROLE_TOOL_TIP,
+    ATSPI_ROLE_TREE,
+    ATSPI_ROLE_TREE_TABLE,
+    ATSPI_ROLE_UNKNOWN,
+    ATSPI_ROLE_VIEWPORT,
+    ATSPI_ROLE_WINDOW,
+    ATSPI_ROLE_EXTENDED,
+    ATSPI_ROLE_HEADER,
+    ATSPI_ROLE_FOOTER,
+    ATSPI_ROLE_PARAGRAPH,
+    ATSPI_ROLE_RULER,
+    ATSPI_ROLE_APPLICATION,
+    ATSPI_ROLE_AUTOCOMPLETE,
+    ATSPI_ROLE_EDITBAR,
+    ATSPI_ROLE_EMBEDDED,
+    ATSPI_ROLE_ENTRY,
+    ATSPI_ROLE_CHART,
+    ATSPI_ROLE_CAPTION,
+    ATSPI_ROLE_DOCUMENT_FRAME,
+    ATSPI_ROLE_HEADING,
+    ATSPI_ROLE_PAGE,
+    ATSPI_ROLE_SECTION,
+    ATSPI_ROLE_REDUNDANT_OBJECT,
+    ATSPI_ROLE_FORM,
+    ATSPI_ROLE_LINK,
+    ATSPI_ROLE_INPUT_METHOD_WINDOW,
+    ATSPI_ROLE_LAST_DEFINED,
+} AtspiRole;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="ATSPI_ROLE_COUNT">
+<a name="ATSPI-ROLE-COUNT:CAPS"></a><h3>ATSPI_ROLE_COUNT</h3>
+<pre class="programlisting">#define ATSPI_ROLE_COUNT (90+1)
+</pre>
+<p>
+1 higher than the highest valid value of <a class="link" href="libatspi-atspi-constants.html#AtspiRole" title="enum AtspiRole"><span class="type">AtspiRole</span></a>.
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.14</div>
+</body>
+</html>

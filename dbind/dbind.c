@@ -27,6 +27,7 @@ set_reply (DBusPendingCall * pending, void *user_data)
   SpiReentrantCallClosure* closure = (SpiReentrantCallClosure *) user_data; 
 
   closure->reply = dbus_pending_call_steal_reply (pending);
+  dbus_pending_call_unref (pending);
 }
 
 DBusMessage *
@@ -35,9 +36,10 @@ dbind_send_and_allow_reentry (DBusConnection * bus, DBusMessage * message, DBusE
   DBusPendingCall *pending;
   SpiReentrantCallClosure closure;
   const char *unique_name = dbus_bus_get_unique_name (bus);
+  const char *destination = dbus_message_get_destination (message);
 
-  if (unique_name &&
-      strcmp (dbus_message_get_destination (message), unique_name) != 0)
+  if (unique_name && destination &&
+      strcmp (destination, unique_name) != 0)
     return dbus_connection_send_with_reply_and_block (bus, message, dbind_timeout, error);
 
   closure.reply = NULL;
@@ -98,7 +100,6 @@ dbind_method_call_reentrant_va (DBusConnection *cnx,
     if (dbus_message_get_type (reply) == DBUS_MESSAGE_TYPE_ERROR)
     {
       const char *name = dbus_message_get_error_name (reply);
-      dbus_set_error (err, name, g_strdup (""));
       goto out;
     }
     /* demarshal */

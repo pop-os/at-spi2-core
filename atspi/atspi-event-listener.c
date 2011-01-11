@@ -62,7 +62,7 @@ typedef struct
 static GHashTable *callbacks;
 
 void
-callback_ref (void *callback, GDestroyNotify *callback_destroyed)
+callback_ref (void *callback, GDestroyNotify callback_destroyed)
 {
   CallbackInfo *info;
 
@@ -185,6 +185,9 @@ cache_process_children_changed (AtspiEvent *event)
   else if (g_list_find (event->source->children, child))
   {
     event->source->children = g_list_remove (event->source->children, child);
+    if (child == child->parent.app->root)
+      g_object_run_dispose (child->parent.app);
+    g_object_unref (child);
   }
 }
 
@@ -374,8 +377,6 @@ listener_entry_free (EventListenerEntry *e)
 /**
  * atspi_event_listener_register:
  * @listener: The #AtspiEventListener to register against an event type.
- * @user_data: (closure): User data to be passed to the callback.
- * @callback_destroyed: A #GDestroyNotify called when the callback is destroyed.
  * @event_type: a character string indicating the type of events for which
  *            notification is requested.  Format is
  *            EventClass:major_type:minor_type:detail
@@ -536,7 +537,8 @@ atspi_event_listener_register_from_callback (AtspiEventListenerCB callback,
     return;
   dbus_message_append_args (message, DBUS_TYPE_STRING, &event_type, DBUS_TYPE_INVALID);
   reply = _atspi_dbus_send_with_reply_and_block (message);
-  dbus_message_unref (reply);
+  if (reply)
+    dbus_message_unref (reply);
 
   return TRUE;
 }
@@ -629,9 +631,13 @@ atspi_event_listener_deregister_from_callback (AtspiEventListenerCB callback,
         is_superset (name, e->name) &&
         is_superset (detail, e->detail))
     {
+      gboolean need_replace;
       DBusError error;
       DBusMessage *message, *reply;
+      need_replace = (l == event_listeners);
       l = g_list_remove (l, e);
+      if (need_replace)
+        event_listeners = l;
       dbus_error_init (&error);
       dbus_bus_remove_match (_atspi_bus(), matchrule, &error);
       dbus_error_init (&error);
@@ -738,6 +744,7 @@ atspi_dbus_handle_event (DBusConnection *bus, DBusMessage *message, void *data)
   char *detail = NULL;
   const char *category = dbus_message_get_interface (message);
   const char *member = dbus_message_get_member (message);
+  const char *signature = dbus_message_get_signature (message);
   gchar *name;
   gchar *converted_type;
   DBusMessageIter iter, iter_variant;
@@ -745,6 +752,12 @@ atspi_dbus_handle_event (DBusConnection *bus, DBusMessage *message, void *data)
   AtspiEvent e;
   dbus_int32_t detail1, detail2;
   char *p;
+
+  if (strcmp (signature, "siiv(so)") != 0)
+  {
+    g_warning (_("Got invalid signature %s for signal %s from interface %s\n"), signature, member, category);
+    return;
+  }
 
   memset (&e, 0, sizeof (e));
 
@@ -758,15 +771,11 @@ atspi_dbus_handle_event (DBusConnection *bus, DBusMessage *message, void *data)
     }
     category++;
   }
-  g_return_val_if_fail (dbus_message_iter_get_arg_type (&iter) == DBUS_TYPE_STRING, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
   dbus_message_iter_get_basic (&iter, &detail);
   dbus_message_iter_next (&iter);
-  /* TODO: Return error indicating invalid arguments  in next line */
-  g_return_val_if_fail (dbus_message_iter_get_arg_type (&iter) == DBUS_TYPE_INT32, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
   dbus_message_iter_get_basic (&iter, &detail1);
   e.detail1 = detail1;
   dbus_message_iter_next (&iter);
-  g_return_val_if_fail (dbus_message_iter_get_arg_type (&iter) == DBUS_TYPE_INT32, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
   dbus_message_iter_get_basic (&iter, &detail2);
   e.detail2 = detail2;
   dbus_message_iter_next (&iter);
@@ -784,6 +793,16 @@ atspi_dbus_handle_event (DBusConnection *bus, DBusMessage *message, void *data)
       converted_type = p;
     }
   }
+  else if (detail [0] == '\0')
+  {
+    p = g_strconcat (converted_type, ":",  NULL);
+    if (p)
+    {
+      g_free (converted_type);
+      converted_type = p;
+    }
+  }
+
   if (detail[0] != '\0')
   {
     p = g_strconcat (converted_type, ":", detail, NULL);
@@ -813,6 +832,7 @@ atspi_dbus_handle_event (DBusConnection *bus, DBusMessage *message, void *data)
 	accessible = _atspi_dbus_return_accessible_from_iter (&iter_variant);
 	g_value_init (&e.any_data, ATSPI_TYPE_ACCESSIBLE);
 	g_value_set_instance (&e.any_data, accessible);
+	g_object_unref (accessible);	/* value now owns it */
       }
       break;
     }
@@ -826,7 +846,6 @@ atspi_dbus_handle_event (DBusConnection *bus, DBusMessage *message, void *data)
   default:
     break;
   }
-  _atspi_send_event (&e);
 
   if (!strncmp (e.type, "object:children-changed", 23))
   {
@@ -840,6 +859,8 @@ atspi_dbus_handle_event (DBusConnection *bus, DBusMessage *message, void *data)
   {
     cache_process_state_changed (&e);
   }
+
+  _atspi_send_event (&e);
 
   g_free (converted_type);
   g_free (name);
