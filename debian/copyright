@@ -73,11 +73,11 @@ License: LGPL-2+
  On Debian systems the full text of the GNU Library General Public License can
  be found in the `/usr/share/common-licenses/LGPL-2' file.
 Files: atspi/atspi-stateset.*
-Copyright: ???
-License: ???
+Copyright: ???, Mike Gorse requested on 2011-01-30
+License: ???, Mike Gorse requested on 2011-01-30
 Files: dbind/*.[ch]
-Copyright: ???
-License: ???
+Copyright: ???, Mike Gorse requested on 2011-01-30
+License: ???, Mike Gorse requested on 2011-01-30
 Files: debian/*
 Copyright: Copyright 2009, Mario Lang <mlang@debian.org>
 License: GPL-2
