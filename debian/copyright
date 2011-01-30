@@ -53,7 +53,8 @@ Files: atspi/atspi-accessible.h, atspi/atspi-action.h,
  atspi/atspi-component.h, atspi/atspi-device-listener.h,
  atspi/atspi-device-listener-private.h, atspi/atspi-document.h,
  atspi/atspi-editabletext.h, atspi/atspi-event-listener.h,
- atspi/atspi-event-listener-private.h, atspi/atspi-hyperlink.h,
+ atspi/atspi-event-listener-private.h, atspi/atspi-device-listener.c,
+ atspi/atspi-event-listener.c, atspi/atspi-hyperlink.h,
  atspi/atspi-hypertext.h, atspi/atspi-image.h,
  atspi/atspi-matchrule.h, atspi/atspi-matchrule-private.h,
  atspi/atspi-misc.h, atspi/atspi-misc-private.h,
@@ -62,11 +63,6 @@ Files: atspi/atspi-accessible.h, atspi/atspi-action.h,
  atspi/atspi-selection.h, atspi/atspi-table.h,
  atspi/atspi-text.h, atspi/atspi-types.h,
  atspi/atspi-value.h
-Copyright: Copyright: 2002 Ximian, Inc
-License: LGPL-2+
- On Debian systems the full text of the GNU Library General Public License can
- be found in the `/usr/share/common-licenses/LGPL-2' file.
-Files: atspi/atspi-device-listener.c, atspi/atspi-event-listener.c
 Copyright: Copyright: 2002 Ximian Inc / 2002 Sun Microsystems, Inc
 License: LGPL-2+
  On Debian systems the full text of the GNU Library General Public License can
