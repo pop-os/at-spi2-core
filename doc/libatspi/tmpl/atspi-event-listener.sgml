@@ -9,12 +9,10 @@ AtspiEventListener
 
 </para>
 
-
 <!-- ##### SECTION See_Also ##### -->
 <para>
 
 </para>
-
 
 <!-- ##### SECTION Stability_Level ##### -->
 
@@ -78,6 +76,7 @@ AtspiEventListener
 
 @listener: 
 @event_type: 
+@error: 
 @Returns: 
 
 
@@ -90,6 +89,7 @@ AtspiEventListener
 @user_data: 
 @callback_destroyed: 
 @event_type: 
+@error: 
 @Returns: 
 
 
@@ -101,6 +101,7 @@ AtspiEventListener
 @callback: 
 @callback_destroyed: 
 @event_type: 
+@error: 
 @Returns: 
 
 
@@ -111,6 +112,7 @@ AtspiEventListener
 
 @listener: 
 @event_type: 
+@error: 
 @Returns: 
 
 
@@ -122,6 +124,7 @@ AtspiEventListener
 @callback: 
 @user_data: 
 @event_type: 
+@error: 
 @Returns: 
 
 
@@ -132,6 +135,7 @@ AtspiEventListener
 
 @callback: 
 @event_type: 
+@error: 
 @Returns: 
 
 

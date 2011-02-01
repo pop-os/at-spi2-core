@@ -4,6 +4,7 @@
  *
  * Copyright 2002 Ximian, Inc.
  *           2002 Sun Microsystems Inc.
+ * Copyright 2010, 2011 Novell, Inc.
  *           
  *
  * This library is free software; you can redistribute it and/or
@@ -32,14 +33,6 @@
 #include "dbus/dbus.h"
 
 #include "dbind/dbind.h"
-
-#define ATSPI_CACHE_PARENT      0x0001
-#define ATSPI_CACHE_CHILDREN    0x0002
-#define ATSPI_CACHE_NAME        0x0004
-#define ATSPI_CACHE_DESCRIPTION 0x0008
-#define ATSPI_CACHE_STATES      0x0010
-#define ATSPI_CACHE_ROLE        0x0020
-#define ATSPI_CACHE_INTERFACES  0x0040
 
 typedef struct _AtspiReference AtspiReference;
 struct _AtspiReference
@@ -131,7 +124,7 @@ DBusMessage *_atspi_dbus_call_partial_va (gpointer obj, const char *interface, c
 
 dbus_bool_t _atspi_dbus_get_property (gpointer obj, const char *interface, const char *name, GError **error, const char *type, void *data);
 
-DBusMessage * _atspi_dbus_send_with_reply_and_block (DBusMessage *message);
+DBusMessage * _atspi_dbus_send_with_reply_and_block (DBusMessage *message, GError **error);
 
 GHashTable *_atspi_dbus_return_hash_from_message (DBusMessage *message);
 

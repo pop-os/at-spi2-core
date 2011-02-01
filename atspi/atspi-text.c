@@ -4,6 +4,7 @@
  *
  * Copyright 2001, 2002 Sun Microsystems Inc.,
  * Copyright 2001, 2002 Ximian, Inc.
+ * Copyright 2010, 2011 Novell, Inc.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -107,7 +108,7 @@ atspi_text_get_text (AtspiText *obj,
 
   g_return_val_if_fail (obj != NULL, g_strdup (""));
 
-  _atspi_dbus_call (obj, atspi_interface_text, "GetText", error, "ii=>s", start_offset, end_offset, &retval);
+  _atspi_dbus_call (obj, atspi_interface_text, "GetText", error, "ii=>s", d_start_offset, d_end_offset, &retval);
 
   if (!retval)
     retval = g_strdup ("");
@@ -161,10 +162,9 @@ atspi_text_get_attributes (AtspiText *obj,
 {
   dbus_int32_t d_offset = offset;
   dbus_int32_t d_start_offset, d_end_offset;
-  GHashTable *hash;
   DBusMessage *reply;
   DBusMessageIter iter;
-  GHashTable *ret;
+  GHashTable *ret = NULL;
 
   if (obj == NULL)
    return NULL;
@@ -215,10 +215,9 @@ atspi_text_get_attribute_run (AtspiText *obj,
 {
   dbus_int32_t d_offset = offset;
   dbus_int32_t d_start_offset, d_end_offset;
-  GHashTable *hash;
   DBusMessage *reply;
   DBusMessageIter iter;
-  GHashTable *ret;
+  GHashTable *ret = NULL;
 
   if (obj == NULL)
    return NULL;
