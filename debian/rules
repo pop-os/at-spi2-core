@@ -1,3 +1,9 @@
 #!/usr/bin/make -f
 %:
 	dh $@
+
+override_dh_auto_test:
+
+override_dh_makeshlibs:
+	dh_makeshlibs -a
+	dh_girepository -pgir1.2-atspi-2.0

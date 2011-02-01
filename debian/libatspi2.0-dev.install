@@ -1,0 +1,4 @@
+usr/include
+usr/lib/libatspi.la
+usr/lib/libatspi.so
+usr/share/gir-1.0

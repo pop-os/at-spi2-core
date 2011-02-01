@@ -1,6 +1,6 @@
 Format-Specification: http://wiki.debian.org/Proposals/CopyrightFormat?action=recall&rev=143
 Upstream-Name: at-spi2-core
-Upstream-Source: http://download.gnome.org/sources/at-spi2-core/0.3/
+Upstream-Source: http://download.gnome.org/sources/at-spi2-core/1.91/
 Files: registryd/de-marshaller.c
 Copyright: Copyright 2008 Novell, Inc.
 License: LGPL-2+
