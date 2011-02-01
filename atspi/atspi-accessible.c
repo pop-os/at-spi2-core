@@ -1270,6 +1270,7 @@ atspi_accessible_get_interfaces (AtspiAccessible *obj)
 
   g_return_val_if_fail (obj != NULL, NULL);
 
+  append_const_val (ret, "Accessible");
   if (atspi_accessible_is_action (obj))
     append_const_val (ret, "Action");
   if (atspi_accessible_is_collection (obj))
@@ -1344,6 +1345,7 @@ _atspi_accessible_add_cache (AtspiAccessible *accessible, AtspiCache flag)
   AtspiCache mask = accessible->parent.app->cache;
 
   if (mask == ATSPI_CACHE_UNDEFINED &&
+      accessible->parent.app->root &&
       accessible->parent.app->root->accessible_parent)
   {
     AtspiAccessible *desktop = atspi_get_desktop (0);
