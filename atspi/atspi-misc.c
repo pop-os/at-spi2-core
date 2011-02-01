@@ -4,6 +4,7 @@
  *
  * Copyright 2001, 2002 Sun Microsystems Inc.,
  * Copyright 2001, 2002 Ximian, Inc.
+ * Copyright 2010, 2011 Novell, Inc.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -29,16 +30,14 @@
 
 #include "atspi-private.h"
 #include "X11/Xlib.h"
+#include "dbus/dbus-glib.h"
 #include <stdio.h>
 #include <string.h>
 
 static void handle_get_items (DBusPendingCall *pending, void *user_data);
 
 static DBusConnection *bus = NULL;
-static GHashTable *apps = NULL;
 static GHashTable *live_refs = NULL;
-static GQueue *exception_handlers = NULL;
-static DBusError exception;
 
 const char *atspi_path_dec = ATSPI_DBUS_PATH_DEC;
 const char *atspi_path_registry = ATSPI_DBUS_PATH_REGISTRY;
@@ -196,6 +195,7 @@ get_application (const char *bus_name)
   app->bus_name = bus_name_dup;
   app->hash = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_object_unref);
   app->bus = dbus_connection_ref (_atspi_bus ());
+  app->cache = ATSPI_CACHE_UNDEFINED;
   g_hash_table_insert (app_hash, bus_name_dup, app);
   dbus_error_init (&error);
   message = dbus_message_new_method_call (bus_name, atspi_path_root,
@@ -285,7 +285,6 @@ handle_remove_accessible (DBusConnection *bus, DBusMessage *message, void *user_
   DBusMessageIter iter, iter_struct;
   const char *signature = dbus_message_get_signature (message);
   AtspiAccessible *a;
-  int id;
 
   if (strcmp (signature, "(so)") != 0)
   {
@@ -312,7 +311,6 @@ static gboolean
 add_app_to_desktop (AtspiAccessible *a, const char *bus_name)
 {
   DBusError error;
-  char *root_path;
 
   dbus_error_init (&error);
   AtspiAccessible *obj = ref_accessible (bus_name, atspi_path_root);
@@ -395,11 +393,9 @@ get_reference_from_iter (DBusMessageIter *iter, const char **app_name, const cha
 static void
 add_accessible_from_iter (DBusMessageIter *iter)
 {
-  gint i;
   GList *new_list;
   DBusMessageIter iter_struct, iter_array;
   const char *app_name, *path;
-  AtspiApplication *app;
   AtspiAccessible *accessible;
   const char *name, *description;
   dbus_uint32_t role;
@@ -464,10 +460,11 @@ add_accessible_from_iter (DBusMessageIter *iter)
   _atspi_dbus_set_state (accessible, &iter_struct);
   dbus_message_iter_next (&iter_struct);
 
-  accessible->cached_properties |= ATSPI_CACHE_NAME | ATSPI_CACHE_ROLE | ATSPI_CACHE_PARENT;
+  _atspi_accessible_add_cache (accessible, ATSPI_CACHE_NAME | ATSPI_CACHE_ROLE |
+                               ATSPI_CACHE_PARENT | ATSPI_CACHE_DESCRIPTION);
   if (!atspi_state_set_contains (accessible->states,
                                        ATSPI_STATE_MANAGES_DESCENDANTS))
-    accessible->cached_properties |= ATSPI_CACHE_CHILDREN;
+    _atspi_accessible_add_cache (accessible, ATSPI_CACHE_CHILDREN);
 
   /* This is a bit of a hack since the cache holds a ref, so we don't need
    * the one provided for us anymore */
@@ -477,7 +474,6 @@ add_accessible_from_iter (DBusMessageIter *iter)
 static void
 handle_get_items (DBusPendingCall *pending, void *user_data)
 {
-  AtspiApplication *app = user_data;
   DBusMessage *reply = dbus_pending_call_steal_reply (pending);
   DBusMessageIter iter, iter_array;
 
@@ -509,9 +505,6 @@ static AtspiAccessible *
 ref_accessible_desktop (AtspiApplication *app)
 {
   DBusError error;
-  GArray *apps = NULL;
-  GArray *additions;
-  gint i;
   DBusMessage *message, *reply;
   DBusMessageIter iter, iter_array;
   gchar *bus_name_dup;
@@ -535,14 +528,14 @@ ref_accessible_desktop (AtspiApplication *app)
 	atspi_interface_accessible,
 	"GetChildren");
   if (!message)
-    return;
-  reply = _atspi_dbus_send_with_reply_and_block (message);
+    return NULL;
+  reply = _atspi_dbus_send_with_reply_and_block (message, NULL);
   if (!reply || strcmp (dbus_message_get_signature (reply), "a(so)") != 0)
   {
-    g_error ("Couldn't get application list: %s", error.message);
+    g_warning ("Couldn't get application list: %s", error.message);
     if (reply)
       dbus_message_unref (reply);
-    return;
+    return NULL;
   }
   dbus_message_iter_init (reply, &iter);
   dbus_message_iter_recurse (&iter, &iter_array);
@@ -643,14 +636,12 @@ handle_add_accessible (DBusConnection *bus, DBusMessage *message, void *user_dat
 {
   DBusMessageIter iter;
   const char *sender = dbus_message_get_sender (message);
-  AtspiApplication *app = get_application (sender);
-  const char *type = cache_signal_type;
 
   if (strcmp (dbus_message_get_signature (message), cache_signal_type) != 0)
   {
     g_warning (_("AT-SPI: AddAccessible with unknown signature %s\n"),
                dbus_message_get_signature (message));
-    return;
+    return DBUS_HANDLER_RESULT_HANDLED;
   }
 
   dbus_message_iter_init (message, &iter);
@@ -671,9 +662,6 @@ process_deferred_message (BusDataClosure *closure)
 {
   int type = dbus_message_get_type (closure->message);
   const char *interface = dbus_message_get_interface (closure->message);
-  const char *member = dbus_message_get_member (closure->message); 
-  dbus_uint32_t v;
-  char *bus_name;
 
   if (type == DBUS_MESSAGE_TYPE_SIGNAL &&
       !strncmp (interface, "org.a11y.atspi.Event.", 21))
@@ -703,7 +691,7 @@ _atspi_process_deferred_messages (gpointer data)
   static int in_process_deferred_messages = 0;
 
   if (in_process_deferred_messages)
-    return;
+    return TRUE;
   in_process_deferred_messages = 1;
   while (deferred_messages != NULL)
   {
@@ -747,9 +735,6 @@ atspi_dbus_filter (DBusConnection *bus, DBusMessage *message, void *data)
 {
   int type = dbus_message_get_type (message);
   const char *interface = dbus_message_get_interface (message);
-  const char *member = dbus_message_get_member (message); 
-  dbus_uint32_t v;
-  char *bus_name;
 
   if (type == DBUS_MESSAGE_TYPE_SIGNAL &&
       !strncmp (interface, "org.a11y.atspi.Event.", 21))
@@ -897,7 +882,6 @@ atspi_init (void)
 {
   DBusError error;
   char *match;
-  int i;
 
   if (atspi_inited)
     {
@@ -914,7 +898,7 @@ atspi_init (void)
   bus = get_accessibility_bus ();
   if (!bus)
   {
-    g_error ("Couldn't get session bus");
+    g_warning ("Couldn't get session bus");
     return 2;
   }
   dbus_bus_register (bus, &error);
@@ -1056,7 +1040,6 @@ _atspi_dbus_call_partial_va (gpointer obj,
                           va_list args)
 {
   AtspiObject *aobj = ATSPI_OBJECT (obj);
-  dbus_bool_t retval;
   DBusError err;
     DBusMessage *msg = NULL, *reply = NULL;
     DBusMessageIter iter;
@@ -1171,7 +1154,7 @@ done:
 }
 
 DBusMessage *
-_atspi_dbus_send_with_reply_and_block (DBusMessage *message)
+_atspi_dbus_send_with_reply_and_block (DBusMessage *message, GError **error)
 {
   DBusMessage *reply;
   DBusError err;
@@ -1190,7 +1173,8 @@ _atspi_dbus_send_with_reply_and_block (DBusMessage *message)
   dbus_message_unref (message);
   if (err.message)
   {
-    g_warning (_("AT-SPI: Got error: %s\n"), err.message);
+    if (error)
+      g_set_error_literal (error, ATSPI_ERROR, ATSPI_ERROR_IPC, err.message);
     dbus_error_free (&err);
   }
   return reply;
@@ -1256,7 +1240,6 @@ _atspi_dbus_attribute_array_from_iter (DBusMessageIter *iter)
 {
   DBusMessageIter iter_array, iter_dict;
   GArray *array = g_array_new (TRUE, TRUE, sizeof (gchar *));
-  gint count = 0;
 
   dbus_message_iter_recurse (iter, &iter_array);
   while (dbus_message_iter_get_arg_type (&iter_array) != DBUS_TYPE_INVALID)
@@ -1299,7 +1282,7 @@ _atspi_dbus_set_interfaces (AtspiAccessible *accessible, DBusMessageIter *iter)
       accessible->interfaces |= (1 << n);
     dbus_message_iter_next (&iter_array);
   }
-  accessible->cached_properties |= ATSPI_CACHE_INTERFACES;
+  _atspi_accessible_add_cache (accessible, ATSPI_CACHE_INTERFACES);
 }
 
 void
@@ -1326,7 +1309,7 @@ _atspi_dbus_set_state (AtspiAccessible *accessible, DBusMessageIter *iter)
     else
       accessible->states->states = val;
   }
-  accessible->cached_properties |= ATSPI_CACHE_STATES;
+  _atspi_accessible_add_cache (accessible, ATSPI_CACHE_STATES);
 }
 
 GQuark

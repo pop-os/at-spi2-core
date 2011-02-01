@@ -4,6 +4,7 @@
  *
  * Copyright 2001, 2002 Sun Microsystems Inc.,
  * Copyright 2001, 2002 Ximian, Inc.
+ * Copyright 2010, 2011 Novell, Inc.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -44,6 +45,7 @@ atspi_document_interface_init (AtspiDocument *document)
 {
 }
 
+static void
 atspi_editable_text_interface_init (AtspiEditableText *editable_text)
 {
 }
@@ -108,7 +110,6 @@ static void
 atspi_accessible_dispose (GObject *object)
 {
   AtspiAccessible *accessible = ATSPI_ACCESSIBLE (object);
-  gboolean cached;
   AtspiEvent e;
   AtspiAccessible *parent;
 
@@ -311,7 +312,7 @@ atspi_accessible_get_name (AtspiAccessible *obj, GError **error)
     if (!_atspi_dbus_get_property (obj, atspi_interface_accessible, "Name", error,
                                    "s", &obj->name))
       return g_strdup ("");
-    obj->cached_properties |= ATSPI_CACHE_NAME;
+    _atspi_accessible_add_cache (obj, ATSPI_CACHE_NAME);
   }
   return g_strdup (obj->name);
 }
@@ -336,7 +337,7 @@ atspi_accessible_get_description (AtspiAccessible *obj, GError **error)
                                    "Description", error, "s",
                                    &obj->description))
       return g_strdup ("");
-    obj->cached_properties |= ATSPI_CACHE_DESCRIPTION;
+    _atspi_accessible_add_cache (obj, ATSPI_CACHE_DESCRIPTION);
   }
   return g_strdup (obj->description);
 }
@@ -371,7 +372,7 @@ atspi_accessible_get_parent (AtspiAccessible *obj, GError **error)
     dbus_message_append_args (message, DBUS_TYPE_STRING, &atspi_interface_accessible,
                                DBUS_TYPE_STRING, &str_parent,
                               DBUS_TYPE_INVALID);
-    reply = _atspi_dbus_send_with_reply_and_block (message);
+    reply = _atspi_dbus_send_with_reply_and_block (message, error);
     if (!reply)
       return NULL;
     if (strcmp (dbus_message_get_signature (reply), "v") != 0)
@@ -383,7 +384,7 @@ atspi_accessible_get_parent (AtspiAccessible *obj, GError **error)
     dbus_message_iter_recurse (&iter, &iter_variant);
     obj->accessible_parent = _atspi_dbus_return_accessible_from_iter (&iter_variant);
     dbus_message_unref (reply);
-    obj->cached_properties |= ATSPI_CACHE_PARENT;
+    _atspi_accessible_add_cache (obj, ATSPI_CACHE_PARENT);
   }
   if (!obj->accessible_parent)
     return NULL;
@@ -555,8 +556,8 @@ atspi_accessible_get_role (AtspiAccessible *obj, GError **error)
     /* TODO: Make this a property */
     if (_atspi_dbus_call (obj, atspi_interface_accessible, "GetRole", error, "=>u", &role))
     {
-      obj->cached_properties |= ATSPI_CACHE_ROLE;
       obj->role = role;
+    _atspi_accessible_add_cache (obj, ATSPI_CACHE_ROLE);
     }
   }
   return obj->role;
@@ -648,6 +649,7 @@ atspi_accessible_get_state_set (AtspiAccessible *obj)
     dbus_message_iter_init (reply, &iter);
     _atspi_dbus_set_state (obj, &iter);
     dbus_message_unref (reply);
+    _atspi_accessible_add_cache (obj, ATSPI_CACHE_STATES);
   }
 
   return g_object_ref (obj->states);
@@ -772,6 +774,35 @@ atspi_accessible_get_toolkit_version (AtspiAccessible *obj, GError **error)
 }
 /* Interface query methods */
 
+static gboolean
+_atspi_accessible_is_a (AtspiAccessible *accessible,
+		      const char *interface_name)
+{
+  int n;
+
+  if (accessible == NULL)
+    {
+      return FALSE;
+    }
+
+  if (!(accessible->cached_properties & ATSPI_CACHE_INTERFACES))
+  {
+    DBusMessage *reply;
+    DBusMessageIter iter;
+    reply = _atspi_dbus_call_partial (accessible, atspi_interface_accessible,
+                                      "GetInterfaces", NULL, "");
+    _ATSPI_DBUS_CHECK_SIG (reply, "as", NULL, FALSE);
+    dbus_message_iter_init (reply, &iter);
+    _atspi_dbus_set_interfaces (accessible, &iter);
+    dbus_message_unref (reply);
+    _atspi_accessible_add_cache (accessible, ATSPI_CACHE_INTERFACES);
+  }
+
+  n = _atspi_get_iface_num (interface_name);
+  if (n == -1) return FALSE;
+  return (gboolean) ((accessible->interfaces & (1 << n))? TRUE: FALSE);
+}
+
 /**
  * atspi_accessible_is_action:
  * @obj: a pointer to the #AtspiAccessible instance to query.
@@ -880,6 +911,22 @@ atspi_accessible_is_hypertext (AtspiAccessible *obj)
 {
   return _atspi_accessible_is_a (obj,
 			      atspi_interface_hypertext);
+}
+
+/**
+ * atspi_accessible_is_hyperlink:
+ * @obj: a pointer to the #AtspiAccessible instance to query.
+ *
+ * Query whether the specified #AtspiAccessible implements #AtspiHyperlink.
+ *
+ * Returns: #TRUE if @obj implements the #AtspiHypertext interface,
+ *          #FALSE otherwise.
+ **/
+gboolean
+atspi_accessible_is_hyperlink (AtspiAccessible *obj)
+{
+  return _atspi_accessible_is_a (obj,
+			      atspi_interface_hyperlink);
 }
 
 /**
@@ -1195,34 +1242,6 @@ atspi_accessible_get_value (AtspiAccessible *accessible)
           g_object_ref (ATSPI_VALUE (accessible)) : NULL);  
 }
 
-gboolean
-_atspi_accessible_is_a (AtspiAccessible *accessible,
-		      const char *interface_name)
-{
-  int n;
-
-  if (accessible == NULL)
-    {
-      return FALSE;
-    }
-
-  if (!(accessible->cached_properties & ATSPI_CACHE_INTERFACES))
-  {
-    DBusMessage *reply;
-    DBusMessageIter iter;
-    reply = _atspi_dbus_call_partial (accessible, atspi_interface_accessible,
-                                      "GetInterfaces", NULL, "");
-    _ATSPI_DBUS_CHECK_SIG (reply, "as", NULL, FALSE);
-    dbus_message_iter_init (reply, &iter);
-    _atspi_dbus_set_interfaces (accessible, &iter);
-    dbus_message_unref (reply);
-  }
-
-  n = _atspi_get_iface_num (interface_name);
-  if (n == -1) return FALSE;
-  return (gboolean) ((accessible->interfaces & (1 << n))? TRUE: FALSE);
-}
-
 static void
 append_const_val (GArray *array, const gchar *val)
 {
@@ -1263,6 +1282,8 @@ atspi_accessible_get_interfaces (AtspiAccessible *obj)
     append_const_val (ret, "EditableText");
   if (atspi_accessible_is_hypertext (obj))
     append_const_val (ret, "Hypertext");
+  if (atspi_accessible_is_hyperlink (obj))
+    append_const_val (ret, "Hyperlink");
   if (atspi_accessible_is_image (obj))
     append_const_val (ret, "Image");
   if (atspi_accessible_is_selection (obj))
@@ -1289,4 +1310,49 @@ atspi_accessible_new (AtspiApplication *app, const gchar *path)
   accessible->parent.path = g_strdup (path);
 
   return accessible;
+}
+
+/**
+ * atspi_accessible_set_cache_mask:
+ *
+ * @accessible: The #AtspiAccessible to operate on.  Must be the desktop or
+ *             the root of an application.
+ * @mask: An #AtspiCache specifying a bit mask of the types of data to cache.
+ *
+ * Sets the type of data to cache for accessibles.
+ * If this is not set for an application or is reset to ATSPI_CACHE_UNDEFINED,
+ * then the desktop's cache flag will be used.
+ * If the desktop's cache flag is also undefined, then all possible data will
+ * be cached.
+ * This function is intended to work around bugs in toolkits where the proper
+ * events are not raised / to aid in testing for such bugs.
+ *
+ * Note: This function has no effect on data that has already been cached.
+ **/
+void
+atspi_accessible_set_cache_mask (AtspiAccessible *accessible, AtspiCache mask)
+{
+  g_return_if_fail (accessible != NULL);
+  g_return_if_fail (accessible->parent.app != NULL);
+  g_return_if_fail (accessible == accessible->parent.app->root);
+  accessible->parent.app->cache = mask;
+}
+
+void
+_atspi_accessible_add_cache (AtspiAccessible *accessible, AtspiCache flag)
+{
+  AtspiCache mask = accessible->parent.app->cache;
+
+  if (mask == ATSPI_CACHE_UNDEFINED &&
+      accessible->parent.app->root->accessible_parent)
+  {
+    AtspiAccessible *desktop = atspi_get_desktop (0);
+    mask = desktop->parent.app->cache;
+    g_object_unref (desktop);
+  }
+
+  if (mask == ATSPI_CACHE_UNDEFINED)
+    mask = ATSPI_CACHE_ALL;
+
+  accessible->cached_properties |= flag & mask;
 }

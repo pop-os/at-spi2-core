@@ -1,7 +1,25 @@
-
+/*
+ * Copyright 2008-2011 Novell, Inc.
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
 
 #include <stdio.h>
 #include <stdarg.h>
+#include <sys/time.h>
 #include <glib.h>
 
 #include "config.h"
@@ -30,6 +48,15 @@ set_reply (DBusPendingCall * pending, void *user_data)
   dbus_pending_call_unref (pending);
 }
 
+static gint
+time_elapsed (struct timeval *origin)
+{
+  struct timeval tv;
+
+  gettimeofday (&tv, NULL);
+  return (tv.tv_sec - origin->tv_sec) * 1000 + (tv.tv_usec - origin->tv_usec) / 1000;
+}
+
 DBusMessage *
 dbind_send_and_allow_reentry (DBusConnection * bus, DBusMessage * message, DBusError *error)
 {
@@ -37,6 +64,7 @@ dbind_send_and_allow_reentry (DBusConnection * bus, DBusMessage * message, DBusE
   SpiReentrantCallClosure closure;
   const char *unique_name = dbus_bus_get_unique_name (bus);
   const char *destination = dbus_message_get_destination (message);
+  struct timeval tv;
 
   if (unique_name && destination &&
       strcmp (destination, unique_name) != 0)
@@ -51,9 +79,12 @@ dbind_send_and_allow_reentry (DBusConnection * bus, DBusMessage * message, DBusE
   dbus_pending_call_set_notify (pending, set_reply, (void *) &closure, NULL);
 
   closure.reply = NULL;
+  gettimeofday (&tv, NULL);
   while (!closure.reply)
     {
       if (!dbus_connection_read_write_dispatch (bus, dbind_timeout))
+        return NULL;
+if (time_elapsed (&tv) > dbind_timeout)
         return NULL;
     }
   

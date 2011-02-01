@@ -4,6 +4,7 @@
  *
  * Copyright 2002 Ximian, Inc.
  *           2002 Sun Microsystems Inc.
+ * Copyright 2010, 2011 Novell, Inc.
  *           
  *
  * This library is free software; you can redistribute it and/or
@@ -32,4 +33,6 @@
 DBusHandlerResult _atspi_dbus_handle_Event (DBusConnection *bus, DBusMessage *message, void *data);
 
 void _atspi_send_event (AtspiEvent *e);
+
+DBusHandlerResult atspi_dbus_handle_event (DBusConnection *bus, DBusMessage *message, void *data);
 #endif	/* _ATSPI_EVENT_LISTENER_H_ */

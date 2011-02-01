@@ -16,6 +16,7 @@
 @SET_MAKE@
 
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -36,7 +37,8 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 subdir = atspi
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
+DIST_COMMON = $(libatspiinclude_HEADERS) $(srcdir)/Makefile.am \
+	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
 	$(top_srcdir)/m4/intltool.m4 $(top_srcdir)/m4/introspection.m4 \
@@ -72,13 +74,15 @@ am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
 am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(girdir)" \
-	"$(DESTDIR)$(typelibsdir)"
+	"$(DESTDIR)$(typelibsdir)" "$(DESTDIR)$(libatspiincludedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 am__DEPENDENCIES_1 =
 libatspi_la_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(top_builddir)/dbind/libdbind.la
-am_libatspi_la_OBJECTS = libatspi_la-atspi-accessible.lo \
-	libatspi_la-atspi-action.lo libatspi_la-atspi-application.lo \
+am__objects_1 =
+am_libatspi_la_OBJECTS = $(am__objects_1) \
+	libatspi_la-atspi-accessible.lo libatspi_la-atspi-action.lo \
+	libatspi_la-atspi-application.lo \
 	libatspi_la-atspi-collection.lo libatspi_la-atspi-component.lo \
 	libatspi_la-atspi-device-listener.lo \
 	libatspi_la-atspi-document.lo \
@@ -111,6 +115,7 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libatspi_la_SOURCES)
 DIST_SOURCES = $(libatspi_la_SOURCES)
 DATA = $(gir_DATA) $(typelibs_DATA)
+HEADERS = $(libatspiinclude_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -295,8 +300,39 @@ libatspi_la_LIBADD = $(DBUS_GLIB_LIBS) \
 	$(X_LIBS) \
 	$(top_builddir)/dbind/libdbind.la
 
-libatspidir = $(includedir)/at-spi-1.0/atspi
+libatspiincludedir = $(includedir)/at-spi-2.0/atspi
+libatspiinclude_HEADERS = \
+	atspi.h	\
+	atspi-accessible.h \
+	atspi-action.h \
+	atspi-application.h \
+	atspi-collection.h \
+	atspi-component.h \
+	atspi-constants.h \
+	atspi-device-listener.h \
+	atspi-device-listener-private.h \
+	atspi-document.h \
+	atspi-editabletext.h \
+	atspi-event-listener.h \
+	atspi-event-listener-private.h \
+	atspi-hyperlink.h \
+	atspi-hypertext.h \
+	atspi-image.h \
+	atspi-matchrule.h \
+	atspi-misc.h \
+	atspi-object.h \
+	atspi-private.h \
+	atspi-registry.h \
+	atspi-relation.h \
+	atspi-selection.h \
+	atspi-stateset.h \
+	atspi-table.h \
+	atspi-text.h \
+	atspi-types.h \
+	atspi-value.h
+
 libatspi_la_SOURCES = \
+	$(libatspiinclude_HEADERS) \
 	atspi.h	\
 	atspi-accessible.c \
 	atspi-accessible.h \
@@ -683,6 +719,26 @@ uninstall-typelibsDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(typelibsdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(typelibsdir)" && rm -f $$files
+install-libatspiincludeHEADERS: $(libatspiinclude_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libatspiincludedir)" || $(MKDIR_P) "$(DESTDIR)$(libatspiincludedir)"
+	@list='$(libatspiinclude_HEADERS)'; test -n "$(libatspiincludedir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libatspiincludedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libatspiincludedir)" || exit $$?; \
+	done
+
+uninstall-libatspiincludeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libatspiinclude_HEADERS)'; test -n "$(libatspiincludedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(libatspiincludedir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libatspiincludedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -768,9 +824,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA)
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(girdir)" "$(DESTDIR)$(typelibsdir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(girdir)" "$(DESTDIR)$(typelibsdir)" "$(DESTDIR)$(libatspiincludedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -822,7 +878,8 @@ info: info-am
 
 info-am:
 
-install-data-am: install-girDATA install-typelibsDATA
+install-data-am: install-girDATA install-libatspiincludeHEADERS \
+	install-typelibsDATA
 
 install-dvi: install-dvi-am
 
@@ -869,7 +926,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-girDATA uninstall-libLTLIBRARIES \
-	uninstall-typelibsDATA
+	uninstall-libatspiincludeHEADERS uninstall-typelibsDATA
 
 .MAKE: install-am install-strip
 
@@ -880,13 +937,15 @@ uninstall-am: uninstall-girDATA uninstall-libLTLIBRARIES \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-girDATA \
 	install-html install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-man install-pdf install-pdf-am \
-	install-ps install-ps-am install-strip install-typelibsDATA \
-	installcheck installcheck-am installdirs maintainer-clean \
+	install-libLTLIBRARIES install-libatspiincludeHEADERS \
+	install-man install-pdf install-pdf-am install-ps \
+	install-ps-am install-strip install-typelibsDATA installcheck \
+	installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am uninstall-girDATA \
-	uninstall-libLTLIBRARIES uninstall-typelibsDATA
+	uninstall-libLTLIBRARIES uninstall-libatspiincludeHEADERS \
+	uninstall-typelibsDATA
 
 
 @HAVE_INTROSPECTION_TRUE@Atspi-2.0.gir: $(INTROSPECTION_SCANNER) \

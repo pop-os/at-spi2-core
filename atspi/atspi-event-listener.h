@@ -4,6 +4,7 @@
  *
  * Copyright 2002 Ximian, Inc.
  *           2002 Sun Microsystems Inc.
+ * Copyright 2010, 2011 Novell, Inc.
  *           
  *
  * This library is free software; you can redistribute it and/or
@@ -81,29 +82,35 @@ atspi_event_listener_new_simple (AtspiEventListenerSimpleCB callback,
 
 gboolean
 atspi_event_listener_register (AtspiEventListener *listener,
-				 const gchar              *event_type);
+				 const gchar              *event_type,
+				 GError **error);
 
 gboolean
 atspi_event_listener_register_from_callback (AtspiEventListenerCB callback,
 				             void *user_data,
 				             GDestroyNotify callback_destroyed,
-				             const gchar              *event_type);
+				             const gchar              *event_type,
+				             GError **error);
 
 gboolean
 atspi_event_listener_register_no_data (AtspiEventListenerSimpleCB callback,
 				 GDestroyNotify callback_destroyed,
-				 const gchar              *event_type);
+				 const gchar              *event_type,
+				 GError **error);
 
 gboolean
 atspi_event_listener_deregister (AtspiEventListener *listener,
-				 const gchar              *event_type);
+				 const gchar              *event_type,
+				 GError **error);
 
 gboolean
 atspi_event_listener_deregister_from_callback (AtspiEventListenerCB callback,
 				               void *user_data,
-				               const gchar              *event_type);
+				               const gchar              *event_type,
+				               GError **error);
 
 gboolean
 atspi_event_listener_deregister_no_data (AtspiEventListenerSimpleCB callback,
-				   const gchar              *event_type);
+				   const gchar              *event_type,
+				   GError **error);
 #endif	/* _ATSPI_EVENT_LISTENER_H_ */

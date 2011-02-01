@@ -48,25 +48,31 @@
 <a class="link" href="AtspiEventListener.html" title="AtspiEventListener"><span class="returnvalue">AtspiEventListener</span></a> * <a class="link" href="AtspiEventListener.html#atspi-event-listener-new-simple" title="atspi_event_listener_new_simple ()">atspi_event_listener_new_simple</a>    (<em class="parameter"><code><a class="link" href="AtspiEventListener.html#AtspiEventListenerSimpleCB" title="AtspiEventListenerSimpleCB ()"><span class="type">AtspiEventListenerSimpleCB</span></a> callback</code></em>,
                                                          <em class="parameter"><code><span class="type">GDestroyNotify</span> callback_destroyed</code></em>);
 <span class="returnvalue">gboolean</span>            <a class="link" href="AtspiEventListener.html#atspi-event-listener-register" title="atspi_event_listener_register ()">atspi_event_listener_register</a>       (<em class="parameter"><code><a class="link" href="AtspiEventListener.html" title="AtspiEventListener"><span class="type">AtspiEventListener</span></a> *listener</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>);
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
 <span class="returnvalue">gboolean</span>            <a class="link" href="AtspiEventListener.html#atspi-event-listener-register-from-callback" title="atspi_event_listener_register_from_callback ()">atspi_event_listener_register_from_callback</a>
                                                         (<em class="parameter"><code><a class="link" href="AtspiEventListener.html#AtspiEventListenerCB" title="AtspiEventListenerCB ()"><span class="type">AtspiEventListenerCB</span></a> callback</code></em>,
                                                          <em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
                                                          <em class="parameter"><code><span class="type">GDestroyNotify</span> callback_destroyed</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>);
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
 <span class="returnvalue">gboolean</span>            <a class="link" href="AtspiEventListener.html#atspi-event-listener-register-no-data" title="atspi_event_listener_register_no_data ()">atspi_event_listener_register_no_data</a>
                                                         (<em class="parameter"><code><a class="link" href="AtspiEventListener.html#AtspiEventListenerSimpleCB" title="AtspiEventListenerSimpleCB ()"><span class="type">AtspiEventListenerSimpleCB</span></a> callback</code></em>,
                                                          <em class="parameter"><code><span class="type">GDestroyNotify</span> callback_destroyed</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>);
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
 <span class="returnvalue">gboolean</span>            <a class="link" href="AtspiEventListener.html#atspi-event-listener-deregister" title="atspi_event_listener_deregister ()">atspi_event_listener_deregister</a>     (<em class="parameter"><code><a class="link" href="AtspiEventListener.html" title="AtspiEventListener"><span class="type">AtspiEventListener</span></a> *listener</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>);
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
 <span class="returnvalue">gboolean</span>            <a class="link" href="AtspiEventListener.html#atspi-event-listener-deregister-from-callback" title="atspi_event_listener_deregister_from_callback ()">atspi_event_listener_deregister_from_callback</a>
                                                         (<em class="parameter"><code><a class="link" href="AtspiEventListener.html#AtspiEventListenerCB" title="AtspiEventListenerCB ()"><span class="type">AtspiEventListenerCB</span></a> callback</code></em>,
                                                          <em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>);
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
 <span class="returnvalue">gboolean</span>            <a class="link" href="AtspiEventListener.html#atspi-event-listener-deregister-no-data" title="atspi_event_listener_deregister_no_data ()">atspi_event_listener_deregister_no_data</a>
                                                         (<em class="parameter"><code><a class="link" href="AtspiEventListener.html#AtspiEventListenerSimpleCB" title="AtspiEventListenerSimpleCB ()"><span class="type">AtspiEventListenerSimpleCB</span></a> callback</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>);
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
 </pre>
 </div>
 <div class="refsect1" title="Object Hierarchy">
@@ -182,7 +188,8 @@ and data associated with the callback should be freed.  Can be NULL.
 <div class="refsect2" title="atspi_event_listener_register ()">
 <a name="atspi-event-listener-register"></a><h3>atspi_event_listener_register ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_event_listener_register       (<em class="parameter"><code><a class="link" href="AtspiEventListener.html" title="AtspiEventListener"><span class="type">AtspiEventListener</span></a> *listener</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>);</pre>
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Legal object event types:
 </p>
@@ -289,6 +296,11 @@ Add an in-process callback function to an existing AtspiEventListener.
 </td>
 </tr>
 <tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td> <span class="type">TRUE</span> if successful, otherwise <span class="type">FALSE</span>.
 </td>
@@ -303,7 +315,8 @@ Add an in-process callback function to an existing AtspiEventListener.
                                                         (<em class="parameter"><code><a class="link" href="AtspiEventListener.html#AtspiEventListenerCB" title="AtspiEventListenerCB ()"><span class="type">AtspiEventListenerCB</span></a> callback</code></em>,
                                                          <em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
                                                          <em class="parameter"><code><span class="type">GDestroyNotify</span> callback_destroyed</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>);</pre>
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -329,6 +342,11 @@ for a description of the format.
 </td>
 </tr>
 <tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
 </td>
@@ -342,7 +360,8 @@ for a description of the format.
 <pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_event_listener_register_no_data
                                                         (<em class="parameter"><code><a class="link" href="AtspiEventListener.html#AtspiEventListenerSimpleCB" title="AtspiEventListenerSimpleCB ()"><span class="type">AtspiEventListenerSimpleCB</span></a> callback</code></em>,
                                                          <em class="parameter"><code><span class="type">GDestroyNotify</span> callback_destroyed</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>);</pre>
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Like atspi_event_listener_register, but callback takes no user_data.
 </p>
@@ -371,6 +390,11 @@ Like atspi_event_listener_register, but callback takes no user_data.
 </td>
 </tr>
 <tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
 </td>
@@ -382,7 +406,8 @@ Like atspi_event_listener_register, but callback takes no user_data.
 <div class="refsect2" title="atspi_event_listener_deregister ()">
 <a name="atspi-event-listener-deregister"></a><h3>atspi_event_listener_deregister ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_event_listener_deregister     (<em class="parameter"><code><a class="link" href="AtspiEventListener.html" title="AtspiEventListener"><span class="type">AtspiEventListener</span></a> *listener</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>);</pre>
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 deregisters an <a class="link" href="AtspiEventListener.html" title="AtspiEventListener"><span class="type">AtspiEventListener</span></a> from the registry, for a specific
             event type.
@@ -402,6 +427,11 @@ deregisters an <a class="link" href="AtspiEventListener.html" title="AtspiEventL
 </td>
 </tr>
 <tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td> <span class="type">TRUE</span> if successful, otherwise <span class="type">FALSE</span>.
 </td>
@@ -415,7 +445,8 @@ deregisters an <a class="link" href="AtspiEventListener.html" title="AtspiEventL
 <pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_event_listener_deregister_from_callback
                                                         (<em class="parameter"><code><a class="link" href="AtspiEventListener.html#AtspiEventListenerCB" title="AtspiEventListenerCB ()"><span class="type">AtspiEventListenerCB</span></a> callback</code></em>,
                                                          <em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>);</pre>
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 deregisters an <a class="link" href="AtspiEventListener.html#AtspiEventListenerCB" title="AtspiEventListenerCB ()"><span class="type">AtspiEventListenerCB</span></a> from the registry, for a specific
             event type.
@@ -439,6 +470,11 @@ deregisters an <a class="link" href="AtspiEventListener.html#AtspiEventListenerC
 </td>
 </tr>
 <tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td> <span class="type">TRUE</span> if successful, otherwise <span class="type">FALSE</span>.
 </td>
@@ -451,7 +487,8 @@ deregisters an <a class="link" href="AtspiEventListener.html#AtspiEventListenerC
 <a name="atspi-event-listener-deregister-no-data"></a><h3>atspi_event_listener_deregister_no_data ()</h3>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_event_listener_deregister_no_data
                                                         (<em class="parameter"><code><a class="link" href="AtspiEventListener.html#AtspiEventListenerSimpleCB" title="AtspiEventListenerSimpleCB ()"><span class="type">AtspiEventListenerSimpleCB</span></a> callback</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>);</pre>
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 deregisters an <a class="link" href="AtspiEventListener.html#AtspiEventListenerSimpleCB" title="AtspiEventListenerSimpleCB ()"><span class="type">AtspiEventListenerSimpleCB</span></a> from the registry, for a specific
             event type.
@@ -468,6 +505,11 @@ deregisters an <a class="link" href="AtspiEventListener.html#AtspiEventListenerS
 <td><p><span class="term"><em class="parameter"><code>event_type</code></em> :</span></p></td>
 <td>a string specifying the event type for which this
             listener is to be deregistered.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
 </td>
 </tr>
 <tr>

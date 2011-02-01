@@ -256,10 +256,6 @@ atspidbusdir = $(bindir)
 atspidbus_SCRIPTS = at-spi-dbus-bus
 default_sessiondir = $(sysconfdir)/xdg/autostart
 default_session_DATA = at-spi-dbus-bus.desktop
-do_subst = sed -e 's,[@]prefix[@],${prefix},g' \
-               -e 's,[@]sysconfdir[@],${sysconfdir},g' \
-               -e 's,[@]DBUS_DAEMON[@],@DBUS_DAEMON@,g'
-
 EXTRA_DIST = \
 	accessibility.conf \
 	at-spi-dbus-bus.in \
@@ -537,9 +533,6 @@ uninstall-am: uninstall-atspidbusSCRIPTS uninstall-busconfigDATA \
 	uninstall uninstall-am uninstall-atspidbusSCRIPTS \
 	uninstall-busconfigDATA uninstall-default_sessionDATA
 
-
-at-spi-dbus-bus:	at-spi-dbus-bus.in Makefile
-	$(do_subst) $(srcdir)/$@.in > $@
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

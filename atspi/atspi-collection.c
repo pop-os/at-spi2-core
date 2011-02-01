@@ -3,6 +3,7 @@
  * (Gnome Accessibility Project; http://developer.gnome.org/projects/gap)
  *
  * Copyright 2007 IBM Corp.
+ * Copyright 2010, 2011 Novell, Inc.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -75,6 +76,7 @@ append_accessible (DBusMessage *message, AtspiAccessible *accessible)
   dbus_message_iter_init_append (message, &iter);
   dbus_message_iter_append_basic (&iter, DBUS_TYPE_OBJECT_PATH,
                                   &accessible->parent.path);
+  return TRUE;	/* TODO: Check for out-of-memory */
 }
 
 static GArray *
@@ -138,7 +140,7 @@ atspi_collection_get_matches (AtspiCollection *collection,
                             DBUS_TYPE_INT32, &d_count,
                             DBUS_TYPE_BOOLEAN, &d_traverse,
                             DBUS_TYPE_INVALID);
-  reply = _atspi_dbus_send_with_reply_and_block (message);
+  reply = _atspi_dbus_send_with_reply_and_block (message, error);
   if (!reply)
     return NULL;
   return return_accessibles (reply);
@@ -194,7 +196,7 @@ atspi_collection_get_matches_to (AtspiCollection *collection,
                             DBUS_TYPE_INT32, &d_count,
                             DBUS_TYPE_BOOLEAN, &d_traverse,
                             DBUS_TYPE_INVALID);
-  reply = _atspi_dbus_send_with_reply_and_block (message);
+  reply = _atspi_dbus_send_with_reply_and_block (message, error);
   if (!reply)
     return NULL;
   return return_accessibles (reply);
@@ -246,7 +248,7 @@ atspi_collection_get_matches_from (AtspiCollection *collection,
                             DBUS_TYPE_INT32, &d_count,
                             DBUS_TYPE_BOOLEAN, &d_traverse,
                             DBUS_TYPE_INVALID);
-  reply = _atspi_dbus_send_with_reply_and_block (message);
+  reply = _atspi_dbus_send_with_reply_and_block (message, error);
   if (!reply)
     return NULL;
   return return_accessibles (reply);

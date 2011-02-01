@@ -75,7 +75,7 @@ atspi_editable_text_set_text_contents (AtspiEditableText *obj,
 
   g_return_val_if_fail (obj != NULL, FALSE);
 
-  _atspi_dbus_call (obj, atspi_interface_editable_text, "setTextContents", error, "s=>b", new_contents, &retval);
+  _atspi_dbus_call (obj, atspi_interface_editable_text, "SetTextContents", error, "s=>b", new_contents, &retval);
 
   return retval;
 }
@@ -136,7 +136,7 @@ atspi_editable_text_copy_text (AtspiEditableText *obj,
 
   g_return_val_if_fail (obj != NULL, FALSE);
 
-  _atspi_dbus_call (obj, atspi_interface_editable_text, "CopyText", error, "ii", start_pos, end_pos);
+  _atspi_dbus_call (obj, atspi_interface_editable_text, "CopyText", error, "ii", d_start_pos, d_end_pos);
 
   return TRUE;
 }

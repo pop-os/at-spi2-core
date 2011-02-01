@@ -4,6 +4,7 @@
  *
  * Copyright 2002 Ximian Inc.
  * Copyright 2002 Sun Microsystems, Inc.
+ * Copyright 2010, 2011 Novell, Inc.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -22,6 +23,7 @@
  */
 
 #include "atspi-private.h"
+#include <stdio.h>
 
 typedef struct
 {
@@ -31,8 +33,6 @@ typedef struct
 } DeviceEventHandler;
 
 GObjectClass *device_parent_class;
-
-static guint32 _e_id = 0;
 
 /*
  * Misc. helpers.
@@ -112,12 +112,6 @@ id_is_free (guint id)
     if (listener->id == id) return FALSE;
   }
   return TRUE;
-}
-
-static void
-remove_listener (GObject *obj, gpointer data)
-{
-  device_listeners = g_list_remove (device_listeners, obj);
 }
 
 static AtspiDeviceEvent *
@@ -313,8 +307,6 @@ atspi_device_listener_remove_callback (AtspiDeviceListener  *listener,
   listener->callbacks = event_list_remove_by_cb (listener->callbacks, (void *) callback);
 }
 
-static const char *device_event_type = "(uinnisb)";
-
 static void
 read_device_event_from_iter (DBusMessageIter *iter, AtspiDeviceEvent *event)
 {
@@ -323,7 +315,6 @@ read_device_event_from_iter (DBusMessageIter *iter, AtspiDeviceEvent *event)
   dbus_int16_t hw_code;
   dbus_int16_t modifiers;
   dbus_int32_t timestamp;
-  char *event_string;
   dbus_bool_t is_text;
   DBusMessageIter iter_struct;
 
@@ -371,7 +362,6 @@ atspi_dbus_handle_DeviceEvent (DBusConnection *bus, DBusMessage *message, void *
   dbus_bool_t retval = FALSE;
   GList *l;
   DBusMessage *reply;
-  void *p = &event;
 
   if (strcmp (dbus_message_get_signature (message), "(uinnisb)") != 0)
   {
