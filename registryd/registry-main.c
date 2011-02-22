@@ -35,11 +35,7 @@
 #include "registry.h"
 #include "deviceeventcontroller.h"
 
-#ifdef RELOCATE
-#define DBUS_GCONF_KEY  "/desktop/gnome/interface/at-spi-dbus"
-#else
 #define CORBA_GCONF_KEY  "/desktop/gnome/interface/at-spi-corba"
-#endif
 
 static gboolean need_to_quit ();
 
@@ -264,6 +260,7 @@ spi_get_bus (void)
      else
      {
 	 bus = dbus_connection_open (data, &error);
+	 XFree (data);
          if (!bus)
          {
              g_error ("AT-SPI: Couldn't connect to bus: %s\n", error.message);
@@ -275,6 +272,7 @@ spi_get_bus (void)
          } 
      }
 
+  XCloseDisplay (bridge_display);
      return bus;
 }
 
@@ -367,7 +365,7 @@ need_to_quit ()
       gconf_client_get_bool = dlsym (gconf, "gconf_client_get_bool");
   }
 
-  if (!gconf_client || !gconf_client_get_bool)
+  if (!gconf_client_get_default || !gconf_client_get_bool)
     {
       if (gconf)
         dlclose (gconf);
@@ -379,11 +377,7 @@ need_to_quit ()
  * at-spi-dbus gconf key has been set.
    */
   gconf_client = gconf_client_get_default ();
-#ifdef RELOCATE
-  ret = !gconf_client_get_bool (gconf_client, DBUS_GCONF_KEY, NULL);
-#else
   ret = gconf_client_get_bool (gconf_client, CORBA_GCONF_KEY, NULL);
-#endif
   g_object_unref (gconf_client);
 
   return ret;
