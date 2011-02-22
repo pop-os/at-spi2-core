@@ -42,7 +42,7 @@ atspi_selection_get_n_selected_children (AtspiSelection *obj, GError **error)
 
   g_return_val_if_fail (obj != NULL, -1);
 
-  _atspi_dbus_get_property (obj, atspi_interface_selection, "nSelectedChildren", error, "i", &retval);
+  _atspi_dbus_get_property (obj, atspi_interface_selection, "NSelectedChildren", error, "i", &retval);
 
   return retval;
 }
@@ -69,13 +69,15 @@ atspi_selection_get_selected_child (AtspiSelection *obj,
                                       gint selected_child_index, GError **error)
 {
   dbus_int32_t d_selected_child_index = selected_child_index;
-  AtspiAccessible *child = NULL;
+  DBusMessage *reply;
 
   g_return_val_if_fail (obj != NULL, NULL);
   
-  _atspi_dbus_call (obj, atspi_interface_selection, "GetSelectedChild", error, "i=>(so)", &d_selected_child_index, &child);
+  reply = _atspi_dbus_call_partial (obj, atspi_interface_selection,
+                                    "GetSelectedChild", error, "i",
+                                    d_selected_child_index);
 
-  return child;
+  return _atspi_dbus_return_accessible_from_message (reply);
 }
 
 /**

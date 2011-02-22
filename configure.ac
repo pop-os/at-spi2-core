@@ -1,4 +1,4 @@
-AC_INIT([at-spi2-core], [1.91.6.1], [accessibility-atspi@lists.linux-foundation.org])
+AC_INIT([at-spi2-core], [1.91.90], [accessibility-atspi@lists.linux-foundation.org])
 AC_PREREQ([2.59])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_MACRO_DIR([m4])
@@ -170,17 +170,6 @@ AC_SUBST(DBUS_SERVICES_DIR)
 GOBJECT_INTROSPECTION_CHECK([0.9.6])
 
 AC_SUBST(LIBTOOL_EXPORT_OPTIONS)
-
-AC_ARG_ENABLE([relocate],
-	[AS_HELP_STRING([--enable-relocate],
-		[Relocate to coexist with CORBA @<:@default=no@:>@])],
-	[enable_relocate="$enableval"],
-	[enable_relocate=no])
-if test x$enable_relocate = xyes ; then
-	AC_DEFINE(RELOCATE, , [Relocate to coexist with CORBA])
-fi
-AM_CONDITIONAL(RELOCATE, test x$enable_relocate = xyes)
-AC_SUBST(enable_relocate)
 
 dnl find sizes & alignments
 orig_CPPFLAGS=$CPPFLAGS
