@@ -304,13 +304,6 @@
     <function name="atspi_event_main ()" link="libatspi-atspi-misc.html#atspi-event-main"/>
     <function name="atspi_event_quit ()" link="libatspi-atspi-misc.html#atspi-event-quit"/>
     <function name="atspi_exit ()" link="libatspi-atspi-misc.html#atspi-exit"/>
-    <function name="ATSPI_CACHE_PARENT" link="libatspi-atspi-misc-private.html#ATSPI-CACHE-PARENT:CAPS"/>
-    <function name="ATSPI_CACHE_CHILDREN" link="libatspi-atspi-misc-private.html#ATSPI-CACHE-CHILDREN:CAPS"/>
-    <function name="ATSPI_CACHE_NAME" link="libatspi-atspi-misc-private.html#ATSPI-CACHE-NAME:CAPS"/>
-    <function name="ATSPI_CACHE_DESCRIPTION" link="libatspi-atspi-misc-private.html#ATSPI-CACHE-DESCRIPTION:CAPS"/>
-    <function name="ATSPI_CACHE_STATES" link="libatspi-atspi-misc-private.html#ATSPI-CACHE-STATES:CAPS"/>
-    <function name="ATSPI_CACHE_ROLE" link="libatspi-atspi-misc-private.html#ATSPI-CACHE-ROLE:CAPS"/>
-    <function name="ATSPI_CACHE_INTERFACES" link="libatspi-atspi-misc-private.html#ATSPI-CACHE-INTERFACES:CAPS"/>
     <function name="AtspiReference" link="libatspi-atspi-misc-private.html#AtspiReference"/>
     <function name="ATSPI_DBUS_NAME_REGISTRY" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-NAME-REGISTRY:CAPS"/>
     <function name="ATSPI_DBUS_PATH_REGISTRY" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-PATH-REGISTRY:CAPS"/>
@@ -361,6 +354,5 @@
     <function name="atspi_interface_text" link="libatspi-atspi-misc-private.html#atspi-interface-text"/>
     <function name="atspi_interface_cache" link="libatspi-atspi-misc-private.html#atspi-interface-cache"/>
     <function name="atspi_interface_value" link="libatspi-atspi-misc-private.html#atspi-interface-value"/>
-    <function name="atspi_dbus_handle_deviceEvent ()" link="libatspi-atspi-listener-private.html#atspi-dbus-handle-deviceEvent"/>
   </functions>
 </book>

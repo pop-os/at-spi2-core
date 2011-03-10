@@ -304,13 +304,6 @@
     <keyword type="function" name="atspi_event_main ()" link="libatspi-atspi-misc.html#atspi-event-main"/>
     <keyword type="function" name="atspi_event_quit ()" link="libatspi-atspi-misc.html#atspi-event-quit"/>
     <keyword type="function" name="atspi_exit ()" link="libatspi-atspi-misc.html#atspi-exit"/>
-    <keyword type="macro" name="ATSPI_CACHE_PARENT" link="libatspi-atspi-misc-private.html#ATSPI-CACHE-PARENT:CAPS"/>
-    <keyword type="macro" name="ATSPI_CACHE_CHILDREN" link="libatspi-atspi-misc-private.html#ATSPI-CACHE-CHILDREN:CAPS"/>
-    <keyword type="macro" name="ATSPI_CACHE_NAME" link="libatspi-atspi-misc-private.html#ATSPI-CACHE-NAME:CAPS"/>
-    <keyword type="macro" name="ATSPI_CACHE_DESCRIPTION" link="libatspi-atspi-misc-private.html#ATSPI-CACHE-DESCRIPTION:CAPS"/>
-    <keyword type="macro" name="ATSPI_CACHE_STATES" link="libatspi-atspi-misc-private.html#ATSPI-CACHE-STATES:CAPS"/>
-    <keyword type="macro" name="ATSPI_CACHE_ROLE" link="libatspi-atspi-misc-private.html#ATSPI-CACHE-ROLE:CAPS"/>
-    <keyword type="macro" name="ATSPI_CACHE_INTERFACES" link="libatspi-atspi-misc-private.html#ATSPI-CACHE-INTERFACES:CAPS"/>
     <keyword type="struct" name="AtspiReference" link="libatspi-atspi-misc-private.html#AtspiReference"/>
     <keyword type="macro" name="ATSPI_DBUS_NAME_REGISTRY" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-NAME-REGISTRY:CAPS"/>
     <keyword type="macro" name="ATSPI_DBUS_PATH_REGISTRY" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-PATH-REGISTRY:CAPS"/>
@@ -361,7 +354,6 @@
     <keyword type="variable" name="atspi_interface_text" link="libatspi-atspi-misc-private.html#atspi-interface-text"/>
     <keyword type="variable" name="atspi_interface_cache" link="libatspi-atspi-misc-private.html#atspi-interface-cache"/>
     <keyword type="variable" name="atspi_interface_value" link="libatspi-atspi-misc-private.html#atspi-interface-value"/>
-    <keyword type="function" name="atspi_dbus_handle_deviceEvent ()" link="libatspi-atspi-listener-private.html#atspi-dbus-handle-deviceEvent"/>
     <keyword type="constant" name="ATSPI_KEYLISTENER_NOSYNC" link="libatspi-atspi-types.html#ATSPI-KEYLISTENER-NOSYNC:CAPS"/>
     <keyword type="constant" name="ATSPI_KEYLISTENER_SYNCHRONOUS" link="libatspi-atspi-types.html#ATSPI-KEYLISTENER-SYNCHRONOUS:CAPS"/>
     <keyword type="constant" name="ATSPI_KEYLISTENER_CANCONSUME" link="libatspi-atspi-types.html#ATSPI-KEYLISTENER-CANCONSUME:CAPS"/>

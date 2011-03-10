@@ -20,14 +20,3 @@ atspi-listener-private
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### FUNCTION atspi_dbus_handle_deviceEvent ##### -->
-<para>
-
-</para>
-
-@bus: 
-@message: 
-@data: 
-@Returns: 
-
-

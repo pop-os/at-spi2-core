@@ -30,6 +30,7 @@ AtspiApplication
 @bus_name: 
 @bus: 
 @root: 
+@cache: 
 
 <!-- ##### STRUCT AtspiApplicationClass ##### -->
 <para>
