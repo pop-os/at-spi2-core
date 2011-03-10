@@ -428,13 +428,6 @@
 <ANCHOR id="libatspi-atspi-misc-private.synopsis" href="libatspi/libatspi-atspi-misc-private.html#libatspi-atspi-misc-private.synopsis">
 <ANCHOR id="libatspi-atspi-misc-private.description" href="libatspi/libatspi-atspi-misc-private.html#libatspi-atspi-misc-private.description">
 <ANCHOR id="libatspi-atspi-misc-private.details" href="libatspi/libatspi-atspi-misc-private.html#libatspi-atspi-misc-private.details">
-<ANCHOR id="ATSPI-CACHE-PARENT:CAPS" href="libatspi/libatspi-atspi-misc-private.html#ATSPI-CACHE-PARENT:CAPS">
-<ANCHOR id="ATSPI-CACHE-CHILDREN:CAPS" href="libatspi/libatspi-atspi-misc-private.html#ATSPI-CACHE-CHILDREN:CAPS">
-<ANCHOR id="ATSPI-CACHE-NAME:CAPS" href="libatspi/libatspi-atspi-misc-private.html#ATSPI-CACHE-NAME:CAPS">
-<ANCHOR id="ATSPI-CACHE-DESCRIPTION:CAPS" href="libatspi/libatspi-atspi-misc-private.html#ATSPI-CACHE-DESCRIPTION:CAPS">
-<ANCHOR id="ATSPI-CACHE-STATES:CAPS" href="libatspi/libatspi-atspi-misc-private.html#ATSPI-CACHE-STATES:CAPS">
-<ANCHOR id="ATSPI-CACHE-ROLE:CAPS" href="libatspi/libatspi-atspi-misc-private.html#ATSPI-CACHE-ROLE:CAPS">
-<ANCHOR id="ATSPI-CACHE-INTERFACES:CAPS" href="libatspi/libatspi-atspi-misc-private.html#ATSPI-CACHE-INTERFACES:CAPS">
 <ANCHOR id="AtspiReference" href="libatspi/libatspi-atspi-misc-private.html#AtspiReference">
 <ANCHOR id="ATSPI-DBUS-NAME-REGISTRY:CAPS" href="libatspi/libatspi-atspi-misc-private.html#ATSPI-DBUS-NAME-REGISTRY:CAPS">
 <ANCHOR id="ATSPI-DBUS-PATH-REGISTRY:CAPS" href="libatspi/libatspi-atspi-misc-private.html#ATSPI-DBUS-PATH-REGISTRY:CAPS">
@@ -489,7 +482,6 @@
 <ANCHOR id="libatspi-atspi-listener-private.synopsis" href="libatspi/libatspi-atspi-listener-private.html#libatspi-atspi-listener-private.synopsis">
 <ANCHOR id="libatspi-atspi-listener-private.description" href="libatspi/libatspi-atspi-listener-private.html#libatspi-atspi-listener-private.description">
 <ANCHOR id="libatspi-atspi-listener-private.details" href="libatspi/libatspi-atspi-listener-private.html#libatspi-atspi-listener-private.details">
-<ANCHOR id="atspi-dbus-handle-deviceEvent" href="libatspi/libatspi-atspi-listener-private.html#atspi-dbus-handle-deviceEvent">
 <ANCHOR id="annotation-glossterm-out" href="libatspi/annotation-glossary.html#annotation-glossterm-out">
 <ANCHOR id="annotation-glossterm-element-type" href="libatspi/annotation-glossary.html#annotation-glossterm-element-type">
 <ANCHOR id="annotation-glossterm-transfer full" href="libatspi/annotation-glossary.html#annotation-glossterm-transfer full">

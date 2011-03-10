@@ -20,55 +20,6 @@ atspi-misc-private
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### MACRO ATSPI_CACHE_PARENT ##### -->
-<para>
-
-</para>
-
-
-
-<!-- ##### MACRO ATSPI_CACHE_CHILDREN ##### -->
-<para>
-
-</para>
-
-
-
-<!-- ##### MACRO ATSPI_CACHE_NAME ##### -->
-<para>
-
-</para>
-
-
-
-<!-- ##### MACRO ATSPI_CACHE_DESCRIPTION ##### -->
-<para>
-
-</para>
-
-
-
-<!-- ##### MACRO ATSPI_CACHE_STATES ##### -->
-<para>
-
-</para>
-
-
-
-<!-- ##### MACRO ATSPI_CACHE_ROLE ##### -->
-<para>
-
-</para>
-
-
-
-<!-- ##### MACRO ATSPI_CACHE_INTERFACES ##### -->
-<para>
-
-</para>
-
-
-
 <!-- ##### STRUCT AtspiReference ##### -->
 <para>
 
