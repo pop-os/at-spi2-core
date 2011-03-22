@@ -75,9 +75,22 @@ License: LGPL-2+
 Files: atspi/atspi-stateset.*
 Copyright: ???, Mike Gorse requested on 2011-01-30
 License: ???, Mike Gorse requested on 2011-01-30
+ On Debian systems the full text of the GNU Library General Public License can
+ be found in the `/usr/share/common-licenses/LGPL-2' file.
+Files: atspi/atspi-gmain.c, atspi/atspi-gmain.h
+Copyright: Copyright 2002, 2003 CodeFactory AB
+Copyright: Copyright 2005 Red Hat, Inc.
+License: LGPL-2+
+ On Debian systems the full text of the GNU Library General Public License can
+ be found in the `/usr/share/common-licenses/LGPL-2' file.
 Files: dbind/*.[ch]
 Copyright: ???, Mike Gorse requested on 2011-01-30
 License: ???, Mike Gorse requested on 2011-01-30
+Files: bus/at-spi-bus-launcher.c
+Copyright: Copyright 2011 Red Hat, Inc.
+License: LGPL-2+
+ On Debian systems the full text of the GNU Library General Public License can
+ be found in the `/usr/share/common-licenses/LGPL-2' file.
 Files: debian/*
 Copyright: Copyright 2009, Mario Lang <mlang@debian.org>
 License: GPL-2
