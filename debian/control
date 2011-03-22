@@ -7,7 +7,7 @@ Vcs-Browser: http://git.debian.org/?p=pkg-a11y/at-spi2-core.git;a=summary
 Vcs-Git: git://git.debian.org/git/pkg-a11y/at-spi2-core.git
 Homepage: http://live.gnome.org/Accessibility/GNOME3
 Build-Depends: debhelper (>= 7.0.50),
-               libdbus-1-dev, libdbus-glib-1-dev, dbus,
+               libdbus-glib-1-dev, dbus,
                libglib2.0-dev,
                libxtst-dev,
                libgirepository1.0-dev,
