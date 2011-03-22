@@ -25,6 +25,7 @@
 
 #include "config.h"
 #include "dbind/dbind.h"
+#include "atspi/atspi.h"
 
 static int dbind_timeout = -1;
 
@@ -72,7 +73,7 @@ dbind_send_and_allow_reentry (DBusConnection * bus, DBusMessage * message, DBusE
     return dbus_connection_send_with_reply_and_block (bus, message, dbind_timeout, error);
 
   closure.reply = NULL;
-  dbus_connection_setup_with_g_main(bus, NULL);
+  atspi_dbus_connection_setup_with_g_main(bus, NULL);
   if (!dbus_connection_send_with_reply (bus, message, &pending, dbind_timeout))
       return NULL;
   if (!pending)

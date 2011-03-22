@@ -65,7 +65,8 @@ am_at_spi2_registryd_OBJECTS =  \
 	at_spi2_registryd-ucs2keysym.$(OBJEXT)
 at_spi2_registryd_OBJECTS = $(am_at_spi2_registryd_OBJECTS)
 am__DEPENDENCIES_1 =
-at_spi2_registryd_DEPENDENCIES = $(am__DEPENDENCIES_1) \
+at_spi2_registryd_DEPENDENCIES = ../atspi/libatspi.la \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
@@ -139,8 +140,6 @@ DBIND_ALIGNOF_DBUS_INT64_T = @DBIND_ALIGNOF_DBUS_INT64_T@
 DBIND_ALIGNOF_DOUBLE = @DBIND_ALIGNOF_DOUBLE@
 DBUS_CFLAGS = @DBUS_CFLAGS@
 DBUS_DAEMON = @DBUS_DAEMON@
-DBUS_GLIB_CFLAGS = @DBUS_GLIB_CFLAGS@
-DBUS_GLIB_LIBS = @DBUS_GLIB_LIBS@
 DBUS_LIBS = @DBUS_LIBS@
 DBUS_SERVICES_DIR = @DBUS_SERVICES_DIR@
 DEFS = @DEFS@
@@ -155,6 +154,8 @@ EGREP = @EGREP@
 EXEEXT = @EXEEXT@
 FGREP = @FGREP@
 GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
+GIO_CFLAGS = @GIO_CFLAGS@
+GIO_LIBS = @GIO_LIBS@
 GLIB_CFLAGS = @GLIB_CFLAGS@
 GLIB_LIBS = @GLIB_LIBS@
 GMSGFMT = @GMSGFMT@
@@ -285,15 +286,19 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 at_spi2_registryd_CFLAGS = \
 	$(GLIB_CFLAGS)		\
-	$(DBUS_GLIB_CFLAGS)	\
+	$(GIO_CFLAGS)		\
+	$(DBUS_CFLAGS)	\
 	$(GOBJ_CFLAGS)		\
 	$(ATK_CFLAGS)		\
 	-I$(top_srcdir)		\
-	-DATSPI_INTROSPECTION_PATH=\"$(pkgdatadir)/$(DEFAULT_ATSPI_INTROSPECTION_PATH)\"
+	-DATSPI_INTROSPECTION_PATH=\"$(pkgdatadir)/$(DEFAULT_ATSPI_INTROSPECTION_PATH)\" \
+	-Werror=implicit-function-declaration
 
 at_spi2_registryd_LDADD = \
+	../atspi/libatspi.la \
 	$(GLIB_LIBS)		\
-	$(DBUS_GLIB_LIBS)	\
+	$(GIO_LIBS)		\
+	$(DBUS_LIBS)	\
 	$(GOBJ_CFLAGS)		\
 	$(ATK_LIBS)		\
 	$(X_LIBS)		\
