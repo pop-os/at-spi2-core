@@ -30,7 +30,7 @@
 
 #include "atspi-private.h"
 #include "X11/Xlib.h"
-#include "dbus/dbus-glib.h"
+#include "atspi-gmain.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -805,71 +805,6 @@ spi_display_name (void)
   return canonical_display_name;
 }
 
-/* TODO: Avoid having duplicate functions for this here and in at-spi2-atk */
-static DBusConnection *
-get_accessibility_bus ()
-{
-  Atom AT_SPI_BUS;
-  Atom actual_type;
-  Display *bridge_display;
-  int actual_format;
-  unsigned char *data = NULL;
-  unsigned long nitems;
-  unsigned long leftover;
-
-  DBusConnection *bus = NULL;
-  DBusError error;
-
-  bridge_display = XOpenDisplay (spi_display_name ());
-  if (!bridge_display)
-    {
-      g_warning (_("AT-SPI: Could not get the display\n"));
-      return NULL;
-    }
-
-  AT_SPI_BUS = XInternAtom (bridge_display, "AT_SPI_BUS", False);
-  XGetWindowProperty (bridge_display,
-                      XDefaultRootWindow (bridge_display),
-                      AT_SPI_BUS, 0L,
-                      (long) BUFSIZ, False,
-                      (Atom) 31, &actual_type, &actual_format,
-                      &nitems, &leftover, &data);
-  XCloseDisplay (bridge_display);
-
-  dbus_error_init (&error);
-
-  if (data == NULL)
-    {
-      g_warning
-        (_("AT-SPI: Accessibility bus not found - Using session bus.\n"));
-      bus = dbus_bus_get (DBUS_BUS_SESSION, &error);
-      if (!bus)
-        {
-          g_warning (_("AT-SPI: Couldn't connect to bus: %s\n"), error.message);
-          return NULL;
-        }
-    }
-  else
-    {
-      bus = dbus_connection_open (data, &error);
-      if (!bus)
-        {
-          g_warning (_("AT-SPI: Couldn't connect to bus: %s\n"), error.message);
-          return NULL;
-        }
-      else
-        {
-          if (!dbus_bus_register (bus, &error))
-            {
-              g_warning (_("AT-SPI: Couldn't register with bus: %s\n"), error.message);
-              return NULL;
-            }
-        }
-    }
-
-  return bus;
-}
-
 /**
  * atspi_init:
  *
@@ -895,14 +830,11 @@ atspi_init (void)
   get_live_refs();
 
   dbus_error_init (&error);
-  bus = get_accessibility_bus ();
+  bus = atspi_get_a11y_bus ();
   if (!bus)
-  {
-    g_warning ("Couldn't get session bus");
     return 2;
-  }
   dbus_bus_register (bus, &error);
-  dbus_connection_setup_with_g_main(bus, g_main_context_default());
+  atspi_dbus_connection_setup_with_g_main(bus, g_main_context_default());
   dbus_connection_add_filter (bus, atspi_dbus_filter, NULL, NULL);
   dbind_set_timeout (1000);
   match = g_strdup_printf ("type='signal',interface='%s',member='AddAccessible'", atspi_interface_cache);
@@ -1318,3 +1250,111 @@ atspi_error_quark (void)
   return g_quark_from_static_string ("atspi_error");
 }
 
+/*
+ * Gets the IOR from the XDisplay.
+ */
+static char *
+get_accessibility_bus_address_x11 (void)
+{
+  Atom AT_SPI_BUS;
+  Atom actual_type;
+  Display *bridge_display;
+  int actual_format;
+  unsigned char *data = NULL;
+  unsigned long nitems;
+  unsigned long leftover;
+
+  bridge_display = XOpenDisplay (spi_display_name ());
+  if (!bridge_display)
+    {
+      g_warning ("Could not open X display");
+      return NULL;
+    }
+      
+  AT_SPI_BUS = XInternAtom (bridge_display, "AT_SPI_BUS", False);
+  XGetWindowProperty (bridge_display,
+		      XDefaultRootWindow (bridge_display),
+		      AT_SPI_BUS, 0L,
+		      (long) BUFSIZ, False,
+		      (Atom) 31, &actual_type, &actual_format,
+		      &nitems, &leftover, &data);
+  XCloseDisplay (bridge_display);
+
+  return g_strdup (data);
+}
+
+static char *
+get_accessibility_bus_address_dbus (void)
+{
+  DBusConnection *session_bus = NULL;
+  DBusMessage *message;
+  DBusMessage *reply;
+  char *address = NULL;
+
+  session_bus = dbus_bus_get (DBUS_BUS_SESSION, NULL);
+  if (!session_bus)
+    return NULL;
+
+  message = dbus_message_new_method_call ("org.a11y.Bus",
+					  "/org/a11y/bus",
+					  "org.a11y.Bus",
+					  "GetAddress");
+
+  reply = dbus_connection_send_with_reply_and_block (session_bus,
+						     message,
+						     -1,
+						     NULL);
+  dbus_message_unref (message);
+
+  if (!reply)
+    return NULL;
+  
+  {
+    const char *tmp_address;
+    if (!dbus_message_get_args (reply,
+				NULL,
+				DBUS_TYPE_STRING,
+				&tmp_address,
+				DBUS_TYPE_INVALID))
+      {
+	dbus_message_unref (reply);
+	return NULL;
+      }
+    address = g_strdup (tmp_address);
+    dbus_message_unref (reply);
+  }
+  
+  return address;
+}
+
+DBusConnection *
+atspi_get_a11y_bus (void)
+{
+  DBusConnection *bus = NULL;
+  DBusError error;
+  char *address;
+
+  address = get_accessibility_bus_address_x11 ();
+  if (!address)
+    address = get_accessibility_bus_address_dbus ();
+  if (!address)
+    return NULL;
+
+  dbus_error_init (&error);
+  bus = dbus_connection_open (address, &error);
+  if (!bus)
+    {
+      g_warning ("Couldn't connect to accessibility bus: %s", error.message);
+      return NULL;
+    }
+  else
+    {
+      if (!dbus_bus_register (bus, &error))
+	{
+	  g_warning ("Couldn't register with accessibility bus: %s", error.message);
+	  return NULL;
+	}
+    }
+  
+  return bus;
+}

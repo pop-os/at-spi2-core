@@ -57,7 +57,7 @@ am__DEPENDENCIES_1 =
 libdbind_la_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am_libdbind_la_OBJECTS = dbind.lo dbind-any.lo
 libdbind_la_OBJECTS = $(am_libdbind_la_OBJECTS)
-am_dbtest_OBJECTS = dbtest.$(OBJEXT)
+am_dbtest_OBJECTS = dbtest.$(OBJEXT) atspi-gmain.$(OBJEXT)
 dbtest_OBJECTS = $(am_dbtest_OBJECTS)
 dbtest_DEPENDENCIES = $(am__DEPENDENCIES_1)
 dbtest_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
@@ -109,8 +109,6 @@ DBIND_ALIGNOF_DBUS_INT64_T = @DBIND_ALIGNOF_DBUS_INT64_T@
 DBIND_ALIGNOF_DOUBLE = @DBIND_ALIGNOF_DOUBLE@
 DBUS_CFLAGS = @DBUS_CFLAGS@
 DBUS_DAEMON = @DBUS_DAEMON@
-DBUS_GLIB_CFLAGS = @DBUS_GLIB_CFLAGS@
-DBUS_GLIB_LIBS = @DBUS_GLIB_LIBS@
 DBUS_LIBS = @DBUS_LIBS@
 DBUS_SERVICES_DIR = @DBUS_SERVICES_DIR@
 DEFS = @DEFS@
@@ -125,6 +123,8 @@ EGREP = @EGREP@
 EXEEXT = @EXEEXT@
 FGREP = @FGREP@
 GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
+GIO_CFLAGS = @GIO_CFLAGS@
+GIO_LIBS = @GIO_LIBS@
 GLIB_CFLAGS = @GLIB_CFLAGS@
 GLIB_LIBS = @GLIB_LIBS@
 GMSGFMT = @GMSGFMT@
@@ -259,7 +259,8 @@ AM_CPPFLAGS = \
 	-I$(top_srcdir) \
 	$(WARN_CFLAGS) \
 	$(DBUS_CFLAGS) \
-	$(GLIB_CFLAGS)
+	$(GLIB_CFLAGS) \
+	-Werror=implicit-function-declaration
 
 libdbind_la_SOURCES = \
         dbind-config.h \
@@ -269,9 +270,9 @@ libdbind_la_SOURCES = \
 	dbind-any.c
 
 libdbind_la_LIBADD = $(DBUS_LIBS) $(GLIB_LIBS)
-dbtest_SOURCES = dbtest.c
+dbtest_SOURCES = dbtest.c ../atspi/atspi-gmain.c
 dbtest_LDFLAGS = libdbind.la
-dbtest_LDADD = $(DBUS_GLIB_LIBS)
+dbtest_LDADD = $(DBUS_LIBS)
 all: all-am
 
 .SUFFIXES:
@@ -338,6 +339,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/atspi-gmain.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dbind-any.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dbind.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dbtest.Po@am__quote@
@@ -362,6 +364,20 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+atspi-gmain.o: ../atspi/atspi-gmain.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT atspi-gmain.o -MD -MP -MF $(DEPDIR)/atspi-gmain.Tpo -c -o atspi-gmain.o `test -f '../atspi/atspi-gmain.c' || echo '$(srcdir)/'`../atspi/atspi-gmain.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/atspi-gmain.Tpo $(DEPDIR)/atspi-gmain.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='../atspi/atspi-gmain.c' object='atspi-gmain.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o atspi-gmain.o `test -f '../atspi/atspi-gmain.c' || echo '$(srcdir)/'`../atspi/atspi-gmain.c
+
+atspi-gmain.obj: ../atspi/atspi-gmain.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT atspi-gmain.obj -MD -MP -MF $(DEPDIR)/atspi-gmain.Tpo -c -o atspi-gmain.obj `if test -f '../atspi/atspi-gmain.c'; then $(CYGPATH_W) '../atspi/atspi-gmain.c'; else $(CYGPATH_W) '$(srcdir)/../atspi/atspi-gmain.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/atspi-gmain.Tpo $(DEPDIR)/atspi-gmain.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='../atspi/atspi-gmain.c' object='atspi-gmain.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o atspi-gmain.obj `if test -f '../atspi/atspi-gmain.c'; then $(CYGPATH_W) '../atspi/atspi-gmain.c'; else $(CYGPATH_W) '$(srcdir)/../atspi/atspi-gmain.c'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo

@@ -45,7 +45,7 @@
                                                          <em class="parameter"><code><span class="type">GArray</span> *key_set</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-types.html#AtspiKeyMaskType" title="AtspiKeyMaskType"><span class="type">AtspiKeyMaskType</span></a> modmask</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-types.html#AtspiKeyEventMask" title="AtspiKeyEventMask"><span class="type">AtspiKeyEventMask</span></a> event_types</code></em>,
-                                                         <em class="parameter"><code><a class="link" href="libatspi-atspi-types.html#AtspiKeyListenerSyncType" title="enum AtspiKeyListenerSyncType"><span class="type">AtspiKeyListenerSyncType</span></a> sync_type</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> sync_type</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
 <span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-registry.html#atspi-deregister-keystroke-listener" title="atspi_deregister_keystroke_listener ()">atspi_deregister_keystroke_listener</a> (<em class="parameter"><code><a class="link" href="AtspiDeviceListener.html" title="AtspiDeviceListener"><span class="type">AtspiDeviceListener</span></a> *listener</code></em>,
                                                          <em class="parameter"><code><span class="type">GArray</span> *key_set</code></em>,
@@ -164,7 +164,7 @@ Not Yet Implemented : this implementation always returns a single
                                                          <em class="parameter"><code><span class="type">GArray</span> *key_set</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-types.html#AtspiKeyMaskType" title="AtspiKeyMaskType"><span class="type">AtspiKeyMaskType</span></a> modmask</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-types.html#AtspiKeyEventMask" title="AtspiKeyEventMask"><span class="type">AtspiKeyEventMask</span></a> event_types</code></em>,
-                                                         <em class="parameter"><code><a class="link" href="libatspi-atspi-types.html#AtspiKeyListenerSyncType" title="enum AtspiKeyListenerSyncType"><span class="type">AtspiKeyListenerSyncType</span></a> sync_type</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> sync_type</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Register a listener for keystroke events, either pre-emptively for

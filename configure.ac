@@ -1,4 +1,4 @@
-AC_INIT([at-spi2-core], [1.91.91], [accessibility-atspi@lists.linux-foundation.org])
+AC_INIT([at-spi2-core], [1.91.92], [accessibility-atspi@lists.linux-foundation.org])
 AC_PREREQ([2.59])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_MACRO_DIR([m4])
@@ -47,13 +47,17 @@ AC_CHECK_LIB([glib-2.0], [g_ptr_array_new_with_free_func], [],
 		[g_ptr_array_new_with_free_func. Please upgrade glib.])],
 	[$GLIB_LIBS])
 
-PKG_CHECK_MODULES(DBUS_GLIB, [dbus-glib-1 >= 0.7.0])
-AC_SUBST(DBUS_GLIB_LIBS)
-AC_SUBST(DBUS_GLIB_CFLAGS)
+PKG_CHECK_MODULES(GIO, [gio-2.0 >= 2.26.0])
+AC_SUBST(GIO_LIBS)
+AC_SUBST(GIO_CFLAGS)
 
 PKG_CHECK_MODULES(GOBJ, [gobject-2.0 >= 2.0.0])
 AC_SUBST(GOBJ_LIBS)
 AC_SUBST(GOBJ_CFLAGS)
+
+PKG_CHECK_MODULES(GIO, [gio-2.0 >= 2.28])
+AC_SUBST(GIO_LIBS)
+AC_SUBST(GIO_CFLAGS)
 
 # --------------------------------------------------------------------
 # Find DL functionality
@@ -192,10 +196,11 @@ AC_CONFIG_FILES([Makefile po/Makefile.in
 dbind/dbind-config.h
 	atspi/Makefile
 	registryd/Makefile
-	bus/at-spi-dbus-bus
 	bus/Makefile
 doc/Makefile
 doc/libatspi/Makefile
+atspi-2.pc
+atspi-2-uninstalled.pc
 ])
 
 AC_OUTPUT

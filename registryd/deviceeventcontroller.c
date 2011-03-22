@@ -35,6 +35,7 @@
 #include <sys/time.h>
 
 #include <X11/Xlib.h>
+#include <X11/Xutil.h>
 #include <X11/extensions/XTest.h>
 #include <X11/XKBlib.h>
 #define XK_MISCELLANY
@@ -56,6 +57,7 @@
 #include "de-types.h"
 #include "de-marshaller.h"
 #include "display.h"
+#include "event-source.h"
 
 #include "deviceeventcontroller.h"
 #include "reentrant-list.h"
@@ -859,10 +861,13 @@ spi_listener_clone_free (DEControllerListener *clone)
 static void
 spi_dec_listener_free (DEControllerListener    *listener)
 {
-  g_free (listener->bus_name);
-  g_free (listener->path);
   if (listener->type == SPI_DEVICE_TYPE_KBD) 
     spi_key_listener_data_free ((DEControllerKeyListener *) listener);
+  else
+  {
+    g_free (listener->bus_name);
+    g_free (listener->path);
+  }
 }
 
 static void

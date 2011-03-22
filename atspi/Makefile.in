@@ -78,8 +78,8 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(girdir)" \
 LTLIBRARIES = $(lib_LTLIBRARIES)
 am__DEPENDENCIES_1 =
 libatspi_la_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(top_builddir)/dbind/libdbind.la
-am__objects_1 =
+	$(am__DEPENDENCIES_1) $(top_builddir)/dbind/libdbind.la
+am__objects_1 = libatspi_la-atspi-gmain.lo
 am_libatspi_la_OBJECTS = $(am__objects_1) \
 	libatspi_la-atspi-accessible.lo libatspi_la-atspi-action.lo \
 	libatspi_la-atspi-application.lo \
@@ -145,8 +145,6 @@ DBIND_ALIGNOF_DBUS_INT64_T = @DBIND_ALIGNOF_DBUS_INT64_T@
 DBIND_ALIGNOF_DOUBLE = @DBIND_ALIGNOF_DOUBLE@
 DBUS_CFLAGS = @DBUS_CFLAGS@
 DBUS_DAEMON = @DBUS_DAEMON@
-DBUS_GLIB_CFLAGS = @DBUS_GLIB_CFLAGS@
-DBUS_GLIB_LIBS = @DBUS_GLIB_LIBS@
 DBUS_LIBS = @DBUS_LIBS@
 DBUS_SERVICES_DIR = @DBUS_SERVICES_DIR@
 DEFS = @DEFS@
@@ -161,6 +159,8 @@ EGREP = @EGREP@
 EXEEXT = @EXEEXT@
 FGREP = @FGREP@
 GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
+GIO_CFLAGS = @GIO_CFLAGS@
+GIO_LIBS = @GIO_LIBS@
 GLIB_CFLAGS = @GLIB_CFLAGS@
 GLIB_LIBS = @GLIB_LIBS@
 GMSGFMT = @GMSGFMT@
@@ -291,11 +291,15 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 lib_LTLIBRARIES = libatspi.la
 libatspi_la_LDFLAGS = @LDFLAGS@ @LT_VERSION_INFO@ @LIBTOOL_EXPORT_OPTIONS@ -no-undefined
-libatspi_la_CFLAGS = $(DBUS_GLIB_CFLAGS) \
+libatspi_la_CFLAGS = $(DBUS_CFLAGS) \
 		    $(DBIND_CFLAGS)     \
-                    -I$(top_srcdir)
+		    $(GLIB_CFLAGS)     \
+		    -I$(top_srcdir)/registryd \
+                    -I$(top_srcdir) \
+	-Werror=implicit-function-declaration
 
-libatspi_la_LIBADD = $(DBUS_GLIB_LIBS) \
+libatspi_la_LIBADD = $(DBUS_LIBS) \
+	$(GOBJ_LIBS) \
 	$(X_LIBS) \
 	$(top_builddir)/dbind/libdbind.la
 
@@ -314,6 +318,8 @@ libatspiinclude_HEADERS = \
 	atspi-editabletext.h \
 	atspi-event-listener.h \
 	atspi-event-listener-private.h \
+atspi-gmain.c \
+atspi-gmain.h \
 	atspi-hyperlink.h \
 	atspi-hypertext.h \
 	atspi-image.h \
@@ -484,6 +490,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libatspi_la-atspi-document.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libatspi_la-atspi-editabletext.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libatspi_la-atspi-event-listener.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libatspi_la-atspi-gmain.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libatspi_la-atspi-hyperlink.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libatspi_la-atspi-hypertext.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libatspi_la-atspi-image.Plo@am__quote@
@@ -518,6 +525,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+libatspi_la-atspi-gmain.lo: atspi-gmain.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libatspi_la_CFLAGS) $(CFLAGS) -MT libatspi_la-atspi-gmain.lo -MD -MP -MF $(DEPDIR)/libatspi_la-atspi-gmain.Tpo -c -o libatspi_la-atspi-gmain.lo `test -f 'atspi-gmain.c' || echo '$(srcdir)/'`atspi-gmain.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libatspi_la-atspi-gmain.Tpo $(DEPDIR)/libatspi_la-atspi-gmain.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='atspi-gmain.c' object='libatspi_la-atspi-gmain.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libatspi_la_CFLAGS) $(CFLAGS) -c -o libatspi_la-atspi-gmain.lo `test -f 'atspi-gmain.c' || echo '$(srcdir)/'`atspi-gmain.c
 
 libatspi_la-atspi-accessible.lo: atspi-accessible.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libatspi_la_CFLAGS) $(CFLAGS) -MT libatspi_la-atspi-accessible.lo -MD -MP -MF $(DEPDIR)/libatspi_la-atspi-accessible.Tpo -c -o libatspi_la-atspi-accessible.lo `test -f 'atspi-accessible.c' || echo '$(srcdir)/'`atspi-accessible.c
