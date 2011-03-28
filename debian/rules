@@ -2,6 +2,18 @@
 %:
 	dh $@
 
+<<<<<<< HEAD
+=======
+override_dh_auto_configure:
+	dh_auto_configure -- --enable-introspection
+
+override_dh_auto_install:
+	dh_auto_install
+	for file in $$(find debian/tmp/usr/lib/ -name "*.la"); do \
+		sed -i "/dependency_libs/ s/'.*'/''/" $$file ; \
+	done
+
+>>>>>>> da18c2a... Clean dependency_libs in .la files, thanks to Steve Langasek
 override_dh_auto_test:
 
 override_dh_makeshlibs:
