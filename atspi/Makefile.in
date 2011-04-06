@@ -221,6 +221,8 @@ PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
+PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
 RANLIB = @RANLIB@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
@@ -974,7 +976,7 @@ uninstall-am: uninstall-girDATA uninstall-libLTLIBRARIES \
 @HAVE_INTROSPECTION_TRUE@		--libtool="$(top_builddir)/libtool" \
 @HAVE_INTROSPECTION_TRUE@		--library=libatspi.la \
 @HAVE_INTROSPECTION_TRUE@		--library=$(top_builddir)/dbind/libdbind.la \
-@HAVE_INTROSPECTION_TRUE@		--pkg dbus-glib-1 \
+@HAVE_INTROSPECTION_TRUE@		--pkg dbus-1 \
 @HAVE_INTROSPECTION_TRUE@		--warn-all \
 @HAVE_INTROSPECTION_TRUE@		--output $@ \
 @HAVE_INTROSPECTION_TRUE@		$(addprefix $(srcdir)/, $(INTROSPECTION_FILES))
