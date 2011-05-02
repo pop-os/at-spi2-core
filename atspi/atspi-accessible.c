@@ -719,6 +719,21 @@ atspi_accessible_get_application (AtspiAccessible *obj, GError **error)
   for (;;)
   {
     parent = atspi_accessible_get_parent (obj, NULL);
+    if (!parent && obj->parent.app &&
+        atspi_accessible_get_role (obj, NULL) != ATSPI_ROLE_APPLICATION)
+    {
+      AtspiAccessible *root = g_object_ref (obj->parent.app->root);
+      if (root)
+      {
+        g_object_unref (obj);
+        if (atspi_accessible_get_role (root, NULL) == ATSPI_ROLE_DESKTOP_FRAME)
+        {
+          g_object_unref (root);
+          return NULL;
+        }
+        return root;
+      }
+    }
     if (!parent || parent == obj ||
         atspi_accessible_get_role (parent, NULL) == ATSPI_ROLE_DESKTOP_FRAME)
     return obj;
@@ -772,6 +787,29 @@ atspi_accessible_get_toolkit_version (AtspiAccessible *obj, GError **error)
       return NULL;
   return g_strdup (ret);
 }
+/**
+ * atspi_accessible_get_toolkit_version:
+ * @obj: a pointer to the #AtspiAccessible object on which to operate.
+ *
+ * Get the application id for a #AtspiAccessible object.
+ * Only works on application root objects.
+ *
+ * Returns: a gint indicating the id for the #AtspiAccessible object.
+ * or -1 on exception
+ **/
+gint
+atspi_accessible_get_id (AtspiAccessible *obj, GError **error)
+{
+  gint ret = -1;
+
+  g_return_val_if_fail (obj != NULL, -1);
+
+  if (!_atspi_dbus_get_property (obj, atspi_interface_application, "Id", error, "i", &ret))
+      return -1;
+  return ret;
+}
+
+
 /* Interface query methods */
 
 static gboolean

@@ -1,3 +1,4 @@
+<ONLINE href="http://[SERVER]/libatspi/index.html">
 <ANCHOR id="libatspi-atspi-text" href="libatspi/libatspi-atspi-text.html">
 <ANCHOR id="libatspi-atspi-text.synopsis" href="libatspi/libatspi-atspi-text.html#libatspi-atspi-text.synopsis">
 <ANCHOR id="AtspiText" href="libatspi/libatspi-atspi-text.html#AtspiText">
@@ -484,4 +485,5 @@
 <ANCHOR id="libatspi-atspi-listener-private.details" href="libatspi/libatspi-atspi-listener-private.html#libatspi-atspi-listener-private.details">
 <ANCHOR id="annotation-glossterm-out" href="libatspi/annotation-glossary.html#annotation-glossterm-out">
 <ANCHOR id="annotation-glossterm-element-type" href="libatspi/annotation-glossary.html#annotation-glossterm-element-type">
+<ANCHOR id="annotation-glossterm-scope call" href="libatspi/annotation-glossary.html#annotation-glossterm-scope call">
 <ANCHOR id="annotation-glossterm-transfer full" href="libatspi/annotation-glossary.html#annotation-glossterm-transfer full">
