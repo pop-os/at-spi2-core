@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="[Insert title here]">
 <link rel="prev" href="ch01.html" title="[Insert title here]">
 <link rel="next" href="AtspiStateSet.html" title="AtspiStateSet">
-<meta name="generator" content="GTK-Doc V1.14 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.15 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -46,92 +46,92 @@
 <a class="link" href="libatspi-atspi-text.html#AtspiRange" title="AtspiRange"><span class="returnvalue">AtspiRange</span></a> *        <a class="link" href="libatspi-atspi-text.html#atspi-range-copy" title="atspi_range_copy ()">atspi_range_copy</a>                    (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiRange" title="AtspiRange"><span class="type">AtspiRange</span></a> *src</code></em>);
                     <a class="link" href="libatspi-atspi-text.html#AtspiTextRange" title="AtspiTextRange">AtspiTextRange</a>;
 #define             <a class="link" href="libatspi-atspi-text.html#ATSPI-TYPE-TEXT-RANGE:CAPS" title="ATSPI_TYPE_TEXT_RANGE">ATSPI_TYPE_TEXT_RANGE</a>
-<span class="returnvalue">GType</span>               <a class="link" href="libatspi-atspi-text.html#atspi-text-get-type" title="atspi_text_get_type ()">atspi_text_get_type</a>                 ();
+<a href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"><span class="returnvalue">GType</span></a>               <a class="link" href="libatspi-atspi-text.html#atspi-text-get-type" title="atspi_text_get_type ()">atspi_text_get_type</a>                 ();
                     <a class="link" href="libatspi-atspi-text.html#AtspiText-struct" title="AtspiText">AtspiText</a>;
-<span class="returnvalue">GType</span>               <a class="link" href="libatspi-atspi-text.html#atspi-text-range-get-type" title="atspi_text_range_get_type ()">atspi_text_range_get_type</a>           ();
-<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-text.html#atspi-text-get-character-count" title="atspi_text_get_character_count ()">atspi_text_get_character_count</a>      (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gchar</span> *             <a class="link" href="libatspi-atspi-text.html#atspi-text-get-text" title="atspi_text_get_text ()">atspi_text_get_text</a>                 (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> start_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> end_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-text.html#atspi-text-get-caret-offset" title="atspi_text_get_caret_offset ()">atspi_text_get_caret_offset</a>         (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">GHashTable</span> *        <a class="link" href="libatspi-atspi-text.html#atspi-text-get-attributes" title="atspi_text_get_attributes ()">atspi_text_get_attributes</a>           (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> *start_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> *end_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">GHashTable</span> *        <a class="link" href="libatspi-atspi-text.html#atspi-text-get-attribute-run" title="atspi_text_get_attribute_run ()">atspi_text_get_attribute_run</a>        (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">gboolean</span> include_defaults</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> *start_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> *end_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gchar</span> *             <a class="link" href="libatspi-atspi-text.html#atspi-text-get-attribute-value" title="atspi_text_get_attribute_value ()">atspi_text_get_attribute_value</a>      (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">gchar</span> *attribute_name</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">GHashTable</span> *        <a class="link" href="libatspi-atspi-text.html#atspi-text-get-default-attributes" title="atspi_text_get_default_attributes ()">atspi_text_get_default_attributes</a>   (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-text.html#atspi-text-set-caret-offset" title="atspi_text_set_caret_offset ()">atspi_text_set_caret_offset</a>         (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> new_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<a href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"><span class="returnvalue">GType</span></a>               <a class="link" href="libatspi-atspi-text.html#atspi-text-range-get-type" title="atspi_text_range_get_type ()">atspi_text_range_get_type</a>           ();
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="libatspi-atspi-text.html#atspi-text-get-character-count" title="atspi_text_get_character_count ()">atspi_text_get_character_count</a>      (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="libatspi-atspi-text.html#atspi-text-get-text" title="atspi_text_get_text ()">atspi_text_get_text</a>                 (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> start_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> end_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="libatspi-atspi-text.html#atspi-text-get-caret-offset" title="atspi_text_get_caret_offset ()">atspi_text_get_caret_offset</a>         (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#GHashTable"><span class="returnvalue">GHashTable</span></a> *        <a class="link" href="libatspi-atspi-text.html#atspi-text-get-attributes" title="atspi_text_get_attributes ()">atspi_text_get_attributes</a>           (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> *start_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> *end_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#GHashTable"><span class="returnvalue">GHashTable</span></a> *        <a class="link" href="libatspi-atspi-text.html#atspi-text-get-attribute-run" title="atspi_text_get_attribute_run ()">atspi_text_get_attribute_run</a>        (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> include_defaults</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> *start_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> *end_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="libatspi-atspi-text.html#atspi-text-get-attribute-value" title="atspi_text_get_attribute_value ()">atspi_text_get_attribute_value</a>      (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *attribute_name</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#GHashTable"><span class="returnvalue">GHashTable</span></a> *        <a class="link" href="libatspi-atspi-text.html#atspi-text-get-default-attributes" title="atspi_text_get_default_attributes ()">atspi_text_get_default_attributes</a>   (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-text.html#atspi-text-set-caret-offset" title="atspi_text_set_caret_offset ()">atspi_text_set_caret_offset</a>         (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> new_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 <a class="link" href="libatspi-atspi-text.html#AtspiTextRange" title="AtspiTextRange"><span class="returnvalue">AtspiTextRange</span></a> *    <a class="link" href="libatspi-atspi-text.html#atspi-text-get-text-before-offset" title="atspi_text_get_text_before_offset ()">atspi_text_get_text_before_offset</a>   (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> offset</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiTextBoundaryType" title="enum AtspiTextBoundaryType"><span class="type">AtspiTextBoundaryType</span></a> type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 <a class="link" href="libatspi-atspi-text.html#AtspiTextRange" title="AtspiTextRange"><span class="returnvalue">AtspiTextRange</span></a> *    <a class="link" href="libatspi-atspi-text.html#atspi-text-get-text-at-offset" title="atspi_text_get_text_at_offset ()">atspi_text_get_text_at_offset</a>       (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> offset</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiTextBoundaryType" title="enum AtspiTextBoundaryType"><span class="type">AtspiTextBoundaryType</span></a> type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 <a class="link" href="libatspi-atspi-text.html#AtspiTextRange" title="AtspiTextRange"><span class="returnvalue">AtspiTextRange</span></a> *    <a class="link" href="libatspi-atspi-text.html#atspi-text-get-text-after-offset" title="atspi_text_get_text_after_offset ()">atspi_text_get_text_after_offset</a>    (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> offset</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiTextBoundaryType" title="enum AtspiTextBoundaryType"><span class="type">AtspiTextBoundaryType</span></a> type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">guint</span>               <a class="link" href="libatspi-atspi-text.html#atspi-text-get-character-at-offset" title="atspi_text_get_character_at_offset ()">atspi_text_get_character_at_offset</a>  (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               <a class="link" href="libatspi-atspi-text.html#atspi-text-get-character-at-offset" title="atspi_text_get_character_at_offset ()">atspi_text_get_character_at_offset</a>  (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 <a class="link" href="libatspi-atspi-component.html#AtspiRect" title="AtspiRect"><span class="returnvalue">AtspiRect</span></a> *         <a class="link" href="libatspi-atspi-text.html#atspi-text-get-character-extents" title="atspi_text_get_character_extents ()">atspi_text_get_character_extents</a>    (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> offset</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCoordType" title="enum AtspiCoordType"><span class="type">AtspiCoordType</span></a> type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-text.html#atspi-text-get-offset-at-point" title="atspi_text_get_offset_at_point ()">atspi_text_get_offset_at_point</a>      (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> x</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> y</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="libatspi-atspi-text.html#atspi-text-get-offset-at-point" title="atspi_text_get_offset_at_point ()">atspi_text_get_offset_at_point</a>      (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> x</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> y</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCoordType" title="enum AtspiCoordType"><span class="type">AtspiCoordType</span></a> type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 <a class="link" href="libatspi-atspi-component.html#AtspiRect" title="AtspiRect"><span class="returnvalue">AtspiRect</span></a> *         <a class="link" href="libatspi-atspi-text.html#atspi-text-get-range-extents" title="atspi_text_get_range_extents ()">atspi_text_get_range_extents</a>        (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> start_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> end_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> start_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> end_offset</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCoordType" title="enum AtspiCoordType"><span class="type">AtspiCoordType</span></a> type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">GArray</span> *            <a class="link" href="libatspi-atspi-text.html#atspi-text-get-bounded-ranges" title="atspi_text_get_bounded_ranges ()">atspi_text_get_bounded_ranges</a>       (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> x</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> y</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> width</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> height</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            <a class="link" href="libatspi-atspi-text.html#atspi-text-get-bounded-ranges" title="atspi_text_get_bounded_ranges ()">atspi_text_get_bounded_ranges</a>       (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> x</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> y</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> width</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> height</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCoordType" title="enum AtspiCoordType"><span class="type">AtspiCoordType</span></a> type</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiTextClipType" title="enum AtspiTextClipType"><span class="type">AtspiTextClipType</span></a> clipTypeX</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiTextClipType" title="enum AtspiTextClipType"><span class="type">AtspiTextClipType</span></a> clipTypeY</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-text.html#atspi-text-get-n-selections" title="atspi_text_get_n_selections ()">atspi_text_get_n_selections</a>         (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="libatspi-atspi-text.html#atspi-text-get-n-selections" title="atspi_text_get_n_selections ()">atspi_text_get_n_selections</a>         (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 <a class="link" href="libatspi-atspi-text.html#AtspiRange" title="AtspiRange"><span class="returnvalue">AtspiRange</span></a> *        <a class="link" href="libatspi-atspi-text.html#atspi-text-get-selection" title="atspi_text_get_selection ()">atspi_text_get_selection</a>            (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> selection_num</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-text.html#atspi-text-add-selection" title="atspi_text_add_selection ()">atspi_text_add_selection</a>            (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> start_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> end_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-text.html#atspi-text-remove-selection" title="atspi_text_remove_selection ()">atspi_text_remove_selection</a>         (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> selection_num</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-text.html#atspi-text-set-selection" title="atspi_text_set_selection ()">atspi_text_set_selection</a>            (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> selection_num</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> start_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> end_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> selection_num</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-text.html#atspi-text-add-selection" title="atspi_text_add_selection ()">atspi_text_add_selection</a>            (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> start_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> end_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-text.html#atspi-text-remove-selection" title="atspi_text_remove_selection ()">atspi_text_remove_selection</a>         (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> selection_num</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-text.html#atspi-text-set-selection" title="atspi_text_set_selection ()">atspi_text_set_selection</a>            (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> selection_num</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> start_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> end_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 </pre>
 </div>
 <div class="refsect1" title="Object Hierarchy">
@@ -170,7 +170,7 @@ AtspiText is implemented by
 <pre class="programlisting">#define ATSPI_TYPE_RANGE atspi_range_get_type ()
 </pre>
 <p>
-The <span class="type">GType</span> for a boxed type holding a range within a text bock.
+The <a href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> for a boxed type holding a range within a text bock.
 </p>
 </div>
 <hr>
@@ -213,13 +213,13 @@ The <span class="type">GType</span> for a boxed type holding a range within a te
 <pre class="programlisting">#define ATSPI_TYPE_TEXT_RANGE atspi_text_range_get_type ()
 </pre>
 <p>
-The <span class="type">GType</span> for a boxed type holding a range within a text bock.
+The <a href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"><span class="type">GType</span></a> for a boxed type holding a range within a text bock.
 </p>
 </div>
 <hr>
 <div class="refsect2" title="atspi_text_get_type ()">
 <a name="atspi-text-get-type"></a><h3>atspi_text_get_type ()</h3>
-<pre class="programlisting"><span class="returnvalue">GType</span>               atspi_text_get_type                 ();</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"><span class="returnvalue">GType</span></a>               atspi_text_get_type                 ();</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -241,7 +241,7 @@ The <span class="type">GType</span> for a boxed type holding a range within a te
 <hr>
 <div class="refsect2" title="atspi_text_range_get_type ()">
 <a name="atspi-text-range-get-type"></a><h3>atspi_text_range_get_type ()</h3>
-<pre class="programlisting"><span class="returnvalue">GType</span>               atspi_text_range_get_type           ();</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"><span class="returnvalue">GType</span></a>               atspi_text_range_get_type           ();</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -256,8 +256,8 @@ The <span class="type">GType</span> for a boxed type holding a range within a te
 <hr>
 <div class="refsect2" title="atspi_text_get_character_count ()">
 <a name="atspi-text-get-character-count"></a><h3>atspi_text_get_character_count ()</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_text_get_character_count      (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_text_get_character_count      (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get the character count of an <span class="type">AccessibleText</span> object.
 </p>
@@ -286,10 +286,10 @@ Get the character count of an <span class="type">AccessibleText</span> object.
 <hr>
 <div class="refsect2" title="atspi_text_get_text ()">
 <a name="atspi-text-get-text"></a><h3>atspi_text_get_text ()</h3>
-<pre class="programlisting"><span class="returnvalue">gchar</span> *             atspi_text_get_text                 (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> start_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> end_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             atspi_text_get_text                 (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> start_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> end_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get a range of text from an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object.  The number of bytes
          in the returned string may exceed end_offset-start_offset, since
@@ -330,8 +330,8 @@ Get a range of text from an <a class="link" href="libatspi-atspi-text.html#Atspi
 <hr>
 <div class="refsect2" title="atspi_text_get_caret_offset ()">
 <a name="atspi-text-get-caret-offset"></a><h3>atspi_text_get_caret_offset ()</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_text_get_caret_offset         (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_text_get_caret_offset         (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get the current offset of the text caret in an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object.
 </p>
@@ -359,11 +359,11 @@ Get the current offset of the text caret in an <a class="link" href="libatspi-at
 <hr>
 <div class="refsect2" title="atspi_text_get_attributes ()">
 <a name="atspi-text-get-attributes"></a><h3>atspi_text_get_attributes ()</h3>
-<pre class="programlisting"><span class="returnvalue">GHashTable</span> *        atspi_text_get_attributes           (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> *start_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> *end_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#GHashTable"><span class="returnvalue">GHashTable</span></a> *        atspi_text_get_attributes           (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> *start_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> *end_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get the attributes applied to a range of text from an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a>
          object, and the bounds of the range.
@@ -385,13 +385,15 @@ Get the attributes applied to a range of text from an <a class="link" href="liba
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>start_offset</code></em> :</span></p></td>
-<td> a <span class="type">gint</span> indicating the start of the desired text
-               range.. <acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>. </td>
+<td> a <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating the start of the desired text
+               range. <span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>end_offset</code></em> :</span></p></td>
-<td> a <span class="type">gint</span> indicating the first character past the desired
-             range.. <acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>. </td>
+<td> a <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating the first character past the desired
+             range. <span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
@@ -400,8 +402,9 @@ Get the attributes applied to a range of text from an <a class="link" href="liba
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <span class="type">GHashTable</span>
-         describing the attributes at the given character offset. <acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gchar* gchar*. <acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym> gchar* gchar*. </td>
+<td> a <a href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#GHashTable"><span class="type">GHashTable</span></a>
+         describing the attributes at the given character offset. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gchar* gchar*][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym> gchar* gchar*]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -409,12 +412,12 @@ Get the attributes applied to a range of text from an <a class="link" href="liba
 <hr>
 <div class="refsect2" title="atspi_text_get_attribute_run ()">
 <a name="atspi-text-get-attribute-run"></a><h3>atspi_text_get_attribute_run ()</h3>
-<pre class="programlisting"><span class="returnvalue">GHashTable</span> *        atspi_text_get_attribute_run        (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">gboolean</span> include_defaults</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> *start_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> *end_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#GHashTable"><span class="returnvalue">GHashTable</span></a> *        atspi_text_get_attribute_run        (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> include_defaults</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> *start_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> *end_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -439,13 +442,15 @@ Get the attributes applied to a range of text from an <a class="link" href="liba
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>start_offset</code></em> :</span></p></td>
-<td> a <span class="type">gint</span> indicating the start of the desired text
-               range.. <acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>. </td>
+<td> a <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating the start of the desired text
+               range. <span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>end_offset</code></em> :</span></p></td>
-<td> a <span class="type">gint</span> indicating the first character past the desired
-             range.. <acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>. </td>
+<td> a <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating the first character past the desired
+             range. <span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span>
+</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
@@ -455,7 +460,8 @@ Get the attributes applied to a range of text from an <a class="link" href="liba
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td> the AttributeSet
-         defined at offset, optionally including the 'default' attributes.. <acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gchar* gchar*. <acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym> gchar* gchar*. </td>
+         defined at offset, optionally including the 'default' attributes. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gchar* gchar*][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym> gchar* gchar*]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -463,10 +469,10 @@ Get the attributes applied to a range of text from an <a class="link" href="liba
 <hr>
 <div class="refsect2" title="atspi_text_get_attribute_value ()">
 <a name="atspi-text-get-attribute-value"></a><h3>atspi_text_get_attribute_value ()</h3>
-<pre class="programlisting"><span class="returnvalue">gchar</span> *             atspi_text_get_attribute_value      (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">gchar</span> *attribute_name</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             atspi_text_get_attribute_value      (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *attribute_name</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -502,8 +508,8 @@ Get the attributes applied to a range of text from an <a class="link" href="liba
 <hr>
 <div class="refsect2" title="atspi_text_get_default_attributes ()">
 <a name="atspi-text-get-default-attributes"></a><h3>atspi_text_get_default_attributes ()</h3>
-<pre class="programlisting"><span class="returnvalue">GHashTable</span> *        atspi_text_get_default_attributes   (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#GHashTable"><span class="returnvalue">GHashTable</span></a> *        atspi_text_get_default_attributes   (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get the default attributes applied to an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a>
          object.
@@ -530,9 +536,10 @@ Get the default attributes applied to an <a class="link" href="libatspi-atspi-te
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <span class="type">GHashTable</span>
+<td> a <a href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#GHashTable"><span class="type">GHashTable</span></a>
          containing the default attributes applied to a text object,
-         (exclusive of explicitly-set attributes), encoded as UTF-8.. <acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gchar* gchar*. <acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym> gchar* gchar*. </td>
+         (exclusive of explicitly-set attributes), encoded as UTF-8. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gchar* gchar*][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym> gchar* gchar*]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -540,9 +547,9 @@ Get the default attributes applied to an <a class="link" href="libatspi-atspi-te
 <hr>
 <div class="refsect2" title="atspi_text_set_caret_offset ()">
 <a name="atspi-text-set-caret-offset"></a><h3>atspi_text_set_caret_offset ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_text_set_caret_offset         (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> new_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_text_set_caret_offset         (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> new_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Set the text caret position for an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object.
 </p>
@@ -566,7 +573,7 @@ Set the text caret position for an <a class="link" href="libatspi-atspi-text.htm
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <span class="type">TRUE</span> if successful, <span class="type">FALSE</span> otherwise.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if successful, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a> otherwise.
 </td>
 </tr>
 </tbody>
@@ -576,9 +583,9 @@ Set the text caret position for an <a class="link" href="libatspi-atspi-text.htm
 <div class="refsect2" title="atspi_text_get_text_before_offset ()">
 <a name="atspi-text-get-text-before-offset"></a><h3>atspi_text_get_text_before_offset ()</h3>
 <pre class="programlisting"><a class="link" href="libatspi-atspi-text.html#AtspiTextRange" title="AtspiTextRange"><span class="returnvalue">AtspiTextRange</span></a> *    atspi_text_get_text_before_offset   (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> offset</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiTextBoundaryType" title="enum AtspiTextBoundaryType"><span class="type">AtspiTextBoundaryType</span></a> type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get delimited text from an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object which precedes a given
          text offset.
@@ -622,9 +629,9 @@ Get delimited text from an <a class="link" href="libatspi-atspi-text.html#AtspiT
 <div class="refsect2" title="atspi_text_get_text_at_offset ()">
 <a name="atspi-text-get-text-at-offset"></a><h3>atspi_text_get_text_at_offset ()</h3>
 <pre class="programlisting"><a class="link" href="libatspi-atspi-text.html#AtspiTextRange" title="AtspiTextRange"><span class="returnvalue">AtspiTextRange</span></a> *    atspi_text_get_text_at_offset       (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> offset</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiTextBoundaryType" title="enum AtspiTextBoundaryType"><span class="type">AtspiTextBoundaryType</span></a> type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get delimited text from an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object which includes a given
          text offset.
@@ -668,9 +675,9 @@ Get delimited text from an <a class="link" href="libatspi-atspi-text.html#AtspiT
 <div class="refsect2" title="atspi_text_get_text_after_offset ()">
 <a name="atspi-text-get-text-after-offset"></a><h3>atspi_text_get_text_after_offset ()</h3>
 <pre class="programlisting"><a class="link" href="libatspi-atspi-text.html#AtspiTextRange" title="AtspiTextRange"><span class="returnvalue">AtspiTextRange</span></a> *    atspi_text_get_text_after_offset    (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> offset</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiTextBoundaryType" title="enum AtspiTextBoundaryType"><span class="type">AtspiTextBoundaryType</span></a> type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get delimited text from an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object which follows a given
          text offset.
@@ -714,9 +721,9 @@ Get delimited text from an <a class="link" href="libatspi-atspi-text.html#AtspiT
 <hr>
 <div class="refsect2" title="atspi_text_get_character_at_offset ()">
 <a name="atspi-text-get-character-at-offset"></a><h3>atspi_text_get_character_at_offset ()</h3>
-<pre class="programlisting"><span class="returnvalue">guint</span>               atspi_text_get_character_at_offset  (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               atspi_text_get_character_at_offset  (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get the character at a given offset for an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object.
 </p>
@@ -754,9 +761,9 @@ Get the character at a given offset for an <a class="link" href="libatspi-atspi-
 <div class="refsect2" title="atspi_text_get_character_extents ()">
 <a name="atspi-text-get-character-extents"></a><h3>atspi_text_get_character_extents ()</h3>
 <pre class="programlisting"><a class="link" href="libatspi-atspi-component.html#AtspiRect" title="AtspiRect"><span class="returnvalue">AtspiRect</span></a> *         atspi_text_get_character_extents    (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> offset</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCoordType" title="enum AtspiCoordType"><span class="type">AtspiCoordType</span></a> type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -796,11 +803,11 @@ Get the bounding box containing the glyph representing
 <hr>
 <div class="refsect2" title="atspi_text_get_offset_at_point ()">
 <a name="atspi-text-get-offset-at-point"></a><h3>atspi_text_get_offset_at_point ()</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_text_get_offset_at_point      (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> x</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> y</code></em>,
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_text_get_offset_at_point      (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> x</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> y</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCoordType" title="enum AtspiCoordType"><span class="type">AtspiCoordType</span></a> type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get the character offset into the text at a given point.
 </p>
@@ -847,10 +854,10 @@ Get the character offset into the text at a given point.
 <div class="refsect2" title="atspi_text_get_range_extents ()">
 <a name="atspi-text-get-range-extents"></a><h3>atspi_text_get_range_extents ()</h3>
 <pre class="programlisting"><a class="link" href="libatspi-atspi-component.html#AtspiRect" title="AtspiRect"><span class="returnvalue">AtspiRect</span></a> *         atspi_text_get_range_extents        (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> start_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> end_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> start_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> end_offset</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCoordType" title="enum AtspiCoordType"><span class="type">AtspiCoordType</span></a> type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -896,15 +903,15 @@ Get the bounding box for text within a range in an  <a class="link" href="libats
 <hr>
 <div class="refsect2" title="atspi_text_get_bounded_ranges ()">
 <a name="atspi-text-get-bounded-ranges"></a><h3>atspi_text_get_bounded_ranges ()</h3>
-<pre class="programlisting"><span class="returnvalue">GArray</span> *            atspi_text_get_bounded_ranges       (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> x</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> y</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> width</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> height</code></em>,
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            atspi_text_get_bounded_ranges       (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> x</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> y</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> width</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> height</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCoordType" title="enum AtspiCoordType"><span class="type">AtspiCoordType</span></a> type</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiTextClipType" title="enum AtspiTextClipType"><span class="type">AtspiTextClipType</span></a> clipTypeX</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiTextClipType" title="enum AtspiTextClipType"><span class="type">AtspiTextClipType</span></a> clipTypeY</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get the ranges of text from an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object which lie within the
          bounds defined by (<em class="parameter"><code>x</code></em>, <em class="parameter"><code>y</code></em>) and (<em class="parameter"><code>x</code></em>+<em class="parameter"><code>width</code></em>, <em class="parameter"><code>y</code></em>+<em class="parameter"><code>height</code></em>).
@@ -963,7 +970,8 @@ Get the ranges of text from an <a class="link" href="libatspi-atspi-text.html#At
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td> a null-terminated list of
-         pointers to <a class="link" href="libatspi-atspi-text.html#AtspiTextRange" title="AtspiTextRange"><span class="type">AtspiTextRange</span></a> structs detailing the bounded text.. <acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>. <acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> AtspiTextRange*. </td>
+         pointers to <a class="link" href="libatspi-atspi-text.html#AtspiTextRange" title="AtspiTextRange"><span class="type">AtspiTextRange</span></a> structs detailing the bounded text. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> AtspiTextRange*]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -971,8 +979,8 @@ Get the ranges of text from an <a class="link" href="libatspi-atspi-text.html#At
 <hr>
 <div class="refsect2" title="atspi_text_get_n_selections ()">
 <a name="atspi-text-get-n-selections"></a><h3>atspi_text_get_n_selections ()</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_text_get_n_selections         (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_text_get_n_selections         (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get the number of active non-contiguous selections for an
          <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object.
@@ -1004,8 +1012,8 @@ Get the number of active non-contiguous selections for an
 <div class="refsect2" title="atspi_text_get_selection ()">
 <a name="atspi-text-get-selection"></a><h3>atspi_text_get_selection ()</h3>
 <pre class="programlisting"><a class="link" href="libatspi-atspi-text.html#AtspiRange" title="AtspiRange"><span class="returnvalue">AtspiRange</span></a> *        atspi_text_get_selection            (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> selection_num</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> selection_num</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1037,10 +1045,10 @@ Get the number of active non-contiguous selections for an
 <hr>
 <div class="refsect2" title="atspi_text_add_selection ()">
 <a name="atspi-text-add-selection"></a><h3>atspi_text_add_selection ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_text_add_selection            (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> start_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> end_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_text_add_selection            (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> start_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> end_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Select some text (add a text selection) in an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object.
 </p>
@@ -1069,7 +1077,7 @@ Select some text (add a text selection) in an <a class="link" href="libatspi-ats
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <span class="type">TRUE</span> if successful, <span class="type">FALSE</span> otherwise.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if successful, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a> otherwise.
 </td>
 </tr>
 </tbody>
@@ -1078,9 +1086,9 @@ Select some text (add a text selection) in an <a class="link" href="libatspi-ats
 <hr>
 <div class="refsect2" title="atspi_text_remove_selection ()">
 <a name="atspi-text-remove-selection"></a><h3>atspi_text_remove_selection ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_text_remove_selection         (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> selection_num</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_text_remove_selection         (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> selection_num</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 De-select a text selection.
 </p>
@@ -1105,7 +1113,7 @@ De-select a text selection.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <span class="type">TRUE</span> if successful, <span class="type">FALSE</span> otherwise.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if successful, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a> otherwise.
 </td>
 </tr>
 </tbody>
@@ -1114,11 +1122,11 @@ De-select a text selection.
 <hr>
 <div class="refsect2" title="atspi_text_set_selection ()">
 <a name="atspi-text-set-selection"></a><h3>atspi_text_set_selection ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_text_set_selection            (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> selection_num</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> start_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> end_offset</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_text_set_selection            (<em class="parameter"><code><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> selection_num</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> start_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> end_offset</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Change the bounds of an existing <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> text selection.
 </p>
@@ -1153,7 +1161,7 @@ Change the bounds of an existing <a class="link" href="libatspi-atspi-text.html#
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <span class="type">TRUE</span> if successful, <span class="type">FALSE</span> otherwise.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if successful, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a> otherwise.
 </td>
 </tr>
 </tbody>
@@ -1163,6 +1171,6 @@ Change the bounds of an existing <a class="link" href="libatspi-atspi-text.html#
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.14</div>
+          Generated by GTK-Doc V1.15</div>
 </body>
 </html>

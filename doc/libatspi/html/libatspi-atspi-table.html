@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="[Insert title here]">
 <link rel="prev" href="libatspi-atspi-value.html" title="atspi-value">
 <link rel="next" href="libatspi-atspi-selection.html" title="atspi-selection">
-<meta name="generator" content="GTK-Doc V1.14 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.15 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -43,86 +43,86 @@
 <a name="libatspi-atspi-table.synopsis"></a><h2>Synopsis</h2>
 <a name="AtspiTable"></a><pre class="synopsis">                    <a class="link" href="libatspi-atspi-table.html#AtspiTable-struct" title="AtspiTable">AtspiTable</a>;
 <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   <a class="link" href="libatspi-atspi-table.html#atspi-table-get-caption" title="atspi_table_get_caption ()">atspi_table_get_caption</a>             (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   <a class="link" href="libatspi-atspi-table.html#atspi-table-get-summary" title="atspi_table_get_summary ()">atspi_table_get_summary</a>             (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-n-rows" title="atspi_table_get_n_rows ()">atspi_table_get_n_rows</a>              (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-n-columns" title="atspi_table_get_n_columns ()">atspi_table_get_n_columns</a>           (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-n-rows" title="atspi_table_get_n_rows ()">atspi_table_get_n_rows</a>              (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-n-columns" title="atspi_table_get_n_columns ()">atspi_table_get_n_columns</a>           (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   <a class="link" href="libatspi-atspi-table.html#atspi-table-get-accessible-at" title="atspi_table_get_accessible_at ()">atspi_table_get_accessible_at</a>       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-index-at" title="atspi_table_get_index_at ()">atspi_table_get_index_at</a>            (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-at-index" title="atspi_table_get_row_at_index ()">atspi_table_get_row_at_index</a>        (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> index</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-column-at-index" title="atspi_table_get_column_at_index ()">atspi_table_get_column_at_index</a>     (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> index</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gchar</span> *             <a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-description" title="atspi_table_get_row_description ()">atspi_table_get_row_description</a>     (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gchar</span> *             <a class="link" href="libatspi-atspi-table.html#atspi-table-get-column-description" title="atspi_table_get_column_description ()">atspi_table_get_column_description</a>  (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-extent-at" title="atspi_table_get_row_extent_at ()">atspi_table_get_row_extent_at</a>       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-column-extent-at" title="atspi_table_get_column_extent_at ()">atspi_table_get_column_extent_at</a>    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> column</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-index-at" title="atspi_table_get_index_at ()">atspi_table_get_index_at</a>            (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> column</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-at-index" title="atspi_table_get_row_at_index ()">atspi_table_get_row_at_index</a>        (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> index</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-column-at-index" title="atspi_table_get_column_at_index ()">atspi_table_get_column_at_index</a>     (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> index</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-description" title="atspi_table_get_row_description ()">atspi_table_get_row_description</a>     (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="libatspi-atspi-table.html#atspi-table-get-column-description" title="atspi_table_get_column_description ()">atspi_table_get_column_description</a>  (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> column</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-extent-at" title="atspi_table_get_row_extent_at ()">atspi_table_get_row_extent_at</a>       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> column</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-column-extent-at" title="atspi_table_get_column_extent_at ()">atspi_table_get_column_extent_at</a>    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> column</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   <a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-header" title="atspi_table_get_row_header ()">atspi_table_get_row_header</a>          (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   <a class="link" href="libatspi-atspi-table.html#atspi-table-get-column-header" title="atspi_table_get_column_header ()">atspi_table_get_column_header</a>       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-n-selected-rows" title="atspi_table_get_n_selected_rows ()">atspi_table_get_n_selected_rows</a>     (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">GArray</span> *            <a class="link" href="libatspi-atspi-table.html#atspi-table-get-selected-rows" title="atspi_table_get_selected_rows ()">atspi_table_get_selected_rows</a>       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">GArray</span> *            <a class="link" href="libatspi-atspi-table.html#atspi-table-get-selected-columns" title="atspi_table_get_selected_columns ()">atspi_table_get_selected_columns</a>    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-n-selected-columns" title="atspi_table_get_n_selected_columns ()">atspi_table_get_n_selected_columns</a>  (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-table.html#atspi-table-is-row-selected" title="atspi_table_is_row_selected ()">atspi_table_is_row_selected</a>         (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-table.html#atspi-table-is-column-selected" title="atspi_table_is_column_selected ()">atspi_table_is_column_selected</a>      (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-table.html#atspi-table-add-row-selection" title="atspi_table_add_row_selection ()">atspi_table_add_row_selection</a>       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-table.html#atspi-table-add-column-selection" title="atspi_table_add_column_selection ()">atspi_table_add_column_selection</a>    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-table.html#atspi-table-remove-row-selection" title="atspi_table_remove_row_selection ()">atspi_table_remove_row_selection</a>    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-table.html#atspi-table-remove-column-selection" title="atspi_table_remove_column_selection ()">atspi_table_remove_column_selection</a> (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-column-extents-at-index" title="atspi_table_get_row_column_extents_at_index ()">atspi_table_get_row_column_extents_at_index</a>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> column</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-n-selected-rows" title="atspi_table_get_n_selected_rows ()">atspi_table_get_n_selected_rows</a>     (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            <a class="link" href="libatspi-atspi-table.html#atspi-table-get-selected-rows" title="atspi_table_get_selected_rows ()">atspi_table_get_selected_rows</a>       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            <a class="link" href="libatspi-atspi-table.html#atspi-table-get-selected-columns" title="atspi_table_get_selected_columns ()">atspi_table_get_selected_columns</a>    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="libatspi-atspi-table.html#atspi-table-get-n-selected-columns" title="atspi_table_get_n_selected_columns ()">atspi_table_get_n_selected_columns</a>  (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-table.html#atspi-table-is-row-selected" title="atspi_table_is_row_selected ()">atspi_table_is_row_selected</a>         (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-table.html#atspi-table-is-column-selected" title="atspi_table_is_column_selected ()">atspi_table_is_column_selected</a>      (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> column</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-table.html#atspi-table-add-row-selection" title="atspi_table_add_row_selection ()">atspi_table_add_row_selection</a>       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-table.html#atspi-table-add-column-selection" title="atspi_table_add_column_selection ()">atspi_table_add_column_selection</a>    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> column</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-table.html#atspi-table-remove-row-selection" title="atspi_table_remove_row_selection ()">atspi_table_remove_row_selection</a>    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-table.html#atspi-table-remove-column-selection" title="atspi_table_remove_column_selection ()">atspi_table_remove_column_selection</a> (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> column</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-column-extents-at-index" title="atspi_table_get_row_column_extents_at_index ()">atspi_table_get_row_column_extents_at_index</a>
                                                         (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> index</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> *row</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> *col</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> *row_extents</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> *col_extents</code></em>,
-                                                         <em class="parameter"><code><span class="type">gboolean</span> *is_selected</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-table.html#atspi-table-is-selected" title="atspi_table_is_selected ()">atspi_table_is_selected</a>             (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> index</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> *row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> *col</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> *row_extents</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> *col_extents</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> *is_selected</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-table.html#atspi-table-is-selected" title="atspi_table_is_selected ()">atspi_table_is_selected</a>             (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> column</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 </pre>
 </div>
 <div class="refsect1" title="Object Hierarchy">
@@ -155,7 +155,7 @@ AtspiTable is implemented by
 <div class="refsect2" title="atspi_table_get_caption ()">
 <a name="atspi-table-get-caption"></a><h3>atspi_table_get_caption ()</h3>
 <pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_table_get_caption             (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get an accessible representation of the caption for an <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>.
 </p>
@@ -175,7 +175,8 @@ Get an accessible representation of the caption for an <a class="link" href="lib
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td> an <span class="type">Accessible</span> object that serves as the table's
-         caption.. <acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>. </td>
+         caption. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -184,7 +185,7 @@ Get an accessible representation of the caption for an <a class="link" href="lib
 <div class="refsect2" title="atspi_table_get_summary ()">
 <a name="atspi-table-get-summary"></a><h3>atspi_table_get_summary ()</h3>
 <pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_table_get_summary             (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get an accessible object which summarizes the contents of an <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>.
 </p>
@@ -204,7 +205,8 @@ Get an accessible object which summarizes the contents of an <a class="link" hre
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td> an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object that serves as the
-         table's summary (often a reduced <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>).. <acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>. </td>
+         table's summary (often a reduced <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>). <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -212,8 +214,8 @@ Get an accessible object which summarizes the contents of an <a class="link" hre
 <hr>
 <div class="refsect2" title="atspi_table_get_n_rows ()">
 <a name="atspi-table-get-n-rows"></a><h3>atspi_table_get_n_rows ()</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_n_rows              (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_table_get_n_rows              (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get the number of rows in an <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>,
        exclusive of any rows that are programmatically hidden, but inclusive
@@ -243,8 +245,8 @@ Get the number of rows in an <a class="link" href="libatspi-atspi-table.html#Ats
 <hr>
 <div class="refsect2" title="atspi_table_get_n_columns ()">
 <a name="atspi-table-get-n-columns"></a><h3>atspi_table_get_n_columns ()</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_n_columns           (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_table_get_n_columns           (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get the number of columns in an <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>,
        exclusive of any columns that are programmatically hidden, but inclusive
@@ -275,9 +277,9 @@ Get the number of columns in an <a class="link" href="libatspi-atspi-table.html#
 <div class="refsect2" title="atspi_table_get_accessible_at ()">
 <a name="atspi-table-get-accessible-at"></a><h3>atspi_table_get_accessible_at ()</h3>
 <pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_table_get_accessible_at       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> column</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get the table cell at the specified row and column indices.
          To get the accessible object at a particular (x, y) screen coordinate,
@@ -309,7 +311,8 @@ Get the table cell at the specified row and column indices.
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td> an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object representing the
-         specified table cell.. <acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>. </td>
+         specified table cell. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -317,10 +320,10 @@ Get the table cell at the specified row and column indices.
 <hr>
 <div class="refsect2" title="atspi_table_get_index_at ()">
 <a name="atspi-table-get-index-at"></a><h3>atspi_table_get_index_at ()</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_index_at            (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_table_get_index_at            (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> column</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get the 1-D child index corresponding to the specified 2-D row and column indices.
          To get the accessible object at a particular (x, y) screen coordinate,
@@ -362,9 +365,9 @@ Get the 1-D child index corresponding to the specified 2-D row and column indice
 <hr>
 <div class="refsect2" title="atspi_table_get_row_at_index ()">
 <a name="atspi-table-get-row-at-index"></a><h3>atspi_table_get_row_at_index ()</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_row_at_index        (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> index</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_table_get_row_at_index        (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> index</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get the table row index occupied by the child at a particular 1-D child index.
 </p>
@@ -401,9 +404,9 @@ Get the table row index occupied by the child at a particular 1-D child index.
 <hr>
 <div class="refsect2" title="atspi_table_get_column_at_index ()">
 <a name="atspi-table-get-column-at-index"></a><h3>atspi_table_get_column_at_index ()</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_column_at_index     (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> index</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_table_get_column_at_index     (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> index</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get the table column index occupied by the child at a particular 1-D child index.
 </p>
@@ -440,9 +443,9 @@ Get the table column index occupied by the child at a particular 1-D child index
 <hr>
 <div class="refsect2" title="atspi_table_get_row_description ()">
 <a name="atspi-table-get-row-description"></a><h3>atspi_table_get_row_description ()</h3>
-<pre class="programlisting"><span class="returnvalue">gchar</span> *             atspi_table_get_row_description     (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             atspi_table_get_row_description     (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get a text description of a particular table row.  This differs from
 atspi_table_get_row_header, which returns an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.
@@ -476,9 +479,9 @@ atspi_table_get_row_header, which returns an <a class="link" href="AtspiAccessib
 <hr>
 <div class="refsect2" title="atspi_table_get_column_description ()">
 <a name="atspi-table-get-column-description"></a><h3>atspi_table_get_column_description ()</h3>
-<pre class="programlisting"><span class="returnvalue">gchar</span> *             atspi_table_get_column_description  (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             atspi_table_get_column_description  (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> column</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get a text description of a particular table column.  This differs from
 atspi_table_get_column_header, which returns an <span class="type">Accessible</span>.
@@ -512,10 +515,10 @@ atspi_table_get_column_header, which returns an <span class="type">Accessible</s
 <hr>
 <div class="refsect2" title="atspi_table_get_row_extent_at ()">
 <a name="atspi-table-get-row-extent-at"></a><h3>atspi_table_get_row_extent_at ()</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_row_extent_at       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_table_get_row_extent_at       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> column</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get the number of rows spanned by the table cell at the specific row and column.
 (some tables can have cells which span multiple rows and/or columns).
@@ -554,10 +557,10 @@ Get the number of rows spanned by the table cell at the specific row and column.
 <hr>
 <div class="refsect2" title="atspi_table_get_column_extent_at ()">
 <a name="atspi-table-get-column-extent-at"></a><h3>atspi_table_get_column_extent_at ()</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_column_extent_at    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_table_get_column_extent_at    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> column</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get the number of columns spanned by the table cell at the specific row and column.
 (some tables can have cells which span multiple rows and/or columns).
@@ -597,8 +600,8 @@ Get the number of columns spanned by the table cell at the specific row and colu
 <div class="refsect2" title="atspi_table_get_row_header ()">
 <a name="atspi-table-get-row-header"></a><h3>atspi_table_get_row_header ()</h3>
 <pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_table_get_row_header          (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get the header associated with a table row, if available.  This differs from
 atspi_table_get_row_description, which returns a string.
@@ -624,7 +627,8 @@ atspi_table_get_row_description, which returns a string.
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td> a <span class="type">Accessible</span> representatin of the specified
-         table row, if available.. <acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>. </td>
+         table row, if available. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -633,8 +637,8 @@ atspi_table_get_row_description, which returns a string.
 <div class="refsect2" title="atspi_table_get_column_header ()">
 <a name="atspi-table-get-column-header"></a><h3>atspi_table_get_column_header ()</h3>
 <pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_table_get_column_header       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> column</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Get the header associated with a table column, if available.  This differs from
 atspi_table_get_column_description, which returns a string.
@@ -660,7 +664,8 @@ atspi_table_get_column_description, which returns a string.
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td> a <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> representation of the
-         specified table column, if available.. <acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>. </td>
+         specified table column, if available. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -668,8 +673,8 @@ atspi_table_get_column_description, which returns a string.
 <hr>
 <div class="refsect2" title="atspi_table_get_n_selected_rows ()">
 <a name="atspi-table-get-n-selected-rows"></a><h3>atspi_table_get_n_selected_rows ()</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_n_selected_rows     (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_table_get_n_selected_rows     (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Query a table to find out how many rows are currently selected.  Not all tables
  support row selection.
@@ -698,8 +703,8 @@ Query a table to find out how many rows are currently selected.  Not all tables
 <hr>
 <div class="refsect2" title="atspi_table_get_selected_rows ()">
 <a name="atspi-table-get-selected-rows"></a><h3>atspi_table_get_selected_rows ()</h3>
-<pre class="programlisting"><span class="returnvalue">GArray</span> *            atspi_table_get_selected_rows       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            atspi_table_get_selected_rows       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Query a table for a list of indices of rows which are currently selected.
 </p>
@@ -719,7 +724,8 @@ Query a table for a list of indices of rows which are currently selected.
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td> an array of integers,
-         specifying which rows are currently selected.. <acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gint. <acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym> gint. </td>
+         specifying which rows are currently selected. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gint][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym> gint]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -727,8 +733,8 @@ Query a table for a list of indices of rows which are currently selected.
 <hr>
 <div class="refsect2" title="atspi_table_get_selected_columns ()">
 <a name="atspi-table-get-selected-columns"></a><h3>atspi_table_get_selected_columns ()</h3>
-<pre class="programlisting"><span class="returnvalue">GArray</span> *            atspi_table_get_selected_columns    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            atspi_table_get_selected_columns    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Query a table for a list of indices of columns which are currently selected.
 </p>
@@ -748,7 +754,8 @@ Query a table for a list of indices of columns which are currently selected.
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td> an array of integers,
-         specifying which columns are currently selected.. <acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gint. <acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym> gint. </td>
+         specifying which columns are currently selected. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gint][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym> gint]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -756,8 +763,8 @@ Query a table for a list of indices of columns which are currently selected.
 <hr>
 <div class="refsect2" title="atspi_table_get_n_selected_columns ()">
 <a name="atspi-table-get-n-selected-columns"></a><h3>atspi_table_get_n_selected_columns ()</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_n_selected_columns  (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_table_get_n_selected_columns  (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Query a table to find out how many columns are currently selected.  Not all tables
  support column selection.
@@ -786,9 +793,9 @@ Query a table to find out how many columns are currently selected.  Not all tabl
 <hr>
 <div class="refsect2" title="atspi_table_is_row_selected ()">
 <a name="atspi-table-is-row-selected"></a><h3>atspi_table_is_row_selected ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_table_is_row_selected         (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_table_is_row_selected         (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Determine whether a table row is selected.  Not all tables support row selection.
 </p>
@@ -812,7 +819,7 @@ Determine whether a table row is selected.  Not all tables support row selection
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <span class="type">TRUE</span> if the specified row is currently selected, <span class="type">FALSE</span> if not.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if the specified row is currently selected, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a> if not.
 </td>
 </tr>
 </tbody>
@@ -821,9 +828,9 @@ Determine whether a table row is selected.  Not all tables support row selection
 <hr>
 <div class="refsect2" title="atspi_table_is_column_selected ()">
 <a name="atspi-table-is-column-selected"></a><h3>atspi_table_is_column_selected ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_table_is_column_selected      (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_table_is_column_selected      (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> column</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Determine whether specified table column is selected.
 Not all tables support column selection.
@@ -848,7 +855,7 @@ Not all tables support column selection.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <span class="type">TRUE</span> if the specified column is currently selected, <span class="type">FALSE</span> if not.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if the specified column is currently selected, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a> if not.
 </td>
 </tr>
 </tbody>
@@ -857,9 +864,9 @@ Not all tables support column selection.
 <hr>
 <div class="refsect2" title="atspi_table_add_row_selection ()">
 <a name="atspi-table-add-row-selection"></a><h3>atspi_table_add_row_selection ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_table_add_row_selection       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_table_add_row_selection       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Select the specified row, adding it to the current row selection.
 Not all tables support row selection.
@@ -884,7 +891,7 @@ Not all tables support row selection.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <span class="type">TRUE</span> if the specified row was successfully selected, <span class="type">FALSE</span> if not.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if the specified row was successfully selected, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a> if not.
 </td>
 </tr>
 </tbody>
@@ -893,9 +900,9 @@ Not all tables support row selection.
 <hr>
 <div class="refsect2" title="atspi_table_add_column_selection ()">
 <a name="atspi-table-add-column-selection"></a><h3>atspi_table_add_column_selection ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_table_add_column_selection    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_table_add_column_selection    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> column</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Select the specified column, adding it to the current column selection.
 Not all tables support column selection.
@@ -920,7 +927,7 @@ Not all tables support column selection.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <span class="type">TRUE</span> if the specified column was successfully selected, <span class="type">FALSE</span> if not.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if the specified column was successfully selected, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a> if not.
 </td>
 </tr>
 </tbody>
@@ -929,9 +936,9 @@ Not all tables support column selection.
 <hr>
 <div class="refsect2" title="atspi_table_remove_row_selection ()">
 <a name="atspi-table-remove-row-selection"></a><h3>atspi_table_remove_row_selection ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_table_remove_row_selection    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_table_remove_row_selection    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 De-select the specified row, removing it to the current row selection.
 Not all tables support row selection.
@@ -956,7 +963,7 @@ Not all tables support row selection.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <span class="type">TRUE</span> if the specified row was successfully de-selected, <span class="type">FALSE</span> if not.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if the specified row was successfully de-selected, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a> if not.
 </td>
 </tr>
 </tbody>
@@ -965,9 +972,9 @@ Not all tables support row selection.
 <hr>
 <div class="refsect2" title="atspi_table_remove_column_selection ()">
 <a name="atspi-table-remove-column-selection"></a><h3>atspi_table_remove_column_selection ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_table_remove_column_selection (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_table_remove_column_selection (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> column</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 De-select the specified column, removing it to the current column selection.
 Not all tables support column selection.
@@ -992,7 +999,7 @@ Not all tables support column selection.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <span class="type">TRUE</span> if the specified column was successfully de-selected, <span class="type">FALSE</span> if not.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if the specified column was successfully de-selected, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a> if not.
 </td>
 </tr>
 </tbody>
@@ -1001,15 +1008,15 @@ Not all tables support column selection.
 <hr>
 <div class="refsect2" title="atspi_table_get_row_column_extents_at_index ()">
 <a name="atspi-table-get-row-column-extents-at-index"></a><h3>atspi_table_get_row_column_extents_at_index ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_table_get_row_column_extents_at_index
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_table_get_row_column_extents_at_index
                                                         (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> index</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> *row</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> *col</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> *row_extents</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> *col_extents</code></em>,
-                                                         <em class="parameter"><code><span class="type">gboolean</span> *is_selected</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> index</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> *row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> *col</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> *row_extents</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> *col_extents</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> *is_selected</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Given a child index, determine the row and column indices and 
 extents, and whether the cell is currently selected.  If
@@ -1097,10 +1104,10 @@ undefined.
 <hr>
 <div class="refsect2" title="atspi_table_is_selected ()">
 <a name="atspi-table-is-selected"></a><h3>atspi_table_is_selected ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_table_is_selected             (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> row</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> column</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_table_is_selected             (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> row</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> column</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Determine whether the cell at a specific row and column is selected.
 </p>
@@ -1129,7 +1136,7 @@ Determine whether the cell at a specific row and column is selected.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <span class="type">TRUE</span> if the specified cell is currently selected, <span class="type">FALSE</span> if not.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if the specified cell is currently selected, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a> if not.
 </td>
 </tr>
 </tbody>
@@ -1139,6 +1146,6 @@ Determine whether the cell at a specific row and column is selected.
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.14</div>
+          Generated by GTK-Doc V1.15</div>
 </body>
 </html>
