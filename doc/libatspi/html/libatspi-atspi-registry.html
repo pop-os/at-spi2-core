@@ -190,9 +190,9 @@ Register a listener for keystroke events, either pre-emptively for
 <td><p><span class="term"><em class="parameter"><code>key_set</code></em> :</span></p></td>
 <td> a pointer to the
        <a class="link" href="libatspi-atspi-types.html#AtspiKeyDefinition" title="AtspiKeyDefinition"><span class="type">AtspiKeyDefinition</span></a> array indicating which keystroke events are
-       requested, or <span class="type">ATSPI_KEYSET_ALL_KEYS</span>
+       requested, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
        to indicate that all keycodes and keyvals for the specified
-       modifier set are to be included. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> AtspiKeyDefinition]</span>
+       modifier set are to be included. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> AtspiKeyDefinition][<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym> AtspiKeyDefinition]</span>
 </td>
 </tr>
 <tr>
@@ -256,9 +256,9 @@ Removes a keystroke event listener from the registry's listener queue,
 <td><p><span class="term"><em class="parameter"><code>key_set</code></em> :</span></p></td>
 <td> a pointer to the
        <a class="link" href="libatspi-atspi-types.html#AtspiKeyDefinition" title="AtspiKeyDefinition"><span class="type">AtspiKeyDefinition</span></a> array indicating which keystroke events are
-       requested, or <span class="type">ATSPI_KEYSET_ALL_KEYS</span>
+       requested, or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
        to indicate that all keycodes and keyvals for the specified
-       modifier set are to be included. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> AtspiKeyDefinition]</span>
+       modifier set are to be included. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> AtspiKeyDefinition][<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym> AtspiKeyDefinition]</span>
 </td>
 </tr>
 <tr>
