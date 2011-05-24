@@ -39,6 +39,8 @@ static void handle_get_items (DBusPendingCall *pending, void *user_data);
 static DBusConnection *bus = NULL;
 static GHashTable *live_refs = NULL;
 
+GMainLoop *atspi_main_loop;
+
 const char *atspi_path_dec = ATSPI_DBUS_PATH_DEC;
 const char *atspi_path_registry = ATSPI_DBUS_PATH_REGISTRY;
 const char *atspi_path_root = ATSPI_DBUS_PATH_ROOT;
@@ -161,6 +163,9 @@ handle_get_bus_address (DBusPendingCall *pending, void *user_data)
   }
   dbus_message_unref (reply);
   dbus_pending_call_unref (pending);
+
+  if (!app->bus)
+    return; /* application has gone away / been disposed */
 
   message = dbus_message_new_method_call (app->bus_name,
                                           "/org/a11y/atspi/cache",
@@ -856,8 +861,6 @@ atspi_init (void)
   return 0;
 }
 
-  static GMainLoop *mainloop;
-
 /**
  * atspi_event_main:
  *
@@ -870,8 +873,9 @@ atspi_init (void)
 void
 atspi_event_main (void)
 {
-  mainloop = g_main_loop_new (NULL, FALSE);
-  g_main_loop_run (mainloop);
+  atspi_main_loop = g_main_loop_new (NULL, FALSE);
+  g_main_loop_run (atspi_main_loop);
+  atspi_main_loop = NULL;
 }
 
 /**
@@ -883,7 +887,7 @@ atspi_event_main (void)
 void
 atspi_event_quit (void)
 {
-  g_main_loop_quit (mainloop);
+  g_main_loop_quit (atspi_main_loop);
 }
 
 /**
@@ -1016,6 +1020,7 @@ _atspi_dbus_get_property (gpointer obj, const char *interface, const char *name,
   DBusError err;
   dbus_bool_t retval = FALSE;
   AtspiObject *aobj = ATSPI_OBJECT (obj);
+  char expected_type = (type [0] == '(' ? 'r' : type [0]);
 
   if (!aobj)
     return FALSE;
@@ -1063,7 +1068,7 @@ _atspi_dbus_get_property (gpointer obj, const char *interface, const char *name,
     goto done;
   }
   dbus_message_iter_recurse (&iter, &iter_variant);
-  if (dbus_message_iter_get_arg_type (&iter_variant) != type[0])
+  if (dbus_message_iter_get_arg_type (&iter_variant) != expected_type)
   {
     g_warning (_("atspi_dbus_get_property: Wrong type: expected %s, got %c\n"), type, dbus_message_iter_get_arg_type (&iter_variant));
     goto done;
