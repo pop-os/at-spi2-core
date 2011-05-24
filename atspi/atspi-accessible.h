@@ -97,6 +97,8 @@ gchar * atspi_accessible_get_toolkit_name (AtspiAccessible *obj, GError **error)
 
 gchar * atspi_accessible_get_toolkit_version (AtspiAccessible *obj, GError **error);
 
+gchar * atspi_accessible_get_atspi_version (AtspiAccessible *obj, GError **error);
+
 gint atspi_accessible_get_id (AtspiAccessible *obj, GError **error);
 
 AtspiAccessible * atspi_accessible_get_application (AtspiAccessible *obj, GError **error);
@@ -131,4 +133,5 @@ void atspi_accessible_set_cache_mask (AtspiAccessible *accessible, AtspiCache ma
 
 /* private */
 void _atspi_accessible_add_cache (AtspiAccessible *accessible, AtspiCache flag);
+gboolean _atspi_accessible_test_cache (AtspiAccessible *accessible, AtspiCache flag);
 #endif	/* _ATSPI_ACCESSIBLE_H_ */

@@ -79,6 +79,8 @@ callback_ref (void *callback, GDestroyNotify callback_destroyed)
   if (!info)
   {
     info = g_new (CallbackInfo, 1);
+    if (!info)
+      return;
     info->callback = callback;
     info->callback_destroyed = callback_destroyed;
     info->ref_count = 1;
@@ -330,14 +332,20 @@ convert_event_type_to_dbus (const char *eventType, char **categoryp, char **name
     if (name && name [0])
     {
       gchar *new_str = g_strconcat (*matchrule, ",member='", name, "'", NULL);
-      g_free (*matchrule);
-      *matchrule = new_str;
+      if (new_str)
+      {
+        g_free (*matchrule);
+        *matchrule = new_str;
+      }
     }
     if (detail && detail [0])
     {
       gchar *new_str = g_strconcat (*matchrule, ",arg0='", detail, "'", NULL);
-      g_free (*matchrule);
-      *matchrule = new_str;
+      if (new_str)
+      {
+        g_free (*matchrule);
+        *matchrule = new_str;
+      }
     }
   }
   if (categoryp) *categoryp = category;
@@ -499,11 +507,12 @@ atspi_event_listener_register_from_callback (AtspiEventListenerCB callback,
 
   if (!event_type)
   {
-    g_warning ("called atspi_event_listener_register_from_callback with a NULL event_type");
+    g_warning (_("called atspi_event_listener_register_from_callback with a NULL event_type"));
     return FALSE;
   }
 
   e = g_new (EventListenerEntry, 1);
+  if (!e) return FALSE;
   e->callback = callback;
   e->user_data = user_data;
   e->callback_destroyed = callback_destroyed;
@@ -765,7 +774,7 @@ atspi_dbus_handle_event (DBusConnection *bus, DBusMessage *message, void *data)
 
   if (strcmp (signature, "siiv(so)") != 0)
   {
-    g_warning ("Got invalid signature %s for signal %s from interface %s\n", signature, member, category);
+    g_warning (_("Got invalid signature %s for signal %s from interface %s\n"), signature, member, category);
     return DBUS_HANDLER_RESULT_HANDLED;
   }
 
@@ -797,21 +806,30 @@ atspi_dbus_handle_event (DBusConnection *bus, DBusMessage *message, void *data)
   if (strcasecmp  (category, name) != 0)
   {
     p = g_strconcat (converted_type, ":", name, NULL);
-    g_free (converted_type);
-    converted_type = p;
+    if (p)
+    {
+      g_free (converted_type);
+      converted_type = p;
+    }
   }
   else if (detail [0] == '\0')
   {
     p = g_strconcat (converted_type, ":",  NULL);
-    g_free (converted_type);
-    converted_type = p;
+    if (p)
+    {
+      g_free (converted_type);
+      converted_type = p;
+    }
   }
 
   if (detail[0] != '\0')
   {
     p = g_strconcat (converted_type, ":", detail, NULL);
-    g_free (converted_type);
-    converted_type = p;
+    if (p)
+    {
+      g_free (converted_type);
+      converted_type = p;
+    }
   }
   e.type = converted_type;
   e.source = _atspi_ref_accessible (dbus_message_get_sender(message), dbus_message_get_path(message));

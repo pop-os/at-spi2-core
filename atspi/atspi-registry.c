@@ -361,6 +361,8 @@ atspi_key_definition_copy (AtspiKeyDefinition *src)
   AtspiKeyDefinition *dst;
 
   dst = g_new0 (AtspiKeyDefinition, 1);
+  if (!dst)
+    return NULL;
   dst->keycode = src->keycode;
   dst->keysym = src->keysym;
   if (src->keystring)
