@@ -9,4 +9,7 @@ at-spi2-core (2.0.2-1) unstable; urgency=low
   [ Samuel Thibault ]
   * Add myself as uploader.
 
- -- Mario Lang <mlang@debian.org>  Wed, 25 May 2011 22:16:51 +0200
+  [ Mario Lang ]
+  * Make debian/copyright follow DEP5.
+
+ -- Mario Lang <mlang@debian.org>  Sat, 28 May 2011 17:46:58 +0200
