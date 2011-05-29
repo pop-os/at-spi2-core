@@ -1,8 +1,9 @@
 at-spi2-core (2.0.2-2) UNRELEASED; urgency=low
 
   * debian/control: Put libatspi2.0-0 and gir1.2-atspi-2.0 in section libs.
+  * Add NEWS to debian/at-spi2-core.docs.
 
- -- Mario Lang <mlang@debian.org>  Sun, 29 May 2011 20:38:50 +0200
+ -- Mario Lang <mlang@debian.org>  Sun, 29 May 2011 20:43:02 +0200
 
 at-spi2-core (2.0.2-1) unstable; urgency=low
 
