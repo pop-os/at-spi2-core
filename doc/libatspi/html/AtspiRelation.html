@@ -42,15 +42,15 @@
 <pre class="synopsis">                    <a class="link" href="AtspiRelation.html#AtspiRelation-struct" title="AtspiRelation">AtspiRelation</a>;
                     <a class="link" href="AtspiRelation.html#AtspiRelationClass" title="AtspiRelationClass">AtspiRelationClass</a>;
 <a class="link" href="libatspi-atspi-constants.html#AtspiRelationType" title="enum AtspiRelationType"><span class="returnvalue">AtspiRelationType</span></a>   <a class="link" href="AtspiRelation.html#atspi-relation-get-relation-type" title="atspi_relation_get_relation_type ()">atspi_relation_get_relation_type</a>    (<em class="parameter"><code><a class="link" href="AtspiRelation.html" title="AtspiRelation"><span class="type">AtspiRelation</span></a> *obj</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="AtspiRelation.html#atspi-relation-get-n-targets" title="atspi_relation_get_n_targets ()">atspi_relation_get_n_targets</a>        (<em class="parameter"><code><a class="link" href="AtspiRelation.html" title="AtspiRelation"><span class="type">AtspiRelation</span></a> *obj</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="AtspiRelation.html#atspi-relation-get-n-targets" title="atspi_relation_get_n_targets ()">atspi_relation_get_n_targets</a>        (<em class="parameter"><code><a class="link" href="AtspiRelation.html" title="AtspiRelation"><span class="type">AtspiRelation</span></a> *obj</code></em>);
 <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   <a class="link" href="AtspiRelation.html#atspi-relation-get-target" title="atspi_relation_get_target ()">atspi_relation_get_target</a>           (<em class="parameter"><code><a class="link" href="AtspiRelation.html" title="AtspiRelation"><span class="type">AtspiRelation</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> i</code></em>);
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> i</code></em>);
 </pre>
 </div>
 <div class="refsect1" title="Object Hierarchy">
 <a name="AtspiRelation.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
    +----AtspiRelation
 </pre>
 </div>
@@ -105,7 +105,7 @@ Get the type of relationship represented by an <a class="link" href="AtspiRelati
 <hr>
 <div class="refsect2" title="atspi_relation_get_n_targets ()">
 <a name="atspi-relation-get-n-targets"></a><h3>atspi_relation_get_n_targets ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_relation_get_n_targets        (<em class="parameter"><code><a class="link" href="AtspiRelation.html" title="AtspiRelation"><span class="type">AtspiRelation</span></a> *obj</code></em>);</pre>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_relation_get_n_targets        (<em class="parameter"><code><a class="link" href="AtspiRelation.html" title="AtspiRelation"><span class="type">AtspiRelation</span></a> *obj</code></em>);</pre>
 <p>
 Get the number of objects which this relationship has as its
       target objects (the subject is the <span class="type">Accessible</span> from which this
@@ -133,7 +133,7 @@ Get the number of objects which this relationship has as its
 <div class="refsect2" title="atspi_relation_get_target ()">
 <a name="atspi-relation-get-target"></a><h3>atspi_relation_get_target ()</h3>
 <pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_relation_get_target           (<em class="parameter"><code><a class="link" href="AtspiRelation.html" title="AtspiRelation"><span class="type">AtspiRelation</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> i</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> i</code></em>);</pre>
 <p>
 Get the <em class="parameter"><code>i</code></em>-th target of a specified <a class="link" href="AtspiRelation.html" title="AtspiRelation"><span class="type">AtspiRelation</span></a> relationship.
 </p>

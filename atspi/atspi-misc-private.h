@@ -28,6 +28,8 @@
 
 /* Private internal implementation details of at-spi. */
 
+#include <string.h>
+
 #include "atspi.h"
 
 #include "dbus/dbus.h"
@@ -183,4 +185,5 @@ typedef enum
 } AtspiError;
 
 extern GMainLoop *atspi_main_loop;
+extern gboolean atspi_no_cache;
 #endif	/* _ATSPI_MISC_PRIVATE_H_ */

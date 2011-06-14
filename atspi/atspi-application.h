@@ -25,7 +25,7 @@
 #ifndef _ATSPI_APPLICATION_H_
 #define _ATSPI_APPLICATION_H_
 
-#include "glib-object.h"
+#include <dbus/dbus.h>
 
 #include "atspi-accessible.h"
 
@@ -45,6 +45,9 @@ struct _AtspiApplication
   DBusConnection *bus;
   struct _AtspiAccessible *root;
   AtspiCache cache;
+  gchar *toolkit_name;
+  gchar *toolkit_version;
+  gchar *atspi_version;
 };
 
 typedef struct _AtspiApplicationClass AtspiApplicationClass;

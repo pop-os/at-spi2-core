@@ -157,10 +157,12 @@ atspi_accessible_finalize (GObject *object)
 
     g_free (accessible->description);
     g_free (accessible->name);
+  if (accessible->attributes)
+    g_hash_table_unref (accessible->attributes);
 
 #ifdef DEBUG_REF_COUNTS
   accessible_count--;
-  printf("at-spi: finalize: %d objects\n", accessible_count);
+  g_print ("at-spi: finalize: %d objects\n", accessible_count);
 #endif
 
   G_OBJECT_CLASS (atspi_accessible_parent_class)
@@ -525,12 +527,9 @@ atspi_accessible_get_relation_set (AtspiAccessible *obj, GError **error)
   dbus_message_iter_recurse (&iter, &iter_array);
   while (dbus_message_iter_get_arg_type (&iter_array) != DBUS_TYPE_INVALID)
   {
-    GArray *new_array;
     AtspiRelation *relation;
     relation = _atspi_relation_new_from_iter (&iter_array);
-    new_array = g_array_append_val (ret, relation);
-    if (new_array)
-      ret = new_array;
+    ret = g_array_append_val (ret, relation);
     dbus_message_iter_next (&iter_array);
   }
   dbus_message_unref (reply);
@@ -676,8 +675,25 @@ atspi_accessible_get_attributes (AtspiAccessible *obj, GError **error)
 
     g_return_val_if_fail (obj != NULL, NULL);
 
-  message = _atspi_dbus_call_partial (obj, atspi_interface_accessible, "GetAttributes", error, "");
-  return _atspi_dbus_return_hash_from_message (message);
+  if (!_atspi_accessible_test_cache (obj, ATSPI_CACHE_ATTRIBUTES))
+  {
+    message = _atspi_dbus_call_partial (obj, atspi_interface_accessible,
+                                        "GetAttributes", error, "");
+    obj->attributes = _atspi_dbus_return_hash_from_message (message);
+    _atspi_accessible_add_cache (obj, ATSPI_CACHE_ATTRIBUTES);
+  }
+
+  if (!obj->attributes)
+    return NULL;
+  return g_hash_table_ref (obj->attributes);
+}
+
+static void
+add_to_attribute_array (gpointer key, gpointer value, gpointer data)
+{
+  GArray **array = (GArray **)data;
+  gchar *str = g_strconcat (key, ":", value, NULL);
+  *array = g_array_append_val (*array, str);
 }
 
 /**
@@ -698,6 +714,17 @@ atspi_accessible_get_attributes_as_array (AtspiAccessible *obj, GError **error)
   DBusMessage *message;
 
     g_return_val_if_fail (obj != NULL, NULL);
+
+  if (_atspi_accessible_get_cache_mask (obj) & ATSPI_CACHE_ATTRIBUTES)
+  {
+    GArray *array = g_array_new (TRUE, TRUE, sizeof (gchar *));
+    GHashTable *attributes = atspi_accessible_get_attributes (obj, error);
+    if (!attributes)
+      return NULL;
+    g_hash_table_foreach (attributes, add_to_attribute_array, &array);
+    g_hash_table_unref (attributes);
+    return array;
+  }
 
   message = _atspi_dbus_call_partial (obj, atspi_interface_accessible, "GetAttributes", error, "");
   return _atspi_dbus_return_attribute_array_from_message (message);
@@ -759,13 +786,16 @@ atspi_accessible_get_application (AtspiAccessible *obj, GError **error)
 gchar *
 atspi_accessible_get_toolkit_name (AtspiAccessible *obj, GError **error)
 {
-  gchar *ret = NULL;
-
   g_return_val_if_fail (obj != NULL, NULL);
 
-  if (!_atspi_dbus_get_property (obj, atspi_interface_application, "ToolkitName", error, "s", &ret))
-      return NULL;
-  return ret;
+  if (!obj->parent.app)
+    return NULL;
+
+  if (!obj->parent.app->toolkit_name)
+    _atspi_dbus_get_property (obj, atspi_interface_application, "ToolkitName",
+                              error, "s", &obj->parent.app->toolkit_name);
+
+  return g_strdup (obj->parent.app->toolkit_name);
 }
 
 /**
@@ -781,13 +811,16 @@ atspi_accessible_get_toolkit_name (AtspiAccessible *obj, GError **error)
 gchar *
 atspi_accessible_get_toolkit_version (AtspiAccessible *obj, GError **error)
 {
-  gchar *ret = NULL;
-
   g_return_val_if_fail (obj != NULL, NULL);
 
-  if (!_atspi_dbus_get_property (obj, atspi_interface_application, "Version", error, "s", &ret))
-      return NULL;
-  return ret;
+  if (!obj->parent.app)
+    return NULL;
+
+  if (!obj->parent.app->toolkit_version)
+    _atspi_dbus_get_property (obj, atspi_interface_application, "Version",
+                              error, "s", &obj->parent.app->toolkit_version);
+
+  return g_strdup (obj->parent.app->toolkit_version);
 }
 
 /**
@@ -804,14 +837,18 @@ atspi_accessible_get_toolkit_version (AtspiAccessible *obj, GError **error)
 gchar *
 atspi_accessible_get_atspi_version (AtspiAccessible *obj, GError **error)
 {
-  gchar *ret = NULL;
-
   g_return_val_if_fail (obj != NULL, NULL);
 
-  if (!_atspi_dbus_get_property (obj, atspi_interface_application, "AtspiVersion", error, "s", &ret))
-      return NULL;
-  return ret;
+  if (!obj->parent.app)
+    return NULL;
+
+  if (!obj->parent.app->atspi_version)
+    _atspi_dbus_get_property (obj, atspi_interface_application, "AtspiVersion",
+                              error, "s", &obj->parent.app->atspi_version);
+
+  return g_strdup (obj->parent.app->atspi_version);
 }
+
 /**
  * atspi_accessible_get_toolkit_version:
  * @obj: a pointer to the #AtspiAccessible object on which to operate.
@@ -1057,7 +1094,7 @@ atspi_accessible_is_streamable_content (AtspiAccessible *obj)
   return _atspi_accessible_is_a (obj,
 			      atspi_interface_streamable_content);
 #else
-  g_warning (_("Streamable content not implemented"));
+  g_warning ("Streamable content not implemented");
   return FALSE;
 #endif
 }
@@ -1328,9 +1365,6 @@ atspi_accessible_get_interfaces (AtspiAccessible *obj)
 {
   GArray *ret = g_array_new (TRUE, TRUE, sizeof (gchar *));
 
-  if (!ret)
-    return NULL;
-
   g_return_val_if_fail (obj != NULL, NULL);
 
   append_const_val (ret, "Accessible");
@@ -1400,7 +1434,27 @@ atspi_accessible_set_cache_mask (AtspiAccessible *accessible, AtspiCache mask)
   accessible->parent.app->cache = mask;
 }
 
-static AtspiCache
+/**
+ * atspi_accessible_clear_cache:
+ * @accessible: The #AtspiAccessible whose cache to clear.
+ *
+ * Clears the cached information for the given accessible and all of its
+ * descendants.
+ */
+void
+atspi_accessible_clear_cache (AtspiAccessible *accessible)
+{
+  GList *l;
+
+  if (accessible)
+  {
+    accessible->cached_properties = ATSPI_CACHE_NONE;
+    for (l = accessible->children; l; l = l->next)
+      atspi_accessible_clear_cache (l->data);
+  }
+}
+
+AtspiCache
 _atspi_accessible_get_cache_mask (AtspiAccessible *accessible)
 {
   AtspiCache mask;
@@ -1419,7 +1473,7 @@ _atspi_accessible_get_cache_mask (AtspiAccessible *accessible)
   }
 
   if (mask == ATSPI_CACHE_UNDEFINED)
-    mask = ATSPI_CACHE_ALL;
+    mask = ATSPI_CACHE_DEFAULT;
 
   return mask;
 }
@@ -1429,7 +1483,7 @@ _atspi_accessible_test_cache (AtspiAccessible *accessible, AtspiCache flag)
 {
   AtspiCache mask = _atspi_accessible_get_cache_mask (accessible);
   AtspiCache result = accessible->cached_properties & mask & flag;
-  return (result != 0 && atspi_main_loop);
+  return (result != 0 && atspi_main_loop && !atspi_no_cache);
 }
 
 void

@@ -42,35 +42,35 @@
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="libatspi-atspi-collection.synopsis"></a><h2>Synopsis</h2>
 <a name="AtspiCollection"></a><pre class="synopsis">                    <a class="link" href="libatspi-atspi-collection.html#AtspiCollection-struct" title="AtspiCollection">AtspiCollection</a>;
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-collection.html#atspi-collection-is-ancestor-of" title="atspi_collection_is_ancestor_of ()">atspi_collection_is_ancestor_of</a>     (<em class="parameter"><code><a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> *collection</code></em>,
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-collection.html#atspi-collection-is-ancestor-of" title="atspi_collection_is_ancestor_of ()">atspi_collection_is_ancestor_of</a>     (<em class="parameter"><code><a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> *collection</code></em>,
                                                          <em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *test</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            <a class="link" href="libatspi-atspi-collection.html#atspi-collection-get-matches" title="atspi_collection_get_matches ()">atspi_collection_get_matches</a>        (<em class="parameter"><code><a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> *collection</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            <a class="link" href="libatspi-atspi-collection.html#atspi-collection-get-matches" title="atspi_collection_get_matches ()">atspi_collection_get_matches</a>        (<em class="parameter"><code><a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> *collection</code></em>,
                                                          <em class="parameter"><code><a class="link" href="AtspiMatchRule.html" title="AtspiMatchRule"><span class="type">AtspiMatchRule</span></a> *rule</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCollectionSortOrder" title="enum AtspiCollectionSortOrder"><span class="type">AtspiCollectionSortOrder</span></a> sortby</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> count</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> traverse</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            <a class="link" href="libatspi-atspi-collection.html#atspi-collection-get-matches-to" title="atspi_collection_get_matches_to ()">atspi_collection_get_matches_to</a>     (<em class="parameter"><code><a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> *collection</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> count</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> traverse</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            <a class="link" href="libatspi-atspi-collection.html#atspi-collection-get-matches-to" title="atspi_collection_get_matches_to ()">atspi_collection_get_matches_to</a>     (<em class="parameter"><code><a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> *collection</code></em>,
                                                          <em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *current_object</code></em>,
                                                          <em class="parameter"><code><a class="link" href="AtspiMatchRule.html" title="AtspiMatchRule"><span class="type">AtspiMatchRule</span></a> *rule</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCollectionSortOrder" title="enum AtspiCollectionSortOrder"><span class="type">AtspiCollectionSortOrder</span></a> sortby</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCollectionTreeTraversalType" title="enum AtspiCollectionTreeTraversalType"><span class="type">AtspiCollectionTreeTraversalType</span></a> tree</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> recurse</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> count</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> traverse</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            <a class="link" href="libatspi-atspi-collection.html#atspi-collection-get-matches-from" title="atspi_collection_get_matches_from ()">atspi_collection_get_matches_from</a>   (<em class="parameter"><code><a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> *collection</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> recurse</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> count</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> traverse</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            <a class="link" href="libatspi-atspi-collection.html#atspi-collection-get-matches-from" title="atspi_collection_get_matches_from ()">atspi_collection_get_matches_from</a>   (<em class="parameter"><code><a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> *collection</code></em>,
                                                          <em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *current_object</code></em>,
                                                          <em class="parameter"><code><a class="link" href="AtspiMatchRule.html" title="AtspiMatchRule"><span class="type">AtspiMatchRule</span></a> *rule</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCollectionSortOrder" title="enum AtspiCollectionSortOrder"><span class="type">AtspiCollectionSortOrder</span></a> sortby</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCollectionTreeTraversalType" title="enum AtspiCollectionTreeTraversalType"><span class="type">AtspiCollectionTreeTraversalType</span></a> tree</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> count</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> traverse</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> count</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> traverse</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   <a class="link" href="libatspi-atspi-collection.html#atspi-collection-get-active-descendant" title="atspi_collection_get_active_descendant ()">atspi_collection_get_active_descendant</a>
                                                         (<em class="parameter"><code><a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> *collection</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 </pre>
 </div>
 <div class="refsect1" title="Object Hierarchy">
@@ -102,9 +102,9 @@ AtspiCollection is implemented by
 <hr>
 <div class="refsect2" title="atspi_collection_is_ancestor_of ()">
 <a name="atspi-collection-is-ancestor-of"></a><h3>atspi_collection_is_ancestor_of ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_collection_is_ancestor_of     (<em class="parameter"><code><a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> *collection</code></em>,
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_collection_is_ancestor_of     (<em class="parameter"><code><a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> *collection</code></em>,
                                                          <em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *test</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -136,12 +136,12 @@ AtspiCollection is implemented by
 <hr>
 <div class="refsect2" title="atspi_collection_get_matches ()">
 <a name="atspi-collection-get-matches"></a><h3>atspi_collection_get_matches ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            atspi_collection_get_matches        (<em class="parameter"><code><a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> *collection</code></em>,
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            atspi_collection_get_matches        (<em class="parameter"><code><a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> *collection</code></em>,
                                                          <em class="parameter"><code><a class="link" href="AtspiMatchRule.html" title="AtspiMatchRule"><span class="type">AtspiMatchRule</span></a> *rule</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCollectionSortOrder" title="enum AtspiCollectionSortOrder"><span class="type">AtspiCollectionSortOrder</span></a> sortby</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> count</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> traverse</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> count</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> traverse</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 <em class="parameter"><code>collection</code></em>: The <a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a>.
 <em class="parameter"><code>rule</code></em>: A <a class="link" href="AtspiMatchRule.html" title="AtspiMatchRule"><span class="type">AtspiMatchRule</span></a> describing the match criteria.
@@ -185,7 +185,7 @@ AtspiCollection is implemented by
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="type">GArray</span></a> of
+<td> A <a href="/usr/share/gtk-doc/html/glib/glib-Arrays.html#GArray"><span class="type">GArray</span></a> of
          <a href="libatspi-atspi-types.html#AtspiAccessible"><span class="type">AtspiAccessibles</span></a> matching the given match rule. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> AtspiAccessible*][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym> AtspiAccessible*]</span>
 </td>
 </tr>
@@ -195,15 +195,15 @@ AtspiCollection is implemented by
 <hr>
 <div class="refsect2" title="atspi_collection_get_matches_to ()">
 <a name="atspi-collection-get-matches-to"></a><h3>atspi_collection_get_matches_to ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            atspi_collection_get_matches_to     (<em class="parameter"><code><a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> *collection</code></em>,
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            atspi_collection_get_matches_to     (<em class="parameter"><code><a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> *collection</code></em>,
                                                          <em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *current_object</code></em>,
                                                          <em class="parameter"><code><a class="link" href="AtspiMatchRule.html" title="AtspiMatchRule"><span class="type">AtspiMatchRule</span></a> *rule</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCollectionSortOrder" title="enum AtspiCollectionSortOrder"><span class="type">AtspiCollectionSortOrder</span></a> sortby</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCollectionTreeTraversalType" title="enum AtspiCollectionTreeTraversalType"><span class="type">AtspiCollectionTreeTraversalType</span></a> tree</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> recurse</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> count</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> traverse</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> recurse</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> count</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> traverse</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 <em class="parameter"><code>collection</code></em>: The <a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a>.
 <em class="parameter"><code>current_object</code></em>: The object at which to start searching.
@@ -266,7 +266,7 @@ AtspiCollection is implemented by
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="type">GArray</span></a> of
+<td> A <a href="/usr/share/gtk-doc/html/glib/glib-Arrays.html#GArray"><span class="type">GArray</span></a> of
          <a href="libatspi-atspi-types.html#AtspiAccessible"><span class="type">AtspiAccessibles</span></a> matching the given match rule after
          <em class="parameter"><code>current_object</code></em>. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> AtspiAccessible*][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym> AtspiAccessible*]</span>
 </td>
@@ -277,14 +277,14 @@ AtspiCollection is implemented by
 <hr>
 <div class="refsect2" title="atspi_collection_get_matches_from ()">
 <a name="atspi-collection-get-matches-from"></a><h3>atspi_collection_get_matches_from ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            atspi_collection_get_matches_from   (<em class="parameter"><code><a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> *collection</code></em>,
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            atspi_collection_get_matches_from   (<em class="parameter"><code><a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> *collection</code></em>,
                                                          <em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *current_object</code></em>,
                                                          <em class="parameter"><code><a class="link" href="AtspiMatchRule.html" title="AtspiMatchRule"><span class="type">AtspiMatchRule</span></a> *rule</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCollectionSortOrder" title="enum AtspiCollectionSortOrder"><span class="type">AtspiCollectionSortOrder</span></a> sortby</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCollectionTreeTraversalType" title="enum AtspiCollectionTreeTraversalType"><span class="type">AtspiCollectionTreeTraversalType</span></a> tree</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> count</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> traverse</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> count</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> traverse</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 <em class="parameter"><code>collection</code></em>: The <a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a>.
 <em class="parameter"><code>current_object</code></em>: Upon reaching this object, searching should stop.
@@ -341,7 +341,7 @@ AtspiCollection is implemented by
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="type">GArray</span></a> of
+<td> A <a href="/usr/share/gtk-doc/html/glib/glib-Arrays.html#GArray"><span class="type">GArray</span></a> of
          <a href="libatspi-atspi-types.html#AtspiAccessible"><span class="type">AtspiAccessibles</span></a> matching the given match rule that preceed
          <em class="parameter"><code>current_object</code></em>. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> AtspiAccessible*][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym> AtspiAccessible*]</span>
 </td>
@@ -354,7 +354,7 @@ AtspiCollection is implemented by
 <a name="atspi-collection-get-active-descendant"></a><h3>atspi_collection_get_active_descendant ()</h3>
 <pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_collection_get_active_descendant
                                                         (<em class="parameter"><code><a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> *collection</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 <em class="parameter"><code>collection</code></em>: The <a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> to query.
 </p>
