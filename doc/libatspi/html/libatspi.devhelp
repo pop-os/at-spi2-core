@@ -34,10 +34,10 @@
     <sub name="Annotation Glossary" link="annotation-glossary.html"/>
   </chapters>
   <functions>
-    <function name="AtspiRange" link="libatspi-atspi-text.html#AtspiRange"/>
+    <function name="struct AtspiRange" link="libatspi-atspi-text.html#AtspiRange-struct"/>
     <function name="ATSPI_TYPE_RANGE" link="libatspi-atspi-text.html#ATSPI-TYPE-RANGE:CAPS"/>
     <function name="atspi_range_copy ()" link="libatspi-atspi-text.html#atspi-range-copy"/>
-    <function name="AtspiTextRange" link="libatspi-atspi-text.html#AtspiTextRange"/>
+    <function name="struct AtspiTextRange" link="libatspi-atspi-text.html#AtspiTextRange-struct"/>
     <function name="ATSPI_TYPE_TEXT_RANGE" link="libatspi-atspi-text.html#ATSPI-TYPE-TEXT-RANGE:CAPS"/>
     <function name="atspi_text_get_type ()" link="libatspi-atspi-text.html#atspi-text-get-type"/>
     <function name="AtspiText" link="libatspi-atspi-text.html#AtspiText-struct"/>
@@ -63,8 +63,8 @@
     <function name="atspi_text_add_selection ()" link="libatspi-atspi-text.html#atspi-text-add-selection"/>
     <function name="atspi_text_remove_selection ()" link="libatspi-atspi-text.html#atspi-text-remove-selection"/>
     <function name="atspi_text_set_selection ()" link="libatspi-atspi-text.html#atspi-text-set-selection"/>
-    <function name="AtspiStateSet" link="AtspiStateSet.html#AtspiStateSet-struct"/>
-    <function name="AtspiStateSetClass" link="AtspiStateSet.html#AtspiStateSetClass"/>
+    <function name="struct AtspiStateSet" link="AtspiStateSet.html#AtspiStateSet-struct"/>
+    <function name="struct AtspiStateSetClass" link="AtspiStateSet.html#AtspiStateSetClass"/>
     <function name="atspi_state_set_new ()" link="AtspiStateSet.html#atspi-state-set-new"/>
     <function name="atspi_state_set_set_by_name ()" link="AtspiStateSet.html#atspi-state-set-set-by-name"/>
     <function name="atspi_state_set_add ()" link="AtspiStateSet.html#atspi-state-set-add"/>
@@ -74,16 +74,16 @@
     <function name="atspi_state_set_get_states ()" link="AtspiStateSet.html#atspi-state-set-get-states"/>
     <function name="atspi_state_set_is_empty ()" link="AtspiStateSet.html#atspi-state-set-is-empty"/>
     <function name="atspi_state_set_remove ()" link="AtspiStateSet.html#atspi-state-set-remove"/>
-    <function name="AtspiApplication" link="libatspi-AtspiApplication.html#AtspiApplication"/>
-    <function name="AtspiApplicationClass" link="libatspi-AtspiApplication.html#AtspiApplicationClass"/>
+    <function name="struct AtspiApplication" link="libatspi-AtspiApplication.html#AtspiApplication"/>
+    <function name="struct AtspiApplicationClass" link="libatspi-AtspiApplication.html#AtspiApplicationClass"/>
     <function name="AtspiCollection" link="libatspi-atspi-collection.html#AtspiCollection-struct"/>
     <function name="atspi_collection_is_ancestor_of ()" link="libatspi-atspi-collection.html#atspi-collection-is-ancestor-of"/>
     <function name="atspi_collection_get_matches ()" link="libatspi-atspi-collection.html#atspi-collection-get-matches"/>
     <function name="atspi_collection_get_matches_to ()" link="libatspi-atspi-collection.html#atspi-collection-get-matches-to"/>
     <function name="atspi_collection_get_matches_from ()" link="libatspi-atspi-collection.html#atspi-collection-get-matches-from"/>
     <function name="atspi_collection_get_active_descendant ()" link="libatspi-atspi-collection.html#atspi-collection-get-active-descendant"/>
-    <function name="AtspiRelation" link="AtspiRelation.html#AtspiRelation-struct"/>
-    <function name="AtspiRelationClass" link="AtspiRelation.html#AtspiRelationClass"/>
+    <function name="struct AtspiRelation" link="AtspiRelation.html#AtspiRelation-struct"/>
+    <function name="struct AtspiRelationClass" link="AtspiRelation.html#AtspiRelationClass"/>
     <function name="atspi_relation_get_relation_type ()" link="AtspiRelation.html#atspi-relation-get-relation-type"/>
     <function name="atspi_relation_get_n_targets ()" link="AtspiRelation.html#atspi-relation-get-n-targets"/>
     <function name="atspi_relation_get_target ()" link="AtspiRelation.html#atspi-relation-get-target"/>
@@ -93,17 +93,17 @@
     <function name="atspi_image_get_image_position ()" link="libatspi-atspi-image.html#atspi-image-get-image-position"/>
     <function name="atspi_image_get_image_extents ()" link="libatspi-atspi-image.html#atspi-image-get-image-extents"/>
     <function name="atspi_image_get_image_locale ()" link="libatspi-atspi-image.html#atspi-image-get-image-locale"/>
-    <function name="AtspiMatchRule" link="AtspiMatchRule.html#AtspiMatchRule-struct"/>
-    <function name="AtspiMatchRuleClass" link="AtspiMatchRule.html#AtspiMatchRuleClass"/>
+    <function name="struct AtspiMatchRule" link="AtspiMatchRule.html#AtspiMatchRule-struct"/>
+    <function name="struct AtspiMatchRuleClass" link="AtspiMatchRule.html#AtspiMatchRuleClass"/>
     <function name="atspi_match_rule_new ()" link="AtspiMatchRule.html#atspi-match-rule-new"/>
     <function name="AtspiDocument" link="libatspi-atspi-document.html#AtspiDocument-struct"/>
     <function name="atspi_document_get_locale ()" link="libatspi-atspi-document.html#atspi-document-get-locale"/>
     <function name="atspi_document_get_attribute_value ()" link="libatspi-atspi-document.html#atspi-document-get-attribute-value"/>
     <function name="atspi_document_get_attributes ()" link="libatspi-atspi-document.html#atspi-document-get-attributes"/>
-    <function name="AtspiObject" link="AtspiObject.html#AtspiObject-struct"/>
-    <function name="AtspiObjectClass" link="AtspiObject.html#AtspiObjectClass"/>
+    <function name="struct AtspiObject" link="AtspiObject.html#AtspiObject-struct"/>
+    <function name="struct AtspiObjectClass" link="AtspiObject.html#AtspiObjectClass"/>
     <function name="AtspiAccessible" link="AtspiAccessible.html#AtspiAccessible-struct"/>
-    <function name="AtspiAccessibleClass" link="AtspiAccessible.html#AtspiAccessibleClass"/>
+    <function name="struct AtspiAccessibleClass" link="AtspiAccessible.html#AtspiAccessibleClass"/>
     <function name="atspi_accessible_new ()" link="AtspiAccessible.html#atspi-accessible-new"/>
     <function name="atspi_role_get_name ()" link="AtspiAccessible.html#atspi-role-get-name"/>
     <function name="atspi_accessible_get_name ()" link="AtspiAccessible.html#atspi-accessible-get-name"/>
@@ -137,14 +137,14 @@
     <function name="atspi_accessible_get_interfaces ()" link="AtspiAccessible.html#atspi-accessible-get-interfaces"/>
     <function name="AtspiDeviceListenerCB ()" link="AtspiDeviceListener.html#AtspiDeviceListenerCB"/>
     <function name="AtspiDeviceListenerSimpleCB ()" link="AtspiDeviceListener.html#AtspiDeviceListenerSimpleCB"/>
-    <function name="AtspiDeviceListener" link="AtspiDeviceListener.html#AtspiDeviceListener-struct"/>
-    <function name="AtspiDeviceListenerClass" link="AtspiDeviceListener.html#AtspiDeviceListenerClass"/>
+    <function name="struct AtspiDeviceListener" link="AtspiDeviceListener.html#AtspiDeviceListener-struct"/>
+    <function name="struct AtspiDeviceListenerClass" link="AtspiDeviceListener.html#AtspiDeviceListenerClass"/>
     <function name="atspi_device_listener_new ()" link="AtspiDeviceListener.html#atspi-device-listener-new"/>
     <function name="atspi_device_listener_new_simple ()" link="AtspiDeviceListener.html#atspi-device-listener-new-simple"/>
     <function name="atspi_device_listener_add_callback ()" link="AtspiDeviceListener.html#atspi-device-listener-add-callback"/>
     <function name="atspi_device_listener_remove_callback ()" link="AtspiDeviceListener.html#atspi-device-listener-remove-callback"/>
     <function name="AtspiHyperlink" link="AtspiHyperlink.html#AtspiHyperlink-struct"/>
-    <function name="AtspiHyperlinkClass" link="AtspiHyperlink.html#AtspiHyperlinkClass"/>
+    <function name="struct AtspiHyperlinkClass" link="AtspiHyperlink.html#AtspiHyperlinkClass"/>
     <function name="atspi_hyperlink_new ()" link="AtspiHyperlink.html#atspi-hyperlink-new"/>
     <function name="atspi_hyperlink_get_n_anchors ()" link="AtspiHyperlink.html#atspi-hyperlink-get-n-anchors"/>
     <function name="atspi_hyperlink_get_uri ()" link="AtspiHyperlink.html#atspi-hyperlink-get-uri"/>
@@ -204,8 +204,8 @@
     <function name="atspi_selection_clear_selection ()" link="libatspi-atspi-selection.html#atspi-selection-clear-selection"/>
     <function name="AtspiEventListenerCB ()" link="AtspiEventListener.html#AtspiEventListenerCB"/>
     <function name="AtspiEventListenerSimpleCB ()" link="AtspiEventListener.html#AtspiEventListenerSimpleCB"/>
-    <function name="AtspiEventListener" link="AtspiEventListener.html#AtspiEventListener-struct"/>
-    <function name="AtspiEventListenerClass" link="AtspiEventListener.html#AtspiEventListenerClass"/>
+    <function name="struct AtspiEventListener" link="AtspiEventListener.html#AtspiEventListener-struct"/>
+    <function name="struct AtspiEventListenerClass" link="AtspiEventListener.html#AtspiEventListenerClass"/>
     <function name="atspi_event_listener_get_type ()" link="AtspiEventListener.html#atspi-event-listener-get-type"/>
     <function name="atspi_event_listener_new_simple ()" link="AtspiEventListener.html#atspi-event-listener-new-simple"/>
     <function name="atspi_event_listener_register ()" link="AtspiEventListener.html#atspi-event-listener-register"/>
@@ -218,10 +218,10 @@
     <function name="atspi_hypertext_get_n_links ()" link="libatspi-atspi-hypertext.html#atspi-hypertext-get-n-links"/>
     <function name="atspi_hypertext_get_link ()" link="libatspi-atspi-hypertext.html#atspi-hypertext-get-link"/>
     <function name="atspi_hypertext_get_link_index ()" link="libatspi-atspi-hypertext.html#atspi-hypertext-get-link-index"/>
-    <function name="AtspiRect" link="libatspi-atspi-component.html#AtspiRect"/>
+    <function name="struct AtspiRect" link="libatspi-atspi-component.html#AtspiRect-struct"/>
     <function name="ATSPI_TYPE_RECT" link="libatspi-atspi-component.html#ATSPI-TYPE-RECT:CAPS"/>
     <function name="atspi_rect_copy ()" link="libatspi-atspi-component.html#atspi-rect-copy"/>
-    <function name="AtspiPoint" link="libatspi-atspi-component.html#AtspiPoint"/>
+    <function name="struct AtspiPoint" link="libatspi-atspi-component.html#AtspiPoint-struct"/>
     <function name="ATSPI_TYPE_POINT" link="libatspi-atspi-component.html#ATSPI-TYPE-POINT:CAPS"/>
     <function name="atspi_point_get_type ()" link="libatspi-atspi-component.html#atspi-point-get-type"/>
     <function name="atspi_point_copy ()" link="libatspi-atspi-component.html#atspi-point-copy"/>
@@ -263,10 +263,10 @@
     <function name="AtspiKeyMaskType" link="libatspi-atspi-types.html#AtspiKeyMaskType"/>
     <function name="AtspiKeyEventMask" link="libatspi-atspi-types.html#AtspiKeyEventMask"/>
     <function name="AtspiDeviceEventMask" link="libatspi-atspi-types.html#AtspiDeviceEventMask"/>
-    <function name="AtspiDeviceEvent" link="libatspi-atspi-types.html#AtspiDeviceEvent"/>
-    <function name="AtspiEventListenerMode" link="libatspi-atspi-types.html#AtspiEventListenerMode"/>
-    <function name="AtspiKeyDefinition" link="libatspi-atspi-types.html#AtspiKeyDefinition"/>
-    <function name="AtspiEvent" link="libatspi-atspi-types.html#AtspiEvent"/>
+    <function name="struct AtspiDeviceEvent" link="libatspi-atspi-types.html#AtspiDeviceEvent"/>
+    <function name="struct AtspiEventListenerMode" link="libatspi-atspi-types.html#AtspiEventListenerMode"/>
+    <function name="struct AtspiKeyDefinition" link="libatspi-atspi-types.html#AtspiKeyDefinition-struct"/>
+    <function name="struct AtspiEvent" link="libatspi-atspi-types.html#AtspiEvent-struct"/>
     <function name="ATSPI_TYPE_EVENT" link="libatspi-atspi-types.html#ATSPI-TYPE-EVENT:CAPS"/>
     <function name="AtspiKeystrokeListener" link="libatspi-atspi-types.html#AtspiKeystrokeListener"/>
     <function name="enum AtspiKeyListenerSyncType" link="libatspi-atspi-types.html#AtspiKeyListenerSyncType"/>
@@ -304,7 +304,7 @@
     <function name="atspi_event_main ()" link="libatspi-atspi-misc.html#atspi-event-main"/>
     <function name="atspi_event_quit ()" link="libatspi-atspi-misc.html#atspi-event-quit"/>
     <function name="atspi_exit ()" link="libatspi-atspi-misc.html#atspi-exit"/>
-    <function name="AtspiReference" link="libatspi-atspi-misc-private.html#AtspiReference"/>
+    <function name="struct AtspiReference" link="libatspi-atspi-misc-private.html#AtspiReference"/>
     <function name="ATSPI_DBUS_NAME_REGISTRY" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-NAME-REGISTRY:CAPS"/>
     <function name="ATSPI_DBUS_PATH_REGISTRY" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-PATH-REGISTRY:CAPS"/>
     <function name="ATSPI_DBUS_INTERFACE_REGISTRY" link="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-REGISTRY:CAPS"/>

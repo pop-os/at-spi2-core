@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="[Insert title here]">
 <link rel="prev" href="libatspi-atspi-table.html" title="atspi-table">
 <link rel="next" href="AtspiEventListener.html" title="AtspiEventListener">
-<meta name="generator" content="GTK-Doc V1.15 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -30,7 +30,7 @@
                   <a href="#libatspi-atspi-selection.implementations" class="shortcut">Known Implementations</a>
 </td></tr>
 </table>
-<div class="refentry" title="atspi-selection">
+<div class="refentry">
 <a name="libatspi-atspi-selection"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -39,66 +39,66 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsynopsisdiv" title="Synopsis">
+<div class="refsynopsisdiv">
 <a name="libatspi-atspi-selection.synopsis"></a><h2>Synopsis</h2>
 <a name="AtspiSelection"></a><pre class="synopsis">                    <a class="link" href="libatspi-atspi-selection.html#AtspiSelection-struct" title="AtspiSelection">AtspiSelection</a>;
-<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="libatspi-atspi-selection.html#atspi-selection-get-n-selected-children" title="atspi_selection_get_n_selected_children ()">atspi_selection_get_n_selected_children</a>
+<span class="returnvalue">gint</span>                <a class="link" href="libatspi-atspi-selection.html#atspi-selection-get-n-selected-children" title="atspi_selection_get_n_selected_children ()">atspi_selection_get_n_selected_children</a>
                                                         (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
 <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   <a class="link" href="libatspi-atspi-selection.html#atspi-selection-get-selected-child" title="atspi_selection_get_selected_child ()">atspi_selection_get_selected_child</a>  (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> selected_child_index</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-selection.html#atspi-selection-select-child" title="atspi_selection_select_child ()">atspi_selection_select_child</a>        (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> child_index</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-selection.html#atspi-selection-deselect-selected-child" title="atspi_selection_deselect_selected_child ()">atspi_selection_deselect_selected_child</a>
+                                                         <em class="parameter"><code><span class="type">gint</span> selected_child_index</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-selection.html#atspi-selection-select-child" title="atspi_selection_select_child ()">atspi_selection_select_child</a>        (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> child_index</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-selection.html#atspi-selection-deselect-selected-child" title="atspi_selection_deselect_selected_child ()">atspi_selection_deselect_selected_child</a>
                                                         (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> selected_child_index</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-selection.html#atspi-selection-deselect-child" title="atspi_selection_deselect_child ()">atspi_selection_deselect_child</a>      (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> child_index</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-selection.html#atspi-selection-is-child-selected" title="atspi_selection_is_child_selected ()">atspi_selection_is_child_selected</a>   (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> child_index</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-selection.html#atspi-selection-select-all" title="atspi_selection_select_all ()">atspi_selection_select_all</a>          (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-selection.html#atspi-selection-clear-selection" title="atspi_selection_clear_selection ()">atspi_selection_clear_selection</a>     (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+                                                         <em class="parameter"><code><span class="type">gint</span> selected_child_index</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-selection.html#atspi-selection-deselect-child" title="atspi_selection_deselect_child ()">atspi_selection_deselect_child</a>      (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> child_index</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-selection.html#atspi-selection-is-child-selected" title="atspi_selection_is_child_selected ()">atspi_selection_is_child_selected</a>   (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> child_index</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-selection.html#atspi-selection-select-all" title="atspi_selection_select_all ()">atspi_selection_select_all</a>          (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-selection.html#atspi-selection-clear-selection" title="atspi_selection_clear_selection ()">atspi_selection_clear_selection</a>     (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
 </pre>
 </div>
-<div class="refsect1" title="Object Hierarchy">
+<div class="refsect1">
 <a name="libatspi-atspi-selection.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   GInterface
    +----AtspiSelection
 </pre>
 </div>
-<div class="refsect1" title="Known Implementations">
+<div class="refsect1">
 <a name="libatspi-atspi-selection.implementations"></a><h2>Known Implementations</h2>
 <p>
 AtspiSelection is implemented by
  <a class="link" href="AtspiAccessible.html" title="AtspiAccessible">AtspiAccessible</a>.</p>
 </div>
-<div class="refsect1" title="Description">
+<div class="refsect1">
 <a name="libatspi-atspi-selection.description"></a><h2>Description</h2>
 <p>
 </p>
 </div>
-<div class="refsect1" title="Details">
+<div class="refsect1">
 <a name="libatspi-atspi-selection.details"></a><h2>Details</h2>
-<div class="refsect2" title="AtspiSelection">
+<div class="refsect2">
 <a name="AtspiSelection-struct"></a><h3>AtspiSelection</h3>
 <pre class="programlisting">typedef struct _AtspiSelection AtspiSelection;</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_selection_get_n_selected_children ()">
+<div class="refsect2">
 <a name="atspi-selection-get-n-selected-children"></a><h3>atspi_selection_get_n_selected_children ()</h3>
-<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_selection_get_n_selected_children
+<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_selection_get_n_selected_children
                                                         (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Get the number of children of an <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> implementor which are
        currently selected.
@@ -108,30 +108,22 @@ Get the number of children of an <a class="link" href="libatspi-atspi-selection.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> implementor on which to operate.
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>
-</td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> implementor on which to operate.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating the number of <span class="type">Accessible</span> children
-       of the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> implementor which are currently selected.
-
-</td>
+<td>a <span class="type">gint</span> indicating the number of <span class="type">Accessible</span> children
+of the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> implementor which are currently selected.</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="atspi_selection_get_selected_child ()">
+<div class="refsect2">
 <a name="atspi-selection-get-selected-child"></a><h3>atspi_selection_get_selected_child ()</h3>
 <pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_selection_get_selected_child  (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> selected_child_index</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><span class="type">gint</span> selected_child_index</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Get the i-th selected <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> child of an <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a>.
      Note that <em class="parameter"><code>child_index</code></em> refers to the index in the list of 'selected'
@@ -145,35 +137,28 @@ Get the i-th selected <a class="link" href="AtspiAccessible.html" title="AtspiAc
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> on which to operate.
-</td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> on which to operate.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>selected_child_index</code></em> :</span></p></td>
-<td>a <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating which of the selected
-     children is specified.
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>
-</td>
+<td>a <span class="type">gint</span> indicating which of the selected
+children is specified.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a pointer to a selected <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> child
-         object, specified by <em class="parameter"><code>child_index</code></em>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+<td>a pointer to a selected <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> child
+object, specified by <em class="parameter"><code>child_index</code></em>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="atspi_selection_select_child ()">
+<div class="refsect2">
 <a name="atspi-selection-select-child"></a><h3>atspi_selection_select_child ()</h3>
-<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_selection_select_child        (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> child_index</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_selection_select_child        (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> child_index</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Add a child to the selected children list of an <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a>.
         For <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> implementors that only allow
@@ -185,35 +170,28 @@ Add a child to the selected children list of an <a class="link" href="libatspi-a
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> on which to operate.
-</td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> on which to operate.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>child_index</code></em> :</span></p></td>
-<td>a <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating which child of the <span class="type">Accessible</span>
-             is to be selected.
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>
-</td>
+<td>a <span class="type">gint</span> indicating which child of the <span class="type">Accessible</span>
+is to be selected.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if the child was successfully selected, <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a> otherwise.
-</td>
+<td>
+<span class="type">TRUE</span> if the child was successfully selected, <span class="type">FALSE</span> otherwise.</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="atspi_selection_deselect_selected_child ()">
+<div class="refsect2">
 <a name="atspi-selection-deselect-selected-child"></a><h3>atspi_selection_deselect_selected_child ()</h3>
-<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_selection_deselect_selected_child
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_selection_deselect_selected_child
                                                         (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> selected_child_index</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><span class="type">gint</span> selected_child_index</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Remove a child to the selected children list of an <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a>.
          Note that <em class="parameter"><code>child_index</code></em> is the index in the selected-children list,
@@ -226,34 +204,27 @@ Remove a child to the selected children list of an <a class="link" href="libatsp
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> on which to operate.
-</td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> on which to operate.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>selected_child_index</code></em> :</span></p></td>
-<td>a <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating which of the selected children
-             of the <span class="type">Accessible</span> is to be selected.
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>
-</td>
+<td>a <span class="type">gint</span> indicating which of the selected children
+of the <span class="type">Accessible</span> is to be selected.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if the child was successfully deselected, <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a> otherwise.
-</td>
+<td>
+<span class="type">TRUE</span> if the child was successfully deselected, <span class="type">FALSE</span> otherwise.</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="atspi_selection_deselect_child ()">
+<div class="refsect2">
 <a name="atspi-selection-deselect-child"></a><h3>atspi_selection_deselect_child ()</h3>
-<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_selection_deselect_child      (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> child_index</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_selection_deselect_child      (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> child_index</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Deselect a specific child of an <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a>.
          Note that <em class="parameter"><code>child_index</code></em> is the index of the child
@@ -267,34 +238,27 @@ See <a class="link" href="libatspi-atspi-selection.html#atspi-selection-deselect
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> on which to operate.
-</td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> on which to operate.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>child_index</code></em> :</span></p></td>
-<td>a <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating which of the children
-             of the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> is to be de-selected.
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>
-</td>
+<td>a <span class="type">gint</span> indicating which of the children
+of the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> is to be de-selected.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if the child was successfully deselected, <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a> otherwise.
-</td>
+<td>
+<span class="type">TRUE</span> if the child was successfully deselected, <span class="type">FALSE</span> otherwise.</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="atspi_selection_is_child_selected ()">
+<div class="refsect2">
 <a name="atspi-selection-is-child-selected"></a><h3>atspi_selection_is_child_selected ()</h3>
-<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_selection_is_child_selected   (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> child_index</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_selection_is_child_selected   (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> child_index</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Determine whether a particular child of an <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> implementor
        is currently selected.  Note that <em class="parameter"><code>child_index</code></em> is the index into the
@@ -305,33 +269,26 @@ Determine whether a particular child of an <a class="link" href="libatspi-atspi-
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> implementor on which to operate.
-</td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> implementor on which to operate.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>child_index</code></em> :</span></p></td>
-<td>an index into the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a>'s list of children.
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>
-</td>
+<td>an index into the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a>'s list of children.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if the specified child is currently selected,
-         <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a> otherwise.
-</td>
+<td>
+<span class="type">TRUE</span> if the specified child is currently selected,
+<span class="type">FALSE</span> otherwise.</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="atspi_selection_select_all ()">
+<div class="refsect2">
 <a name="atspi-selection-select-all"></a><h3>atspi_selection_select_all ()</h3>
-<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_selection_select_all          (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_selection_select_all          (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Attempt to select all of the children of an <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> implementor.
 Not all <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> implementors support this operation.
@@ -341,28 +298,21 @@ Not all <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><spa
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> implementor on which to operate.
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>
-</td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> implementor on which to operate.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if successful, <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a> otherwise.
-
-</td>
+<td>
+<span class="type">TRUE</span> if successful, <span class="type">FALSE</span> otherwise.</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="atspi_selection_clear_selection ()">
+<div class="refsect2">
 <a name="atspi-selection-clear-selection"></a><h3>atspi_selection_clear_selection ()</h3>
-<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_selection_clear_selection     (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_selection_clear_selection     (<em class="parameter"><code><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Clear the current selection, removing all selected children from the
       specified <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> implementor's selection list.
@@ -372,19 +322,12 @@ Clear the current selection, removing all selected children from the
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> implementor on which to operate.
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>
-</td>
+<td>a pointer to the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> implementor on which to operate.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if successful, <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a> otherwise.
-
-</td>
+<td>
+<span class="type">TRUE</span> if successful, <span class="type">FALSE</span> otherwise.</td>
 </tr>
 </tbody>
 </table></div>
@@ -393,6 +336,6 @@ Clear the current selection, removing all selected children from the
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.15</div>
+          Generated by GTK-Doc V1.17</div>
 </body>
 </html>

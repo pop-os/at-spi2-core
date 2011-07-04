@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="[Insert title here]">
 <link rel="prev" href="AtspiDeviceListener.html" title="AtspiDeviceListener">
 <link rel="next" href="libatspi-atspi-editabletext.html" title="atspi-editabletext">
-<meta name="generator" content="GTK-Doc V1.15 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -28,7 +28,7 @@
                   <a href="#AtspiHyperlink.object-hierarchy" class="shortcut">Object Hierarchy</a>
 </td></tr>
 </table>
-<div class="refentry" title="AtspiHyperlink">
+<div class="refentry">
 <a name="AtspiHyperlink"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -37,94 +37,74 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsynopsisdiv" title="Synopsis">
+<div class="refsynopsisdiv">
 <a name="AtspiHyperlink.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">                    <a class="link" href="AtspiHyperlink.html#AtspiHyperlink-struct" title="AtspiHyperlink">AtspiHyperlink</a>;
-                    <a class="link" href="AtspiHyperlink.html#AtspiHyperlinkClass" title="AtspiHyperlinkClass">AtspiHyperlinkClass</a>;
-<a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="returnvalue">AtspiHyperlink</span></a> *    <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-new" title="atspi_hyperlink_new ()">atspi_hyperlink_new</a>                 (<em class="parameter"><code><a class="link" href="libatspi-AtspiApplication.html#AtspiApplication" title="AtspiApplication"><span class="type">AtspiApplication</span></a> *app</code></em>,
-                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *path</code></em>);
-<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-n-anchors" title="atspi_hyperlink_get_n_anchors ()">atspi_hyperlink_get_n_anchors</a>       (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-uri" title="atspi_hyperlink_get_uri ()">atspi_hyperlink_get_uri</a>             (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+struct              <a class="link" href="AtspiHyperlink.html#AtspiHyperlinkClass" title="struct AtspiHyperlinkClass">AtspiHyperlinkClass</a>;
+<a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="returnvalue">AtspiHyperlink</span></a> *    <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-new" title="atspi_hyperlink_new ()">atspi_hyperlink_new</a>                 (<em class="parameter"><code><a class="link" href="libatspi-AtspiApplication.html#AtspiApplication" title="struct AtspiApplication"><span class="type">AtspiApplication</span></a> *app</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *path</code></em>);
+<span class="returnvalue">gint</span>                <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-n-anchors" title="atspi_hyperlink_get_n_anchors ()">atspi_hyperlink_get_n_anchors</a>       (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gchar</span> *             <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-uri" title="atspi_hyperlink_get_uri ()">atspi_hyperlink_get_uri</a>             (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">int</span> i</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a>*    <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-object" title="atspi_hyperlink_get_object ()">atspi_hyperlink_get_object</a>          (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> i</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a class="link" href="libatspi-atspi-text.html#AtspiRange" title="AtspiRange"><span class="returnvalue">AtspiRange</span></a> *        <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-index-range" title="atspi_hyperlink_get_index_range ()">atspi_hyperlink_get_index_range</a>     (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-start-index" title="atspi_hyperlink_get_start_index ()">atspi_hyperlink_get_start_index</a>     (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-end-index" title="atspi_hyperlink_get_end_index ()">atspi_hyperlink_get_end_index</a>       (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-is-valid" title="atspi_hyperlink_is_valid ()">atspi_hyperlink_is_valid</a>            (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-object" title="atspi_hyperlink_get_object ()">atspi_hyperlink_get_object</a>          (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> i</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<a class="link" href="libatspi-atspi-text.html#AtspiRange"><span class="returnvalue">AtspiRange</span></a> *        <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-index-range" title="atspi_hyperlink_get_index_range ()">atspi_hyperlink_get_index_range</a>     (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gint</span>                <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-start-index" title="atspi_hyperlink_get_start_index ()">atspi_hyperlink_get_start_index</a>     (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gint</span>                <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-end-index" title="atspi_hyperlink_get_end_index ()">atspi_hyperlink_get_end_index</a>       (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-is-valid" title="atspi_hyperlink_is_valid ()">atspi_hyperlink_is_valid</a>            (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
 </pre>
 </div>
-<div class="refsect1" title="Object Hierarchy">
+<div class="refsect1">
 <a name="AtspiHyperlink.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+  GObject
    +----<a class="link" href="AtspiObject.html" title="AtspiObject">AtspiObject</a>
          +----AtspiHyperlink
 </pre>
 </div>
-<div class="refsect1" title="Description">
+<div class="refsect1">
 <a name="AtspiHyperlink.description"></a><h2>Description</h2>
 <p>
 </p>
 </div>
-<div class="refsect1" title="Details">
+<div class="refsect1">
 <a name="AtspiHyperlink.details"></a><h2>Details</h2>
-<div class="refsect2" title="AtspiHyperlink">
+<div class="refsect2">
 <a name="AtspiHyperlink-struct"></a><h3>AtspiHyperlink</h3>
 <pre class="programlisting">typedef struct _AtspiHyperlink AtspiHyperlink;</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiHyperlinkClass">
-<a name="AtspiHyperlinkClass"></a><h3>AtspiHyperlinkClass</h3>
-<pre class="programlisting">typedef struct {
+<div class="refsect2">
+<a name="AtspiHyperlinkClass"></a><h3>struct AtspiHyperlinkClass</h3>
+<pre class="programlisting">struct AtspiHyperlinkClass {
   AtspiObjectClass parent_class;
-} AtspiHyperlinkClass;
+};
 </pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_hyperlink_new ()">
+<div class="refsect2">
 <a name="atspi-hyperlink-new"></a><h3>atspi_hyperlink_new ()</h3>
-<pre class="programlisting"><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="returnvalue">AtspiHyperlink</span></a> *    atspi_hyperlink_new                 (<em class="parameter"><code><a class="link" href="libatspi-AtspiApplication.html#AtspiApplication" title="AtspiApplication"><span class="type">AtspiApplication</span></a> *app</code></em>,
-                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *path</code></em>);</pre>
+<pre class="programlisting"><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="returnvalue">AtspiHyperlink</span></a> *    atspi_hyperlink_new                 (<em class="parameter"><code><a class="link" href="libatspi-AtspiApplication.html#AtspiApplication" title="struct AtspiApplication"><span class="type">AtspiApplication</span></a> *app</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *path</code></em>);</pre>
 <p>
 </p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>app</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>path</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-</td>
-</tr>
-</tbody>
-</table></div>
 </div>
 <hr>
-<div class="refsect2" title="atspi_hyperlink_get_n_anchors ()">
+<div class="refsect2">
 <a name="atspi-hyperlink-get-n-anchors"></a><h3>atspi_hyperlink_get_n_anchors ()</h3>
-<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_hyperlink_get_n_anchors       (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_hyperlink_get_n_anchors       (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Get the total number of anchors which an <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> implementor has.
       Though typical hyperlinks have only one anchor, client-side image maps and
@@ -137,28 +117,21 @@ see <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-uri" title="at
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> object on which to operate.
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>
-</td>
+<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> object on which to operate.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating the number of anchors in this hyperlink.
-</td>
+<td>a <span class="type">gint</span> indicating the number of anchors in this hyperlink.</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="atspi_hyperlink_get_uri ()">
+<div class="refsect2">
 <a name="atspi-hyperlink-get-uri"></a><h3>atspi_hyperlink_get_uri ()</h3>
-<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             atspi_hyperlink_get_uri             (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+<pre class="programlisting"><span class="returnvalue">gchar</span> *             atspi_hyperlink_get_uri             (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">int</span> i</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Get the URI associated with a particular hyperlink anchor.
 </p>
@@ -167,33 +140,25 @@ Get the URI associated with a particular hyperlink anchor.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> implementor on which to operate.
-</td>
+<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> implementor on which to operate.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>i</code></em> :</span></p></td>
-<td>a (zero-index) integer indicating which hyperlink anchor to query.
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>
-</td>
+<td>a (zero-index) integer indicating which hyperlink anchor to query.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a UTF-8 string giving the URI of the <em class="parameter"><code>ith</code></em> hyperlink anchor.
-</td>
+<td>a UTF-8 string giving the URI of the <em class="parameter"><code>ith</code></em> hyperlink anchor.</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="atspi_hyperlink_get_object ()">
+<div class="refsect2">
 <a name="atspi-hyperlink-get-object"></a><h3>atspi_hyperlink_get_object ()</h3>
-<pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a>*    atspi_hyperlink_get_object          (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> i</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_hyperlink_get_object          (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> i</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Get the object associated with a particular hyperlink anchor, as an <span class="type">Accessible</span>.
 </p>
@@ -202,123 +167,77 @@ Get the object associated with a particular hyperlink anchor, as an <span class=
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> implementor on which to operate.
-</td>
+<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> implementor on which to operate.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>i</code></em> :</span></p></td>
-<td>a (zero-index) long integer indicating which hyperlink anchor to query.
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>
-</td>
+<td>a (zero-index) long integer indicating which hyperlink anchor to query.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> that represents the object
-       associated with the <em class="parameter"><code>ith</code></em> anchor of the specified <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+<td>an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> that represents the object
+associated with the <em class="parameter"><code>ith</code></em> anchor of the specified <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="atspi_hyperlink_get_index_range ()">
+<div class="refsect2">
 <a name="atspi-hyperlink-get-index-range"></a><h3>atspi_hyperlink_get_index_range ()</h3>
-<pre class="programlisting"><a class="link" href="libatspi-atspi-text.html#AtspiRange" title="AtspiRange"><span class="returnvalue">AtspiRange</span></a> *        atspi_hyperlink_get_index_range     (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<pre class="programlisting"><a class="link" href="libatspi-atspi-text.html#AtspiRange"><span class="returnvalue">AtspiRange</span></a> *        atspi_hyperlink_get_index_range     (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Get the starting and ending character offsets of the text range associated with
       a <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a>, in its originating <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
-<tbody>
-<tr>
+<tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> implementor on which to operate.
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-</td>
-</tr>
-</tbody>
+<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> implementor on which to operate.</td>
+</tr></tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="atspi_hyperlink_get_start_index ()">
+<div class="refsect2">
 <a name="atspi-hyperlink-get-start-index"></a><h3>atspi_hyperlink_get_start_index ()</h3>
-<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_hyperlink_get_start_index     (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_hyperlink_get_start_index     (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Get the starting character offset of the text range associated with
       a <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a>, in its originating <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
-<tbody>
-<tr>
+<tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> implementor on which to operate.
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-</td>
-</tr>
-</tbody>
+<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> implementor on which to operate.</td>
+</tr></tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="atspi_hyperlink_get_end_index ()">
+<div class="refsect2">
 <a name="atspi-hyperlink-get-end-index"></a><h3>atspi_hyperlink_get_end_index ()</h3>
-<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_hyperlink_get_end_index       (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_hyperlink_get_end_index       (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Get the ending character offset of the text range associated with
       a <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a>, in its originating <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
-<tbody>
-<tr>
+<tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> implementor on which to operate.
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-</td>
-</tr>
-</tbody>
+<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> implementor on which to operate.</td>
+</tr></tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="atspi_hyperlink_is_valid ()">
+<div class="refsect2">
 <a name="atspi-hyperlink-is-valid"></a><h3>atspi_hyperlink_is_valid ()</h3>
-<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_hyperlink_is_valid            (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_hyperlink_is_valid            (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Tell whether an <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> object is still valid with respect to its
          originating hypertext object.
@@ -328,19 +247,13 @@ Tell whether an <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> on which to operate.
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>
-</td>
+<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> on which to operate.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> of the specified <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> is still valid with respect
-         to its originating <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> object, <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a> otherwise.
-</td>
+<td>
+<span class="type">TRUE</span> of the specified <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> is still valid with respect
+to its originating <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> object, <span class="type">FALSE</span> otherwise.</td>
 </tr>
 </tbody>
 </table></div>
@@ -349,6 +262,6 @@ Tell whether an <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.15</div>
+          Generated by GTK-Doc V1.17</div>
 </body>
 </html>

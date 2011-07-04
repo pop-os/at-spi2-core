@@ -1,15 +1,17 @@
 <ONLINE href="http://[SERVER]/libatspi/index.html">
 <ANCHOR id="libatspi-atspi-text" href="libatspi/libatspi-atspi-text.html">
 <ANCHOR id="libatspi-atspi-text.synopsis" href="libatspi/libatspi-atspi-text.html#libatspi-atspi-text.synopsis">
+<ANCHOR id="AtspiRange" href="libatspi/libatspi-atspi-text.html#AtspiRange">
+<ANCHOR id="AtspiTextRange" href="libatspi/libatspi-atspi-text.html#AtspiTextRange">
 <ANCHOR id="AtspiText" href="libatspi/libatspi-atspi-text.html#AtspiText">
 <ANCHOR id="libatspi-atspi-text.object-hierarchy" href="libatspi/libatspi-atspi-text.html#libatspi-atspi-text.object-hierarchy">
 <ANCHOR id="libatspi-atspi-text.implementations" href="libatspi/libatspi-atspi-text.html#libatspi-atspi-text.implementations">
 <ANCHOR id="libatspi-atspi-text.description" href="libatspi/libatspi-atspi-text.html#libatspi-atspi-text.description">
 <ANCHOR id="libatspi-atspi-text.details" href="libatspi/libatspi-atspi-text.html#libatspi-atspi-text.details">
-<ANCHOR id="AtspiRange" href="libatspi/libatspi-atspi-text.html#AtspiRange">
+<ANCHOR id="AtspiRange-struct" href="libatspi/libatspi-atspi-text.html#AtspiRange-struct">
 <ANCHOR id="ATSPI-TYPE-RANGE:CAPS" href="libatspi/libatspi-atspi-text.html#ATSPI-TYPE-RANGE:CAPS">
 <ANCHOR id="atspi-range-copy" href="libatspi/libatspi-atspi-text.html#atspi-range-copy">
-<ANCHOR id="AtspiTextRange" href="libatspi/libatspi-atspi-text.html#AtspiTextRange">
+<ANCHOR id="AtspiTextRange-struct" href="libatspi/libatspi-atspi-text.html#AtspiTextRange-struct">
 <ANCHOR id="ATSPI-TYPE-TEXT-RANGE:CAPS" href="libatspi/libatspi-atspi-text.html#ATSPI-TYPE-TEXT-RANGE:CAPS">
 <ANCHOR id="atspi-text-get-type" href="libatspi/libatspi-atspi-text.html#atspi-text-get-type">
 <ANCHOR id="AtspiText-struct" href="libatspi/libatspi-atspi-text.html#AtspiText-struct">
@@ -293,15 +295,17 @@
 <ANCHOR id="atspi-hypertext-get-link-index" href="libatspi/libatspi-atspi-hypertext.html#atspi-hypertext-get-link-index">
 <ANCHOR id="libatspi-atspi-component" href="libatspi/libatspi-atspi-component.html">
 <ANCHOR id="libatspi-atspi-component.synopsis" href="libatspi/libatspi-atspi-component.html#libatspi-atspi-component.synopsis">
+<ANCHOR id="AtspiRect" href="libatspi/libatspi-atspi-component.html#AtspiRect">
+<ANCHOR id="AtspiPoint" href="libatspi/libatspi-atspi-component.html#AtspiPoint">
 <ANCHOR id="AtspiComponent" href="libatspi/libatspi-atspi-component.html#AtspiComponent">
 <ANCHOR id="libatspi-atspi-component.object-hierarchy" href="libatspi/libatspi-atspi-component.html#libatspi-atspi-component.object-hierarchy">
 <ANCHOR id="libatspi-atspi-component.implementations" href="libatspi/libatspi-atspi-component.html#libatspi-atspi-component.implementations">
 <ANCHOR id="libatspi-atspi-component.description" href="libatspi/libatspi-atspi-component.html#libatspi-atspi-component.description">
 <ANCHOR id="libatspi-atspi-component.details" href="libatspi/libatspi-atspi-component.html#libatspi-atspi-component.details">
-<ANCHOR id="AtspiRect" href="libatspi/libatspi-atspi-component.html#AtspiRect">
+<ANCHOR id="AtspiRect-struct" href="libatspi/libatspi-atspi-component.html#AtspiRect-struct">
 <ANCHOR id="ATSPI-TYPE-RECT:CAPS" href="libatspi/libatspi-atspi-component.html#ATSPI-TYPE-RECT:CAPS">
 <ANCHOR id="atspi-rect-copy" href="libatspi/libatspi-atspi-component.html#atspi-rect-copy">
-<ANCHOR id="AtspiPoint" href="libatspi/libatspi-atspi-component.html#AtspiPoint">
+<ANCHOR id="AtspiPoint-struct" href="libatspi/libatspi-atspi-component.html#AtspiPoint-struct">
 <ANCHOR id="ATSPI-TYPE-POINT:CAPS" href="libatspi/libatspi-atspi-component.html#ATSPI-TYPE-POINT:CAPS">
 <ANCHOR id="atspi-point-get-type" href="libatspi/libatspi-atspi-component.html#atspi-point-get-type">
 <ANCHOR id="atspi-point-copy" href="libatspi/libatspi-atspi-component.html#atspi-point-copy">
@@ -345,6 +349,8 @@
 <ANCHOR id="AtspiTable" href="libatspi/libatspi-atspi-types.html#AtspiTable">
 <ANCHOR id="AtspiText" href="libatspi/libatspi-atspi-types.html#AtspiText">
 <ANCHOR id="AtspiValue" href="libatspi/libatspi-atspi-types.html#AtspiValue">
+<ANCHOR id="AtspiKeyDefinition" href="libatspi/libatspi-atspi-types.html#AtspiKeyDefinition">
+<ANCHOR id="AtspiEvent" href="libatspi/libatspi-atspi-types.html#AtspiEvent">
 <ANCHOR id="libatspi-atspi-types.object-hierarchy" href="libatspi/libatspi-atspi-types.html#libatspi-atspi-types.object-hierarchy">
 <ANCHOR id="libatspi-atspi-types.implemented-interfaces" href="libatspi/libatspi-atspi-types.html#libatspi-atspi-types.implemented-interfaces">
 <ANCHOR id="libatspi-atspi-types.implementations" href="libatspi/libatspi-atspi-types.html#libatspi-atspi-types.implementations">
@@ -369,8 +375,8 @@
 <ANCHOR id="AtspiDeviceEventMask" href="libatspi/libatspi-atspi-types.html#AtspiDeviceEventMask">
 <ANCHOR id="AtspiDeviceEvent" href="libatspi/libatspi-atspi-types.html#AtspiDeviceEvent">
 <ANCHOR id="AtspiEventListenerMode" href="libatspi/libatspi-atspi-types.html#AtspiEventListenerMode">
-<ANCHOR id="AtspiKeyDefinition" href="libatspi/libatspi-atspi-types.html#AtspiKeyDefinition">
-<ANCHOR id="AtspiEvent" href="libatspi/libatspi-atspi-types.html#AtspiEvent">
+<ANCHOR id="AtspiKeyDefinition-struct" href="libatspi/libatspi-atspi-types.html#AtspiKeyDefinition-struct">
+<ANCHOR id="AtspiEvent-struct" href="libatspi/libatspi-atspi-types.html#AtspiEvent-struct">
 <ANCHOR id="ATSPI-TYPE-EVENT:CAPS" href="libatspi/libatspi-atspi-types.html#ATSPI-TYPE-EVENT:CAPS">
 <ANCHOR id="AtspiKeystrokeListener" href="libatspi/libatspi-atspi-types.html#AtspiKeystrokeListener">
 <ANCHOR id="AtspiKeyListenerSyncType" href="libatspi/libatspi-atspi-types.html#AtspiKeyListenerSyncType">
@@ -488,3 +494,5 @@
 <ANCHOR id="annotation-glossterm-element-type" href="libatspi/annotation-glossary.html#annotation-glossterm-element-type">
 <ANCHOR id="annotation-glossterm-scope call" href="libatspi/annotation-glossary.html#annotation-glossterm-scope call">
 <ANCHOR id="annotation-glossterm-transfer full" href="libatspi/annotation-glossary.html#annotation-glossterm-transfer full">
+<ANCHOR id="annotation-glossterm-closure" href="libatspi/annotation-glossary.html#annotation-glossterm-closure">
+<ANCHOR id="annotation-glossterm-scope notified" href="libatspi/annotation-glossary.html#annotation-glossterm-scope notified">

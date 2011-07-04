@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="[Insert title here]">
 <link rel="prev" href="libatspi-atspi-misc.html" title="atspi-misc">
 <link rel="next" href="libatspi-atspi-listener-private.html" title="atspi-listener-private">
-<meta name="generator" content="GTK-Doc V1.15 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -26,7 +26,7 @@
                   <a href="#libatspi-atspi-misc-private.description" class="shortcut">Description</a>
 </td></tr>
 </table>
-<div class="refentry" title="atspi-misc-private">
+<div class="refentry">
 <a name="libatspi-atspi-misc-private"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -35,9 +35,9 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsynopsisdiv" title="Synopsis">
+<div class="refsynopsisdiv">
 <a name="libatspi-atspi-misc-private.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">                    <a class="link" href="libatspi-atspi-misc-private.html#AtspiReference" title="AtspiReference">AtspiReference</a>;
+<pre class="synopsis">struct              <a class="link" href="libatspi-atspi-misc-private.html#AtspiReference" title="struct AtspiReference">AtspiReference</a>;
 #define             <a class="link" href="libatspi-atspi-misc-private.html#ATSPI-DBUS-NAME-REGISTRY:CAPS" title="ATSPI_DBUS_NAME_REGISTRY">ATSPI_DBUS_NAME_REGISTRY</a>
 #define             <a class="link" href="libatspi-atspi-misc-private.html#ATSPI-DBUS-PATH-REGISTRY:CAPS" title="ATSPI_DBUS_PATH_REGISTRY">ATSPI_DBUS_PATH_REGISTRY</a>
 #define             <a class="link" href="libatspi-atspi-misc-private.html#ATSPI-DBUS-INTERFACE-REGISTRY:CAPS" title="ATSPI_DBUS_INTERFACE_REGISTRY">ATSPI_DBUS_INTERFACE_REGISTRY</a>
@@ -89,151 +89,151 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 extern              const char *<a class="link" href="libatspi-atspi-misc-private.html#atspi-interface-value" title="atspi_interface_value">atspi_interface_value</a>;
 </pre>
 </div>
-<div class="refsect1" title="Description">
+<div class="refsect1">
 <a name="libatspi-atspi-misc-private.description"></a><h2>Description</h2>
 <p>
 </p>
 </div>
-<div class="refsect1" title="Details">
+<div class="refsect1">
 <a name="libatspi-atspi-misc-private.details"></a><h2>Details</h2>
-<div class="refsect2" title="AtspiReference">
-<a name="AtspiReference"></a><h3>AtspiReference</h3>
-<pre class="programlisting">typedef struct {
+<div class="refsect2">
+<a name="AtspiReference"></a><h3>struct AtspiReference</h3>
+<pre class="programlisting">struct AtspiReference {
   char *name;
   char *path;
-} AtspiReference;
+};
 </pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_NAME_REGISTRY">
+<div class="refsect2">
 <a name="ATSPI-DBUS-NAME-REGISTRY:CAPS"></a><h3>ATSPI_DBUS_NAME_REGISTRY</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_NAME_REGISTRY</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_PATH_REGISTRY">
+<div class="refsect2">
 <a name="ATSPI-DBUS-PATH-REGISTRY:CAPS"></a><h3>ATSPI_DBUS_PATH_REGISTRY</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_PATH_REGISTRY</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_REGISTRY">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-REGISTRY:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_REGISTRY</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_INTERFACE_REGISTRY</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_PATH_NULL">
+<div class="refsect2">
 <a name="ATSPI-DBUS-PATH-NULL:CAPS"></a><h3>ATSPI_DBUS_PATH_NULL</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_PATH_NULL</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_PATH_ROOT">
+<div class="refsect2">
 <a name="ATSPI-DBUS-PATH-ROOT:CAPS"></a><h3>ATSPI_DBUS_PATH_ROOT</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_PATH_ROOT</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_PATH_DEC">
+<div class="refsect2">
 <a name="ATSPI-DBUS-PATH-DEC:CAPS"></a><h3>ATSPI_DBUS_PATH_DEC</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_PATH_DEC</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_DEC">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-DEC:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_DEC</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_INTERFACE_DEC</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_DEVICE_EVENT_LISTENER">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-DEVICE-EVENT-LISTENER:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_DEVICE_EVENT_LISTENER</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_INTERFACE_DEVICE_EVENT_LISTENER</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_CACHE">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-CACHE:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_CACHE</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_INTERFACE_CACHE</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_ACCESSIBLE">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-ACCESSIBLE:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_ACCESSIBLE</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_INTERFACE_ACCESSIBLE</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_ACTION">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-ACTION:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_ACTION</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_INTERFACE_ACTION</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_APPLICATION">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-APPLICATION:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_APPLICATION</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_INTERFACE_APPLICATION</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_COLLECTION">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-COLLECTION:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_COLLECTION</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_INTERFACE_COLLECTION</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_COMPONENT">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-COMPONENT:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_COMPONENT</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_INTERFACE_COMPONENT</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_DOCUMENT">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-DOCUMENT:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_DOCUMENT</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_INTERFACE_DOCUMENT</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_EDITABLE_TEXT">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-EDITABLE-TEXT:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_EDITABLE_TEXT</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_INTERFACE_EDITABLE_TEXT</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_EVENT_KEYBOARD">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-EVENT-KEYBOARD:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_EVENT_KEYBOARD</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_INTERFACE_EVENT_KEYBOARD</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_EVENT_MOUSE">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-EVENT-MOUSE:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_EVENT_MOUSE</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_INTERFACE_EVENT_MOUSE</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_EVENT_OBJECT">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-EVENT-OBJECT:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_EVENT_OBJECT</h3>
 <pre class="programlisting">#define ATSPI_DBUS_INTERFACE_EVENT_OBJECT "org.a11y.atspi.Event.Object"
 </pre>
@@ -241,63 +241,63 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_HYPERLINK">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-HYPERLINK:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_HYPERLINK</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_INTERFACE_HYPERLINK</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_HYPERTEXT">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-HYPERTEXT:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_HYPERTEXT</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_INTERFACE_HYPERTEXT</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_IMAGE">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-IMAGE:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_IMAGE</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_INTERFACE_IMAGE</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_SELECTION">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-SELECTION:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_SELECTION</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_INTERFACE_SELECTION</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_TABLE">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-TABLE:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_TABLE</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_INTERFACE_TABLE</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_TEXT">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-TEXT:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_TEXT</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_INTERFACE_TEXT</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_VALUE">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-VALUE:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_VALUE</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_INTERFACE_VALUE</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_DBUS_INTERFACE_SOCKET">
+<div class="refsect2">
 <a name="ATSPI-DBUS-INTERFACE-SOCKET:CAPS"></a><h3>ATSPI_DBUS_INTERFACE_SOCKET</h3>
 <pre class="programlisting">#define             ATSPI_DBUS_INTERFACE_SOCKET</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_path_dec">
+<div class="refsect2">
 <a name="atspi-path-dec"></a><h3>atspi_path_dec</h3>
 <pre class="programlisting">extern const char *atspi_path_dec;
 </pre>
@@ -305,7 +305,7 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_path_registry">
+<div class="refsect2">
 <a name="atspi-path-registry"></a><h3>atspi_path_registry</h3>
 <pre class="programlisting">extern const char *atspi_path_registry;
 </pre>
@@ -313,7 +313,7 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_path_root">
+<div class="refsect2">
 <a name="atspi-path-root"></a><h3>atspi_path_root</h3>
 <pre class="programlisting">extern const char *atspi_path_root;
 </pre>
@@ -321,7 +321,7 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_bus_registry">
+<div class="refsect2">
 <a name="atspi-bus-registry"></a><h3>atspi_bus_registry</h3>
 <pre class="programlisting">extern const char *atspi_bus_registry;
 </pre>
@@ -329,7 +329,7 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_interface_accessible">
+<div class="refsect2">
 <a name="atspi-interface-accessible"></a><h3>atspi_interface_accessible</h3>
 <pre class="programlisting">extern const char *atspi_interface_accessible;
 </pre>
@@ -337,7 +337,7 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_interface_action">
+<div class="refsect2">
 <a name="atspi-interface-action"></a><h3>atspi_interface_action</h3>
 <pre class="programlisting">extern const char *atspi_interface_action;
 </pre>
@@ -345,7 +345,7 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_interface_application">
+<div class="refsect2">
 <a name="atspi-interface-application"></a><h3>atspi_interface_application</h3>
 <pre class="programlisting">extern const char *atspi_interface_application;
 </pre>
@@ -353,7 +353,7 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_interface_collection">
+<div class="refsect2">
 <a name="atspi-interface-collection"></a><h3>atspi_interface_collection</h3>
 <pre class="programlisting">extern const char *atspi_interface_collection;
 </pre>
@@ -361,7 +361,7 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_interface_component">
+<div class="refsect2">
 <a name="atspi-interface-component"></a><h3>atspi_interface_component</h3>
 <pre class="programlisting">extern const char *atspi_interface_component;
 </pre>
@@ -369,7 +369,7 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_interface_dec">
+<div class="refsect2">
 <a name="atspi-interface-dec"></a><h3>atspi_interface_dec</h3>
 <pre class="programlisting">extern const char *atspi_interface_dec;
 </pre>
@@ -377,7 +377,7 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_interface_device_event_listener">
+<div class="refsect2">
 <a name="atspi-interface-device-event-listener"></a><h3>atspi_interface_device_event_listener</h3>
 <pre class="programlisting">extern const char *atspi_interface_device_event_listener;
 </pre>
@@ -385,7 +385,7 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_interface_document">
+<div class="refsect2">
 <a name="atspi-interface-document"></a><h3>atspi_interface_document</h3>
 <pre class="programlisting">extern const char *atspi_interface_document;
 </pre>
@@ -393,7 +393,7 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_interface_editable_text">
+<div class="refsect2">
 <a name="atspi-interface-editable-text"></a><h3>atspi_interface_editable_text</h3>
 <pre class="programlisting">extern const char *atspi_interface_editable_text;
 </pre>
@@ -401,7 +401,7 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_interface_hyperlink">
+<div class="refsect2">
 <a name="atspi-interface-hyperlink"></a><h3>atspi_interface_hyperlink</h3>
 <pre class="programlisting">extern const char *atspi_interface_hyperlink;
 </pre>
@@ -409,7 +409,7 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_interface_hypertext">
+<div class="refsect2">
 <a name="atspi-interface-hypertext"></a><h3>atspi_interface_hypertext</h3>
 <pre class="programlisting">extern const char *atspi_interface_hypertext;
 </pre>
@@ -417,7 +417,7 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_interface_image">
+<div class="refsect2">
 <a name="atspi-interface-image"></a><h3>atspi_interface_image</h3>
 <pre class="programlisting">extern const char *atspi_interface_image;
 </pre>
@@ -425,7 +425,7 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_interface_registry">
+<div class="refsect2">
 <a name="atspi-interface-registry"></a><h3>atspi_interface_registry</h3>
 <pre class="programlisting">extern const char *atspi_interface_registry;
 </pre>
@@ -433,7 +433,7 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_interface_selection">
+<div class="refsect2">
 <a name="atspi-interface-selection"></a><h3>atspi_interface_selection</h3>
 <pre class="programlisting">extern const char *atspi_interface_selection;
 </pre>
@@ -441,7 +441,7 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_interface_table">
+<div class="refsect2">
 <a name="atspi-interface-table"></a><h3>atspi_interface_table</h3>
 <pre class="programlisting">extern const char *atspi_interface_table;
 </pre>
@@ -449,7 +449,7 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_interface_text">
+<div class="refsect2">
 <a name="atspi-interface-text"></a><h3>atspi_interface_text</h3>
 <pre class="programlisting">extern const char *atspi_interface_text;
 </pre>
@@ -457,7 +457,7 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_interface_cache">
+<div class="refsect2">
 <a name="atspi-interface-cache"></a><h3>atspi_interface_cache</h3>
 <pre class="programlisting">extern const char *atspi_interface_cache;
 </pre>
@@ -465,7 +465,7 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </p>
 </div>
 <hr>
-<div class="refsect2" title="atspi_interface_value">
+<div class="refsect2">
 <a name="atspi-interface-value"></a><h3>atspi_interface_value</h3>
 <pre class="programlisting">extern const char *atspi_interface_value;
 </pre>
@@ -476,6 +476,6 @@ extern              const char *<a class="link" href="libatspi-atspi-misc-privat
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.15</div>
+          Generated by GTK-Doc V1.17</div>
 </body>
 </html>
