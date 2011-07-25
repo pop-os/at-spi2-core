@@ -5,7 +5,7 @@
 <title>AtspiDeviceListener</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="libatspi Reference Manual">
-<link rel="up" href="ch01.html" title="[Insert title here]">
+<link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="AtspiAccessible.html" title="AtspiAccessible">
 <link rel="next" href="AtspiHyperlink.html" title="AtspiHyperlink">
 <meta name="generator" content="GTK-Doc V1.17 (XML mode)">
@@ -45,8 +45,8 @@
 struct              <a class="link" href="AtspiDeviceListener.html#AtspiDeviceListener-struct" title="struct AtspiDeviceListener">AtspiDeviceListener</a>;
 struct              <a class="link" href="AtspiDeviceListener.html#AtspiDeviceListenerClass" title="struct AtspiDeviceListenerClass">AtspiDeviceListenerClass</a>;
 <a class="link" href="AtspiDeviceListener.html" title="AtspiDeviceListener"><span class="returnvalue">AtspiDeviceListener</span></a> * <a class="link" href="AtspiDeviceListener.html#atspi-device-listener-new" title="atspi_device_listener_new ()">atspi_device_listener_new</a>         (<em class="parameter"><code><a class="link" href="AtspiDeviceListener.html#AtspiDeviceListenerCB" title="AtspiDeviceListenerCB ()"><span class="type">AtspiDeviceListenerCB</span></a> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">GDestroyNotify</span> callback_destroyed</code></em>,
-                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><span class="type">GDestroyNotify</span> callback_destroyed</code></em>);
 <a class="link" href="AtspiDeviceListener.html" title="AtspiDeviceListener"><span class="returnvalue">AtspiDeviceListener</span></a> * <a class="link" href="AtspiDeviceListener.html#atspi-device-listener-new-simple" title="atspi_device_listener_new_simple ()">atspi_device_listener_new_simple</a>  (<em class="parameter"><code><a class="link" href="AtspiDeviceListener.html#AtspiDeviceListenerSimpleCB" title="AtspiDeviceListenerSimpleCB ()"><span class="type">AtspiDeviceListenerSimpleCB</span></a> callback</code></em>,
                                                          <em class="parameter"><code><span class="type">GDestroyNotify</span> callback_destroyed</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="AtspiDeviceListener.html#atspi-device-listener-add-callback" title="atspi_device_listener_add_callback ()">atspi_device_listener_add_callback</a>  (<em class="parameter"><code><a class="link" href="AtspiDeviceListener.html" title="AtspiDeviceListener"><span class="type">AtspiDeviceListener</span></a> *listener</code></em>,
@@ -148,8 +148,8 @@ relayed to the currently focussed application, <code class="literal">FALSE</code
 <div class="refsect2">
 <a name="atspi-device-listener-new"></a><h3>atspi_device_listener_new ()</h3>
 <pre class="programlisting"><a class="link" href="AtspiDeviceListener.html" title="AtspiDeviceListener"><span class="returnvalue">AtspiDeviceListener</span></a> * atspi_device_listener_new         (<em class="parameter"><code><a class="link" href="AtspiDeviceListener.html#AtspiDeviceListenerCB" title="AtspiDeviceListenerCB ()"><span class="type">AtspiDeviceListenerCB</span></a> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">GDestroyNotify</span> callback_destroyed</code></em>,
-                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>);</pre>
+                                                         <em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
+                                                         <em class="parameter"><code><span class="type">GDestroyNotify</span> callback_destroyed</code></em>);</pre>
 <p>
 Create a new <a class="link" href="AtspiDeviceListener.html" title="AtspiDeviceListener"><span class="type">AtspiDeviceListener</span></a> with a specified callback function.
 </p>
@@ -159,13 +159,8 @@ Create a new <a class="link" href="AtspiDeviceListener.html" title="AtspiDeviceL
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
 <td>an <a class="link" href="AtspiDeviceListener.html#AtspiDeviceListenerCB" title="AtspiDeviceListenerCB ()"><span class="type">AtspiDeviceListenerCB</span></a> callback function,
-or NULL. <span class="annotation">[scope notify]</span>
+or NULL. <span class="annotation">[<acronym title="The callback is valid until the GDestroyNotify argument is called."><span class="acronym">scope notified</span></acronym>]</span>
 </td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>callback_destroyed</code></em> :</span></p></td>
-<td>A <span class="type">GDestroyNotify</span> called when the listener is freed
-and data associated with the callback should be freed.  Can be NULL.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
@@ -174,8 +169,14 @@ callback when invoked. <span class="annotation">[<acronym title="This parameter 
 </td>
 </tr>
 <tr>
+<td><p><span class="term"><em class="parameter"><code>callback_destroyed</code></em> :</span></p></td>
+<td>A <span class="type">GDestroyNotify</span> called when the listener is freed
+and data associated with the callback should be freed.  Can be NULL.</td>
+</tr>
+<tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a pointer to a newly-created <a class="link" href="AtspiDeviceListener.html" title="AtspiDeviceListener"><span class="type">AtspiDeviceListener</span></a>.</td>
+<td>a pointer to a newly-created <a class="link" href="AtspiDeviceListener.html" title="AtspiDeviceListener"><span class="type">AtspiDeviceListener</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>
@@ -186,29 +187,7 @@ callback when invoked. <span class="annotation">[<acronym title="This parameter 
 <pre class="programlisting"><a class="link" href="AtspiDeviceListener.html" title="AtspiDeviceListener"><span class="returnvalue">AtspiDeviceListener</span></a> * atspi_device_listener_new_simple  (<em class="parameter"><code><a class="link" href="AtspiDeviceListener.html#AtspiDeviceListenerSimpleCB" title="AtspiDeviceListenerSimpleCB ()"><span class="type">AtspiDeviceListenerSimpleCB</span></a> callback</code></em>,
                                                          <em class="parameter"><code><span class="type">GDestroyNotify</span> callback_destroyed</code></em>);</pre>
 <p>
-Create a new <a class="link" href="AtspiDeviceListener.html" title="AtspiDeviceListener"><span class="type">AtspiDeviceListener</span></a> with a specified callback function.
-Like atspi_device_listener_new, but callback takes no user data.
 </p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td>an <a class="link" href="AtspiDeviceListener.html#AtspiDeviceListenerCB" title="AtspiDeviceListenerCB ()"><span class="type">AtspiDeviceListenerCB</span></a> callback function,
-or NULL. <span class="annotation">[scope notify]</span>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>callback_destroyed</code></em> :</span></p></td>
-<td>A <span class="type">GDestroyNotify</span> called when the listener is freed
-and data associated with the callback should be freed.  Can be NULL.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a pointer to a newly-created <a class="link" href="AtspiDeviceListener.html" title="AtspiDeviceListener"><span class="type">AtspiDeviceListener</span></a>.</td>
-</tr>
-</tbody>
-</table></div>
 </div>
 <hr>
 <div class="refsect2">
@@ -229,7 +208,7 @@ Add an in-process callback function to an existing <a class="link" href="AtspiDe
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td>an <a class="link" href="AtspiDeviceListener.html#AtspiDeviceListenerCB" title="AtspiDeviceListenerCB ()"><span class="type">AtspiDeviceListenerCB</span></a> function pointer. <span class="annotation">[scope notify]</span>
+<td>an <a class="link" href="AtspiDeviceListener.html#AtspiDeviceListenerCB" title="AtspiDeviceListenerCB ()"><span class="type">AtspiDeviceListenerCB</span></a> function pointer. <span class="annotation">[<acronym title="The callback is valid until the GDestroyNotify argument is called."><span class="acronym">scope notified</span></acronym>]</span>
 </td>
 </tr>
 <tr>

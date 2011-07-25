@@ -5,7 +5,7 @@
 <title>atspi-constants</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="libatspi Reference Manual">
-<link rel="up" href="ch01.html" title="[Insert title here]">
+<link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-atspi-types.html" title="atspi-types">
 <link rel="next" href="libatspi-atspi-misc.html" title="atspi-misc">
 <meta name="generator" content="GTK-Doc V1.17 (XML mode)">
@@ -96,40 +96,12 @@ enum                <a class="link" href="libatspi-atspi-constants.html#AtspiRol
 <pre class="programlisting">#define ATSPI_LOCALE_TYPE _COUNT(5+1)
 </pre>
 <p>
-   Used by Text and Document interfaces these correspond to the POSIX 'setlocale' enum values.    
+Used by Text and Document interfaces these correspond to the POSIX
+'setlocale' enum values.
 </p>
 <p>
 Bitfield/set of flags generated from the AT-SPI specification.
 </p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>ATSPI_LOCALE_TYPE_MESSAGES</code></em> :</span></p></td>
-<td></td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>ATSPI_LOCALE_TYPE_COLLATE</code></em> :</span></p></td>
-<td></td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>ATSPI_LOCALE_TYPE_CTYPE</code></em> :</span></p></td>
-<td></td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>ATSPI_LOCALE_TYPE_MONETARY</code></em> :</span></p></td>
-<td></td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>ATSPI_LOCALE_TYPE_NUMERIC</code></em> :</span></p></td>
-<td></td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>ATSPI_LOCALE_TYPE_TIME</code></em> :</span></p></td>
-<td></td>
-</tr>
-</tbody>
-</table></div>
 </div>
 <hr>
 <div class="refsect2">
@@ -408,7 +380,8 @@ Bitfield/set of flags generated from the AT-SPI specification.
 } AtspiKeySynthType;
 </pre>
 <p>
-     Used when synthesizing keyboard input via DeviceEventController:GenerateKeyboardEvent.   
+Used when synthesizing keyboard input via
+DeviceEventController:GenerateKeyboardEvent.
 </p>
 <p>
 Bitfield/set of flags generated from the AT-SPI specification.
@@ -418,27 +391,42 @@ Bitfield/set of flags generated from the AT-SPI specification.
 <tbody>
 <tr>
 <td><p><a name="ATSPI-KEY-PRESS:CAPS"></a><span class="term"><code class="literal">ATSPI_KEY_PRESS</code></span></p></td>
-<td>     emulate the pressing of a hardware keyboard key.    
+<td>emulate the pressing of a hardware keyboard key.
 </td>
 </tr>
 <tr>
 <td><p><a name="ATSPI-KEY-RELEASE:CAPS"></a><span class="term"><code class="literal">ATSPI_KEY_RELEASE</code></span></p></td>
-<td>     emulate the release of a hardware keyboard key.    
+<td>emulate the release of a hardware keyboard key.
 </td>
 </tr>
 <tr>
 <td><p><a name="ATSPI-KEY-PRESSRELEASE:CAPS"></a><span class="term"><code class="literal">ATSPI_KEY_PRESSRELEASE</code></span></p></td>
-<td>     a hardware keyboard key is pressed and immediately released.    
+<td>a hardware keyboard key is pressed and immediately
+released.
 </td>
 </tr>
 <tr>
 <td><p><a name="ATSPI-KEY-SYM:CAPS"></a><span class="term"><code class="literal">ATSPI_KEY_SYM</code></span></p></td>
-<td>     a symbolic key event is generated, without specifying a hardware key.        @note if the keysym is not present in the current keyboard map,       the DeviceEventController instance has a limited ability to generate       such keysyms on-the-fly.  Reliability of GenerateKeyboardEvent calls       using out-of-keymap keysyms will vary from system to system, and on the       number of different out-of-keymap being generated in quick succession.       In practice this is rarely significant, since the keysyms of interest to       AT clients and keyboard emulators are usually part of the current keymap, i.e.       present on the system keyboard for the current locale (even if a physical       hardware keyboard is not connected.   
+<td>a symbolic key event is generated, without specifying a
+hardware key.        <em class="parameter"><code>note</code></em> if the keysym is not present in the current keyboard
+map,       the DeviceEventController instance has a limited ability to generate
+      such keysyms on-the-fly.  Reliability of GenerateKeyboardEvent calls     
+ using out-of-keymap keysyms will vary from system to system, and on the      
+number of different out-of-keymap being generated in quick succession.       In
+practice this is rarely significant, since the keysyms of interest to       AT
+clients and keyboard emulators are usually part of the current keymap, i.e.    
+  present on the system keyboard for the current locale (even if a physical    
+  hardware keyboard is not connected.
 </td>
 </tr>
 <tr>
 <td><p><a name="ATSPI-KEY-STRING:CAPS"></a><span class="term"><code class="literal">ATSPI_KEY_STRING</code></span></p></td>
-<td>     a string is converted to its equivalent keyboard events and emitted.        If the string consists of complex character or composed characters       which are not in the current keymap, string emission is subject to the       out-of-keymap limitations described for KeySynthType::KEY_SYM.       In practice this limitation primarily effects Chinese and Japanese locales.   
+<td>a string is converted to its equivalent keyboard events
+and emitted.        If the string consists of complex character or composed
+characters       which are not in the current keymap, string emission is
+subject to the       out-of-keymap limitations described for
+KeySynthType::KEY_SYM.       In practice this limitation primarily effects
+Chinese and Japanese locales.
 </td>
 </tr>
 </tbody>
