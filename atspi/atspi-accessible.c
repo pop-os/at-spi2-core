@@ -519,10 +519,10 @@ typedef struct
  * Get the set of #AtspiRelation objects which describe this #AtspiAccessible object's
  *       relationships with other #AtspiAccessible objects.
  *
- * Returns: (element-type AtspiAccessible*) (transfer full): an array of
+ * Returns: (element-type AtspiRelation*) (transfer full): an array of
  *          #AtspiAccessibleRelation pointers. or NULL on exception
  **/
-GArray *
+GPtrArray *
 atspi_accessible_get_relation_set (AtspiAccessible *obj, GError **error)
 {
   DBusMessage *reply;
@@ -536,14 +536,14 @@ atspi_accessible_get_relation_set (AtspiAccessible *obj, GError **error)
     return NULL;
   _ATSPI_DBUS_CHECK_SIG (reply, "a(ua(so))", error, NULL);
 
-  ret = g_array_new (TRUE, TRUE, sizeof (AtspiRelation *));
+  ret = g_ptr_array_new ();
   dbus_message_iter_init (reply, &iter);
   dbus_message_iter_recurse (&iter, &iter_array);
   while (dbus_message_iter_get_arg_type (&iter_array) != DBUS_TYPE_INVALID)
   {
     AtspiRelation *relation;
     relation = _atspi_relation_new_from_iter (&iter_array);
-    ret = g_array_append_val (ret, relation);
+    g_ptr_array_add (ret, relation);
     dbus_message_iter_next (&iter_array);
   }
   dbus_message_unref (reply);
@@ -1244,7 +1244,7 @@ AtspiHyperlink *
 atspi_accessible_get_hyperlink (AtspiAccessible *accessible)
 {
   return (_atspi_accessible_is_a (accessible, atspi_interface_hyperlink) ?
-          atspi_hyperlink_new (accessible->parent.app, accessible->parent.path) : NULL);
+          _atspi_hyperlink_new (accessible->parent.app, accessible->parent.path) : NULL);
 }
 
 /**
@@ -1506,7 +1506,7 @@ atspi_accessible_get_process_id (AtspiAccessible *accessible, GError **error)
   dbus_message_unref (message);
   dbus_message_get_args (reply, NULL, DBUS_TYPE_UINT32, &pid, DBUS_TYPE_INVALID);
   dbus_message_unref (reply);
-  dbus_error_init (&error);
+  dbus_error_free (&d_error);
   return pid;
 }
 

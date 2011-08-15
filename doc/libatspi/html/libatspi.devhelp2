@@ -145,7 +145,6 @@
     <keyword type="function" name="atspi_device_listener_remove_callback ()" link="AtspiDeviceListener.html#atspi-device-listener-remove-callback"/>
     <keyword type="struct" name="AtspiHyperlink" link="AtspiHyperlink.html#AtspiHyperlink-struct"/>
     <keyword type="struct" name="struct AtspiHyperlinkClass" link="AtspiHyperlink.html#AtspiHyperlinkClass"/>
-    <keyword type="function" name="atspi_hyperlink_new ()" link="AtspiHyperlink.html#atspi-hyperlink-new"/>
     <keyword type="function" name="atspi_hyperlink_get_n_anchors ()" link="AtspiHyperlink.html#atspi-hyperlink-get-n-anchors"/>
     <keyword type="function" name="atspi_hyperlink_get_uri ()" link="AtspiHyperlink.html#atspi-hyperlink-get-uri"/>
     <keyword type="function" name="atspi_hyperlink_get_object ()" link="AtspiHyperlink.html#atspi-hyperlink-get-object"/>
