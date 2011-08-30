@@ -64,7 +64,7 @@ struct _AtspiAccessibleClass
 GType atspi_accessible_get_type (void); 
 
 AtspiAccessible *
-atspi_accessible_new (AtspiApplication *app, const gchar *path);
+_atspi_accessible_new (AtspiApplication *app, const gchar *path);
 
 gchar * atspi_role_get_name (AtspiRole role);
 
@@ -80,7 +80,7 @@ AtspiAccessible * atspi_accessible_get_child_at_index (AtspiAccessible *obj, gin
 
 gint atspi_accessible_get_index_in_parent (AtspiAccessible *obj, GError **error);
 
-GPtrArray * atspi_accessible_get_relation_set (AtspiAccessible *obj, GError **error);
+GArray * atspi_accessible_get_relation_set (AtspiAccessible *obj, GError **error);
 
 AtspiRole atspi_accessible_get_role (AtspiAccessible *obj, GError **error);
 

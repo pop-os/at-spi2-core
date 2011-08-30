@@ -4,22 +4,22 @@
   <chapters>
     <sub name="API reference" link="ch01.html">
       <sub name="atspi-text" link="libatspi-atspi-text.html"/>
-      <sub name="AtspiStateSet" link="AtspiStateSet.html"/>
-      <sub name="AtspiApplication" link="libatspi-AtspiApplication.html"/>
+      <sub name="atspi-stateset" link="AtspiStateSet.html"/>
+      <sub name="atspi-application" link="libatspi-AtspiApplication.html"/>
       <sub name="atspi-collection" link="libatspi-atspi-collection.html"/>
-      <sub name="AtspiRelation" link="AtspiRelation.html"/>
+      <sub name="atspi-relation" link="AtspiRelation.html"/>
       <sub name="atspi-image" link="libatspi-atspi-image.html"/>
-      <sub name="AtspiMatchRule" link="AtspiMatchRule.html"/>
+      <sub name="atspi-matchrule" link="AtspiMatchRule.html"/>
       <sub name="atspi-document" link="libatspi-atspi-document.html"/>
       <sub name="AtspiObject" link="AtspiObject.html"/>
       <sub name="AtspiAccessible" link="AtspiAccessible.html"/>
-      <sub name="AtspiDeviceListener" link="AtspiDeviceListener.html"/>
+      <sub name="atspi-devicelistener" link="AtspiDeviceListener.html"/>
       <sub name="AtspiHyperlink" link="AtspiHyperlink.html"/>
       <sub name="atspi-editabletext" link="libatspi-atspi-editabletext.html"/>
       <sub name="atspi-value" link="libatspi-atspi-value.html"/>
       <sub name="atspi-table" link="libatspi-atspi-table.html"/>
       <sub name="atspi-selection" link="libatspi-atspi-selection.html"/>
-      <sub name="AtspiEventListener" link="AtspiEventListener.html"/>
+      <sub name="atspi-event-listener" link="AtspiEventListener.html"/>
       <sub name="atspi-hypertext" link="libatspi-atspi-hypertext.html"/>
       <sub name="atspi-component" link="libatspi-atspi-component.html"/>
       <sub name="atspi-registry" link="libatspi-atspi-registry.html"/>
@@ -104,7 +104,6 @@
     <function name="struct AtspiObjectClass" link="AtspiObject.html#AtspiObjectClass"/>
     <function name="AtspiAccessible" link="AtspiAccessible.html#AtspiAccessible-struct"/>
     <function name="struct AtspiAccessibleClass" link="AtspiAccessible.html#AtspiAccessibleClass"/>
-    <function name="atspi_accessible_new ()" link="AtspiAccessible.html#atspi-accessible-new"/>
     <function name="atspi_role_get_name ()" link="AtspiAccessible.html#atspi-role-get-name"/>
     <function name="atspi_accessible_get_name ()" link="AtspiAccessible.html#atspi-accessible-get-name"/>
     <function name="atspi_accessible_get_description ()" link="AtspiAccessible.html#atspi-accessible-get-description"/>

@@ -229,7 +229,7 @@ ref_accessible (const char *app_name, const char *path)
   {
     if (!app->root)
     {
-      app->root = atspi_accessible_new (app, atspi_path_root);
+      app->root = _atspi_accessible_new (app, atspi_path_root);
       app->root->accessible_parent = atspi_get_desktop (0);
     }
     return g_object_ref (app->root);
@@ -240,7 +240,7 @@ ref_accessible (const char *app_name, const char *path)
   {
     return g_object_ref (a);
   }
-  a = atspi_accessible_new (app, path);
+  a = _atspi_accessible_new (app, path);
   if (!a)
     return NULL;
   g_hash_table_insert (app->hash, g_strdup (a->parent.path), a);
@@ -519,7 +519,7 @@ ref_accessible_desktop (AtspiApplication *app)
     g_object_ref (desktop);
     return desktop;
   }
-  desktop = atspi_accessible_new (app, atspi_path_root);
+  desktop = _atspi_accessible_new (app, atspi_path_root);
   if (!desktop)
   {
     return NULL;
@@ -869,8 +869,8 @@ atspi_init (void)
  *
  * Starts/enters the main event loop for the AT-SPI services.
  *
- * (NOTE: This method does not return control, it is exited via a call to
- *  atspi_event_quit () from within an event handler).
+ * NOTE: This method does not return control; it is exited via a call to
+ * #atspi_event_quit from within an event handler.
  *
  **/
 void
@@ -884,8 +884,8 @@ atspi_event_main (void)
 /**
  * atspi_event_quit:
  *
- * Quits the last main event loop for the SPI services,
- * see atspi_event_main
+ * Quits the last main event loop for the AT-SPI services,
+ * See: #atspi_event_main
  **/
 void
 atspi_event_quit (void)
@@ -896,10 +896,10 @@ atspi_event_quit (void)
 /**
  * atspi_exit:
  *
- * Disconnects from the Accessibility Registry and releases 
+ * Disconnects from #AtspiRegistry instances and releases 
  * any floating resources. Call only once at exit.
  *
- * Returns: 0 if there were no leaks, otherwise non zero.
+ * Returns: 0 if there were no leaks, otherwise other integer values.
  **/
 int
 atspi_exit (void)
@@ -1088,6 +1088,7 @@ _atspi_dbus_get_property (gpointer obj, const char *interface, const char *name,
   }
   retval = TRUE;
 done:
+  dbus_error_free (&err);
   if (reply)
     dbus_message_unref (reply);
   return retval;

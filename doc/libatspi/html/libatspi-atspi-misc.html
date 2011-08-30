@@ -31,7 +31,7 @@
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2><span class="refentrytitle"><a name="libatspi-atspi-misc.top_of_page"></a>atspi-misc</span></h2>
-<p>atspi-misc</p>
+<p>atspi-misc — Miscellaneous methods for using AT-SPI services.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
@@ -46,6 +46,7 @@
 <div class="refsect1">
 <a name="libatspi-atspi-misc.description"></a><h2>Description</h2>
 <p>
+Miscellaneous methods for using AT-SPI services.
 </p>
 </div>
 <div class="refsect1">
@@ -72,8 +73,8 @@ Connects to the accessibility registry and initializes the SPI.
 Starts/enters the main event loop for the AT-SPI services.
 </p>
 <p>
-(NOTE: This method does not return control, it is exited via a call to
- <a class="link" href="libatspi-atspi-misc.html#atspi-event-quit" title="atspi_event_quit ()"><code class="function">atspi_event_quit()</code></a> from within an event handler).
+NOTE: This method does not return control; it is exited via a call to
+<a class="link" href="libatspi-atspi-misc.html#atspi-event-quit" title="atspi_event_quit ()"><span class="type">atspi_event_quit</span></a> from within an event handler.
 </p>
 </div>
 <hr>
@@ -81,8 +82,8 @@ Starts/enters the main event loop for the AT-SPI services.
 <a name="atspi-event-quit"></a><h3>atspi_event_quit ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>                atspi_event_quit                    ();</pre>
 <p>
-Quits the last main event loop for the SPI services,
-see atspi_event_main
+Quits the last main event loop for the AT-SPI services,
+See: <a class="link" href="libatspi-atspi-misc.html#atspi-event-main" title="atspi_event_main ()"><span class="type">atspi_event_main</span></a>
 </p>
 </div>
 <hr>
@@ -90,14 +91,14 @@ see atspi_event_main
 <a name="atspi-exit"></a><h3>atspi_exit ()</h3>
 <pre class="programlisting"><span class="returnvalue">int</span>                 atspi_exit                          ();</pre>
 <p>
-Disconnects from the Accessibility Registry and releases 
+Disconnects from <span class="type">AtspiRegistry</span> instances and releases 
 any floating resources. Call only once at exit.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>0 if there were no leaks, otherwise non zero.</td>
+<td>0 if there were no leaks, otherwise other integer values.</td>
 </tr></tbody>
 </table></div>
 </div>

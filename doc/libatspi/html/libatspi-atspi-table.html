@@ -35,7 +35,7 @@
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2><span class="refentrytitle"><a name="libatspi-atspi-table.top_of_page"></a>atspi-table</span></h2>
-<p>atspi-table</p>
+<p>atspi-table — An interface used by containers whose data is arranged in a tabular form.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
@@ -141,6 +141,15 @@ AtspiTable is implemented by
 <div class="refsect1">
 <a name="libatspi-atspi-table.description"></a><h2>Description</h2>
 <p>
+An interface used by containers whose contained data is arranged
+in a tabular (i.e. row-column) form. Tables may resemble
+a two-dimensional grid, as in a spreadsheet, or may feature objects
+which span multiple rows and/or columns, but whose bounds are
+aligned on a row/column matrix. Objects within tables are children
+of the table object, and they may be referenced either via a child
+index or via a row/column pair. Table 'cells' may implement other
+interfaces, such as Text, Action, Image, and Component, and should do
+so as appropriate to their onscreen rresentation and/or behavior.
 </p>
 </div>
 <div class="refsect1">
@@ -157,7 +166,7 @@ AtspiTable is implemented by
 <pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_table_get_caption             (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get an accessible representation of the caption for an <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>.
+Gets an accessible representation of the caption for an <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -168,8 +177,8 @@ Get an accessible representation of the caption for an <a class="link" href="lib
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>an <span class="type">Accessible</span> object that serves as the table's
-caption. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+<td>an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object that serves as
+the table's caption. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
 </tbody>
@@ -181,7 +190,7 @@ caption. <span class="annotation">[<acronym title="Free data after the code is d
 <pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_table_get_summary             (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get an accessible object which summarizes the contents of an <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>.
+Gets an accessible object which summarizes the contents of an <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -205,7 +214,7 @@ table's summary (often a reduced <a class="link" href="libatspi-atspi-table.html
 <pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_n_rows              (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get the number of rows in an <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>,
+Gets the number of rows in an <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>,
        exclusive of any rows that are programmatically hidden, but inclusive
        of rows that may be outside of the current scrolling window or viewport.
 </p>
@@ -218,7 +227,7 @@ Get the number of rows in an <a class="link" href="libatspi-atspi-table.html#Ats
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>an integer indicating the number of rows in the table.</td>
+<td>a <span class="type">gint</span> indicating the number of rows in the table.</td>
 </tr>
 </tbody>
 </table></div>
@@ -229,7 +238,7 @@ Get the number of rows in an <a class="link" href="libatspi-atspi-table.html#Ats
 <pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_n_columns           (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get the number of columns in an <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>,
+Gets the number of columns in an <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>,
        exclusive of any columns that are programmatically hidden, but inclusive
        of columns that may be outside of the current scrolling window or viewport.
 </p>
@@ -242,7 +251,7 @@ Get the number of columns in an <a class="link" href="libatspi-atspi-table.html#
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>an integer indicating the number of columns in the table.</td>
+<td>a <span class="type">gint</span> indicating the number of columns in the table.</td>
 </tr>
 </tbody>
 </table></div>
@@ -255,9 +264,9 @@ Get the number of columns in an <a class="link" href="libatspi-atspi-table.html#
                                                          <em class="parameter"><code><span class="type">gint</span> column</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get the table cell at the specified row and column indices.
-         To get the accessible object at a particular (x, y) screen coordinate,
-         use #<a class="link" href="libatspi-atspi-component.html#atspi-component-get-accessible-at-point" title="atspi_component_get_accessible_at_point ()"><code class="function">atspi_component_get_accessible_at_point()</code></a>.
+Gets the table cell at the specified row and column indices.
+To get the accessible object at a particular (x, y) screen 
+coordinate, use <a class="link" href="libatspi-atspi-component.html#atspi-component-get-accessible-at-point" title="atspi_component_get_accessible_at_point ()"><span class="type">atspi_component_get_accessible_at_point</span></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -291,10 +300,12 @@ specified table cell. <span class="annotation">[<acronym title="Free data after 
                                                          <em class="parameter"><code><span class="type">gint</span> column</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get the 1-D child index corresponding to the specified 2-D row and column indices.
-         To get the accessible object at a particular (x, y) screen coordinate,
-         use #<code class="function">Accessible_getAccessibleAtPoint()</code>.
-<em class="parameter"><code>see</code></em> #<code class="function">atspi_table_getRowAtIndex()</code>, #<code class="function">atspi_table_getColumnAtIndex()</code>
+Gets the 1-D child index corresponding to the specified 2-D row and
+column indices. To get the accessible object at a particular (x, y) screen 
+coordinate, use <a class="link" href="libatspi-atspi-component.html#atspi-component-get-accessible-at-point" title="atspi_component_get_accessible_at_point ()"><span class="type">atspi_component_get_accessible_at_point</span></a>.
+</p>
+<p>
+<em class="parameter"><code>see</code></em> <a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-at-index" title="atspi_table_get_row_at_index ()"><span class="type">atspi_table_get_row_at_index</span></a>, <a class="link" href="libatspi-atspi-table.html#atspi-table-get-column-at-index" title="atspi_table_get_column_at_index ()"><span class="type">atspi_table_get_column_at_index</span></a>
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -313,8 +324,8 @@ Get the 1-D child index corresponding to the specified 2-D row and column indice
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a long integer which serves as the index of a specified cell in the
-table, in a form usable by #<code class="function">Accessible_getChildAtIndex()</code>.</td>
+<td>a <span class="type">gint</span> which serves as the index of a specified cell in the
+table, in a form usable by <span class="type">atspi_get_child_at_index</span>.</td>
 </tr>
 </tbody>
 </table></div>
@@ -326,10 +337,11 @@ table, in a form usable by #<code class="function">Accessible_getChildAtIndex()<
                                                          <em class="parameter"><code><span class="type">gint</span> index</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get the table row index occupied by the child at a particular 1-D child index.
+Gets the table row index occupied by the child at a particular 1-D 
+child index.
 </p>
 <p>
-<em class="parameter"><code>see</code></em> #<code class="function">atspi_table_get_indexAt()</code>, #<code class="function">atspi_table_get_columnAtIndex()</code>
+<em class="parameter"><code>see</code></em> <a class="link" href="libatspi-atspi-table.html#atspi-table-get-index-at" title="atspi_table_get_index_at ()"><span class="type">atspi_table_get_index_at</span></a>, <a class="link" href="libatspi-atspi-table.html#atspi-table-get-column-at-index" title="atspi_table_get_column_at_index ()"><span class="type">atspi_table_get_column_at_index</span></a>
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -344,7 +356,7 @@ Get the table row index occupied by the child at a particular 1-D child index.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a long integer indicating the first row spanned by the child of a
+<td>a <span class="type">gint</span> indicating the first row spanned by the child of a
 table, at the specified 1-D (zero-offset) <em class="parameter"><code>index</code></em>.</td>
 </tr>
 </tbody>
@@ -357,10 +369,11 @@ table, at the specified 1-D (zero-offset) <em class="parameter"><code>index</cod
                                                          <em class="parameter"><code><span class="type">gint</span> index</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get the table column index occupied by the child at a particular 1-D child index.
+Gets the table column index occupied by the child at a particular 1-D
+child index.
 </p>
 <p>
-<em class="parameter"><code>see</code></em> #<code class="function">atspi_table_getIndexAt()</code>, #<code class="function">atspi_table_getRowAtIndex()</code>
+<em class="parameter"><code>see</code></em> <a class="link" href="libatspi-atspi-table.html#atspi-table-get-index-at" title="atspi_table_get_index_at ()"><span class="type">atspi_table_get_index_at</span></a>, <a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-at-index" title="atspi_table_get_row_at_index ()"><span class="type">atspi_table_get_row_at_index</span></a>
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -375,7 +388,7 @@ Get the table column index occupied by the child at a particular 1-D child index
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a long integer indicating the first column spanned by the child of a
+<td>a <span class="type">gint</span> indicating the first column spanned by the child of a
 table, at the specified 1-D (zero-offset) <em class="parameter"><code>index</code></em>.</td>
 </tr>
 </tbody>
@@ -388,8 +401,8 @@ table, at the specified 1-D (zero-offset) <em class="parameter"><code>index</cod
                                                          <em class="parameter"><code><span class="type">gint</span> row</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get a text description of a particular table row.  This differs from
-atspi_table_get_row_header, which returns an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.
+Gets a text description of a particular table row.  This differs from
+<a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-header" title="atspi_table_get_row_header ()"><span class="type">atspi_table_get_row_header</span></a>, which returns an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -416,8 +429,8 @@ atspi_table_get_row_header, which returns an <a class="link" href="AtspiAccessib
                                                          <em class="parameter"><code><span class="type">gint</span> column</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get a text description of a particular table column.  This differs from
-atspi_table_get_column_header, which returns an <span class="type">Accessible</span>.
+Gets a text description of a particular table column.  This differs from
+<a class="link" href="libatspi-atspi-table.html#atspi-table-get-column-header" title="atspi_table_get_column_header ()"><span class="type">atspi_table_get_column_header</span></a>, which returns an <span class="type">Accessible</span>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -445,8 +458,9 @@ atspi_table_get_column_header, which returns an <span class="type">Accessible</s
                                                          <em class="parameter"><code><span class="type">gint</span> column</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get the number of rows spanned by the table cell at the specific row and column.
-(some tables can have cells which span multiple rows and/or columns).
+Gets the number of rows spanned by the table cell at the specific row
+and column. (some tables can have cells which span multiple rows
+and/or columns).
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -465,7 +479,7 @@ Get the number of rows spanned by the table cell at the specific row and column.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a long integer indicating the number of rows spanned by the specified cell.</td>
+<td>a <span class="type">gint</span> indicating the number of rows spanned by the specified cell.</td>
 </tr>
 </tbody>
 </table></div>
@@ -478,8 +492,9 @@ Get the number of rows spanned by the table cell at the specific row and column.
                                                          <em class="parameter"><code><span class="type">gint</span> column</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get the number of columns spanned by the table cell at the specific row and column.
-(some tables can have cells which span multiple rows and/or columns).
+Gets the number of columns spanned by the table cell at the specific
+row and column (some tables can have cells which span multiple
+rows and/or columns).
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -498,7 +513,7 @@ Get the number of columns spanned by the table cell at the specific row and colu
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a long integer indicating the number of columns spanned by the specified cell.</td>
+<td>a <span class="type">gint</span> indicating the number of columns spanned by the specified cell.</td>
 </tr>
 </tbody>
 </table></div>
@@ -510,8 +525,8 @@ Get the number of columns spanned by the table cell at the specific row and colu
                                                          <em class="parameter"><code><span class="type">gint</span> row</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get the header associated with a table row, if available.  This differs from
-atspi_table_get_row_description, which returns a string.
+Gets the header associated with a table row, if available. This differs from
+<a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-description" title="atspi_table_get_row_description ()"><span class="type">atspi_table_get_row_description</span></a>, which returns a string.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -526,7 +541,7 @@ atspi_table_get_row_description, which returns a string.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a <span class="type">Accessible</span> representatin of the specified
+<td>an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> representation of the specified
 table row, if available. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
@@ -540,8 +555,9 @@ table row, if available. <span class="annotation">[<acronym title="Free data aft
                                                          <em class="parameter"><code><span class="type">gint</span> column</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get the header associated with a table column, if available.  This differs from
-atspi_table_get_column_description, which returns a string.
+Gets the header associated with a table column, if available.
+This differs from <a class="link" href="libatspi-atspi-table.html#atspi-table-get-column-description" title="atspi_table_get_column_description ()"><span class="type">atspi_table_get_column_description</span></a>, which
+returns a string.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -556,7 +572,7 @@ atspi_table_get_column_description, which returns a string.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> representation of the
+<td>an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> representation of the
 specified table column, if available. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
@@ -569,8 +585,8 @@ specified table column, if available. <span class="annotation">[<acronym title="
 <pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_n_selected_rows     (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Query a table to find out how many rows are currently selected.  Not all tables
- support row selection.
+Query a table to find out how many rows are currently selected. 
+Not all tables support row selection.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -581,7 +597,7 @@ Query a table to find out how many rows are currently selected.  Not all tables
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a long integer indicating the number of rows currently selected.</td>
+<td>a <span class="type">gint</span> indicating the number of rows currently selected.</td>
 </tr>
 </tbody>
 </table></div>
@@ -592,7 +608,7 @@ Query a table to find out how many rows are currently selected.  Not all tables
 <pre class="programlisting"><span class="returnvalue">GArray</span> *            atspi_table_get_selected_rows       (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Query a table for a list of indices of rows which are currently selected.
+Queries a table for a list of indices of rows which are currently selected.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -603,7 +619,7 @@ Query a table for a list of indices of rows which are currently selected.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>an array of integers,
+<td>an array of <span class="type">gint</span> values,
 specifying which rows are currently selected. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gint][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
@@ -616,7 +632,8 @@ specifying which rows are currently selected. <span class="annotation">[<acronym
 <pre class="programlisting"><span class="returnvalue">GArray</span> *            atspi_table_get_selected_columns    (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Query a table for a list of indices of columns which are currently selected.
+Queries a table for a list of indices of columns which are currently
+selected.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -627,7 +644,7 @@ Query a table for a list of indices of columns which are currently selected.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>an array of integers,
+<td>an array of <span class="type">gint</span> values,
 specifying which columns are currently selected. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gint][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
@@ -640,8 +657,8 @@ specifying which columns are currently selected. <span class="annotation">[<acro
 <pre class="programlisting"><span class="returnvalue">gint</span>                atspi_table_get_n_selected_columns  (<em class="parameter"><code><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Query a table to find out how many columns are currently selected.  Not all tables
- support column selection.
+Queries a table to find out how many columns are currently selected. 
+Not all tables support column selection.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -652,7 +669,7 @@ Query a table to find out how many columns are currently selected.  Not all tabl
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a long integer indicating the number of columns currently selected.</td>
+<td>a <span class="type">gint</span> indicating the number of columns currently selected.</td>
 </tr>
 </tbody>
 </table></div>
@@ -664,7 +681,8 @@ Query a table to find out how many columns are currently selected.  Not all tabl
                                                          <em class="parameter"><code><span class="type">gint</span> row</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Determine whether a table row is selected.  Not all tables support row selection.
+Determines whether a table row is selected.  Not all tables support 
+row selection.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -692,7 +710,7 @@ Determine whether a table row is selected.  Not all tables support row selection
                                                          <em class="parameter"><code><span class="type">gint</span> column</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Determine whether specified table column is selected.
+Determines whether specified table column is selected.
 Not all tables support column selection.
 </p>
 <div class="variablelist"><table border="0">
@@ -721,7 +739,7 @@ Not all tables support column selection.
                                                          <em class="parameter"><code><span class="type">gint</span> row</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Select the specified row, adding it to the current row selection.
+Selects the specified row, adding it to the current row selection.
 Not all tables support row selection.
 </p>
 <div class="variablelist"><table border="0">
@@ -750,7 +768,7 @@ Not all tables support row selection.
                                                          <em class="parameter"><code><span class="type">gint</span> column</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Select the specified column, adding it to the current column selection.
+Selects the specified column, adding it to the current column selection.
 Not all tables support column selection.
 </p>
 <div class="variablelist"><table border="0">
@@ -779,7 +797,7 @@ Not all tables support column selection.
                                                          <em class="parameter"><code><span class="type">gint</span> row</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-De-select the specified row, removing it to the current row selection.
+De-selects the specified row, removing it from the current row selection.
 Not all tables support row selection.
 </p>
 <div class="variablelist"><table border="0">
@@ -791,12 +809,13 @@ Not all tables support row selection.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>row</code></em> :</span></p></td>
-<td>the zero-indexed number of the row being deselected.</td>
+<td>the zero-indexed number of the row being de-selected.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<span class="type">TRUE</span> if the specified row was successfully de-selected, <span class="type">FALSE</span> if not.</td>
+<span class="type">TRUE</span> if the specified row was successfully de-selected,
+<span class="type">FALSE</span> if not.</td>
 </tr>
 </tbody>
 </table></div>
@@ -808,7 +827,8 @@ Not all tables support row selection.
                                                          <em class="parameter"><code><span class="type">gint</span> column</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-De-select the specified column, removing it to the current column selection.
+De-selects the specified column, removing it from the current column
+selection.
 Not all tables support column selection.
 </p>
 <div class="variablelist"><table border="0">
@@ -825,7 +845,8 @@ Not all tables support column selection.
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<span class="type">TRUE</span> if the specified column was successfully de-selected, <span class="type">FALSE</span> if not.</td>
+<span class="type">TRUE</span> if the specified column was successfully de-selected,
+<span class="type">FALSE</span> if not.</td>
 </tr>
 </tbody>
 </table></div>
@@ -843,27 +864,28 @@ Not all tables support column selection.
                                                          <em class="parameter"><code><span class="type">gboolean</span> *is_selected</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Given a child index, determine the row and column indices and 
+Given a child index, determines the row and column indices and 
 extents, and whether the cell is currently selected.  If
-the child at \c index is not a cell (for instance, if it is 
-a summary, caption, etc.), \c False is returned.
+the child at index is not a cell (for instance, if it is 
+a summary, caption, etc.), <span class="type">FALSE</span> is returned.
 </p>
 <p>
 Example:
-If the Table child at index '6' extends across columns 5 and 6 of
-row 2 of a Table instance, and is currently selected, then
+If the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> child at index '6' extends across columns 5 and 6 of
+row 2 of an <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> instance, and is currently selected, then
 </p>
 <p>
-retval = table::getRowColumnExtentsAtIndex (6, row, col, 
+retval = atspi_table_get_row_column_extents_at_index (table, 6,
+                                            row, col, 
                                             row_extents,
                                             col_extents,
                                             is_selected);
 </p>
 <p>
-will return True, and after the call
+will return <span class="type">TRUE</span>, and after the call
 row, col, row_extents, col_extents,
-and \c is_selected will contain 2, 5, 1, 2, and 
-True, respectively.
+and is_selected will contain 2, 5, 1, 2, and 
+<span class="type">TRUE</span>, respectively.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -874,45 +896,46 @@ True, respectively.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>index</code></em> :</span></p></td>
-<td>the index of the Table child whose row/column
+<td>the index of the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> child whose row/column
 extents are requested.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>row</code></em> :</span></p></td>
 <td>back-filled with the first table row associated with
-the cell with child index \c index. <span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span>
+the cell with child index. <span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>col</code></em> :</span></p></td>
 <td>back-filled with the first table column associated
-with the cell with child index \c index. <span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span>
+with the cell with child index. <span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>row_extents</code></em> :</span></p></td>
 <td>back-filled with the number of table rows
-across which child \c i extends. <span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span>
+across which child i extends. <span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>col_extents</code></em> :</span></p></td>
 <td>back-filled with the number of table columns
-across which child \c i extends. <span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span>
+across which child i extends. <span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>is_selected</code></em> :</span></p></td>
-<td>a boolean which is back-filled with \c True
-if the child at index \c i corresponds to a selected table cell,
-\c False otherwise. <span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span>
+<td>a boolean which is back-filled with <span class="type">TRUE</span>
+if the child at index i corresponds to a selected table cell,
+<span class="type">FALSE</span> otherwise. <span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>\c True if the index is associated with a valid table
-cell, \c False if the index does not correspond to a cell.  If
-\c False is returned, the values of the out parameters are
+<td>
+<span class="type">TRUE</span> if the index is associated with a valid table
+cell, <span class="type">FALSE</span> if the index does not correspond to a cell.  If
+<span class="type">FALSE</span> is returned, the values of the out parameters are
 undefined.</td>
 </tr>
 </tbody>
@@ -926,7 +949,7 @@ undefined.</td>
                                                          <em class="parameter"><code><span class="type">gint</span> column</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Determine whether the cell at a specific row and column is selected.
+Determines whether the cell at a specific row and column is selected.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">

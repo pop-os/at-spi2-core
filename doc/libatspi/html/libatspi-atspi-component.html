@@ -35,7 +35,8 @@
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2><span class="refentrytitle"><a name="libatspi-atspi-component.top_of_page"></a>atspi-component</span></h2>
-<p>atspi-component</p>
+<p>atspi-component —  An interface implemented by objects which have onscreen visual
+ representations.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
@@ -103,6 +104,14 @@ AtspiComponent is implemented by
 <div class="refsect1">
 <a name="libatspi-atspi-component.description"></a><h2>Description</h2>
 <p>
+  The Component interface is implemented by objects which occupy on-screen
+  space, e.g. objects which have onscreen visual representations. The methods
+  in Component allow clients to identify where the objects lie in the onscreen
+  coordinate system, their relative size, stacking order, and position. It
+  also provides a mechanism whereby keyboard focus may be transferred to
+  specific user interface elements programmatically.  This is a 2D API.
+  Coordinates of 3D objects are projected into the 2-dimensional screen view
+  for purposes of this interface.
 </p>
 </div>
 <div class="refsect1">
@@ -182,7 +191,7 @@ The <span class="type">GType</span> for a boxed type holding a <a class="link" h
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCoordType" title="enum AtspiCoordType"><span class="type">AtspiCoordType</span></a> ctype</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Query whether a given <a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a> contains a particular point.
+Queries whether a given <a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a> contains a particular point.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -193,11 +202,11 @@ Query whether a given <a class="link" href="libatspi-atspi-component.html#AtspiC
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
-<td>a <span class="type">long</span> specifying the x coordinate in question.</td>
+<td>a <span class="type">gint</span> specifying the x coordinate in question.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
-<td>a <span class="type">long</span> specifying the y coordinate in question.</td>
+<td>a <span class="type">gint</span> specifying the y coordinate in question.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>ctype</code></em> :</span></p></td>
@@ -206,8 +215,9 @@ Query whether a given <a class="link" href="libatspi-atspi-component.html#AtspiC
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a <span class="type">TRUE</span> if the specified component contains the point (<em class="parameter"><code>x</code></em>, <em class="parameter"><code>y</code></em>),
-otherwise <span class="type">FALSE</span>.</td>
+<td>
+<span class="type">TRUE</span> if the specified component contains the point (<em class="parameter"><code>x</code></em>, <em class="parameter"><code>y</code></em>),
+<span class="type">FALSE</span> otherwise.</td>
 </tr>
 </tbody>
 </table></div>
@@ -222,7 +232,7 @@ otherwise <span class="type">FALSE</span>.</td>
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCoordType" title="enum AtspiCoordType"><span class="type">AtspiCoordType</span></a> ctype</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get the accessible child at a given coordinate within an <a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a>.
+Gets the accessible child at a given coordinate within an <a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -247,7 +257,7 @@ Get the accessible child at a given coordinate within an <a class="link" href="l
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>a pointer to an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> child of the
-specified component which contains the point (<em class="parameter"><code>x</code></em>, <em class="parameter"><code>y</code></em>), or NULL of
+specified component which contains the point (<em class="parameter"><code>x</code></em>, <em class="parameter"><code>y</code></em>), or NULL if
 no child contains the point. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
@@ -260,6 +270,9 @@ no child contains the point. <span class="annotation">[<acronym title="Free data
 <pre class="programlisting"><a class="link" href="libatspi-atspi-component.html#AtspiRect"><span class="returnvalue">AtspiRect</span></a> *         atspi_component_get_extents         (<em class="parameter"><code><a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCoordType" title="enum AtspiCoordType"><span class="type">AtspiCoordType</span></a> ctype</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Gets the bounding box of the specified <a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -274,8 +287,7 @@ no child contains the point. <span class="annotation">[<acronym title="Free data
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>A <a class="link" href="libatspi-atspi-component.html#AtspiRect"><span class="type">AtspiRect</span></a> giving the accessible's extents.
-Get the bounding box of the specified <a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a>.</td>
+<td>An <a class="link" href="libatspi-atspi-component.html#AtspiRect"><span class="type">AtspiRect</span></a> giving the accessible's extents.</td>
 </tr>
 </tbody>
 </table></div>
@@ -286,6 +298,9 @@ Get the bounding box of the specified <a class="link" href="libatspi-atspi-compo
 <pre class="programlisting"><a class="link" href="libatspi-atspi-component.html#AtspiPoint"><span class="returnvalue">AtspiPoint</span></a> *        atspi_component_get_position        (<em class="parameter"><code><a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCoordType" title="enum AtspiCoordType"><span class="type">AtspiCoordType</span></a> ctype</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>
+Gets the minimum x and y coordinates of the specified <a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -300,8 +315,7 @@ Get the bounding box of the specified <a class="link" href="libatspi-atspi-compo
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>A <a class="link" href="libatspi-atspi-component.html#AtspiPoint"><span class="type">AtspiPoint</span></a> giving the position.
-Get the minimum x and y coordinates of the specified <a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a>.</td>
+<td>An <a class="link" href="libatspi-atspi-component.html#AtspiPoint"><span class="type">AtspiPoint</span></a> giving the <em class="parameter"><code>obj</code></em>'s position.</td>
 </tr>
 </tbody>
 </table></div>
@@ -312,15 +326,20 @@ Get the minimum x and y coordinates of the specified <a class="link" href="libat
 <pre class="programlisting"><a class="link" href="libatspi-atspi-component.html#AtspiPoint"><span class="returnvalue">AtspiPoint</span></a> *        atspi_component_get_size            (<em class="parameter"><code><a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get the size of the specified <a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a>.
+Gets the size of the specified <a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
-<tbody><tr>
+<tbody>
+<tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a> to query.
-returns: A <a class="link" href="libatspi-atspi-component.html#AtspiPoint"><span class="type">AtspiPoint</span></a> giving the size.</td>
-</tr></tbody>
+<td>a pointer to the <a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a> to query.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>An <a class="link" href="libatspi-atspi-component.html#AtspiPoint"><span class="type">AtspiPoint</span></a> giving the <em class="parameter"><code>obj</code></em>'s size.</td>
+</tr>
+</tbody>
 </table></div>
 </div>
 <hr>
@@ -329,7 +348,7 @@ returns: A <a class="link" href="libatspi-atspi-component.html#AtspiPoint"><span
 <pre class="programlisting"><a class="link" href="libatspi-atspi-constants.html#AtspiComponentLayer" title="enum AtspiComponentLayer"><span class="returnvalue">AtspiComponentLayer</span></a>  atspi_component_get_layer          (<em class="parameter"><code><a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Query which layer the component is painted into, to help determine its 
+Queries which layer the component is painted into, to help determine its 
      visibility in terms of stacking order.
 </p>
 <div class="variablelist"><table border="0">
@@ -352,7 +371,7 @@ Query which layer the component is painted into, to help determine its
 <pre class="programlisting"><span class="returnvalue">gshort</span>              atspi_component_get_mdi_z_order     (<em class="parameter"><code><a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Query the z stacking order of a component which is in the MDI or window
+Queries the z stacking order of a component which is in the MDI or window
       layer. (Bigger z-order numbers mean nearer the top)
 </p>
 <div class="variablelist"><table border="0">
@@ -364,7 +383,7 @@ Query the z stacking order of a component which is in the MDI or window
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a short integer indicating the stacking order of the component
+<td>a <span class="type">gshort</span> indicating the stacking order of the component
 in the MDI layer, or -1 if the component is not in the MDI layer.</td>
 </tr>
 </tbody>
@@ -376,7 +395,7 @@ in the MDI layer, or -1 if the component is not in the MDI layer.</td>
 <pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_component_grab_focus          (<em class="parameter"><code><a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Attempt to set the keyboard input focus to the specified
+Attempts to set the keyboard input focus to the specified
         <a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a>.
 </p>
 <div class="variablelist"><table border="0">
@@ -400,7 +419,7 @@ Attempt to set the keyboard input focus to the specified
 <pre class="programlisting"><span class="returnvalue">gdouble</span>             atspi_component_get_alpha           (<em class="parameter"><code><a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get the opacity/alpha value of a component, if alpha blending is in use.
+Gets the opacity/alpha value of a component, if alpha blending is in use.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -411,7 +430,7 @@ Get the opacity/alpha value of a component, if alpha blending is in use.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the opacity value of a component, as a double between 0.0 and 1.0.</td>
+<td>the opacity value of a component, as a <span class="type">gdouble</span> between 0.0 and 1.0.</td>
 </tr>
 </tbody>
 </table></div>
