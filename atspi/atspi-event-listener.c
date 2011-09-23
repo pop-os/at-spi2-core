@@ -385,7 +385,7 @@ oom:
 static void
 listener_entry_free (EventListenerEntry *e)
 {
-  gpointer callback = (e->callback == remove_datum ? e->user_data : e->callback);
+  gpointer callback = (e->callback == remove_datum ? (gpointer)e->user_data : (gpointer)e->callback);
   g_free (e->category);
   g_free (e->name);
   if (e->detail) g_free (e->detail);
@@ -540,7 +540,7 @@ atspi_event_listener_register_from_callback (AtspiEventListenerCB callback,
   e->callback = callback;
   e->user_data = user_data;
   e->callback_destroyed = callback_destroyed;
-  callback_ref (callback == remove_datum ? user_data : callback,
+  callback_ref (callback == remove_datum ? (gpointer)user_data : (gpointer)callback,
                 callback_destroyed);
   if (!convert_event_type_to_dbus (event_type, &e->category, &e->name, &e->detail, &matchrule))
   {
@@ -688,12 +688,13 @@ atspi_event_listener_deregister_from_callback (AtspiEventListenerCB callback,
       message = dbus_message_new_method_call (atspi_bus_registry,
 	    atspi_path_registry,
 	    atspi_interface_registry,
-	    "RegisterEvent");
+	    "DeregisterEvent");
       if (!message)
       return FALSE;
       dbus_message_append_args (message, DBUS_TYPE_STRING, &event_type, DBUS_TYPE_INVALID);
       reply = _atspi_dbus_send_with_reply_and_block (message, error);
-      dbus_message_unref (reply);
+      if (reply)
+        dbus_message_unref (reply);
 
       listener_entry_free (e);
     }
