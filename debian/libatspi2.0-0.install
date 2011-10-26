@@ -1,1 +1,1 @@
-usr/lib/libatspi.so.*
+usr/lib/*/libatspi.so.*
