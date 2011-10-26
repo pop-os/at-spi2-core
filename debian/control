@@ -79,7 +79,8 @@ Description: Assistive Technology Service Provider (GObject introspection)
  generate dynamic bindings
 
 Package: at-spi2-doc
+Section: doc
 Architecture: all
-Recommends: devhelp
+Recommends: ${misc:Depends}, devhelp
 Description: Assistive Technology Service Provider Interface (Documentation)
  This package contains documentation for the at-spi2 interface.
