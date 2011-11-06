@@ -1,10 +1,15 @@
 at-spi2-core (2.0.2-2) UNRELEASED; urgency=low
 
+  [ Mario Lang ]
   * debian/control: Put libatspi2.0-0 and gir1.2-atspi-2.0 in section libs.
   * Add NEWS to debian/at-spi2-core.docs.
   * Install atspi-2.pc.
 
- -- Mario Lang <mlang@debian.org>  Sun, 24 Jul 2011 16:42:43 +0200
+  [ Samuel Thibault ]
+  * control: Depend on hardening-check.
+  * rules: Set DEB_BUILD_HARDENING=1 to enable hardening.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 06 Nov 2011 23:21:52 +0100
 
 at-spi2-core (2.0.2-1) unstable; urgency=low
 

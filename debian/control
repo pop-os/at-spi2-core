@@ -13,7 +13,8 @@ Build-Depends: debhelper (>= 7.0.50),
                libgirepository1.0-dev,
                gtk-doc-tools (>= 1.09),
                gobject-introspection,
-               gir1.2-glib-2.0
+               gir1.2-glib-2.0,
+               hardening-wrapper
 Standards-Version: 3.9.2
 
 Package: at-spi2-core
