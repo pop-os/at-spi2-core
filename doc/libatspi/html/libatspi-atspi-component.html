@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-atspi-hypertext.html" title="atspi-hypertext">
 <link rel="next" href="libatspi-atspi-registry.html" title="atspi-registry">
-<meta name="generator" content="GTK-Doc V1.17 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -70,7 +70,7 @@ struct              <a class="link" href="libatspi-atspi-component.html#AtspiPoi
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
 <a class="link" href="libatspi-atspi-component.html#AtspiPoint"><span class="returnvalue">AtspiPoint</span></a> *        <a class="link" href="libatspi-atspi-component.html#atspi-component-get-size" title="atspi_component_get_size ()">atspi_component_get_size</a>            (<em class="parameter"><code><a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<a class="link" href="libatspi-atspi-constants.html#AtspiComponentLayer" title="enum AtspiComponentLayer"><span class="returnvalue">AtspiComponentLayer</span></a>  <a class="link" href="libatspi-atspi-component.html#atspi-component-get-layer" title="atspi_component_get_layer ()">atspi_component_get_layer</a>          (<em class="parameter"><code><a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a> *obj</code></em>,
+<a class="link" href="libatspi-atspi-constants.html#AtspiComponentLayer" title="enum AtspiComponentLayer"><span class="returnvalue">AtspiComponentLayer</span></a> <a class="link" href="libatspi-atspi-component.html#atspi-component-get-layer" title="atspi_component_get_layer ()">atspi_component_get_layer</a>           (<em class="parameter"><code><a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
 <span class="returnvalue">gshort</span>              <a class="link" href="libatspi-atspi-component.html#atspi-component-get-mdi-z-order" title="atspi_component_get_mdi_z_order ()">atspi_component_get_mdi_z_order</a>     (<em class="parameter"><code><a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
@@ -118,7 +118,13 @@ AtspiComponent is implemented by
 <a name="libatspi-atspi-component.details"></a><h2>Details</h2>
 <div class="refsect2">
 <a name="AtspiRect-struct"></a><h3>struct AtspiRect</h3>
-<pre class="programlisting">struct AtspiRect;</pre>
+<pre class="programlisting">struct AtspiRect {
+  gint x;
+  gint y;
+  gint width;
+  gint height;
+};
+</pre>
 <p>
 </p>
 </div>
@@ -141,7 +147,11 @@ The <span class="type">GType</span> for a boxed type holding a <a class="link" h
 <hr>
 <div class="refsect2">
 <a name="AtspiPoint-struct"></a><h3>struct AtspiPoint</h3>
-<pre class="programlisting">struct AtspiPoint;</pre>
+<pre class="programlisting">struct AtspiPoint {
+  gint x;
+  gint y;
+};
+</pre>
 <p>
 </p>
 </div>
@@ -345,7 +355,7 @@ Gets the size of the specified <a class="link" href="libatspi-atspi-component.ht
 <hr>
 <div class="refsect2">
 <a name="atspi-component-get-layer"></a><h3>atspi_component_get_layer ()</h3>
-<pre class="programlisting"><a class="link" href="libatspi-atspi-constants.html#AtspiComponentLayer" title="enum AtspiComponentLayer"><span class="returnvalue">AtspiComponentLayer</span></a>  atspi_component_get_layer          (<em class="parameter"><code><a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a> *obj</code></em>,
+<pre class="programlisting"><a class="link" href="libatspi-atspi-constants.html#AtspiComponentLayer" title="enum AtspiComponentLayer"><span class="returnvalue">AtspiComponentLayer</span></a> atspi_component_get_layer           (<em class="parameter"><code><a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Queries which layer the component is painted into, to help determine its 
@@ -439,6 +449,6 @@ Gets the opacity/alpha value of a component, if alpha blending is in use.
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.17</div>
+          Generated by GTK-Doc V1.18</div>
 </body>
 </html>
