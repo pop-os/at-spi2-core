@@ -2,8 +2,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>AtspiHyperlink</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<title>atspi-hyperlink</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
 <link rel="home" href="index.html" title="libatspi Reference Manual">
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="AtspiDeviceListener.html" title="atspi-devicelistener">
@@ -32,8 +32,9 @@
 <a name="AtspiHyperlink"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2><span class="refentrytitle"><a name="AtspiHyperlink.top_of_page"></a>AtspiHyperlink</span></h2>
-<p>AtspiHyperlink</p>
+<h2><span class="refentrytitle"><a name="AtspiHyperlink.top_of_page"></a>atspi-hyperlink</span></h2>
+<p>atspi-hyperlink — Instances of atspi-hyperlink are the means by which end users
+and clients interact with linked content.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
@@ -41,21 +42,21 @@
 <a name="AtspiHyperlink.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">                    <a class="link" href="AtspiHyperlink.html#AtspiHyperlink-struct" title="AtspiHyperlink">AtspiHyperlink</a>;
 struct              <a class="link" href="AtspiHyperlink.html#AtspiHyperlinkClass" title="struct AtspiHyperlinkClass">AtspiHyperlinkClass</a>;
-<span class="returnvalue">gint</span>                <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-n-anchors" title="atspi_hyperlink_get_n_anchors ()">atspi_hyperlink_get_n_anchors</a>       (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+<span class="returnvalue">gint</span>                <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-n-anchors" title="atspi_hyperlink_get_n_anchors ()">atspi_hyperlink_get_n_anchors</a>       (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gchar</span> *             <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-uri" title="atspi_hyperlink_get_uri ()">atspi_hyperlink_get_uri</a>             (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+<span class="returnvalue">gchar</span> *             <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-uri" title="atspi_hyperlink_get_uri ()">atspi_hyperlink_get_uri</a>             (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">int</span> i</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-object" title="atspi_hyperlink_get_object ()">atspi_hyperlink_get_object</a>          (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-object" title="atspi_hyperlink_get_object ()">atspi_hyperlink_get_object</a>          (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">gint</span> i</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<a class="link" href="libatspi-atspi-text.html#AtspiRange"><span class="returnvalue">AtspiRange</span></a> *        <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-index-range" title="atspi_hyperlink_get_index_range ()">atspi_hyperlink_get_index_range</a>     (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+<a class="link" href="libatspi-atspi-text.html#AtspiRange"><span class="returnvalue">AtspiRange</span></a> *        <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-index-range" title="atspi_hyperlink_get_index_range ()">atspi_hyperlink_get_index_range</a>     (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gint</span>                <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-start-index" title="atspi_hyperlink_get_start_index ()">atspi_hyperlink_get_start_index</a>     (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+<span class="returnvalue">gint</span>                <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-start-index" title="atspi_hyperlink_get_start_index ()">atspi_hyperlink_get_start_index</a>     (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gint</span>                <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-end-index" title="atspi_hyperlink_get_end_index ()">atspi_hyperlink_get_end_index</a>       (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+<span class="returnvalue">gint</span>                <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-end-index" title="atspi_hyperlink_get_end_index ()">atspi_hyperlink_get_end_index</a>       (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-is-valid" title="atspi_hyperlink_is_valid ()">atspi_hyperlink_is_valid</a>            (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+<span class="returnvalue">gboolean</span>            <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-is-valid" title="atspi_hyperlink_is_valid ()">atspi_hyperlink_is_valid</a>            (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
 </pre>
 </div>
@@ -70,6 +71,13 @@ struct              <a class="link" href="AtspiHyperlink.html#AtspiHyperlinkClas
 <div class="refsect1">
 <a name="AtspiHyperlink.description"></a><h2>Description</h2>
 <p>
+ Instances of atspi-hyperlink are returned by
+ atspi-hypertext objects, and are the means by
+ which end users and clients interact with linked,
+ and in some cases embedded, content. These instances
+ may have multiple "anchors", where an anchor corresponds to a
+ reference to a particular resource with a corresponding resource
+ identified (URI).
 </p>
 </div>
 <div class="refsect1">
@@ -93,21 +101,23 @@ struct              <a class="link" href="AtspiHyperlink.html#AtspiHyperlinkClas
 <hr>
 <div class="refsect2">
 <a name="atspi-hyperlink-get-n-anchors"></a><h3>atspi_hyperlink_get_n_anchors ()</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_hyperlink_get_n_anchors       (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_hyperlink_get_n_anchors       (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get the total number of anchors which an <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> implementor has.
-      Though typical hyperlinks have only one anchor, client-side image maps and
-      other hypertext objects may potentially activate or refer to multiple
-      URIs.  For each anchor there is a corresponding URI and object.
-see <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-uri" title="atspi_hyperlink_get_uri ()"><code class="function">atspi_hyperlink_get_uri()</code></a> and <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-object" title="atspi_hyperlink_get_object ()"><code class="function">atspi_hyperlink_get_object()</code></a>.
+Gets the total number of anchors which an <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> implementor has.
+Though typical hyperlinks have only one anchor, client-side image maps and
+other hypertext objects may potentially activate or refer to multiple
+URIs.  For each anchor there is a corresponding URI and object.
+</p>
+<p>
+see: <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-uri" title="atspi_hyperlink_get_uri ()"><span class="type">atspi_hyperlink_get_uri</span></a> and <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-object" title="atspi_hyperlink_get_object ()"><span class="type">atspi_hyperlink_get_object</span></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> object on which to operate.</td>
+<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> object on which to operate.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
@@ -119,18 +129,18 @@ see <a class="link" href="AtspiHyperlink.html#atspi-hyperlink-get-uri" title="at
 <hr>
 <div class="refsect2">
 <a name="atspi-hyperlink-get-uri"></a><h3>atspi_hyperlink_get_uri ()</h3>
-<pre class="programlisting"><span class="returnvalue">gchar</span> *             atspi_hyperlink_get_uri             (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+<pre class="programlisting"><span class="returnvalue">gchar</span> *             atspi_hyperlink_get_uri             (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">int</span> i</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get the URI associated with a particular hyperlink anchor.
+Gets the URI associated with a particular hyperlink anchor.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> implementor on which to operate.</td>
+<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> implementor on which to operate.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>i</code></em> :</span></p></td>
@@ -146,27 +156,28 @@ Get the URI associated with a particular hyperlink anchor.
 <hr>
 <div class="refsect2">
 <a name="atspi-hyperlink-get-object"></a><h3>atspi_hyperlink_get_object ()</h3>
-<pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_hyperlink_get_object          (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+<pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_hyperlink_get_object          (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">gint</span> i</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get the object associated with a particular hyperlink anchor, as an <span class="type">Accessible</span>.
+Gets the object associated with a particular hyperlink anchor, as an
+<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> implementor on which to operate.</td>
+<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> implementor on which to operate.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>i</code></em> :</span></p></td>
-<td>a (zero-index) long integer indicating which hyperlink anchor to query.</td>
+<td>a (zero-index) <span class="type">gint</span> indicating which hyperlink anchor to query.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> that represents the object
-associated with the <em class="parameter"><code>ith</code></em> anchor of the specified <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+associated with the <em class="parameter"><code>ith</code></em> anchor of the specified <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
 </tbody>
@@ -175,61 +186,61 @@ associated with the <em class="parameter"><code>ith</code></em> anchor of the sp
 <hr>
 <div class="refsect2">
 <a name="atspi-hyperlink-get-index-range"></a><h3>atspi_hyperlink_get_index_range ()</h3>
-<pre class="programlisting"><a class="link" href="libatspi-atspi-text.html#AtspiRange"><span class="returnvalue">AtspiRange</span></a> *        atspi_hyperlink_get_index_range     (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+<pre class="programlisting"><a class="link" href="libatspi-atspi-text.html#AtspiRange"><span class="returnvalue">AtspiRange</span></a> *        atspi_hyperlink_get_index_range     (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get the starting and ending character offsets of the text range associated with
-      a <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a>, in its originating <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a>.
+Gets the starting and ending character offsets of the text range
+associated with an <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a>, in its originating <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> implementor on which to operate.</td>
+<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> implementor on which to operate.</td>
 </tr></tbody>
 </table></div>
 </div>
 <hr>
 <div class="refsect2">
 <a name="atspi-hyperlink-get-start-index"></a><h3>atspi_hyperlink_get_start_index ()</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_hyperlink_get_start_index     (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_hyperlink_get_start_index     (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get the starting character offset of the text range associated with
-      a <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a>, in its originating <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a>.
+Gets the starting character offset of the text range associated with
+      an <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a>, in its originating <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> implementor on which to operate.</td>
+<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> implementor on which to operate.</td>
 </tr></tbody>
 </table></div>
 </div>
 <hr>
 <div class="refsect2">
 <a name="atspi-hyperlink-get-end-index"></a><h3>atspi_hyperlink_get_end_index ()</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_hyperlink_get_end_index       (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+<pre class="programlisting"><span class="returnvalue">gint</span>                atspi_hyperlink_get_end_index       (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Get the ending character offset of the text range associated with
-      a <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a>, in its originating <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a>.
+Gets the ending character offset of the text range associated with
+      an <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a>, in its originating <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> implementor on which to operate.</td>
+<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> implementor on which to operate.</td>
 </tr></tbody>
 </table></div>
 </div>
 <hr>
 <div class="refsect2">
 <a name="atspi-hyperlink-is-valid"></a><h3>atspi_hyperlink_is_valid ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_hyperlink_is_valid            (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_hyperlink_is_valid            (<em class="parameter"><code><a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> *obj</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
-Tell whether an <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> object is still valid with respect to its
+Tells whether an <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> object is still valid with respect to its
          originating hypertext object.
 </p>
 <div class="variablelist"><table border="0">
@@ -237,12 +248,12 @@ Tell whether an <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> on which to operate.</td>
+<td>a pointer to the <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> on which to operate.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<span class="type">TRUE</span> of the specified <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> is still valid with respect
+<span class="type">TRUE</span> if the specified <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> is still valid with respect
 to its originating <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> object, <span class="type">FALSE</span> otherwise.</td>
 </tr>
 </tbody>

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>atspi-types</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
 <link rel="home" href="index.html" title="libatspi Reference Manual">
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-atspi-registry.html" title="atspi-registry">
@@ -37,7 +37,7 @@
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2><span class="refentrytitle"><a name="libatspi-atspi-types.top_of_page"></a>atspi-types</span></h2>
-<p>atspi-types</p>
+<p>atspi-types — Type definitions needed by multiple interfaces.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
@@ -179,6 +179,7 @@ AtspiValue is implemented by
 <div class="refsect1">
 <a name="libatspi-atspi-types.description"></a><h2>Description</h2>
 <p>
+Type definitions needed by multiple interfaces.
 </p>
 </div>
 <div class="refsect1">
@@ -387,8 +388,8 @@ AtspiValue is implemented by
 } AtspiKeyListenerSyncType;
 </pre>
 <p>
-Specified the tyupe of a key listener event.
-Certain of the values above can and should be bitwise-'OR'ed
+Specifies the type of a key listener event.
+The values above can and should be bitwise-'OR'-ed
 together, observing the compatibility limitations specified in the description of
 each value.  For instance, <a class="link" href="libatspi-atspi-types.html#ATSPI-KEYLISTENER-ALL-WINDOWS:CAPS"><span class="type">ATSPI_KEYLISTENER_ALL_WINDOWS</span></a> | <a class="link" href="libatspi-atspi-types.html#ATSPI-KEYLISTENER-CANCONSUME:CAPS"><span class="type">ATSPI_KEYLISTENER_CANCONSUME</span></a> is
 a commonly used combination which gives the AT complete control over the delivery of matching
@@ -400,12 +401,15 @@ system performance.
 <tbody>
 <tr>
 <td><p><a name="ATSPI-KEYLISTENER-NOSYNC:CAPS"></a><span class="term"><code class="literal">ATSPI_KEYLISTENER_NOSYNC</code></span></p></td>
-<td>
+<td>Events may be delivered asynchronously, 
+which means in some cases they may already have been delivered to the 
+application before the AT client receives the notification.  
 </td>
 </tr>
 <tr>
 <td><p><a name="ATSPI-KEYLISTENER-SYNCHRONOUS:CAPS"></a><span class="term"><code class="literal">ATSPI_KEYLISTENER_SYNCHRONOUS</code></span></p></td>
-<td>
+<td>Events are delivered synchronously, before the 
+currently focussed application sees them.  
 </td>
 </tr>
 <tr>
@@ -416,7 +420,13 @@ requires <a class="link" href="libatspi-atspi-types.html#ATSPI-KEYLISTENER-SYNCH
 </tr>
 <tr>
 <td><p><a name="ATSPI-KEYLISTENER-ALL-WINDOWS:CAPS"></a><span class="term"><code class="literal">ATSPI_KEYLISTENER_ALL_WINDOWS</code></span></p></td>
-<td>
+<td>Events are received not from the application toolkit layer, but
+from the device driver or windowing system subsystem; such notifications are 'global' in the 
+sense that they are not broken or defeated by applications that participate poorly
+in the accessibility APIs, or not at all; however because of the intrusive nature of
+such snooping, it can have side-effects on certain older platforms.  If unconditional
+event notifications, even when inaccessible or "broken" applications have focus, are not
+required, it may be best to avoid this enum value/flag.
 </td>
 </tr>
 </tbody>

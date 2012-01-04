@@ -14,7 +14,7 @@
       <sub name="AtspiObject" link="AtspiObject.html"/>
       <sub name="AtspiAccessible" link="AtspiAccessible.html"/>
       <sub name="atspi-devicelistener" link="AtspiDeviceListener.html"/>
-      <sub name="AtspiHyperlink" link="AtspiHyperlink.html"/>
+      <sub name="atspi-hyperlink" link="AtspiHyperlink.html"/>
       <sub name="atspi-editabletext" link="libatspi-atspi-editabletext.html"/>
       <sub name="atspi-value" link="libatspi-atspi-value.html"/>
       <sub name="atspi-table" link="libatspi-atspi-table.html"/>

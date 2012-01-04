@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>AtspiAccessible</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
 <link rel="home" href="index.html" title="libatspi Reference Manual">
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="AtspiObject.html" title="AtspiObject">
@@ -85,7 +85,7 @@ struct              <a class="link" href="AtspiAccessible.html#AtspiAccessibleCl
 <a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="returnvalue">AtspiComponent</span></a> *    <a class="link" href="AtspiAccessible.html#atspi-accessible-get-component" title="atspi_accessible_get_component ()">atspi_accessible_get_component</a>      (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
 <a class="link" href="libatspi-atspi-document.html#AtspiDocument"><span class="returnvalue">AtspiDocument</span></a> *     <a class="link" href="AtspiAccessible.html#atspi-accessible-get-document" title="atspi_accessible_get_document ()">atspi_accessible_get_document</a>       (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
 <a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="returnvalue">AtspiEditableText</span></a> * <a class="link" href="AtspiAccessible.html#atspi-accessible-get-editable-text" title="atspi_accessible_get_editable_text ()">atspi_accessible_get_editable_text</a>  (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
-<a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="returnvalue">AtspiHyperlink</span></a> *    <a class="link" href="AtspiAccessible.html#atspi-accessible-get-hyperlink" title="atspi_accessible_get_hyperlink ()">atspi_accessible_get_hyperlink</a>      (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
+<a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="returnvalue">AtspiHyperlink</span></a> *    <a class="link" href="AtspiAccessible.html#atspi-accessible-get-hyperlink" title="atspi_accessible_get_hyperlink ()">atspi_accessible_get_hyperlink</a>      (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
 <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="returnvalue">AtspiHypertext</span></a> *    <a class="link" href="AtspiAccessible.html#atspi-accessible-get-hypertext" title="atspi_accessible_get_hypertext ()">atspi_accessible_get_hypertext</a>      (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
 <a class="link" href="libatspi-atspi-image.html#AtspiImage"><span class="returnvalue">AtspiImage</span></a> *        <a class="link" href="AtspiAccessible.html#atspi-accessible-get-image" title="atspi_accessible_get_image ()">atspi_accessible_get_image</a>          (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
 <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="returnvalue">AtspiSelection</span></a> *    <a class="link" href="AtspiAccessible.html#atspi-accessible-get-selection" title="atspi_accessible_get_selection ()">atspi_accessible_get_selection</a>      (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
@@ -675,9 +675,9 @@ instance, or NULL if <em class="parameter"><code>obj</code></em> does not implem
 <hr>
 <div class="refsect2">
 <a name="atspi-accessible-get-hyperlink"></a><h3>atspi_accessible_get_hyperlink ()</h3>
-<pre class="programlisting"><a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="returnvalue">AtspiHyperlink</span></a> *    atspi_accessible_get_hyperlink      (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
+<pre class="programlisting"><a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="returnvalue">AtspiHyperlink</span></a> *    atspi_accessible_get_hyperlink      (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
 <p>
-Gets the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.
+Gets the <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
@@ -688,7 +688,7 @@ Gets the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the <a class="link" href="AtspiHyperlink.html" title="AtspiHyperlink"><span class="type">AtspiHyperlink</span></a> object associated with
+<td>the <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> object associated with
 the given <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>, or NULL if not supported. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
