@@ -118,8 +118,6 @@ static AtspiDeviceEvent *
 atspi_device_event_copy (AtspiDeviceEvent *src)
 {
   AtspiDeviceEvent *dst = g_new0 (AtspiDeviceEvent, 1);
-  if (!dst)
-    return NULL;
   dst->type = src->type;
   dst->id = src->id;
   dst->hw_code = src->hw_code;
@@ -208,22 +206,22 @@ G_DEFINE_TYPE (AtspiDeviceListener, atspi_device_listener,
 
 /**
  * atspi_device_listener_new:
- * @callback: (scope notify): an #AtspiDeviceListenerCB callback function,
+ * @callback: (scope notified): an #AtspiDeviceListenerCB callback function,
  *            or NULL.
- * @callback_destroyed: A #GDestroyNotify called when the listener is freed
- * and data associated with the callback should be freed.  Can be NULL.
  * @user_data: (closure): a pointer to data which will be passed to the
  * callback when invoked.
+ * @callback_destroyed: A #GDestroyNotify called when the listener is freed
+ * and data associated with the callback should be freed. It can be NULL.
  *
- * Create a new #AtspiDeviceListener with a specified callback function.
+ * Creates a new #AtspiDeviceListener with a specified callback function.
  *
- * Returns: a pointer to a newly-created #AtspiDeviceListener.
+ * Returns: (transfer full): a pointer to a newly-created #AtspiDeviceListener.
  *
  **/
 AtspiDeviceListener *
 atspi_device_listener_new (AtspiDeviceListenerCB callback,
-                           GDestroyNotify callback_destroyed,
-                           void *user_data)
+                           void *user_data,
+                           GDestroyNotify callback_destroyed)
 {
   AtspiDeviceListener *listener = g_object_new (atspi_device_listener_get_type (), NULL);
 
@@ -235,13 +233,14 @@ atspi_device_listener_new (AtspiDeviceListenerCB callback,
 
 /**
  * atspi_device_listener_new_simple:
- * @callback: (scope notify): an #AtspiDeviceListenerCB callback function,
+ * @callback: (scope notified): an #AtspiDeviceListenerCB callback function,
  *            or NULL.
  * @callback_destroyed: A #GDestroyNotify called when the listener is freed
- * and data associated with the callback should be freed.  Can be NULL.
+ * and data associated with the callback should be freed.  It an be NULL.
  *
- * Create a new #AtspiDeviceListener with a specified callback function.
- * Like atspi_device_listener_new, but callback takes no user data.
+ * Creates a new #AtspiDeviceListener with a specified callback function.
+ * This method is similar to #atspi_device_listener_new, but callback
+ * takes no user data.
  *
  * Returns: a pointer to a newly-created #AtspiDeviceListener.
  *
@@ -256,13 +255,13 @@ atspi_device_listener_new_simple (AtspiDeviceListenerSimpleCB callback,
 /**
  * atspi_device_listener_add_callback:
  * @listener: the #AtspiDeviceListener instance to modify.
- * @callback: (scope notify): an #AtspiDeviceListenerCB function pointer.
- * @user_data: (closure): a pointer to data which will be passed to the
- *             callback when invoked.
+ * @callback: (scope notified): an #AtspiDeviceListenerCB function pointer.
  * @callback_destroyed: A #GDestroyNotify called when the listener is freed
- * and data associated with the callback should be freed.  Can be NULL.
+ * and data associated with the callback should be freed. It can be NULL.
+ * @user_data: (closure): a pointer to data which will be passed to the
+ *             callback when invoked. 
  *
- * Add an in-process callback function to an existing #AtspiDeviceListener.
+ * Adds an in-process callback function to an existing #AtspiDeviceListener.
  *
  * Returns: #TRUE if successful, otherwise #FALSE.
  *
@@ -293,7 +292,8 @@ atspi_device_listener_add_callback (AtspiDeviceListener  *listener,
  * @listener: the #AtspiDeviceListener instance to modify.
  * @callback: (scope call): an #AtspiDeviceListenerCB function pointer.
  *
- * Remove an in-process callback function from an existing #AtspiDeviceListener.
+ * Removes an in-process callback function from an existing 
+ * #AtspiDeviceListener.
  *
  * Returns: #TRUE if successful, otherwise #FALSE.
  *
@@ -348,11 +348,8 @@ read_device_event_from_iter (DBusMessageIter *iter, AtspiDeviceEvent *event)
   event->is_text = is_text;
 }
 
-/*
- * atspi_dbus_handle_DeviceEvent: (skip)
- */
 DBusHandlerResult
-atspi_dbus_handle_DeviceEvent (DBusConnection *bus, DBusMessage *message, void *data)
+_atspi_dbus_handle_DeviceEvent (DBusConnection *bus, DBusMessage *message, void *data)
 {
   const char *path = dbus_message_get_path (message);
   int id;
@@ -392,6 +389,11 @@ atspi_dbus_handle_DeviceEvent (DBusConnection *bus, DBusMessage *message, void *
   if (klass->device_event)
   {
     retval = (*klass->device_event) (listener, &event);
+    if (retval != 0 && retval != 1)
+    {
+      g_warning ("at-spi: device event handler returned %d; should be 0 or 1", retval);
+      retval = 0;
+    }
   }
 done:
   reply = dbus_message_new_method_return (message);
@@ -406,8 +408,7 @@ done:
 
 gchar *
 _atspi_device_listener_get_path (AtspiDeviceListener *listener)
-{
-  return g_strdup_printf ("/org/a11y/atspi/listeners/%d", listener->id);
+{  return g_strdup_printf ("/org/a11y/atspi/listeners/%d", listener->id);
 }
 
 G_DEFINE_BOXED_TYPE (AtspiDeviceEvent,

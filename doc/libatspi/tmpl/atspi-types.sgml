@@ -2,11 +2,11 @@
 atspi-types
 
 <!-- ##### SECTION Short_Description ##### -->
-
+Type definitions needed by multiple interfaces.
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
-
+Type definitions needed by multiple interfaces.
 </para>
 
 <!-- ##### SECTION See_Also ##### -->
@@ -149,21 +149,12 @@ atspi-types
 
 </para>
 
-@keycode: 
-@keysym: 
-@keystring: 
-@unused: 
 
 <!-- ##### STRUCT AtspiEvent ##### -->
 <para>
 
 </para>
 
-@type: 
-@source: 
-@detail1: 
-@detail2: 
-@any_data: 
 
 <!-- ##### MACRO ATSPI_TYPE_EVENT ##### -->
 <para>

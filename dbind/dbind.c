@@ -25,7 +25,7 @@
 
 #include "config.h"
 #include "dbind/dbind.h"
-#include "atspi/atspi.h"
+#include "atspi/atspi-gmain.h"
 
 static int dbind_timeout = -1;
 
@@ -87,10 +87,16 @@ dbind_send_and_allow_reentry (DBusConnection * bus, DBusMessage * message, DBusE
   dbus_pending_call_ref (pending);
   while (!closure->reply)
     {
-      if (!dbus_connection_read_write_dispatch (bus, dbind_timeout) ||
-          time_elapsed (&tv) > dbind_timeout)
+      if (!dbus_connection_read_write_dispatch (bus, dbind_timeout))
         {
           dbus_pending_call_unref (pending);
+          return NULL;
+        }
+      if (time_elapsed (&tv) > dbind_timeout)
+        {
+          dbus_pending_call_unref (pending);
+          dbus_set_error_const (error, "org.freedesktop.DBus.Error.NoReply",
+                                "timeout from dbind");
           return NULL;
         }
     }
@@ -147,6 +153,17 @@ dbind_method_call_reentrant_va (DBusConnection *cnx,
     {
         DBusMessageIter iter;
         dbus_message_iter_init (reply, &iter);
+	if (strcmp (p + 2, dbus_message_get_signature (reply)) != 0)
+	{
+	    g_warning ("dbind: Call to \"%s\" returned signature %s; expected %s",
+		       method, p + 2, dbus_message_get_signature (reply));
+	    if (opt_error)
+	        dbus_set_error (opt_error, DBUS_ERROR_INVALID_ARGS,
+		                "Call to \"%s\" returned signature %s; expected %s",
+		                method, p + 2,
+		                dbus_message_get_signature (reply));
+	    goto out;
+	}
         p = arg_types;
         dbind_any_demarshal_va (&iter, &p, args_demarshal);
     }

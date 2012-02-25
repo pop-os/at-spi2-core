@@ -39,13 +39,10 @@ AtspiRect *
 atspi_rect_copy (AtspiRect *src)
 {
   AtspiRect *dst = g_new (AtspiRect, 1);
-  if (dst)
-  {
-    dst->x = src->x;
-    dst->y = src->y;
-    dst->height = src->height;
-    dst->width = src->width;
-  }
+  dst->x = src->x;
+  dst->y = src->y;
+  dst->height = src->height;
+  dst->width = src->width;
   return dst;
 }
 
@@ -55,11 +52,8 @@ AtspiPoint *
 atspi_point_copy (AtspiPoint *src)
 {
   AtspiPoint *dst = g_new (AtspiPoint, 1);
-  if (dst)
-  {
-    dst->x = src->x;
-    dst->y = src->y;
-  }
+  dst->x = src->x;
+  dst->y = src->y;
   return dst;
 }
 
@@ -68,15 +62,15 @@ G_DEFINE_BOXED_TYPE (AtspiPoint, atspi_point, atspi_point_copy, g_free)
 /**
  * atspi_component_contains:
  * @obj: a pointer to the #AtspiComponent to query.
- * @x: a #long specifying the x coordinate in question.
- * @y: a #long specifying the y coordinate in question.
+ * @x: a #gint specifying the x coordinate in question.
+ * @y: a #gint specifying the y coordinate in question.
  * @ctype: the desired coordinate system of the point (@x, @y)
  *         (e.g. CSPI_COORD_TYPE_WINDOW, CSPI_COORD_TYPE_SCREEN).
  *
- * Query whether a given #AtspiComponent contains a particular point.
+ * Queries whether a given #AtspiComponent contains a particular point.
  *
- * Returns: a #TRUE if the specified component contains the point (@x, @y),
- *          otherwise #FALSE.
+ * Returns: #TRUE if the specified component contains the point (@x, @y),
+ *          #FALSE otherwise.
  **/
 gboolean
 atspi_component_contains (AtspiComponent *obj,
@@ -103,10 +97,10 @@ atspi_component_contains (AtspiComponent *obj,
  * @ctype: the coordinate system of the point (@x, @y)
  *         (e.g. ATSPI_COORD_TYPE_WINDOW, ATSPI_COORD_TYPE_SCREEN).
  *
- * Get the accessible child at a given coordinate within an #AtspiComponent.
+ * Gets the accessible child at a given coordinate within an #AtspiComponent.
  *
  * Returns: (transfer full): a pointer to an #AtspiAccessible child of the
- *          specified component which contains the point (@x, @y), or NULL of
+ *          specified component which contains the point (@x, @y), or NULL if
  *         no child contains the point.
  **/
 AtspiAccessible *
@@ -132,10 +126,9 @@ atspi_component_get_accessible_at_point (AtspiComponent *obj,
  * @ctype: the desired coordinate system into which to return the results,
  *         (e.g. ATSPI_COORD_TYPE_WINDOW, ATSPI_COORD_TYPE_SCREEN).
  *
- * Returns: A #AtspiRect giving the accessible's extents.
+ * Gets the bounding box of the specified #AtspiComponent.
  *
- * Get the bounding box of the specified #AtspiComponent.
- *
+ * Returns: An #AtspiRect giving the accessible's extents.
  **/
 AtspiRect *
 atspi_component_get_extents (AtspiComponent *obj,
@@ -157,9 +150,9 @@ atspi_component_get_extents (AtspiComponent *obj,
  * @ctype: the desired coordinate system into which to return the results,
  *         (e.g. ATSPI_COORD_TYPE_WINDOW, ATSPI_COORD_TYPE_SCREEN).
  *
- * returns: A #AtspiPoint giving the position.
- * Get the minimum x and y coordinates of the specified #AtspiComponent.
+ * Gets the minimum x and y coordinates of the specified #AtspiComponent.
  *
+ * returns: An #AtspiPoint giving the @obj's position.
  **/
 AtspiPoint *
 atspi_component_get_position (AtspiComponent *obj,
@@ -184,10 +177,10 @@ atspi_component_get_position (AtspiComponent *obj,
 /**
  * atspi_component_get_size:
  * @obj: a pointer to the #AtspiComponent to query.
- * returns: A #AtspiPoint giving the size.
  *
- * Get the size of the specified #AtspiComponent.
+ * Gets the size of the specified #AtspiComponent.
  *
+ * returns: An #AtspiPoint giving the @obj's size.
  **/
 AtspiPoint *
 atspi_component_get_size (AtspiComponent *obj, GError **error)
@@ -209,7 +202,7 @@ atspi_component_get_size (AtspiComponent *obj, GError **error)
  * atspi_component_get_layer:
  * @obj: a pointer to the #AtspiComponent to query.
  *
- * Query which layer the component is painted into, to help determine its 
+ * Queries which layer the component is painted into, to help determine its 
  *      visibility in terms of stacking order.
  *
  * Returns: the #AtspiComponentLayer into which this component is painted.
@@ -228,10 +221,10 @@ atspi_component_get_layer (AtspiComponent *obj, GError **error)
  * atspi_component_get_mdi_z_order:
  * @obj: a pointer to the #AtspiComponent to query.
  *
- * Query the z stacking order of a component which is in the MDI or window
+ * Queries the z stacking order of a component which is in the MDI or window
  *       layer. (Bigger z-order numbers mean nearer the top)
  *
- * Returns: a short integer indicating the stacking order of the component 
+ * Returns: a #gshort indicating the stacking order of the component 
  *       in the MDI layer, or -1 if the component is not in the MDI layer.
  **/
 gshort
@@ -248,7 +241,7 @@ atspi_component_get_mdi_z_order (AtspiComponent *obj, GError **error)
  * atspi_component_grab_focus:
  * @obj: a pointer to the #AtspiComponent on which to operate.
  *
- * Attempt to set the keyboard input focus to the specified
+ * Attempts to set the keyboard input focus to the specified
  *         #AtspiComponent.
  *
  * Returns: #TRUE if successful, #FALSE otherwise.
@@ -268,9 +261,9 @@ atspi_component_grab_focus (AtspiComponent *obj, GError **error)
  * atspi_component_get_alpha:
  * @obj: The #AtspiComponent to be queried.
  *
- * Get the opacity/alpha value of a component, if alpha blending is in use.
+ * Gets the opacity/alpha value of a component, if alpha blending is in use.
  *
- * Returns: the opacity value of a component, as a double between 0.0 and 1.0. 
+ * Returns: the opacity value of a component, as a #gdouble between 0.0 and 1.0. 
  **/
 gdouble      
 atspi_component_get_alpha    (AtspiComponent *obj, GError **error)
@@ -292,10 +285,9 @@ atspi_component_get_alpha    (AtspiComponent *obj, GError **error)
  * @ctype: the coordinate system in which the position is specified.
  *         (e.g. ATSPI_COORD_TYPE_WINDOW, ATSPI_COORD_TYPE_SCREEN).
  *
+ * Moves and resizes the specified component.
+ *
  * Returns: #TRUE if successful; #FALSE otherwise.
- *
- * Move and resize the specified component.
- *
  **/
 gboolean
 atspi_component_set_extents (AtspiComponent *obj,
@@ -315,10 +307,19 @@ atspi_component_set_extents (AtspiComponent *obj,
 
   g_return_val_if_fail (obj != NULL, FALSE);
 
+  if (!aobj->parent.app || !aobj->parent.app->bus_name)
+  {
+    g_set_error_literal (error, ATSPI_ERROR, ATSPI_ERROR_APPLICATION_GONE,
+                          _("The application no longer exists"));
+    return FALSE;
+  }
+
   message = dbus_message_new_method_call (aobj->parent.app->bus_name,
                                           aobj->parent.path,
                                           atspi_interface_component,
                                           "SetExtents");
+  if (!message)
+    return FALSE;
 
   dbus_message_iter_init_append (message, &iter);
   if (!dbus_message_iter_open_container (&iter, DBUS_TYPE_STRUCT, NULL, &iter_struct))
@@ -379,7 +380,7 @@ atspi_component_set_position (AtspiComponent *obj,
  *
  * Returns: #TRUE if successful; #FALSE otherwise.
  *
- * Resize the specified component to the given coordinates.
+ * Resizes the specified component to the given coordinates.
  **/
 gboolean
 atspi_component_set_size (AtspiComponent *obj,

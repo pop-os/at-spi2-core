@@ -28,6 +28,8 @@
 
 /* Private internal implementation details of at-spi. */
 
+#include <string.h>
+
 #include "atspi.h"
 
 #include "dbus/dbus.h"
@@ -40,38 +42,6 @@ struct _AtspiReference
   char *name;
   char *path;
 };
-
-/* constants */
-#define ATSPI_DBUS_NAME_REGISTRY "org.a11y.atspi.Registry"
-#define ATSPI_DBUS_PATH_REGISTRY "/org/a11y/atspi/registry"
-#define ATSPI_DBUS_INTERFACE_REGISTRY "org.a11y.atspi.Registry"
-
-#define ATSPI_DBUS_PATH_NULL "/org/a11y/atspi/null"
-#define ATSPI_DBUS_PATH_ROOT "/org/a11y/atspi/accessible/root"
-
-#define ATSPI_DBUS_PATH_DEC "/org/a11y/atspi/registry/deviceeventcontroller"
-#define ATSPI_DBUS_INTERFACE_DEC "org.a11y.atspi.DeviceEventController"
-#define ATSPI_DBUS_INTERFACE_DEVICE_EVENT_LISTENER "org.a11y.atspi.DeviceEventListener"
-
-#define ATSPI_DBUS_INTERFACE_CACHE "org.a11y.atspi.Cache"
-#define ATSPI_DBUS_INTERFACE_ACCESSIBLE "org.a11y.atspi.Accessible"
-#define ATSPI_DBUS_INTERFACE_ACTION "org.a11y.atspi.Action"
-#define ATSPI_DBUS_INTERFACE_APPLICATION "org.a11y.atspi.Application"
-#define ATSPI_DBUS_INTERFACE_COLLECTION "org.a11y.atspi.Collection"
-#define ATSPI_DBUS_INTERFACE_COMPONENT "org.a11y.atspi.Component"
-#define ATSPI_DBUS_INTERFACE_DOCUMENT "org.a11y.atspi.Document"
-#define ATSPI_DBUS_INTERFACE_EDITABLE_TEXT "org.a11y.atspi.EditableText"
-#define ATSPI_DBUS_INTERFACE_EVENT_KEYBOARD "org.a11y.atspi.Event.Keyboard"
-#define ATSPI_DBUS_INTERFACE_EVENT_MOUSE "org.a11y.atspi.Event.Mouse"
-#define ATSPI_DBUS_INTERFACE_EVENT_OBJECT "org.a11y.atspi.Event.Object"
-#define ATSPI_DBUS_INTERFACE_HYPERLINK "org.a11y.atspi.Hyperlink"
-#define ATSPI_DBUS_INTERFACE_HYPERTEXT "org.a11y.atspi.Hypertext"
-#define ATSPI_DBUS_INTERFACE_IMAGE "org.a11y.atspi.Image"
-#define ATSPI_DBUS_INTERFACE_SELECTION "org.a11y.atspi.Selection"
-#define ATSPI_DBUS_INTERFACE_TABLE "org.a11y.atspi.Table"
-#define ATSPI_DBUS_INTERFACE_TEXT "org.a11y.atspi.Text"
-#define ATSPI_DBUS_INTERFACE_VALUE "org.a11y.atspi.Value"
-#define ATSPI_DBUS_INTERFACE_SOCKET "org.a11y.atspi.Socket"
 
 /* externs */
 extern const char *atspi_path_dec;
@@ -169,8 +139,8 @@ void _atspi_dbus_set_state (AtspiAccessible *accessible, DBusMessageIter *iter);
  * be from the #ATSPIAtspiError enumeration. See #GError for information on
  * error domains.
  */
-#define ATSPI_ERROR atspi_error_quark()
-GQuark atspi_error_quark (void);
+#define ATSPI_ERROR _atspi_error_quark()
+GQuark _atspi_error_quark (void);
 
 /**
  * AtspiError:
@@ -183,4 +153,5 @@ typedef enum
 } AtspiError;
 
 extern GMainLoop *atspi_main_loop;
+extern gboolean atspi_no_cache;
 #endif	/* _ATSPI_MISC_PRIVATE_H_ */

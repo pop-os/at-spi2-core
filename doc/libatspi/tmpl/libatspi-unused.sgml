@@ -40,6 +40,15 @@
 </para>
 
 
+<!-- ##### FUNCTION atspi_accessible_new ##### -->
+<para>
+
+</para>
+
+@app: 
+@path: 
+@Returns: 
+
 <!-- ##### FUNCTION atspi_dbus_handle_deviceEvent ##### -->
 <para>
 
@@ -49,4 +58,25 @@
 @message: 
 @data: 
 @Returns: 
+
+<!-- ##### FUNCTION atspi_document_get_type ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION atspi_hyperlink_new ##### -->
+<para>
+
+</para>
+
+@app: 
+@path: 
+@Returns: 
+
+<!-- ##### FUNCTION atspi_image_get_type ##### -->
+<para>
+
+</para>
+
 
