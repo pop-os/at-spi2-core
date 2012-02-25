@@ -7,7 +7,7 @@ export DEB_BUILD_HARDENING=1
 	dh $@
 
 override_dh_auto_configure:
-	dh_auto_configure -- --libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH) --enable-introspection
+	dh_auto_configure -- --libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH) --enable-introspection --enable-gtk-doc
 
 override_dh_auto_install:
 	dh_auto_install
