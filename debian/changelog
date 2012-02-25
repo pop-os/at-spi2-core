@@ -8,6 +8,7 @@ at-spi2-core (2.0.2-2) UNRELEASED; urgency=low
   [ Samuel Thibault ]
   * control: Depend on hardening-check.
   * rules: Set DEB_BUILD_HARDENING=1 to enable hardening.
+  * control: Bump Standards-Version to 3.9.3 (no changes).
 
   [ Jason White ]
   * Add at-spi2-core-dbg and libatspi2.0-0-dbg packages.
