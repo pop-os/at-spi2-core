@@ -8,8 +8,12 @@ at-spi2-core (2.0.2-2) UNRELEASED; urgency=low
   [ Samuel Thibault ]
   * control: Depend on hardening-check.
   * rules: Set DEB_BUILD_HARDENING=1 to enable hardening.
+  * control: Multi-archify.
 
- -- Samuel Thibault <sthibault@debian.org>  Sun, 06 Nov 2011 23:21:52 +0100
+  [ Jason White ]
+  * Add at-spi2-core-dbg and libatspi2.0-0-dbg packages.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 25 Feb 2012 16:36:32 +0100
 
 at-spi2-core (2.0.2-1) unstable; urgency=low
 
