@@ -38,8 +38,8 @@
  *
  * A callback function prototype via which clients receive device event notifications.
  *
- * Returns: %TRUE if the client wishes to consume/preempt the event, preventing it from being
- * relayed to the currently focussed application, %FALSE if the event delivery should proceed as normal.
+ * Returns: #TRUE if the client wishes to consume/preempt the event, preventing it from being
+ * relayed to the currently focussed application, #FALSE if the event delivery should proceed as normal.
  **/
 typedef gboolean (*AtspiDeviceListenerCB)    (const AtspiDeviceEvent *stroke,
 						     void                      *user_data);
@@ -49,10 +49,10 @@ typedef gboolean (*AtspiDeviceListenerCB)    (const AtspiDeviceEvent *stroke,
  * @stroke: (transfer full): The #AtspiDeviceEvent for which notification is
  *          being received.
  *
- * Like #AtspiDeviceListenerCB but with no user data.
+ * Similar to #AtspiDeviceListenerCB, but with no user data.
  *
- * Returns: %TRUE if the client wishes to consume/preempt the event, preventing it from being
- * relayed to the currently focussed application, %FALSE if the event delivery should proceed as normal.
+ * Returns: #TRUE if the client wishes to consume/preempt the event, preventing it from being
+ * relayed to the currently focussed application, #FALSE if the event delivery should proceed as normal.
  **/
 typedef gboolean (*AtspiDeviceListenerSimpleCB)    (const AtspiDeviceEvent *stroke);
 
@@ -80,7 +80,7 @@ struct _AtspiDeviceListenerClass
 
 GType atspi_device_listener_get_type (void);
 
-AtspiDeviceListener *atspi_device_listener_new (AtspiDeviceListenerCB callback, GDestroyNotify callback_destroyed, void *user_data);
+AtspiDeviceListener *atspi_device_listener_new (AtspiDeviceListenerCB callback, void *user_data, GDestroyNotify callback_destroyed);
 
 AtspiDeviceListener *atspi_device_listener_new_simple (AtspiDeviceListenerSimpleCB callback, GDestroyNotify callback_destroyed);
 

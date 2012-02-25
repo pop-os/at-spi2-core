@@ -28,7 +28,7 @@
  * atspi_value_get_minimum_value:
  * @obj: a pointer to the #AtspiValue implementor on which to operate. 
  *
- * Get the minimum allowed value for an #AtspiValue.
+ * Gets the minimum allowed value for an #AtspiValue.
  *
  * Returns: the minimum allowed value for this object.
  *
@@ -48,7 +48,7 @@ atspi_value_get_minimum_value (AtspiValue *obj, GError **error)
  * atspi_value_get_current_value:
  * @obj: a pointer to the #AtspiValue implementor on which to operate. 
  *
- * Get the current value for an #AtspiValue.
+ * Gets the current value for an #AtspiValue.
  *
  * Returns: the current value for this object.
  **/
@@ -68,7 +68,7 @@ atspi_value_get_current_value (AtspiValue *obj, GError **error)
  * atspi_value_get_maximum_value:
  * @obj: a pointer to the #AtspiValue implementor on which to operate. 
  *
- * Get the maximum allowed value for an #AtspiValue.
+ * Gets the maximum allowed value for an #AtspiValue.
  *
  * Returns: the maximum allowed value for this object.
  **/
@@ -87,9 +87,9 @@ atspi_value_get_maximum_value (AtspiValue *obj, GError **error)
 /**
  * atspi_value_set_current_value:
  * @obj: a pointer to the #AtspiValue implementor on which to operate.
- * @new_value: a #float value which is the desired new value of the object.
+ * @new_value: a #gdouble value which is the desired new value of the object.
  *
- * Set the current value of an #AtspiValue.
+ * Sets the current value of an #AtspiValue.
  *
  * Returns: #TRUE if the value could be assigned the specified value,
  *          #FALSE otherwise.
@@ -104,6 +104,14 @@ atspi_value_set_current_value (AtspiValue *obj, gdouble new_value, GError **erro
   AtspiAccessible *accessible = ATSPI_ACCESSIBLE (obj);
 
   g_return_val_if_fail (accessible != NULL, FALSE);
+
+  if (!accessible->parent.app || !accessible->parent.app->bus_name)
+{
+    g_set_error_literal (error, ATSPI_ERROR, ATSPI_ERROR_APPLICATION_GONE,
+                          _("The application no longer exists"));
+    return FALSE;
+  }
+
     message = dbus_message_new_method_call (accessible->parent.app->bus_name,
                                             accessible->parent.path,
                                             DBUS_INTERFACE_PROPERTIES, "Set");
@@ -126,7 +134,7 @@ atspi_value_set_current_value (AtspiValue *obj, gdouble new_value, GError **erro
  * atspi_value_get_minimum_increment:
  * @obj: a pointer to the #AtspiValue implementor on which to operate. 
  *
- * Get the minimum increment by which an #AtspiValue can be adjusted.
+ * Gets the minimum increment by which an #AtspiValue can be adjusted.
  *
  * Returns: the minimum increment by which the value may be changed, or
  * zero if the minimum increment cannot be determined.
