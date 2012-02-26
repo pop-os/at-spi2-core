@@ -20,7 +20,7 @@ at-spi2-core (2.3.90-1) unstable; urgency=low
   [ Jason White ]
   * Add at-spi2-core-dbg and libatspi2.0-0-dbg packages.
 
- -- Samuel Thibault <sthibault@debian.org>  Sat, 25 Feb 2012 16:36:32 +0100
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 26 Feb 2012 15:55:35 +0100
 
 at-spi2-core (2.0.2-1) unstable; urgency=low
 
