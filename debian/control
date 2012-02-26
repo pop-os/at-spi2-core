@@ -27,6 +27,7 @@ Description: Assistive Technology Service Provider Interface (dbus core)
 Package: at-spi2-core-dbg
 Architecture: any
 Section: debug
+Priority: extra
 Depends: ${misc:Depends}, ${shlibs:Depends}, at-spi2-core (= ${binary:Version})
 Description: Assistive Technology Service Provider Interface - debugging symbols
  This package contains the debugging symboles for core components of GNOME
@@ -59,6 +60,7 @@ Description: Development files for the assistive technology serice provider
 
 Package: libatspi2.0-0-dbg
 Section: debug
+Priority: extra
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends}, ${shlibs:Depends}, libatspi2.0-0 (= ${binary:Version})

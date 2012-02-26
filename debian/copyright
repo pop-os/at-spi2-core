@@ -77,8 +77,10 @@ License: LGPL-2+
  be found in the `/usr/share/common-licenses/LGPL-2' file.
 
 Files: atspi/atspi-stateset.*
-Copyright: ???, Mike Gorse requested on 2011-01-30
-License: ???, Mike Gorse requested on 2011-01-30
+Copyright: 2001, 2002 Sun Microsystems Inc.
+           2001, 2002 Ximian, Inc.
+           2010, 2011 Novell, Inc.
+License: LGPL-2+
  On Debian systems the full text of the GNU Library General Public License can
  be found in the `/usr/share/common-licenses/LGPL-2' file.
 
@@ -90,8 +92,10 @@ License: LGPL-2+
  be found in the `/usr/share/common-licenses/LGPL-2' file.
 
 Files: dbind/*.[ch]
-Copyright: ???, Mike Gorse requested on 2011-01-30
-License: ???, Mike Gorse requested on 2011-01-30
+Copyright: 2008-2011 Novell, Inc.
+License: LGPL-2+
+ On Debian systems the full text of the GNU Library General Public License can
+ be found in the `/usr/share/common-licenses/LGPL-2' file.
 
 Files: bus/at-spi-bus-launcher.c
 Copyright: Copyright 2011 Red Hat, Inc.
