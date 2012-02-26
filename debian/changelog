@@ -1,4 +1,4 @@
-at-spi2-core (2.3.90-1) UNRELEASED; urgency=low
+at-spi2-core (2.3.90-1) unstable; urgency=low
 
   [ Luke Yelavich ]
   * New upstream release
