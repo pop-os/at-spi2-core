@@ -1,3 +1,9 @@
+at-spi2-core (2.3.90-2) UNRELEASED; urgency=low
+
+  * Make sure libatspi2.0-0 depends on at-spi2-core.
+
+ -- Mario Lang <mlang@debian.org>  Sat, 03 Mar 2012 13:28:40 +0100
+
 at-spi2-core (2.3.90-1) unstable; urgency=low
 
   [ Luke Yelavich ]
