@@ -1,9 +1,13 @@
-at-spi2-core (2.3.91-2) UNRELEASED; urgency=low
+at-spi2-core (2.3.92-1) UNRELEASED; urgency=low
 
+  [ Mario Lang ]
   * libatspi2.0-0: Downgrade Depends on at-spi2-core to Recommends
     (Closes: Bug#663112).
 
- -- Mario Lang <mlang@debian.org>  Thu, 08 Mar 2012 19:19:45 +0100
+  [ Luke Yelavich ]
+  * New upstream release
+
+ -- Luke Yelavich <themuso@ubuntu.com>  Tue, 20 Mar 2012 10:00:19 +1100
 
 at-spi2-core (2.3.91-1) unstable; urgency=low
 
