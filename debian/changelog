@@ -5,6 +5,7 @@ at-spi2-core (2.4.0-1) UNRELEASED; urgency=low
  
   [ Jordi Mallach ]
   * Add myself to Uploaders.
+  * New upstream release.
 
  -- Jordi Mallach <jordi@debian.org>  Mon, 26 Mar 2012 22:46:37 +0200
 
