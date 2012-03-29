@@ -1,4 +1,4 @@
-at-spi2-core (2.4.0-1) UNRELEASED; urgency=low
+at-spi2-core (2.4.0-1) unstable; urgency=low
 
   [ Mario Lang ]
   * Removing myself from Uploaders.
@@ -12,7 +12,7 @@ at-spi2-core (2.4.0-1) UNRELEASED; urgency=low
     package, as it depends on a non-M-A package.
   * Promote ${misc:Depends} in -doc to Depends.
 
- -- Jordi Mallach <jordi@debian.org>  Mon, 26 Mar 2012 22:46:37 +0200
+ -- Jordi Mallach <jordi@debian.org>  Thu, 29 Mar 2012 15:18:23 +0200
 
 at-spi2-core (2.3.92-1) unstable; urgency=low
 
