@@ -47,7 +47,6 @@ Description: Assistive Technology Service Provider Interface - shared library
 Package: libatspi2.0-dev
 Section: libdevel
 Architecture: any
-Multi-Arch: same
 Depends: ${misc:Depends},
          gir1.2-atspi-2.0 (= ${binary:Version}),
          libatspi2.0-0 (= ${binary:Version}),
@@ -85,6 +84,7 @@ Description: Assistive Technology Service Provider (GObject introspection)
 Package: at-spi2-doc
 Section: doc
 Architecture: all
-Recommends: ${misc:Depends}, devhelp
+Depends: ${misc:Depends}
+Recommends: devhelp
 Description: Assistive Technology Service Provider Interface (Documentation)
  This package contains documentation for the at-spi2 interface.

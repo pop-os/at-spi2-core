@@ -8,6 +8,9 @@ at-spi2-core (2.4.0-1) UNRELEASED; urgency=low
   * New upstream release.
   * Bump to debhelper v9.
   * Make -dev package depend on gir1.2-atspi-2.0, per g-i policy.
+  * As gir packages are not M-A ready yet, drop M-A: same flag from -dev
+    package, as it depends on a non-M-A package.
+  * Promote ${misc:Depends} in -doc to Depends.
 
  -- Jordi Mallach <jordi@debian.org>  Mon, 26 Mar 2012 22:46:37 +0200
 
