@@ -1,8 +1,12 @@
-at-spi2-core (2.4.0-2) UNRELEASED; urgency=low
+at-spi2-core (2.4.1-1) UNRELEASED; urgency=low
 
+  [ Jordi Mallach ]
   * Get rid of source/options, to get standard compression of the debian.tar.
 
- -- Jordi Mallach <jordi@debian.org>  Thu, 29 Mar 2012 15:44:38 +0200
+  [ Samuel Thibault ]
+  * New upstream release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 16 Apr 2012 22:55:37 +0200
 
 at-spi2-core (2.4.0-1) unstable; urgency=low
 
