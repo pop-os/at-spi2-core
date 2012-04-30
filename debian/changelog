@@ -1,3 +1,9 @@
+at-spi2-core (2.4.1-2) UNRELEASED; urgency=low
+
+  * Move the at-spi2-core binaries to usr/lib.
+
+ -- Luke Yelavich <themuso@ubuntu.com>  Tue, 01 May 2012 09:44:37 +1000
+
 at-spi2-core (2.4.1-1) unstable; urgency=low
 
   [ Jordi Mallach ]
