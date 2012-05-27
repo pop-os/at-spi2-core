@@ -6,7 +6,7 @@
 
 if [ -x "/usr/bin/gsettings" ]; then
 	a11y_enabled=$(gsettings get org.gnome.desktop.interface toolkit-accessibility)
-	if "$a11y_enabled" = "true" ]; then
+	if [ "$a11y_enabled" = "true" ]; then
 		export QT_ACCESSIBILITY=1
 	fi
 fi

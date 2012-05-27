@@ -1,3 +1,10 @@
+at-spi2-core (2.5.1-2) UNRELEASED; urgency=low
+
+  * debian/90qt-a11y: Add missing left brace. The script still works, but it
+    helps to be complete and portable.
+
+ -- Luke Yelavich <themuso@ubuntu.com>  Mon, 28 May 2012 09:46:54 +1000
+
 at-spi2-core (2.5.1-1) unstable; urgency=low
 
   [ Samuel Thibault ]
