@@ -1,3 +1,9 @@
+at-spi2-core (2.5.2-2) UNRELEASED; urgency=low
+
+  * control: Fix Homepage URL, thanks DUCK!
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 11 Jun 2012 21:14:52 +0200
+
 at-spi2-core (2.5.2-1) unstable; urgency=low
 
   [ Luke Yelavich ]

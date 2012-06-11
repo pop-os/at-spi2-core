@@ -5,7 +5,7 @@ Maintainer: Debian Accessibility Team <debian-accessibility@lists.debian.org>
 Uploaders: Samuel Thibault <sthibault@debian.org>, Jordi Mallach <jordi@debian.org>
 Vcs-Browser: http://git.debian.org/?p=pkg-a11y/at-spi2-core.git;a=summary
 Vcs-Git: git://git.debian.org/git/pkg-a11y/at-spi2-core.git
-Homepage: http://live.gnome.org/Accessibility/GNOME3
+Homepage: http://live.gnome.org/Accessibility
 Build-Depends: debhelper (>= 9),
                libdbus-glib-1-dev, dbus,
                libglib2.0-dev,
