@@ -21,6 +21,7 @@ Package: at-spi2-core
 Architecture: any
 Multi-Arch: foreign
 Depends: ${misc:Depends}, ${shlibs:Depends}
+Breaks: gdm3 (<< 3.4)
 Description: Assistive Technology Service Provider Interface (dbus core)
  This package contains the core components of GNOME Accessibility.
 

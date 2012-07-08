@@ -1,3 +1,9 @@
+at-spi2-core (2.5.3-2) UNRELEASED; urgency=low
+
+  * Add Breaks on gdm3 < 3.4 (Closes: Bug#663027).
+
+ -- Mario Lang <mlang@debian.org>  Sun, 08 Jul 2012 10:22:49 -0600
+
 at-spi2-core (2.5.3-1) unstable; urgency=low
 
   [ Samuel Thibault ]
