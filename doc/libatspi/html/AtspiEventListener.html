@@ -45,41 +45,41 @@ notifications.</p>
 <span class="returnvalue">void</span>                (<a class="link" href="AtspiEventListener.html#AtspiEventListenerSimpleCB" title="AtspiEventListenerSimpleCB ()">*AtspiEventListenerSimpleCB</a>)       (<em class="parameter"><code>const <a class="link" href="libatspi-atspi-types.html#AtspiEvent"><span class="type">AtspiEvent</span></a> *event</code></em>);
 struct              <a class="link" href="AtspiEventListener.html#AtspiEventListener-struct" title="struct AtspiEventListener">AtspiEventListener</a>;
 struct              <a class="link" href="AtspiEventListener.html#AtspiEventListenerClass" title="struct AtspiEventListenerClass">AtspiEventListenerClass</a>;
-<span class="returnvalue">GType</span>               <a class="link" href="AtspiEventListener.html#atspi-event-listener-get-type" title="atspi_event_listener_get_type ()">atspi_event_listener_get_type</a>       (<em class="parameter"><code><span class="type">void</span></code></em>);
+<a href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"><span class="returnvalue">GType</span></a>               <a class="link" href="AtspiEventListener.html#atspi-event-listener-get-type" title="atspi_event_listener_get_type ()">atspi_event_listener_get_type</a>       (<em class="parameter"><code><span class="type">void</span></code></em>);
 <a class="link" href="AtspiEventListener.html" title="atspi-event-listener"><span class="returnvalue">AtspiEventListener</span></a> * <a class="link" href="AtspiEventListener.html#atspi-event-listener-new-simple" title="atspi_event_listener_new_simple ()">atspi_event_listener_new_simple</a>    (<em class="parameter"><code><a class="link" href="AtspiEventListener.html#AtspiEventListenerSimpleCB" title="AtspiEventListenerSimpleCB ()"><span class="type">AtspiEventListenerSimpleCB</span></a> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">GDestroyNotify</span> callback_destroyed</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="AtspiEventListener.html#atspi-event-listener-register" title="atspi_event_listener_register ()">atspi_event_listener_register</a>       (<em class="parameter"><code><a class="link" href="AtspiEventListener.html" title="atspi-event-listener"><span class="type">AtspiEventListener</span></a> *listener</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="AtspiEventListener.html#atspi-event-listener-register-from-callback" title="atspi_event_listener_register_from_callback ()">atspi_event_listener_register_from_callback</a>
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> callback_destroyed</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="AtspiEventListener.html#atspi-event-listener-register" title="atspi_event_listener_register ()">atspi_event_listener_register</a>       (<em class="parameter"><code><a class="link" href="AtspiEventListener.html" title="atspi-event-listener"><span class="type">AtspiEventListener</span></a> *listener</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *event_type</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="AtspiEventListener.html#atspi-event-listener-register-from-callback" title="atspi_event_listener_register_from_callback ()">atspi_event_listener_register_from_callback</a>
                                                         (<em class="parameter"><code><a class="link" href="AtspiEventListener.html#AtspiEventListenerCB" title="AtspiEventListenerCB ()"><span class="type">AtspiEventListenerCB</span></a> callback</code></em>,
                                                          <em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
-                                                         <em class="parameter"><code><span class="type">GDestroyNotify</span> callback_destroyed</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="AtspiEventListener.html#atspi-event-listener-register-no-data" title="atspi_event_listener_register_no_data ()">atspi_event_listener_register_no_data</a>
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> callback_destroyed</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *event_type</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="AtspiEventListener.html#atspi-event-listener-register-no-data" title="atspi_event_listener_register_no_data ()">atspi_event_listener_register_no_data</a>
                                                         (<em class="parameter"><code><a class="link" href="AtspiEventListener.html#AtspiEventListenerSimpleCB" title="AtspiEventListenerSimpleCB ()"><span class="type">AtspiEventListenerSimpleCB</span></a> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">GDestroyNotify</span> callback_destroyed</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="AtspiEventListener.html#atspi-event-listener-deregister" title="atspi_event_listener_deregister ()">atspi_event_listener_deregister</a>     (<em class="parameter"><code><a class="link" href="AtspiEventListener.html" title="atspi-event-listener"><span class="type">AtspiEventListener</span></a> *listener</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="AtspiEventListener.html#atspi-event-listener-deregister-from-callback" title="atspi_event_listener_deregister_from_callback ()">atspi_event_listener_deregister_from_callback</a>
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> callback_destroyed</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *event_type</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="AtspiEventListener.html#atspi-event-listener-deregister" title="atspi_event_listener_deregister ()">atspi_event_listener_deregister</a>     (<em class="parameter"><code><a class="link" href="AtspiEventListener.html" title="atspi-event-listener"><span class="type">AtspiEventListener</span></a> *listener</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *event_type</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="AtspiEventListener.html#atspi-event-listener-deregister-from-callback" title="atspi_event_listener_deregister_from_callback ()">atspi_event_listener_deregister_from_callback</a>
                                                         (<em class="parameter"><code><a class="link" href="AtspiEventListener.html#AtspiEventListenerCB" title="AtspiEventListenerCB ()"><span class="type">AtspiEventListenerCB</span></a> callback</code></em>,
                                                          <em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="AtspiEventListener.html#atspi-event-listener-deregister-no-data" title="atspi_event_listener_deregister_no_data ()">atspi_event_listener_deregister_no_data</a>
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *event_type</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="AtspiEventListener.html#atspi-event-listener-deregister-no-data" title="atspi_event_listener_deregister_no_data ()">atspi_event_listener_deregister_no_data</a>
                                                         (<em class="parameter"><code><a class="link" href="AtspiEventListener.html#AtspiEventListenerSimpleCB" title="AtspiEventListenerSimpleCB ()"><span class="type">AtspiEventListenerSimpleCB</span></a> callback</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *event_type</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 </pre>
 </div>
 <div class="refsect1">
 <a name="AtspiEventListener.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  GObject
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
    +----AtspiEventListener
 </pre>
 </div>
@@ -152,7 +152,7 @@ Like <span class="type">AtspiEventlistenerCB</span>, but with no user_data.
 <hr>
 <div class="refsect2">
 <a name="atspi-event-listener-get-type"></a><h3>atspi_event_listener_get_type ()</h3>
-<pre class="programlisting"><span class="returnvalue">GType</span>               atspi_event_listener_get_type       (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"><span class="returnvalue">GType</span></a>               atspi_event_listener_get_type       (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
 <p>
 </p>
 </div>
@@ -160,7 +160,7 @@ Like <span class="type">AtspiEventlistenerCB</span>, but with no user_data.
 <div class="refsect2">
 <a name="atspi-event-listener-new-simple"></a><h3>atspi_event_listener_new_simple ()</h3>
 <pre class="programlisting"><a class="link" href="AtspiEventListener.html" title="atspi-event-listener"><span class="returnvalue">AtspiEventListener</span></a> * atspi_event_listener_new_simple    (<em class="parameter"><code><a class="link" href="AtspiEventListener.html#AtspiEventListenerSimpleCB" title="AtspiEventListenerSimpleCB ()"><span class="type">AtspiEventListenerSimpleCB</span></a> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">GDestroyNotify</span> callback_destroyed</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> callback_destroyed</code></em>);</pre>
 <p>
 Creates a new <a class="link" href="AtspiEventListener.html" title="atspi-event-listener"><span class="type">AtspiEventListener</span></a> associated with a specified <em class="parameter"><code>callback</code></em>.
 </p>
@@ -175,7 +175,7 @@ when an event is fired. <span class="annotation">[<acronym title="The callback i
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback_destroyed</code></em> :</span></p></td>
-<td>A <span class="type">GDestroyNotify</span> called when the listener is freed
+<td>A <a href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> called when the listener is freed
 and data associated with the callback should be freed.  Can be NULL.</td>
 </tr>
 <tr>
@@ -189,9 +189,9 @@ and data associated with the callback should be freed.  Can be NULL.</td>
 <hr>
 <div class="refsect2">
 <a name="atspi-event-listener-register"></a><h3>atspi_event_listener_register ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_event_listener_register       (<em class="parameter"><code><a class="link" href="AtspiEventListener.html" title="atspi-event-listener"><span class="type">AtspiEventListener</span></a> *listener</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_event_listener_register       (<em class="parameter"><code><a class="link" href="AtspiEventListener.html" title="atspi-event-listener"><span class="type">AtspiEventListener</span></a> *listener</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *event_type</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Adds an in-process callback function to an existing <a class="link" href="AtspiEventListener.html" title="atspi-event-listener"><span class="type">AtspiEventListener</span></a>.
 </p>
@@ -299,7 +299,7 @@ Examples: "focus:", "Gtk:GtkWidget:button_press_event".</td>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<span class="type">TRUE</span> if successful, otherwise <span class="type">FALSE</span>.</td>
+<a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if successful, otherwise <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a>.</td>
 </tr>
 </tbody>
 </table></div>
@@ -307,12 +307,12 @@ Examples: "focus:", "Gtk:GtkWidget:button_press_event".</td>
 <hr>
 <div class="refsect2">
 <a name="atspi-event-listener-register-from-callback"></a><h3>atspi_event_listener_register_from_callback ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_event_listener_register_from_callback
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_event_listener_register_from_callback
                                                         (<em class="parameter"><code><a class="link" href="AtspiEventListener.html#AtspiEventListenerCB" title="AtspiEventListenerCB ()"><span class="type">AtspiEventListenerCB</span></a> callback</code></em>,
                                                          <em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
-                                                         <em class="parameter"><code><span class="type">GDestroyNotify</span> callback_destroyed</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> callback_destroyed</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *event_type</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Registers an <a class="link" href="AtspiEventListener.html#AtspiEventListenerCB" title="AtspiEventListenerCB ()"><span class="type">AtspiEventListenerCB</span></a> against an <em class="parameter"><code>event_type</code></em>.
 </p>
@@ -332,7 +332,7 @@ against an event type. <span class="annotation">[<acronym title="The callback is
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback_destroyed</code></em> :</span></p></td>
-<td>A <span class="type">GDestroyNotify</span> called when the callback is destroyed.</td>
+<td>A <a href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> called when the callback is destroyed.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>event_type</code></em> :</span></p></td>
@@ -343,7 +343,7 @@ for a description of the format.</td>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<span class="type">TRUE</span> if successfull, otherwise <span class="type">FALSE</span>.</td>
+<a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if successfull, otherwise <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a>.</td>
 </tr>
 </tbody>
 </table></div>
@@ -351,11 +351,11 @@ for a description of the format.</td>
 <hr>
 <div class="refsect2">
 <a name="atspi-event-listener-register-no-data"></a><h3>atspi_event_listener_register_no_data ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_event_listener_register_no_data
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_event_listener_register_no_data
                                                         (<em class="parameter"><code><a class="link" href="AtspiEventListener.html#AtspiEventListenerSimpleCB" title="AtspiEventListenerSimpleCB ()"><span class="type">AtspiEventListenerSimpleCB</span></a> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">GDestroyNotify</span> callback_destroyed</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> callback_destroyed</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *event_type</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Registers an <span class="type">AtspiEventListenetSimpleCB</span>. The method is similar to 
 <a class="link" href="AtspiEventListener.html#atspi-event-listener-register" title="atspi_event_listener_register ()"><span class="type">atspi_event_listener_register</span></a>, but <em class="parameter"><code>callback</code></em> takes no user_data.
@@ -371,7 +371,7 @@ registered against an event type. <span class="annotation">[<acronym title="The 
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback_destroyed</code></em> :</span></p></td>
-<td>A <span class="type">GDestroyNotify</span> called when the callback is destroyed.</td>
+<td>A <a href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"><span class="type">GDestroyNotify</span></a> called when the callback is destroyed.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>event_type</code></em> :</span></p></td>
@@ -386,7 +386,7 @@ Examples: "focus:", "Gtk:GtkWidget:button_press_event".</td>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<span class="type">TRUE</span> if successfull, otherwise <span class="type">FALSE</span>.</td>
+<a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if successfull, otherwise <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a>.</td>
 </tr>
 </tbody>
 </table></div>
@@ -394,9 +394,9 @@ Examples: "focus:", "Gtk:GtkWidget:button_press_event".</td>
 <hr>
 <div class="refsect2">
 <a name="atspi-event-listener-deregister"></a><h3>atspi_event_listener_deregister ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_event_listener_deregister     (<em class="parameter"><code><a class="link" href="AtspiEventListener.html" title="atspi-event-listener"><span class="type">AtspiEventListener</span></a> *listener</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_event_listener_deregister     (<em class="parameter"><code><a class="link" href="AtspiEventListener.html" title="atspi-event-listener"><span class="type">AtspiEventListener</span></a> *listener</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *event_type</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Deregisters an <a class="link" href="AtspiEventListener.html" title="atspi-event-listener"><span class="type">AtspiEventListener</span></a> from the registry, for a specific
             event type.
@@ -416,7 +416,7 @@ listener is to be deregistered.</td>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<span class="type">TRUE</span> if successful, otherwise <span class="type">FALSE</span>.</td>
+<a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if successful, otherwise <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a>.</td>
 </tr>
 </tbody>
 </table></div>
@@ -424,11 +424,11 @@ listener is to be deregistered.</td>
 <hr>
 <div class="refsect2">
 <a name="atspi-event-listener-deregister-from-callback"></a><h3>atspi_event_listener_deregister_from_callback ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_event_listener_deregister_from_callback
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_event_listener_deregister_from_callback
                                                         (<em class="parameter"><code><a class="link" href="AtspiEventListener.html#AtspiEventListenerCB" title="AtspiEventListenerCB ()"><span class="type">AtspiEventListenerCB</span></a> callback</code></em>,
                                                          <em class="parameter"><code><span class="type">void</span> *user_data</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *event_type</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Deregisters an <a class="link" href="AtspiEventListener.html#AtspiEventListenerCB" title="AtspiEventListenerCB ()"><span class="type">AtspiEventListenerCB</span></a> from the registry, for a specific
             event type.
@@ -455,7 +455,7 @@ listener is to be deregistered.</td>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<span class="type">TRUE</span> if successful, otherwise <span class="type">FALSE</span>.</td>
+<a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if successful, otherwise <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a>.</td>
 </tr>
 </tbody>
 </table></div>
@@ -463,10 +463,10 @@ listener is to be deregistered.</td>
 <hr>
 <div class="refsect2">
 <a name="atspi-event-listener-deregister-no-data"></a><h3>atspi_event_listener_deregister_no_data ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_event_listener_deregister_no_data
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_event_listener_deregister_no_data
                                                         (<em class="parameter"><code><a class="link" href="AtspiEventListener.html#AtspiEventListenerSimpleCB" title="AtspiEventListenerSimpleCB ()"><span class="type">AtspiEventListenerSimpleCB</span></a> callback</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *event_type</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *event_type</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 deregisters an <a class="link" href="AtspiEventListener.html#AtspiEventListenerSimpleCB" title="AtspiEventListenerSimpleCB ()"><span class="type">AtspiEventListenerSimpleCB</span></a> from the registry, for a specific
             event type.
@@ -488,7 +488,7 @@ listener is to be deregistered.</td>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<span class="type">TRUE</span> if successful, otherwise <span class="type">FALSE</span>.</td>
+<a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if successful, otherwise <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a>.</td>
 </tr>
 </tbody>
 </table></div>
