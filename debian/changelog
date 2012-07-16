@@ -1,6 +1,12 @@
-at-spi2-core (2.5.3-2) UNRELEASED; urgency=low
+at-spi2-core (2.5.4-0ubuntu1) UNRELEASED; urgency=low
 
+  [ Mario Lang ]
   * Add Breaks on gdm3 < 3.4 (Closes: Bug#663027).
+
+  [ Luke Yelavich ]
+  * New upstream release
+    - Fix a missing return value.
+    - Fix a crash when unable to remove a match rule.
 
  -- Mario Lang <mlang@debian.org>  Sun, 08 Jul 2012 10:22:49 -0600
 
