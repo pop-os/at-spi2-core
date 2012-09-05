@@ -1,10 +1,10 @@
-at-spi2-core (2.5.91-0ubuntu1) UNRELEASED; urgency=low
+at-spi2-core (2.5.91-0ubuntu1) quantal-proposed; urgency=low
 
   * New upstream release (LP: #1046583)
     - Fix build with -fno-common.
     - Add glib-2.0 to requires in at-spi2.pc (BGO#682595)
 
- -- Luke Yelavich <themuso@ubuntu.com>  Wed, 05 Sep 2012 21:58:43 +1000
+ -- Luke Yelavich <themuso@ubuntu.com>  Thu, 06 Sep 2012 09:14:23 +1000
 
 at-spi2-core (2.5.5-0ubuntu1) quantal; urgency=low
 
