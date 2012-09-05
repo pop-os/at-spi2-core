@@ -1,6 +1,6 @@
 at-spi2-core (2.5.91-0ubuntu1) UNRELEASED; urgency=low
 
-  * New upstream release
+  * New upstream release (LP: #1046583)
     - Fix build with -fno-common.
     - Add glib-2.0 to requires in at-spi2.pc (BGO#682595)
 
