@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>atspi-collection</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
 <link rel="home" href="index.html" title="libatspi Reference Manual">
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-AtspiApplication.html" title="atspi-application">
@@ -123,33 +123,43 @@ Not yet implemented.
                                                          <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> traverse</code></em>,
                                                          <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
-<em class="parameter"><code>collection</code></em>: A pointer to the <a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> to query.
-</p>
-<p>
-<em class="parameter"><code>rule</code></em>: An <a class="link" href="AtspiMatchRule.html" title="atspi-matchrule"><span class="type">AtspiMatchRule</span></a> describing the match criteria.
-</p>
-<p>
-<em class="parameter"><code>sortby</code></em>: An <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionSortOrder" title="enum AtspiCollectionSortOrder"><span class="type">AtspiCollectionSortOrder</span></a> specifying the way the results are to
-         be sorted.
-</p>
-<p>
-<em class="parameter"><code>count</code></em>: The maximum number of results to return, or 0 for no limit.
-</p>
-<p>
-<em class="parameter"><code>traverse</code></em>: Not supported.
-</p>
-<p>
 Gets all <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> objects from the <em class="parameter"><code>collection</code></em> matching a given
 <em class="parameter"><code>rule</code></em>.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
-<tbody><tr>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>collection</code></em> :</span></p></td>
+<td>A pointer to the <a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> to query.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rule</code></em> :</span></p></td>
+<td>An <a class="link" href="AtspiMatchRule.html" title="atspi-matchrule"><span class="type">AtspiMatchRule</span></a> describing the match criteria.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sortby</code></em> :</span></p></td>
+<td>An <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionSortOrder" title="enum AtspiCollectionSortOrder"><span class="type">AtspiCollectionSortOrder</span></a> specifying the way the results are to
+be sorted.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>count</code></em> :</span></p></td>
+<td>The maximum number of results to return, or 0 for no limit.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>traverse</code></em> :</span></p></td>
+<td>Not supported.</td>
+</tr>
+<tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>All
 <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> objects matching the given match rule. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> AtspiAccessible*][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
-</tr></tbody>
+</tr>
+</tbody>
 </table></div>
 </div>
 <hr>
@@ -165,46 +175,60 @@ Gets all <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><sp
                                                          <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> traverse</code></em>,
                                                          <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
-<em class="parameter"><code>collection</code></em>: A pointer to the <a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> to query.
-</p>
-<p>
-<em class="parameter"><code>current_object</code></em>: The object at which to start searching.
-</p>
-<p>
-<em class="parameter"><code>rule</code></em>: An <a class="link" href="AtspiMatchRule.html" title="atspi-matchrule"><span class="type">AtspiMatchRule</span></a> describing the match criteria.
-</p>
-<p>
-<em class="parameter"><code>sortby</code></em>: An <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionSortOrder" title="enum AtspiCollectionSortOrder"><span class="type">AtspiCollectionSortOrder</span></a> specifying the way the results are to
-         be sorted.
-</p>
-<p>
-<em class="parameter"><code>tree</code></em>: An <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionTreeTraversalType" title="enum AtspiCollectionTreeTraversalType"><span class="type">AtspiCollectionTreeTraversalType</span></a> specifying restrictions on
-       the objects to be traversed.
-</p>
-<p>
-<em class="parameter"><code>limit_scope</code></em>: If <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a>, only descendants of <em class="parameter"><code>current_object</code></em>'s parent
-will be returned. Otherwise (if <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a>), any accessible may be returned
-if it would preceed <em class="parameter"><code>current_object</code></em> in a flattened hierarchy.
-</p>
-<p>
-<em class="parameter"><code>count</code></em>: The maximum number of results to return, or 0 for no limit.
-</p>
-<p>
-<em class="parameter"><code>traverse</code></em>: Not supported.
-</p>
-<p>
 Gets all <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> objects from the <em class="parameter"><code>collection</code></em>, after 
 <em class="parameter"><code>current_object</code></em>, matching a given <em class="parameter"><code>rule</code></em>.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
-<tbody><tr>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>collection</code></em> :</span></p></td>
+<td>A pointer to the <a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> to query.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>current_object</code></em> :</span></p></td>
+<td>The object at which to start searching.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rule</code></em> :</span></p></td>
+<td>An <a class="link" href="AtspiMatchRule.html" title="atspi-matchrule"><span class="type">AtspiMatchRule</span></a> describing the match criteria.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sortby</code></em> :</span></p></td>
+<td>An <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionSortOrder" title="enum AtspiCollectionSortOrder"><span class="type">AtspiCollectionSortOrder</span></a> specifying the way the results are to
+be sorted.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tree</code></em> :</span></p></td>
+<td>An <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionTreeTraversalType" title="enum AtspiCollectionTreeTraversalType"><span class="type">AtspiCollectionTreeTraversalType</span></a> specifying restrictions on
+the objects to be traversed.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>limit_scope</code></em> :</span></p></td>
+<td>If <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a>, only descendants of <em class="parameter"><code>current_object</code></em>'s parent
+will be returned. Otherwise (if <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a>), any accessible may be
+returned if it would preceed <em class="parameter"><code>current_object</code></em> in a flattened
+hierarchy.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>count</code></em> :</span></p></td>
+<td>The maximum number of results to return, or 0 for no limit.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>traverse</code></em> :</span></p></td>
+<td>Not supported.</td>
+</tr>
+<tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>All
 <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> objects matching the given match rule after
 <em class="parameter"><code>current_object</code></em>. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> AtspiAccessible*][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
-</tr></tbody>
+</tr>
+</tbody>
 </table></div>
 </div>
 <hr>
@@ -219,41 +243,53 @@ Gets all <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><sp
                                                          <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> traverse</code></em>,
                                                          <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
-<em class="parameter"><code>collection</code></em>: A pointer to the <a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> to query.
-</p>
-<p>
-<em class="parameter"><code>current_object</code></em>: Upon reaching this object, searching should stop.
-</p>
-<p>
-<em class="parameter"><code>rule</code></em>: An <a class="link" href="AtspiMatchRule.html" title="atspi-matchrule"><span class="type">AtspiMatchRule</span></a> describing the match criteria.
-</p>
-<p>
-<em class="parameter"><code>sortby</code></em>: An <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionSortOrder" title="enum AtspiCollectionSortOrder"><span class="type">AtspiCollectionSortOrder</span></a> specifying the way the results are to
-         be sorted.
-</p>
-<p>
-<em class="parameter"><code>tree</code></em>: An <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionTreeTraversalType" title="enum AtspiCollectionTreeTraversalType"><span class="type">AtspiCollectionTreeTraversalType</span></a> specifying restrictions on
-       the objects to be traversed.
-</p>
-<p>
-<em class="parameter"><code>count</code></em>: The maximum number of results to return, or 0 for no limit.
-</p>
-<p>
-<em class="parameter"><code>traverse</code></em>: Not supported.
-</p>
-<p>
 Gets all <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> objects from the <em class="parameter"><code>collection</code></em>, before  
 <em class="parameter"><code>current_object</code></em>, matching a given <em class="parameter"><code>rule</code></em>.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
-<tbody><tr>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>collection</code></em> :</span></p></td>
+<td>A pointer to the <a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> to query.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>current_object</code></em> :</span></p></td>
+<td>Upon reaching this object, searching should stop.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rule</code></em> :</span></p></td>
+<td>An <a class="link" href="AtspiMatchRule.html" title="atspi-matchrule"><span class="type">AtspiMatchRule</span></a> describing the match criteria.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sortby</code></em> :</span></p></td>
+<td>An <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionSortOrder" title="enum AtspiCollectionSortOrder"><span class="type">AtspiCollectionSortOrder</span></a> specifying the way the results are to
+be sorted.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tree</code></em> :</span></p></td>
+<td>An <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionTreeTraversalType" title="enum AtspiCollectionTreeTraversalType"><span class="type">AtspiCollectionTreeTraversalType</span></a> specifying restrictions on
+the objects to be traversed.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>count</code></em> :</span></p></td>
+<td>The maximum number of results to return, or 0 for no limit.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>traverse</code></em> :</span></p></td>
+<td>Not supported.</td>
+</tr>
+<tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>All
 <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> objects matching the given match rule that preceed
 <em class="parameter"><code>current_object</code></em>. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> AtspiAccessible*][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
-</tr></tbody>
+</tr>
+</tbody>
 </table></div>
 </div>
 <hr>

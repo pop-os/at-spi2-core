@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>atspi-devicelistener</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
 <link rel="home" href="index.html" title="libatspi Reference Manual">
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="AtspiAccessible.html" title="AtspiAccessible">
@@ -82,8 +82,11 @@ device listeners with callback functions.
 <p>
 A callback function prototype via which clients receive device event notifications.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>stroke</code></em> :</span></p></td>
@@ -111,8 +114,11 @@ relayed to the currently focussed application, <a href="http://library.gnome.org
 <p>
 Similar to <a class="link" href="AtspiDeviceListener.html#AtspiDeviceListenerCB" title="AtspiDeviceListenerCB ()"><span class="type">AtspiDeviceListenerCB</span></a>, but with no user data.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>stroke</code></em> :</span></p></td>
@@ -156,8 +162,11 @@ relayed to the currently focussed application, <a href="http://library.gnome.org
 <p>
 Creates a new <a class="link" href="AtspiDeviceListener.html" title="atspi-devicelistener"><span class="type">AtspiDeviceListener</span></a> with a specified callback function.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
@@ -194,8 +203,11 @@ Creates a new <a class="link" href="AtspiDeviceListener.html" title="atspi-devic
 This method is similar to <a class="link" href="AtspiDeviceListener.html#atspi-device-listener-new" title="atspi_device_listener_new ()"><span class="type">atspi_device_listener_new</span></a>, but callback
 takes no user data.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
@@ -225,8 +237,11 @@ and data associated with the callback should be freed.  It an be NULL.</td>
 <p>
 Adds an in-process callback function to an existing <a class="link" href="AtspiDeviceListener.html" title="atspi-devicelistener"><span class="type">AtspiDeviceListener</span></a>.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>listener</code></em> :</span></p></td>
@@ -261,8 +276,11 @@ callback when invoked. <span class="annotation">[<acronym title="This parameter 
 Removes an in-process callback function from an existing 
 <a class="link" href="AtspiDeviceListener.html" title="atspi-devicelistener"><span class="type">AtspiDeviceListener</span></a>.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>listener</code></em> :</span></p></td>
