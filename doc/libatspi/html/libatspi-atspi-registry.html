@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>atspi-registry</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
 <link rel="home" href="index.html" title="libatspi Reference Manual">
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-atspi-component.html" title="atspi-component">
@@ -98,8 +98,11 @@ Gets the number of virtual desktops.
 NOTE: multiple virtual desktops are not implemented yet; as a 
 consequence, this function always returns 1.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody><tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>a <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating the number of active virtual desktops.</td>
@@ -116,8 +119,11 @@ NOTE: currently multiple virtual desktops are not implemented;
 as a consequence, any <em class="parameter"><code>i</code></em> value different from 0 will not return a
 virtual desktop - instead it will return NULL.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>i</code></em> :</span></p></td>
@@ -146,8 +152,11 @@ NOTE: currently multiple virtual desktops are not implemented;
 this implementation always returns a <span class="type">Garray</span> with a single
 <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> desktop.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody><tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>a <a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="type">GArray</span></a> of desktops. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
@@ -173,8 +182,11 @@ Registers a listener for keystroke events, either pre-emptively for
             upon receipt if one of <em class="parameter"><code>listener</code></em>'s callbacks returns <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> 
             (other sync_type values may be available in the future).
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>listener</code></em> :</span></p></td>
@@ -230,8 +242,11 @@ the behavior of the notification/listener transaction.</td>
 Removes a keystroke event listener from the registry's listener queue,
            ceasing notification of events with modifiers matching <em class="parameter"><code>modmask</code></em>.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>listener</code></em> :</span></p></td>
@@ -276,8 +291,11 @@ types of key events were requested (<span class="type">ATSPI_KEY_PRESSED</span>,
 <p>
 Registers a listener for device events, for instance button events.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>listener</code></em> :</span></p></td>
@@ -312,8 +330,11 @@ types of key events are requested (<span class="type">ATSPI_KEY_PRESSED</span>, 
 Removes a device event listener from the registry's listener queue,
            ceasing notification of events of the specified type.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>listener</code></em> :</span></p></td>
@@ -343,8 +364,11 @@ device events are requested.</td>
 Synthesizes a keyboard event (as if a hardware keyboard event occurred in the
 current UI context).
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>keyval</code></em> :</span></p></td>
@@ -389,8 +413,11 @@ Event names: b1p = button 1 press; b2r = button 2 release;
              b3c = button 3 click; b2d = button 2 double-click;
              abs = absolute motion; rel = relative motion.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>

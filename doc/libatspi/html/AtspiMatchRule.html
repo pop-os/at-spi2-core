@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>atspi-matchrule</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
 <link rel="home" href="index.html" title="libatspi Reference Manual">
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-atspi-image.html" title="atspi-image">
@@ -98,56 +98,73 @@ for accessible objects.
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCollectionMatchType" title="enum AtspiCollectionMatchType"><span class="type">AtspiCollectionMatchType</span></a> interfacematchtype</code></em>,
                                                          <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> invert</code></em>);</pre>
 <p>
-<em class="parameter"><code>states</code></em>: An <a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> specifying the states to match or NULL if none.
-</p>
-<p>
-<em class="parameter"><code>statematchtype</code></em>: An <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionMatchType" title="enum AtspiCollectionMatchType"><span class="type">AtspiCollectionMatchType</span></a> specifying how to interpret
-                 <em class="parameter"><code>states</code></em>.
-</p>
-<p>
-<em class="parameter"><code>attributes</code></em>: (element-type gchar* gchar*): A <a href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#GHashTable"><span class="type">GHashTable</span></a> specifying
-             attributes to match.
-</p>
-<p>
-<em class="parameter"><code>attributematchtype</code></em>: An <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionMatchType" title="enum AtspiCollectionMatchType"><span class="type">AtspiCollectionMatchType</span></a> specifying how to
-                     interpret <em class="parameter"><code>attributes</code></em>.
-</p>
-<p>
-<em class="parameter"><code>interfaces</code></em>: (element-type gchar*): An array of interfaces to match, or
-             NULL if not applicable.  Interface names should be specified
-             by their DBus names (org.a11y.Atspi.Accessible,
-             org.a11y.Atspi.Component, etc).
-</p>
-<p>
-<em class="parameter"><code>interfacematchtype</code></em>: An <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionMatchType" title="enum AtspiCollectionMatchType"><span class="type">AtspiCollectionMatchType</span></a> specifying how to
-                     interpret <em class="parameter"><code>interfaces</code></em>.
-</p>
-<p>
-<em class="parameter"><code>roles</code></em>: (element-type AtspiRole): A <a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="type">GArray</span></a> of roles to match, or NULL if
-        not applicable.
-</p>
-<p>
-<em class="parameter"><code>rolematchtype</code></em>: An <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionMatchType" title="enum AtspiCollectionMatchType"><span class="type">AtspiCollectionMatchType</span></a> specifying how to
-                     interpret <em class="parameter"><code>roles</code></em>.
-</p>
-<p>
-<em class="parameter"><code>invert</code></em>: if <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a>, the match rule should be denied (inverted); if <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a>,
-it should not. For example, if the match rule defines that a match is
-an object of ROLE_HEADING which has STATE_FOCUSABLE and a click action, 
-inverting it would match all objects that are not of ROLE_HEADING, 
-focusable and clickable at the same time.  
-</p>
-<p>
 Creates a new <a class="link" href="AtspiMatchRule.html" title="atspi-matchrule"><span class="type">AtspiMatchRule</span></a> with specified <em class="parameter"><code>states</code></em>, <em class="parameter"><code>attributes</code></em>, 
 <em class="parameter"><code>interfaces</code></em>, and <em class="parameter"><code>roles</code></em>.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
-<tbody><tr>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>states</code></em> :</span></p></td>
+<td>An <a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> specifying the states to match or NULL if none.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>statematchtype</code></em> :</span></p></td>
+<td>An <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionMatchType" title="enum AtspiCollectionMatchType"><span class="type">AtspiCollectionMatchType</span></a> specifying how to interpret
+<em class="parameter"><code>states</code></em>.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attributes</code></em> :</span></p></td>
+<td>A <a href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#GHashTable"><span class="type">GHashTable</span></a> specifying
+attributes to match. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gchar* gchar*]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attributematchtype</code></em> :</span></p></td>
+<td>An <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionMatchType" title="enum AtspiCollectionMatchType"><span class="type">AtspiCollectionMatchType</span></a> specifying how to
+interpret <em class="parameter"><code>attributes</code></em>.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>roles</code></em> :</span></p></td>
+<td>A <a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="type">GArray</span></a> of roles to match, or NULL if
+not applicable. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> AtspiRole]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rolematchtype</code></em> :</span></p></td>
+<td>An <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionMatchType" title="enum AtspiCollectionMatchType"><span class="type">AtspiCollectionMatchType</span></a> specifying how to
+interpret <em class="parameter"><code>roles</code></em>.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>interfaces</code></em> :</span></p></td>
+<td>An array of interfaces to match, or
+NULL if not applicable.  Interface names should be specified
+by their DBus names (org.a11y.Atspi.Accessible,
+org.a11y.Atspi.Component, etc). <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gchar*]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>interfacematchtype</code></em> :</span></p></td>
+<td>An <a class="link" href="libatspi-atspi-constants.html#AtspiCollectionMatchType" title="enum AtspiCollectionMatchType"><span class="type">AtspiCollectionMatchType</span></a> specifying how to
+interpret <em class="parameter"><code>interfaces</code></em>.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>invert</code></em> :</span></p></td>
+<td>if <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a>, the match rule should be denied (inverted); if <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a>,
+it should not. For example, if the match rule defines that a match is
+an object of ROLE_HEADING which has STATE_FOCUSABLE and a click action,
+inverting it would match all objects that are not of ROLE_HEADING,
+focusable and clickable at the same time.</td>
+</tr>
+<tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>A new <a class="link" href="AtspiMatchRule.html" title="atspi-matchrule"><span class="type">AtspiMatchRule</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
-</tr></tbody>
+</tr>
+</tbody>
 </table></div>
 </div>
 </div>

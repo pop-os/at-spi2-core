@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>atspi-text</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
 <link rel="home" href="index.html" title="libatspi Reference Manual">
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="ch01.html" title="API reference">
@@ -195,8 +195,11 @@ The <a href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Inform
 <p>
 Gets a copy of an <a class="link" href="libatspi-atspi-text.html#AtspiRange"><span class="type">AtspiRange</span></a> object.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>src</code></em> :</span></p></td>
@@ -259,8 +262,11 @@ The <a href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Inform
 <p>
 Gets the character count of an <span class="type">AccessibleText</span> object.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
@@ -286,8 +292,11 @@ Gets a range of text from an <a class="link" href="libatspi-atspi-text.html#Atsp
          in the returned string may exceed either end_offset or start_offset, since
          UTF-8 is a variable-width encoding.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
@@ -317,8 +326,11 @@ to <em class="parameter"><code>end_offset</code></em>-1, inclusive, encoded as U
 <p>
 Gets the current offset of the text caret in an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
@@ -345,8 +357,11 @@ object. The text attributes correspond to CSS attributes
 where possible.
 <span style="color: red">&lt;em&gt;DEPRECATED&lt;/em&gt;</span>
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
@@ -391,8 +406,11 @@ describing the attributes at the given character offset. <span class="annotation
 Gets a set of attributes applied to a range of text from an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object, optionally
 including its 'default' attributes.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
@@ -441,8 +459,11 @@ defined at the indicated offset, optionally including the 'default' ones. <span 
 <p>
 Gets the value of a named attribute at a given offset.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
@@ -476,8 +497,11 @@ where possible. The combination of this attribute set and
 the attributes reported by <a class="link" href="libatspi-atspi-text.html#atspi-text-get-attributes" title="atspi_text_get_attributes ()"><span class="type">atspi_text_get_attributes</span></a>
 describes the entire set of text attributes over a range.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
@@ -502,8 +526,11 @@ containing the default attributes applied to a text object,
 <p>
 Moves the text caret to a given position.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
@@ -532,8 +559,11 @@ Moves the text caret to a given position.
 Gets delimited text from an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object which precedes a given
          text offset.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
@@ -569,8 +599,11 @@ current offset, or an empty string if no such text exists.</td>
 Gets delimited text from an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object which includes a given
          text offset.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
@@ -606,8 +639,11 @@ current offset, or an empty string if no such text exists.</td>
 Gets delimited text from an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object which follows a given
          text offset.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
@@ -642,8 +678,11 @@ text exists.</td>
 <p>
 Gets the character at a given offset for an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
@@ -675,8 +714,11 @@ in the UCS-4 encoding.</td>
 Gets a bounding box containing the glyph representing
        the character at a particular text offset.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
@@ -710,8 +752,11 @@ for the returned values.</td>
 <p>
 Gets the character offset into the text at a given point.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
@@ -749,8 +794,11 @@ in the specified coordinate system.</td>
 <p>
 Gets the bounding box for text within a range in an  <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
@@ -795,8 +843,11 @@ of text.</td>
 Gets the ranges of text from an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object which lie within the
          bounds defined by (<em class="parameter"><code>x</code></em>, <em class="parameter"><code>y</code></em>) and (<em class="parameter"><code>x</code></em>+<em class="parameter"><code>width</code></em>, <em class="parameter"><code>y</code></em>+<em class="parameter"><code>height</code></em>).
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
@@ -851,8 +902,11 @@ pointers to <a class="link" href="libatspi-atspi-text.html#AtspiTextRange"><span
 Gets the number of active non-contiguous selections for an
          <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
@@ -877,8 +931,11 @@ within an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class=
 Gets the bounds of the <em class="parameter"><code>selection_num</code></em>-th active text selection for an
         <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
@@ -901,8 +958,11 @@ Gets the bounds of the <em class="parameter"><code>selection_num</code></em>-th 
 <p>
 Selects some text (adds a text selection) in an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
@@ -933,8 +993,11 @@ Selects some text (adds a text selection) in an <a class="link" href="libatspi-a
 <p>
 De-selects a text selection.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
@@ -963,8 +1026,11 @@ De-selects a text selection.
 <p>
 Changes the bounds of an existing <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> text selection.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>

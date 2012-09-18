@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>atspi-event-listener</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
 <link rel="home" href="index.html" title="libatspi Reference Manual">
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-atspi-selection.html" title="atspi-selection">
@@ -101,8 +101,11 @@ interface and content.
 <p>
 A function prototype for callbacks via which clients are notified of AT-SPI events.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>event</code></em> :</span></p></td>
@@ -123,8 +126,11 @@ A function prototype for callbacks via which clients are notified of AT-SPI even
 <p>
 Like <span class="type">AtspiEventlistenerCB</span>, but with no user_data.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>event</code></em> :</span></p></td>
 <td>The event for which notification is sent. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
@@ -164,8 +170,11 @@ Like <span class="type">AtspiEventlistenerCB</span>, but with no user_data.
 <p>
 Creates a new <a class="link" href="AtspiEventListener.html" title="atspi-event-listener"><span class="type">AtspiEventListener</span></a> associated with a specified <em class="parameter"><code>callback</code></em>.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
@@ -279,8 +288,11 @@ value 56
            In general, listening to
            toolkit-specific events is not recommended.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>listener</code></em> :</span></p></td>
@@ -316,8 +328,11 @@ Examples: "focus:", "Gtk:GtkWidget:button_press_event".</td>
 <p>
 Registers an <a class="link" href="AtspiEventListener.html#AtspiEventListenerCB" title="AtspiEventListenerCB ()"><span class="type">AtspiEventListenerCB</span></a> against an <em class="parameter"><code>event_type</code></em>.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
@@ -360,8 +375,11 @@ for a description of the format.</td>
 Registers an <span class="type">AtspiEventListenetSimpleCB</span>. The method is similar to 
 <a class="link" href="AtspiEventListener.html#atspi-event-listener-register" title="atspi_event_listener_register ()"><span class="type">atspi_event_listener_register</span></a>, but <em class="parameter"><code>callback</code></em> takes no user_data.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
@@ -401,8 +419,11 @@ Examples: "focus:", "Gtk:GtkWidget:button_press_event".</td>
 Deregisters an <a class="link" href="AtspiEventListener.html" title="atspi-event-listener"><span class="type">AtspiEventListener</span></a> from the registry, for a specific
             event type.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>listener</code></em> :</span></p></td>
@@ -433,8 +454,11 @@ listener is to be deregistered.</td>
 Deregisters an <a class="link" href="AtspiEventListener.html#AtspiEventListenerCB" title="AtspiEventListenerCB ()"><span class="type">AtspiEventListenerCB</span></a> from the registry, for a specific
             event type.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
@@ -471,8 +495,11 @@ listener is to be deregistered.</td>
 deregisters an <a class="link" href="AtspiEventListener.html#AtspiEventListenerSimpleCB" title="AtspiEventListenerSimpleCB ()"><span class="type">AtspiEventListenerSimpleCB</span></a> from the registry, for a specific
             event type.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>

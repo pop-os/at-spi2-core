@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>atspi-misc</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
 <link rel="home" href="index.html" title="libatspi Reference Manual">
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-atspi-constants.html" title="atspi-constants">
@@ -57,8 +57,11 @@ Miscellaneous methods for using AT-SPI services.
 <p>
 Connects to the accessibility registry and initializes the SPI.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody><tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>0 on success, otherwise an integer error code.</td>
@@ -94,8 +97,11 @@ See: <a class="link" href="libatspi-atspi-misc.html#atspi-event-main" title="ats
 Disconnects from <span class="type">AtspiRegistry</span> instances and releases 
 any floating resources. Call only once at exit.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody><tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>0 if there were no leaks, otherwise other integer values.</td>
