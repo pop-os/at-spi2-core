@@ -1,11 +1,11 @@
-at-spi2-core (2.5.92-0ubuntu1) UNRELEASED; urgency=low
+at-spi2-core (2.5.92-0ubuntu1) quantal; urgency=low
 
   * New upstream release
     - Fix some annotations.
     - Exit, rather than crash, when unable to open an X display (BGO#660407).
     - Fix various memory leaks (BGO#684033).
 
- -- Luke Yelavich <themuso@ubuntu.com>  Tue, 18 Sep 2012 13:31:47 +1000
+ -- Luke Yelavich <themuso@ubuntu.com>  Tue, 18 Sep 2012 14:30:32 +1000
 
 at-spi2-core (2.5.91-0ubuntu1) quantal-proposed; urgency=low
 
