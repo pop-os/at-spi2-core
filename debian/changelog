@@ -1,6 +1,10 @@
 at-spi2-core (2.5.3-2) UNRELEASED; urgency=low
 
+  [ Mario Lang ]
   * Add Breaks on gdm3 < 3.4 (Closes: Bug#663027).
+
+  [ Samuel Thibault ]
+  * patches/pl: Cherry-pick from upstream: Update pl translation.
 
  -- Mario Lang <mlang@debian.org>  Sun, 08 Jul 2012 10:22:49 -0600
 
