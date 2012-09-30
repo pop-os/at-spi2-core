@@ -1,3 +1,49 @@
+at-spi2-core (2.6.0-1) UNRELEASED; urgency=low
+
+  * New upstream release
+    - Fix some annotations.
+    - Exit, rather than crash, when unable to open an X display (BGO#660407).
+    - Fix various memory leaks (BGO#684033).
+
+ -- Luke Yelavich <themuso@ubuntu.com>  Tue, 25 Sep 2012 09:44:38 +1000
+
+at-spi2-core (2.5.92-0ubuntu1) quantal; urgency=low
+
+  * New upstream release
+    - Fix some annotations.
+    - Exit, rather than crash, when unable to open an X display (BGO#660407).
+    - Fix various memory leaks (BGO#684033).
+
+ -- Luke Yelavich <themuso@ubuntu.com>  Tue, 18 Sep 2012 14:30:32 +1000
+
+at-spi2-core (2.5.91-0ubuntu1) quantal-proposed; urgency=low
+
+  * New upstream release (LP: #1046583)
+    - Fix build with -fno-common.
+    - Add glib-2.0 to requires in at-spi2.pc (BGO#682595)
+
+ -- Luke Yelavich <themuso@ubuntu.com>  Thu, 06 Sep 2012 09:14:23 +1000
+
+at-spi2-core (2.5.5-0ubuntu1) quantal; urgency=low
+
+  * New upstream release
+    - Add atspi_action_get_localized_name (BGO#680598).
+    - Allow building from out of source directory (BGO#680281)
+
+ -- Luke Yelavich <themuso@ubuntu.com>  Tue, 07 Aug 2012 12:06:10 +1000
+
+at-spi2-core (2.5.4-0ubuntu1) quantal; urgency=low
+
+  [ Mario Lang ]
+  * Add Breaks on gdm3 < 3.4 (Closes: Bug#663027).
+
+  [ Luke Yelavich ]
+  * New upstream release
+    - Fix a missing return value.
+    - Fix a crash when unable to remove a match rule.
+
+ -- Luke Yelavich <themuso@ubuntu.com>  Tue, 17 Jul 2012 09:46:35 +1000
+
 at-spi2-core (2.5.3-2) UNRELEASED; urgency=low
 
   [ Mario Lang ]

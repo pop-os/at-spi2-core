@@ -872,7 +872,7 @@ atspi_accessible_get_atspi_version (AtspiAccessible *obj, GError **error)
 }
 
 /**
- * atspi_accessible_get_toolkit_version:
+ * atspi_accessible_get_id:
  * @obj: a pointer to the #AtspiAccessible object on which to operate.
  *
  * Gets the application id for a #AtspiAccessible object.
@@ -1448,7 +1448,6 @@ _atspi_accessible_new (AtspiApplication *app, const gchar *path)
 
 /**
  * atspi_accessible_set_cache_mask:
- *
  * @accessible: The #AtspiAccessible to operate on.  Must be the desktop or
  *             the root of an application.
  * @mask: (type int): An #AtspiCache specifying a bit mask of the types of data to cache.
@@ -1524,7 +1523,11 @@ atspi_accessible_get_process_id (AtspiAccessible *accessible, GError **error)
   dbus_message_unref (message);
   dbus_message_get_args (reply, NULL, DBUS_TYPE_UINT32, &pid, DBUS_TYPE_INVALID);
   dbus_message_unref (reply);
-  dbus_error_free (&d_error);
+  if (dbus_error_is_set (&d_error))
+    {
+      g_warning ("GetConnectionUnixProcessID failed: %s", d_error.message);
+      dbus_error_free (&d_error);
+    }
   return pid;
 }
 

@@ -135,6 +135,13 @@ cleanup ()
     {
       g_hash_table_destroy (refs);
     }
+
+  if (bus)
+    {
+      dbus_connection_close (bus);
+      dbus_connection_unref (bus);
+      bus = NULL;
+    }
 }
 
 static gboolean atspi_inited = FALSE;
@@ -156,13 +163,22 @@ handle_get_bus_address (DBusPendingCall *pending, void *user_data)
                                DBUS_TYPE_INVALID))
     {
       DBusError error;
+      DBusConnection *bus;
+
       dbus_error_init (&error);
-      DBusConnection *bus = dbus_connection_open (address, &error);
+      bus = dbus_connection_open_private (address, &error);
       if (bus)
       {
         if (app->bus)
-          dbus_connection_unref (app->bus);
+          {
+            dbus_connection_unref (app->bus);
+          }
         app->bus = bus;
+      }
+      else
+      {
+        g_warning ("Unable to open bus connection: %s", error.message);
+        dbus_error_free (&error);
       }
     }
   }
@@ -187,7 +203,6 @@ get_application (const char *bus_name)
   AtspiApplication *app = NULL;
   char *bus_name_dup;
   DBusMessage *message;
-  DBusError error;
   DBusPendingCall *pending = NULL;
 
   if (!app_hash)
@@ -201,13 +216,11 @@ get_application (const char *bus_name)
   if (!bus_name_dup) return NULL;
   // TODO: change below to something that will send state-change:defunct notification if necessary */
   app = _atspi_application_new (bus_name);
-  if (!app) return NULL;
   app->hash = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_object_unref);
   app->bus = dbus_connection_ref (_atspi_bus ());
   gettimeofday (&app->time_added, NULL);
   app->cache = ATSPI_CACHE_UNDEFINED;
   g_hash_table_insert (app_hash, bus_name_dup, app);
-  dbus_error_init (&error);
   message = dbus_message_new_method_call (bus_name, atspi_path_root,
                                           atspi_interface_application, "GetApplicationBusAddress");
 
@@ -318,22 +331,15 @@ handle_remove_accessible (DBusConnection *bus, DBusMessage *message, void *user_
 static gboolean
 add_app_to_desktop (AtspiAccessible *a, const char *bus_name)
 {
-  DBusError error;
-
-  dbus_error_init (&error);
   AtspiAccessible *obj = ref_accessible (bus_name, atspi_path_root);
   if (obj)
   {
-    GList *new_list = g_list_append (a->children, obj);
-    if (new_list)
-    {
-      a->children = new_list;
-      return TRUE;
-    }
+    a->children = g_list_append (a->children, obj);
+    return TRUE;
   }
   else
   {
-    g_warning ("AT-SPI: Error calling getRoot for %s: %s", bus_name, error.message);
+    g_warning ("AT-SPI: Error calling getRoot for %s", bus_name);
   }
   return FALSE;
 }
@@ -510,7 +516,7 @@ handle_get_items (DBusPendingCall *pending, void *user_data)
 static AtspiAccessible *
 ref_accessible_desktop (AtspiApplication *app)
 {
-  DBusError error;
+  GError *error;
   DBusMessage *message, *reply;
   DBusMessageIter iter, iter_array;
   gchar *bus_name_dup;
@@ -528,17 +534,21 @@ ref_accessible_desktop (AtspiApplication *app)
   g_hash_table_insert (app->hash, desktop->parent.path, desktop);
   g_object_ref (desktop);	/* for the hash */
   desktop->name = g_strdup ("main");
-  dbus_error_init (&error);
   message = dbus_message_new_method_call (atspi_bus_registry,
 	atspi_path_root,
 	atspi_interface_accessible,
 	"GetChildren");
   if (!message)
     return NULL;
-  reply = _atspi_dbus_send_with_reply_and_block (message, NULL);
+  error = NULL;
+  reply = _atspi_dbus_send_with_reply_and_block (message, &error);
   if (!reply || strcmp (dbus_message_get_signature (reply), "a(so)") != 0)
   {
-    g_warning ("Couldn't get application list: %s", error.message);
+    if (error != NULL)
+    {
+      g_warning ("Couldn't get application list: %s", error->message);
+      g_clear_error (&error);
+    }
     if (reply)
       dbus_message_unref (reply);
     return NULL;
@@ -778,35 +788,34 @@ static const char *signal_interfaces[] =
  *
  * TODO: Avoid having duplicate functions for this here and in at-spi2-atk
  */
-static const gchar *
+static gchar *
 spi_display_name (void)
 {
-  static const char *canonical_display_name = NULL;
-  if (!canonical_display_name)
+  char *canonical_display_name = NULL;
+  const gchar *display_env = g_getenv ("AT_SPI_DISPLAY");
+
+  if (!display_env)
     {
-      const gchar *display_env = g_getenv ("AT_SPI_DISPLAY");
-      if (!display_env)
-        {
-          display_env = g_getenv ("DISPLAY");
-          if (!display_env || !display_env[0])
-            canonical_display_name = ":0";
-          else
-            {
-              gchar *display_p, *screen_p;
-              canonical_display_name = g_strdup (display_env);
-              display_p = g_utf8_strrchr (canonical_display_name, -1, ':');
-              screen_p = g_utf8_strrchr (canonical_display_name, -1, '.');
-              if (screen_p && display_p && (screen_p > display_p))
-                {
-                  *screen_p = '\0';
-                }
-            }
-        }
+      display_env = g_getenv ("DISPLAY");
+      if (!display_env || !display_env[0])
+        canonical_display_name = g_strdup (":0");
       else
         {
-          canonical_display_name = display_env;
+          gchar *display_p, *screen_p;
+          canonical_display_name = g_strdup (display_env);
+          display_p = g_utf8_strrchr (canonical_display_name, -1, ':');
+          screen_p = g_utf8_strrchr (canonical_display_name, -1, '.');
+          if (screen_p && display_p && (screen_p > display_p))
+            {
+              *screen_p = '\0';
+            }
         }
     }
+  else
+    {
+      canonical_display_name = g_strdup (display_env);
+    }
+
   return canonical_display_name;
 }
 
@@ -820,7 +829,6 @@ spi_display_name (void)
 int
 atspi_init (void)
 {
-  DBusError error;
   char *match;
   const gchar *no_cache;
 
@@ -835,28 +843,26 @@ atspi_init (void)
 
   get_live_refs();
 
-  dbus_error_init (&error);
   bus = atspi_get_a11y_bus ();
   if (!bus)
     return 2;
-  dbus_bus_register (bus, &error);
+  dbus_bus_register (bus, NULL);
   atspi_dbus_connection_setup_with_g_main(bus, g_main_context_default());
   dbus_connection_add_filter (bus, atspi_dbus_filter, NULL, NULL);
   match = g_strdup_printf ("type='signal',interface='%s',member='AddAccessible'", atspi_interface_cache);
-  dbus_error_init (&error);
-  dbus_bus_add_match (bus, match, &error);
+  dbus_bus_add_match (bus, match, NULL);
   g_free (match);
   match = g_strdup_printf ("type='signal',interface='%s',member='RemoveAccessible'", atspi_interface_cache);
-  dbus_bus_add_match (bus, match, &error);
+  dbus_bus_add_match (bus, match, NULL);
   g_free (match);
   match = g_strdup_printf ("type='signal',interface='%s',member='ChildrenChanged'", atspi_interface_event_object);
-  dbus_bus_add_match (bus, match, &error);
+  dbus_bus_add_match (bus, match, NULL);
   g_free (match);
   match = g_strdup_printf ("type='signal',interface='%s',member='PropertyChange'", atspi_interface_event_object);
-  dbus_bus_add_match (bus, match, &error);
+  dbus_bus_add_match (bus, match, NULL);
   g_free (match);
   match = g_strdup_printf ("type='signal',interface='%s',member='StateChanged'", atspi_interface_event_object);
-  dbus_bus_add_match (bus, match, &error);
+  dbus_bus_add_match (bus, match, NULL);
   g_free (match);
 
   no_cache = g_getenv ("ATSPI_NO_CACHE");
@@ -1143,10 +1149,10 @@ _atspi_dbus_get_property (gpointer obj, const char *interface, const char *name,
 
   if (dbus_message_get_type (reply) == DBUS_MESSAGE_TYPE_ERROR)
   {
-    const char *err = NULL;
-    dbus_message_get_args (reply, NULL, DBUS_TYPE_STRING, &err, DBUS_TYPE_INVALID);
-    if (err)
-      g_set_error_literal (error, ATSPI_ERROR, ATSPI_ERROR_IPC, err);
+    const char *err_str = NULL;
+    dbus_message_get_args (reply, NULL, DBUS_TYPE_STRING, &err_str, DBUS_TYPE_INVALID);
+    if (err_str)
+      g_set_error_literal (error, ATSPI_ERROR, ATSPI_ERROR_IPC, err_str);
     goto done;
   }
 
@@ -1199,7 +1205,7 @@ _atspi_dbus_send_with_reply_and_block (DBusMessage *message, GError **error)
   reply = dbind_send_and_allow_reentry (bus, message, &err);
   _atspi_process_deferred_messages ((gpointer)TRUE);
   dbus_message_unref (message);
-  if (err.message)
+  if (dbus_error_is_set (&err))
   {
     if (error)
       g_set_error_literal (error, ATSPI_ERROR, ATSPI_ERROR_IPC, err.message);
@@ -1353,14 +1359,20 @@ get_accessibility_bus_address_x11 (void)
 {
   Atom AT_SPI_BUS;
   Atom actual_type;
-  Display *bridge_display;
+  Display *bridge_display = NULL;
   int actual_format;
   char *data;
   unsigned char *data_x11 = NULL;
   unsigned long nitems;
   unsigned long leftover;
+  char *display_name;
 
-  bridge_display = XOpenDisplay (spi_display_name ());
+  display_name = spi_display_name ();
+  if (display_name != NULL)
+    {
+      bridge_display = XOpenDisplay (display_name);
+      g_free (display_name);
+    }
   if (!bridge_display)
     {
       g_warning ("Could not open X display");
@@ -1432,12 +1444,32 @@ get_accessibility_bus_address_dbus (void)
   return address;
 }
 
+static DBusConnection *a11y_bus;
+static dbus_int32_t a11y_dbus_slot = -1;
+
+static void
+a11y_bus_free (void *data)
+{
+  if (data == a11y_bus)
+    {
+      a11y_bus = NULL;
+      dbus_connection_free_data_slot (&a11y_dbus_slot);
+    }
+}
+
 DBusConnection *
 atspi_get_a11y_bus (void)
 {
   DBusConnection *bus = NULL;
   DBusError error;
   char *address;
+
+  if (a11y_bus && dbus_connection_get_is_connected (a11y_bus))
+    return a11y_bus;
+
+  if (a11y_dbus_slot == -1)
+    if (!dbus_connection_allocate_data_slot (&a11y_dbus_slot))
+      g_warning ("at-spi: Unable to allocate D-Bus slot");
 
   address = get_accessibility_bus_address_x11 ();
   if (!address)
@@ -1446,24 +1478,32 @@ atspi_get_a11y_bus (void)
     return NULL;
 
   dbus_error_init (&error);
-  bus = dbus_connection_open (address, &error);
+  a11y_bus = dbus_connection_open_private (address, &error);
   g_free (address);
 
-  if (!bus)
+  if (!a11y_bus)
     {
       g_warning ("Couldn't connect to accessibility bus: %s", error.message);
+      dbus_error_free (&error);
       return NULL;
     }
   else
     {
-      if (!dbus_bus_register (bus, &error))
+      if (!dbus_bus_register (a11y_bus, &error))
 	{
 	  g_warning ("Couldn't register with accessibility bus: %s", error.message);
+          dbus_error_free (&error);
+          dbus_connection_close (a11y_bus);
+          dbus_connection_unref (a11y_bus);
+          a11y_bus = NULL;
 	  return NULL;
 	}
     }
   
-  return bus;
+  /* Simulate a weak ref on the bus */
+  dbus_connection_set_data (a11y_bus, a11y_dbus_slot, a11y_bus, a11y_bus_free);
+
+  return a11y_bus;
 }
 
 /**

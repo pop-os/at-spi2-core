@@ -1,3 +1,29 @@
+What's new in at-spi2-core 2.5.92:
+
+* Fix some annotations.
+
+* Exit, rather than crash, when unable to open an X display (BGO#660407).
+
+* Fix various memory leaks (BGO#684033).
+
+What's new in at-spi2-core 2.5.91:
+
+* Fix build with -fno-common.
+
+* Add glib-2.0 to requires in at-spi2.pc (BGO#682595)
+
+What's new in at-spi2-core 2.5.5:
+
+* Add atspi_action_get_localized_name (BGO#680598).
+
+* Allow building from out of source directory (BGO#680281)
+
+What's new in at-spi2-core 2.5.4:
+
+* Fix a missing return value.
+
+* Fix a crash when unable to remove a match rule.
+
 What's new in at-spi2-core 2.5.3:
 
 * Fix a memory leak (BGO#678738)
