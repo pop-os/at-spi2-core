@@ -70,6 +70,13 @@ License: LGPL-2+
  On Debian systems the full text of the GNU Library General Public License can
  be found in the `/usr/share/common-licenses/LGPL-2' file.
 
+Files: atspi/atspi-constants.h
+Copyright: Copyright 2010, 2011 Novell, Inc.
+           Copyright (c) 2012 SUSE LINUX Products GmbH, Nuernberg, Germany.
+License: LGPL-2+
+ On Debian systems the full text of the GNU Library General Public License can
+ be found in the `/usr/share/common-licenses/LGPL-2' file.
+
 Files: atspi/atspi-collection.c
 Copyright: Copyright: 2007 IBM Corp
 License: LGPL-2+
