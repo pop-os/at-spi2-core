@@ -1,5 +1,11 @@
 at-spi2-core (2.6.0-1) UNRELEASED; urgency=low
 
+  * at-spi2-core.docs: Add NEWS.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 30 Sep 2012 18:17:21 +0200
+
+at-spi2-core (2.6.0-0ubuntu1) quantal; urgency=low
+
   * New upstream release
     - Fix some annotations.
     - Exit, rather than crash, when unable to open an X display (BGO#660407).
