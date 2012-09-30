@@ -2,6 +2,7 @@ at-spi2-core (2.6.0-1) UNRELEASED; urgency=low
 
   * at-spi2-core.docs: Add NEWS.
   * copyright: update.
+  * patches/pl: Remove upstream patch.
 
  -- Samuel Thibault <sthibault@debian.org>  Sun, 30 Sep 2012 18:17:21 +0200
 
