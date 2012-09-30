@@ -1,8 +1,7 @@
 Source: at-spi2-core
 Section: misc
 Priority: optional
-Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
-XSBC-Original-Maintainer: Debian Accessibility Team <debian-accessibility@lists.debian.org>
+Maintainer: Debian Accessibility Team <debian-accessibility@lists.debian.org>
 Uploaders: Samuel Thibault <sthibault@debian.org>, Jordi Mallach <jordi@debian.org>
 Vcs-Browser: http://git.debian.org/?p=pkg-a11y/at-spi2-core.git;a=summary
 Vcs-Git: git://git.debian.org/git/pkg-a11y/at-spi2-core.git
