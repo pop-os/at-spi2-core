@@ -26,21 +26,17 @@
 /* TODO: Improve documentation and implement some missing functions */
 
 /**
- * atspi_collection_is_ancester_of:
- *
- * @collection: The #AtspiCollection to test against.
- * @test: The #AtspiAccessible to test.
- *
- * Returns: TRUE if @collection is an ancestor of @test; FALSE otherwise.
+ * atspi_collection_is_ancestor_of:
  *
  * Not yet implemented.
+ *
  **/
 gboolean
 atspi_collection_is_ancestor_of (AtspiCollection *collection,
                                  AtspiAccessible *test,
                                  GError **error)
 {
-  g_warning ("Atspi: TODO: Implement is_ancester_of");
+  g_warning ("Atspi: TODO: Implement is_ancestor_of");
   return FALSE;
 }
 
@@ -53,6 +49,8 @@ new_message (AtspiCollection *collection, char *method)
     return NULL;
 
   accessible = ATSPI_ACCESSIBLE (collection);
+  if (!accessible->parent.app)
+    return NULL;
   return dbus_message_new_method_call (accessible->parent.app->bus_name,
                                        accessible->parent.path,
                                        atspi_interface_collection,
@@ -107,15 +105,22 @@ return_accessibles (DBusMessage *message)
 /**
  * atspi_collection_get_matches:
  *
- * @collection: The #AtspiCollection.
- * @rule: A #AtspiMatchRule describing the match criteria.
+ * @collection: A pointer to the #AtspiCollection to query.
+ *
+ * @rule: An #AtspiMatchRule describing the match criteria.
+ *
  * @sortby: An #AtspiCollectionSortOrder specifying the way the results are to
  *          be sorted.
- * @count: The maximum number of results to return, or 0 for no limit.
- * @traverse: TODO
  *
- * Returns: (element-type AtspiAccessible*) (transfer full): A #GArray of
- *          #AtspiAccessibles matching the given match rule.
+ * @count: The maximum number of results to return, or 0 for no limit.
+ *
+ * @traverse: Not supported.
+ *
+ * Gets all #AtspiAccessible objects from the @collection matching a given
+ * @rule.  
+ *
+ * Returns: (element-type AtspiAccessible*) (transfer full): All 
+ *          #AtspiAccessible objects matching the given match rule.
  **/
 GArray *
 atspi_collection_get_matches (AtspiCollection *collection,
@@ -149,19 +154,31 @@ atspi_collection_get_matches (AtspiCollection *collection,
 /**
  * atspi_collection_get_matches_to:
  *
- * @collection: The #AtspiCollection.
+ * @collection: A pointer to the #AtspiCollection to query.
+ *
  * @current_object: The object at which to start searching.
- * @rule: A #AtspiMatchRule describing the match criteria.
+ *
+ * @rule: An #AtspiMatchRule describing the match criteria.
+ *
  * @sortby: An #AtspiCollectionSortOrder specifying the way the results are to
  *          be sorted.
+ *
  * @tree: An #AtspiCollectionTreeTraversalType specifying restrictions on
  *        the objects to be traversed.
- * @recurse: TODO
- * @count: The maximum number of results to return, or 0 for no limit.
- * @traverse: TODO
  *
- * Returns: (element-type AtspiAccessible*) (transfer full): A #GArray of
- *          #AtspiAccessibles matching the given match rule after
+ * @limit_scope: If #TRUE, only descendants of @current_object's parent
+ * will be returned. Otherwise (if #FALSE), any accessible may be returned
+ * if it would preceed @current_object in a flattened hierarchy.
+ *
+ * @count: The maximum number of results to return, or 0 for no limit.
+ *
+ * @traverse: Not supported.
+ *
+ * Gets all #AtspiAccessible objects from the @collection, after 
+ * @current_object, matching a given @rule.  
+ *
+ * Returns: (element-type AtspiAccessible*) (transfer full): All
+ *          #AtspiAccessible objects matching the given match rule after
  *          @current_object.
  **/
 GArray *
@@ -170,7 +187,7 @@ atspi_collection_get_matches_to (AtspiCollection *collection,
                               AtspiMatchRule *rule,
                               AtspiCollectionSortOrder sortby,
                               AtspiCollectionTreeTraversalType tree,
-                              gboolean recurse,
+                              gboolean limit_scope,
                               gint count,
                               gboolean traverse,
                               GError **error)
@@ -179,7 +196,7 @@ atspi_collection_get_matches_to (AtspiCollection *collection,
   DBusMessage *reply;
   dbus_int32_t d_sortby = sortby;
   dbus_int32_t d_tree = tree;
-  dbus_bool_t d_recurse = recurse;
+  dbus_bool_t d_limit_scope = limit_scope;
   dbus_int32_t d_count = count;
   dbus_bool_t d_traverse = traverse;
 
@@ -192,7 +209,7 @@ atspi_collection_get_matches_to (AtspiCollection *collection,
     return NULL;
   dbus_message_append_args (message, DBUS_TYPE_UINT32, &d_sortby,
                                      DBUS_TYPE_UINT32, &d_tree,
-                            DBUS_TYPE_BOOLEAN, &d_recurse,
+                            DBUS_TYPE_BOOLEAN, &d_limit_scope,
                             DBUS_TYPE_INT32, &d_count,
                             DBUS_TYPE_BOOLEAN, &d_traverse,
                             DBUS_TYPE_INVALID);
@@ -205,18 +222,27 @@ atspi_collection_get_matches_to (AtspiCollection *collection,
 /**
  * atspi_collection_get_matches_from:
  *
- * @collection: The #AtspiCollection.
+ * @collection: A pointer to the #AtspiCollection to query.
+ *
  * @current_object: Upon reaching this object, searching should stop.
- * @rule: A #AtspiMatchRule describing the match criteria.
+ *
+ * @rule: An #AtspiMatchRule describing the match criteria.
+ *
  * @sortby: An #AtspiCollectionSortOrder specifying the way the results are to
  *          be sorted.
+ *
  * @tree: An #AtspiCollectionTreeTraversalType specifying restrictions on
  *        the objects to be traversed.
- * @count: The maximum number of results to return, or 0 for no limit.
- * @traverse: TODO
  *
- * Returns: (element-type AtspiAccessible*) (transfer full): A #GArray of
- *          #AtspiAccessibles matching the given match rule that preceed
+ * @count: The maximum number of results to return, or 0 for no limit.
+ *
+ * @traverse: Not supported.
+ *
+ * Gets all #AtspiAccessible objects from the @collection, before  
+ * @current_object, matching a given @rule.  
+ *
+ * Returns: (element-type AtspiAccessible*) (transfer full): All 
+ *          #AtspiAccessible objects matching the given match rule that preceed
  *          @current_object.
  **/
 GArray *
@@ -256,10 +282,6 @@ atspi_collection_get_matches_from (AtspiCollection *collection,
 
 /**
  * atspi_collection_get_active_descendant:
- * 
- * @collection: The #AtspiCollection to query.
- *
- * Returns: (transfer full): The active descendant of #collection.
  *
  * Not yet implemented.
  **/

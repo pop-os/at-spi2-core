@@ -25,7 +25,7 @@
 
 #include "config.h"
 #include "dbind/dbind.h"
-#include "atspi/atspi.h"
+#include "atspi/atspi-gmain.h"
 
 static int dbind_timeout = -1;
 
@@ -63,34 +63,47 @@ DBusMessage *
 dbind_send_and_allow_reentry (DBusConnection * bus, DBusMessage * message, DBusError *error)
 {
   DBusPendingCall *pending;
-  SpiReentrantCallClosure closure;
+  SpiReentrantCallClosure *closure;
   const char *unique_name = dbus_bus_get_unique_name (bus);
   const char *destination = dbus_message_get_destination (message);
   struct timeval tv;
+  DBusMessage *ret;
 
   if (unique_name && destination &&
       strcmp (destination, unique_name) != 0)
     return dbus_connection_send_with_reply_and_block (bus, message, dbind_timeout, error);
 
-  closure.reply = NULL;
+  closure = g_new0 (SpiReentrantCallClosure, 1);
+  closure->reply = NULL;
   atspi_dbus_connection_setup_with_g_main(bus, NULL);
   if (!dbus_connection_send_with_reply (bus, message, &pending, dbind_timeout))
       return NULL;
   if (!pending)
     return NULL;
-  dbus_pending_call_set_notify (pending, set_reply, (void *) &closure, NULL);
+  dbus_pending_call_set_notify (pending, set_reply, (void *) closure, g_free);
 
-  closure.reply = NULL;
+  closure->reply = NULL;
   gettimeofday (&tv, NULL);
-  while (!closure.reply)
+  dbus_pending_call_ref (pending);
+  while (!closure->reply)
     {
       if (!dbus_connection_read_write_dispatch (bus, dbind_timeout))
-        return NULL;
-if (time_elapsed (&tv) > dbind_timeout)
-        return NULL;
+        {
+          dbus_pending_call_unref (pending);
+          return NULL;
+        }
+      if (time_elapsed (&tv) > dbind_timeout)
+        {
+          dbus_pending_call_unref (pending);
+          dbus_set_error_const (error, "org.freedesktop.DBus.Error.NoReply",
+                                "timeout from dbind");
+          return NULL;
+        }
     }
   
-  return closure.reply;
+  ret = closure->reply;
+  dbus_pending_call_unref (pending);
+  return ret;
 }
 
 dbus_bool_t
@@ -140,6 +153,17 @@ dbind_method_call_reentrant_va (DBusConnection *cnx,
     {
         DBusMessageIter iter;
         dbus_message_iter_init (reply, &iter);
+	if (strcmp (p + 2, dbus_message_get_signature (reply)) != 0)
+	{
+	    g_warning ("dbind: Call to \"%s\" returned signature %s; expected %s",
+		       method, dbus_message_get_signature (reply), p + 2);
+	    if (opt_error)
+	        dbus_set_error (opt_error, DBUS_ERROR_INVALID_ARGS,
+		                "Call to \"%s\" returned signature %s; expected %s",
+		                method, dbus_message_get_signature (reply),
+                                p + 2);
+	    goto out;
+	}
         p = arg_types;
         dbind_any_demarshal_va (&iter, &p, args_demarshal);
     }

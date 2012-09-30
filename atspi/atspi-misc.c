@@ -38,6 +38,11 @@ static void handle_get_items (DBusPendingCall *pending, void *user_data);
 
 static DBusConnection *bus = NULL;
 static GHashTable *live_refs = NULL;
+static gint method_call_timeout = 800;
+static gint app_startup_time = 15000;
+
+GMainLoop *atspi_main_loop;
+gboolean atspi_no_cache;
 
 const char *atspi_path_dec = ATSPI_DBUS_PATH_DEC;
 const char *atspi_path_registry = ATSPI_DBUS_PATH_REGISTRY;
@@ -199,6 +204,7 @@ get_application (const char *bus_name)
   if (!app) return NULL;
   app->hash = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_object_unref);
   app->bus = dbus_connection_ref (_atspi_bus ());
+  gettimeofday (&app->time_added, NULL);
   app->cache = ATSPI_CACHE_UNDEFINED;
   g_hash_table_insert (app_hash, bus_name_dup, app);
   dbus_error_init (&error);
@@ -226,7 +232,7 @@ ref_accessible (const char *app_name, const char *path)
   {
     if (!app->root)
     {
-      app->root = atspi_accessible_new (app, atspi_path_root);
+      app->root = _atspi_accessible_new (app, atspi_path_root);
       app->root->accessible_parent = atspi_get_desktop (0);
     }
     return g_object_ref (app->root);
@@ -237,7 +243,7 @@ ref_accessible (const char *app_name, const char *path)
   {
     return g_object_ref (a);
   }
-  a = atspi_accessible_new (app, path);
+  a = _atspi_accessible_new (app, path);
   if (!a)
     return NULL;
   g_hash_table_insert (app->hash, g_strdup (a->parent.path), a);
@@ -259,9 +265,7 @@ ref_hyperlink (const char *app_name, const char *path)
   {
     return g_object_ref (hyperlink);
   }
-  hyperlink = atspi_hyperlink_new (app, path);
-  if (!hyperlink)
-    return NULL;
+  hyperlink = _atspi_hyperlink_new (app, path);
   g_hash_table_insert (app->hash, g_strdup (hyperlink->parent.path), hyperlink);
   /* TODO: This should be a weak ref */
   g_object_ref (hyperlink);	/* for the hash */
@@ -397,7 +401,6 @@ get_reference_from_iter (DBusMessageIter *iter, const char **app_name, const cha
 static void
 add_accessible_from_iter (DBusMessageIter *iter)
 {
-  GList *new_list;
   DBusMessageIter iter_struct, iter_array;
   const char *app_name, *path;
   AtspiAccessible *accessible;
@@ -433,8 +436,7 @@ add_accessible_from_iter (DBusMessageIter *iter)
     AtspiAccessible *child;
     get_reference_from_iter (&iter_array, &app_name, &path);
     child = ref_accessible (app_name, path);
-    new_list = g_list_append (accessible->children, child);
-    if (new_list) accessible->children = new_list;
+    accessible->children = g_list_append (accessible->children, child);
   }
 
   /* interfaces */
@@ -518,7 +520,7 @@ ref_accessible_desktop (AtspiApplication *app)
     g_object_ref (desktop);
     return desktop;
   }
-  desktop = atspi_accessible_new (app, atspi_path_root);
+  desktop = _atspi_accessible_new (app, atspi_path_root);
   if (!desktop)
   {
     return NULL;
@@ -609,8 +611,12 @@ _atspi_dbus_return_hyperlink_from_message (DBusMessage *message)
 {
   DBusMessageIter iter;
   AtspiHyperlink *retval = NULL;
-  const char *signature = dbus_message_get_signature (message);
+  const char *signature;
    
+  if (!message)
+    return NULL;
+
+  signature = dbus_message_get_signature (message);
   if (!strcmp (signature, "(so)"))
   {
     dbus_message_iter_init (message, &iter);
@@ -671,11 +677,11 @@ process_deferred_message (BusDataClosure *closure)
   if (type == DBUS_MESSAGE_TYPE_SIGNAL &&
       !strncmp (interface, "org.a11y.atspi.Event.", 21))
   {
-    atspi_dbus_handle_event (closure->bus, closure->message, closure->data);
+    _atspi_dbus_handle_event (closure->bus, closure->message, closure->data);
   }
   if (dbus_message_is_method_call (closure->message, atspi_interface_device_event_listener, "NotifyEvent"))
   {
-    atspi_dbus_handle_DeviceEvent (closure->bus,
+    _atspi_dbus_handle_DeviceEvent (closure->bus,
                                    closure->message, closure->data);
   }
   if (dbus_message_is_signal (closure->message, atspi_interface_cache, "AddAccessible"))
@@ -688,21 +694,20 @@ process_deferred_message (BusDataClosure *closure)
   }
 }
 
-static GList *deferred_messages = NULL;
+static GQueue *deferred_messages = NULL;
 
 gboolean
 _atspi_process_deferred_messages (gpointer data)
 {
   static int in_process_deferred_messages = 0;
+  BusDataClosure *closure;
 
   if (in_process_deferred_messages)
     return TRUE;
   in_process_deferred_messages = 1;
-  while (deferred_messages != NULL)
+  while (closure = g_queue_pop_head (deferred_messages))
   {
-    BusDataClosure *closure = deferred_messages->data;
     process_deferred_message (closure);
-    deferred_messages = g_list_remove (deferred_messages, closure);
     dbus_message_unref (closure->message);
     dbus_connection_unref (closure->bus);
     g_free (closure);
@@ -718,15 +723,12 @@ static DBusHandlerResult
 defer_message (DBusConnection *connection, DBusMessage *message, void *user_data)
 {
   BusDataClosure *closure = g_new (BusDataClosure, 1);
-  GList *new_list;
 
   closure->bus = dbus_connection_ref (bus);
   closure->message = dbus_message_ref (message);
   closure->data = user_data;
 
-  new_list = g_list_append (deferred_messages, closure);
-  if (new_list)
-    deferred_messages = new_list;
+  g_queue_push_tail (deferred_messages, closure);
 
   if (process_deferred_messages_id == -1)
     process_deferred_messages_id = g_idle_add (_atspi_process_deferred_messages, NULL);
@@ -820,6 +822,7 @@ atspi_init (void)
 {
   DBusError error;
   char *match;
+  const gchar *no_cache;
 
   if (atspi_inited)
     {
@@ -839,7 +842,6 @@ atspi_init (void)
   dbus_bus_register (bus, &error);
   atspi_dbus_connection_setup_with_g_main(bus, g_main_context_default());
   dbus_connection_add_filter (bus, atspi_dbus_filter, NULL, NULL);
-  dbind_set_timeout (1000);
   match = g_strdup_printf ("type='signal',interface='%s',member='AddAccessible'", atspi_interface_cache);
   dbus_error_init (&error);
   dbus_bus_add_match (bus, match, &error);
@@ -856,46 +858,52 @@ atspi_init (void)
   match = g_strdup_printf ("type='signal',interface='%s',member='StateChanged'", atspi_interface_event_object);
   dbus_bus_add_match (bus, match, &error);
   g_free (match);
+
+  no_cache = g_getenv ("ATSPI_NO_CACHE");
+  if (no_cache && g_strcmp0 (no_cache, "0") != 0)
+    atspi_no_cache = TRUE;
+
+  deferred_messages = g_queue_new ();
+
   return 0;
 }
-
-  static GMainLoop *mainloop;
 
 /**
  * atspi_event_main:
  *
  * Starts/enters the main event loop for the AT-SPI services.
  *
- * (NOTE: This method does not return control, it is exited via a call to
- *  atspi_event_quit () from within an event handler).
+ * NOTE: This method does not return control; it is exited via a call to
+ * #atspi_event_quit from within an event handler.
  *
  **/
 void
 atspi_event_main (void)
 {
-  mainloop = g_main_loop_new (NULL, FALSE);
-  g_main_loop_run (mainloop);
+  atspi_main_loop = g_main_loop_new (NULL, FALSE);
+  g_main_loop_run (atspi_main_loop);
+  atspi_main_loop = NULL;
 }
 
 /**
  * atspi_event_quit:
  *
- * Quits the last main event loop for the SPI services,
- * see atspi_event_main
+ * Quits the last main event loop for the AT-SPI services,
+ * See: #atspi_event_main
  **/
 void
 atspi_event_quit (void)
 {
-  g_main_loop_quit (mainloop);
+  g_main_loop_quit (atspi_main_loop);
 }
 
 /**
  * atspi_exit:
  *
- * Disconnects from the Accessibility Registry and releases 
+ * Disconnects from #AtspiRegistry instances and releases 
  * any floating resources. Call only once at exit.
  *
- * Returns: 0 if there were no leaks, otherwise non zero.
+ * Returns: 0 if there were no leaks, otherwise other integer values.
  **/
 int
 atspi_exit (void)
@@ -923,6 +931,93 @@ atspi_exit (void)
   return leaked;
 }
 
+static GSList *hung_processes;
+
+static void
+remove_hung_process (DBusPendingCall *pending, void *data)
+{
+  gchar *bus_name = data;
+
+  hung_processes = g_slist_remove (hung_processes, data);
+  g_free (data);
+  dbus_pending_call_unref (pending);
+}
+
+static void
+check_for_hang (DBusMessage *message, DBusError *error, DBusConnection *bus, const char *bus_name)
+{
+  if (!message && error->name &&
+      !strcmp (error->name, "org.freedesktop.DBus.Error.NoReply"))
+  {
+    GSList *l;
+    DBusMessage *message;
+    gchar *bus_name_dup;
+    DBusPendingCall *pending = NULL;
+    for (l = hung_processes; l; l = l->next)
+      if (!strcmp (l->data, bus_name))
+        return;
+    message = dbus_message_new_method_call (bus_name, "/",
+                                            "org.freedesktop.DBus.Peer",
+                                            "Ping");
+    if (!message)
+      return;
+    dbus_connection_send_with_reply (bus, message, &pending, -1);
+    dbus_message_unref (message);
+    if (!pending)
+      return;
+    bus_name_dup = g_strdup (bus_name);
+    hung_processes = g_slist_append (hung_processes, bus_name_dup);
+    dbus_pending_call_set_notify (pending, remove_hung_process, bus_name_dup, NULL);
+  }
+}
+
+static gboolean
+connection_is_hung (const char *bus_name)
+{
+  GSList *l;
+
+  for (l = hung_processes; l; l = l->next)
+    if (!strcmp (l->data, bus_name))
+      return TRUE;
+  return FALSE;
+}
+
+static gboolean
+check_app (AtspiApplication *app, GError **error)
+{
+  if (!app || !app->bus)
+  {
+    g_set_error_literal (error, ATSPI_ERROR, ATSPI_ERROR_APPLICATION_GONE,
+                          _("The application no longer exists"));
+    return FALSE;
+  }
+
+  if (atspi_main_loop && connection_is_hung (app->bus_name))
+  {
+      g_set_error_literal (error, ATSPI_ERROR, ATSPI_ERROR_IPC,
+                           "The process appears to be hung.");
+    return FALSE;
+  }
+
+  return TRUE;
+}
+
+static void
+set_timeout (AtspiApplication *app)
+{
+  struct timeval tv;
+  int diff;
+
+  if (app && app_startup_time > 0)
+  {
+    gettimeofday (&tv, NULL);
+    diff = (tv.tv_sec - app->time_added.tv_sec) * 1000 + (tv.tv_usec - app->time_added.tv_usec) / 1000;
+    dbind_set_timeout (MAX(method_call_timeout, app_startup_time - diff));
+  }
+  else
+    dbind_set_timeout (method_call_timeout);
+}
+
 dbus_bool_t
 _atspi_dbus_call (gpointer obj, const char *interface, const char *method, GError **error, const char *type, ...)
 {
@@ -931,23 +1026,21 @@ _atspi_dbus_call (gpointer obj, const char *interface, const char *method, GErro
   DBusError err;
   AtspiObject *aobj = ATSPI_OBJECT (obj);
 
-  if (!aobj->app || !aobj->app->bus)
-  {
-    g_set_error_literal (error, ATSPI_ERROR, ATSPI_ERROR_APPLICATION_GONE,
-                          _("The application no longer exists"));
+  if (!check_app (aobj->app, error))
     return FALSE;
-  }
 
   va_start (args, type);
   dbus_error_init (&err);
+  set_timeout (aobj->app);
   retval = dbind_method_call_reentrant_va (aobj->app->bus, aobj->app->bus_name,
                                            aobj->path, interface, method, &err,
                                            type, args);
   va_end (args);
+  check_for_hang (NULL, &err, aobj->app->bus, aobj->app->bus_name);
   _atspi_process_deferred_messages ((gpointer)TRUE);
   if (dbus_error_is_set (&err))
   {
-    /* TODO: Set gerror */
+    g_set_error(error, ATSPI_ERROR, ATSPI_ERROR_IPC, "%s", err.message);
     dbus_error_free (&err);
   }
   return retval;
@@ -966,6 +1059,7 @@ _atspi_dbus_call_partial (gpointer obj,
   return _atspi_dbus_call_partial_va (obj, interface, method, error, type, args);
 }
 
+
 DBusMessage *
 _atspi_dbus_call_partial_va (gpointer obj,
                           const char *interface,
@@ -982,22 +1076,20 @@ _atspi_dbus_call_partial_va (gpointer obj,
 
   dbus_error_init (&err);
 
-  if (!aobj->app || !aobj->app->bus)
-  {
-    g_set_error_literal (error, ATSPI_ERROR, ATSPI_ERROR_APPLICATION_GONE,
-                          _("The application no longer exists"));
+  if (!check_app (aobj->app, error))
     goto out;
-  }
 
-    msg = dbus_message_new_method_call (aobj->app->bus_name, aobj->path, interface, method);
-    if (!msg)
-        goto out;
+  msg = dbus_message_new_method_call (aobj->app->bus_name, aobj->path, interface, method);
+  if (!msg)
+    goto out;
 
-    p = type;
-    dbus_message_iter_init_append (msg, &iter);
-    dbind_any_marshal_va (&iter, &p, args);
+  p = type;
+  dbus_message_iter_init_append (msg, &iter);
+  dbind_any_marshal_va (&iter, &p, args);
 
-    reply = dbind_send_and_allow_reentry (aobj->app->bus, msg, &err);
+  set_timeout (aobj->app);
+  reply = dbind_send_and_allow_reentry (aobj->app->bus, msg, &err);
+  check_for_hang (reply, &err, aobj->app->bus, aobj->app->bus_name);
 out:
   va_end (args);
   if (msg)
@@ -1019,16 +1111,13 @@ _atspi_dbus_get_property (gpointer obj, const char *interface, const char *name,
   DBusError err;
   dbus_bool_t retval = FALSE;
   AtspiObject *aobj = ATSPI_OBJECT (obj);
+  char expected_type = (type [0] == '(' ? 'r' : type [0]);
 
   if (!aobj)
     return FALSE;
 
-  if (!aobj->app || !aobj->app->bus)
-  {
-    g_set_error_literal (error, ATSPI_ERROR, ATSPI_ERROR_APPLICATION_GONE,
-                          _("The application no longer exists"));
+  if (!check_app (aobj->app, error))
     return FALSE;
-  }
 
   message = dbus_message_new_method_call (aobj->app->bus_name,
                                           aobj->path,
@@ -1041,7 +1130,9 @@ _atspi_dbus_get_property (gpointer obj, const char *interface, const char *name,
   }
   dbus_message_append_args (message, DBUS_TYPE_STRING, &interface, DBUS_TYPE_STRING, &name, DBUS_TYPE_INVALID);
   dbus_error_init (&err);
+  set_timeout (aobj->app);
   reply = dbind_send_and_allow_reentry (aobj->app->bus, message, &err);
+  check_for_hang (reply, &err, aobj->app->bus, aobj->app->bus_name);
   dbus_message_unref (message);
   _atspi_process_deferred_messages ((gpointer)TRUE);
   if (!reply)
@@ -1052,8 +1143,8 @@ _atspi_dbus_get_property (gpointer obj, const char *interface, const char *name,
 
   if (dbus_message_get_type (reply) == DBUS_MESSAGE_TYPE_ERROR)
   {
-    const char *err;
-    dbus_message_get_args (message, NULL, DBUS_TYPE_STRING, &err, DBUS_TYPE_INVALID);
+    const char *err = NULL;
+    dbus_message_get_args (reply, NULL, DBUS_TYPE_STRING, &err, DBUS_TYPE_INVALID);
     if (err)
       g_set_error_literal (error, ATSPI_ERROR, ATSPI_ERROR_IPC, err);
     goto done;
@@ -1066,7 +1157,7 @@ _atspi_dbus_get_property (gpointer obj, const char *interface, const char *name,
     goto done;
   }
   dbus_message_iter_recurse (&iter, &iter_variant);
-  if (dbus_message_iter_get_arg_type (&iter_variant) != type[0])
+  if (dbus_message_iter_get_arg_type (&iter_variant) != expected_type)
   {
     g_warning ("atspi_dbus_get_property: Wrong type: expected %s, got %c\n", type, dbus_message_iter_get_arg_type (&iter_variant));
     goto done;
@@ -1083,6 +1174,7 @@ _atspi_dbus_get_property (gpointer obj, const char *interface, const char *name,
   }
   retval = TRUE;
 done:
+  dbus_error_free (&err);
   if (reply)
     dbus_message_unref (reply);
   return retval;
@@ -1103,6 +1195,7 @@ _atspi_dbus_send_with_reply_and_block (DBusMessage *message, GError **error)
 
   bus = (app ? app->bus : _atspi_bus());
   dbus_error_init (&err);
+  set_timeout (app);
   reply = dbind_send_and_allow_reentry (bus, message, &err);
   _atspi_process_deferred_messages ((gpointer)TRUE);
   dbus_message_unref (message);
@@ -1135,7 +1228,9 @@ _atspi_dbus_return_hash_from_message (DBusMessage *message)
 GHashTable *
 _atspi_dbus_hash_from_iter (DBusMessageIter *iter)
 {
-  GHashTable *hash = g_hash_table_new (g_str_hash, g_str_equal);
+  GHashTable *hash = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                            (GDestroyNotify) g_free,
+                                            (GDestroyNotify) g_free);
   DBusMessageIter iter_array, iter_dict;
 
   dbus_message_iter_recurse (iter, &iter_array);
@@ -1181,15 +1276,12 @@ _atspi_dbus_attribute_array_from_iter (DBusMessageIter *iter)
   {
     const char *name, *value;
     gchar *str;
-    GArray *new_array;
     dbus_message_iter_recurse (&iter_array, &iter_dict);
     dbus_message_iter_get_basic (&iter_dict, &name);
     dbus_message_iter_next (&iter_dict);
     dbus_message_iter_get_basic (&iter_dict, &value);
     str = g_strdup_printf ("%s:%s", name, value);
-    new_array = g_array_append_val (array, str);
-    if (new_array)
-      array = new_array;
+    array = g_array_append_val (array, str);
     dbus_message_iter_next (&iter_array);;
   }
   return array;
@@ -1248,7 +1340,7 @@ _atspi_dbus_set_state (AtspiAccessible *accessible, DBusMessageIter *iter)
 }
 
 GQuark
-atspi_error_quark (void)
+_atspi_error_quark (void)
 {
   return g_quark_from_static_string ("atspi_error");
 }
@@ -1263,7 +1355,8 @@ get_accessibility_bus_address_x11 (void)
   Atom actual_type;
   Display *bridge_display;
   int actual_format;
-  unsigned char *data = NULL;
+  char *data;
+  unsigned char *data_x11 = NULL;
   unsigned long nitems;
   unsigned long leftover;
 
@@ -1280,10 +1373,12 @@ get_accessibility_bus_address_x11 (void)
 		      AT_SPI_BUS, 0L,
 		      (long) BUFSIZ, False,
 		      (Atom) 31, &actual_type, &actual_format,
-		      &nitems, &leftover, &data);
+		      &nitems, &leftover, &data_x11);
   XCloseDisplay (bridge_display);
 
-  return g_strdup (data);
+  data = g_strdup (data_x11);
+  XFree (data_x11);
+  return data;
 }
 
 static char *
@@ -1315,7 +1410,7 @@ get_accessibility_bus_address_dbus (void)
   {
     g_warning ("Error retrieving accessibility bus address: %s: %s",
                error.name, error.message);
-    dbus_error_init (&error);
+    dbus_error_free (&error);
     return NULL;
   }
   
@@ -1369,4 +1464,33 @@ atspi_get_a11y_bus (void)
     }
   
   return bus;
+}
+
+/**
+ *  Set the timeout used for method calls. If this is not set explicitly,
+ *  a default of 0.8 ms is used.
+ *  Note that at-spi2-registryd currently uses a timeout of 3 seconds when
+ *  sending a keyboard event notification. This means that, if an AT makes
+ *  a call in response to the keyboard notification and the application
+ *  being called does not respond before the timeout is reached,
+ *  at-spi2-registryd will time out on the keyboard event notification and
+ *  pass the key onto the application (ie, reply to indicate that the key
+ *  was not consumed), so this may make it undesirable to set a timeout
+ *  larger than 3 seconds.
+ *
+ *  @val: The timeout value, in milliseconds, or -1 to disable the timeout.
+ *  @startup_time: The amount of time, in milliseconds, to allow to pass
+ *  before enforcing timeouts on an application. Can be used to prevent
+ *  timeout exceptions if an application is likely to block for an extended
+ *  period of time on initialization. -1 can be passed to disable this
+ *  behavior.
+ *
+ * By default, the normal timeout is set to 800 ms, and the application startup
+ * timeout is set to 15 seconds.
+ */
+void
+atspi_set_timeout (gint val, gint startup_time)
+{
+  method_call_timeout = val;
+  app_startup_time = startup_time;
 }

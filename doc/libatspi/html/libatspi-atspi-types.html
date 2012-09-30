@@ -5,10 +5,10 @@
 <title>atspi-types</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="libatspi Reference Manual">
-<link rel="up" href="ch01.html" title="[Insert title here]">
+<link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-atspi-registry.html" title="atspi-registry">
 <link rel="next" href="libatspi-atspi-constants.html" title="atspi-constants">
-<meta name="generator" content="GTK-Doc V1.15 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -32,18 +32,18 @@
                   <a href="#libatspi-atspi-types.implementations" class="shortcut">Known Implementations</a>
 </td></tr>
 </table>
-<div class="refentry" title="atspi-types">
+<div class="refentry">
 <a name="libatspi-atspi-types"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2><span class="refentrytitle"><a name="libatspi-atspi-types.top_of_page"></a>atspi-types</span></h2>
-<p>atspi-types</p>
+<p>atspi-types — Type definitions needed by multiple interfaces.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsynopsisdiv" title="Synopsis">
+<div class="refsynopsisdiv">
 <a name="libatspi-atspi-types.synopsis"></a><h2>Synopsis</h2>
-<a name="AtspiAccessible"></a><a name="AtspiAction"></a><a name="AtspiCollection"></a><a name="AtspiComponent"></a><a name="AtspiDocument"></a><a name="AtspiEditableText"></a><a name="AtspiHyperlink"></a><a name="AtspiHypertext"></a><a name="AtspiImage"></a><a name="AtspiSelection"></a><a name="AtspiTable"></a><a name="AtspiText"></a><a name="AtspiValue"></a><pre class="synopsis">                    <a class="link" href="AtspiAccessible.html#AtspiAccessible-struct" title="AtspiAccessible">AtspiAccessible</a>;
+<a name="AtspiAccessible"></a><a name="AtspiAction"></a><a name="AtspiCollection"></a><a name="AtspiComponent"></a><a name="AtspiDocument"></a><a name="AtspiEditableText"></a><a name="AtspiHyperlink"></a><a name="AtspiHypertext"></a><a name="AtspiImage"></a><a name="AtspiSelection"></a><a name="AtspiTable"></a><a name="AtspiText"></a><a name="AtspiValue"></a><a name="AtspiKeyDefinition"></a><a name="AtspiEvent"></a><pre class="synopsis">                    <a class="link" href="AtspiAccessible.html#AtspiAccessible-struct" title="AtspiAccessible">AtspiAccessible</a>;
                     <a class="link" href="libatspi-atspi-types.html#AtspiAction-struct" title="AtspiAction">AtspiAction</a>;
                     <a class="link" href="libatspi-atspi-collection.html#AtspiCollection-struct" title="AtspiCollection">AtspiCollection</a>;
                     <a class="link" href="libatspi-atspi-component.html#AtspiComponent-struct" title="AtspiComponent">AtspiComponent</a>;
@@ -60,19 +60,19 @@ typedef             <a class="link" href="libatspi-atspi-types.html#AtspiControl
 typedef             <a class="link" href="libatspi-atspi-types.html#AtspiKeyMaskType" title="AtspiKeyMaskType">AtspiKeyMaskType</a>;
 typedef             <a class="link" href="libatspi-atspi-types.html#AtspiKeyEventMask" title="AtspiKeyEventMask">AtspiKeyEventMask</a>;
 typedef             <a class="link" href="libatspi-atspi-types.html#AtspiDeviceEventMask" title="AtspiDeviceEventMask">AtspiDeviceEventMask</a>;
-                    <a class="link" href="libatspi-atspi-types.html#AtspiDeviceEvent" title="AtspiDeviceEvent">AtspiDeviceEvent</a>;
-                    <a class="link" href="libatspi-atspi-types.html#AtspiEventListenerMode" title="AtspiEventListenerMode">AtspiEventListenerMode</a>;
-                    <a class="link" href="libatspi-atspi-types.html#AtspiKeyDefinition" title="AtspiKeyDefinition">AtspiKeyDefinition</a>;
-                    <a class="link" href="libatspi-atspi-types.html#AtspiEvent" title="AtspiEvent">AtspiEvent</a>;
+struct              <a class="link" href="libatspi-atspi-types.html#AtspiDeviceEvent" title="struct AtspiDeviceEvent">AtspiDeviceEvent</a>;
+struct              <a class="link" href="libatspi-atspi-types.html#AtspiEventListenerMode" title="struct AtspiEventListenerMode">AtspiEventListenerMode</a>;
+struct              <a class="link" href="libatspi-atspi-types.html#AtspiKeyDefinition-struct" title="struct AtspiKeyDefinition">AtspiKeyDefinition</a>;
+struct              <a class="link" href="libatspi-atspi-types.html#AtspiEvent-struct" title="struct AtspiEvent">AtspiEvent</a>;
 #define             <a class="link" href="libatspi-atspi-types.html#ATSPI-TYPE-EVENT:CAPS" title="ATSPI_TYPE_EVENT">ATSPI_TYPE_EVENT</a>
 typedef             <a class="link" href="libatspi-atspi-types.html#AtspiKeystrokeListener" title="AtspiKeystrokeListener">AtspiKeystrokeListener</a>;
 enum                <a class="link" href="libatspi-atspi-types.html#AtspiKeyListenerSyncType" title="enum AtspiKeyListenerSyncType">AtspiKeyListenerSyncType</a>;
 </pre>
 </div>
-<div class="refsect1" title="Object Hierarchy">
+<div class="refsect1">
 <a name="libatspi-atspi-types.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+  GObject
    +----<a class="link" href="AtspiObject.html" title="AtspiObject">AtspiObject</a>
          +----AtspiAccessible
 </pre>
@@ -97,7 +97,7 @@ enum                <a class="link" href="libatspi-atspi-types.html#AtspiKeyList
    +----AtspiEditableText
 </pre>
 <pre class="synopsis">
-  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+  GObject
    +----<a class="link" href="AtspiObject.html" title="AtspiObject">AtspiObject</a>
          +----AtspiHyperlink
 </pre>
@@ -125,14 +125,22 @@ enum                <a class="link" href="libatspi-atspi-types.html#AtspiKeyList
   GInterface
    +----AtspiValue
 </pre>
+<pre class="synopsis">
+  GBoxed
+   +----AtspiKeyDefinition
+</pre>
+<pre class="synopsis">
+  GBoxed
+   +----AtspiEvent
+</pre>
 </div>
-<div class="refsect1" title="Implemented Interfaces">
+<div class="refsect1">
 <a name="libatspi-atspi-types.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 AtspiAccessible implements
  <a class="link" href="libatspi-atspi-types.html#AtspiAction">AtspiAction</a>,  <a class="link" href="libatspi-atspi-collection.html#AtspiCollection">AtspiCollection</a>,  <a class="link" href="libatspi-atspi-component.html#AtspiComponent">AtspiComponent</a>,  <a class="link" href="libatspi-atspi-document.html#AtspiDocument">AtspiDocument</a>,  <a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText">AtspiEditableText</a>,  <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext">AtspiHypertext</a>,  <a class="link" href="libatspi-atspi-image.html#AtspiImage">AtspiImage</a>,  <a class="link" href="libatspi-atspi-selection.html#AtspiSelection">AtspiSelection</a>,  <a class="link" href="libatspi-atspi-table.html#AtspiTable">AtspiTable</a>,  <a class="link" href="libatspi-atspi-text.html#AtspiText">AtspiText</a> and  <a class="link" href="libatspi-atspi-value.html#AtspiValue">AtspiValue</a>.</p>
 </div>
-<div class="refsect1" title="Known Implementations">
+<div class="refsect1">
 <a name="libatspi-atspi-types.implementations"></a><h2>Known Implementations</h2>
 <p>
 AtspiAction is implemented by
@@ -168,105 +176,106 @@ AtspiText is implemented by
 AtspiValue is implemented by
  <a class="link" href="AtspiAccessible.html" title="AtspiAccessible">AtspiAccessible</a>.</p>
 </div>
-<div class="refsect1" title="Description">
+<div class="refsect1">
 <a name="libatspi-atspi-types.description"></a><h2>Description</h2>
 <p>
+Type definitions needed by multiple interfaces.
 </p>
 </div>
-<div class="refsect1" title="Details">
+<div class="refsect1">
 <a name="libatspi-atspi-types.details"></a><h2>Details</h2>
-<div class="refsect2" title="AtspiAccessible">
+<div class="refsect2">
 <a name="AtspiAccessible-struct"></a><h3>AtspiAccessible</h3>
 <pre class="programlisting">typedef struct _AtspiAccessible AtspiAccessible;</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiAction">
+<div class="refsect2">
 <a name="AtspiAction-struct"></a><h3>AtspiAction</h3>
 <pre class="programlisting">typedef struct _AtspiAction AtspiAction;</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiCollection">
+<div class="refsect2">
 <a name="AtspiCollection-struct"></a><h3>AtspiCollection</h3>
 <pre class="programlisting">typedef struct _AtspiCollection AtspiCollection;</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiComponent">
+<div class="refsect2">
 <a name="AtspiComponent-struct"></a><h3>AtspiComponent</h3>
 <pre class="programlisting">typedef struct _AtspiComponent AtspiComponent;</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiDocument">
+<div class="refsect2">
 <a name="AtspiDocument-struct"></a><h3>AtspiDocument</h3>
 <pre class="programlisting">typedef struct _AtspiDocument AtspiDocument;</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiEditableText">
+<div class="refsect2">
 <a name="AtspiEditableText-struct"></a><h3>AtspiEditableText</h3>
 <pre class="programlisting">typedef struct _AtspiEditableText AtspiEditableText;</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiHyperlink">
+<div class="refsect2">
 <a name="AtspiHyperlink-struct"></a><h3>AtspiHyperlink</h3>
 <pre class="programlisting">typedef struct _AtspiHyperlink AtspiHyperlink;</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiHypertext">
+<div class="refsect2">
 <a name="AtspiHypertext-struct"></a><h3>AtspiHypertext</h3>
 <pre class="programlisting">typedef struct _AtspiHypertext AtspiHypertext;</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiImage">
+<div class="refsect2">
 <a name="AtspiImage-struct"></a><h3>AtspiImage</h3>
 <pre class="programlisting">typedef struct _AtspiImage AtspiImage;</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiSelection">
+<div class="refsect2">
 <a name="AtspiSelection-struct"></a><h3>AtspiSelection</h3>
 <pre class="programlisting">typedef struct _AtspiSelection AtspiSelection;</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiTable">
+<div class="refsect2">
 <a name="AtspiTable-struct"></a><h3>AtspiTable</h3>
 <pre class="programlisting">typedef struct _AtspiTable AtspiTable;</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiText">
+<div class="refsect2">
 <a name="AtspiText-struct"></a><h3>AtspiText</h3>
 <pre class="programlisting">typedef struct _AtspiText AtspiText;</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiValue">
+<div class="refsect2">
 <a name="AtspiValue-struct"></a><h3>AtspiValue</h3>
 <pre class="programlisting">typedef struct _AtspiValue AtspiValue;</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiControllerEventMask">
+<div class="refsect2">
 <a name="AtspiControllerEventMask"></a><h3>AtspiControllerEventMask</h3>
 <pre class="programlisting">typedef guint AtspiControllerEventMask;
 </pre>
@@ -274,7 +283,7 @@ AtspiValue is implemented by
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiKeyMaskType">
+<div class="refsect2">
 <a name="AtspiKeyMaskType"></a><h3>AtspiKeyMaskType</h3>
 <pre class="programlisting">typedef guint AtspiKeyMaskType;
 </pre>
@@ -282,7 +291,7 @@ AtspiValue is implemented by
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiKeyEventMask">
+<div class="refsect2">
 <a name="AtspiKeyEventMask"></a><h3>AtspiKeyEventMask</h3>
 <pre class="programlisting">typedef guint AtspiKeyEventMask;
 </pre>
@@ -290,7 +299,7 @@ AtspiValue is implemented by
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiDeviceEventMask">
+<div class="refsect2">
 <a name="AtspiDeviceEventMask"></a><h3>AtspiDeviceEventMask</h3>
 <pre class="programlisting">typedef guint AtspiDeviceEventMask;
 </pre>
@@ -298,9 +307,9 @@ AtspiValue is implemented by
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiDeviceEvent">
-<a name="AtspiDeviceEvent"></a><h3>AtspiDeviceEvent</h3>
-<pre class="programlisting">typedef struct {
+<div class="refsect2">
+<a name="AtspiDeviceEvent"></a><h3>struct AtspiDeviceEvent</h3>
+<pre class="programlisting">struct AtspiDeviceEvent {
   AtspiEventType type;
   guint id;
   gushort hw_code;
@@ -308,52 +317,52 @@ AtspiValue is implemented by
   guint timestamp;
   gchar * event_string;
   gboolean is_text;
-} AtspiDeviceEvent;
+};
 </pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiEventListenerMode">
-<a name="AtspiEventListenerMode"></a><h3>AtspiEventListenerMode</h3>
-<pre class="programlisting">typedef struct {
+<div class="refsect2">
+<a name="AtspiEventListenerMode"></a><h3>struct AtspiEventListenerMode</h3>
+<pre class="programlisting">struct AtspiEventListenerMode {
   gboolean synchronous;
   gboolean preemptive;
   gboolean global;
-} AtspiEventListenerMode;
+};
 </pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiKeyDefinition">
-<a name="AtspiKeyDefinition"></a><h3>AtspiKeyDefinition</h3>
-<pre class="programlisting">typedef struct {
+<div class="refsect2">
+<a name="AtspiKeyDefinition-struct"></a><h3>struct AtspiKeyDefinition</h3>
+<pre class="programlisting">struct AtspiKeyDefinition {
   gint keycode;
   gint keysym;
   gchar *keystring;
   gint unused;
-} AtspiKeyDefinition;
+};
 </pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiEvent">
-<a name="AtspiEvent"></a><h3>AtspiEvent</h3>
-<pre class="programlisting">typedef struct {
+<div class="refsect2">
+<a name="AtspiEvent-struct"></a><h3>struct AtspiEvent</h3>
+<pre class="programlisting">struct AtspiEvent {
   gchar  *type;
   AtspiAccessible  *source;
   gint         detail1;
   gint         detail2;
   GValue any_data;
-} AtspiEvent;
+};
 </pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" title="ATSPI_TYPE_EVENT">
+<div class="refsect2">
 <a name="ATSPI-TYPE-EVENT:CAPS"></a><h3>ATSPI_TYPE_EVENT</h3>
 <pre class="programlisting">#define ATSPI_TYPE_EVENT (atspi_event_get_type ())
 </pre>
@@ -361,7 +370,7 @@ AtspiValue is implemented by
 </p>
 </div>
 <hr>
-<div class="refsect2" title="AtspiKeystrokeListener">
+<div class="refsect2">
 <a name="AtspiKeystrokeListener"></a><h3>AtspiKeystrokeListener</h3>
 <pre class="programlisting">typedef void AtspiKeystrokeListener;
 </pre>
@@ -369,7 +378,7 @@ AtspiValue is implemented by
 </p>
 </div>
 <hr>
-<div class="refsect2" title="enum AtspiKeyListenerSyncType">
+<div class="refsect2">
 <a name="AtspiKeyListenerSyncType"></a><h3>enum AtspiKeyListenerSyncType</h3>
 <pre class="programlisting">typedef enum {
   ATSPI_KEYLISTENER_NOSYNC = 0,
@@ -379,8 +388,8 @@ AtspiValue is implemented by
 } AtspiKeyListenerSyncType;
 </pre>
 <p>
-Specified the tyupe of a key listener event.
-Certain of the values above can and should be bitwise-'OR'ed
+Specifies the type of a key listener event.
+The values above can and should be bitwise-'OR'-ed
 together, observing the compatibility limitations specified in the description of
 each value.  For instance, <a class="link" href="libatspi-atspi-types.html#ATSPI-KEYLISTENER-ALL-WINDOWS:CAPS"><span class="type">ATSPI_KEYLISTENER_ALL_WINDOWS</span></a> | <a class="link" href="libatspi-atspi-types.html#ATSPI-KEYLISTENER-CANCONSUME:CAPS"><span class="type">ATSPI_KEYLISTENER_CANCONSUME</span></a> is
 a commonly used combination which gives the AT complete control over the delivery of matching
@@ -392,12 +401,15 @@ system performance.
 <tbody>
 <tr>
 <td><p><a name="ATSPI-KEYLISTENER-NOSYNC:CAPS"></a><span class="term"><code class="literal">ATSPI_KEYLISTENER_NOSYNC</code></span></p></td>
-<td>
+<td>Events may be delivered asynchronously, 
+which means in some cases they may already have been delivered to the 
+application before the AT client receives the notification.  
 </td>
 </tr>
 <tr>
 <td><p><a name="ATSPI-KEYLISTENER-SYNCHRONOUS:CAPS"></a><span class="term"><code class="literal">ATSPI_KEYLISTENER_SYNCHRONOUS</code></span></p></td>
-<td>
+<td>Events are delivered synchronously, before the 
+currently focussed application sees them.  
 </td>
 </tr>
 <tr>
@@ -408,7 +420,13 @@ requires <a class="link" href="libatspi-atspi-types.html#ATSPI-KEYLISTENER-SYNCH
 </tr>
 <tr>
 <td><p><a name="ATSPI-KEYLISTENER-ALL-WINDOWS:CAPS"></a><span class="term"><code class="literal">ATSPI_KEYLISTENER_ALL_WINDOWS</code></span></p></td>
-<td>
+<td>Events are received not from the application toolkit layer, but
+from the device driver or windowing system subsystem; such notifications are 'global' in the 
+sense that they are not broken or defeated by applications that participate poorly
+in the accessibility APIs, or not at all; however because of the intrusive nature of
+such snooping, it can have side-effects on certain older platforms.  If unconditional
+event notifications, even when inaccessible or "broken" applications have focus, are not
+required, it may be best to avoid this enum value/flag.
 </td>
 </tr>
 </tbody>
@@ -418,6 +436,6 @@ requires <a class="link" href="libatspi-atspi-types.html#ATSPI-KEYLISTENER-SYNCH
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.15</div>
+          Generated by GTK-Doc V1.18</div>
 </body>
 </html>

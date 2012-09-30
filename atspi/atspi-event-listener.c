@@ -115,14 +115,40 @@ callback_unref (gpointer callback)
 }
 
 /**
+ * atspi_event_listener_new:
+ * @callback: (scope notified): An #AtspiEventListenerSimpleCB to be called
+ * when an event is fired.
+ * @user_data: (closure): data to pass to the callback.
+ * @callback_destroyed: A #GDestroyNotify called when the listener is freed
+ * and data associated with the callback should be freed.  Can be NULL.
+ *
+ * Creates a new #AtspiEventListener associated with a specified @callback.
+ *
+ * Returns: (transfer full): A new #AtspiEventListener.
+ */
+AtspiEventListener *
+atspi_event_listener_new (AtspiEventListenerCB callback,
+                                 gpointer user_data,
+                                 GDestroyNotify callback_destroyed)
+{
+  AtspiEventListener *listener = g_object_new (ATSPI_TYPE_EVENT_LISTENER, NULL);
+  listener->callback = callback;
+  callback_ref (callback, callback_destroyed);
+  listener->user_data = user_data;
+  listener->cb_destroyed = callback_destroyed;
+  return listener;
+}
+
+/**
  * atspi_event_listener_new_simple:
  * @callback: (scope notified): An #AtspiEventListenerSimpleCB to be called
  * when an event is fired.
  * @callback_destroyed: A #GDestroyNotify called when the listener is freed
  * and data associated with the callback should be freed.  Can be NULL.
  *
+ * Creates a new #AtspiEventListener associated with a specified @callback.
  * Returns: (transfer full): A new #AtspiEventListener.
- */
+ **/
 AtspiEventListener *
 atspi_event_listener_new_simple (AtspiEventListenerSimpleCB callback,
                                  GDestroyNotify callback_destroyed)
@@ -138,7 +164,7 @@ atspi_event_listener_new_simple (AtspiEventListenerSimpleCB callback,
 static GList *event_listeners = NULL;
 
 static gchar *
-convert_name_from_dbus (const char *name)
+convert_name_from_dbus (const char *name, gboolean path_hack)
 {
   gchar *ret = g_malloc (g_utf8_strlen (name, -1) * 2 + 1);
   const char *p = name;
@@ -155,6 +181,11 @@ convert_name_from_dbus (const char *name)
         *q++ = '-';
       *q++ = tolower (*p++);
     }
+    else if (path_hack && *p == '/')
+    {
+      *q++ = ':';
+      p++;
+    }
     else
       *q++ = *p++;
   }
@@ -168,7 +199,7 @@ cache_process_children_changed (AtspiEvent *event)
   AtspiAccessible *child;
 
   if (!G_VALUE_HOLDS (&event->any_data, ATSPI_TYPE_ACCESSIBLE) ||
-      !event->source->children ||
+      !(event->source->cached_properties & ATSPI_CACHE_CHILDREN) ||
       atspi_state_set_contains (event->source->states, ATSPI_STATE_MANAGES_DESCENDANTS))
     return;
 
@@ -305,7 +336,7 @@ strdup_and_adjust_for_dbus (const char *s)
 }
 
 static gboolean
-convert_event_type_to_dbus (const char *eventType, char **categoryp, char **namep, char **detailp, char **matchrule)
+convert_event_type_to_dbus (const char *eventType, char **categoryp, char **namep, char **detailp, GPtrArray **matchrule_array)
 {
   gchar *tmp = strdup_and_adjust_for_dbus (eventType);
   char *category = NULL, *name = NULL, *detail = NULL;
@@ -323,22 +354,27 @@ convert_event_type_to_dbus (const char *eventType, char **categoryp, char **name
     detail = strtok_r (NULL, ":", &saveptr);
     if (detail) detail = g_strdup (detail);
   }
-  if (matchrule)
+  if (matchrule_array)
   {
-    *matchrule = g_strdup_printf ("type='signal',interface='org.a11y.atspi.Event.%s'", category);
-    if (!*matchrule) goto oom;
+    gchar *matchrule;
+    matchrule = g_strdup_printf ("type='signal',interface='org.a11y.atspi.Event.%s'", category);
     if (name && name [0])
     {
-      gchar *new_str = g_strconcat (*matchrule, ",member='", name, "'", NULL);
-      g_free (*matchrule);
-      *matchrule = new_str;
+      gchar *new_str = g_strconcat (matchrule, ",member='", name, "'", NULL);
+      g_free (matchrule);
+      matchrule = new_str;
     }
+    (*matchrule_array) = g_ptr_array_new ();
     if (detail && detail [0])
     {
-      gchar *new_str = g_strconcat (*matchrule, ",arg0='", detail, "'", NULL);
-      g_free (*matchrule);
-      *matchrule = new_str;
+      gchar *new_str = g_strconcat (matchrule, ",arg0='", detail, "'", NULL);
+      g_ptr_array_add (*matchrule_array, new_str);
+      new_str = g_strconcat (matchrule, ",arg0path='", detail, "/'", NULL);
+      g_ptr_array_add (*matchrule_array, new_str);
+      g_free (matchrule);
     }
+    else
+      g_ptr_array_add (*matchrule_array, matchrule);
   }
   if (categoryp) *categoryp = category;
   else g_free (category);
@@ -359,7 +395,7 @@ oom:
 static void
 listener_entry_free (EventListenerEntry *e)
 {
-  gpointer callback = (e->callback == remove_datum ? e->user_data : e->callback);
+  gpointer callback = (e->callback == remove_datum ? (gpointer)e->user_data : (gpointer)e->callback);
   g_free (e->category);
   g_free (e->name);
   if (e->detail) g_free (e->detail);
@@ -377,6 +413,8 @@ listener_entry_free (EventListenerEntry *e)
  *            EventClasses include "object", "window", "mouse",
  *            and toolkit events (e.g. "Gtk", "AWT").
  *            Examples: "focus:", "Gtk:GtkWidget:button_press_event".
+ *
+ * Adds an in-process callback function to an existing #AtspiEventListener.
  *
  * Legal object event types:
  *
@@ -445,13 +483,13 @@ listener_entry_free (EventListenerEntry *e)
  *            mouse:b3p
  *            mouse:b3r
  *
- * NOTE: this string may be UTF-8, but should not contain byte value 56
+ * NOTE: this character string may be UTF-8, but should not contain byte 
+ * value 56
  *            (ascii ':'), except as a delimiter, since non-UTF-8 string
  *            delimiting functions are used internally.
  *            In general, listening to
  *            toolkit-specific events is not recommended.
  *
- * Add an in-process callback function to an existing AtspiEventListener.
  *
  * Returns: #TRUE if successful, otherwise #FALSE.
  **/
@@ -471,14 +509,19 @@ atspi_event_listener_register (AtspiEventListener *listener,
 
 /**
  * atspi_event_listener_register_from_callback:
- * @callback: (scope notified): the #AtspiEventListenerCB to be registered against
- *            an event type.
+ * @callback: (scope notified): the #AtspiEventListenerCB to be registered 
+ * against an event type.
  * @user_data: (closure): User data to be passed to the callback.
  * @callback_destroyed: A #GDestroyNotify called when the callback is destroyed.
  * @event_type: a character string indicating the type of events for which
  *            notification is requested.  See #atspi_event_listener_register
  * for a description of the format.
- */
+ * 
+ * Registers an #AtspiEventListenerCB against an @event_type.
+ *
+ * Returns: #TRUE if successfull, otherwise #FALSE.
+ *
+ **/
 gboolean
 atspi_event_listener_register_from_callback (AtspiEventListenerCB callback,
 				             void *user_data,
@@ -487,10 +530,11 @@ atspi_event_listener_register_from_callback (AtspiEventListenerCB callback,
 				             GError **error)
 {
   EventListenerEntry *e;
-  char *matchrule;
   DBusError d_error;
   GList *new_list;
   DBusMessage *message, *reply;
+  GPtrArray *matchrule_array;
+  gint i;
 
   if (!callback)
     {
@@ -507,9 +551,9 @@ atspi_event_listener_register_from_callback (AtspiEventListenerCB callback,
   e->callback = callback;
   e->user_data = user_data;
   e->callback_destroyed = callback_destroyed;
-  callback_ref (callback == remove_datum ? user_data : callback,
+  callback_ref (callback == remove_datum ? (gpointer)user_data : (gpointer)callback,
                 callback_destroyed);
-  if (!convert_event_type_to_dbus (event_type, &e->category, &e->name, &e->detail, &matchrule))
+  if (!convert_event_type_to_dbus (event_type, &e->category, &e->name, &e->detail, &matchrule_array))
   {
     g_free (e);
     return FALSE;
@@ -522,7 +566,13 @@ atspi_event_listener_register_from_callback (AtspiEventListenerCB callback,
   }
   event_listeners = new_list;
   dbus_error_init (&d_error);
-  dbus_bus_add_match (_atspi_bus(), matchrule, &d_error);
+  for (i = 0; i < matchrule_array->len; i++)
+  {
+    char *matchrule = g_ptr_array_index (matchrule_array, i);
+    dbus_bus_add_match (_atspi_bus(), matchrule, &d_error);
+    g_free (matchrule);
+  }
+  g_ptr_array_free (matchrule_array, TRUE);
   if (d_error.message)
   {
     g_warning ("Atspi: Adding match: %s", d_error.message);
@@ -557,7 +607,10 @@ atspi_event_listener_register_from_callback (AtspiEventListenerCB callback,
  *            and toolkit events (e.g. "Gtk", "AWT").
  *            Examples: "focus:", "Gtk:GtkWidget:button_press_event".
  *
- * Like atspi_event_listener_register, but callback takes no user_data.
+ * Registers an #AtspiEventListenetSimpleCB. The method is similar to 
+ * #atspi_event_listener_register, but @callback takes no user_data.
+ *
+ * Returns: #TRUE if successfull, otherwise #FALSE.
  **/
 gboolean
 atspi_event_listener_register_no_data (AtspiEventListenerSimpleCB callback,
@@ -584,7 +637,7 @@ is_superset (const gchar *super, const gchar *sub)
  * @event_type: a string specifying the event type for which this
  *             listener is to be deregistered.
  *
- * deregisters an #AtspiEventListener from the registry, for a specific
+ * Deregisters an #AtspiEventListener from the registry, for a specific
  *             event type.
  *
  * Returns: #TRUE if successful, otherwise #FALSE.
@@ -607,7 +660,7 @@ atspi_event_listener_deregister (AtspiEventListener *listener,
  * @event_type: a string specifying the event type for which this
  *             listener is to be deregistered.
  *
- * deregisters an #AtspiEventListenerCB from the registry, for a specific
+ * Deregisters an #AtspiEventListenerCB from the registry, for a specific
  *             event type.
  *
  * Returns: #TRUE if successful, otherwise #FALSE.
@@ -618,10 +671,12 @@ atspi_event_listener_deregister_from_callback (AtspiEventListenerCB callback,
 				               const gchar              *event_type,
 				               GError **error)
 {
-  char *category, *name, *detail, *matchrule;
+  char *category, *name, *detail;
+  GPtrArray *matchrule_array;
+  gint i;
   GList *l;
 
-  if (!convert_event_type_to_dbus (event_type, &category, &name, &detail, &matchrule))
+  if (!convert_event_type_to_dbus (event_type, &category, &name, &detail, &matchrule_array))
   {
     return FALSE;
   }
@@ -647,17 +702,22 @@ atspi_event_listener_deregister_from_callback (AtspiEventListenerCB callback,
       if (need_replace)
         event_listeners = l;
       dbus_error_init (&d_error);
-      dbus_bus_remove_match (_atspi_bus(), matchrule, &d_error);
+  for (i = 0; i < matchrule_array->len; i++)
+  {
+    char *matchrule = g_ptr_array_index (matchrule_array, i);
+    dbus_bus_remove_match (_atspi_bus(), matchrule, &d_error);
+  }
       dbus_error_init (&d_error);
       message = dbus_message_new_method_call (atspi_bus_registry,
 	    atspi_path_registry,
 	    atspi_interface_registry,
-	    "RegisterEvent");
+	    "DeregisterEvent");
       if (!message)
       return FALSE;
       dbus_message_append_args (message, DBUS_TYPE_STRING, &event_type, DBUS_TYPE_INVALID);
       reply = _atspi_dbus_send_with_reply_and_block (message, error);
-      dbus_message_unref (reply);
+      if (reply)
+        dbus_message_unref (reply);
 
       listener_entry_free (e);
     }
@@ -666,7 +726,9 @@ atspi_event_listener_deregister_from_callback (AtspiEventListenerCB callback,
   g_free (category);
   g_free (name);
   if (detail) g_free (detail);
-  g_free (matchrule);
+  for (i = 0; i < matchrule_array->len; i++)
+    g_free (g_ptr_array_index (matchrule_array, i));
+  g_ptr_array_free (matchrule_array, TRUE);
   return TRUE;
 }
 
@@ -714,6 +776,18 @@ atspi_event_free (AtspiEvent *event)
   g_free (event);
 }
 
+static gboolean
+detail_matches_listener (const char *event_detail, const char *listener_detail)
+{
+  if (!listener_detail)
+    return TRUE;
+
+  return !(listener_detail [strcspn (listener_detail, ":")] == '\0'
+               ? strncmp (listener_detail, event_detail,
+                          strcspn (event_detail, ":"))
+               : strcmp (listener_detail, event_detail));
+}
+
 void
 _atspi_send_event (AtspiEvent *e)
 {
@@ -738,7 +812,7 @@ _atspi_send_event (AtspiEvent *e)
     EventListenerEntry *entry = l->data;
     if (!strcmp (category, entry->category) &&
         (entry->name == NULL || !strcmp (name, entry->name)) &&
-        (entry->detail == NULL || !strcmp (detail, entry->detail)))
+        detail_matches_listener (detail, entry->detail))
     {
         entry->callback (atspi_event_copy (e), entry->user_data);
     }
@@ -749,7 +823,7 @@ _atspi_send_event (AtspiEvent *e)
 }
 
 DBusHandlerResult
-atspi_dbus_handle_event (DBusConnection *bus, DBusMessage *message, void *data)
+_atspi_dbus_handle_event (DBusConnection *bus, DBusMessage *message, void *data)
 {
   char *detail = NULL;
   const char *category = dbus_message_get_interface (message);
@@ -790,9 +864,9 @@ atspi_dbus_handle_event (DBusConnection *bus, DBusMessage *message, void *data)
   e.detail2 = detail2;
   dbus_message_iter_next (&iter);
 
-  converted_type = convert_name_from_dbus (category);
-  name = convert_name_from_dbus (member);
-  detail = convert_name_from_dbus (detail);
+  converted_type = convert_name_from_dbus (category, FALSE);
+  name = convert_name_from_dbus (member, FALSE);
+  detail = convert_name_from_dbus (detail, TRUE);
 
   if (strcasecmp  (category, name) != 0)
   {
@@ -833,7 +907,8 @@ atspi_dbus_handle_event (DBusConnection *bus, DBusMessage *message, void *data)
 	accessible = _atspi_dbus_return_accessible_from_iter (&iter_variant);
 	g_value_init (&e.any_data, ATSPI_TYPE_ACCESSIBLE);
 	g_value_set_instance (&e.any_data, accessible);
-	g_object_unref (accessible);	/* value now owns it */
+	if (accessible)
+	  g_object_unref (accessible);	/* value now owns it */
       }
       break;
     }
@@ -859,6 +934,11 @@ atspi_dbus_handle_event (DBusConnection *bus, DBusMessage *message, void *data)
   else if (!strncmp (e.type, "object:state-changed", 20))
   {
     cache_process_state_changed (&e);
+  }
+  else if (!strncmp (e.type, "focus", 5))
+  {
+    /* BGO#663992 - TODO: figure out the real problem */
+    e.source->cached_properties &= ~(ATSPI_CACHE_STATES);
   }
 
   _atspi_send_event (&e);

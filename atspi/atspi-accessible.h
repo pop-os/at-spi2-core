@@ -26,6 +26,8 @@
 #ifndef _ATSPI_ACCESSIBLE_H_
 #define _ATSPI_ACCESSIBLE_H_
 
+G_BEGIN_DECLS
+
 #include "glib-object.h"
 
 #include "atspi-application.h"
@@ -51,6 +53,7 @@ struct _AtspiAccessible
   char *name;
   char *description;
   AtspiStateSet *states;
+  GHashTable *attributes;
   guint cached_properties;
 };
 
@@ -63,7 +66,7 @@ struct _AtspiAccessibleClass
 GType atspi_accessible_get_type (void); 
 
 AtspiAccessible *
-atspi_accessible_new (AtspiApplication *app, const gchar *path);
+_atspi_accessible_new (AtspiApplication *app, const gchar *path);
 
 gchar * atspi_role_get_name (AtspiRole role);
 
@@ -97,6 +100,8 @@ gchar * atspi_accessible_get_toolkit_name (AtspiAccessible *obj, GError **error)
 
 gchar * atspi_accessible_get_toolkit_version (AtspiAccessible *obj, GError **error);
 
+gchar * atspi_accessible_get_atspi_version (AtspiAccessible *obj, GError **error);
+
 gint atspi_accessible_get_id (AtspiAccessible *obj, GError **error);
 
 AtspiAccessible * atspi_accessible_get_application (AtspiAccessible *obj, GError **error);
@@ -129,6 +134,15 @@ GArray * atspi_accessible_get_interfaces (AtspiAccessible *obj);
 
 void atspi_accessible_set_cache_mask (AtspiAccessible *accessible, AtspiCache mask);
 
+void atspi_accessible_clear_cache (AtspiAccessible *accessible);
+
+guint atspi_accessible_get_process_id (AtspiAccessible *accessible, GError **error);
+
 /* private */
 void _atspi_accessible_add_cache (AtspiAccessible *accessible, AtspiCache flag);
+AtspiCache _atspi_accessible_get_cache_mask (AtspiAccessible *accessible);
+gboolean _atspi_accessible_test_cache (AtspiAccessible *accessible, AtspiCache flag);
+
+G_END_DECLS
+
 #endif	/* _ATSPI_ACCESSIBLE_H_ */

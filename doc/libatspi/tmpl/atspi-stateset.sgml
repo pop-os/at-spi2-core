@@ -1,20 +1,20 @@
 <!-- ##### SECTION Title ##### -->
-AtspiStateSet
+atspi-stateset
 
 <!-- ##### SECTION Short_Description ##### -->
-
+The atspi-stateset objects implement wrappers around a
+bitmap of accessible states.
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
-
+The atspi-stateset objects implement wrappers around a
+bitmap of accessible states.
 </para>
-
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
 
 </para>
-
 
 <!-- ##### SECTION Stability_Level ##### -->
 

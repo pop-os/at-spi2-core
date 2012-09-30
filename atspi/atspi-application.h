@@ -25,9 +25,12 @@
 #ifndef _ATSPI_APPLICATION_H_
 #define _ATSPI_APPLICATION_H_
 
-#include "glib-object.h"
+#include <dbus/dbus.h>
 
 #include "atspi-accessible.h"
+#include <sys/time.h>
+
+G_BEGIN_DECLS
 
 #define ATSPI_TYPE_APPLICATION                        (atspi_application_get_type ())
 #define ATSPI_APPLICATION(obj)                        (G_TYPE_CHECK_INSTANCE_CAST ((obj), ATSPI_TYPE_APPLICATION, AtspiApplication))
@@ -45,6 +48,10 @@ struct _AtspiApplication
   DBusConnection *bus;
   struct _AtspiAccessible *root;
   AtspiCache cache;
+  gchar *toolkit_name;
+  gchar *toolkit_version;
+  gchar *atspi_version;
+  struct timeval time_added;
 };
 
 typedef struct _AtspiApplicationClass AtspiApplicationClass;
@@ -55,5 +62,7 @@ struct _AtspiApplicationClass
 
 AtspiApplication *
 _atspi_application_new (const char *bus_name);
+
+G_END_DECLS
 
 #endif	/* _ATSPI_APPLICATION_H_ */

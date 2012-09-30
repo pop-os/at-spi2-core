@@ -30,6 +30,8 @@
 
 #include "atspi-types.h"
 
+G_BEGIN_DECLS
+
 GType atspi_event_get_type (void);
 
 /**
@@ -77,6 +79,11 @@ struct _AtspiEventListenerClass
 GType atspi_event_listener_get_type (void);
 
 AtspiEventListener *
+atspi_event_listener_new (AtspiEventListenerCB callback,
+                                 gpointer user_data,
+                                 GDestroyNotify callback_destroyed);
+
+AtspiEventListener *
 atspi_event_listener_new_simple (AtspiEventListenerSimpleCB callback,
                                  GDestroyNotify callback_destroyed);
 
@@ -113,4 +120,7 @@ gboolean
 atspi_event_listener_deregister_no_data (AtspiEventListenerSimpleCB callback,
 				   const gchar              *event_type,
 				   GError **error);
+
+G_END_DECLS
+
 #endif	/* _ATSPI_EVENT_LISTENER_H_ */

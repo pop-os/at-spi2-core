@@ -29,10 +29,12 @@
 
 #include "dbus/dbus.h"
 
+G_BEGIN_DECLS
+
 DBusHandlerResult _atspi_dbus_handle_DeviceEvent (DBusConnection *bus, DBusMessage *message, void *data);
 
 gchar *_atspi_device_listener_get_path (AtspiDeviceListener *listener);
 
-DBusHandlerResult
-atspi_dbus_handle_DeviceEvent (DBusConnection *bus, DBusMessage *message, void *data);
+G_END_DECLS
+
 #endif	/* _ATSPI_DEVICE_LISTENER_H_ */

@@ -2,19 +2,21 @@
 atspi-value
 
 <!-- ##### SECTION Short_Description ##### -->
-
+An interface supporting a one-dimensional scalar 
+to be modified, or which reflects its value.
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
-
+An interface supporting a one-dimensional scalar 
+to be modified, or which reflects its value. If
+STATE_EDITABLE is not present, the value is
+treated as "read only".
 </para>
-
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
 
 </para>
-
 
 <!-- ##### SECTION Stability_Level ##### -->
 

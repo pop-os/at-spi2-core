@@ -1,4 +1,4 @@
+usr/lib/*/pkgconfig
 usr/include
-usr/lib/libatspi.la
-usr/lib/libatspi.so
+usr/lib/*/libatspi.so
 usr/share/gir-1.0

@@ -2,29 +2,45 @@ Source: at-spi2-core
 Section: misc
 Priority: optional
 Maintainer: Debian Accessibility Team <debian-accessibility@lists.debian.org>
-Uploaders: Mario Lang <mlang@debian.org>, Samuel Thibault <sthibault@debian.org>
+Uploaders: Samuel Thibault <sthibault@debian.org>, Jordi Mallach <jordi@debian.org>
 Vcs-Browser: http://git.debian.org/?p=pkg-a11y/at-spi2-core.git;a=summary
 Vcs-Git: git://git.debian.org/git/pkg-a11y/at-spi2-core.git
-Homepage: http://live.gnome.org/Accessibility/GNOME3
-Build-Depends: debhelper (>= 7.0.50),
+Homepage: http://live.gnome.org/Accessibility
+Build-Depends: debhelper (>= 9),
                libdbus-glib-1-dev, dbus,
                libglib2.0-dev,
                libxtst-dev,
                libgirepository1.0-dev,
                gtk-doc-tools (>= 1.09),
                gobject-introspection,
-               gir1.2-glib-2.0
-Standards-Version: 3.9.2
+               gir1.2-glib-2.0,
+               hardening-wrapper
+Standards-Version: 3.9.3
 
 Package: at-spi2-core
 Architecture: any
+Multi-Arch: foreign
 Depends: ${misc:Depends}, ${shlibs:Depends}
+Breaks: gdm3 (<< 3.4)
 Description: Assistive Technology Service Provider Interface (dbus core)
  This package contains the core components of GNOME Accessibility.
 
-Package: libatspi2.0-0
+Package: at-spi2-core-dbg
 Architecture: any
+Section: debug
+Priority: extra
+Depends: ${misc:Depends}, ${shlibs:Depends}, at-spi2-core (= ${binary:Version})
+Description: Assistive Technology Service Provider Interface - debugging symbols
+ This package contains the debugging symboles for core components of GNOME
+ Accessibility.
+
+Package: libatspi2.0-0
+Section: libs
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
 Depends: ${misc:Depends}, ${shlibs:Depends}
+Recommends: at-spi2-core (= ${binary:Version})
 Description: Assistive Technology Service Provider Interface - shared library
  This package contains the shared library for applications that wish to use
  the at-spi interface.
@@ -33,6 +49,7 @@ Package: libatspi2.0-dev
 Section: libdevel
 Architecture: any
 Depends: ${misc:Depends},
+         gir1.2-atspi-2.0 (= ${binary:Version}),
          libatspi2.0-0 (= ${binary:Version}),
          libglib2.0-dev (>= 2.4.1-2),
          libdbus-1-dev, libdbus-glib-1-dev, dbus,
@@ -43,7 +60,18 @@ Description: Development files for the assistive technology serice provider
  These are the development files for at-spi2, needed for compilation of
  programs which use it.
 
+Package: libatspi2.0-0-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends}, ${shlibs:Depends}, libatspi2.0-0 (= ${binary:Version})
+Description: Assistive Technology Service Provider Interface - debugging symbols
+ This package contains the debugging symbols for the shared library for
+ applications that wish to use the at-spi interface.
+
 Package: gir1.2-atspi-2.0
+Section: introspection
 Architecture: any
 Depends: ${misc:Depends},
          ${shlibs:Depends},
@@ -53,3 +81,11 @@ Replaces: gir1.0-gtk-2.0 (<< 2.22),
 Description: Assistive Technology Service Provider (GObject introspection)
  This package can be used by other packages using the GIRepository format to
  generate dynamic bindings
+
+Package: at-spi2-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Recommends: devhelp
+Description: Assistive Technology Service Provider Interface (Documentation)
+ This package contains documentation for the at-spi2 interface.

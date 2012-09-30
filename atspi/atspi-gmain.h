@@ -21,10 +21,10 @@
  * and unnecessary code removed.
  */
 
-#include <config.h>
-
 #ifndef _ATSPI_GMAIN_H
 #define _ATSPI_GMAIN_H
+
+G_BEGIN_DECLS
 
 void
 atspi_dbus_connection_setup_with_g_main (DBusConnection *connection,
@@ -33,4 +33,7 @@ atspi_dbus_connection_setup_with_g_main (DBusConnection *connection,
 void
 atspi_dbus_server_setup_with_g_main (DBusServer   *server,
                                GMainContext *context);
+
+G_END_DECLS
+
 #endif

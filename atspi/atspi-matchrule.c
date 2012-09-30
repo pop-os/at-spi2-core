@@ -60,6 +60,9 @@ atspi_match_rule_finalize (GObject *object)
   if (rule->interfaces)
     g_array_free (rule->interfaces, TRUE);
 
+  if (rule->attributes)
+    g_hash_table_unref (rule->attributes);
+
   G_OBJECT_CLASS (atspi_match_rule_parent_class)->finalize (object);
 }
 
@@ -76,27 +79,41 @@ atspi_match_rule_class_init (AtspiMatchRuleClass *klass)
  * atspi_match_rule_new:
  *
  * @states: An #AtspiStateSet specifying the states to match or NULL if none.
+ *
  * @statematchtype: An #AtspiCollectionMatchType specifying how to interpret
  *                  @states.
+ *
  * @attributes: (element-type gchar* gchar*): A #GHashTable specifying
  *              attributes to match.
+ *
  * @attributematchtype: An #AtspiCollectionMatchType specifying how to
  *                      interpret @attributes.
+ *
  * @interfaces: (element-type gchar*): An array of interfaces to match, or
- *              NUL if not applicable.  Interface names should be specified
+ *              NULL if not applicable.  Interface names should be specified
  *              by their DBus names (org.a11y.Atspi.Accessible,
  *              org.a11y.Atspi.Component, etc).
+ *
  * @interfacematchtype: An #AtspiCollectionMatchType specifying how to
  *                      interpret @interfaces.
+ *
  * @roles: (element-type AtspiRole): A #GArray of roles to match, or NULL if
  *         not applicable.
+ *
  * @rolematchtype: An #AtspiCollectionMatchType specifying how to
  *                      interpret @roles.
- * @invert: Specifies whether results should be inverted.
- * TODO: Document this parameter better.
+ *
+ * @invert: if #TRUE, the match rule should be denied (inverted); if #FALSE,
+ * it should not. For example, if the match rule defines that a match is
+ * an object of ROLE_HEADING which has STATE_FOCUSABLE and a click action, 
+ * inverting it would match all objects that are not of ROLE_HEADING, 
+ * focusable and clickable at the same time.  
+ *
+ * Creates a new #AtspiMatchRule with specified @states, @attributes, 
+ * @interfaces, and @roles.
  *
  * Returns: (transfer full): A new #AtspiMatchRule.
- */
+ **/
 AtspiMatchRule *
 atspi_match_rule_new (AtspiStateSet *states,
                       AtspiCollectionMatchType statematchtype,
@@ -119,8 +136,19 @@ atspi_match_rule_new (AtspiStateSet *states,
   rule->statematchtype = statematchtype;
 
   if (attributes)
-    rule->attributes = g_hash_table_ref (attributes);
-    rule->attributematchtype = attributematchtype;
+  {
+    GHashTableIter hash_table_iter;
+    gchar *key, *value;
+    rule->attributes = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                              (GDestroyNotify) g_free,
+                                              (GDestroyNotify) g_free);
+    g_hash_table_iter_init (&hash_table_iter, attributes);
+            while (g_hash_table_iter_next (&hash_table_iter, (gpointer *)&key,
+                   (gpointer *)&value))
+      g_hash_table_insert (rule->attributes, g_strdup (key), g_strdup (value));
+  } else
+    rule->attributes = NULL;
+  rule->attributematchtype = attributematchtype;
 
   if (interfaces)
     rule->interfaces = g_array_ref (interfaces);
@@ -147,7 +175,7 @@ atspi_match_rule_new (AtspiStateSet *states,
 }
 
 static void
-append_entry (gpointer *key, gpointer *val, gpointer data)
+append_entry (gpointer key, gpointer val, gpointer data)
 {
   DBusMessageIter *iter = data;
   DBusMessageIter iter_entry;
