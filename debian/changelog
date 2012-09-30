@@ -6,7 +6,7 @@ at-spi2-core (2.5.3-2) unstable; urgency=low
   [ Samuel Thibault ]
   * patches/pl: Cherry-pick from upstream: Update pl translation.
 
- -- Mario Lang <mlang@debian.org>  Sun, 08 Jul 2012 10:22:49 -0600
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 30 Sep 2012 17:51:06 +0200
 
 at-spi2-core (2.5.3-1) unstable; urgency=low
 
