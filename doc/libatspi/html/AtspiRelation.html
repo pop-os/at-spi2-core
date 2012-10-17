@@ -43,15 +43,15 @@
 <pre class="synopsis">struct              <a class="link" href="AtspiRelation.html#AtspiRelation-struct" title="struct AtspiRelation">AtspiRelation</a>;
 struct              <a class="link" href="AtspiRelation.html#AtspiRelationClass" title="struct AtspiRelationClass">AtspiRelationClass</a>;
 <a class="link" href="libatspi-atspi-constants.html#AtspiRelationType" title="enum AtspiRelationType"><span class="returnvalue">AtspiRelationType</span></a>   <a class="link" href="AtspiRelation.html#atspi-relation-get-relation-type" title="atspi_relation_get_relation_type ()">atspi_relation_get_relation_type</a>    (<em class="parameter"><code><a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> *obj</code></em>);
-<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="AtspiRelation.html#atspi-relation-get-n-targets" title="atspi_relation_get_n_targets ()">atspi_relation_get_n_targets</a>        (<em class="parameter"><code><a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> *obj</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="AtspiRelation.html#atspi-relation-get-n-targets" title="atspi_relation_get_n_targets ()">atspi_relation_get_n_targets</a>        (<em class="parameter"><code><a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> *obj</code></em>);
 <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   <a class="link" href="AtspiRelation.html#atspi-relation-get-target" title="atspi_relation_get_target ()">atspi_relation_get_target</a>           (<em class="parameter"><code><a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> i</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> i</code></em>);
 </pre>
 </div>
 <div class="refsect1">
 <a name="AtspiRelation.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
    +----AtspiRelation
 </pre>
 </div>
@@ -109,7 +109,7 @@ encapsulated in this <a class="link" href="AtspiRelation.html" title="atspi-rela
 <hr>
 <div class="refsect2">
 <a name="atspi-relation-get-n-targets"></a><h3>atspi_relation_get_n_targets ()</h3>
-<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_relation_get_n_targets        (<em class="parameter"><code><a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> *obj</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_relation_get_n_targets        (<em class="parameter"><code><a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> *obj</code></em>);</pre>
 <p>
 Gets the number of objects which this relationship has as its
       target objects (the subject is the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> from which this
@@ -127,7 +127,7 @@ Gets the number of objects which this relationship has as its
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating how many target objects which the
+<td>a <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating how many target objects which the
 originating <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object has the <a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a>
 relationship with.</td>
 </tr>
@@ -138,7 +138,7 @@ relationship with.</td>
 <div class="refsect2">
 <a name="atspi-relation-get-target"></a><h3>atspi_relation_get_target ()</h3>
 <pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_relation_get_target           (<em class="parameter"><code><a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> i</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> i</code></em>);</pre>
 <p>
 Gets the <em class="parameter"><code>i</code></em>-th target of a specified <a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> relationship.
 </p>
@@ -154,7 +154,7 @@ Gets the <em class="parameter"><code>i</code></em>-th target of a specified <a c
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>i</code></em> :</span></p></td>
-<td>a (zero-index) <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating which (of possibly several) target is requested.</td>
+<td>a (zero-index) <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating which (of possibly several) target is requested.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
