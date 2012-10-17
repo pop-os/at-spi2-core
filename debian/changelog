@@ -1,3 +1,9 @@
+at-spi2-core (2.6.2-1) UNRELEASED; urgency=low
+
+  * New upstream release
+
+ -- Luke Yelavich <themuso@ubuntu.com>  Wed, 17 Oct 2012 13:11:15 +1100
+
 at-spi2-core (2.6.0-1) experimental; urgency=low
 
   * at-spi2-core.docs: Add NEWS.
