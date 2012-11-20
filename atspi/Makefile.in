@@ -1055,6 +1055,8 @@ uninstall-am: uninstall-girDATA uninstall-libLTLIBRARIES \
 @HAVE_INTROSPECTION_TRUE@		--library=libatspi.la \
 @HAVE_INTROSPECTION_TRUE@		--library=$(top_builddir)/dbind/libdbind.la \
 @HAVE_INTROSPECTION_TRUE@		--pkg dbus-1 \
+@HAVE_INTROSPECTION_TRUE@		--pkg-export atspi-2 \
+@HAVE_INTROSPECTION_TRUE@		--c-include "atspi/atspi.h" \
 @HAVE_INTROSPECTION_TRUE@		--warn-all \
 @HAVE_INTROSPECTION_TRUE@		--output $@ \
 @HAVE_INTROSPECTION_TRUE@		$(addprefix $(srcdir)/, $(INTROSPECTION_FILES))
