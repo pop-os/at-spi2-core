@@ -1,8 +1,8 @@
-at-spi2-core (2.7.2-0ubuntu1) UNRELEASED; urgency=low
+at-spi2-core (2.7.2-0ubuntu1) raring; urgency=low
 
   * New upstream release
 
- -- Luke Yelavich <themuso@ubuntu.com>  Wed, 21 Nov 2012 10:16:08 +1100
+ -- Luke Yelavich <themuso@ubuntu.com>  Tue, 27 Nov 2012 13:56:02 +1100
 
 at-spi2-core (2.7.1-1) experimental; urgency=low
 
