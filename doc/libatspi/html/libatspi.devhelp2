@@ -7,6 +7,7 @@
       <sub name="atspi-stateset" link="AtspiStateSet.html"/>
       <sub name="atspi-application" link="libatspi-AtspiApplication.html"/>
       <sub name="atspi-collection" link="libatspi-atspi-collection.html"/>
+      <sub name="atspi-action" link="libatspi-atspi-action.html"/>
       <sub name="atspi-relation" link="AtspiRelation.html"/>
       <sub name="atspi-image" link="libatspi-atspi-image.html"/>
       <sub name="atspi-matchrule" link="AtspiMatchRule.html"/>
@@ -82,6 +83,12 @@
     <keyword type="function" name="atspi_collection_get_matches_to ()" link="libatspi-atspi-collection.html#atspi-collection-get-matches-to"/>
     <keyword type="function" name="atspi_collection_get_matches_from ()" link="libatspi-atspi-collection.html#atspi-collection-get-matches-from"/>
     <keyword type="function" name="atspi_collection_get_active_descendant ()" link="libatspi-atspi-collection.html#atspi-collection-get-active-descendant"/>
+    <keyword type="struct" name="AtspiAction" link="libatspi-atspi-action.html#AtspiAction-struct"/>
+    <keyword type="function" name="atspi_action_get_n_actions ()" link="libatspi-atspi-action.html#atspi-action-get-n-actions"/>
+    <keyword type="function" name="atspi_action_get_description ()" link="libatspi-atspi-action.html#atspi-action-get-description"/>
+    <keyword type="function" name="atspi_action_get_key_binding ()" link="libatspi-atspi-action.html#atspi-action-get-key-binding"/>
+    <keyword type="function" name="atspi_action_get_name ()" link="libatspi-atspi-action.html#atspi-action-get-name"/>
+    <keyword type="function" name="atspi_action_do_action ()" link="libatspi-atspi-action.html#atspi-action-do-action"/>
     <keyword type="struct" name="struct AtspiRelation" link="AtspiRelation.html#AtspiRelation-struct"/>
     <keyword type="struct" name="struct AtspiRelationClass" link="AtspiRelation.html#AtspiRelationClass"/>
     <keyword type="function" name="atspi_relation_get_relation_type ()" link="AtspiRelation.html#atspi-relation-get-relation-type"/>
@@ -205,6 +212,7 @@
     <keyword type="struct" name="struct AtspiEventListener" link="AtspiEventListener.html#AtspiEventListener-struct"/>
     <keyword type="struct" name="struct AtspiEventListenerClass" link="AtspiEventListener.html#AtspiEventListenerClass"/>
     <keyword type="function" name="atspi_event_listener_get_type ()" link="AtspiEventListener.html#atspi-event-listener-get-type"/>
+    <keyword type="function" name="atspi_event_listener_new ()" link="AtspiEventListener.html#atspi-event-listener-new"/>
     <keyword type="function" name="atspi_event_listener_new_simple ()" link="AtspiEventListener.html#atspi-event-listener-new-simple"/>
     <keyword type="function" name="atspi_event_listener_register ()" link="AtspiEventListener.html#atspi-event-listener-register"/>
     <keyword type="function" name="atspi_event_listener_register_from_callback ()" link="AtspiEventListener.html#atspi-event-listener-register-from-callback"/>

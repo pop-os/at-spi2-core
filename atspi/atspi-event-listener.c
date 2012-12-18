@@ -31,6 +31,7 @@ typedef struct
   AtspiEventListenerCB callback;
   void *user_data;
   GDestroyNotify callback_destroyed;
+  char *event_type;
   char *category;
   char *name;
   char *detail;
@@ -116,7 +117,7 @@ callback_unref (gpointer callback)
 
 /**
  * atspi_event_listener_new:
- * @callback: (scope notified): An #AtspiEventListenerSimpleCB to be called
+ * @callback: (scope notified): An #AtspiEventListenerCB to be called
  * when an event is fired.
  * @user_data: (closure): data to pass to the callback.
  * @callback_destroyed: A #GDestroyNotify called when the listener is freed
@@ -400,6 +401,7 @@ static void
 listener_entry_free (EventListenerEntry *e)
 {
   gpointer callback = (e->callback == remove_datum ? (gpointer)e->user_data : (gpointer)e->callback);
+  g_free (e->event_type);
   g_free (e->category);
   g_free (e->name);
   if (e->detail) g_free (e->detail);
@@ -511,6 +513,25 @@ atspi_event_listener_register (AtspiEventListener *listener,
                                                       event_type, error);
 }
 
+static gboolean
+notify_event_registered (EventListenerEntry *e)
+{
+  DBusMessage *message, *reply;
+
+  message = dbus_message_new_method_call (atspi_bus_registry,
+	atspi_path_registry,
+	atspi_interface_registry,
+	"RegisterEvent");
+  if (!message)
+    return FALSE;
+  dbus_message_append_args (message, DBUS_TYPE_STRING, &e->event_type, DBUS_TYPE_INVALID);
+  reply = _atspi_dbus_send_with_reply_and_block (message, NULL);
+
+  if (reply)
+    dbus_message_unref (reply);
+  return TRUE;
+}
+
 /**
  * atspi_event_listener_register_from_callback:
  * @callback: (scope notified): the #AtspiEventListenerCB to be registered 
@@ -551,6 +572,7 @@ atspi_event_listener_register_from_callback (AtspiEventListenerCB callback,
   }
 
   e = g_new (EventListenerEntry, 1);
+  e->event_type = g_strdup (event_type);
   e->callback = callback;
   e->user_data = user_data;
   e->callback_destroyed = callback_destroyed;
@@ -578,18 +600,21 @@ atspi_event_listener_register_from_callback (AtspiEventListenerCB callback,
   }
   g_ptr_array_free (matchrule_array, TRUE);
 
-  message = dbus_message_new_method_call (atspi_bus_registry,
-	atspi_path_registry,
-	atspi_interface_registry,
-	"RegisterEvent");
-  if (!message)
-    return FALSE;
-  dbus_message_append_args (message, DBUS_TYPE_STRING, &event_type, DBUS_TYPE_INVALID);
-  reply = _atspi_dbus_send_with_reply_and_block (message, error);
-  if (reply)
-    dbus_message_unref (reply);
-
+  notify_event_registered (e);
   return TRUE;
+}
+
+void
+_atspi_reregister_event_listeners ()
+{
+  GList *l;
+  EventListenerEntry *e;
+
+  for (l = event_listeners; l; l = l->next)
+    {
+      e = l->data;
+      notify_event_registered (e);
+    }
 }
 
 /**
@@ -777,6 +802,9 @@ detail_matches_listener (const char *event_detail, const char *listener_detail)
   if (!listener_detail)
     return TRUE;
 
+  if (!event_detail)
+    return (listener_detail ? FALSE : TRUE);
+
   return !(listener_detail [strcspn (listener_detail, ":")] == '\0'
                ? strncmp (listener_detail, event_detail,
                           strcspn (event_detail, ":"))
@@ -788,6 +816,7 @@ _atspi_send_event (AtspiEvent *e)
 {
   char *category, *name, *detail;
   GList *l;
+  GList *called_listeners = NULL;
 
   /* Ensure that the value is set to avoid a Python exception */
   /* TODO: Figure out how to do this without using a private field */
@@ -809,12 +838,24 @@ _atspi_send_event (AtspiEvent *e)
         (entry->name == NULL || !strcmp (name, entry->name)) &&
         detail_matches_listener (detail, entry->detail))
     {
+      GList *l2;
+      for (l2 = called_listeners; l2; l2 = l2->next)
+      {
+        EventListenerEntry *e2 = l2->data;
+        if (entry->callback == e2->callback && entry->user_data == e2->user_data)
+          break;
+      }
+      if (!l2)
+      {
         entry->callback (atspi_event_copy (e), entry->user_data);
+        called_listeners = g_list_prepend (called_listeners, entry);
+      }
     }
   }
   if (detail) g_free (detail);
   g_free (name);
   g_free (category);
+  g_list_free (called_listeners);
 }
 
 DBusHandlerResult
