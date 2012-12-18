@@ -1,3 +1,9 @@
+at-spi2-core (2.7.3-1) experimental; urgency=low
+
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 18 Dec 2012 23:28:28 +0100
+
 at-spi2-core (2.7.2-1) experimental; urgency=low
 
   [ Luke Yelavich ]
