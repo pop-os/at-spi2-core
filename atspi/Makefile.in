@@ -52,6 +52,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@HAVE_INTROSPECTION_TRUE@am__append_1 = --c-include='atspi/atspi.h'
+@HAVE_INTROSPECTION_TRUE@am__append_2 = Atspi-2.0.gir
 subdir = atspi
 DIST_COMMON = $(libatspiinclude_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/config/depcomp
@@ -60,8 +62,8 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/gtk-doc.m4 \
 	$(top_srcdir)/m4/intltool.m4 $(top_srcdir)/m4/introspection.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
-	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/nls.m4 \
-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -96,7 +98,7 @@ am__uninstall_files_from_dir = { \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
 am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(girdir)" \
-	"$(DESTDIR)$(typelibsdir)" "$(DESTDIR)$(libatspiincludedir)"
+	"$(DESTDIR)$(typelibdir)" "$(DESTDIR)$(libatspiincludedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 am__DEPENDENCIES_1 =
 libatspi_la_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
@@ -157,7 +159,7 @@ am__can_run_installinfo = \
     n|no|NO) false;; \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
-DATA = $(gir_DATA) $(typelibs_DATA)
+DATA = $(gir_DATA) $(typelib_DATA)
 HEADERS = $(libatspiinclude_HEADERS)
 ETAGS = etags
 CTAGS = ctags
@@ -446,21 +448,24 @@ libatspi_la_SOURCES = \
 	atspi-value.c \
 	atspi-value.h
 
-
-#BUILT_SOURCES = atspi-constants.h
-
-#CLEANFILES = atspi-constants.h
-
-#atspi-constants.h: $(top_srcdir)/xml/spec.xml $(top_srcdir)/tools/c-constants-gen.py
-#	python $(top_srcdir)/tools/c-constants-gen.py Atspi $(top_srcdir)/xml/spec.xml atspi-constants
-@HAVE_INTROSPECTION_TRUE@INTROSPECTION_FILES = $(libatspi_la_SOURCES)
+INTROSPECTION_GIRS = $(am__append_2)
+INTROSPECTION_SCANNER_ARGS = --add-include-path=$(srcdir) --warn-all \
+	$(am__append_1)
+INTROSPECTION_COMPILER_ARGS = --includedir=$(srcdir)
+@HAVE_INTROSPECTION_TRUE@Atspi_2_0_gir_INCLUDES = GLib-2.0 GObject-2.0
+@HAVE_INTROSPECTION_TRUE@Atspi_2_0_gir_PACKAGES = dbus-1
+@HAVE_INTROSPECTION_TRUE@Atspi_2_0_gir_EXPORT_PACKAGES = atspi-2
+@HAVE_INTROSPECTION_TRUE@Atspi_2_0_gir_CFLAGS = -I$(top_builddir) -I$(top_srcdir)
+@HAVE_INTROSPECTION_TRUE@Atspi_2_0_gir_LIBS = libatspi.la $(top_builddir)/dbind/libdbind.la
+@HAVE_INTROSPECTION_TRUE@Atspi_2_0_gir_FILES = $(libatspi_la_SOURCES)
+@HAVE_INTROSPECTION_TRUE@Atspi_2_0_gir_SCANNERFLAGS = --namespace Atspi --nsversion=2.0
 @HAVE_INTROSPECTION_TRUE@girdir = $(datadir)/gir-1.0
-@HAVE_INTROSPECTION_TRUE@gir_DATA = Atspi-2.0.gir
-@HAVE_INTROSPECTION_TRUE@typelibsdir = $(libdir)/girepository-1.0/
-@HAVE_INTROSPECTION_TRUE@typelibs_DATA = $(gir_DATA:.gir=.typelib)
+@HAVE_INTROSPECTION_TRUE@gir_DATA = $(INTROSPECTION_GIRS)
+@HAVE_INTROSPECTION_TRUE@typelibdir = $(libdir)/girepository-1.0
+@HAVE_INTROSPECTION_TRUE@typelib_DATA = $(INTROSPECTION_GIRS:.gir=.typelib)
 @HAVE_INTROSPECTION_TRUE@CLEANFILES = \
 @HAVE_INTROSPECTION_TRUE@    $(gir_DATA) \
-@HAVE_INTROSPECTION_TRUE@    $(typelibs_DATA)
+@HAVE_INTROSPECTION_TRUE@    $(typelib_DATA)
 
 all: all-am
 
@@ -771,27 +776,27 @@ uninstall-girDATA:
 	@list='$(gir_DATA)'; test -n "$(girdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(girdir)'; $(am__uninstall_files_from_dir)
-install-typelibsDATA: $(typelibs_DATA)
+install-typelibDATA: $(typelib_DATA)
 	@$(NORMAL_INSTALL)
-	@list='$(typelibs_DATA)'; test -n "$(typelibsdir)" || list=; \
+	@list='$(typelib_DATA)'; test -n "$(typelibdir)" || list=; \
 	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(typelibsdir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(typelibsdir)" || exit 1; \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(typelibdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(typelibdir)" || exit 1; \
 	fi; \
 	for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  echo "$$d$$p"; \
 	done | $(am__base_list) | \
 	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(typelibsdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(typelibsdir)" || exit $$?; \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(typelibdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(typelibdir)" || exit $$?; \
 	done
 
-uninstall-typelibsDATA:
+uninstall-typelibDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(typelibs_DATA)'; test -n "$(typelibsdir)" || list=; \
+	@list='$(typelib_DATA)'; test -n "$(typelibdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(typelibsdir)'; $(am__uninstall_files_from_dir)
+	dir='$(DESTDIR)$(typelibdir)'; $(am__uninstall_files_from_dir)
 install-libatspiincludeHEADERS: $(libatspiinclude_HEADERS)
 	@$(NORMAL_INSTALL)
 	@list='$(libatspiinclude_HEADERS)'; test -n "$(libatspiincludedir)" || list=; \
@@ -914,7 +919,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(girdir)" "$(DESTDIR)$(typelibsdir)" "$(DESTDIR)$(libatspiincludedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(girdir)" "$(DESTDIR)$(typelibdir)" "$(DESTDIR)$(libatspiincludedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -972,7 +977,7 @@ info: info-am
 info-am:
 
 install-data-am: install-girDATA install-libatspiincludeHEADERS \
-	install-typelibsDATA
+	install-typelibDATA
 
 install-dvi: install-dvi-am
 
@@ -1019,7 +1024,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-girDATA uninstall-libLTLIBRARIES \
-	uninstall-libatspiincludeHEADERS uninstall-typelibsDATA
+	uninstall-libatspiincludeHEADERS uninstall-typelibDATA
 
 .MAKE: install-am install-strip
 
@@ -1032,41 +1037,25 @@ uninstall-am: uninstall-girDATA uninstall-libLTLIBRARIES \
 	install-html install-html-am install-info install-info-am \
 	install-libLTLIBRARIES install-libatspiincludeHEADERS \
 	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip install-typelibsDATA installcheck \
+	install-ps-am install-strip install-typelibDATA installcheck \
 	installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am uninstall-girDATA \
 	uninstall-libLTLIBRARIES uninstall-libatspiincludeHEADERS \
-	uninstall-typelibsDATA
+	uninstall-typelibDATA
 
 
-@HAVE_INTROSPECTION_TRUE@Atspi-2.0.gir: $(INTROSPECTION_SCANNER) \
-@HAVE_INTROSPECTION_TRUE@		libatspi.la \
-@HAVE_INTROSPECTION_TRUE@		$(INTROSPECTION_FILES)
-@HAVE_INTROSPECTION_TRUE@	$(AM_V_GEN)$(INTROSPECTION_SCANNER) -v \
-@HAVE_INTROSPECTION_TRUE@		--namespace Atspi \
-@HAVE_INTROSPECTION_TRUE@		--nsversion=2.0 \
-@HAVE_INTROSPECTION_TRUE@		-I$(top_builddir) \
-@HAVE_INTROSPECTION_TRUE@		-I$(top_srcdir) \
-@HAVE_INTROSPECTION_TRUE@		--include=GLib-2.0 \
-@HAVE_INTROSPECTION_TRUE@		--include=GObject-2.0 \
-@HAVE_INTROSPECTION_TRUE@		--libtool="$(top_builddir)/libtool" \
-@HAVE_INTROSPECTION_TRUE@		--library=libatspi.la \
-@HAVE_INTROSPECTION_TRUE@		--library=$(top_builddir)/dbind/libdbind.la \
-@HAVE_INTROSPECTION_TRUE@		--pkg dbus-1 \
-@HAVE_INTROSPECTION_TRUE@		--pkg-export atspi-2 \
-@HAVE_INTROSPECTION_TRUE@		--c-include "atspi/atspi.h" \
-@HAVE_INTROSPECTION_TRUE@		--warn-all \
-@HAVE_INTROSPECTION_TRUE@		--output $@ \
-@HAVE_INTROSPECTION_TRUE@		$(addprefix $(srcdir)/, $(INTROSPECTION_FILES))
+#BUILT_SOURCES = atspi-constants.h
 
-@HAVE_INTROSPECTION_TRUE@%.typelib: %.gir $(INTROSPECTION_COMPILER)
-@HAVE_INTROSPECTION_TRUE@	$(AM_V_GEN)$(top_builddir)/libtool --mode=execute \
-@HAVE_INTROSPECTION_TRUE@	    $(INTROSPECTION_COMPILER) \
-@HAVE_INTROSPECTION_TRUE@	        --includedir=$(srcdir) \
-@HAVE_INTROSPECTION_TRUE@	        --includedir=. \
-@HAVE_INTROSPECTION_TRUE@	        $(INTROSPECTION_COMPILER_OPTS) $< -o $(@F)
+#CLEANFILES = atspi-constants.h
+
+#atspi-constants.h: $(top_srcdir)/xml/spec.xml $(top_srcdir)/tools/c-constants-gen.py
+#	python $(top_srcdir)/tools/c-constants-gen.py Atspi $(top_srcdir)/xml/spec.xml atspi-constants
+
+-include $(INTROSPECTION_MAKEFILE)
+
+@HAVE_INTROSPECTION_TRUE@Atspi-2.0.gir: libatspi.la
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

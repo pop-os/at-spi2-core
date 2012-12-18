@@ -72,6 +72,19 @@
 <ANCHOR id="atspi-collection-get-matches-to" href="libatspi/libatspi-atspi-collection.html#atspi-collection-get-matches-to">
 <ANCHOR id="atspi-collection-get-matches-from" href="libatspi/libatspi-atspi-collection.html#atspi-collection-get-matches-from">
 <ANCHOR id="atspi-collection-get-active-descendant" href="libatspi/libatspi-atspi-collection.html#atspi-collection-get-active-descendant">
+<ANCHOR id="libatspi-atspi-action" href="libatspi/libatspi-atspi-action.html">
+<ANCHOR id="libatspi-atspi-action.synopsis" href="libatspi/libatspi-atspi-action.html#libatspi-atspi-action.synopsis">
+<ANCHOR id="AtspiAction" href="libatspi/libatspi-atspi-action.html#AtspiAction">
+<ANCHOR id="libatspi-atspi-action.object-hierarchy" href="libatspi/libatspi-atspi-action.html#libatspi-atspi-action.object-hierarchy">
+<ANCHOR id="libatspi-atspi-action.implementations" href="libatspi/libatspi-atspi-action.html#libatspi-atspi-action.implementations">
+<ANCHOR id="libatspi-atspi-action.description" href="libatspi/libatspi-atspi-action.html#libatspi-atspi-action.description">
+<ANCHOR id="libatspi-atspi-action.details" href="libatspi/libatspi-atspi-action.html#libatspi-atspi-action.details">
+<ANCHOR id="AtspiAction-struct" href="libatspi/libatspi-atspi-action.html#AtspiAction-struct">
+<ANCHOR id="atspi-action-get-n-actions" href="libatspi/libatspi-atspi-action.html#atspi-action-get-n-actions">
+<ANCHOR id="atspi-action-get-description" href="libatspi/libatspi-atspi-action.html#atspi-action-get-description">
+<ANCHOR id="atspi-action-get-key-binding" href="libatspi/libatspi-atspi-action.html#atspi-action-get-key-binding">
+<ANCHOR id="atspi-action-get-name" href="libatspi/libatspi-atspi-action.html#atspi-action-get-name">
+<ANCHOR id="atspi-action-do-action" href="libatspi/libatspi-atspi-action.html#atspi-action-do-action">
 <ANCHOR id="AtspiRelation" href="libatspi/AtspiRelation.html">
 <ANCHOR id="AtspiRelation.synopsis" href="libatspi/AtspiRelation.html#AtspiRelation.synopsis">
 <ANCHOR id="AtspiRelation.object-hierarchy" href="libatspi/AtspiRelation.html#AtspiRelation.object-hierarchy">
@@ -273,6 +286,7 @@
 <ANCHOR id="AtspiEventListener-struct" href="libatspi/AtspiEventListener.html#AtspiEventListener-struct">
 <ANCHOR id="AtspiEventListenerClass" href="libatspi/AtspiEventListener.html#AtspiEventListenerClass">
 <ANCHOR id="atspi-event-listener-get-type" href="libatspi/AtspiEventListener.html#atspi-event-listener-get-type">
+<ANCHOR id="atspi-event-listener-new" href="libatspi/AtspiEventListener.html#atspi-event-listener-new">
 <ANCHOR id="atspi-event-listener-new-simple" href="libatspi/AtspiEventListener.html#atspi-event-listener-new-simple">
 <ANCHOR id="atspi-event-listener-register" href="libatspi/AtspiEventListener.html#atspi-event-listener-register">
 <ANCHOR id="atspi-event-listener-register-from-callback" href="libatspi/AtspiEventListener.html#atspi-event-listener-register-from-callback">
