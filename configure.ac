@@ -1,4 +1,4 @@
-AC_INIT([at-spi2-core], [2.7.3], [accessibility-atspi@lists.linux-foundation.org])
+AC_INIT([at-spi2-core], [2.7.4], [accessibility-atspi@lists.linux-foundation.org])
 AC_PREREQ([2.59])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_MACRO_DIR([m4])
@@ -203,6 +203,7 @@ dbind/dbind-config.h
 	bus/Makefile
 doc/Makefile
 doc/libatspi/Makefile
+test/Makefile
 atspi-2.pc
 atspi-2-uninstalled.pc
 ])
