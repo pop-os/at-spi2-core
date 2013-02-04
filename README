@@ -1,7 +1,7 @@
 D-Bus AT-SPI
 ------------
 
-This version of at-spi is a major break from previous versions.
+This version of at-spi is a major break from version 1.x.
 It has been completely rewritten to use D-Bus rather than
 ORBIT / CORBA for its transport protocol.
 
@@ -15,9 +15,10 @@ The mailing list used for general questions is:
         accessibility-atspi@lists.linux-foundation.org
 
 For bug reports, feature requests, patches or enhancements please use
-bugzilla. The freedesktop project name is at-spi2.
+the AT-SPI project on bugzilla.gnome.org. Use the at-spi2-core component for
+bugs specific to this module.
 
-        http://bugs.freedesktop.org
+        http://bugzilla.gnome.org
 
 A git repository with the latest development code is available at:
 
@@ -48,8 +49,8 @@ Contents of this package
 This package includes the protocol definitions for the new D-Bus
 at-spi.
 
-Also included is the daemon neccessary for forwarding device events
-and registering accessible applicaitons.
+Also included is the daemon necessary for forwarding device events
+and registering accessible applicaitions.
 
 
 Directory structure
@@ -60,12 +61,13 @@ The directories within this package are arranged as follows:
     xml 
 
         This directory contains XML documents describing
-        the D-Bus protocol in a subset of Telepathy XML.
+        the D-Bus protocol in the format used for D-Bus introspection.
 
-    tools
+    idl
 
-        Miscellaneous tools. Mostly for converting protocol
-        XML into D-Bus introspection, 'C' types and documentation.
+        The D-Bus specification in an idl-like format. This is likely not
+        parseable by any existing tools, is not entirely up-to-date, and may
+        by removed in a future release.
 
     registryd
 
@@ -73,3 +75,42 @@ The directories within this package are arranged as follows:
         keeps a register of accessible applications and presents
         this to clients (ATs).
         It is also responsible for delivering device events.
+
+    dbind
+
+        Library to ease making D-Bus method calls, contains
+        marshalling code to convert function arguments
+        and a provided D-Bus signature into a D-Bus message.
+
+        Used by libatspi.
+
+    atspi
+
+        C library for use by ATs. Wraps the various D-Bus calls, provides
+        an interface for listening to events, and caches some information about
+        accessible objects. Also contains some functions used by at-spi2-atk.
+
+    bus
+
+        A server that sits on the session bus and provides an interface
+        allowing applications to find the accessibility bus daemon, launching
+        it as needed. The accessibility bus is separate from the session bus
+        because it may in fact span user sessions if a user, for instance,
+        runs an application that escalates to run as root. The accessibility
+        bus is thus tied to the X session rather than the D-Bus session.
+
+    doc
+
+        Contains infrastructure for creating libatspi documentation.
+
+    test
+
+        Contains files that may be useful for testing AT-SPI.
+
+   m4
+
+        Some macros used for building the module.
+
+    po
+
+        Infrastructure used for translation.

@@ -594,6 +594,7 @@
     <keyword type="constant" name="ATSPI_ROLE_IMAGE_MAP" link="libatspi-atspi-constants.html#ATSPI-ROLE-IMAGE-MAP:CAPS"/>
     <keyword type="constant" name="ATSPI_ROLE_NOTIFICATION" link="libatspi-atspi-constants.html#ATSPI-ROLE-NOTIFICATION:CAPS"/>
     <keyword type="constant" name="ATSPI_ROLE_INFO_BAR" link="libatspi-atspi-constants.html#ATSPI-ROLE-INFO-BAR:CAPS"/>
+    <keyword type="constant" name="ATSPI_ROLE_LEVEL_BAR" link="libatspi-atspi-constants.html#ATSPI-ROLE-LEVEL-BAR:CAPS"/>
     <keyword type="constant" name="ATSPI_ROLE_LAST_DEFINED" link="libatspi-atspi-constants.html#ATSPI-ROLE-LAST-DEFINED:CAPS"/>
   </functions>
 </book>
