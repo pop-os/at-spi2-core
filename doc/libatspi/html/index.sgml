@@ -286,6 +286,7 @@
 <ANCHOR id="AtspiEventListener-struct" href="libatspi/AtspiEventListener.html#AtspiEventListener-struct">
 <ANCHOR id="AtspiEventListenerClass" href="libatspi/AtspiEventListener.html#AtspiEventListenerClass">
 <ANCHOR id="atspi-event-listener-get-type" href="libatspi/AtspiEventListener.html#atspi-event-listener-get-type">
+<ANCHOR id="atspi-event-listener-new" href="libatspi/AtspiEventListener.html#atspi-event-listener-new">
 <ANCHOR id="atspi-event-listener-new-simple" href="libatspi/AtspiEventListener.html#atspi-event-listener-new-simple">
 <ANCHOR id="atspi-event-listener-register" href="libatspi/AtspiEventListener.html#atspi-event-listener-register">
 <ANCHOR id="atspi-event-listener-register-from-callback" href="libatspi/AtspiEventListener.html#atspi-event-listener-register-from-callback">
@@ -412,6 +413,14 @@
 <ANCHOR id="ATSPI-COORD-TYPE-WINDOW:CAPS" href="libatspi/libatspi-atspi-constants.html#ATSPI-COORD-TYPE-WINDOW:CAPS">
 <ANCHOR id="ATSPI-COORD-TYPE-COUNT:CAPS" href="libatspi/libatspi-atspi-constants.html#ATSPI-COORD-TYPE-COUNT:CAPS">
 <ANCHOR id="AtspiCollectionSortOrder" href="libatspi/libatspi-atspi-constants.html#AtspiCollectionSortOrder">
+<ANCHOR id="ATSPI-Collection-SORT-ORDER-INVALID" href="libatspi/libatspi-atspi-constants.html#ATSPI-Collection-SORT-ORDER-INVALID">
+<ANCHOR id="ATSPI-Collection-SORT-ORDER-CANONICAL" href="libatspi/libatspi-atspi-constants.html#ATSPI-Collection-SORT-ORDER-CANONICAL">
+<ANCHOR id="ATSPI-Collection-SORT-ORDER-FLOW" href="libatspi/libatspi-atspi-constants.html#ATSPI-Collection-SORT-ORDER-FLOW">
+<ANCHOR id="ATSPI-Collection-SORT-ORDER-TAB" href="libatspi/libatspi-atspi-constants.html#ATSPI-Collection-SORT-ORDER-TAB">
+<ANCHOR id="ATSPI-Collection-SORT-ORDER-REVERSE-CANONICAL" href="libatspi/libatspi-atspi-constants.html#ATSPI-Collection-SORT-ORDER-REVERSE-CANONICAL">
+<ANCHOR id="ATSPI-Collection-SORT-ORDER-REVERSE-FLOW" href="libatspi/libatspi-atspi-constants.html#ATSPI-Collection-SORT-ORDER-REVERSE-FLOW">
+<ANCHOR id="ATSPI-Collection-SORT-ORDER-REVERSE-TAB" href="libatspi/libatspi-atspi-constants.html#ATSPI-Collection-SORT-ORDER-REVERSE-TAB">
+<ANCHOR id="ATSPI-Collection-SORT-ORDER-LAST-DEFINED" href="libatspi/libatspi-atspi-constants.html#ATSPI-Collection-SORT-ORDER-LAST-DEFINED">
 <ANCHOR id="ATSPI-SORTORDER-COUNT:CAPS" href="libatspi/libatspi-atspi-constants.html#ATSPI-SORTORDER-COUNT:CAPS">
 <ANCHOR id="AtspiCollectionMatchType" href="libatspi/libatspi-atspi-constants.html#AtspiCollectionMatchType">
 <ANCHOR id="ATSPI-Collection-MATCH-INVALID" href="libatspi/libatspi-atspi-constants.html#ATSPI-Collection-MATCH-INVALID">
@@ -422,6 +431,10 @@
 <ANCHOR id="ATSPI-Collection-MATCH-LAST-DEFINED" href="libatspi/libatspi-atspi-constants.html#ATSPI-Collection-MATCH-LAST-DEFINED">
 <ANCHOR id="ATSPI-MATCHTYPES-COUNT:CAPS" href="libatspi/libatspi-atspi-constants.html#ATSPI-MATCHTYPES-COUNT:CAPS">
 <ANCHOR id="AtspiCollectionTreeTraversalType" href="libatspi/libatspi-atspi-constants.html#AtspiCollectionTreeTraversalType">
+<ANCHOR id="ATSPI-Collection-TREE-RESTRICT-CHILDREN" href="libatspi/libatspi-atspi-constants.html#ATSPI-Collection-TREE-RESTRICT-CHILDREN">
+<ANCHOR id="ATSPI-Collection-TREE-RESTRICT-SIBLING" href="libatspi/libatspi-atspi-constants.html#ATSPI-Collection-TREE-RESTRICT-SIBLING">
+<ANCHOR id="ATSPI-Collection-TREE-INORDER" href="libatspi/libatspi-atspi-constants.html#ATSPI-Collection-TREE-INORDER">
+<ANCHOR id="ATSPI-Collection-TREE-LAST-DEFINED" href="libatspi/libatspi-atspi-constants.html#ATSPI-Collection-TREE-LAST-DEFINED">
 <ANCHOR id="ATSPI-TREETRAVERSALTYPE:CAPS" href="libatspi/libatspi-atspi-constants.html#ATSPI-TREETRAVERSALTYPE:CAPS">
 <ANCHOR id="AtspiComponentLayer" href="libatspi/libatspi-atspi-constants.html#AtspiComponentLayer">
 <ANCHOR id="ATSPI-LAYER-INVALID:CAPS" href="libatspi/libatspi-atspi-constants.html#ATSPI-LAYER-INVALID:CAPS">
@@ -494,6 +507,8 @@
 <ANCHOR id="ATSPI-STATE-LAST-DEFINED:CAPS" href="libatspi/libatspi-atspi-constants.html#ATSPI-STATE-LAST-DEFINED:CAPS">
 <ANCHOR id="ATSPI-STATETYPE-COUNT:CAPS" href="libatspi/libatspi-atspi-constants.html#ATSPI-STATETYPE-COUNT:CAPS">
 <ANCHOR id="AtspiKeyEventType" href="libatspi/libatspi-atspi-constants.html#AtspiKeyEventType">
+<ANCHOR id="ATSPI-KEY-PRESSED:CAPS" href="libatspi/libatspi-atspi-constants.html#ATSPI-KEY-PRESSED:CAPS">
+<ANCHOR id="ATSPI-KEY-RELEASED:CAPS" href="libatspi/libatspi-atspi-constants.html#ATSPI-KEY-RELEASED:CAPS">
 <ANCHOR id="ATSPI-KEYEVENTTYPE-COUNT:CAPS" href="libatspi/libatspi-atspi-constants.html#ATSPI-KEYEVENTTYPE-COUNT:CAPS">
 <ANCHOR id="AtspiEventType" href="libatspi/libatspi-atspi-constants.html#AtspiEventType">
 <ANCHOR id="ATSPI-KEY-PRESSED-EVENT:CAPS" href="libatspi/libatspi-atspi-constants.html#ATSPI-KEY-PRESSED-EVENT:CAPS">
@@ -644,6 +659,7 @@
 <ANCHOR id="ATSPI-ROLE-IMAGE-MAP:CAPS" href="libatspi/libatspi-atspi-constants.html#ATSPI-ROLE-IMAGE-MAP:CAPS">
 <ANCHOR id="ATSPI-ROLE-NOTIFICATION:CAPS" href="libatspi/libatspi-atspi-constants.html#ATSPI-ROLE-NOTIFICATION:CAPS">
 <ANCHOR id="ATSPI-ROLE-INFO-BAR:CAPS" href="libatspi/libatspi-atspi-constants.html#ATSPI-ROLE-INFO-BAR:CAPS">
+<ANCHOR id="ATSPI-ROLE-LEVEL-BAR:CAPS" href="libatspi/libatspi-atspi-constants.html#ATSPI-ROLE-LEVEL-BAR:CAPS">
 <ANCHOR id="ATSPI-ROLE-LAST-DEFINED:CAPS" href="libatspi/libatspi-atspi-constants.html#ATSPI-ROLE-LAST-DEFINED:CAPS">
 <ANCHOR id="ATSPI-ROLE-COUNT:CAPS" href="libatspi/libatspi-atspi-constants.html#ATSPI-ROLE-COUNT:CAPS">
 <ANCHOR id="libatspi-atspi-misc" href="libatspi/libatspi-atspi-misc.html">

@@ -212,6 +212,7 @@
     <keyword type="struct" name="struct AtspiEventListener" link="AtspiEventListener.html#AtspiEventListener-struct"/>
     <keyword type="struct" name="struct AtspiEventListenerClass" link="AtspiEventListener.html#AtspiEventListenerClass"/>
     <keyword type="function" name="atspi_event_listener_get_type ()" link="AtspiEventListener.html#atspi-event-listener-get-type"/>
+    <keyword type="function" name="atspi_event_listener_new ()" link="AtspiEventListener.html#atspi-event-listener-new"/>
     <keyword type="function" name="atspi_event_listener_new_simple ()" link="AtspiEventListener.html#atspi-event-listener-new-simple"/>
     <keyword type="function" name="atspi_event_listener_register ()" link="AtspiEventListener.html#atspi-event-listener-register"/>
     <keyword type="function" name="atspi_event_listener_register_from_callback ()" link="AtspiEventListener.html#atspi-event-listener-register-from-callback"/>
@@ -371,12 +372,24 @@
     <keyword type="constant" name="ATSPI_LOCALE_TYPE_TIME" link="libatspi-atspi-constants.html#ATSPI-LOCALE-TYPE-TIME:CAPS"/>
     <keyword type="constant" name="ATSPI_COORD_TYPE_SCREEN" link="libatspi-atspi-constants.html#ATSPI-COORD-TYPE-SCREEN:CAPS"/>
     <keyword type="constant" name="ATSPI_COORD_TYPE_WINDOW" link="libatspi-atspi-constants.html#ATSPI-COORD-TYPE-WINDOW:CAPS"/>
+    <keyword type="constant" name="ATSPI_Collection_SORT_ORDER_INVALID" link="libatspi-atspi-constants.html#ATSPI-Collection-SORT-ORDER-INVALID"/>
+    <keyword type="constant" name="ATSPI_Collection_SORT_ORDER_CANONICAL" link="libatspi-atspi-constants.html#ATSPI-Collection-SORT-ORDER-CANONICAL"/>
+    <keyword type="constant" name="ATSPI_Collection_SORT_ORDER_FLOW" link="libatspi-atspi-constants.html#ATSPI-Collection-SORT-ORDER-FLOW"/>
+    <keyword type="constant" name="ATSPI_Collection_SORT_ORDER_TAB" link="libatspi-atspi-constants.html#ATSPI-Collection-SORT-ORDER-TAB"/>
+    <keyword type="constant" name="ATSPI_Collection_SORT_ORDER_REVERSE_CANONICAL" link="libatspi-atspi-constants.html#ATSPI-Collection-SORT-ORDER-REVERSE-CANONICAL"/>
+    <keyword type="constant" name="ATSPI_Collection_SORT_ORDER_REVERSE_FLOW" link="libatspi-atspi-constants.html#ATSPI-Collection-SORT-ORDER-REVERSE-FLOW"/>
+    <keyword type="constant" name="ATSPI_Collection_SORT_ORDER_REVERSE_TAB" link="libatspi-atspi-constants.html#ATSPI-Collection-SORT-ORDER-REVERSE-TAB"/>
+    <keyword type="constant" name="ATSPI_Collection_SORT_ORDER_LAST_DEFINED" link="libatspi-atspi-constants.html#ATSPI-Collection-SORT-ORDER-LAST-DEFINED"/>
     <keyword type="constant" name="ATSPI_Collection_MATCH_INVALID" link="libatspi-atspi-constants.html#ATSPI-Collection-MATCH-INVALID"/>
     <keyword type="constant" name="ATSPI_Collection_MATCH_ALL" link="libatspi-atspi-constants.html#ATSPI-Collection-MATCH-ALL"/>
     <keyword type="constant" name="ATSPI_Collection_MATCH_ANY" link="libatspi-atspi-constants.html#ATSPI-Collection-MATCH-ANY"/>
     <keyword type="constant" name="ATSPI_Collection_MATCH_NONE" link="libatspi-atspi-constants.html#ATSPI-Collection-MATCH-NONE"/>
     <keyword type="constant" name="ATSPI_Collection_MATCH_EMPTY" link="libatspi-atspi-constants.html#ATSPI-Collection-MATCH-EMPTY"/>
     <keyword type="constant" name="ATSPI_Collection_MATCH_LAST_DEFINED" link="libatspi-atspi-constants.html#ATSPI-Collection-MATCH-LAST-DEFINED"/>
+    <keyword type="constant" name="ATSPI_Collection_TREE_RESTRICT_CHILDREN" link="libatspi-atspi-constants.html#ATSPI-Collection-TREE-RESTRICT-CHILDREN"/>
+    <keyword type="constant" name="ATSPI_Collection_TREE_RESTRICT_SIBLING" link="libatspi-atspi-constants.html#ATSPI-Collection-TREE-RESTRICT-SIBLING"/>
+    <keyword type="constant" name="ATSPI_Collection_TREE_INORDER" link="libatspi-atspi-constants.html#ATSPI-Collection-TREE-INORDER"/>
+    <keyword type="constant" name="ATSPI_Collection_TREE_LAST_DEFINED" link="libatspi-atspi-constants.html#ATSPI-Collection-TREE-LAST-DEFINED"/>
     <keyword type="constant" name="ATSPI_LAYER_INVALID" link="libatspi-atspi-constants.html#ATSPI-LAYER-INVALID:CAPS"/>
     <keyword type="constant" name="ATSPI_LAYER_BACKGROUND" link="libatspi-atspi-constants.html#ATSPI-LAYER-BACKGROUND:CAPS"/>
     <keyword type="constant" name="ATSPI_LAYER_CANVAS" link="libatspi-atspi-constants.html#ATSPI-LAYER-CANVAS:CAPS"/>
@@ -439,6 +452,8 @@
     <keyword type="constant" name="ATSPI_STATE_IS_DEFAULT" link="libatspi-atspi-constants.html#ATSPI-STATE-IS-DEFAULT:CAPS"/>
     <keyword type="constant" name="ATSPI_STATE_VISITED" link="libatspi-atspi-constants.html#ATSPI-STATE-VISITED:CAPS"/>
     <keyword type="constant" name="ATSPI_STATE_LAST_DEFINED" link="libatspi-atspi-constants.html#ATSPI-STATE-LAST-DEFINED:CAPS"/>
+    <keyword type="constant" name="ATSPI_KEY_PRESSED" link="libatspi-atspi-constants.html#ATSPI-KEY-PRESSED:CAPS"/>
+    <keyword type="constant" name="ATSPI_KEY_RELEASED" link="libatspi-atspi-constants.html#ATSPI-KEY-RELEASED:CAPS"/>
     <keyword type="constant" name="ATSPI_KEY_PRESSED_EVENT" link="libatspi-atspi-constants.html#ATSPI-KEY-PRESSED-EVENT:CAPS"/>
     <keyword type="constant" name="ATSPI_KEY_RELEASED_EVENT" link="libatspi-atspi-constants.html#ATSPI-KEY-RELEASED-EVENT:CAPS"/>
     <keyword type="constant" name="ATSPI_BUTTON_PRESSED_EVENT" link="libatspi-atspi-constants.html#ATSPI-BUTTON-PRESSED-EVENT:CAPS"/>
@@ -579,6 +594,7 @@
     <keyword type="constant" name="ATSPI_ROLE_IMAGE_MAP" link="libatspi-atspi-constants.html#ATSPI-ROLE-IMAGE-MAP:CAPS"/>
     <keyword type="constant" name="ATSPI_ROLE_NOTIFICATION" link="libatspi-atspi-constants.html#ATSPI-ROLE-NOTIFICATION:CAPS"/>
     <keyword type="constant" name="ATSPI_ROLE_INFO_BAR" link="libatspi-atspi-constants.html#ATSPI-ROLE-INFO-BAR:CAPS"/>
+    <keyword type="constant" name="ATSPI_ROLE_LEVEL_BAR" link="libatspi-atspi-constants.html#ATSPI-ROLE-LEVEL-BAR:CAPS"/>
     <keyword type="constant" name="ATSPI_ROLE_LAST_DEFINED" link="libatspi-atspi-constants.html#ATSPI-ROLE-LAST-DEFINED:CAPS"/>
   </functions>
 </book>
