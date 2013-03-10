@@ -1,8 +1,9 @@
-at-spi2-core (2.7.91-1) UNRELEASED; urgency=low
+at-spi2-core (2.7.91-1) experimental; urgency=low
 
+  [ Luke Yelavich ]
   * New upstream release
 
- -- Luke Yelavich <themuso@ubuntu.com>  Tue, 26 Feb 2013 11:30:16 +1100
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 10 Mar 2013 17:55:58 +0100
 
 at-spi2-core (2.7.5-1) experimental; urgency=low
 
