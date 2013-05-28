@@ -103,8 +103,9 @@ LTLIBRARIES = $(lib_LTLIBRARIES)
 am__DEPENDENCIES_1 =
 libatspi_la_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) $(top_builddir)/dbind/libdbind.la
-am__objects_1 = libatspi_la-atspi-gmain.lo
-am_libatspi_la_OBJECTS = $(am__objects_1) \
+am__objects_1 = libatspi_la-atspi-enum-types.lo
+am__objects_2 = libatspi_la-atspi-gmain.lo
+am_libatspi_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	libatspi_la-atspi-accessible.lo libatspi_la-atspi-action.lo \
 	libatspi_la-atspi-application.lo \
 	libatspi_la-atspi-collection.lo libatspi_la-atspi-component.lo \
@@ -210,6 +211,7 @@ GIO_CFLAGS = @GIO_CFLAGS@
 GIO_LIBS = @GIO_LIBS@
 GLIB_CFLAGS = @GLIB_CFLAGS@
 GLIB_LIBS = @GLIB_LIBS@
+GLIB_MKENUMS = @GLIB_MKENUMS@
 GMSGFMT = @GMSGFMT@
 GOBJ_CFLAGS = @GOBJ_CFLAGS@
 GOBJ_LIBS = @GOBJ_LIBS@
@@ -373,6 +375,7 @@ libatspiinclude_HEADERS = \
 	atspi-device-listener-private.h \
 	atspi-document.h \
 	atspi-editabletext.h \
+	atspi-enum-types.h \
 	atspi-event-listener.h \
 	atspi-event-listener-private.h \
 atspi-gmain.c \
@@ -394,6 +397,7 @@ atspi-gmain.h \
 	atspi-value.h
 
 libatspi_la_SOURCES = \
+	$(BUILT_SOURCES) \
 	$(libatspiinclude_HEADERS) \
 	atspi.h	\
 	atspi-accessible.c \
@@ -448,10 +452,27 @@ libatspi_la_SOURCES = \
 	atspi-value.c \
 	atspi-value.h
 
+BUILT_SOURCES = \
+	atspi-enum-types.c \
+	atspi-enum-types.h
+
+
+#CLEANFILES = atspi-constants.h
+
+#atspi-constants.h: $(top_srcdir)/xml/spec.xml $(top_srcdir)/tools/c-constants-gen.py
+#	python $(top_srcdir)/tools/c-constants-gen.py Atspi $(top_srcdir)/xml/spec.xml atspi-constants
+ENUM_TYPES = \
+	atspi-constants.h \
+	atspi-types.h
+
 INTROSPECTION_GIRS = $(am__append_2)
 INTROSPECTION_SCANNER_ARGS = --add-include-path=$(srcdir) --warn-all \
 	$(am__append_1)
 INTROSPECTION_COMPILER_ARGS = --includedir=$(srcdir)
+EXTRA_DIST = \
+	atspi-enum-types.c.template \
+	atspi-enum-types.h.template
+
 @HAVE_INTROSPECTION_TRUE@Atspi_2_0_gir_INCLUDES = GLib-2.0 GObject-2.0
 @HAVE_INTROSPECTION_TRUE@Atspi_2_0_gir_PACKAGES = dbus-1
 @HAVE_INTROSPECTION_TRUE@Atspi_2_0_gir_EXPORT_PACKAGES = atspi-2
@@ -467,7 +488,8 @@ INTROSPECTION_COMPILER_ARGS = --includedir=$(srcdir)
 @HAVE_INTROSPECTION_TRUE@    $(gir_DATA) \
 @HAVE_INTROSPECTION_TRUE@    $(typelib_DATA)
 
-all: all-am
+all: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
 .SUFFIXES: .c .lo .o .obj
@@ -552,6 +574,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libatspi_la-atspi-device-listener.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libatspi_la-atspi-document.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libatspi_la-atspi-editabletext.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libatspi_la-atspi-enum-types.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libatspi_la-atspi-event-listener.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libatspi_la-atspi-gmain.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libatspi_la-atspi-hyperlink.Plo@am__quote@
@@ -588,6 +611,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
+
+libatspi_la-atspi-enum-types.lo: atspi-enum-types.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libatspi_la_CFLAGS) $(CFLAGS) -MT libatspi_la-atspi-enum-types.lo -MD -MP -MF $(DEPDIR)/libatspi_la-atspi-enum-types.Tpo -c -o libatspi_la-atspi-enum-types.lo `test -f 'atspi-enum-types.c' || echo '$(srcdir)/'`atspi-enum-types.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libatspi_la-atspi-enum-types.Tpo $(DEPDIR)/libatspi_la-atspi-enum-types.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='atspi-enum-types.c' object='libatspi_la-atspi-enum-types.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libatspi_la_CFLAGS) $(CFLAGS) -c -o libatspi_la-atspi-enum-types.lo `test -f 'atspi-enum-types.c' || echo '$(srcdir)/'`atspi-enum-types.c
 
 libatspi_la-atspi-gmain.lo: atspi-gmain.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libatspi_la_CFLAGS) $(CFLAGS) -MT libatspi_la-atspi-gmain.lo -MD -MP -MF $(DEPDIR)/libatspi_la-atspi-gmain.Tpo -c -o libatspi_la-atspi-gmain.lo `test -f 'atspi-gmain.c' || echo '$(srcdir)/'`atspi-gmain.c
@@ -916,13 +946,15 @@ distdir: $(DISTFILES)
 	  fi; \
 	done
 check-am: all-am
-check: check-am
+check: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
 	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(girdir)" "$(DESTDIR)$(typelibdir)" "$(DESTDIR)$(libatspiincludedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: install-am
+install: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -953,6 +985,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
 clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
@@ -1026,7 +1059,7 @@ ps-am:
 uninstall-am: uninstall-girDATA uninstall-libLTLIBRARIES \
 	uninstall-libatspiincludeHEADERS uninstall-typelibDATA
 
-.MAKE: install-am install-strip
+.MAKE: all check install install-am install-strip
 
 .PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
 	clean-libLTLIBRARIES clean-libtool cscopelist ctags distclean \
@@ -1046,12 +1079,11 @@ uninstall-am: uninstall-girDATA uninstall-libLTLIBRARIES \
 	uninstall-typelibDATA
 
 
-#BUILT_SOURCES = atspi-constants.h
+atspi-enum-types.h: atspi-enum-types.h.template $(ENUM_TYPES) $(GLIB_MKENUMS)
+	$(AM_V_GEN) (cd $(srcdir) && $(GLIB_MKENUMS) --template atspi-enum-types.h.template $(ENUM_TYPES)) > $@
 
-#CLEANFILES = atspi-constants.h
-
-#atspi-constants.h: $(top_srcdir)/xml/spec.xml $(top_srcdir)/tools/c-constants-gen.py
-#	python $(top_srcdir)/tools/c-constants-gen.py Atspi $(top_srcdir)/xml/spec.xml atspi-constants
+atspi-enum-types.c: atspi-enum-types.c.template $(ENUM_TYPES) $(GLIB_MKENUMS)
+	$(AM_V_GEN) (cd $(srcdir) && $(GLIB_MKENUMS) --template atspi-enum-types.c.template $(ENUM_TYPES)) > $@
 
 -include $(INTROSPECTION_MAKEFILE)
 

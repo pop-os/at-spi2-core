@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>atspi-types</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.0">
 <link rel="home" href="index.html" title="libatspi Reference Manual">
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-atspi-registry.html" title="atspi-registry">
@@ -72,7 +72,7 @@ enum                <a class="link" href="libatspi-atspi-types.html#AtspiKeyList
 <div class="refsect1">
 <a name="libatspi-atspi-types.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  <a href="../gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+  GObject
    +----<a class="link" href="AtspiObject.html" title="AtspiObject">AtspiObject</a>
          +----AtspiAccessible
 </pre>
@@ -97,7 +97,7 @@ enum                <a class="link" href="libatspi-atspi-types.html#AtspiKeyList
    +----AtspiEditableText
 </pre>
 <pre class="synopsis">
-  <a href="../gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+  GObject
    +----<a class="link" href="AtspiObject.html" title="AtspiObject">AtspiObject</a>
          +----AtspiHyperlink
 </pre>
@@ -382,9 +382,9 @@ Type definitions needed by multiple interfaces.
 <a name="AtspiKeyListenerSyncType"></a><h3>enum AtspiKeyListenerSyncType</h3>
 <pre class="programlisting">typedef enum {
   ATSPI_KEYLISTENER_NOSYNC = 0,
-  ATSPI_KEYLISTENER_SYNCHRONOUS = 1,
-  ATSPI_KEYLISTENER_CANCONSUME = 2,
-  ATSPI_KEYLISTENER_ALL_WINDOWS = 4
+  ATSPI_KEYLISTENER_SYNCHRONOUS = 1 &lt;&lt; 0,
+  ATSPI_KEYLISTENER_CANCONSUME = 1 &lt;&lt; 1,
+  ATSPI_KEYLISTENER_ALL_WINDOWS = 1 &lt;&lt; 2
 } AtspiKeyListenerSyncType;
 </pre>
 <p>

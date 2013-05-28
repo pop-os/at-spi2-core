@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>atspi-stateset</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.0">
 <link rel="home" href="index.html" title="libatspi Reference Manual">
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-atspi-text.html" title="atspi-text">
@@ -42,20 +42,20 @@ bitmap of accessible states.</p>
 <a name="AtspiStateSet.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">struct              <a class="link" href="AtspiStateSet.html#AtspiStateSet-struct" title="struct AtspiStateSet">AtspiStateSet</a>;
 struct              <a class="link" href="AtspiStateSet.html#AtspiStateSetClass" title="struct AtspiStateSetClass">AtspiStateSetClass</a>;
-<a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="returnvalue">AtspiStateSet</span></a> *     <a class="link" href="AtspiStateSet.html#atspi-state-set-new" title="atspi_state_set_new ()">atspi_state_set_new</a>                 (<em class="parameter"><code><a href="../glib/glib-Arrays.html#GArray"><span class="type">GArray</span></a> *states</code></em>);
+<a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="returnvalue">AtspiStateSet</span></a> *     <a class="link" href="AtspiStateSet.html#atspi-state-set-new" title="atspi_state_set_new ()">atspi_state_set_new</a>                 (<em class="parameter"><code><span class="type">GArray</span> *states</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="AtspiStateSet.html#atspi-state-set-set-by-name" title="atspi_state_set_set_by_name ()">atspi_state_set_set_by_name</a>         (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set</code></em>,
-                                                         <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *name</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> enabled</code></em>);
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *name</code></em>,
+                                                         <em class="parameter"><code><span class="type">gboolean</span> enabled</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="AtspiStateSet.html#atspi-state-set-add" title="atspi_state_set_add ()">atspi_state_set_add</a>                 (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiStateType" title="enum AtspiStateType"><span class="type">AtspiStateType</span></a> state</code></em>);
 <a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="returnvalue">AtspiStateSet</span></a> *     <a class="link" href="AtspiStateSet.html#atspi-state-set-compare" title="atspi_state_set_compare ()">atspi_state_set_compare</a>             (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set</code></em>,
                                                          <em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set2</code></em>);
-<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="AtspiStateSet.html#atspi-state-set-contains" title="atspi_state_set_contains ()">atspi_state_set_contains</a>            (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set</code></em>,
+<span class="returnvalue">gboolean</span>            <a class="link" href="AtspiStateSet.html#atspi-state-set-contains" title="atspi_state_set_contains ()">atspi_state_set_contains</a>            (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiStateType" title="enum AtspiStateType"><span class="type">AtspiStateType</span></a> state</code></em>);
-<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="AtspiStateSet.html#atspi-state-set-equals" title="atspi_state_set_equals ()">atspi_state_set_equals</a>              (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set</code></em>,
+<span class="returnvalue">gboolean</span>            <a class="link" href="AtspiStateSet.html#atspi-state-set-equals" title="atspi_state_set_equals ()">atspi_state_set_equals</a>              (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set</code></em>,
                                                          <em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set2</code></em>);
-<a href="../glib/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            <a class="link" href="AtspiStateSet.html#atspi-state-set-get-states" title="atspi_state_set_get_states ()">atspi_state_set_get_states</a>          (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set</code></em>);
-<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="AtspiStateSet.html#atspi-state-set-is-empty" title="atspi_state_set_is_empty ()">atspi_state_set_is_empty</a>            (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set</code></em>);
+<span class="returnvalue">GArray</span> *            <a class="link" href="AtspiStateSet.html#atspi-state-set-get-states" title="atspi_state_set_get_states ()">atspi_state_set_get_states</a>          (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="AtspiStateSet.html#atspi-state-set-is-empty" title="atspi_state_set_is_empty ()">atspi_state_set_is_empty</a>            (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="AtspiStateSet.html#atspi-state-set-remove" title="atspi_state_set_remove ()">atspi_state_set_remove</a>              (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiStateType" title="enum AtspiStateType"><span class="type">AtspiStateType</span></a> state</code></em>);
 </pre>
@@ -63,7 +63,7 @@ struct              <a class="link" href="AtspiStateSet.html#AtspiStateSetClass"
 <div class="refsect1">
 <a name="AtspiStateSet.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  <a href="../gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+  GObject
    +----AtspiStateSet
 </pre>
 </div>
@@ -95,7 +95,7 @@ bitmap of accessible states.
 <hr>
 <div class="refsect2">
 <a name="atspi-state-set-new"></a><h3>atspi_state_set_new ()</h3>
-<pre class="programlisting"><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="returnvalue">AtspiStateSet</span></a> *     atspi_state_set_new                 (<em class="parameter"><code><a href="../glib/glib-Arrays.html#GArray"><span class="type">GArray</span></a> *states</code></em>);</pre>
+<pre class="programlisting"><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="returnvalue">AtspiStateSet</span></a> *     atspi_state_set_new                 (<em class="parameter"><code><span class="type">GArray</span> *states</code></em>);</pre>
 <p>
 Generates an <a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> with the given <em class="parameter"><code>states</code></em>.
 </p>
@@ -122,8 +122,8 @@ method initializes the state set. <span class="annotation">[<acronym title="Gene
 <div class="refsect2">
 <a name="atspi-state-set-set-by-name"></a><h3>atspi_state_set_set_by_name ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>                atspi_state_set_set_by_name         (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set</code></em>,
-                                                         <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *name</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> enabled</code></em>);</pre>
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *name</code></em>,
+                                                         <em class="parameter"><code><span class="type">gboolean</span> enabled</code></em>);</pre>
 <p>
 Enables/disables a state in an <a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> according to its <em class="parameter"><code>name</code></em>.
 </p>
@@ -143,7 +143,7 @@ Enables/disables a state in an <a class="link" href="AtspiStateSet.html" title="
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>enabled</code></em> :</span></p></td>
-<td>if <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a>, <em class="parameter"><code>name</code></em> should be enabled in the <em class="parameter"><code>set</code></em> in question;
+<td>if <span class="type">TRUE</span>, <em class="parameter"><code>name</code></em> should be enabled in the <em class="parameter"><code>set</code></em> in question;
 otherwise, it should be disabled.</td>
 </tr>
 </tbody>
@@ -156,7 +156,7 @@ otherwise, it should be disabled.</td>
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiStateType" title="enum AtspiStateType"><span class="type">AtspiStateType</span></a> state</code></em>);</pre>
 <p>
 Adds a particular <span class="type">AtspiState</span> to an <a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> (i.e. sets the
-      given state to <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> in the stateset).
+      given state to <span class="type">TRUE</span> in the stateset).
 </p>
 <div class="variablelist"><table border="0" class="variablelist">
 <colgroup>
@@ -212,7 +212,7 @@ contained on one of the two sets but not the other. <span class="annotation">[<a
 <hr>
 <div class="refsect2">
 <a name="atspi-state-set-contains"></a><h3>atspi_state_set_contains ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_state_set_contains            (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set</code></em>,
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_state_set_contains            (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiStateType" title="enum AtspiStateType"><span class="type">AtspiStateType</span></a> state</code></em>);</pre>
 <p>
 Determines whether a given <a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> includes a given state; that is,
@@ -236,8 +236,8 @@ will be queried.</td>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if <em class="parameter"><code>state</code></em> is true/included in the given <a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a>,
-otherwise <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a>.</td>
+<span class="type">TRUE</span> if <em class="parameter"><code>state</code></em> is true/included in the given <a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a>,
+otherwise <span class="type">FALSE</span>.</td>
 </tr>
 </tbody>
 </table></div>
@@ -245,7 +245,7 @@ otherwise <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="ty
 <hr>
 <div class="refsect2">
 <a name="atspi-state-set-equals"></a><h3>atspi_state_set_equals ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_state_set_equals              (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set</code></em>,
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_state_set_equals              (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set</code></em>,
                                                          <em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set2</code></em>);</pre>
 <p>
 Determines whether two instances of <a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> are equivalent (i.e.
@@ -272,8 +272,8 @@ Determines whether two instances of <a class="link" href="AtspiStateSet.html" ti
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if the two <a href="AtspiStateSet.html"><span class="type">AtspiStateSets</span></a> are equivalent,
-otherwise <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a>.</td>
+<span class="type">TRUE</span> if the two <a href="AtspiStateSet.html"><span class="type">AtspiStateSets</span></a> are equivalent,
+otherwise <span class="type">FALSE</span>.</td>
 </tr>
 </tbody>
 </table></div>
@@ -281,7 +281,7 @@ otherwise <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="ty
 <hr>
 <div class="refsect2">
 <a name="atspi-state-set-get-states"></a><h3>atspi_state_set_get_states ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            atspi_state_set_get_states          (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">GArray</span> *            atspi_state_set_get_states          (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set</code></em>);</pre>
 <p>
 Returns the states in an <a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> as an array.
 </p>
@@ -297,7 +297,7 @@ Returns the states in an <a class="link" href="AtspiStateSet.html" title="atspi-
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>A <a href="../glib/glib-Arrays.html#GArray"><span class="type">GArray</span></a> of state
+<td>A <span class="type">GArray</span> of state
 types representing the current state. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> AtspiStateType][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
@@ -307,7 +307,7 @@ types representing the current state. <span class="annotation">[<acronym title="
 <hr>
 <div class="refsect2">
 <a name="atspi-state-set-is-empty"></a><h3>atspi_state_set_is_empty ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_state_set_is_empty            (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_state_set_is_empty            (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *set</code></em>);</pre>
 <div class="variablelist"><table border="0" class="variablelist">
 <colgroup>
 <col align="left" valign="top">
@@ -321,7 +321,7 @@ types representing the current state. <span class="annotation">[<acronym title="
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if the state set contains no states; <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a> otherwise.</td>
+<span class="type">TRUE</span> if the state set contains no states; <span class="type">FALSE</span> otherwise.</td>
 </tr>
 </tbody>
 </table></div>
@@ -333,7 +333,7 @@ types representing the current state. <span class="annotation">[<acronym title="
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiStateType" title="enum AtspiStateType"><span class="type">AtspiStateType</span></a> state</code></em>);</pre>
 <p>
 Removes a particular <span class="type">AtspiState</span> to an <a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> (i.e. sets the
-      given state to <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a> in the stateset.)
+      given state to <span class="type">FALSE</span> in the stateset.)
 </p>
 <div class="variablelist"><table border="0" class="variablelist">
 <colgroup>

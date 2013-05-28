@@ -160,6 +160,7 @@ GIO_CFLAGS = @GIO_CFLAGS@
 GIO_LIBS = @GIO_LIBS@
 GLIB_CFLAGS = @GLIB_CFLAGS@
 GLIB_LIBS = @GLIB_LIBS@
+GLIB_MKENUMS = @GLIB_MKENUMS@
 GMSGFMT = @GMSGFMT@
 GOBJ_CFLAGS = @GOBJ_CFLAGS@
 GOBJ_LIBS = @GOBJ_LIBS@
@@ -299,7 +300,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 LDADD = $(top_builddir)/atspi/libatspi.la
 memory_SOURCES = memory.c
-memory_CPPFLAGS = -I$(top_srcdir)
+memory_CPPFLAGS = -I$(top_srcdir) -I$(top_builddir) -I$(top_builddir)/atspi
 memory_CFLAGS = $(GLIB_CFLAGS) 	$(GOBJ_LIBS) $(DBUS_CFLAGS)
 memory_LDFLAGS = 
 all: all-am

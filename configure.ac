@@ -1,4 +1,4 @@
-AC_INIT([at-spi2-core], [2.8.0], [accessibility-atspi@lists.linux-foundation.org])
+AC_INIT([at-spi2-core], [2.9.2], [accessibility-atspi@lists.linux-foundation.org])
 AC_PREREQ([2.59])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_MACRO_DIR([m4])
@@ -171,6 +171,8 @@ else
            DBUS_SERVICES_DIR="$datadir/dbus-1/services"
 fi
 AC_SUBST(DBUS_SERVICES_DIR)
+
+AC_PATH_PROG(GLIB_MKENUMS, glib-mkenums)
 
 GOBJECT_INTROSPECTION_CHECK([0.9.6])
 

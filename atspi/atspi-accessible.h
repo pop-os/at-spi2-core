@@ -68,8 +68,6 @@ GType atspi_accessible_get_type (void);
 AtspiAccessible *
 _atspi_accessible_new (AtspiApplication *app, const gchar *path);
 
-gchar * atspi_role_get_name (AtspiRole role);
-
 gchar * atspi_accessible_get_name (AtspiAccessible *obj, GError **error);
 
 gchar * atspi_accessible_get_description (AtspiAccessible *obj, GError **error);
@@ -106,6 +104,7 @@ gint atspi_accessible_get_id (AtspiAccessible *obj, GError **error);
 
 AtspiAccessible * atspi_accessible_get_application (AtspiAccessible *obj, GError **error);
 
+#ifndef ATSPI_DISABLE_DEPRECATED
 AtspiAction * atspi_accessible_get_action (AtspiAccessible *obj);
 
 AtspiCollection * atspi_accessible_get_collection (AtspiAccessible *obj);
@@ -129,6 +128,29 @@ AtspiTable * atspi_accessible_get_table (AtspiAccessible *obj);
 AtspiText * atspi_accessible_get_text (AtspiAccessible *obj);
 
 AtspiValue * atspi_accessible_get_value (AtspiAccessible *obj);
+#endif
+
+AtspiAction * atspi_accessible_get_action_iface (AtspiAccessible *obj);
+
+AtspiCollection * atspi_accessible_get_collection_iface (AtspiAccessible *obj);
+
+AtspiComponent * atspi_accessible_get_component_iface (AtspiAccessible *obj);
+
+AtspiDocument * atspi_accessible_get_document_iface (AtspiAccessible *obj);
+
+AtspiEditableText * atspi_accessible_get_editable_text_iface (AtspiAccessible *obj);
+
+AtspiHypertext * atspi_accessible_get_hypertext_iface (AtspiAccessible *obj);
+
+AtspiImage * atspi_accessible_get_image_iface (AtspiAccessible *obj);
+
+AtspiSelection * atspi_accessible_get_selection_iface (AtspiAccessible *obj);
+
+AtspiTable * atspi_accessible_get_table_iface (AtspiAccessible *obj);
+
+AtspiText * atspi_accessible_get_text_iface (AtspiAccessible *obj);
+
+AtspiValue * atspi_accessible_get_value_iface (AtspiAccessible *obj);
 
 GArray * atspi_accessible_get_interfaces (AtspiAccessible *obj);
 
