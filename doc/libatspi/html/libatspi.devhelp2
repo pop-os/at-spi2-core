@@ -46,9 +46,9 @@
     <keyword type="function" name="atspi_text_get_character_count ()" link="libatspi-atspi-text.html#atspi-text-get-character-count"/>
     <keyword type="function" name="atspi_text_get_text ()" link="libatspi-atspi-text.html#atspi-text-get-text"/>
     <keyword type="function" name="atspi_text_get_caret_offset ()" link="libatspi-atspi-text.html#atspi-text-get-caret-offset"/>
-    <keyword type="function" name="atspi_text_get_attributes ()" link="libatspi-atspi-text.html#atspi-text-get-attributes"/>
+    <keyword type="function" name="atspi_text_get_attributes ()" link="libatspi-atspi-text.html#atspi-text-get-attributes" deprecated=""/>
     <keyword type="function" name="atspi_text_get_attribute_run ()" link="libatspi-atspi-text.html#atspi-text-get-attribute-run"/>
-    <keyword type="function" name="atspi_text_get_attribute_value ()" link="libatspi-atspi-text.html#atspi-text-get-attribute-value"/>
+    <keyword type="function" name="atspi_text_get_attribute_value ()" link="libatspi-atspi-text.html#atspi-text-get-attribute-value" deprecated=""/>
     <keyword type="function" name="atspi_text_get_default_attributes ()" link="libatspi-atspi-text.html#atspi-text-get-default-attributes"/>
     <keyword type="function" name="atspi_text_set_caret_offset ()" link="libatspi-atspi-text.html#atspi-text-set-caret-offset"/>
     <keyword type="function" name="atspi_text_get_text_before_offset ()" link="libatspi-atspi-text.html#atspi-text-get-text-before-offset"/>
@@ -85,9 +85,9 @@
     <keyword type="function" name="atspi_collection_get_active_descendant ()" link="libatspi-atspi-collection.html#atspi-collection-get-active-descendant"/>
     <keyword type="struct" name="AtspiAction" link="libatspi-atspi-action.html#AtspiAction-struct"/>
     <keyword type="function" name="atspi_action_get_n_actions ()" link="libatspi-atspi-action.html#atspi-action-get-n-actions"/>
-    <keyword type="function" name="atspi_action_get_description ()" link="libatspi-atspi-action.html#atspi-action-get-description"/>
+    <keyword type="function" name="atspi_action_get_description ()" link="libatspi-atspi-action.html#atspi-action-get-description" deprecated=""/>
     <keyword type="function" name="atspi_action_get_key_binding ()" link="libatspi-atspi-action.html#atspi-action-get-key-binding"/>
-    <keyword type="function" name="atspi_action_get_name ()" link="libatspi-atspi-action.html#atspi-action-get-name"/>
+    <keyword type="function" name="atspi_action_get_name ()" link="libatspi-atspi-action.html#atspi-action-get-name" deprecated=""/>
     <keyword type="function" name="atspi_action_do_action ()" link="libatspi-atspi-action.html#atspi-action-do-action"/>
     <keyword type="struct" name="struct AtspiRelation" link="AtspiRelation.html#AtspiRelation-struct"/>
     <keyword type="struct" name="struct AtspiRelationClass" link="AtspiRelation.html#AtspiRelationClass"/>
@@ -105,8 +105,8 @@
     <keyword type="function" name="atspi_match_rule_new ()" link="AtspiMatchRule.html#atspi-match-rule-new"/>
     <keyword type="struct" name="AtspiDocument" link="libatspi-atspi-document.html#AtspiDocument-struct"/>
     <keyword type="function" name="atspi_document_get_locale ()" link="libatspi-atspi-document.html#atspi-document-get-locale"/>
-    <keyword type="function" name="atspi_document_get_attribute_value ()" link="libatspi-atspi-document.html#atspi-document-get-attribute-value"/>
-    <keyword type="function" name="atspi_document_get_attributes ()" link="libatspi-atspi-document.html#atspi-document-get-attributes"/>
+    <keyword type="function" name="atspi_document_get_attribute_value ()" link="libatspi-atspi-document.html#atspi-document-get-attribute-value" deprecated=""/>
+    <keyword type="function" name="atspi_document_get_attributes ()" link="libatspi-atspi-document.html#atspi-document-get-attributes" deprecated=""/>
     <keyword type="struct" name="struct AtspiObject" link="AtspiObject.html#AtspiObject-struct"/>
     <keyword type="struct" name="struct AtspiObjectClass" link="AtspiObject.html#AtspiObjectClass"/>
     <keyword type="struct" name="AtspiAccessible" link="AtspiAccessible.html#AtspiAccessible-struct"/>
@@ -128,18 +128,18 @@
     <keyword type="function" name="atspi_accessible_get_toolkit_name ()" link="AtspiAccessible.html#atspi-accessible-get-toolkit-name"/>
     <keyword type="function" name="atspi_accessible_get_toolkit_version ()" link="AtspiAccessible.html#atspi-accessible-get-toolkit-version"/>
     <keyword type="function" name="atspi_accessible_get_application ()" link="AtspiAccessible.html#atspi-accessible-get-application"/>
-    <keyword type="function" name="atspi_accessible_get_action ()" link="AtspiAccessible.html#atspi-accessible-get-action"/>
-    <keyword type="function" name="atspi_accessible_get_collection ()" link="AtspiAccessible.html#atspi-accessible-get-collection"/>
-    <keyword type="function" name="atspi_accessible_get_component ()" link="AtspiAccessible.html#atspi-accessible-get-component"/>
-    <keyword type="function" name="atspi_accessible_get_document ()" link="AtspiAccessible.html#atspi-accessible-get-document"/>
-    <keyword type="function" name="atspi_accessible_get_editable_text ()" link="AtspiAccessible.html#atspi-accessible-get-editable-text"/>
+    <keyword type="function" name="atspi_accessible_get_action ()" link="AtspiAccessible.html#atspi-accessible-get-action" deprecated=""/>
+    <keyword type="function" name="atspi_accessible_get_collection ()" link="AtspiAccessible.html#atspi-accessible-get-collection" deprecated=""/>
+    <keyword type="function" name="atspi_accessible_get_component ()" link="AtspiAccessible.html#atspi-accessible-get-component" deprecated=""/>
+    <keyword type="function" name="atspi_accessible_get_document ()" link="AtspiAccessible.html#atspi-accessible-get-document" deprecated=""/>
+    <keyword type="function" name="atspi_accessible_get_editable_text ()" link="AtspiAccessible.html#atspi-accessible-get-editable-text" deprecated=""/>
     <keyword type="function" name="atspi_accessible_get_hyperlink ()" link="AtspiAccessible.html#atspi-accessible-get-hyperlink"/>
-    <keyword type="function" name="atspi_accessible_get_hypertext ()" link="AtspiAccessible.html#atspi-accessible-get-hypertext"/>
-    <keyword type="function" name="atspi_accessible_get_image ()" link="AtspiAccessible.html#atspi-accessible-get-image"/>
-    <keyword type="function" name="atspi_accessible_get_selection ()" link="AtspiAccessible.html#atspi-accessible-get-selection"/>
-    <keyword type="function" name="atspi_accessible_get_table ()" link="AtspiAccessible.html#atspi-accessible-get-table"/>
-    <keyword type="function" name="atspi_accessible_get_text ()" link="AtspiAccessible.html#atspi-accessible-get-text"/>
-    <keyword type="function" name="atspi_accessible_get_value ()" link="AtspiAccessible.html#atspi-accessible-get-value"/>
+    <keyword type="function" name="atspi_accessible_get_hypertext ()" link="AtspiAccessible.html#atspi-accessible-get-hypertext" deprecated=""/>
+    <keyword type="function" name="atspi_accessible_get_image ()" link="AtspiAccessible.html#atspi-accessible-get-image" deprecated=""/>
+    <keyword type="function" name="atspi_accessible_get_selection ()" link="AtspiAccessible.html#atspi-accessible-get-selection" deprecated=""/>
+    <keyword type="function" name="atspi_accessible_get_table ()" link="AtspiAccessible.html#atspi-accessible-get-table" deprecated=""/>
+    <keyword type="function" name="atspi_accessible_get_text ()" link="AtspiAccessible.html#atspi-accessible-get-text" deprecated=""/>
+    <keyword type="function" name="atspi_accessible_get_value ()" link="AtspiAccessible.html#atspi-accessible-get-value" deprecated=""/>
     <keyword type="function" name="atspi_accessible_get_interfaces ()" link="AtspiAccessible.html#atspi-accessible-get-interfaces"/>
     <keyword type="function" name="AtspiDeviceListenerCB ()" link="AtspiDeviceListener.html#AtspiDeviceListenerCB"/>
     <keyword type="function" name="AtspiDeviceListenerSimpleCB ()" link="AtspiDeviceListener.html#AtspiDeviceListenerSimpleCB"/>

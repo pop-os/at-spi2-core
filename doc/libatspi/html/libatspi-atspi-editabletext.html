@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>atspi-editabletext</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.0">
 <link rel="home" href="index.html" title="libatspi Reference Manual">
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="AtspiHyperlink.html" title="atspi-hyperlink">
@@ -43,30 +43,30 @@ of components which support editing.</p>
 <div class="refsynopsisdiv">
 <a name="libatspi-atspi-editabletext.synopsis"></a><h2>Synopsis</h2>
 <a name="AtspiEditableText"></a><pre class="synopsis">                    <a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText-struct" title="AtspiEditableText">AtspiEditableText</a>;
-<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-editabletext.html#atspi-editable-text-set-attributes" title="atspi_editable_text_set_attributes ()">atspi_editable_text_set_attributes</a>  (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
+<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-editabletext.html#atspi-editable-text-set-attributes" title="atspi_editable_text_set_attributes ()">atspi_editable_text_set_attributes</a>  (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
                                                          <em class="parameter"><code>const <span class="type">char</span> *attributes</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> start_pos</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> end_pos</code></em>);
-<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-editabletext.html#atspi-editable-text-insert-text" title="atspi_editable_text_insert_text ()">atspi_editable_text_insert_text</a>     (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> position</code></em>,
-                                                         <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *text</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> length</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-editabletext.html#atspi-editable-text-copy-text" title="atspi_editable_text_copy_text ()">atspi_editable_text_copy_text</a>       (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> start_pos</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> end_pos</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-editabletext.html#atspi-editable-text-cut-text" title="atspi_editable_text_cut_text ()">atspi_editable_text_cut_text</a>        (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> start_pos</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> end_pos</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-editabletext.html#atspi-editable-text-delete-text" title="atspi_editable_text_delete_text ()">atspi_editable_text_delete_text</a>     (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> start_pos</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> end_pos</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-editabletext.html#atspi-editable-text-paste-text" title="atspi_editable_text_paste_text ()">atspi_editable_text_paste_text</a>      (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> position</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+                                                         <em class="parameter"><code><span class="type">gint</span> start_pos</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> end_pos</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-editabletext.html#atspi-editable-text-insert-text" title="atspi_editable_text_insert_text ()">atspi_editable_text_insert_text</a>     (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> position</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *text</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> length</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-editabletext.html#atspi-editable-text-copy-text" title="atspi_editable_text_copy_text ()">atspi_editable_text_copy_text</a>       (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> start_pos</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> end_pos</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-editabletext.html#atspi-editable-text-cut-text" title="atspi_editable_text_cut_text ()">atspi_editable_text_cut_text</a>        (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> start_pos</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> end_pos</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-editabletext.html#atspi-editable-text-delete-text" title="atspi_editable_text_delete_text ()">atspi_editable_text_delete_text</a>     (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> start_pos</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> end_pos</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="libatspi-atspi-editabletext.html#atspi-editable-text-paste-text" title="atspi_editable_text_paste_text ()">atspi_editable_text_paste_text</a>      (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> position</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
 </pre>
 </div>
 <div class="refsect1">
@@ -102,10 +102,10 @@ system clipboard via copy, cut, and paste methods.
 <hr>
 <div class="refsect2">
 <a name="atspi-editable-text-set-attributes"></a><h3>atspi_editable_text_set_attributes ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_editable_text_set_attributes  (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_editable_text_set_attributes  (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
                                                          <em class="parameter"><code>const <span class="type">char</span> *attributes</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> start_pos</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> end_pos</code></em>);</pre>
+                                                         <em class="parameter"><code><span class="type">gint</span> start_pos</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> end_pos</code></em>);</pre>
 <p>
 Sets the attributes applied to a range of text from an <a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a>
          object, and the bounds of the range.
@@ -128,7 +128,7 @@ delimited by ':'.</td>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if the operation was successful, otherwise <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a>.</td>
+<span class="type">TRUE</span> if the operation was successful, otherwise <span class="type">FALSE</span>.</td>
 </tr>
 </tbody>
 </table></div>
@@ -136,11 +136,11 @@ delimited by ':'.</td>
 <hr>
 <div class="refsect2">
 <a name="atspi-editable-text-insert-text"></a><h3>atspi_editable_text_insert_text ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_editable_text_insert_text     (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> position</code></em>,
-                                                         <em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *text</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> length</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_editable_text_insert_text     (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> position</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *text</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> length</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Inserts text into an <a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> object.
 As with all character offsets, the specified <em class="parameter"><code>position</code></em> may not be the
@@ -159,7 +159,7 @@ variable-width encoding.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>position</code></em> :</span></p></td>
-<td>a <a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating the character offset at which to insert
+<td>a <span class="type">gint</span> indicating the character offset at which to insert
 the new text.</td>
 </tr>
 <tr>
@@ -175,7 +175,7 @@ of text will be inserted.</td>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if the operation was successful, otherwise <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a>.</td>
+<span class="type">TRUE</span> if the operation was successful, otherwise <span class="type">FALSE</span>.</td>
 </tr>
 </tbody>
 </table></div>
@@ -183,10 +183,10 @@ of text will be inserted.</td>
 <hr>
 <div class="refsect2">
 <a name="atspi-editable-text-copy-text"></a><h3>atspi_editable_text_copy_text ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_editable_text_copy_text       (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> start_pos</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> end_pos</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_editable_text_copy_text       (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> start_pos</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> end_pos</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Copies text from an <a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> object into the system clipboard.
 </p>
@@ -205,18 +205,18 @@ see: <a class="link" href="libatspi-atspi-editabletext.html#atspi-editable-text-
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>start_pos</code></em> :</span></p></td>
-<td>a <a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating the starting character offset
+<td>a <span class="type">gint</span> indicating the starting character offset
 of the text to copy.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>end_pos</code></em> :</span></p></td>
-<td>a <a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating the offset of the first character
+<td>a <span class="type">gint</span> indicating the offset of the first character
 past the end of the text section to be copied.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if the operation was successful, otherwise <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a>.</td>
+<span class="type">TRUE</span> if the operation was successful, otherwise <span class="type">FALSE</span>.</td>
 </tr>
 </tbody>
 </table></div>
@@ -224,10 +224,10 @@ past the end of the text section to be copied.</td>
 <hr>
 <div class="refsect2">
 <a name="atspi-editable-text-cut-text"></a><h3>atspi_editable_text_cut_text ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_editable_text_cut_text        (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> start_pos</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> end_pos</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_editable_text_cut_text        (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> start_pos</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> end_pos</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Deletes text from an <a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> object, copying the
       excised portion into the system clipboard.
@@ -247,18 +247,18 @@ see: <a class="link" href="libatspi-atspi-editabletext.html#atspi-editable-text-
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>start_pos</code></em> :</span></p></td>
-<td>a <a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating the starting character offset
+<td>a <span class="type">gint</span> indicating the starting character offset
 of the text to cut.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>end_pos</code></em> :</span></p></td>
-<td>a <a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating the offset of the first character
+<td>a <span class="type">gint</span> indicating the offset of the first character
 past the end of the text section to be cut.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if operation was successful, <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a> otherwise.</td>
+<span class="type">TRUE</span> if operation was successful, <span class="type">FALSE</span> otherwise.</td>
 </tr>
 </tbody>
 </table></div>
@@ -266,10 +266,10 @@ past the end of the text section to be cut.</td>
 <hr>
 <div class="refsect2">
 <a name="atspi-editable-text-delete-text"></a><h3>atspi_editable_text_delete_text ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_editable_text_delete_text     (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> start_pos</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> end_pos</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_editable_text_delete_text     (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> start_pos</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> end_pos</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Deletes text from an <a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> object, without copying the
       excised portion into the system clipboard.
@@ -289,18 +289,18 @@ see: <a class="link" href="libatspi-atspi-editabletext.html#atspi-editable-text-
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>start_pos</code></em> :</span></p></td>
-<td>a <a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating the starting character offset
+<td>a <span class="type">gint</span> indicating the starting character offset
 of the text to delete.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>end_pos</code></em> :</span></p></td>
-<td>a <a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating the offset of the first character
+<td>a <span class="type">gint</span> indicating the offset of the first character
 past the end of the text section to be deleted.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if the operation was successful, otherwise <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a>.</td>
+<span class="type">TRUE</span> if the operation was successful, otherwise <span class="type">FALSE</span>.</td>
 </tr>
 </tbody>
 </table></div>
@@ -308,9 +308,9 @@ past the end of the text section to be deleted.</td>
 <hr>
 <div class="refsect2">
 <a name="atspi-editable-text-paste-text"></a><h3>atspi_editable_text_paste_text ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_editable_text_paste_text      (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> position</code></em>,
-                                                         <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            atspi_editable_text_paste_text      (<em class="parameter"><code><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> *obj</code></em>,
+                                                         <em class="parameter"><code><span class="type">gint</span> position</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Inserts text from the system clipboard into an <a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> object.
 As with all character offsets, the specified <em class="parameter"><code>position</code></em> may not be the
@@ -329,13 +329,13 @@ As with all character offsets, the specified <em class="parameter"><code>positio
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>position</code></em> :</span></p></td>
-<td>a <a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating the character offset at which to insert
+<td>a <span class="type">gint</span> indicating the character offset at which to insert
 the new text.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if the operation was successful, otherwise <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a>.</td>
+<span class="type">TRUE</span> if the operation was successful, otherwise <span class="type">FALSE</span>.</td>
 </tr>
 </tbody>
 </table></div>
