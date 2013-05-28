@@ -1,3 +1,9 @@
+at-spi2-core (2.9.2-1) UNRELEASED; urgency=low
+
+  * New upstream release
+
+ -- Luke Yelavich <themuso@ubuntu.com>  Wed, 29 May 2013 08:52:08 +1000
+
 at-spi2-core (2.8.0-2) unstable; urgency=low
 
   * Upload to unstable
