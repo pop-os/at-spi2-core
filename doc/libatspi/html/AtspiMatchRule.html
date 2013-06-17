@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-atspi-image.html" title="atspi-image">
 <link rel="next" href="libatspi-atspi-document.html" title="atspi-document">
-<meta name="generator" content="GTK-Doc V1.18.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -44,19 +44,19 @@ for accessible objects.</p>
 struct              <a class="link" href="AtspiMatchRule.html#AtspiMatchRuleClass" title="struct AtspiMatchRuleClass">AtspiMatchRuleClass</a>;
 <a class="link" href="AtspiMatchRule.html" title="atspi-matchrule"><span class="returnvalue">AtspiMatchRule</span></a> *    <a class="link" href="AtspiMatchRule.html#atspi-match-rule-new" title="atspi_match_rule_new ()">atspi_match_rule_new</a>                (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *states</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCollectionMatchType" title="enum AtspiCollectionMatchType"><span class="type">AtspiCollectionMatchType</span></a> statematchtype</code></em>,
-                                                         <em class="parameter"><code><span class="type">GHashTable</span> *attributes</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#GHashTable"><span class="type">GHashTable</span></a> *attributes</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCollectionMatchType" title="enum AtspiCollectionMatchType"><span class="type">AtspiCollectionMatchType</span></a> attributematchtype</code></em>,
-                                                         <em class="parameter"><code><span class="type">GArray</span> *roles</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="type">GArray</span></a> *roles</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCollectionMatchType" title="enum AtspiCollectionMatchType"><span class="type">AtspiCollectionMatchType</span></a> rolematchtype</code></em>,
-                                                         <em class="parameter"><code><span class="type">GArray</span> *interfaces</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="type">GArray</span></a> *interfaces</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCollectionMatchType" title="enum AtspiCollectionMatchType"><span class="type">AtspiCollectionMatchType</span></a> interfacematchtype</code></em>,
-                                                         <em class="parameter"><code><span class="type">gboolean</span> invert</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> invert</code></em>);
 </pre>
 </div>
 <div class="refsect1">
 <a name="AtspiMatchRule.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  GObject
+  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
    +----AtspiMatchRule
 </pre>
 </div>
@@ -90,13 +90,13 @@ for accessible objects.
 <a name="atspi-match-rule-new"></a><h3>atspi_match_rule_new ()</h3>
 <pre class="programlisting"><a class="link" href="AtspiMatchRule.html" title="atspi-matchrule"><span class="returnvalue">AtspiMatchRule</span></a> *    atspi_match_rule_new                (<em class="parameter"><code><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> *states</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCollectionMatchType" title="enum AtspiCollectionMatchType"><span class="type">AtspiCollectionMatchType</span></a> statematchtype</code></em>,
-                                                         <em class="parameter"><code><span class="type">GHashTable</span> *attributes</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#GHashTable"><span class="type">GHashTable</span></a> *attributes</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCollectionMatchType" title="enum AtspiCollectionMatchType"><span class="type">AtspiCollectionMatchType</span></a> attributematchtype</code></em>,
-                                                         <em class="parameter"><code><span class="type">GArray</span> *roles</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="type">GArray</span></a> *roles</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCollectionMatchType" title="enum AtspiCollectionMatchType"><span class="type">AtspiCollectionMatchType</span></a> rolematchtype</code></em>,
-                                                         <em class="parameter"><code><span class="type">GArray</span> *interfaces</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="type">GArray</span></a> *interfaces</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiCollectionMatchType" title="enum AtspiCollectionMatchType"><span class="type">AtspiCollectionMatchType</span></a> interfacematchtype</code></em>,
-                                                         <em class="parameter"><code><span class="type">gboolean</span> invert</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> invert</code></em>);</pre>
 <p>
 Creates a new <a class="link" href="AtspiMatchRule.html" title="atspi-matchrule"><span class="type">AtspiMatchRule</span></a> with specified <em class="parameter"><code>states</code></em>, <em class="parameter"><code>attributes</code></em>, 
 <em class="parameter"><code>interfaces</code></em>, and <em class="parameter"><code>roles</code></em>.
@@ -118,7 +118,7 @@ Creates a new <a class="link" href="AtspiMatchRule.html" title="atspi-matchrule"
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>attributes</code></em> :</span></p></td>
-<td>A <span class="type">GHashTable</span> specifying
+<td>A <a href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#GHashTable"><span class="type">GHashTable</span></a> specifying
 attributes to match. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gchar* gchar*]</span>
 </td>
 </tr>
@@ -129,7 +129,7 @@ interpret <em class="parameter"><code>attributes</code></em>.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>roles</code></em> :</span></p></td>
-<td>A <span class="type">GArray</span> of roles to match, or NULL if
+<td>A <a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="type">GArray</span></a> of roles to match, or NULL if
 not applicable. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> AtspiRole]</span>
 </td>
 </tr>
@@ -153,7 +153,7 @@ interpret <em class="parameter"><code>interfaces</code></em>.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>invert</code></em> :</span></p></td>
-<td>if <span class="type">TRUE</span>, the match rule should be denied (inverted); if <span class="type">FALSE</span>,
+<td>if <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a>, the match rule should be denied (inverted); if <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a>,
 it should not. For example, if the match rule defines that a match is
 an object of ROLE_HEADING which has STATE_FOCUSABLE and a click action,
 inverting it would match all objects that are not of ROLE_HEADING,
@@ -171,6 +171,6 @@ focusable and clickable at the same time.</td>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.18.1</div>
+          Generated by GTK-Doc V1.18</div>
 </body>
 </html>
