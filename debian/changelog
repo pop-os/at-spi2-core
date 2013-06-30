@@ -1,4 +1,4 @@
-at-spi2-core (2.9.3-1ubuntu1) UNRELEASED; urgency=low
+at-spi2-core (2.9.3-2) UNRELEASED; urgency=low
 
   * Bump libatspi2.0-0 shlibs as required. We should move to using symbols,
     but this will solve the immediate problem for now. (Closes: #714314)
