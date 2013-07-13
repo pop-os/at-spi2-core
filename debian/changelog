@@ -1,4 +1,4 @@
-at-spi2-core (2.9.4-1) UNRELEASED; urgency=low
+at-spi2-core (2.9.4-1) unstable; urgency=low
 
   [ Luke Yelavich ]
   * Bump libatspi2.0-0 shlibs as required. We should move to using symbols,
@@ -8,7 +8,7 @@ at-spi2-core (2.9.4-1) UNRELEASED; urgency=low
   [ Samuel Thibault ]
   * Bump Standards-Version to 3.9.4 (no changes).
 
- -- Luke Yelavich <themuso@ubuntu.com>  Fri, 28 Jun 2013 07:56:32 +1000
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 13 Jul 2013 19:14:51 +0200
 
 at-spi2-core (2.9.3-1) unstable; urgency=low
 
