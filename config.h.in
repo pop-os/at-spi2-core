@@ -30,6 +30,9 @@
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
 
+/* Define to use X11 */
+#undef HAVE_X11
+
 /* Xevie is present */
 #undef HAVE_XEVIE
 

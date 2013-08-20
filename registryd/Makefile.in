@@ -52,6 +52,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 libexec_PROGRAMS = at-spi2-registryd$(EXEEXT)
+@USE_X11_TRUE@am__append_1 = $(X11_SOURCES)
 subdir = registryd
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/config/depcomp
@@ -70,16 +71,25 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(libexecdir)" "$(DESTDIR)$(servicedir)"
 PROGRAMS = $(libexec_PROGRAMS)
+am__at_spi2_registryd_SOURCES_DIST = de-marshaller.h de-marshaller.c \
+	de-types.h keymasks.h paths.h registry-main.c registry.c \
+	registry.h introspection.h introspection.c \
+	deviceeventcontroller.c deviceeventcontroller.h \
+	reentrant-list.c reentrant-list.h ucs2keysym.c \
+	deviceeventcontroller-x11.c display.h display.c event-source.c \
+	event-source.h
+am__objects_1 = at_spi2_registryd-deviceeventcontroller-x11.$(OBJEXT) \
+	at_spi2_registryd-display.$(OBJEXT) \
+	at_spi2_registryd-event-source.$(OBJEXT)
+@USE_X11_TRUE@am__objects_2 = $(am__objects_1)
 am_at_spi2_registryd_OBJECTS =  \
 	at_spi2_registryd-de-marshaller.$(OBJEXT) \
-	at_spi2_registryd-display.$(OBJEXT) \
-	at_spi2_registryd-event-source.$(OBJEXT) \
 	at_spi2_registryd-registry-main.$(OBJEXT) \
 	at_spi2_registryd-registry.$(OBJEXT) \
 	at_spi2_registryd-introspection.$(OBJEXT) \
 	at_spi2_registryd-deviceeventcontroller.$(OBJEXT) \
 	at_spi2_registryd-reentrant-list.$(OBJEXT) \
-	at_spi2_registryd-ucs2keysym.$(OBJEXT)
+	at_spi2_registryd-ucs2keysym.$(OBJEXT) $(am__objects_2)
 at_spi2_registryd_OBJECTS = $(am_at_spi2_registryd_OBJECTS)
 am__DEPENDENCIES_1 =
 at_spi2_registryd_DEPENDENCIES = ../atspi/libatspi.la \
@@ -121,7 +131,7 @@ AM_V_GEN = $(am__v_GEN_@AM_V@)
 am__v_GEN_ = $(am__v_GEN_@AM_DEFAULT_V@)
 am__v_GEN_0 = @echo "  GEN     " $@;
 SOURCES = $(at_spi2_registryd_SOURCES)
-DIST_SOURCES = $(at_spi2_registryd_SOURCES)
+DIST_SOURCES = $(am__at_spi2_registryd_SOURCES_DIST)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -214,6 +224,7 @@ GTKDOC_DEPS_CFLAGS = @GTKDOC_DEPS_CFLAGS@
 GTKDOC_DEPS_LIBS = @GTKDOC_DEPS_LIBS@
 GTKDOC_MKPDF = @GTKDOC_MKPDF@
 GTKDOC_REBASE = @GTKDOC_REBASE@
+HAVE_X11 = @HAVE_X11@
 HTML_DIR = @HTML_DIR@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
@@ -366,32 +377,25 @@ at_spi2_registryd_LDADD = \
 	$(XEVIE_LIBS)		\
 	$(DL_LIBS)
 
-at_spi2_registryd_SOURCES = \
-	de-marshaller.h         \
-	de-marshaller.c         \
-	de-types.h              \
+at_spi2_registryd_SOURCES = de-marshaller.h de-marshaller.c de-types.h \
+	keymasks.h paths.h registry-main.c registry.c registry.h \
+	introspection.h introspection.c deviceeventcontroller.c \
+	deviceeventcontroller.h reentrant-list.c reentrant-list.h \
+	ucs2keysym.c $(am__append_1)
+X11_SOURCES = \
+	deviceeventcontroller-x11.c \
 	display.h		\
 	display.c		\
-	event-source.h          \
-	event-source.c          \
-	keymasks.h              \
-	paths.h                 \
-	registry-main.c		\
-	registry.c		\
-	registry.h		\
-	introspection.h         \
-	introspection.c         \
-	deviceeventcontroller.c	\
-	deviceeventcontroller.h	\
-	reentrant-list.c	\
-	reentrant-list.h	\
-	ucs2keysym.c
+	event-source.c \
+	event-source.h
 
+@USE_X11_FALSE@EXTRA_DIST = $(X11_SOURCES) \
+@USE_X11_FALSE@	org.a11y.atspi.Registry.service.in
+@USE_X11_TRUE@EXTRA_DIST = org.a11y.atspi.Registry.service.in
 servicedir = $(DBUS_SERVICES_DIR)
 service_in_files = org.a11y.atspi.Registry.service.in
 service_DATA = $(service_in_files:.service.in=.service)
 DISTCLEANFILES = org.a11y.atspi.Registry.service
-EXTRA_DIST = org.a11y.atspi.Registry.service.in
 all: all-am
 
 .SUFFIXES:
@@ -483,6 +487,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/at_spi2_registryd-de-marshaller.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/at_spi2_registryd-deviceeventcontroller-x11.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/at_spi2_registryd-deviceeventcontroller.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/at_spi2_registryd-display.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/at_spi2_registryd-event-source.Po@am__quote@
@@ -526,34 +531,6 @@ at_spi2_registryd-de-marshaller.obj: de-marshaller.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='de-marshaller.c' object='at_spi2_registryd-de-marshaller.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -c -o at_spi2_registryd-de-marshaller.obj `if test -f 'de-marshaller.c'; then $(CYGPATH_W) 'de-marshaller.c'; else $(CYGPATH_W) '$(srcdir)/de-marshaller.c'; fi`
-
-at_spi2_registryd-display.o: display.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -MT at_spi2_registryd-display.o -MD -MP -MF $(DEPDIR)/at_spi2_registryd-display.Tpo -c -o at_spi2_registryd-display.o `test -f 'display.c' || echo '$(srcdir)/'`display.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/at_spi2_registryd-display.Tpo $(DEPDIR)/at_spi2_registryd-display.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='display.c' object='at_spi2_registryd-display.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -c -o at_spi2_registryd-display.o `test -f 'display.c' || echo '$(srcdir)/'`display.c
-
-at_spi2_registryd-display.obj: display.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -MT at_spi2_registryd-display.obj -MD -MP -MF $(DEPDIR)/at_spi2_registryd-display.Tpo -c -o at_spi2_registryd-display.obj `if test -f 'display.c'; then $(CYGPATH_W) 'display.c'; else $(CYGPATH_W) '$(srcdir)/display.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/at_spi2_registryd-display.Tpo $(DEPDIR)/at_spi2_registryd-display.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='display.c' object='at_spi2_registryd-display.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -c -o at_spi2_registryd-display.obj `if test -f 'display.c'; then $(CYGPATH_W) 'display.c'; else $(CYGPATH_W) '$(srcdir)/display.c'; fi`
-
-at_spi2_registryd-event-source.o: event-source.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -MT at_spi2_registryd-event-source.o -MD -MP -MF $(DEPDIR)/at_spi2_registryd-event-source.Tpo -c -o at_spi2_registryd-event-source.o `test -f 'event-source.c' || echo '$(srcdir)/'`event-source.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/at_spi2_registryd-event-source.Tpo $(DEPDIR)/at_spi2_registryd-event-source.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='event-source.c' object='at_spi2_registryd-event-source.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -c -o at_spi2_registryd-event-source.o `test -f 'event-source.c' || echo '$(srcdir)/'`event-source.c
-
-at_spi2_registryd-event-source.obj: event-source.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -MT at_spi2_registryd-event-source.obj -MD -MP -MF $(DEPDIR)/at_spi2_registryd-event-source.Tpo -c -o at_spi2_registryd-event-source.obj `if test -f 'event-source.c'; then $(CYGPATH_W) 'event-source.c'; else $(CYGPATH_W) '$(srcdir)/event-source.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/at_spi2_registryd-event-source.Tpo $(DEPDIR)/at_spi2_registryd-event-source.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='event-source.c' object='at_spi2_registryd-event-source.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -c -o at_spi2_registryd-event-source.obj `if test -f 'event-source.c'; then $(CYGPATH_W) 'event-source.c'; else $(CYGPATH_W) '$(srcdir)/event-source.c'; fi`
 
 at_spi2_registryd-registry-main.o: registry-main.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -MT at_spi2_registryd-registry-main.o -MD -MP -MF $(DEPDIR)/at_spi2_registryd-registry-main.Tpo -c -o at_spi2_registryd-registry-main.o `test -f 'registry-main.c' || echo '$(srcdir)/'`registry-main.c
@@ -638,6 +615,48 @@ at_spi2_registryd-ucs2keysym.obj: ucs2keysym.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='ucs2keysym.c' object='at_spi2_registryd-ucs2keysym.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -c -o at_spi2_registryd-ucs2keysym.obj `if test -f 'ucs2keysym.c'; then $(CYGPATH_W) 'ucs2keysym.c'; else $(CYGPATH_W) '$(srcdir)/ucs2keysym.c'; fi`
+
+at_spi2_registryd-deviceeventcontroller-x11.o: deviceeventcontroller-x11.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -MT at_spi2_registryd-deviceeventcontroller-x11.o -MD -MP -MF $(DEPDIR)/at_spi2_registryd-deviceeventcontroller-x11.Tpo -c -o at_spi2_registryd-deviceeventcontroller-x11.o `test -f 'deviceeventcontroller-x11.c' || echo '$(srcdir)/'`deviceeventcontroller-x11.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/at_spi2_registryd-deviceeventcontroller-x11.Tpo $(DEPDIR)/at_spi2_registryd-deviceeventcontroller-x11.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='deviceeventcontroller-x11.c' object='at_spi2_registryd-deviceeventcontroller-x11.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -c -o at_spi2_registryd-deviceeventcontroller-x11.o `test -f 'deviceeventcontroller-x11.c' || echo '$(srcdir)/'`deviceeventcontroller-x11.c
+
+at_spi2_registryd-deviceeventcontroller-x11.obj: deviceeventcontroller-x11.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -MT at_spi2_registryd-deviceeventcontroller-x11.obj -MD -MP -MF $(DEPDIR)/at_spi2_registryd-deviceeventcontroller-x11.Tpo -c -o at_spi2_registryd-deviceeventcontroller-x11.obj `if test -f 'deviceeventcontroller-x11.c'; then $(CYGPATH_W) 'deviceeventcontroller-x11.c'; else $(CYGPATH_W) '$(srcdir)/deviceeventcontroller-x11.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/at_spi2_registryd-deviceeventcontroller-x11.Tpo $(DEPDIR)/at_spi2_registryd-deviceeventcontroller-x11.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='deviceeventcontroller-x11.c' object='at_spi2_registryd-deviceeventcontroller-x11.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -c -o at_spi2_registryd-deviceeventcontroller-x11.obj `if test -f 'deviceeventcontroller-x11.c'; then $(CYGPATH_W) 'deviceeventcontroller-x11.c'; else $(CYGPATH_W) '$(srcdir)/deviceeventcontroller-x11.c'; fi`
+
+at_spi2_registryd-display.o: display.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -MT at_spi2_registryd-display.o -MD -MP -MF $(DEPDIR)/at_spi2_registryd-display.Tpo -c -o at_spi2_registryd-display.o `test -f 'display.c' || echo '$(srcdir)/'`display.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/at_spi2_registryd-display.Tpo $(DEPDIR)/at_spi2_registryd-display.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='display.c' object='at_spi2_registryd-display.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -c -o at_spi2_registryd-display.o `test -f 'display.c' || echo '$(srcdir)/'`display.c
+
+at_spi2_registryd-display.obj: display.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -MT at_spi2_registryd-display.obj -MD -MP -MF $(DEPDIR)/at_spi2_registryd-display.Tpo -c -o at_spi2_registryd-display.obj `if test -f 'display.c'; then $(CYGPATH_W) 'display.c'; else $(CYGPATH_W) '$(srcdir)/display.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/at_spi2_registryd-display.Tpo $(DEPDIR)/at_spi2_registryd-display.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='display.c' object='at_spi2_registryd-display.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -c -o at_spi2_registryd-display.obj `if test -f 'display.c'; then $(CYGPATH_W) 'display.c'; else $(CYGPATH_W) '$(srcdir)/display.c'; fi`
+
+at_spi2_registryd-event-source.o: event-source.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -MT at_spi2_registryd-event-source.o -MD -MP -MF $(DEPDIR)/at_spi2_registryd-event-source.Tpo -c -o at_spi2_registryd-event-source.o `test -f 'event-source.c' || echo '$(srcdir)/'`event-source.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/at_spi2_registryd-event-source.Tpo $(DEPDIR)/at_spi2_registryd-event-source.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='event-source.c' object='at_spi2_registryd-event-source.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -c -o at_spi2_registryd-event-source.o `test -f 'event-source.c' || echo '$(srcdir)/'`event-source.c
+
+at_spi2_registryd-event-source.obj: event-source.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -MT at_spi2_registryd-event-source.obj -MD -MP -MF $(DEPDIR)/at_spi2_registryd-event-source.Tpo -c -o at_spi2_registryd-event-source.obj `if test -f 'event-source.c'; then $(CYGPATH_W) 'event-source.c'; else $(CYGPATH_W) '$(srcdir)/event-source.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/at_spi2_registryd-event-source.Tpo $(DEPDIR)/at_spi2_registryd-event-source.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='event-source.c' object='at_spi2_registryd-event-source.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(at_spi2_registryd_CFLAGS) $(CFLAGS) -c -o at_spi2_registryd-event-source.obj `if test -f 'event-source.c'; then $(CYGPATH_W) 'event-source.c'; else $(CYGPATH_W) '$(srcdir)/event-source.c'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo

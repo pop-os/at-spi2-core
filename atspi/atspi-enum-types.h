@@ -31,6 +31,9 @@ GType atspi_component_layer_get_type	(void) G_GNUC_CONST;
 #define ATSPI_TYPE_TEXT_BOUNDARY_TYPE	(atspi_text_boundary_type_get_type())
 GType atspi_text_boundary_type_get_type	(void) G_GNUC_CONST;
 
+#define ATSPI_TYPE_TEXT_GRANULARITY	(atspi_text_granularity_get_type())
+GType atspi_text_granularity_get_type	(void) G_GNUC_CONST;
+
 #define ATSPI_TYPE_TEXT_CLIP_TYPE	(atspi_text_clip_type_get_type())
 GType atspi_text_clip_type_get_type	(void) G_GNUC_CONST;
 
