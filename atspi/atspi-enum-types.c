@@ -252,6 +252,38 @@ atspi_text_boundary_type_get_type (void)
 }
 
 GType
+atspi_text_granularity_get_type (void)
+{
+	static GType the_type = 0;
+	
+	if (the_type == 0)
+	{
+		static const GEnumValue values[] = {
+			{ ATSPI_TEXT_GRANULARITY_CHAR,
+			  "ATSPI_TEXT_GRANULARITY_CHAR",
+			  "char" },
+			{ ATSPI_TEXT_GRANULARITY_WORD,
+			  "ATSPI_TEXT_GRANULARITY_WORD",
+			  "word" },
+			{ ATSPI_TEXT_GRANULARITY_SENTENCE,
+			  "ATSPI_TEXT_GRANULARITY_SENTENCE",
+			  "sentence" },
+			{ ATSPI_TEXT_GRANULARITY_LINE,
+			  "ATSPI_TEXT_GRANULARITY_LINE",
+			  "line" },
+			{ ATSPI_TEXT_GRANULARITY_PARAGRAPH,
+			  "ATSPI_TEXT_GRANULARITY_PARAGRAPH",
+			  "paragraph" },
+			{ 0, NULL, NULL }
+		};
+		the_type = g_enum_register_static (
+				g_intern_static_string ("AtspiTextGranularity"),
+				values);
+	}
+	return the_type;
+}
+
+GType
 atspi_text_clip_type_get_type (void)
 {
 	static GType the_type = 0;

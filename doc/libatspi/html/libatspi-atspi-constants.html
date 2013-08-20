@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-atspi-types.html" title="atspi-types">
 <link rel="next" href="libatspi-atspi-misc.html" title="atspi-misc">
-<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.19.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -202,6 +202,46 @@ One higher than the highest valid value of <a class="link" href="libatspi-atspi-
 Enumeration used by interface <a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> to specify
 the way <span class="type">AtspiAccesible</span> objects should be sorted.
 </p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><a name="ATSPI-Collection-SORT-ORDER-INVALID"></a><span class="term"><code class="literal">ATSPI_Collection_SORT_ORDER_INVALID</code></span></p></td>
+<td></td>
+</tr>
+<tr>
+<td><p><a name="ATSPI-Collection-SORT-ORDER-CANONICAL"></a><span class="term"><code class="literal">ATSPI_Collection_SORT_ORDER_CANONICAL</code></span></p></td>
+<td></td>
+</tr>
+<tr>
+<td><p><a name="ATSPI-Collection-SORT-ORDER-FLOW"></a><span class="term"><code class="literal">ATSPI_Collection_SORT_ORDER_FLOW</code></span></p></td>
+<td></td>
+</tr>
+<tr>
+<td><p><a name="ATSPI-Collection-SORT-ORDER-TAB"></a><span class="term"><code class="literal">ATSPI_Collection_SORT_ORDER_TAB</code></span></p></td>
+<td></td>
+</tr>
+<tr>
+<td><p><a name="ATSPI-Collection-SORT-ORDER-REVERSE-CANONICAL"></a><span class="term"><code class="literal">ATSPI_Collection_SORT_ORDER_REVERSE_CANONICAL</code></span></p></td>
+<td></td>
+</tr>
+<tr>
+<td><p><a name="ATSPI-Collection-SORT-ORDER-REVERSE-FLOW"></a><span class="term"><code class="literal">ATSPI_Collection_SORT_ORDER_REVERSE_FLOW</code></span></p></td>
+<td></td>
+</tr>
+<tr>
+<td><p><a name="ATSPI-Collection-SORT-ORDER-REVERSE-TAB"></a><span class="term"><code class="literal">ATSPI_Collection_SORT_ORDER_REVERSE_TAB</code></span></p></td>
+<td></td>
+</tr>
+<tr>
+<td><p><a name="ATSPI-Collection-SORT-ORDER-LAST-DEFINED"></a><span class="term"><code class="literal">ATSPI_Collection_SORT_ORDER_LAST_DEFINED</code></span></p></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
 </div>
 <hr>
 <div class="refsect2">
@@ -243,19 +283,19 @@ uninitialized value.
 <tr>
 <td><p><a name="ATSPI-Collection-MATCH-ALL"></a><span class="term"><code class="literal">ATSPI_Collection_MATCH_ALL</code></span></p></td>
 <td>
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if all of the criteria are met.
+<span class="type">TRUE</span> if all of the criteria are met.
 </td>
 </tr>
 <tr>
 <td><p><a name="ATSPI-Collection-MATCH-ANY"></a><span class="term"><code class="literal">ATSPI_Collection_MATCH_ANY</code></span></p></td>
 <td>
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if any of the criteria are met.
+<span class="type">TRUE</span> if any of the criteria are met.
 </td>
 </tr>
 <tr>
 <td><p><a name="ATSPI-Collection-MATCH-NONE"></a><span class="term"><code class="literal">ATSPI_Collection_MATCH_NONE</code></span></p></td>
 <td>
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if none of the criteria are met.
+<span class="type">TRUE</span> if none of the criteria are met.
 </td>
 </tr>
 <tr>
@@ -296,6 +336,30 @@ enumeration.
 Enumeration used by interface <a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> to specify
 restrictions on <span class="type">AtspiAccesible</span> objects to be traversed.
 </p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><a name="ATSPI-Collection-TREE-RESTRICT-CHILDREN"></a><span class="term"><code class="literal">ATSPI_Collection_TREE_RESTRICT_CHILDREN</code></span></p></td>
+<td></td>
+</tr>
+<tr>
+<td><p><a name="ATSPI-Collection-TREE-RESTRICT-SIBLING"></a><span class="term"><code class="literal">ATSPI_Collection_TREE_RESTRICT_SIBLING</code></span></p></td>
+<td></td>
+</tr>
+<tr>
+<td><p><a name="ATSPI-Collection-TREE-INORDER"></a><span class="term"><code class="literal">ATSPI_Collection_TREE_INORDER</code></span></p></td>
+<td></td>
+</tr>
+<tr>
+<td><p><a name="ATSPI-Collection-TREE-LAST-DEFINED"></a><span class="term"><code class="literal">ATSPI_Collection_TREE_LAST_DEFINED</code></span></p></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
 </div>
 <hr>
 <div class="refsect2">
@@ -428,6 +492,10 @@ One higher than the highest valid value of <a class="link" href="libatspi-atspi-
 Specifies the boundary conditions determining a run of text as returned from
 <a class="link" href="libatspi-atspi-text.html#atspi-text-get-text-at-offset" title="atspi_text_get_text_at_offset ()"><span class="type">atspi_text_get_text_at_offset</span></a>, <a class="link" href="libatspi-atspi-text.html#atspi-text-get-text-after-offset" title="atspi_text_get_text_after_offset ()"><span class="type">atspi_text_get_text_after_offset</span></a>, and
 <a class="link" href="libatspi-atspi-text.html#atspi-text-get-text-before-offset" title="atspi_text_get_text_before_offset ()"><span class="type">atspi_text_get_text_before_offset</span></a>.
+</p>
+<p>
+This enumerationis deprecated since 2.9.90 and should not be used. Use
+AtspiTextGranularity with <span class="type">atspi_text_get_string_at_offset</span> instead.
 </p>
 <div class="variablelist"><table border="0" class="variablelist">
 <colgroup>
@@ -956,6 +1024,22 @@ One higher than the highest valid value of <a class="link" href="libatspi-atspi-
 <p>
 Deprecated. Should not be used.
 </p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><a name="ATSPI-KEY-PRESSED:CAPS"></a><span class="term"><code class="literal">ATSPI_KEY_PRESSED</code></span></p></td>
+<td></td>
+</tr>
+<tr>
+<td><p><a name="ATSPI-KEY-RELEASED:CAPS"></a><span class="term"><code class="literal">ATSPI_KEY_RELEASED</code></span></p></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
 </div>
 <hr>
 <div class="refsect2">
@@ -2174,6 +2258,6 @@ One higher than the highest valid value of <a class="link" href="libatspi-atspi-
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.18</div>
+          Generated by GTK-Doc V1.19.1</div>
 </body>
 </html>
