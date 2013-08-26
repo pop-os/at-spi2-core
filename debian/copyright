@@ -16,7 +16,7 @@ License: LGPL-2+
  On Debian systems the full text of the GNU Library General Public License can
  be found in the `/usr/share/common-licenses/LGPL-2' file.
 
-Files: registryd/deviceeventcontroller.c
+Files: registryd/deviceeventcontroller.c registryd/deviceeventcontroller-x11.c
 Copyright: Copyright 2001, 2003 Sun Microsystems Inc.
            Copyright 2001, 2002 Ximian, Inc.
 License: LGPL-2+
