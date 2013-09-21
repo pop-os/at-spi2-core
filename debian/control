@@ -25,6 +25,15 @@ Breaks: gdm3 (<< 3.4)
 Description: Assistive Technology Service Provider Interface (dbus core)
  This package contains the core components of GNOME Accessibility.
 
+Package: at-spi2-core-udeb
+Section: debian-installer
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Package-Type: udeb
+Description: Assistive Technology Service Provider Interface (dbus core for d-i)
+ This package contains the core components of GNOME Accessibility for the debian
+ installer.
+
 Package: at-spi2-core-dbg
 Architecture: any
 Section: debug
@@ -44,6 +53,14 @@ Recommends: at-spi2-core (= ${binary:Version})
 Description: Assistive Technology Service Provider Interface - shared library
  This package contains the shared library for applications that wish to use
  the at-spi interface.
+
+Package: libatspi0-udeb
+Section: debian-installer
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Package-Type: udeb
+Description: Assistive Technology Service Provider Interface - module for d-i
+ This package contains the AT-SPI shared library, for the debian installer.
 
 Package: libatspi2.0-dev
 Section: libdevel
