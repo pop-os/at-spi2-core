@@ -1,4 +1,4 @@
-at-spi2-core (2.9.90-1) UNRELEASED; urgency=low
+at-spi2-core (2.9.92-1) UNRELEASED; urgency=low
 
   * New upstream release
   * Bump shlibs
