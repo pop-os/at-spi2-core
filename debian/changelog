@@ -5,6 +5,14 @@ at-spi2-core (2.9.90-1) UNRELEASED; urgency=low
 
  -- Luke Yelavich <themuso@ubuntu.com>  Tue, 20 Aug 2013 15:44:30 +1000
 
+at-spi2-core (2.9.5-2) unstable; urgency=low
+
+  * Add libatspi0-udeb package, needed by libatk-bridge-2.0-0-udeb.
+    (Closes: #723951)
+  * Add at-spi2-core-udeb, for future d-i accessibility.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 21 Sep 2013 22:49:23 +0200
+
 at-spi2-core (2.9.5-1) unstable; urgency=low
 
   [ Luke Yelavich ]
