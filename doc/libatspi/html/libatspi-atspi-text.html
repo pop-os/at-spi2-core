@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>atspi-text</title>
+<title>libatspi Reference Manual: atspi-text</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.78.0">
 <link rel="home" href="index.html" title="libatspi Reference Manual">
 <link rel="up" href="ch01.html" title="API reference">
@@ -12,24 +12,21 @@
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
-<tr valign="middle">
-<td><a accesskey="p" href="ch01.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
-<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">libatspi Reference Manual</th>
-<td><a accesskey="n" href="AtspiStateSet.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
-</tr>
-<tr><td colspan="5" class="shortcuts">
-<a href="#libatspi-atspi-text.synopsis" class="shortcut">Top</a>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="10"><tr valign="middle">
+<td width="100%" align="left">
+<a href="#" class="shortcut">Top</a>
                    | 
                   <a href="#libatspi-atspi-text.description" class="shortcut">Description</a>
                    | 
                   <a href="#libatspi-atspi-text.object-hierarchy" class="shortcut">Object Hierarchy</a>
                    | 
                   <a href="#libatspi-atspi-text.implementations" class="shortcut">Known Implementations</a>
-</td></tr>
-</table>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="ch01.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="AtspiStateSet.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
 <div class="refentry">
 <a name="libatspi-atspi-text"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
@@ -351,7 +348,7 @@ Gets the current offset of the text caret in an <a class="link" href="libatspi-a
                                                          <em class="parameter"><code><span class="type">gint</span> *start_offset</code></em>,
                                                          <em class="parameter"><code><span class="type">gint</span> *end_offset</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
-<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<div class="warning">
 <h3 class="title">Warning</h3>
 <p><code class="literal">atspi_text_get_attributes</code> has been deprecated since version 2.10 and should not be used in newly-written code. Use atspi_text_get_text_attributes instead.
 Rename to: atspi_text_get_text_attributes</p>
@@ -461,7 +458,7 @@ defined at the indicated offset, optionally including the 'default' ones. <span 
                                                          <em class="parameter"><code><span class="type">gint</span> offset</code></em>,
                                                          <em class="parameter"><code><span class="type">gchar</span> *attribute_name</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
-<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<div class="warning">
 <h3 class="title">Warning</h3>
 <p><code class="literal">atspi_text_get_attribute_value</code> has been deprecated since version 2.10 and should not be used in newly-written code. Use atspi_text_get_text_attribute_value instead.
 Rename to: atspi_text_get_text_attribute_value</p>
@@ -605,7 +602,7 @@ current offset, or an empty string if no such text exists.</td>
                                                          <em class="parameter"><code><span class="type">gint</span> offset</code></em>,
                                                          <em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiTextBoundaryType" title="enum AtspiTextBoundaryType"><span class="type">AtspiTextBoundaryType</span></a> type</code></em>,
                                                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
-<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<div class="warning">
 <h3 class="title">Warning</h3>
 <p><code class="literal">atspi_text_get_text_at_offset</code> has been deprecated since version 2.10 and should not be used in newly-written code. Use atspi_text_get_string_at_offset.</p>
 </div>
