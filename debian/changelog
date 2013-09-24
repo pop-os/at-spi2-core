@@ -1,9 +1,10 @@
-at-spi2-core (2.10.0-1) UNRELEASED; urgency=low
+at-spi2-core (2.10.0-1) unstable; urgency=low
 
+  [ Luke Yelavich ]
   * New upstream release
   * Bump shlibs
 
- -- Luke Yelavich <themuso@ubuntu.com>  Tue, 20 Aug 2013 15:44:30 +1000
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 24 Sep 2013 23:39:36 +0200
 
 at-spi2-core (2.9.5-2) unstable; urgency=low
 
