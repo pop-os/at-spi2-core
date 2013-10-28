@@ -1,3 +1,9 @@
+at-spi2-core (2.10.0-2) UNRELEASED; urgency=low
+
+  * Bump Standards-Version to 3.9.5 (no changes).
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 28 Oct 2013 09:08:10 +0100
+
 at-spi2-core (2.10.0-1) unstable; urgency=low
 
   [ Luke Yelavich ]
