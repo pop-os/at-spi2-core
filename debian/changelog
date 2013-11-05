@@ -1,4 +1,4 @@
-at-spi2-core (2.10.1-1) UNRELEASED; urgency=low
+at-spi2-core (2.10.1-1) unstable; urgency=low
 
   [ Samuel Thibault ]
   * Bump Standards-Version to 3.9.5 (no changes).
@@ -6,7 +6,7 @@ at-spi2-core (2.10.1-1) UNRELEASED; urgency=low
   [ Luke Yelavich ]
   * New upstream release
 
- -- Samuel Thibault <sthibault@debian.org>  Mon, 28 Oct 2013 09:08:10 +0100
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 05 Nov 2013 01:15:15 +0100
 
 at-spi2-core (2.10.0-1) unstable; urgency=low
 
