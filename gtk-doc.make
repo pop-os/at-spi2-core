@@ -49,12 +49,7 @@ REPORT_FILES = \
 	$(DOC_MODULE)-undeclared.txt \
 	$(DOC_MODULE)-unused.txt
 
-gtkdoc-check.test: Makefile
-	$(AM_V_GEN)echo "#!/bin/sh -e" > $@; \
-		echo "$(GTKDOC_CHECK_PATH) || exit 1" >> $@; \
-		chmod +x $@
-
-CLEANFILES = $(SCANOBJ_FILES) $(REPORT_FILES) $(DOC_STAMPS) gtkdoc-check.test
+CLEANFILES = $(SCANOBJ_FILES) $(REPORT_FILES) $(DOC_STAMPS)
 
 if ENABLE_GTK_DOC
 if GTK_DOC_BUILD_HTML
@@ -162,7 +157,7 @@ GTK_DOC_V_XML_=$(GTK_DOC_V_XML_$(AM_DEFAULT_VERBOSITY))
 GTK_DOC_V_XML_0=@echo "  DOC   Building XML";
 
 sgml-build.stamp: tmpl.stamp $(DOC_MODULE)-sections.txt $(srcdir)/tmpl/*.sgml $(expand_content_files)
-	-$(GTK_DOC_V_XML)chmod -R u+w $(srcdir) && _source_dir='' ; \
+	$(GTK_DOC_V_XML)-chmod -R u+w $(srcdir) && _source_dir='' ; \
 	for i in $(DOC_SOURCE_DIR) ; do \
 	    _source_dir="$${_source_dir} --source-dir=$$i" ; \
 	done ; \

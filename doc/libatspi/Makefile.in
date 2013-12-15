@@ -172,7 +172,6 @@ GOBJ_CFLAGS = @GOBJ_CFLAGS@
 GOBJ_LIBS = @GOBJ_LIBS@
 GREP = @GREP@
 GTKDOC_CHECK = @GTKDOC_CHECK@
-GTKDOC_CHECK_PATH = @GTKDOC_CHECK_PATH@
 GTKDOC_DEPS_CFLAGS = @GTKDOC_DEPS_CFLAGS@
 GTKDOC_DEPS_LIBS = @GTKDOC_DEPS_LIBS@
 GTKDOC_MKPDF = @GTKDOC_MKPDF@
@@ -423,7 +422,7 @@ REPORT_FILES = \
 	$(DOC_MODULE)-undeclared.txt \
 	$(DOC_MODULE)-unused.txt
 
-CLEANFILES = $(SCANOBJ_FILES) $(REPORT_FILES) $(DOC_STAMPS) gtkdoc-check.test
+CLEANFILES = $(SCANOBJ_FILES) $(REPORT_FILES) $(DOC_STAMPS)
 @ENABLE_GTK_DOC_TRUE@@GTK_DOC_BUILD_HTML_FALSE@HTML_BUILD_STAMP = 
 @ENABLE_GTK_DOC_TRUE@@GTK_DOC_BUILD_HTML_TRUE@HTML_BUILD_STAMP = html-build.stamp
 @ENABLE_GTK_DOC_TRUE@@GTK_DOC_BUILD_PDF_FALSE@PDF_BUILD_STAMP = 
@@ -663,11 +662,6 @@ uninstall-am: uninstall-local
 	uninstall-am uninstall-local
 
 
-gtkdoc-check.test: Makefile
-	$(AM_V_GEN)echo "#!/bin/sh -e" > $@; \
-		echo "$(GTKDOC_CHECK_PATH) || exit 1" >> $@; \
-		chmod +x $@
-
 @ENABLE_GTK_DOC_TRUE@all-local: $(HTML_BUILD_STAMP) $(PDF_BUILD_STAMP)
 @ENABLE_GTK_DOC_FALSE@all-local:
 
@@ -732,7 +726,7 @@ $(srcdir)/tmpl/*.sgml:
 	@true
 
 sgml-build.stamp: tmpl.stamp $(DOC_MODULE)-sections.txt $(srcdir)/tmpl/*.sgml $(expand_content_files)
-	-$(GTK_DOC_V_XML)chmod -R u+w $(srcdir) && _source_dir='' ; \
+	$(GTK_DOC_V_XML)-chmod -R u+w $(srcdir) && _source_dir='' ; \
 	for i in $(DOC_SOURCE_DIR) ; do \
 	    _source_dir="$${_source_dir} --source-dir=$$i" ; \
 	done ; \

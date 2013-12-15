@@ -1,7 +1,3 @@
-body
-{
-  font-family: cantarell, sans-serif;
-}
 .synopsis, .classsynopsis
 {
   /* tango:aluminium 1/2 */
@@ -57,9 +53,9 @@ body
   table.navigation#top
   {
     position: fixed;
-    /* tango:aluminum 2 */
-    background: #d3d7cf;
-    border: solid 1px #babdb6;
+    /* tango:scarlet red 0/1 */
+    background: #ffe6e6;
+    border: solid 1px #ef2929;
     margin-top: 0;
     margin-bottom: 0;
     top: 0;
@@ -69,18 +65,18 @@ body
   }
   .navigation a, .navigation a:visited
   {
-    /* tango:sky blue 3 */
-    color: #204a87;
+    /* tango:scarlet red 3 */
+    color: #a40000;
   }
   .navigation a:hover
   {
-    /* tango:sky blue 2 */
-    color: #3465a4;
+    /* tango:scarlet red 1 */
+    color: #ef2929;
   }
   td.shortcuts
   {
-    /* tango:sky blue 2 */
-    color: #3465a4;
+    /* tango:scarlet red 1 */
+    color: #ef2929;
     font-size: 80%;
     white-space: nowrap;
   }
@@ -93,9 +89,9 @@ body
   div.titlepage table.navigation {
     visibility: visible;
     display: table;
-    /* tango:aluminum 2 */
-    background: #d3d7cf;
-    border: solid 1px #babdb6;
+    /* tango:scarlet red 0/1 */
+    background: #ffe6e6;
+    border: solid 1px #ef2929;
     margin-top: 0;
     margin-bottom: 0;
     top: 0;
@@ -106,7 +102,7 @@ body
 
 .navigation .title
 {
-  font-size: 120%;
+  font-size: 200%;
 }
 
 div.gallery-float
@@ -160,35 +156,12 @@ div.table table th
 
 hr
 {
-  /* tango:aluminium 1 */
-  color: #d3d7cf;
-  background: #d3d7cf;
+  /* tango:aluminium 3 */
+  color: #babdb6;
+  background: #babdb6;
   border: none 0px;
   height: 1px;
   clear: both;
-}
-
-dl.toc dt
-{
-  padding-bottom: 0.25em;
-}
-
-dl.toc > dd > dl > dt
-{
-  padding-top: 0.25em;
-  padding-bottom: 0.25em;
-}
-
-dl.toc > dt
-{
-  padding-top: 1em;
-  padding-bottom: 0.5em;
-  font-weight: bold;
-}
-
-.parameter
-{
-  font-style: normal;
 }
 
 .footer
@@ -198,18 +171,6 @@ dl.toc > dt
   color: #babdb6;
   text-align: center;
   font-size: 80%;
-}
-
-.informalfigure,
-.figure
-{
-  margin: 2em;
-}
-
-.informalexample,
-.example
-{
-  margin: 2em;
 }
 
 .warning
@@ -229,7 +190,6 @@ dl.toc > dt
   padding: 0.5em;
   border-width: 1px;
   border-style: solid;
-  margin: 2em;
 }
 .note h3, .warning h3
 {
@@ -238,21 +198,6 @@ dl.toc > dt
 .note p, .warning p
 {
   margin-bottom: 0.0em
-}
-
-p + div.section
-{
-  margin-top: 2.5em;
-}
-
-div.refnamediv,
-div.refsynopsisdiv,
-div.refsect1,
-div.refsect2,
-div.toc,
-div.section
-{
-  margin-bottom: 2.5em;
 }
 
 /* blob links */
