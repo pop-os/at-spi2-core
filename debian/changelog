@@ -1,3 +1,10 @@
+at-spi2-core (2.10.2-2) unstable; urgency=medium
+
+  * control: Build-depend on dh-autoreconf.
+  * rules: Pass --with autoreconf to dh.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 04 Jan 2014 14:17:21 +0100
+
 at-spi2-core (2.10.2-1) unstable; urgency=low
 
   * New upstream release
