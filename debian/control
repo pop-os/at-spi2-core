@@ -74,7 +74,7 @@ Depends: ${misc:Depends},
          libglib2.0-dev,
          libxtst-dev
 Replaces: gir-repository-dev
-Description: Development files for the assistive technology serice provider
+Description: Development files for the assistive technology service provider
  These are the development files for at-spi2, needed for compilation of
  programs which use it.
 

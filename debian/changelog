@@ -1,3 +1,9 @@
+at-spi2-core (2.10.2-4) UNRELEASED; urgency=medium
+
+  * control: Fix typo in package description (Closes: Bug#745283)
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 20 Apr 2014 10:38:29 +0200
+
 at-spi2-core (2.10.2-3) unstable; urgency=low
 
   [ Paul Gevers ]
