@@ -1,9 +1,13 @@
-at-spi2-core (2.10.2-4) UNRELEASED; urgency=medium
+at-spi2-core (2.12.0-1) UNRELEASED; urgency=medium
 
+  [ Samuel Thibault ]
   * control: Fix typo in package description (Closes: Bug#745283)
-  * debian/control: Remove unused Build-Depends on gir1.2-glib-2.0.
 
- -- Samuel Thibault <sthibault@debian.org>  Sun, 20 Apr 2014 10:38:29 +0200
+  [ Mario Lang]
+  * debian/control: Remove unused Build-Depends on gir1.2-glib-2.0.
+  * New upstream release.
+
+ -- Mario Lang <mlang@debian.org>  Tue, 08 Jul 2014 11:42:19 +0200
 
 at-spi2-core (2.10.2-3) unstable; urgency=low
 
