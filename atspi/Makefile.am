@@ -6,6 +6,8 @@ libatspi_la_CFLAGS = $(DBUS_CFLAGS) \
 		    $(DBIND_CFLAGS)     \
 		    $(GLIB_CFLAGS)     \
 		    -I$(top_srcdir)/registryd \
+		    -I$(top_builddir)/registryd \
+                    -I$(top_builddir) \
                     -I$(top_srcdir)
 
 libatspi_la_LIBADD = $(DBUS_LIBS) \
@@ -44,6 +46,7 @@ atspi-gmain.h \
 	atspi-selection.h \
 	atspi-stateset.h \
 	atspi-table.h \
+	atspi-table-cell.h \
 	atspi-text.h \
 	atspi-types.h \
 	atspi-value.h
@@ -54,6 +57,7 @@ libatspi_la_SOURCES =		\
 	atspi.h	\
 	atspi-accessible.c \
 	atspi-accessible.h \
+	atspi-accessible-private.h \
 	atspi-action.c \
 	atspi-action.h \
 	atspi-application.c \
@@ -97,6 +101,7 @@ libatspi_la_SOURCES =		\
 	atspi-stateset.c \
 	atspi-stateset.h \
 	atspi-table.c \
+	atspi-table-cell.c \
 	atspi-table.h \
 	atspi-text.c \
 	atspi-text.h \

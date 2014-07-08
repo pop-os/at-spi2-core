@@ -146,8 +146,8 @@ am_libatspi_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	libatspi_la-atspi-misc.lo libatspi_la-atspi-object.lo \
 	libatspi_la-atspi-registry.lo libatspi_la-atspi-relation.lo \
 	libatspi_la-atspi-selection.lo libatspi_la-atspi-stateset.lo \
-	libatspi_la-atspi-table.lo libatspi_la-atspi-text.lo \
-	libatspi_la-atspi-value.lo
+	libatspi_la-atspi-table.lo libatspi_la-atspi-table-cell.lo \
+	libatspi_la-atspi-text.lo libatspi_la-atspi-value.lo
 libatspi_la_OBJECTS = $(am_libatspi_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -271,6 +271,7 @@ GOBJ_CFLAGS = @GOBJ_CFLAGS@
 GOBJ_LIBS = @GOBJ_LIBS@
 GREP = @GREP@
 GTKDOC_CHECK = @GTKDOC_CHECK@
+GTKDOC_CHECK_PATH = @GTKDOC_CHECK_PATH@
 GTKDOC_DEPS_CFLAGS = @GTKDOC_DEPS_CFLAGS@
 GTKDOC_DEPS_LIBS = @GTKDOC_DEPS_LIBS@
 GTKDOC_MKPDF = @GTKDOC_MKPDF@
@@ -410,6 +411,8 @@ libatspi_la_CFLAGS = $(DBUS_CFLAGS) \
 		    $(DBIND_CFLAGS)     \
 		    $(GLIB_CFLAGS)     \
 		    -I$(top_srcdir)/registryd \
+		    -I$(top_builddir)/registryd \
+                    -I$(top_builddir) \
                     -I$(top_srcdir)
 
 libatspi_la_LIBADD = $(DBUS_LIBS) \
@@ -447,6 +450,7 @@ atspi-gmain.h \
 	atspi-selection.h \
 	atspi-stateset.h \
 	atspi-table.h \
+	atspi-table-cell.h \
 	atspi-text.h \
 	atspi-types.h \
 	atspi-value.h
@@ -457,6 +461,7 @@ libatspi_la_SOURCES = \
 	atspi.h	\
 	atspi-accessible.c \
 	atspi-accessible.h \
+	atspi-accessible-private.h \
 	atspi-action.c \
 	atspi-action.h \
 	atspi-application.c \
@@ -500,6 +505,7 @@ libatspi_la_SOURCES = \
 	atspi-stateset.c \
 	atspi-stateset.h \
 	atspi-table.c \
+	atspi-table-cell.c \
 	atspi-table.h \
 	atspi-text.c \
 	atspi-text.h \
@@ -644,6 +650,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libatspi_la-atspi-relation.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libatspi_la-atspi-selection.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libatspi_la-atspi-stateset.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libatspi_la-atspi-table-cell.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libatspi_la-atspi-table.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libatspi_la-atspi-text.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libatspi_la-atspi-value.Plo@am__quote@
@@ -822,6 +829,13 @@ libatspi_la-atspi-table.lo: atspi-table.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='atspi-table.c' object='libatspi_la-atspi-table.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libatspi_la_CFLAGS) $(CFLAGS) -c -o libatspi_la-atspi-table.lo `test -f 'atspi-table.c' || echo '$(srcdir)/'`atspi-table.c
+
+libatspi_la-atspi-table-cell.lo: atspi-table-cell.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libatspi_la_CFLAGS) $(CFLAGS) -MT libatspi_la-atspi-table-cell.lo -MD -MP -MF $(DEPDIR)/libatspi_la-atspi-table-cell.Tpo -c -o libatspi_la-atspi-table-cell.lo `test -f 'atspi-table-cell.c' || echo '$(srcdir)/'`atspi-table-cell.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libatspi_la-atspi-table-cell.Tpo $(DEPDIR)/libatspi_la-atspi-table-cell.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='atspi-table-cell.c' object='libatspi_la-atspi-table-cell.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libatspi_la_CFLAGS) $(CFLAGS) -c -o libatspi_la-atspi-table-cell.lo `test -f 'atspi-table-cell.c' || echo '$(srcdir)/'`atspi-table-cell.c
 
 libatspi_la-atspi-text.lo: atspi-text.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libatspi_la_CFLAGS) $(CFLAGS) -MT libatspi_la-atspi-text.lo -MD -MP -MF $(DEPDIR)/libatspi_la-atspi-text.Tpo -c -o libatspi_la-atspi-text.lo `test -f 'atspi-text.c' || echo '$(srcdir)/'`atspi-text.c

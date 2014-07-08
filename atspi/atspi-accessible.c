@@ -23,6 +23,7 @@
  */
 
 #include "atspi-private.h"
+#include "atspi-accessible-private.h"
 #include <string.h>
 
 static gboolean enable_caching = FALSE;
@@ -74,6 +75,11 @@ atspi_table_interface_init (AtspiTable *table)
 }
 
 static void
+atspi_table_cell_interface_init (AtspiTableCell *cell)
+{
+}
+
+static void
 atspi_text_interface_init (AtspiText *text)
 {
 }
@@ -84,6 +90,7 @@ atspi_value_interface_init (AtspiValue *value)
 }
 
 G_DEFINE_TYPE_WITH_CODE (AtspiAccessible, atspi_accessible, ATSPI_TYPE_OBJECT,
+                         G_ADD_PRIVATE (AtspiAccessible)
                          G_IMPLEMENT_INTERFACE (ATSPI_TYPE_ACTION, atspi_action_interface_init)
                          G_IMPLEMENT_INTERFACE (ATSPI_TYPE_COLLECTION, atspi_collection_interface_init)
                          G_IMPLEMENT_INTERFACE (ATSPI_TYPE_COMPONENT, atspi_component_interface_init)
@@ -93,6 +100,7 @@ G_DEFINE_TYPE_WITH_CODE (AtspiAccessible, atspi_accessible, ATSPI_TYPE_OBJECT,
                          G_IMPLEMENT_INTERFACE (ATSPI_TYPE_IMAGE, atspi_image_interface_init)
                          G_IMPLEMENT_INTERFACE (ATSPI_TYPE_SELECTION, atspi_selection_interface_init)
                          G_IMPLEMENT_INTERFACE (ATSPI_TYPE_TABLE, atspi_table_interface_init)
+                         G_IMPLEMENT_INTERFACE (ATSPI_TYPE_TABLE_CELL, atspi_table_cell_interface_init)
                          G_IMPLEMENT_INTERFACE (ATSPI_TYPE_TEXT, atspi_text_interface_init)
                          G_IMPLEMENT_INTERFACE (ATSPI_TYPE_VALUE, atspi_value_interface_init))
 
@@ -108,6 +116,8 @@ atspi_accessible_init (AtspiAccessible *accessible)
   g_hash_table_insert (_atspi_get_live_refs (), accessible, NULL);
   g_print("at-spi: init: %d objects\n", accessible_count);
 #endif
+
+  accessible->priv = atspi_accessible_get_instance_private (accessible);
 }
 
 static void
@@ -592,6 +602,13 @@ atspi_accessible_get_attributes (AtspiAccessible *obj, GError **error)
 
     g_return_val_if_fail (obj != NULL, NULL);
 
+  if (obj->priv->cache)
+  {
+    GValue *val = g_hash_table_lookup (obj->priv->cache, "Attributes");
+    if (val)
+      return g_value_dup_boxed (val);
+  }
+
   if (!_atspi_accessible_test_cache (obj, ATSPI_CACHE_ATTRIBUTES))
   {
     message = _atspi_dbus_call_partial (obj, atspi_interface_accessible,
@@ -632,15 +649,16 @@ atspi_accessible_get_attributes_as_array (AtspiAccessible *obj, GError **error)
 
     g_return_val_if_fail (obj != NULL, NULL);
 
-  if (_atspi_accessible_get_cache_mask (obj) & ATSPI_CACHE_ATTRIBUTES)
+  if (obj->priv->cache)
   {
-    GArray *array = g_array_new (TRUE, TRUE, sizeof (gchar *));
-    GHashTable *attributes = atspi_accessible_get_attributes (obj, error);
-    if (!attributes)
-      return NULL;
-    g_hash_table_foreach (attributes, add_to_attribute_array, &array);
-    g_hash_table_unref (attributes);
-    return array;
+    GValue *val = g_hash_table_lookup (obj->priv->cache, "Attributes");
+    if (val)
+    {
+      GArray *array = g_array_new (TRUE, TRUE, sizeof (gchar *));
+      GHashTable *attributes = g_value_get_boxed (val);
+      g_hash_table_foreach (attributes, add_to_attribute_array, &array);
+      return array;
+    }
   }
 
   message = _atspi_dbus_call_partial (obj, atspi_interface_accessible, "GetAttributes", error, "");
@@ -1005,6 +1023,23 @@ atspi_accessible_is_table (AtspiAccessible *obj)
 {
   return _atspi_accessible_is_a (obj,
 			      atspi_interface_table);
+}
+
+/**
+ * atspi_accessible_is_table_cell:
+ * @obj: a pointer to the #AtspiAccessible instance to query.
+ *
+ * Query whether the specified #AtspiAccessible implements the
+ * #AtspiTableCell interface.
+ *
+ * Returns: #TRUE if @obj implements the #AtspiTable interface,
+ *          #FALSE otherwise.
+**/
+gboolean
+atspi_accessible_is_table_cell (AtspiAccessible *obj)
+{
+  return _atspi_accessible_is_a (obj,
+			      atspi_interface_table_cell);
 }
 
 /**
@@ -1413,6 +1448,22 @@ atspi_accessible_get_table_iface (AtspiAccessible *obj)
 }
 
 /**
+ * atspi_accessible_get_table_cell:
+ * @obj: a pointer to the #AtspiAccessible instance to query.
+ *
+ * Gets the #AtspiTableCell interface for an #AtspiAccessible.
+ *
+ * Returns: (transfer full): a pointer to an #AtspiTableCell interface instance,
+ *          or NULL if @obj does not implement #AtspiTable.
+ **/
+AtspiTableCell *
+atspi_accessible_get_table_cell (AtspiAccessible *obj)
+{
+  return (_atspi_accessible_is_a (obj, atspi_interface_table_cell) ?
+          g_object_ref (ATSPI_TABLE_CELL (obj)) : NULL);  
+}
+
+/**
  * atspi_accessible_get_text:
  * @obj: a pointer to the #AtspiAccessible instance to query.
  *
@@ -1529,6 +1580,8 @@ atspi_accessible_get_interfaces (AtspiAccessible *obj)
     append_const_val (ret, "Selection");
   if (atspi_accessible_is_table (obj))
     append_const_val (ret, "Table");
+  if (atspi_accessible_is_table_cell (obj))
+    append_const_val (ret, "TableCell");
   if (atspi_accessible_is_text (obj))
     append_const_val (ret, "Text");
   if (atspi_accessible_is_value (obj))
@@ -1626,8 +1679,12 @@ atspi_accessible_get_process_id (AtspiAccessible *accessible, GError **error)
   dbus_error_init (&d_error);
   reply = dbus_connection_send_with_reply_and_block (bus, message, -1, &d_error);
   dbus_message_unref (message);
-  dbus_message_get_args (reply, NULL, DBUS_TYPE_UINT32, &pid, DBUS_TYPE_INVALID);
-  dbus_message_unref (reply);
+  if (reply)
+  {
+    if (!strcmp (dbus_message_get_signature (reply), "u"))
+      dbus_message_get_args (reply, NULL, DBUS_TYPE_UINT32, &pid, DBUS_TYPE_INVALID);
+    dbus_message_unref (reply);
+  }
   if (dbus_error_is_set (&d_error))
     {
       g_warning ("GetConnectionUnixProcessID failed: %s", d_error.message);
@@ -1667,7 +1724,8 @@ _atspi_accessible_test_cache (AtspiAccessible *accessible, AtspiCache flag)
   AtspiCache result = accessible->cached_properties & mask & flag;
   if (accessible->states && atspi_state_set_contains (accessible->states, ATSPI_STATE_TRANSIENT))
     return FALSE;
-  return (result != 0 && (atspi_main_loop || enable_caching) &&
+  return (result != 0 && (atspi_main_loop || enable_caching ||
+                          flag == ATSPI_CACHE_INTERFACES) &&
           !atspi_no_cache);
 }
 
@@ -1709,4 +1767,39 @@ atspi_accessible_get_object_locale (AtspiAccessible *accessible, GError **error)
                                g_free);
   }
   return locale;
+}
+
+void
+free_value (gpointer data)
+{
+  GValue *value = data;
+
+  g_value_unset (value);
+  g_free (value);
+}
+
+GHashTable *
+_atspi_accessible_ref_cache (AtspiAccessible *accessible)
+{
+  AtspiAccessiblePrivate *priv = accessible->priv;
+
+  priv->cache_ref_count++;
+  if (priv->cache)
+    return g_hash_table_ref (priv->cache);
+  priv->cache = g_hash_table_new_full (g_str_hash, g_str_equal, g_free,
+                                       free_value);
+  return priv->cache;
+}
+
+void
+_atspi_accessible_unref_cache (AtspiAccessible *accessible)
+{
+  AtspiAccessiblePrivate *priv = accessible->priv;
+
+  if (priv->cache)
+  {
+    g_hash_table_unref (priv->cache);
+    if (--priv->cache_ref_count == 0)
+      priv->cache = NULL;
+  }
 }

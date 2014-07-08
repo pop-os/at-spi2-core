@@ -43,6 +43,8 @@ G_BEGIN_DECLS
 #define ATSPI_IS_ACCESSIBLE_CLASS(klass)             (G_TYPE_CHECK_CLASS_TYPE ((klass), ATSPI_TYPE_ACCESSIBLE))
 #define ATSPI_ACCESSIBLE_GET_CLASS(obj)              (G_TYPE_INSTANCE_GET_CLASS ((obj), ATSPI_TYPE_ACCESSIBLE, AtspiAccessibleClass))
 
+typedef struct _AtspiAccessiblePrivate AtspiAccessiblePrivate;
+
 struct _AtspiAccessible
 {
   AtspiObject parent;
@@ -55,6 +57,7 @@ struct _AtspiAccessible
   AtspiStateSet *states;
   GHashTable *attributes;
   guint cached_properties;
+  AtspiAccessiblePrivate *priv;
 };
 
 typedef struct _AtspiAccessibleClass AtspiAccessibleClass;
@@ -124,6 +127,8 @@ AtspiImage * atspi_accessible_get_image (AtspiAccessible *obj);
 AtspiSelection * atspi_accessible_get_selection (AtspiAccessible *obj);
 
 AtspiTable * atspi_accessible_get_table (AtspiAccessible *obj);
+
+AtspiTableCell * atspi_accessible_get_table_cell (AtspiAccessible *obj);
 
 AtspiText * atspi_accessible_get_text (AtspiAccessible *obj);
 

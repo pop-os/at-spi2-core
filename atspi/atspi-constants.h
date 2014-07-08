@@ -553,6 +553,14 @@ typedef enum {
  * @ATSPI_STATE_VISITED: This state indicates that the object (typically a
  * hyperlink) has already been activated or invoked, with the result that
  * some backing data has been downloaded or rendered.
+ *@ATSPI_STATE_CHECKABLE: Indicates this object has the potential to
+ *  be checked, such as a checkbox or toggle-able table cell. @Since:
+ *  2.12
+ *@ATSPI_STATE_HAS_POPUP: Indicates that the object has a popup
+ * context menu or sub-level menu which may or may not be
+ * showing. This means that activation renders conditional content.
+ * Note that ordinary tooltips are not considered popups in this
+ * context. @Since: 2.12
  * @ATSPI_STATE_LAST_DEFINED: This value of the enumeration should not be used
  * as a parameter, it indicates the number of items in the #AtspiStateType
  * enumeration.
@@ -604,6 +612,8 @@ typedef enum {
     ATSPI_STATE_SELECTABLE_TEXT,
     ATSPI_STATE_IS_DEFAULT,
     ATSPI_STATE_VISITED,
+    ATSPI_STATE_CHECKABLE,
+    ATSPI_STATE_HAS_POPUP,
     ATSPI_STATE_LAST_DEFINED,
 } AtspiStateType;
 
@@ -1031,7 +1041,7 @@ typedef enum {
  * contains a view of document content. #AtspiDocument frames may occur within
  * another #AtspiDocument instance, in which case the second  document may be
  * said to be embedded in the containing instance.  HTML frames are often
- * @ATSPI_ROLE_DOCUMENT_FRAME:  Either this object, or a singleton descendant, 
+ * ATSPI_ROLE_DOCUMENT_FRAME:  Either this object, or a singleton descendant, 
  * should implement the #AtspiDocument interface.
  * @ATSPI_ROLE_HEADING: The object serves as a heading for content which
  * follows it in a document. The 'heading level' of the heading, if
@@ -1098,6 +1108,43 @@ typedef enum {
  *@ATSPI_ROLE_LEVEL_BAR: A bar that serves as a level indicator to, for
  * instance, show the strength of a password or the state of a battery. 
  * Since: 2.8
+ *@ATSPI_ROLE_TITLE_BAR: A bar that serves as the title of a window or a
+ * dialog. @Since: 2.12
+ *@ATSPI_ROLE_BLOCK_QUOTE: An object which contains a text section
+ * that is quoted from another source.  @Since: 2.12
+ *@ATSPI_ROLE_AUDIO: An object which represents an audio
+ * element. @Since: 2.12
+ *@ATSPI_ROLE_VIDEO: An object which represents a video
+ * element. @Since: 2.12
+ *@ATSPI_ROLE_DEFINITION: A definition of a term or concept. @Since: 2.12
+ *@ATSPI_ROLE_ARTICLE: A section of a page that consists of a
+ * composition that forms an independent part of a document, page, or
+ * site. Examples: A blog entry, a news story, a forum post. @Since:
+ * 2.12
+ *@ATSPI_ROLE_LANDMARK: A region of a web page intended as a
+ * navigational landmark. This is designed to allow Assistive
+ * Technologies to provide quick navigation among key regions within a
+ * document. @Since: 2.12
+ *@ATSPI_ROLE_LOG: A text widget or container holding log content, such
+ * as chat history and error logs. In this role there is a
+ * relationship between the arrival of new items in the log and the
+ * reading order. The log contains a meaningful sequence and new
+ * information is added only to the end of the log, not at arbitrary
+ * points. @Since: 2.12
+ *@ATSPI_ROLE_MARQUEE: A container where non-essential information
+ * changes frequently. Common usages of marquee include stock tickers
+ * and ad banners. The primary difference between a marquee and a log
+ * is that logs usually have a meaningful order or sequence of
+ * important content changes. @Since: 2.12
+ *@ATSPI_ROLE_MATH: A text widget or container that holds a mathematical
+ * expression. @Since: 2.12
+ *@ATSPI_ROLE_RATING: A widget whose purpose is to display a rating,
+ * such as the number of stars associated with a song in a media
+ * player. Objects of this role should also implement
+ * AtspiValue. @Since: 2.12
+ *@ATSPI_ROLE_TIMER: An object containing a numerical counter which
+ * indicates an amount of elapsed time from a start point, or the time
+ * remaining until an end point. @Since: 2.12
  * @ATSPI_ROLE_LAST_DEFINED: Not a valid role, used for finding end of
  * enumeration.
  *
@@ -1210,6 +1257,18 @@ typedef enum {
     ATSPI_ROLE_NOTIFICATION,
     ATSPI_ROLE_INFO_BAR,
     ATSPI_ROLE_LEVEL_BAR,
+    ATSPI_ROLE_TITLE_BAR,
+    ATSPI_ROLE_BLOCK_QUOTE,
+    ATSPI_ROLE_AUDIO,
+    ATSPI_ROLE_VIDEO,
+    ATSPI_ROLE_DEFINITION,
+    ATSPI_ROLE_ARTICLE,
+    ATSPI_ROLE_LANDMARK,
+    ATSPI_ROLE_LOG,
+    ATSPI_ROLE_MARQUEE,
+    ATSPI_ROLE_MATH,
+    ATSPI_ROLE_RATING,
+    ATSPI_ROLE_TIMER,
     ATSPI_ROLE_LAST_DEFINED,
 } AtspiRole;
 
@@ -1232,10 +1291,7 @@ typedef enum
   ATSPI_CACHE_INTERFACES  = 1 << 6,
   ATSPI_CACHE_ATTRIBUTES = 1 << 7,
   ATSPI_CACHE_ALL         = 0x3fffffff,
-  ATSPI_CACHE_DEFAULT = ATSPI_CACHE_PARENT | ATSPI_CACHE_CHILDREN |
-                        ATSPI_CACHE_NAME | ATSPI_CACHE_DESCRIPTION |
-                        ATSPI_CACHE_STATES | ATSPI_CACHE_ROLE |
-                        ATSPI_CACHE_INTERFACES,
+  ATSPI_CACHE_DEFAULT = ATSPI_CACHE_PARENT | ATSPI_CACHE_CHILDREN | ATSPI_CACHE_NAME | ATSPI_CACHE_DESCRIPTION | ATSPI_CACHE_STATES | ATSPI_CACHE_ROLE | ATSPI_CACHE_INTERFACES,
   ATSPI_CACHE_UNDEFINED   = 0x40000000,
 } AtspiCache;
 
@@ -1266,6 +1322,7 @@ typedef enum
 #define ATSPI_DBUS_INTERFACE_IMAGE "org.a11y.atspi.Image"
 #define ATSPI_DBUS_INTERFACE_SELECTION "org.a11y.atspi.Selection"
 #define ATSPI_DBUS_INTERFACE_TABLE "org.a11y.atspi.Table"
+#define ATSPI_DBUS_INTERFACE_TABLE_CELL "org.a11y.atspi.TableCell"
 #define ATSPI_DBUS_INTERFACE_TEXT "org.a11y.atspi.Text"
 #define ATSPI_DBUS_INTERFACE_VALUE "org.a11y.atspi.Value"
 #define ATSPI_DBUS_INTERFACE_SOCKET "org.a11y.atspi.Socket"

@@ -4,7 +4,8 @@
  *
  * Copyright 2002 Ximian, Inc.
  *           2002 Sun Microsystems Inc.
- *           
+ * Copyright 2010, 2011 Novell, Inc.
+ *
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -22,22 +23,24 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#ifndef _ATSPI_PRIVATE_H_
-#define _ATSPI_PRIVATE_H_
-
-#include <config.h>
-#include "atspi-device-listener-private.h"
-#include "atspi-event-listener-private.h"
-#include "atspi-matchrule-private.h"
-#include "atspi-misc-private.h"
-
-#include "glib/gi18n.h"
-
-#include "atspi.h"
-#include "atspi-accessible-private.h"
+#ifndef _ATSPI_ACCESSIBLE_PRIVATE_H_
+#define _ATSPI_ACCESSIBLE_PRIVATE_H_
 
 G_BEGIN_DECLS
-void _atspi_reregister_device_listeners ();
+
+#include "atspi-accessible.h"
+
+struct _AtspiAccessiblePrivate
+{
+  GHashTable *cache;
+  guint cache_ref_count;
+};
+
+GHashTable *
+_atspi_accessible_ref_cache (AtspiAccessible *accessible);
+
+void
+_atspi_accessible_unref_cache (AtspiAccessible *accessible);
 G_END_DECLS
 
-#endif	/* _ATSPI_PRIVATE_H_ */
+#endif	/* _ATSPI_ACCESSIBLE_H_ */
