@@ -423,13 +423,9 @@ atspi_text_get_text_before_offset (AtspiText *obj,
 
 /**
  * atspi_text_get_string_at_offset:
- * @text: an #AtspiText
+ * @obj: an #AtspiText
  * @offset: position
  * @granularity: An #AtspiTextGranularity
- * @start_offset: (out): the start offset of the returned string, or -1
- *                if an error has occurred (e.g. invalid offset, not implemented)
- * @end_offset: (out): the offset of the first character after the returned string,
- *              or -1 if an error has occurred (e.g. invalid offset, not implemented)
  *
  * Gets a portion of the text exposed through an #AtspiText according to a given @offset
  * and a specific @granularity, along with the start and end offsets defining the
@@ -757,7 +753,7 @@ atspi_text_get_bounded_ranges (AtspiText *obj,
   dbus_int32_t d_x = x, d_y = y, d_width = width, d_height = height;
   dbus_uint32_t d_type = type;
   dbus_uint32_t d_clipTypeX = clipTypeX, d_clipTypeY = clipTypeY;
-  GArray *range_seq;
+  GArray *range_seq = NULL;
 
   g_return_val_if_fail (obj != NULL, NULL);
 

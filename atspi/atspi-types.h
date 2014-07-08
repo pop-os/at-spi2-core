@@ -40,6 +40,7 @@ typedef struct _AtspiHypertext AtspiHypertext;
 typedef struct _AtspiImage AtspiImage;
 typedef struct _AtspiSelection AtspiSelection;
 typedef struct _AtspiTable AtspiTable;
+typedef struct _AtspiTableCell AtspiTableCell;
 typedef struct _AtspiText AtspiText;
 typedef struct _AtspiValue AtspiValue;
 
@@ -91,7 +92,14 @@ struct _AtspiEvent
 };
 
 /**
- * ATSPI_TYPE_RECT:
+ * ATSPI_TYPE_DEVICE_EVENT:
+ * 
+ * The #GType for a boxed type holding a #AtspiDeviceEvent.
+ */
+#define	ATSPI_TYPE_DEVICE_EVENT (atspi_device_event_get_type ())
+
+/**
+ * ATSPI_TYPE_EVENT:
  * 
  * The #GType for a boxed type holding a #AtspiEvent.
  */

@@ -1,4 +1,4 @@
-AC_INIT([at-spi2-core], [2.10.2], [accessibility-atspi@lists.linux-foundation.org])
+AC_INIT([at-spi2-core], [2.12.0], [accessibility-atspi@lists.linux-foundation.org])
 AC_PREREQ([2.59])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_MACRO_DIR([m4])
@@ -44,7 +44,7 @@ PKG_CHECK_MODULES(DBUS, [dbus-1 >= 1.0])
 AC_SUBST(DBUS_LIBS)
 AC_SUBST(DBUS_CFLAGS)
 
-PKG_CHECK_MODULES(GLIB, [glib-2.0 >= 2.26.0])
+PKG_CHECK_MODULES(GLIB, [glib-2.0 >= 2.36.0])
 AC_SUBST(GLIB_LIBS)
 AC_SUBST(GLIB_CFLAGS)
 AC_CHECK_LIB([glib-2.0], [g_ptr_array_new_with_free_func], [:],
@@ -220,6 +220,7 @@ dbind/dbind-config.h
 	bus/Makefile
 doc/Makefile
 doc/libatspi/Makefile
+doc/libatspi/version.xml
 test/Makefile
 atspi-2.pc
 atspi-2-uninstalled.pc

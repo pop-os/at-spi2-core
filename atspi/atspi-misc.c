@@ -42,6 +42,7 @@ static DBusConnection *bus = NULL;
 static GHashTable *live_refs = NULL;
 static gint method_call_timeout = 800;
 static gint app_startup_time = 15000;
+static gboolean allow_sync = TRUE;
 
 GMainLoop *atspi_main_loop;
 GMainContext *atspi_main_context;
@@ -67,6 +68,7 @@ const char *atspi_interface_image = ATSPI_DBUS_INTERFACE_IMAGE;
 const char *atspi_interface_registry = ATSPI_DBUS_INTERFACE_REGISTRY;
 const char *atspi_interface_selection = ATSPI_DBUS_INTERFACE_SELECTION;
 const char *atspi_interface_table = ATSPI_DBUS_INTERFACE_TABLE;
+const char *atspi_interface_table_cell = ATSPI_DBUS_INTERFACE_TABLE_CELL;
 const char *atspi_interface_text = ATSPI_DBUS_INTERFACE_TEXT;
 const char *atspi_interface_cache = ATSPI_DBUS_INTERFACE_CACHE;
 const char *atspi_interface_value = ATSPI_DBUS_INTERFACE_VALUE;
@@ -86,6 +88,7 @@ static const char *interfaces[] =
   "org.a11y.atspi.LoginHelper",
   ATSPI_DBUS_INTERFACE_SELECTION,
   ATSPI_DBUS_INTERFACE_TABLE,
+  ATSPI_DBUS_INTERFACE_TABLE_CELL,
   ATSPI_DBUS_INTERFACE_TEXT,
   ATSPI_DBUS_INTERFACE_VALUE,
   NULL
@@ -397,52 +400,6 @@ add_app_to_desktop (AtspiAccessible *a, const char *bus_name)
    * ref_accessible */
   g_object_unref (obj);
   return (obj != NULL);
-}
-
-static void
-send_children_changed (AtspiAccessible *parent, AtspiAccessible *child, gboolean add)
-{
-  AtspiEvent e;
-
-  memset (&e, 0, sizeof (e));
-  e.type = (add? "object:children-changed:add": "object:children-changed:remove");
-  e.source = parent;
-  e.detail1 = g_list_index (parent->children, child);
-  e.detail2 = 0;
-  _atspi_send_event (&e);
-}
-
-static void
-unref_object_and_descendants (AtspiAccessible *obj)
-{
-  GList *l;
-
-  for (l = obj->children; l; l = l->next)
-  {
-    unref_object_and_descendants (l->data);
-  }
-  g_object_unref (obj);
-}
-
-static gboolean
-remove_app_from_desktop (AtspiAccessible *a, const char *bus_name)
-{
-  GList *l;
-  AtspiAccessible *child;
-
-  for (l = a->children; l; l = l->next)
-  {
-    child = l->data;
-    if (!strcmp (bus_name, child->parent.app->bus_name)) break;
-  }
-  if (!l)
-  {
-    return FALSE;
-  }
-  send_children_changed (a, child, FALSE);
-  a->children = g_list_remove (a->children, child);
-  unref_object_and_descendants (child);
-  return TRUE;
 }
 
 void
@@ -792,7 +749,6 @@ process_deferred_messages_callback (gpointer data)
   if (process_deferred_messages ())
     return G_SOURCE_CONTINUE;
 
-  g_source_unref (process_deferred_messages_source);
   process_deferred_messages_source = NULL;
   return G_SOURCE_REMOVE;
 }
@@ -814,6 +770,7 @@ defer_message (DBusConnection *connection, DBusMessage *message, void *user_data
     g_source_set_callback (process_deferred_messages_source,
                            process_deferred_messages_callback, NULL, NULL);
     g_source_attach (process_deferred_messages_source, atspi_main_context);
+    g_source_unref (process_deferred_messages_source);
   }
 
   return DBUS_HANDLER_RESULT_HANDLED;
@@ -849,17 +806,6 @@ atspi_dbus_filter (DBusConnection *bus, DBusMessage *message, void *data)
   }
   return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
 }
-
-static const char *signal_interfaces[] =
-{
-  "org.a11y.atspi.Event.Object",
-  "org.a11y.atspi.Event.Window",
-  "org.a11y.atspi.Event.Mouse",
-  "org.a11y.atspi.Event.Terminal",
-  "org.a11y.atspi.Event.Document",
-  "org.a11y.atspi.Event.Focus",
-  NULL
-};
 
 /*
  * Returns a 'canonicalized' value for DISPLAY,
@@ -917,8 +863,6 @@ atspi_init (void)
     }
 
   atspi_inited = TRUE;
-
-  g_type_init ();
 
   _atspi_get_live_refs();
 
@@ -1130,6 +1074,12 @@ _atspi_dbus_call (gpointer obj, const char *interface, const char *method, GErro
   if (!check_app (aobj->app, error))
     return FALSE;
 
+  if (!allow_sync)
+  {
+    _atspi_set_error_no_sync (error);
+    return FALSE;
+  }
+
   va_start (args, type);
   dbus_error_init (&err);
   set_timeout (aobj->app);
@@ -1230,6 +1180,12 @@ _atspi_dbus_get_property (gpointer obj, const char *interface, const char *name,
 
   if (!check_app (aobj->app, error))
     return FALSE;
+
+  if (!allow_sync)
+  {
+    _atspi_set_error_no_sync (error);
+    return FALSE;
+  }
 
   message = dbus_message_new_method_call (aobj->app->bus_name,
                                           aobj->path,
@@ -1405,6 +1361,11 @@ _atspi_dbus_set_interfaces (AtspiAccessible *accessible, DBusMessageIter *iter)
   DBusMessageIter iter_array;
 
   accessible->interfaces = 0;
+  if (strcmp (dbus_message_iter_get_signature (iter), "as") != 0)
+  {
+    g_warning ("_atspi_dbus_set_interfaces: Passed iterator with invalid signature %s", dbus_message_iter_get_signature (iter));
+    return;
+  }
   dbus_message_iter_recurse (iter, &iter_array);
   while (dbus_message_iter_get_arg_type (&iter_array) != DBUS_TYPE_INVALID)
   {
@@ -1566,6 +1527,9 @@ a11y_bus_free (void *data)
     }
 }
 
+/**
+ * atspi_get_a11y_bus: (skip)
+ */
 DBusConnection *
 atspi_get_a11y_bus (void)
 {
@@ -1617,6 +1581,14 @@ atspi_get_a11y_bus (void)
 }
 
 /**
+ * atspi_set_timeout:
+ *  @val: The timeout value, in milliseconds, or -1 to disable the timeout.
+ *  @startup_time: The amount of time, in milliseconds, to allow to pass
+ *  before enforcing timeouts on an application. Can be used to prevent
+ *  timeout exceptions if an application is likely to block for an extended
+ *  period of time on initialization. -1 can be passed to disable this
+ *  behavior.
+ *
  *  Set the timeout used for method calls. If this is not set explicitly,
  *  a default of 0.8 ms is used.
  *  Note that at-spi2-registryd currently uses a timeout of 3 seconds when
@@ -1628,13 +1600,6 @@ atspi_get_a11y_bus (void)
  *  was not consumed), so this may make it undesirable to set a timeout
  *  larger than 3 seconds.
  *
- *  @val: The timeout value, in milliseconds, or -1 to disable the timeout.
- *  @startup_time: The amount of time, in milliseconds, to allow to pass
- *  before enforcing timeouts on an application. Can be used to prevent
- *  timeout exceptions if an application is likely to block for an extended
- *  period of time on initialization. -1 can be passed to disable this
- *  behavior.
- *
  * By default, the normal timeout is set to 800 ms, and the application startup
  * timeout is set to 15 seconds.
  */
@@ -1645,9 +1610,9 @@ atspi_set_timeout (gint val, gint startup_time)
   app_startup_time = startup_time;
 }
 
-/*
+/**
  * atspi_set_main_context:
- * @cnx: The #GmainContext to use.
+ * @cnx: The #GMainContext to use.
  *
  * Sets the main loop context that AT-SPI should assume is in use when
  * setting an idle callback.
@@ -1662,11 +1627,11 @@ atspi_set_main_context (GMainContext *cnx)
   if (process_deferred_messages_source != NULL)
   {
     g_source_destroy (process_deferred_messages_source);
-    g_source_unref (process_deferred_messages_source);
     process_deferred_messages_source = g_idle_source_new ();
     g_source_set_callback (process_deferred_messages_source,
                            process_deferred_messages_callback, NULL, NULL);
     g_source_attach (process_deferred_messages_source, cnx);
+    g_source_unref (process_deferred_messages_source);
   }
   atspi_main_context = cnx;
   atspi_dbus_connection_setup_with_g_main (atspi_get_a11y_bus (), cnx);
@@ -1718,7 +1683,6 @@ atspi_role_get_name (AtspiRole role)
   gchar *retval = NULL;
   GTypeClass *type_class;
   GEnumValue *value;
-  const gchar *name = NULL;
 
   type_class = g_type_class_ref (ATSPI_TYPE_ROLE);
   g_return_val_if_fail (G_IS_ENUM_CLASS (type_class), NULL);
@@ -1734,4 +1698,83 @@ atspi_role_get_name (AtspiRole role)
     return _atspi_name_compat (retval);
 
   return NULL;
+}
+
+void
+_atspi_dbus_update_cache_from_dict (AtspiAccessible *accessible, DBusMessageIter *iter)
+{
+  GHashTable *cache = _atspi_accessible_ref_cache (accessible);
+  DBusMessageIter iter_dict, iter_dict_entry, iter_struct, iter_variant;
+
+  dbus_message_iter_recurse (iter, &iter_dict);
+  while (dbus_message_iter_get_arg_type (&iter_dict) != DBUS_TYPE_INVALID)
+  {
+    const char *key;
+    GValue *val = NULL;
+    dbus_message_iter_recurse (&iter_dict, &iter_dict_entry);
+    dbus_message_iter_get_basic (&iter_dict_entry, &key);
+    dbus_message_iter_next (&iter_dict_entry);
+    dbus_message_iter_recurse (&iter_dict_entry, &iter_variant);
+    if (!strcmp (key, "interfaces"))
+    {
+      _atspi_dbus_set_interfaces (accessible, &iter_variant);
+    }
+    else if (!strcmp (key, "Attributes"))
+    {
+      val = g_new0 (GValue, 1);;
+      g_value_init (val, G_TYPE_HASH_TABLE);
+      if (strcmp (dbus_message_iter_get_signature (&iter_variant),
+                                                   "a{ss}") != 0)
+        break;
+      g_value_take_boxed (val, _atspi_dbus_hash_from_iter (&iter_variant));
+    }
+    else if (!strcmp (key, "Component.ScreenExtents"))
+    {
+      dbus_int32_t d_int;
+      AtspiRect extents;
+      val = g_new0 (GValue, 1);;
+      g_value_init (val, ATSPI_TYPE_RECT);
+      if (strcmp (dbus_message_iter_get_signature (&iter_variant),
+                                                   "(iiii)") != 0)
+        break;
+      dbus_message_iter_recurse (&iter_variant, &iter_struct);
+      dbus_message_iter_get_basic (&iter_struct, &d_int);
+      extents.x = d_int;
+      dbus_message_iter_next (&iter_struct);
+      dbus_message_iter_get_basic (&iter_struct, &d_int);
+      extents.y = d_int;
+      dbus_message_iter_next (&iter_struct);
+      dbus_message_iter_get_basic (&iter_struct, &d_int);
+      extents.width = d_int;
+      dbus_message_iter_next (&iter_struct);
+      dbus_message_iter_get_basic (&iter_struct, &d_int);
+      extents.height = d_int;
+      g_value_set_boxed (val, &extents);
+    }
+    if (val)
+      g_hash_table_insert (cache, g_strdup (key), val); 
+    dbus_message_iter_next (&iter_dict);
+  }
+}
+
+gboolean
+_atspi_get_allow_sync ()
+{
+  return allow_sync;
+}
+
+gboolean
+_atspi_set_allow_sync (gboolean val)
+{
+  gboolean ret = allow_sync;
+
+  allow_sync = val;
+  return ret;
+}
+
+void
+_atspi_set_error_no_sync (GError **error)
+{
+  g_set_error_literal (error, ATSPI_ERROR, ATSPI_ERROR_SYNC_NOT_ALLOWED,
+                        _("Attempted synchronous call where prohibited"));
 }

@@ -2,34 +2,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>atspi-hypertext</title>
+<title>libatspi Reference Manual: atspi-hypertext</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="libatspi Reference Manual">
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="AtspiEventListener.html" title="atspi-event-listener">
 <link rel="next" href="libatspi-atspi-component.html" title="atspi-component">
-<meta name="generator" content="GTK-Doc V1.19 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.20.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
-<tr valign="middle">
-<td><a accesskey="p" href="AtspiEventListener.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
-<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">libatspi Reference Manual</th>
-<td><a accesskey="n" href="libatspi-atspi-component.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
-</tr>
-<tr><td colspan="5" class="shortcuts">
-<a href="#libatspi-atspi-hypertext.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#libatspi-atspi-hypertext.description" class="shortcut">Description</a>
-                   | 
-                  <a href="#libatspi-atspi-hypertext.object-hierarchy" class="shortcut">Object Hierarchy</a>
-                   | 
-                  <a href="#libatspi-atspi-hypertext.implementations" class="shortcut">Known Implementations</a>
-</td></tr>
-</table>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#libatspi-atspi-hypertext.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#libatspi-atspi-hypertext.object-hierarchy" class="shortcut">Object Hierarchy</a></span><span id="nav_implementations">  <span class="dim">|</span> 
+                  <a href="#libatspi-atspi-hypertext.implementations" class="shortcut">Known Implementations</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="AtspiEventListener.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="libatspi-atspi-component.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
 <div class="refentry">
 <a name="libatspi-atspi-hypertext"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
@@ -38,26 +32,60 @@
 <p>atspi-hypertext — An interface used for objects which implement linking between
 multiple resource locations.</p>
 </td>
-<td valign="top" align="right"></td>
+<td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsynopsisdiv">
-<a name="libatspi-atspi-hypertext.synopsis"></a><h2>Synopsis</h2>
-<a name="AtspiHypertext"></a><pre class="synopsis">                    <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext-struct" title="AtspiHypertext">AtspiHypertext</a>;
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="libatspi-atspi-hypertext.html#atspi-hypertext-get-n-links" title="atspi_hypertext_get_n_links ()">atspi_hypertext_get_n_links</a>         (<em class="parameter"><code><a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="returnvalue">AtspiHyperlink</span></a> *    <a class="link" href="libatspi-atspi-hypertext.html#atspi-hypertext-get-link" title="atspi_hypertext_get_link ()">atspi_hypertext_get_link</a>            (<em class="parameter"><code><a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> link_index</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="libatspi-atspi-hypertext.html#atspi-hypertext-get-link-index" title="atspi_hypertext_get_link_index ()">atspi_hypertext_get_link_index</a>      (<em class="parameter"><code><a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> character_offset</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-</pre>
+<div class="refsect1">
+<a name="libatspi-atspi-hypertext.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="libatspi-atspi-hypertext.html#atspi-hypertext-get-n-links" title="atspi_hypertext_get_n_links ()">atspi_hypertext_get_n_links</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="returnvalue">AtspiHyperlink</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="libatspi-atspi-hypertext.html#atspi-hypertext-get-link" title="atspi_hypertext_get_link ()">atspi_hypertext_get_link</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="libatspi-atspi-hypertext.html#atspi-hypertext-get-link-index" title="atspi_hypertext_get_link_index ()">atspi_hypertext_get_link_index</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<a name="AtspiHypertext"></a><div class="refsect1">
+<a name="libatspi-atspi-hypertext.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody><tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext-struct" title="AtspiHypertext">AtspiHypertext</a></td>
+</tr></tbody>
+</table></div>
 </div>
 <div class="refsect1">
 <a name="libatspi-atspi-hypertext.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="synopsis">
-  GInterface
-   +----AtspiHypertext
+<pre class="screen">    <a href="http://library.gnome.org/devel/gobject/unstable/GTypeModule.html">GInterface</a>
+    <span class="lineart">╰──</span> AtspiHypertext
 </pre>
 </div>
 <div class="refsect1">
@@ -77,112 +105,130 @@ offests within the hypertext's content.
 </p>
 </div>
 <div class="refsect1">
-<a name="libatspi-atspi-hypertext.details"></a><h2>Details</h2>
+<a name="libatspi-atspi-hypertext.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="atspi-hypertext-get-n-links"></a><h3>atspi_hypertext_get_n_links ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>
+atspi_hypertext_get_n_links (<em class="parameter"><code><a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> *obj</code></em>,
+                             <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Gets the total number of <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> objects that an
+<a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> implementor has.</p>
+<div class="refsect3">
+<a name="id-1.2.20.9.2.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> implementor on which to operate.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.20.9.2.6"></a><h4>Returns</h4>
+<p> a <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating the number of <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> objects
+of the <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> implementor, or -1 if
+the number cannot be determined (for example, if the
+<a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> object is so large that it is not
+all currently in the memory cache).</p>
+<p></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-hypertext-get-link"></a><h3>atspi_hypertext_get_link ()</h3>
+<pre class="programlisting"><a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="returnvalue">AtspiHyperlink</span></a> *
+atspi_hypertext_get_link (<em class="parameter"><code><a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> *obj</code></em>,
+                          <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> link_index</code></em>,
+                          <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Gets the <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> object at a specified index.</p>
+<div class="refsect3">
+<a name="id-1.2.20.9.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> implementor on which to operate.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>link_index</p></td>
+<td class="parameter_description"><p>a (zero-index) <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating which hyperlink to query.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.20.9.3.6"></a><h4>Returns</h4>
+<p> the <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> object specified by
+<em class="parameter"><code>link_index</code></em>
+. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-hypertext-get-link-index"></a><h3>atspi_hypertext_get_link_index ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>
+atspi_hypertext_get_link_index (<em class="parameter"><code><a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> *obj</code></em>,
+                                <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> character_offset</code></em>,
+                                <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Gets the index of the <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> object at a specified
+       character offset.</p>
+<div class="refsect3">
+<a name="id-1.2.20.9.4.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> implementor on which to operate.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>character_offset</p></td>
+<td class="parameter_description"><p>a <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> specifying the character offset to query.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.20.9.4.6"></a><h4>Returns</h4>
+<p> the linkIndex of the <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> active at
+character offset <em class="parameter"><code>character_offset</code></em>
+, or -1 if there is
+no hyperlink at the specified character offset.</p>
+<p></p>
+</div>
+</div>
+</div>
+<div class="refsect1">
+<a name="libatspi-atspi-hypertext.other_details"></a><h2>Types and Values</h2>
 <div class="refsect2">
 <a name="AtspiHypertext-struct"></a><h3>AtspiHypertext</h3>
 <pre class="programlisting">typedef struct _AtspiHypertext AtspiHypertext;</pre>
 <p>
 </p>
 </div>
-<hr>
-<div class="refsect2">
-<a name="atspi-hypertext-get-n-links"></a><h3>atspi_hypertext_get_n_links ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_hypertext_get_n_links         (<em class="parameter"><code><a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Gets the total number of <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> objects that an
-<a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> implementor has.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> implementor on which to operate.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating the number of <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> objects
-of the <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> implementor, or -1 if
-the number cannot be determined (for example, if the
-<a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> object is so large that it is not
-all currently in the memory cache).</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-hypertext-get-link"></a><h3>atspi_hypertext_get_link ()</h3>
-<pre class="programlisting"><a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="returnvalue">AtspiHyperlink</span></a> *    atspi_hypertext_get_link            (<em class="parameter"><code><a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> link_index</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Gets the <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> object at a specified index.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> implementor on which to operate.</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>link_index</code></em> :</span></p></td>
-<td>a (zero-index) <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating which hyperlink to query.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> object specified by
-<em class="parameter"><code>link_index</code></em>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-hypertext-get-link-index"></a><h3>atspi_hypertext_get_link_index ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_hypertext_get_link_index      (<em class="parameter"><code><a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> character_offset</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Gets the index of the <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> object at a specified
-       character offset.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> implementor on which to operate.</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>character_offset</code></em> :</span></p></td>
-<td>a <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> specifying the character offset to query.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the linkIndex of the <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> active at
-character offset <em class="parameter"><code>character_offset</code></em>, or -1 if there is
-no hyperlink at the specified character offset.</td>
-</tr>
-</tbody>
-</table></div>
-</div>
 </div>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.19</div>
+          Generated by GTK-Doc V1.20.1</div>
 </body>
 </html>

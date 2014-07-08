@@ -1,14 +1,48 @@
-What's new in at-spi2-core 2.10.2:
+What's new in at-spi2-core 2.11.92:
+
+* Fix a crash with MediaElch and Onboard (bgo#726243).
+
+* Various i18n updates.
+
+What's new in at-spi2-core 2.11.91:
+
+* Improve compatibility with at-spi2-registryd <= 3.10.
+
+What's new in at-spi2-core 2.11.90:
+
+* bus-launcher: Do not use g_setenv when initializing the bus (bgo#724070).
+    
+* Fix a critical when processing deferred messages (bgo#724292).
+
+* Add AtspitableCell, tracking the new atk interface
+
+What's new in at-spi2-core 2.11.5:
+
+* Add atspi_event_listener_register_full, and cache data requested by it
+  for the duration of the event callback (BGO#708695).
+
+* Fix a crash when atspi_accessible_get_process_id is called for an
+  application that is no longer present.
+
+What's new in at-spi2-core 2.11.3:
+
+ * Fix atspi_text_get_bounded_ranges
+
+* document: add support to current page and page count (BGO#719508).
+
+What's new in at-spi2-core 2.11.2:
+
+* Add new roles and states to track atk (BGO#710464, BGO#712608, BGO#712609).
+
+What's new in at-spi2-core 2.11.1:
+
+* Fix a gsource leak that adversely impacted performance (BGO#709625).
+
+* Hopefully fix a rare crash when starting at-spi2-registryd (BGO#710689).
 
 * Fix atspi_component_contains (BGO#710730).
     
-* Hopefully fix a crash when unable to register with the session manager
-  (BGO#710689).
-
-What's new in at-spi2-core 2.10.1:
-
-* Fix a leak introduced in 2.9.92 that adversely affected performance
-  (BGO#709625).
+* Fix some compiler warnings and build issues.
 
 What's new in at-spi2-core 2.9.92:
 

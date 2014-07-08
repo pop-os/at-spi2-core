@@ -84,8 +84,8 @@ DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(srcdir)/config.h.in $(srcdir)/atspi-2.pc.in \
 	$(srcdir)/atspi-2-uninstalled.pc.in AUTHORS COPYING INSTALL \
 	NEWS README config/config.guess config/config.sub \
-	config/depcomp config/install-sh config/missing \
-	config/ltmain.sh $(top_srcdir)/config/config.guess \
+	config/install-sh config/missing config/ltmain.sh \
+	$(top_srcdir)/config/config.guess \
 	$(top_srcdir)/config/config.sub \
 	$(top_srcdir)/config/install-sh $(top_srcdir)/config/ltmain.sh \
 	$(top_srcdir)/config/missing
@@ -284,6 +284,7 @@ GOBJ_CFLAGS = @GOBJ_CFLAGS@
 GOBJ_LIBS = @GOBJ_LIBS@
 GREP = @GREP@
 GTKDOC_CHECK = @GTKDOC_CHECK@
+GTKDOC_CHECK_PATH = @GTKDOC_CHECK_PATH@
 GTKDOC_DEPS_CFLAGS = @GTKDOC_DEPS_CFLAGS@
 GTKDOC_DEPS_LIBS = @GTKDOC_DEPS_LIBS@
 GTKDOC_MKPDF = @GTKDOC_MKPDF@
