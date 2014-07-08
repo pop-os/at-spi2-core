@@ -1,4 +1,4 @@
-at-spi2-core (2.12.0-1) UNRELEASED; urgency=low
+at-spi2-core (2.12.0-1) unstable; urgency=low
 
   [ Samuel Thibault ]
   * control: Fix typo in package description (Closes: Bug#745283)
@@ -9,7 +9,7 @@ at-spi2-core (2.12.0-1) UNRELEASED; urgency=low
   * debian/watch: Only track even releases.
   * debian/control: Add myself to Uploaders.
 
- -- Mario Lang <mlang@debian.org>  Tue, 08 Jul 2014 11:42:19 +0200
+ -- Mario Lang <mlang@debian.org>  Tue, 08 Jul 2014 12:25:50 +0200
 
 at-spi2-core (2.10.2-3) unstable; urgency=low
 
