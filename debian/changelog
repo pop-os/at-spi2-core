@@ -1,6 +1,7 @@
 at-spi2-core (2.10.2-4) UNRELEASED; urgency=medium
 
   * control: Fix typo in package description (Closes: Bug#745283)
+  * debian/control: Remove unused Build-Depends on gir1.2-glib-2.0.
 
  -- Samuel Thibault <sthibault@debian.org>  Sun, 20 Apr 2014 10:38:29 +0200
 
