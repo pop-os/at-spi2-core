@@ -7,6 +7,7 @@ at-spi2-core (2.12.0-1) UNRELEASED; urgency=medium
   * debian/control: Remove unused Build-Depends on gir1.2-glib-2.0.
   * New upstream release.
   * debian/watch: Only track even releases.
+  * debian/control: Add myself to Uploaders.
 
  -- Mario Lang <mlang@debian.org>  Tue, 08 Jul 2014 11:42:19 +0200
 
