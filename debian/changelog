@@ -1,4 +1,4 @@
-at-spi2-core (2.12.0-1) UNRELEASED; urgency=medium
+at-spi2-core (2.12.0-1) UNRELEASED; urgency=low
 
   [ Samuel Thibault ]
   * control: Fix typo in package description (Closes: Bug#745283)
