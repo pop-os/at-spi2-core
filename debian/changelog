@@ -1,3 +1,13 @@
+at-spi2-core (2.12.0-2) unstable; urgency=medium
+
+  [ Cyril Brulebois ]
+  * Fix generated shlibs file by removing stray, static copy
+    (debian/libatspi2.0-0.shlibs), and by moving the version to the
+    dh_makeshlibs call (-V flag). This will fix reverse-depending udeb
+    uninstallability as soon as at-spi2-atk is rebuilt (Closes: Bug#754033)
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 17 Jul 2014 22:29:27 +0200
+
 at-spi2-core (2.12.0-1) unstable; urgency=low
 
   [ Samuel Thibault ]
