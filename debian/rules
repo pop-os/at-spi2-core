@@ -7,6 +7,7 @@ export DEB_BUILD_HARDENING=1
 	dh $@ --with autoreconf
 
 override_dh_auto_configure:
+	ac_cv_lib_ICE_IceConnectionNumber=no \
 	dh_auto_configure -- --libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH) \
 			--libexecdir=\$${prefix}/lib/at-spi2-core \
 			--enable-introspection \
