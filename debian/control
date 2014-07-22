@@ -15,6 +15,7 @@ Build-Depends: debhelper (>= 9),
                gtk-doc-tools (>= 1.09),
                gobject-introspection,
                hardening-wrapper
+Build-Conflicts: libice-dev
 Standards-Version: 3.9.5
 
 Package: at-spi2-core

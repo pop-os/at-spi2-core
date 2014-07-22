@@ -1,3 +1,10 @@
+at-spi2-core (2.12.0-3) UNRELEASED; urgency=medium
+
+  * control: build-conflict with libice-dev to avoid a spurious libice6
+    dependency (which makes udeb packages uninstallable) (Closes: #754208)
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 22 Jul 2014 20:40:47 +0200
+
 at-spi2-core (2.12.0-2) unstable; urgency=medium
 
   [ Cyril Brulebois ]
