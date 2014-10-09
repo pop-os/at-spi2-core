@@ -1,5 +1,29 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
+/* The normal alignment of `char', in bytes. */
+#undef ALIGNOF_CHAR
+
+/* The normal alignment of `dbind_pointer', in bytes. */
+#undef ALIGNOF_DBIND_POINTER
+
+/* The normal alignment of `dbind_struct', in bytes. */
+#undef ALIGNOF_DBIND_STRUCT
+
+/* The normal alignment of `dbus_bool_t', in bytes. */
+#undef ALIGNOF_DBUS_BOOL_T
+
+/* The normal alignment of `dbus_int16_t', in bytes. */
+#undef ALIGNOF_DBUS_INT16_T
+
+/* The normal alignment of `dbus_int32_t', in bytes. */
+#undef ALIGNOF_DBUS_INT32_T
+
+/* The normal alignment of `dbus_int64_t', in bytes. */
+#undef ALIGNOF_DBUS_INT64_T
+
+/* The normal alignment of `double', in bytes. */
+#undef ALIGNOF_DOUBLE
+
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #undef HAVE_DLFCN_H
 
