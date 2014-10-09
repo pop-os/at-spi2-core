@@ -215,9 +215,11 @@ handle_get_bus_address (DBusPendingCall *pending, void *user_data)
                                           "/org/a11y/atspi/cache",
                                           atspi_interface_cache, "GetItems");
 
-   dbus_connection_send_with_reply (app->bus, message, &new_pending, 2000);
-  dbus_pending_call_set_notify (new_pending, handle_get_items, app, NULL);
+  dbus_connection_send_with_reply (app->bus, message, &new_pending, 2000);
   dbus_message_unref (message);
+  if (!new_pending)
+    return;
+  dbus_pending_call_set_notify (new_pending, handle_get_items, app, NULL);
 }
 
 static AtspiApplication *
@@ -247,9 +249,14 @@ get_application (const char *bus_name)
   message = dbus_message_new_method_call (bus_name, atspi_path_root,
                                           atspi_interface_application, "GetApplicationBusAddress");
 
-   dbus_connection_send_with_reply (app->bus, message, &pending, 2000);
-  dbus_pending_call_set_notify (pending, handle_get_bus_address, app, NULL);
+  dbus_connection_send_with_reply (app->bus, message, &pending, 2000);
   dbus_message_unref (message);
+  if (!pending)
+  {
+    g_hash_table_remove (app_hash, bus_name_dup);
+    return NULL;
+  }
+  dbus_pending_call_set_notify (pending, handle_get_bus_address, app, NULL);
   return app;
 }
 
@@ -377,17 +384,11 @@ handle_name_owner_changed (DBusConnection *bus, DBusMessage *message, void *user
     else if (!new[0])
       registry_lost = TRUE;
   }
-  else
+  else if (app_hash)
   {
-    AtspiAccessible *desktop = atspi_get_desktop (0);
-    GList *l;
-    for (l = desktop->children; l; l = l->next)
-    {
-      AtspiAccessible *child = l->data;
-      if (!strcmp (child->parent.app->bus_name, old))
-        g_object_run_dispose (G_OBJECT (child->parent.app));
-    }
-    g_object_unref (desktop);
+    AtspiApplication *app = g_hash_table_lookup (app_hash, old);
+    if (app)
+      g_object_run_dispose (G_OBJECT (app));
   }
   return DBUS_HANDLER_RESULT_HANDLED;
 }
@@ -1359,13 +1360,16 @@ void
 _atspi_dbus_set_interfaces (AtspiAccessible *accessible, DBusMessageIter *iter)
 {
   DBusMessageIter iter_array;
+  char *iter_sig = dbus_message_iter_get_signature (iter);
 
   accessible->interfaces = 0;
-  if (strcmp (dbus_message_iter_get_signature (iter), "as") != 0)
+  if (strcmp (iter_sig, "as") != 0)
   {
     g_warning ("_atspi_dbus_set_interfaces: Passed iterator with invalid signature %s", dbus_message_iter_get_signature (iter));
+    dbus_free (iter_sig);
     return;
   }
+  dbus_free (iter_sig);
   dbus_message_iter_recurse (iter, &iter_array);
   while (dbus_message_iter_get_arg_type (&iter_array) != DBUS_TYPE_INVALID)
   {
@@ -1694,13 +1698,15 @@ atspi_role_get_name (AtspiRole role)
       retval = g_strdup (value->value_nick);
     }
 
+  g_type_class_unref (type_class);
+
   if (retval)
     return _atspi_name_compat (retval);
 
   return NULL;
 }
 
-void
+GHashTable *
 _atspi_dbus_update_cache_from_dict (AtspiAccessible *accessible, DBusMessageIter *iter)
 {
   GHashTable *cache = _atspi_accessible_ref_cache (accessible);
@@ -1721,22 +1727,30 @@ _atspi_dbus_update_cache_from_dict (AtspiAccessible *accessible, DBusMessageIter
     }
     else if (!strcmp (key, "Attributes"))
     {
+      char *iter_sig = dbus_message_iter_get_signature (&iter_variant);
       val = g_new0 (GValue, 1);;
       g_value_init (val, G_TYPE_HASH_TABLE);
-      if (strcmp (dbus_message_iter_get_signature (&iter_variant),
-                                                   "a{ss}") != 0)
+      if (strcmp (iter_sig, "a{ss}") != 0)
+      {
+        dbus_free (iter_sig);
         break;
+      }
+      dbus_free (iter_sig);
       g_value_take_boxed (val, _atspi_dbus_hash_from_iter (&iter_variant));
     }
     else if (!strcmp (key, "Component.ScreenExtents"))
     {
       dbus_int32_t d_int;
       AtspiRect extents;
+      char *iter_sig = dbus_message_iter_get_signature (&iter_variant);
       val = g_new0 (GValue, 1);;
       g_value_init (val, ATSPI_TYPE_RECT);
-      if (strcmp (dbus_message_iter_get_signature (&iter_variant),
-                                                   "(iiii)") != 0)
+      if (strcmp (iter_sig, "(iiii)") != 0)
+      {
+        dbus_free (iter_sig);
         break;
+      }
+      dbus_free (iter_sig);
       dbus_message_iter_recurse (&iter_variant, &iter_struct);
       dbus_message_iter_get_basic (&iter_struct, &d_int);
       extents.x = d_int;
@@ -1755,6 +1769,8 @@ _atspi_dbus_update_cache_from_dict (AtspiAccessible *accessible, DBusMessageIter
       g_hash_table_insert (cache, g_strdup (key), val); 
     dbus_message_iter_next (&iter_dict);
   }
+
+  return cache;
 }
 
 gboolean

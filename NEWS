@@ -1,3 +1,28 @@
+What's new in at-spi2-core 2.13.92:
+
+* Fix alignment checks when cross-compiling (bgo#736653).
+
+What's new in at-spi2-core 2.13.90:
+
+* Fix crash when testing interfaces with collections (bgo#734805).
+
+What's new in at-spi2-core 2.13.4:
+
+* Ensure that we register with the session manager only once (bgo#728934).
+
+* Fix ucs2keysym prototype (bgo#730897).
+
+* introspection: add some missing Returns: (nullable) annotations
+
+* Fix various memory leaks.
+
+What's new in at-spi2-core 2.13.1:
+
+* Add GError setter in atspi_accessible_get_process_id function
+
+* registryd: Wait for gnome-session before registering if it is not
+  running yet (bgo#728934).
+
 What's new in at-spi2-core 2.11.92:
 
 * Fix a crash with MediaElch and Onboard (bgo#726243).
