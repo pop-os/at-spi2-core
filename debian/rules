@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 
 DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
-export DEB_BUILD_HARDENING=1
+export DEB_BUILD_MAINT_OPTIONS=hardening=+all
 
 %:
 	dh $@ --with autoreconf

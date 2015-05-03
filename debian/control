@@ -13,8 +13,7 @@ Build-Depends: debhelper (>= 9),
                libxtst-dev,
                libgirepository1.0-dev,
                gtk-doc-tools (>= 1.09),
-               gobject-introspection,
-               hardening-wrapper
+               gobject-introspection
 Standards-Version: 3.9.6
 
 Package: at-spi2-core
