@@ -1,6 +1,7 @@
-at-spi2-core (2.16.0-1) UNRELEASED; urgency=medium
+at-spi2-core (2.16.0-1) UNRELEASED; urgency=low
 
   * New upstream release.
+  * No longer Build-Depends on hardening-wrapper.
 
  -- Mario Lang <mlang@debian.org>  Mon, 04 May 2015 00:03:38 +0200
 
