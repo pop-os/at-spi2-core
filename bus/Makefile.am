@@ -1,4 +1,3 @@
-EXTRA_DIST=accessibility.conf
 CLEANFILES=
 
 busconfigdir = $(sysconfdir)/at-spi2
@@ -17,16 +16,22 @@ default_session_DATA = at-spi-dbus-bus.desktop
 substitutions = "s,@libexecdir[@],$(libexecdir),"
 at-spi-dbus-bus.desktop: at-spi-dbus-bus.desktop.in
 	sed -e$ $(substitutions)  $< > $@.tmp && mv $@.tmp $@
-EXTRA_DIST += at-spi-dbus-bus.desktop.in
+EXTRA_DIST = at-spi-dbus-bus.desktop.in
 CLEANFILES += at-spi-dbus-bus.desktop
 
-dbusservicedir=$(datadir)/dbus-1/services
+dbusservicedir=$(DBUS_SERVICES_DIR)
 dbusservice_DATA = org.a11y.Bus.service
 
 org.a11y.Bus.service: org.a11y.Bus.service.in
 	sed -e $(substitutions) $< > $@.tmp && mv $@.tmp $@
-EXTRA_DIST += org.a11y.Bus.service.in
-CLEANFILES += org.a11y.Bus.service
 
+accessibility.conf: accessibility.conf.in
+	sed -e "s|[@]DATADIR[@]|$(datadir)|" $(srcdir)/$@.in > $@
+
+EXTRA_DIST += org.a11y.Bus.service.in \
+	accessibility.conf.in
+
+DISTCLEANFILES = org.a11y.Bus.service \
+	accessibility.conf
 
 -include $(top_srcdir)/git.mk

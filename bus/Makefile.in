@@ -255,6 +255,7 @@ GOBJ_CFLAGS = @GOBJ_CFLAGS@
 GOBJ_LIBS = @GOBJ_LIBS@
 GREP = @GREP@
 GTKDOC_CHECK = @GTKDOC_CHECK@
+GTKDOC_CHECK_PATH = @GTKDOC_CHECK_PATH@
 GTKDOC_DEPS_CFLAGS = @GTKDOC_DEPS_CFLAGS@
 GTKDOC_DEPS_LIBS = @GTKDOC_DEPS_LIBS@
 GTKDOC_MKPDF = @GTKDOC_MKPDF@
@@ -388,9 +389,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-EXTRA_DIST = accessibility.conf at-spi-dbus-bus.desktop.in \
-	org.a11y.Bus.service.in
-CLEANFILES = at-spi-dbus-bus.desktop org.a11y.Bus.service
+CLEANFILES = at-spi-dbus-bus.desktop
 busconfigdir = $(sysconfdir)/at-spi2
 busconfig_DATA = accessibility.conf
 at_spi_bus_launcher_SOURCES = at-spi-bus-launcher.c
@@ -402,8 +401,13 @@ at_spi_bus_launcher_LDADD = $(GIO_LIBS) $(X_LIBS)
 default_sessiondir = $(sysconfdir)/xdg/autostart
 default_session_DATA = at-spi-dbus-bus.desktop
 substitutions = "s,@libexecdir[@],$(libexecdir),"
-dbusservicedir = $(datadir)/dbus-1/services
+EXTRA_DIST = at-spi-dbus-bus.desktop.in org.a11y.Bus.service.in \
+	accessibility.conf.in
+dbusservicedir = $(DBUS_SERVICES_DIR)
 dbusservice_DATA = org.a11y.Bus.service
+DISTCLEANFILES = org.a11y.Bus.service \
+	accessibility.conf
+
 all: all-am
 
 .SUFFIXES:
@@ -720,6 +724,7 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -821,6 +826,9 @@ at-spi-dbus-bus.desktop: at-spi-dbus-bus.desktop.in
 
 org.a11y.Bus.service: org.a11y.Bus.service.in
 	sed -e $(substitutions) $< > $@.tmp && mv $@.tmp $@
+
+accessibility.conf: accessibility.conf.in
+	sed -e "s|[@]DATADIR[@]|$(datadir)|" $(srcdir)/$@.in > $@
 
 -include $(top_srcdir)/git.mk
 

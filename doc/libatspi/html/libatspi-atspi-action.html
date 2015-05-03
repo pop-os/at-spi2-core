@@ -2,34 +2,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>atspi-action</title>
+<title>atspi-action: libatspi Reference Manual</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="libatspi Reference Manual">
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-atspi-collection.html" title="atspi-collection">
 <link rel="next" href="AtspiRelation.html" title="atspi-relation">
-<meta name="generator" content="GTK-Doc V1.19 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
-<tr valign="middle">
-<td><a accesskey="p" href="libatspi-atspi-collection.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
-<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">libatspi Reference Manual</th>
-<td><a accesskey="n" href="AtspiRelation.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
-</tr>
-<tr><td colspan="5" class="shortcuts">
-<a href="#libatspi-atspi-action.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#libatspi-atspi-action.description" class="shortcut">Description</a>
-                   | 
-                  <a href="#libatspi-atspi-action.object-hierarchy" class="shortcut">Object Hierarchy</a>
-                   | 
-                  <a href="#libatspi-atspi-action.implementations" class="shortcut">Known Implementations</a>
-</td></tr>
-</table>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#libatspi-atspi-action.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#libatspi-atspi-action.object-hierarchy" class="shortcut">Object Hierarchy</a></span><span id="nav_implementations">  <span class="dim">|</span> 
+                  <a href="#libatspi-atspi-action.implementations" class="shortcut">Known Implementations</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="libatspi-atspi-collection.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="AtspiRelation.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
 <div class="refentry">
 <a name="libatspi-atspi-action"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
@@ -37,32 +31,76 @@
 <h2><span class="refentrytitle"><a name="libatspi-atspi-action.top_of_page"></a>atspi-action</span></h2>
 <p>atspi-action</p>
 </td>
-<td valign="top" align="right"></td>
+<td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsynopsisdiv">
-<a name="libatspi-atspi-action.synopsis"></a><h2>Synopsis</h2>
-<a name="AtspiAction"></a><pre class="synopsis">                    <a class="link" href="libatspi-atspi-action.html#AtspiAction-struct" title="AtspiAction">AtspiAction</a>;
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="libatspi-atspi-action.html#atspi-action-get-n-actions" title="atspi_action_get_n_actions ()">atspi_action_get_n_actions</a>          (<em class="parameter"><code><a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="libatspi-atspi-action.html#atspi-action-get-description" title="atspi_action_get_description ()">atspi_action_get_description</a>        (<em class="parameter"><code><a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> i</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="libatspi-atspi-action.html#atspi-action-get-key-binding" title="atspi_action_get_key_binding ()">atspi_action_get_key_binding</a>        (<em class="parameter"><code><a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> i</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="libatspi-atspi-action.html#atspi-action-get-name" title="atspi_action_get_name ()">atspi_action_get_name</a>               (<em class="parameter"><code><a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> i</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="libatspi-atspi-action.html#atspi-action-do-action" title="atspi_action_do_action ()">atspi_action_do_action</a>              (<em class="parameter"><code><a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> i</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-</pre>
+<div class="refsect1">
+<a name="libatspi-atspi-action.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<span class="returnvalue">gint</span>
+</td>
+<td class="function_name">
+<a class="link" href="libatspi-atspi-action.html#atspi-action-get-n-actions" title="atspi_action_get_n_actions ()">atspi_action_get_n_actions</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">gchar</span> *
+</td>
+<td class="function_name">
+<a class="link" href="libatspi-atspi-action.html#atspi-action-get-description" title="atspi_action_get_description ()">atspi_action_get_description</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">gchar</span> *
+</td>
+<td class="function_name">
+<a class="link" href="libatspi-atspi-action.html#atspi-action-get-key-binding" title="atspi_action_get_key_binding ()">atspi_action_get_key_binding</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">gchar</span> *
+</td>
+<td class="function_name">
+<a class="link" href="libatspi-atspi-action.html#atspi-action-get-name" title="atspi_action_get_name ()">atspi_action_get_name</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">gboolean</span>
+</td>
+<td class="function_name">
+<a class="link" href="libatspi-atspi-action.html#atspi-action-do-action" title="atspi_action_do_action ()">atspi_action_do_action</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<a name="AtspiAction"></a><div class="refsect1">
+<a name="libatspi-atspi-action.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody><tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="libatspi-atspi-action.html#AtspiAction-struct" title="AtspiAction">AtspiAction</a></td>
+</tr></tbody>
+</table></div>
 </div>
 <div class="refsect1">
 <a name="libatspi-atspi-action.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="synopsis">
-  GInterface
-   +----AtspiAction
+<pre class="screen">    GInterface
+    <span class="lineart">╰──</span> AtspiAction
 </pre>
 </div>
 <div class="refsect1">
@@ -77,82 +115,86 @@ AtspiAction is implemented by
 </p>
 </div>
 <div class="refsect1">
-<a name="libatspi-atspi-action.details"></a><h2>Details</h2>
+<a name="libatspi-atspi-action.functions_details"></a><h2>Functions</h2>
 <div class="refsect2">
-<a name="AtspiAction-struct"></a><h3>AtspiAction</h3>
-<pre class="programlisting">typedef struct _AtspiAction AtspiAction;</pre>
-<p>
-</p>
+<a name="atspi-action-get-n-actions"></a><h3>atspi_action_get_n_actions ()</h3>
+<pre class="programlisting"><span class="returnvalue">gint</span>
+atspi_action_get_n_actions (<em class="parameter"><code><a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> *obj</code></em>,
+                            <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>Get the number of actions invokable on an <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> implementor.</p>
+<div class="refsect3">
+<a name="id-1.2.6.9.2.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> to query.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.6.9.2.6"></a><h4>Returns</h4>
+<p> an integer indicating the number of invocable actions.</p>
+<p></p>
+</div>
 </div>
 <hr>
 <div class="refsect2">
-<a name="atspi-action-get-n-actions"></a><h3>atspi_action_get_n_actions ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_action_get_n_actions          (<em class="parameter"><code><a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Get the number of actions invokable on an <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> implementor.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
+<a name="atspi-action-get-description"></a><h3>atspi_action_get_description ()</h3>
+<pre class="programlisting"><span class="returnvalue">gchar</span> *
+atspi_action_get_description (<em class="parameter"><code><a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> *obj</code></em>,
+                              <em class="parameter"><code><span class="type">gint</span> i</code></em>,
+                              <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">atspi_action_get_description</code> has been deprecated since version 2.10 and should not be used in newly-written code.</p>
+<p>Use atspi_action_get_action_description instead.</p>
+</div>
+<p>Get the description of '<em class="parameter"><code>i</code></em>
+-th' action invocable on an
+     object implementing <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.6.9.3.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
-<col align="left" valign="top">
-<col>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
 </colgroup>
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> to query.</td>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> implementor to query.</p></td>
+<td class="parameter_annotations"> </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>an integer indicating the number of invocable actions.</td>
+<td class="parameter_name"><p>i</p></td>
+<td class="parameter_description"><p>an integer indicating which action to query.</p></td>
+<td class="parameter_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
 </div>
-<hr>
-<div class="refsect2">
-<a name="atspi-action-get-description"></a><h3>atspi_action_get_description ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             atspi_action_get_description        (<em class="parameter"><code><a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> i</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
-<h3 class="title">Warning</h3>
-<p><code class="literal">atspi_action_get_description</code> has been deprecated since version 2.10 and should not be used in newly-written code. Use atspi_action_get_action_description instead.
-Rename to: atspi_action_get_action_description</p>
+<div class="refsect3">
+<a name="id-1.2.6.9.3.7"></a><h4>Returns</h4>
+<p> a UTF-8 string describing the '<em class="parameter"><code>i</code></em>
+-th' invocable action.</p>
+<p></p>
 </div>
-<p>
-Get the description of '<em class="parameter"><code>i</code></em>-th' action invocable on an
-     object implementing <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> implementor to query.</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>i</code></em> :</span></p></td>
-<td>an integer indicating which action to query.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a UTF-8 string describing the '<em class="parameter"><code>i</code></em>-th' invocable action.</td>
-</tr>
-</tbody>
-</table></div>
 </div>
 <hr>
 <div class="refsect2">
-<a name="atspi-action-get-key-binding"></a><h3>atspi_action_get_key_binding ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             atspi_action_get_key_binding        (<em class="parameter"><code><a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> i</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Get the keybindings for the <em class="parameter"><code>i</code></em>-th action invocable on an
+<a name="atspi-action-get-key-binding"></a><h3>atspi_action_get_key_binding ()</h3>
+<pre class="programlisting"><span class="returnvalue">gchar</span> *
+atspi_action_get_key_binding (<em class="parameter"><code><a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> *obj</code></em>,
+                              <em class="parameter"><code><span class="type">gint</span> i</code></em>,
+                              <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>Get the keybindings for the <em class="parameter"><code>i</code></em>
+-th action invocable on an
      object implementing <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a>, if any are defined.
      The keybindings string format is as follows:
        there are multiple parts to a keybinding string (typically 3).
@@ -171,102 +213,129 @@ Get the keybindings for the <em class="parameter"><code>i</code></em>-th action 
        action without posting any menus. 
        Meta-keys are indicated by the conventional strings
        "&lt;Control&gt;", "&lt;Alt&gt;", "&lt;Shift&gt;", "&lt;Mod2&gt;",
-       etc. (we use the same string as <a href="http://developer.gnome.org/gtk2/gtk3-Keyboard-Accelerators.html#gtk-accelerator-name"><code class="function">gtk_accelerator_name()</code></a> in 
-       gtk+-2.X.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
+       etc. (we use the same string as <code class="function">gtk_accelerator_name()</code> in 
+       gtk+-2.X.</p>
+<div class="refsect3">
+<a name="id-1.2.6.9.4.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
-<col align="left" valign="top">
-<col>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
 </colgroup>
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> implementor to query.</td>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> implementor to query.</p></td>
+<td class="parameter_annotations"> </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>i</code></em> :</span></p></td>
-<td>an integer indicating which action to query.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a UTF-8 string which can be parsed to determine the <em class="parameter"><code>i</code></em>-th
-invocable action's keybindings.</td>
+<td class="parameter_name"><p>i</p></td>
+<td class="parameter_description"><p>an integer indicating which action to query.</p></td>
+<td class="parameter_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.6.9.4.6"></a><h4>Returns</h4>
+<p> a UTF-8 string which can be parsed to determine the <em class="parameter"><code>i</code></em>
+-th
+invocable action's keybindings.</p>
+<p></p>
+</div>
 </div>
 <hr>
 <div class="refsect2">
-<a name="atspi-action-get-name"></a><h3>atspi_action_get_name ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             atspi_action_get_name               (<em class="parameter"><code><a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> i</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
-<h3 class="title">Warning</h3>
-<p><code class="literal">atspi_action_get_name</code> has been deprecated since version 2.10 and should not be used in newly-written code. Use atspi_action_get_action_name instead.
-Rename to: atspi_action_get_action_name</p>
+<a name="atspi-action-get-name"></a><h3>atspi_action_get_name ()</h3>
+<pre class="programlisting"><span class="returnvalue">gchar</span> *
+atspi_action_get_name (<em class="parameter"><code><a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> *obj</code></em>,
+                       <em class="parameter"><code><span class="type">gint</span> i</code></em>,
+                       <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">atspi_action_get_name</code> has been deprecated since version 2.10 and should not be used in newly-written code.</p>
+<p>Use atspi_action_get_action_name instead.</p>
 </div>
-<p>
-Get the name of the '<em class="parameter"><code>i</code></em>-th' action invocable on an
-     object implementing <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
+<p>Get the name of the '<em class="parameter"><code>i</code></em>
+-th' action invocable on an
+     object implementing <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.6.9.5.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
-<col align="left" valign="top">
-<col>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
 </colgroup>
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> implementor to query.</td>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> implementor to query.</p></td>
+<td class="parameter_annotations"> </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>i</code></em> :</span></p></td>
-<td>an integer indicating which action to query.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the non-localized name of the action, as a UTF-8 string.</td>
+<td class="parameter_name"><p>i</p></td>
+<td class="parameter_description"><p>an integer indicating which action to query.</p></td>
+<td class="parameter_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.6.9.5.7"></a><h4>Returns</h4>
+<p> the non-localized name of the action, as a UTF-8 string.</p>
+<p></p>
+</div>
 </div>
 <hr>
 <div class="refsect2">
-<a name="atspi-action-do-action"></a><h3>atspi_action_do_action ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            atspi_action_do_action              (<em class="parameter"><code><a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> i</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Invoke the action indicated by <a class="link" href="index.html" title="libatspi Reference Manual"><span class="type">index</span></a>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
+<a name="atspi-action-do-action"></a><h3>atspi_action_do_action ()</h3>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>
+atspi_action_do_action (<em class="parameter"><code><a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> *obj</code></em>,
+                        <em class="parameter"><code><span class="type">gint</span> i</code></em>,
+                        <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>Invoke the action indicated by <a class="link" href="index.html" title="libatspi Reference Manual"><span class="type">index</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.6.9.6.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
-<col align="left" valign="top">
-<col>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
 </colgroup>
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> to query.</td>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> to query.</p></td>
+<td class="parameter_annotations"> </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>i</code></em> :</span></p></td>
-<td>an integer specifying which action to invoke.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if the action is successfully invoked, otherwise <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><span class="type">FALSE</span></a>.</td>
+<td class="parameter_name"><p>i</p></td>
+<td class="parameter_description"><p>an integer specifying which action to invoke.</p></td>
+<td class="parameter_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.6.9.6.6"></a><h4>Returns</h4>
+<p> <span class="type">TRUE</span> if the action is successfully invoked, otherwise <span class="type">FALSE</span>.</p>
+<p></p>
+</div>
+</div>
+</div>
+<div class="refsect1">
+<a name="libatspi-atspi-action.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="AtspiAction-struct"></a><h3>AtspiAction</h3>
+<pre class="programlisting">typedef struct _AtspiAction AtspiAction;</pre>
+<p>
+</p>
 </div>
 </div>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.19</div>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>
