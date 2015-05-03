@@ -412,7 +412,13 @@ typedef enum {
  * @ATSPI_STATE_INVALID: Indicates an invalid state - probably an error 
  * condition.
  * @ATSPI_STATE_ACTIVE: Indicates a window is currently the active window, or
- * is an active subelement within a container or table.
+ * an object is the active subelement within a container or table.
+ * @ATSPI_STATE_ACTIVE should not be used for objects which have
+ * @ATSPI_STATE_FOCUSABLE or @ATSPI_STATE_SELECTABLE: Those objects should use
+ * @ATSPI_STATE_FOCUSED and @ATSPI_STATE_SELECTED respectively.
+ * @ATSPI_STATE_ACTIVE is a means to indicate that an object which is not
+ * focusable and not selectable is the currently-active item within its
+ * parent container.
  * @ATSPI_STATE_ARMED: Indicates that the object is armed.
  * @ATSPI_STATE_BUSY: Indicates the current object is busy, i.e. onscreen
  * representation is in the process of changing, or       the object is
@@ -561,6 +567,9 @@ typedef enum {
  * showing. This means that activation renders conditional content.
  * Note that ordinary tooltips are not considered popups in this
  * context. @Since: 2.12
+ * @ATSPI_STATE_READ_ONLY: Indicates that an object which is ENABLED and
+ * SENSITIVE has a value which can be read, but not modified, by the
+ * user. @Since: 2.16
  * @ATSPI_STATE_LAST_DEFINED: This value of the enumeration should not be used
  * as a parameter, it indicates the number of items in the #AtspiStateType
  * enumeration.
@@ -614,6 +623,7 @@ typedef enum {
     ATSPI_STATE_VISITED,
     ATSPI_STATE_CHECKABLE,
     ATSPI_STATE_HAS_POPUP,
+    ATSPI_STATE_READ_ONLY,
     ATSPI_STATE_LAST_DEFINED,
 } AtspiStateType;
 
@@ -982,8 +992,13 @@ typedef enum {
  * @ATSPI_ROLE_TEAROFF_MENU_ITEM: Object allows menu to be removed from menubar
  * and shown in its own window.
  * @ATSPI_ROLE_TERMINAL: An object that emulates a terminal.
- * @ATSPI_ROLE_TEXT: An object that presents text to the user, of nonspecific
- * type.
+ * @ATSPI_ROLE_TEXT: An interactive widget that supports multiple lines of text
+ * and optionally accepts user input, but whose purpose is not to solicit user
+ * input. Thus @ATSPI_ROLE_TEXT is appropriate for the text view in a plain text
+ * editor but inappropriate for an input field in a dialog box or web form. For
+ * widgets whose purpose is to solicit input from the user, see @ATSPI_ROLE_ENTRY
+ * and @ATSPI_ROLE_PASSWORD_TEXT. For generic objects which display a brief amount
+ * of textual information, see @ATSPI_ROLE_STATIC.
  * @ATSPI_ROLE_TOGGLE_BUTTON: A specialized push button that can be checked or
  * unchecked, but does not procide a separate indicator for the current
  * state.
@@ -1105,9 +1120,9 @@ typedef enum {
  * particular application.
  * @ATSPI_ROLE_INFO_BAR: An object designed to present a message to the user
  * within an existing window.
- *@ATSPI_ROLE_LEVEL_BAR: A bar that serves as a level indicator to, for
+ * @ATSPI_ROLE_LEVEL_BAR: A bar that serves as a level indicator to, for
  * instance, show the strength of a password or the state of a battery. 
- * Since: 2.8
+ *   Since: 2.8
  *@ATSPI_ROLE_TITLE_BAR: A bar that serves as the title of a window or a
  * dialog. @Since: 2.12
  *@ATSPI_ROLE_BLOCK_QUOTE: An object which contains a text section
@@ -1145,6 +1160,27 @@ typedef enum {
  *@ATSPI_ROLE_TIMER: An object containing a numerical counter which
  * indicates an amount of elapsed time from a start point, or the time
  * remaining until an end point. @Since: 2.12
+ *@ATSPI_ROLE_STATIC: A generic non-container object whose purpose is to display
+ * a brief amount of information to the user and whose role is known by the
+ * implementor but lacks semantic value for the user. Examples in which
+ * @ATSPI_ROLE_STATIC is appropriate include the message displayed in a message
+ * box and an image used as an alternative means to display text.
+ * @ATSPI_ROLE_STATIC should not be applied to widgets which are traditionally
+ * interactive, objects which display a significant amount of content, or any
+ * object which has an accessible relation pointing to another object. The
+ * displayed information, as a general rule, should be exposed through the
+ * accessible name of the object. For labels which describe another widget, see
+ * @ATSPI_ROLE_LABEL. For text views, see @ATSPI_ROLE_TEXT. For generic
+ * containers, see @ATSPI_ROLE_PANEL. For objects whose role is not known by the
+ * implementor, see @ATSPI_ROLE_UNKNOWN. @Since: 2.16.
+ *@ATSPI_ROLE_MATH_FRACTION: An object that represents a mathematical fraction.
+ * @Since: 2.16.
+ *@ATSPI_ROLE_MATH_ROOT: An object that represents a mathematical expression
+ * displayed with a radical. @Since: 2.16.
+ *@ATSPI_ROLE_SUBSCRIPT: An object that contains text that is displayed as a
+ * subscript. @Since: 2.16.
+ *@ATSPI_ROLE_SUPERSCRIPT: An object that contains text that is displayed as a
+ * superscript. @Since: 2.16.
  * @ATSPI_ROLE_LAST_DEFINED: Not a valid role, used for finding end of
  * enumeration.
  *
@@ -1269,6 +1305,11 @@ typedef enum {
     ATSPI_ROLE_MATH,
     ATSPI_ROLE_RATING,
     ATSPI_ROLE_TIMER,
+    ATSPI_ROLE_STATIC,
+    ATSPI_ROLE_MATH_FRACTION,
+    ATSPI_ROLE_MATH_ROOT,
+    ATSPI_ROLE_SUBSCRIPT,
+    ATSPI_ROLE_SUPERSCRIPT,
     ATSPI_ROLE_LAST_DEFINED,
 } AtspiRole;
 
@@ -1277,7 +1318,7 @@ typedef enum {
  *
  * One higher than the highest valid value of #AtspiRole.
  */
-#define ATSPI_ROLE_COUNT (90+1)
+#define ATSPI_ROLE_COUNT (121+1)
 
 typedef enum
 {

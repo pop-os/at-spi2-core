@@ -274,6 +274,7 @@ GOBJ_CFLAGS = @GOBJ_CFLAGS@
 GOBJ_LIBS = @GOBJ_LIBS@
 GREP = @GREP@
 GTKDOC_CHECK = @GTKDOC_CHECK@
+GTKDOC_CHECK_PATH = @GTKDOC_CHECK_PATH@
 GTKDOC_DEPS_CFLAGS = @GTKDOC_DEPS_CFLAGS@
 GTKDOC_DEPS_LIBS = @GTKDOC_DEPS_LIBS@
 GTKDOC_MKPDF = @GTKDOC_MKPDF@
@@ -446,7 +447,7 @@ X11_SOURCES = \
 @USE_X11_FALSE@EXTRA_DIST = $(X11_SOURCES) \
 @USE_X11_FALSE@	org.a11y.atspi.Registry.service.in
 @USE_X11_TRUE@EXTRA_DIST = org.a11y.atspi.Registry.service.in
-servicedir = $(DBUS_SERVICES_DIR)
+servicedir = $(datadir)/dbus-1/accessibility-services
 service_in_files = org.a11y.atspi.Registry.service.in
 service_DATA = $(service_in_files:.service.in=.service)
 DISTCLEANFILES = org.a11y.atspi.Registry.service

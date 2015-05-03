@@ -2,34 +2,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>AtspiAccessible</title>
+<title>AtspiAccessible: libatspi Reference Manual</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="libatspi Reference Manual">
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="AtspiObject.html" title="AtspiObject">
 <link rel="next" href="AtspiDeviceListener.html" title="atspi-devicelistener">
-<meta name="generator" content="GTK-Doc V1.19 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
-<tr valign="middle">
-<td><a accesskey="p" href="AtspiObject.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
-<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">libatspi Reference Manual</th>
-<td><a accesskey="n" href="AtspiDeviceListener.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
-</tr>
-<tr><td colspan="5" class="shortcuts">
-<a href="#AtspiAccessible.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#AtspiAccessible.description" class="shortcut">Description</a>
-                   | 
-                  <a href="#AtspiAccessible.object-hierarchy" class="shortcut">Object Hierarchy</a>
-                   | 
-                  <a href="#AtspiAccessible.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
-</td></tr>
-</table>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#AtspiAccessible.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#AtspiAccessible.object-hierarchy" class="shortcut">Object Hierarchy</a></span><span id="nav_interfaces">  <span class="dim">|</span> 
+                  <a href="#AtspiAccessible.implemented-interfaces" class="shortcut">Implemented Interfaces</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="AtspiObject.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="AtspiDeviceListener.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
 <div class="refentry">
 <a name="AtspiAccessible"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
@@ -37,77 +31,290 @@
 <h2><span class="refentrytitle"><a name="AtspiAccessible.top_of_page"></a>AtspiAccessible</span></h2>
 <p>AtspiAccessible — The base interface which is implemented by all accessible objects.</p>
 </td>
-<td valign="top" align="right"></td>
+<td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsynopsisdiv">
-<a name="AtspiAccessible.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">                    <a class="link" href="AtspiAccessible.html#AtspiAccessible-struct" title="AtspiAccessible">AtspiAccessible</a>;
-struct              <a class="link" href="AtspiAccessible.html#AtspiAccessibleClass" title="struct AtspiAccessibleClass">AtspiAccessibleClass</a>;
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="AtspiAccessible.html#atspi-role-get-name" title="atspi_role_get_name ()">atspi_role_get_name</a>                 (<em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiRole" title="enum AtspiRole"><span class="type">AtspiRole</span></a> role</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="AtspiAccessible.html#atspi-accessible-get-name" title="atspi_accessible_get_name ()">atspi_accessible_get_name</a>           (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="AtspiAccessible.html#atspi-accessible-get-description" title="atspi_accessible_get_description ()">atspi_accessible_get_description</a>    (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   <a class="link" href="AtspiAccessible.html#atspi-accessible-get-parent" title="atspi_accessible_get_parent ()">atspi_accessible_get_parent</a>         (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="AtspiAccessible.html#atspi-accessible-get-child-count" title="atspi_accessible_get_child_count ()">atspi_accessible_get_child_count</a>    (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   <a class="link" href="AtspiAccessible.html#atspi-accessible-get-child-at-index" title="atspi_accessible_get_child_at_index ()">atspi_accessible_get_child_at_index</a> (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> child_index</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="AtspiAccessible.html#atspi-accessible-get-index-in-parent" title="atspi_accessible_get_index_in_parent ()">atspi_accessible_get_index_in_parent</a>
-                                                        (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            <a class="link" href="AtspiAccessible.html#atspi-accessible-get-relation-set" title="atspi_accessible_get_relation_set ()">atspi_accessible_get_relation_set</a>   (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a class="link" href="libatspi-atspi-constants.html#AtspiRole" title="enum AtspiRole"><span class="returnvalue">AtspiRole</span></a>           <a class="link" href="AtspiAccessible.html#atspi-accessible-get-role" title="atspi_accessible_get_role ()">atspi_accessible_get_role</a>           (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="AtspiAccessible.html#atspi-accessible-get-role-name" title="atspi_accessible_get_role_name ()">atspi_accessible_get_role_name</a>      (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="AtspiAccessible.html#atspi-accessible-get-localized-role-name" title="atspi_accessible_get_localized_role_name ()">atspi_accessible_get_localized_role_name</a>
-                                                        (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="returnvalue">AtspiStateSet</span></a> *     <a class="link" href="AtspiAccessible.html#atspi-accessible-get-state-set" title="atspi_accessible_get_state_set ()">atspi_accessible_get_state_set</a>      (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#GHashTable"><span class="returnvalue">GHashTable</span></a> *        <a class="link" href="AtspiAccessible.html#atspi-accessible-get-attributes" title="atspi_accessible_get_attributes ()">atspi_accessible_get_attributes</a>     (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            <a class="link" href="AtspiAccessible.html#atspi-accessible-get-attributes-as-array" title="atspi_accessible_get_attributes_as_array ()">atspi_accessible_get_attributes_as_array</a>
-                                                        (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="AtspiAccessible.html#atspi-accessible-get-toolkit-name" title="atspi_accessible_get_toolkit_name ()">atspi_accessible_get_toolkit_name</a>   (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="AtspiAccessible.html#atspi-accessible-get-toolkit-version" title="atspi_accessible_get_toolkit_version ()">atspi_accessible_get_toolkit_version</a>
-                                                        (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   <a class="link" href="AtspiAccessible.html#atspi-accessible-get-application" title="atspi_accessible_get_application ()">atspi_accessible_get_application</a>    (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="returnvalue">AtspiAction</span></a> *       <a class="link" href="AtspiAccessible.html#atspi-accessible-get-action" title="atspi_accessible_get_action ()">atspi_accessible_get_action</a>         (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
-<a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="returnvalue">AtspiCollection</span></a> *   <a class="link" href="AtspiAccessible.html#atspi-accessible-get-collection" title="atspi_accessible_get_collection ()">atspi_accessible_get_collection</a>     (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
-<a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="returnvalue">AtspiComponent</span></a> *    <a class="link" href="AtspiAccessible.html#atspi-accessible-get-component" title="atspi_accessible_get_component ()">atspi_accessible_get_component</a>      (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
-<a class="link" href="libatspi-atspi-document.html#AtspiDocument"><span class="returnvalue">AtspiDocument</span></a> *     <a class="link" href="AtspiAccessible.html#atspi-accessible-get-document" title="atspi_accessible_get_document ()">atspi_accessible_get_document</a>       (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
-<a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="returnvalue">AtspiEditableText</span></a> * <a class="link" href="AtspiAccessible.html#atspi-accessible-get-editable-text" title="atspi_accessible_get_editable_text ()">atspi_accessible_get_editable_text</a>  (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
-<a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="returnvalue">AtspiHyperlink</span></a> *    <a class="link" href="AtspiAccessible.html#atspi-accessible-get-hyperlink" title="atspi_accessible_get_hyperlink ()">atspi_accessible_get_hyperlink</a>      (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
-<a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="returnvalue">AtspiHypertext</span></a> *    <a class="link" href="AtspiAccessible.html#atspi-accessible-get-hypertext" title="atspi_accessible_get_hypertext ()">atspi_accessible_get_hypertext</a>      (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
-<a class="link" href="libatspi-atspi-image.html#AtspiImage"><span class="returnvalue">AtspiImage</span></a> *        <a class="link" href="AtspiAccessible.html#atspi-accessible-get-image" title="atspi_accessible_get_image ()">atspi_accessible_get_image</a>          (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
-<a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="returnvalue">AtspiSelection</span></a> *    <a class="link" href="AtspiAccessible.html#atspi-accessible-get-selection" title="atspi_accessible_get_selection ()">atspi_accessible_get_selection</a>      (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
-<a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="returnvalue">AtspiTable</span></a> *        <a class="link" href="AtspiAccessible.html#atspi-accessible-get-table" title="atspi_accessible_get_table ()">atspi_accessible_get_table</a>          (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
-<a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="returnvalue">AtspiText</span></a> *         <a class="link" href="AtspiAccessible.html#atspi-accessible-get-text" title="atspi_accessible_get_text ()">atspi_accessible_get_text</a>           (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
-<a class="link" href="libatspi-atspi-value.html#AtspiValue"><span class="returnvalue">AtspiValue</span></a> *        <a class="link" href="AtspiAccessible.html#atspi-accessible-get-value" title="atspi_accessible_get_value ()">atspi_accessible_get_value</a>          (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            <a class="link" href="AtspiAccessible.html#atspi-accessible-get-interfaces" title="atspi_accessible_get_interfaces ()">atspi_accessible_get_interfaces</a>     (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);
-</pre>
+<div class="refsect1">
+<a name="AtspiAccessible.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<span class="returnvalue">gchar</span> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-role-get-name" title="atspi_role_get_name ()">atspi_role_get_name</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">gchar</span> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-name" title="atspi_accessible_get_name ()">atspi_accessible_get_name</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">gchar</span> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-description" title="atspi_accessible_get_description ()">atspi_accessible_get_description</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-parent" title="atspi_accessible_get_parent ()">atspi_accessible_get_parent</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">gint</span>
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-child-count" title="atspi_accessible_get_child_count ()">atspi_accessible_get_child_count</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-child-at-index" title="atspi_accessible_get_child_at_index ()">atspi_accessible_get_child_at_index</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">gint</span>
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-index-in-parent" title="atspi_accessible_get_index_in_parent ()">atspi_accessible_get_index_in_parent</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">GArray</span> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-relation-set" title="atspi_accessible_get_relation_set ()">atspi_accessible_get_relation_set</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="libatspi-atspi-constants.html#AtspiRole" title="enum AtspiRole"><span class="returnvalue">AtspiRole</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-role" title="atspi_accessible_get_role ()">atspi_accessible_get_role</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">gchar</span> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-role-name" title="atspi_accessible_get_role_name ()">atspi_accessible_get_role_name</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">gchar</span> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-localized-role-name" title="atspi_accessible_get_localized_role_name ()">atspi_accessible_get_localized_role_name</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="returnvalue">AtspiStateSet</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-state-set" title="atspi_accessible_get_state_set ()">atspi_accessible_get_state_set</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">GHashTable</span> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-attributes" title="atspi_accessible_get_attributes ()">atspi_accessible_get_attributes</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">GArray</span> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-attributes-as-array" title="atspi_accessible_get_attributes_as_array ()">atspi_accessible_get_attributes_as_array</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">gchar</span> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-toolkit-name" title="atspi_accessible_get_toolkit_name ()">atspi_accessible_get_toolkit_name</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">gchar</span> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-toolkit-version" title="atspi_accessible_get_toolkit_version ()">atspi_accessible_get_toolkit_version</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-application" title="atspi_accessible_get_application ()">atspi_accessible_get_application</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="returnvalue">AtspiAction</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-action" title="atspi_accessible_get_action ()">atspi_accessible_get_action</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="returnvalue">AtspiCollection</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-collection" title="atspi_accessible_get_collection ()">atspi_accessible_get_collection</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="returnvalue">AtspiComponent</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-component" title="atspi_accessible_get_component ()">atspi_accessible_get_component</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="libatspi-atspi-document.html#AtspiDocument"><span class="returnvalue">AtspiDocument</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-document" title="atspi_accessible_get_document ()">atspi_accessible_get_document</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="returnvalue">AtspiEditableText</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-editable-text" title="atspi_accessible_get_editable_text ()">atspi_accessible_get_editable_text</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="returnvalue">AtspiHyperlink</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-hyperlink" title="atspi_accessible_get_hyperlink ()">atspi_accessible_get_hyperlink</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="returnvalue">AtspiHypertext</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-hypertext" title="atspi_accessible_get_hypertext ()">atspi_accessible_get_hypertext</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="libatspi-atspi-image.html#AtspiImage"><span class="returnvalue">AtspiImage</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-image" title="atspi_accessible_get_image ()">atspi_accessible_get_image</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="returnvalue">AtspiSelection</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-selection" title="atspi_accessible_get_selection ()">atspi_accessible_get_selection</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="returnvalue">AtspiTable</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-table" title="atspi_accessible_get_table ()">atspi_accessible_get_table</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="returnvalue">AtspiText</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-text" title="atspi_accessible_get_text ()">atspi_accessible_get_text</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="libatspi-atspi-value.html#AtspiValue"><span class="returnvalue">AtspiValue</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-value" title="atspi_accessible_get_value ()">atspi_accessible_get_value</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">GArray</span> *
+</td>
+<td class="function_name">
+<a class="link" href="AtspiAccessible.html#atspi-accessible-get-interfaces" title="atspi_accessible_get_interfaces ()">atspi_accessible_get_interfaces</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="AtspiAccessible.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="AtspiAccessible.html#AtspiAccessible-struct" title="AtspiAccessible">AtspiAccessible</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">struct</td>
+<td class="function_name"><a class="link" href="AtspiAccessible.html#AtspiAccessibleClass" title="struct AtspiAccessibleClass">AtspiAccessibleClass</a></td>
+</tr>
+</tbody>
+</table></div>
 </div>
 <div class="refsect1">
 <a name="AtspiAccessible.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="synopsis">
-  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
-   +----<a class="link" href="AtspiObject.html" title="AtspiObject">AtspiObject</a>
-         +----AtspiAccessible
+<pre class="screen">    GObject
+    <span class="lineart">╰──</span> <a class="link" href="AtspiObject.html" title="AtspiObject">AtspiObject</a>
+        <span class="lineart">╰──</span> AtspiAccessible
 </pre>
 </div>
 <div class="refsect1">
 <a name="AtspiAccessible.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 AtspiAccessible implements
- <a class="link" href="libatspi-atspi-action.html#AtspiAction">AtspiAction</a>,  <a class="link" href="libatspi-atspi-collection.html#AtspiCollection">AtspiCollection</a>,  <a class="link" href="libatspi-atspi-component.html#AtspiComponent">AtspiComponent</a>,  <a class="link" href="libatspi-atspi-document.html#AtspiDocument">AtspiDocument</a>,  <a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText">AtspiEditableText</a>,  <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext">AtspiHypertext</a>,  <a class="link" href="libatspi-atspi-image.html#AtspiImage">AtspiImage</a>,  <a class="link" href="libatspi-atspi-selection.html#AtspiSelection">AtspiSelection</a>,  <a class="link" href="libatspi-atspi-table.html#AtspiTable">AtspiTable</a>,  <a class="link" href="libatspi-atspi-text.html#AtspiText">AtspiText</a> and  <a class="link" href="libatspi-atspi-value.html#AtspiValue">AtspiValue</a>.</p>
+ <a class="link" href="libatspi-atspi-action.html#AtspiAction">AtspiAction</a>,  <a class="link" href="libatspi-atspi-collection.html#AtspiCollection">AtspiCollection</a>,  <a class="link" href="libatspi-atspi-component.html#AtspiComponent">AtspiComponent</a>,  <a class="link" href="libatspi-atspi-document.html#AtspiDocument">AtspiDocument</a>,  <a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText">AtspiEditableText</a>,  <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext">AtspiHypertext</a>,  <a class="link" href="libatspi-atspi-image.html#AtspiImage">AtspiImage</a>,  <a class="link" href="libatspi-atspi-selection.html#AtspiSelection">AtspiSelection</a>,  <a class="link" href="libatspi-atspi-table.html#AtspiTable">AtspiTable</a>,  <a class="link" href="libatspi-atspi-table-cell.html#AtspiTableCell">AtspiTableCell</a>,  <a class="link" href="libatspi-atspi-text.html#AtspiText">AtspiText</a> and  <a class="link" href="libatspi-atspi-value.html#AtspiValue">AtspiValue</a>.</p>
 </div>
 <div class="refsect1">
 <a name="AtspiAccessible.description"></a><h2>Description</h2>
@@ -119,7 +326,948 @@ actually have children.
 </p>
 </div>
 <div class="refsect1">
-<a name="AtspiAccessible.details"></a><h2>Details</h2>
+<a name="AtspiAccessible.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="atspi-role-get-name"></a><h3>atspi_role_get_name ()</h3>
+<pre class="programlisting"><span class="returnvalue">gchar</span> *
+atspi_role_get_name (<em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiRole" title="enum AtspiRole"><span class="type">AtspiRole</span></a> role</code></em>);</pre>
+<p>Gets a localizable string that indicates the name of an <a class="link" href="libatspi-atspi-constants.html#AtspiRole" title="enum AtspiRole"><span class="type">AtspiRole</span></a>.</p>
+<span style="color: red">&lt;em&gt;DEPRECATED.&lt;/em&gt;</span><div class="refsect3">
+<a name="id-1.2.12.8.2.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>role</p></td>
+<td class="parameter_description"><p>an <a class="link" href="libatspi-atspi-constants.html#AtspiRole" title="enum AtspiRole"><span class="type">AtspiRole</span></a> object to query.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.2.7"></a><h4>Returns</h4>
+<p> a localizable string name for an <a class="link" href="libatspi-atspi-constants.html#AtspiRole" title="enum AtspiRole"><span class="type">AtspiRole</span></a> enumerated type.</p>
+<p></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-name"></a><h3>atspi_accessible_get_name ()</h3>
+<pre class="programlisting"><span class="returnvalue">gchar</span> *
+atspi_accessible_get_name (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
+                           <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>Gets the name of an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.3.6"></a><h4>Returns</h4>
+<p> a UTF-8 string indicating the name of the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object
+or NULL on exception.</p>
+<p></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-description"></a><h3>atspi_accessible_get_description ()</h3>
+<pre class="programlisting"><span class="returnvalue">gchar</span> *
+atspi_accessible_get_description (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
+                                  <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>Gets the description of an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.4.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.4.6"></a><h4>Returns</h4>
+<p> a UTF-8 string describing the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object
+or NULL on exception.</p>
+<p></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-parent"></a><h3>atspi_accessible_get_parent ()</h3>
+<pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *
+atspi_accessible_get_parent (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
+                             <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>Gets an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object's parent container.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.5.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object to query.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.5.6"></a><h4>Returns</h4>
+<p> a pointer to the
+<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object which contains the given
+<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance, or NULL if the <em class="parameter"><code>obj</code></em>
+has no
+parent container. </p>
+<p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-child-count"></a><h3>atspi_accessible_get_child_count ()</h3>
+<pre class="programlisting"><span class="returnvalue">gint</span>
+atspi_accessible_get_child_count (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
+                                  <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>Gets the number of children contained by an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.6.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.6.6"></a><h4>Returns</h4>
+<p> a <span class="type">long</span> indicating the number of <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> children
+contained by an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object or -1 on exception.</p>
+<p></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-child-at-index"></a><h3>atspi_accessible_get_child_at_index ()</h3>
+<pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *
+atspi_accessible_get_child_at_index (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
+                                     <em class="parameter"><code><span class="type">gint</span> child_index</code></em>,
+                                     <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>Gets the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> child of an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object at a given index.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.7.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>child_index</p></td>
+<td class="parameter_description"><p>a <span class="type">long</span> indicating which child is specified.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.7.6"></a><h4>Returns</h4>
+<p> a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> child object at
+index <em class="parameter"><code>child_index</code></em>
+or NULL on exception. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-index-in-parent"></a><h3>atspi_accessible_get_index_in_parent ()</h3>
+<pre class="programlisting"><span class="returnvalue">gint</span>
+atspi_accessible_get_index_in_parent (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
+                                      <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>Gets the index of an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object within its parent's 
+<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> children list.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.8.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.8.6"></a><h4>Returns</h4>
+<p> a <span class="type">glong</span> indicating the index of the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object
+in its parent,
+or -1 if <em class="parameter"><code>obj</code></em>
+has no containing parent or on exception.</p>
+<p></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-relation-set"></a><h3>atspi_accessible_get_relation_set ()</h3>
+<pre class="programlisting"><span class="returnvalue">GArray</span> *
+atspi_accessible_get_relation_set (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
+                                   <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>Gets the set of <a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> objects which describes this <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object's
+relationships with other <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> objects.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.9.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.9.6"></a><h4>Returns</h4>
+<p> a <span class="type">GArray</span> of
+<a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> pointers or NULL on exception. </p>
+<p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> AtspiRelation*][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-role"></a><h3>atspi_accessible_get_role ()</h3>
+<pre class="programlisting"><a class="link" href="libatspi-atspi-constants.html#AtspiRole" title="enum AtspiRole"><span class="returnvalue">AtspiRole</span></a>
+atspi_accessible_get_role (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
+                           <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>Gets the UI role played by an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object.
+This role's name can be obtained via <a class="link" href="AtspiAccessible.html#atspi-accessible-get-role-name" title="atspi_accessible_get_role_name ()"><code class="function">atspi_accessible_get_role_name()</code></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.10.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.10.6"></a><h4>Returns</h4>
+<p> the <a class="link" href="libatspi-atspi-constants.html#AtspiRole" title="enum AtspiRole"><span class="type">AtspiRole</span></a> of an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object.</p>
+<p></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-role-name"></a><h3>atspi_accessible_get_role_name ()</h3>
+<pre class="programlisting"><span class="returnvalue">gchar</span> *
+atspi_accessible_get_role_name (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
+                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>Gets a UTF-8 string corresponding to the name of the role played by an object.
+This method will return useful values for roles that fall outside the
+enumeration used in <a class="link" href="AtspiAccessible.html#atspi-accessible-get-role" title="atspi_accessible_get_role ()"><code class="function">atspi_accessible_get_role()</code></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.11.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.11.6"></a><h4>Returns</h4>
+<p> a UTF-8 string specifying the type of UI role played by an
+<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object.</p>
+<p></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-localized-role-name"></a><h3>atspi_accessible_get_localized_role_name ()</h3>
+<pre class="programlisting"><span class="returnvalue">gchar</span> *
+atspi_accessible_get_localized_role_name
+                               (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
+                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>Gets a UTF-8 string corresponding to the name of the role played by an 
+object, translated to the current locale.
+This method will return useful values for roles that fall outside the
+enumeration used in <code class="function">atspi_accessible_getRole()</code>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.12.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.12.6"></a><h4>Returns</h4>
+<p> a localized, UTF-8 string specifying the type of UI role played
+by an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object.</p>
+<p></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-state-set"></a><h3>atspi_accessible_get_state_set ()</h3>
+<pre class="programlisting"><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="returnvalue">AtspiStateSet</span></a> *
+atspi_accessible_get_state_set (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
+<p>Gets the states currently held by an object.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.13.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.13.6"></a><h4>Returns</h4>
+<p> a pointer to an <a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> representing an
+object's current state set. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-attributes"></a><h3>atspi_accessible_get_attributes ()</h3>
+<pre class="programlisting"><span class="returnvalue">GHashTable</span> *
+atspi_accessible_get_attributes (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
+                                 <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>Gets the <span class="type">AttributeSet</span> representing any assigned 
+name-value pair attributes or annotations for this object.
+For typographic, textual, or textually-semantic attributes, see
+atspi_text_get_attributes instead.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.14.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>The <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> being queried.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.14.6"></a><h4>Returns</h4>
+<p> The name-value-pair
+attributes assigned to this object. </p>
+<p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gchar* gchar*][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-attributes-as-array"></a><h3>atspi_accessible_get_attributes_as_array ()</h3>
+<pre class="programlisting"><span class="returnvalue">GArray</span> *
+atspi_accessible_get_attributes_as_array
+                               (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
+                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>Gets a <span class="type">GArray</span> representing any assigned 
+name-value pair attributes or annotations for this object.
+For typographic, textual, or textually-semantic attributes, see
+atspi_text_get_attributes_as_array instead.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.15.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>The <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> being queried.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.15.6"></a><h4>Returns</h4>
+<p> The name-value-pair
+attributes assigned to this object. </p>
+<p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gchar*][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-toolkit-name"></a><h3>atspi_accessible_get_toolkit_name ()</h3>
+<pre class="programlisting"><span class="returnvalue">gchar</span> *
+atspi_accessible_get_toolkit_name (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
+                                   <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>Gets the toolkit name for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object.
+Only works on application root objects.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.16.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.16.6"></a><h4>Returns</h4>
+<p> a UTF-8 string indicating the toolkit name for the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object or NULL on exception.</p>
+<p></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-toolkit-version"></a><h3>atspi_accessible_get_toolkit_version ()</h3>
+<pre class="programlisting"><span class="returnvalue">gchar</span> *
+atspi_accessible_get_toolkit_version (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
+                                      <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>Gets the toolkit version for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object.
+Only works on application root objects.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.17.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.17.6"></a><h4>Returns</h4>
+<p> a UTF-8 string indicating the toolkit version for the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object or NULL on exception.</p>
+<p></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-application"></a><h3>atspi_accessible_get_application ()</h3>
+<pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *
+atspi_accessible_get_application (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
+                                  <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>Gets the containing <a class="link" href="libatspi-AtspiApplication.html#AtspiApplication" title="struct AtspiApplication"><span class="type">AtspiApplication</span></a> for an object.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.18.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>The <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> being queried.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.18.6"></a><h4>Returns</h4>
+<p> the containing <a class="link" href="libatspi-AtspiApplication.html#AtspiApplication" title="struct AtspiApplication"><span class="type">AtspiApplication</span></a> instance for
+this object. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-action"></a><h3>atspi_accessible_get_action ()</h3>
+<pre class="programlisting"><a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="returnvalue">AtspiAction</span></a> *
+atspi_accessible_get_action (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">atspi_accessible_get_action</code> has been deprecated since version 2.10 and should not be used in newly-written code.</p>
+<p>Use atspi_accessible_get_action_iface instead.</p>
+</div>
+<p>Gets the <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.19.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.19.7"></a><h4>Returns</h4>
+<p> a pointer to an <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> interface
+instance, or NULL if <em class="parameter"><code>obj</code></em>
+does not implement <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-collection"></a><h3>atspi_accessible_get_collection ()</h3>
+<pre class="programlisting"><a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="returnvalue">AtspiCollection</span></a> *
+atspi_accessible_get_collection (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">atspi_accessible_get_collection</code> has been deprecated since version 2.10 and should not be used in newly-written code.</p>
+<p>Use atspi_accessible_get_collection_iface instead.</p>
+</div>
+<p>Gets the <a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.20.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.20.7"></a><h4>Returns</h4>
+<p> a pointer to an <a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> interface
+instance, or NULL if <em class="parameter"><code>obj</code></em>
+does not implement <a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-component"></a><h3>atspi_accessible_get_component ()</h3>
+<pre class="programlisting"><a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="returnvalue">AtspiComponent</span></a> *
+atspi_accessible_get_component (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">atspi_accessible_get_component</code> has been deprecated since version 2.10 and should not be used in newly-written code.</p>
+<p>Use atspi_accessible_get_component_iface instead.</p>
+</div>
+<p>Gets the <a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.21.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.21.7"></a><h4>Returns</h4>
+<p> a pointer to an <a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a> interface
+instance, or NULL if <em class="parameter"><code>obj</code></em>
+does not implement <a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-document"></a><h3>atspi_accessible_get_document ()</h3>
+<pre class="programlisting"><a class="link" href="libatspi-atspi-document.html#AtspiDocument"><span class="returnvalue">AtspiDocument</span></a> *
+atspi_accessible_get_document (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">atspi_accessible_get_document</code> has been deprecated since version 2.10 and should not be used in newly-written code.</p>
+<p>Use atspi_accessible_get_document_iface instead.</p>
+</div>
+<p>Gets the <a class="link" href="libatspi-atspi-document.html#AtspiDocument"><span class="type">AtspiDocument</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.22.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.22.7"></a><h4>Returns</h4>
+<p> a pointer to an <a class="link" href="libatspi-atspi-document.html#AtspiDocument"><span class="type">AtspiDocument</span></a> interface
+instance, or NULL if <em class="parameter"><code>obj</code></em>
+does not implement <a class="link" href="libatspi-atspi-document.html#AtspiDocument"><span class="type">AtspiDocument</span></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-editable-text"></a><h3>atspi_accessible_get_editable_text ()</h3>
+<pre class="programlisting"><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="returnvalue">AtspiEditableText</span></a> *
+atspi_accessible_get_editable_text (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">atspi_accessible_get_editable_text</code> has been deprecated since version 2.10 and should not be used in newly-written code.</p>
+<p>Use atspi_accessible_get_editable_text_iface instead.</p>
+</div>
+<p>Gets the <a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.23.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.23.7"></a><h4>Returns</h4>
+<p> a pointer to an <a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> interface
+instance, or NULL if <em class="parameter"><code>obj</code></em>
+does not implement <a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-hyperlink"></a><h3>atspi_accessible_get_hyperlink ()</h3>
+<pre class="programlisting"><a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="returnvalue">AtspiHyperlink</span></a> *
+atspi_accessible_get_hyperlink (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
+<p>Gets the <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.24.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.24.6"></a><h4>Returns</h4>
+<p> the <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> object associated with
+the given <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>, or NULL if not supported. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-hypertext"></a><h3>atspi_accessible_get_hypertext ()</h3>
+<pre class="programlisting"><a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="returnvalue">AtspiHypertext</span></a> *
+atspi_accessible_get_hypertext (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">atspi_accessible_get_hypertext</code> has been deprecated since version 2.10 and should not be used in newly-written code.</p>
+<p>Use atspi_accessible_get_hypertext_iface instead.</p>
+</div>
+<p>Gets the <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.25.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.25.7"></a><h4>Returns</h4>
+<p> a pointer to an <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> interface
+instance, or NULL if <em class="parameter"><code>obj</code></em>
+does not implement <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-image"></a><h3>atspi_accessible_get_image ()</h3>
+<pre class="programlisting"><a class="link" href="libatspi-atspi-image.html#AtspiImage"><span class="returnvalue">AtspiImage</span></a> *
+atspi_accessible_get_image (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">atspi_accessible_get_image</code> has been deprecated since version 2.10 and should not be used in newly-written code.</p>
+<p>Use atspi_accessible_get_image_iface instead.</p>
+</div>
+<p>Gets the <a class="link" href="libatspi-atspi-image.html#AtspiImage"><span class="type">AtspiImage</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.26.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.26.7"></a><h4>Returns</h4>
+<p> a pointer to an <a class="link" href="libatspi-atspi-image.html#AtspiImage"><span class="type">AtspiImage</span></a> interface instance, or
+NULL if <em class="parameter"><code>obj</code></em>
+does not implement <a class="link" href="libatspi-atspi-image.html#AtspiImage"><span class="type">AtspiImage</span></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-selection"></a><h3>atspi_accessible_get_selection ()</h3>
+<pre class="programlisting"><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="returnvalue">AtspiSelection</span></a> *
+atspi_accessible_get_selection (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">atspi_accessible_get_selection</code> has been deprecated since version 2.10 and should not be used in newly-written code.</p>
+<p>Use atspi_accessible_get_selection_iface instead.</p>
+</div>
+<p>Gets the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.27.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.27.7"></a><h4>Returns</h4>
+<p> a pointer to an <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> interface
+instance, or NULL if <em class="parameter"><code>obj</code></em>
+does not implement <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-table"></a><h3>atspi_accessible_get_table ()</h3>
+<pre class="programlisting"><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="returnvalue">AtspiTable</span></a> *
+atspi_accessible_get_table (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">atspi_accessible_get_table</code> has been deprecated since version 2.10 and should not be used in newly-written code.</p>
+<p>Use atspi_accessible_get_table_iface instead.</p>
+</div>
+<p>Gets the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.28.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.28.7"></a><h4>Returns</h4>
+<p> a pointer to an <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> interface instance, or
+NULL if <em class="parameter"><code>obj</code></em>
+does not implement <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-text"></a><h3>atspi_accessible_get_text ()</h3>
+<pre class="programlisting"><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="returnvalue">AtspiText</span></a> *
+atspi_accessible_get_text (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">atspi_accessible_get_text</code> has been deprecated since version 2.10 and should not be used in newly-written code.</p>
+<p>Use atspi_accessible_get_text_iface instead.</p>
+</div>
+<p>Gets the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.29.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.29.7"></a><h4>Returns</h4>
+<p> a pointer to an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> interface instance, or
+NULL if <em class="parameter"><code>obj</code></em>
+does not implement <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-value"></a><h3>atspi_accessible_get_value ()</h3>
+<pre class="programlisting"><a class="link" href="libatspi-atspi-value.html#AtspiValue"><span class="returnvalue">AtspiValue</span></a> *
+atspi_accessible_get_value (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">atspi_accessible_get_value</code> has been deprecated since version 2.10 and should not be used in newly-written code.</p>
+<p>Use atspi_accessible_get_value_iface instead.</p>
+</div>
+<p>Gets the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.30.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.30.7"></a><h4>Returns</h4>
+<p> a pointer to an <a class="link" href="libatspi-atspi-value.html#AtspiValue"><span class="type">AtspiValue</span></a> interface instance, or
+NULL if <em class="parameter"><code>obj</code></em>
+does not implement <a class="link" href="libatspi-atspi-value.html#AtspiValue"><span class="type">AtspiValue</span></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="atspi-accessible-get-interfaces"></a><h3>atspi_accessible_get_interfaces ()</h3>
+<pre class="programlisting"><span class="returnvalue">GArray</span> *
+atspi_accessible_get_interfaces (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
+<p>A set of pointers to all interfaces supported by an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.</p>
+<div class="refsect3">
+<a name="id-1.2.12.8.31.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>obj</p></td>
+<td class="parameter_description"><p>The <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> to query.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="id-1.2.12.8.31.6"></a><h4>Returns</h4>
+<p> A <span class="type">GArray</span> of strings
+describing the interfaces supported by the object.  Interfaces are
+denoted in short-hand (i.e. "Component", "Text" etc.). </p>
+<p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gchar*][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+</div>
+<div class="refsect1">
+<a name="AtspiAccessible.other_details"></a><h2>Types and Values</h2>
 <div class="refsect2">
 <a name="AtspiAccessible-struct"></a><h3>AtspiAccessible</h3>
 <pre class="programlisting">typedef struct _AtspiAccessible AtspiAccessible;</pre>
@@ -136,876 +1284,10 @@ actually have children.
 <p>
 </p>
 </div>
-<hr>
-<div class="refsect2">
-<a name="atspi-role-get-name"></a><h3>atspi_role_get_name ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             atspi_role_get_name                 (<em class="parameter"><code><a class="link" href="libatspi-atspi-constants.html#AtspiRole" title="enum AtspiRole"><span class="type">AtspiRole</span></a> role</code></em>);</pre>
-<p>
-Gets a localizable string that indicates the name of an <a class="link" href="libatspi-atspi-constants.html#AtspiRole" title="enum AtspiRole"><span class="type">AtspiRole</span></a>.
-<span style="color: red">&lt;em&gt;DEPRECATED.&lt;/em&gt;</span>
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>role</code></em> :</span></p></td>
-<td>an <a class="link" href="libatspi-atspi-constants.html#AtspiRole" title="enum AtspiRole"><span class="type">AtspiRole</span></a> object to query.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a localizable string name for an <a class="link" href="libatspi-atspi-constants.html#AtspiRole" title="enum AtspiRole"><span class="type">AtspiRole</span></a> enumerated type.</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-name"></a><h3>atspi_accessible_get_name ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             atspi_accessible_get_name           (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Gets the name of an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a UTF-8 string indicating the name of the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object
-or NULL on exception.</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-description"></a><h3>atspi_accessible_get_description ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             atspi_accessible_get_description    (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Gets the description of an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a UTF-8 string describing the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object
-or NULL on exception.</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-parent"></a><h3>atspi_accessible_get_parent ()</h3>
-<pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_accessible_get_parent         (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Gets an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object's parent container.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object to query.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a pointer to the
-<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object which contains the given
-<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance, or NULL if the <em class="parameter"><code>obj</code></em> has no
-parent container. <span class="annotation">[nullable][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-child-count"></a><h3>atspi_accessible_get_child_count ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_accessible_get_child_count    (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Gets the number of children contained by an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a <span class="type">long</span> indicating the number of <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> children
-contained by an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object or -1 on exception.</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-child-at-index"></a><h3>atspi_accessible_get_child_at_index ()</h3>
-<pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_accessible_get_child_at_index (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> child_index</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Gets the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> child of an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object at a given index.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>child_index</code></em> :</span></p></td>
-<td>a <span class="type">long</span> indicating which child is specified.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> child object at
-index <em class="parameter"><code>child_index</code></em> or NULL on exception. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-index-in-parent"></a><h3>atspi_accessible_get_index_in_parent ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                atspi_accessible_get_index_in_parent
-                                                        (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Gets the index of an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object within its parent's 
-<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> children list.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#glong"><span class="type">glong</span></a> indicating the index of the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object
-in its parent,
-or -1 if <em class="parameter"><code>obj</code></em> has no containing parent or on exception.</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-relation-set"></a><h3>atspi_accessible_get_relation_set ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            atspi_accessible_get_relation_set   (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Gets the set of <a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> objects which describes this <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object's
-relationships with other <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> objects.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a <a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="type">GArray</span></a> of
-<a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> pointers or NULL on exception. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> AtspiAccessible*][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-role"></a><h3>atspi_accessible_get_role ()</h3>
-<pre class="programlisting"><a class="link" href="libatspi-atspi-constants.html#AtspiRole" title="enum AtspiRole"><span class="returnvalue">AtspiRole</span></a>           atspi_accessible_get_role           (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Gets the UI role played by an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object.
-This role's name can be obtained via <a class="link" href="AtspiAccessible.html#atspi-accessible-get-role-name" title="atspi_accessible_get_role_name ()"><code class="function">atspi_accessible_get_role_name()</code></a>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the <a class="link" href="libatspi-atspi-constants.html#AtspiRole" title="enum AtspiRole"><span class="type">AtspiRole</span></a> of an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object.</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-role-name"></a><h3>atspi_accessible_get_role_name ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             atspi_accessible_get_role_name      (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Gets a UTF-8 string corresponding to the name of the role played by an object.
-This method will return useful values for roles that fall outside the
-enumeration used in <a class="link" href="AtspiAccessible.html#atspi-accessible-get-role" title="atspi_accessible_get_role ()"><code class="function">atspi_accessible_get_role()</code></a>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a UTF-8 string specifying the type of UI role played by an
-<a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object.</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-localized-role-name"></a><h3>atspi_accessible_get_localized_role_name ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             atspi_accessible_get_localized_role_name
-                                                        (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Gets a UTF-8 string corresponding to the name of the role played by an 
-object, translated to the current locale.
-This method will return useful values for roles that fall outside the
-enumeration used in <code class="function">atspi_accessible_getRole()</code>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a localized, UTF-8 string specifying the type of UI role played
-by an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object.</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-state-set"></a><h3>atspi_accessible_get_state_set ()</h3>
-<pre class="programlisting"><a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="returnvalue">AtspiStateSet</span></a> *     atspi_accessible_get_state_set      (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
-<p>
-Gets the states currently held by an object.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a pointer to an <a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a> representing an
-object's current state set. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-attributes"></a><h3>atspi_accessible_get_attributes ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#GHashTable"><span class="returnvalue">GHashTable</span></a> *        atspi_accessible_get_attributes     (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Gets the <span class="type">AttributeSet</span> representing any assigned 
-name-value pair attributes or annotations for this object.
-For typographic, textual, or textually-semantic attributes, see
-atspi_text_get_attributes instead.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>The <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> being queried.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>The name-value-pair
-attributes assigned to this object. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gchar* gchar*][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-attributes-as-array"></a><h3>atspi_accessible_get_attributes_as_array ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            atspi_accessible_get_attributes_as_array
-                                                        (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Gets a <a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="type">GArray</span></a> representing any assigned 
-name-value pair attributes or annotations for this object.
-For typographic, textual, or textually-semantic attributes, see
-atspi_text_get_attributes_as_array instead.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>The <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> being queried.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>The name-value-pair
-attributes assigned to this object. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gchar*][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-toolkit-name"></a><h3>atspi_accessible_get_toolkit_name ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             atspi_accessible_get_toolkit_name   (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Gets the toolkit name for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object.
-Only works on application root objects.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a UTF-8 string indicating the toolkit name for the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object or NULL on exception.</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-toolkit-version"></a><h3>atspi_accessible_get_toolkit_version ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             atspi_accessible_get_toolkit_version
-                                                        (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Gets the toolkit version for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object.
-Only works on application root objects.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a UTF-8 string indicating the toolkit version for the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object or NULL on exception.</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-application"></a><h3>atspi_accessible_get_application ()</h3>
-<pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *   atspi_accessible_get_application    (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Gets the containing <a class="link" href="libatspi-AtspiApplication.html#AtspiApplication" title="struct AtspiApplication"><span class="type">AtspiApplication</span></a> for an object.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>The <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> being queried.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the containing <a class="link" href="libatspi-AtspiApplication.html#AtspiApplication" title="struct AtspiApplication"><span class="type">AtspiApplication</span></a> instance for
-this object. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-action"></a><h3>atspi_accessible_get_action ()</h3>
-<pre class="programlisting"><a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="returnvalue">AtspiAction</span></a> *       atspi_accessible_get_action         (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
-<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
-<h3 class="title">Warning</h3>
-<p><code class="literal">atspi_accessible_get_action</code> has been deprecated since version 2.10 and should not be used in newly-written code. Use atspi_accessible_get_action_iface instead.
-Rename to: atspi_accessible_get_action_iface</p>
-</div>
-<p>
-Gets the <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a pointer to an <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> interface
-instance, or NULL if <em class="parameter"><code>obj</code></em> does not implement <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-collection"></a><h3>atspi_accessible_get_collection ()</h3>
-<pre class="programlisting"><a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="returnvalue">AtspiCollection</span></a> *   atspi_accessible_get_collection     (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
-<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
-<h3 class="title">Warning</h3>
-<p><code class="literal">atspi_accessible_get_collection</code> has been deprecated since version 2.10 and should not be used in newly-written code. Use atspi_accessible_get_collection_iface instead.
-Rename to: atspi_accessible_get_collection_iface</p>
-</div>
-<p>
-Gets the <a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a pointer to an <a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a> interface
-instance, or NULL if <em class="parameter"><code>obj</code></em> does not implement <a class="link" href="libatspi-atspi-collection.html#AtspiCollection"><span class="type">AtspiCollection</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-component"></a><h3>atspi_accessible_get_component ()</h3>
-<pre class="programlisting"><a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="returnvalue">AtspiComponent</span></a> *    atspi_accessible_get_component      (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
-<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
-<h3 class="title">Warning</h3>
-<p><code class="literal">atspi_accessible_get_component</code> has been deprecated since version 2.10 and should not be used in newly-written code. Use atspi_accessible_get_component_iface instead.
-Rename to: atspi_accessible_get_component_iface</p>
-</div>
-<p>
-Gets the <a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a pointer to an <a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a> interface
-instance, or NULL if <em class="parameter"><code>obj</code></em> does not implement <a class="link" href="libatspi-atspi-component.html#AtspiComponent"><span class="type">AtspiComponent</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-document"></a><h3>atspi_accessible_get_document ()</h3>
-<pre class="programlisting"><a class="link" href="libatspi-atspi-document.html#AtspiDocument"><span class="returnvalue">AtspiDocument</span></a> *     atspi_accessible_get_document       (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
-<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
-<h3 class="title">Warning</h3>
-<p><code class="literal">atspi_accessible_get_document</code> has been deprecated since version 2.10 and should not be used in newly-written code. Use atspi_accessible_get_document_iface instead.
-Rename to: atspi_accessible_get_document_iface</p>
-</div>
-<p>
-Gets the <a class="link" href="libatspi-atspi-document.html#AtspiDocument"><span class="type">AtspiDocument</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a pointer to an <a class="link" href="libatspi-atspi-document.html#AtspiDocument"><span class="type">AtspiDocument</span></a> interface
-instance, or NULL if <em class="parameter"><code>obj</code></em> does not implement <a class="link" href="libatspi-atspi-document.html#AtspiDocument"><span class="type">AtspiDocument</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-editable-text"></a><h3>atspi_accessible_get_editable_text ()</h3>
-<pre class="programlisting"><a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="returnvalue">AtspiEditableText</span></a> * atspi_accessible_get_editable_text  (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
-<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
-<h3 class="title">Warning</h3>
-<p><code class="literal">atspi_accessible_get_editable_text</code> has been deprecated since version 2.10 and should not be used in newly-written code. Use atspi_accessible_get_editable_text_iface instead.
-Rename to: atspi_accessible_get_editable_text_iface</p>
-</div>
-<p>
-Gets the <a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a pointer to an <a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a> interface
-instance, or NULL if <em class="parameter"><code>obj</code></em> does not implement <a class="link" href="libatspi-atspi-editabletext.html#AtspiEditableText"><span class="type">AtspiEditableText</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-hyperlink"></a><h3>atspi_accessible_get_hyperlink ()</h3>
-<pre class="programlisting"><a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="returnvalue">AtspiHyperlink</span></a> *    atspi_accessible_get_hyperlink      (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
-<p>
-Gets the <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object on which to operate.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the <a class="link" href="AtspiHyperlink.html" title="atspi-hyperlink"><span class="type">AtspiHyperlink</span></a> object associated with
-the given <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>, or NULL if not supported. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-hypertext"></a><h3>atspi_accessible_get_hypertext ()</h3>
-<pre class="programlisting"><a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="returnvalue">AtspiHypertext</span></a> *    atspi_accessible_get_hypertext      (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
-<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
-<h3 class="title">Warning</h3>
-<p><code class="literal">atspi_accessible_get_hypertext</code> has been deprecated since version 2.10 and should not be used in newly-written code. Use atspi_accessible_get_hypertext_iface instead.
-Rename to: atspi_accessible_get_hypertext_iface</p>
-</div>
-<p>
-Gets the <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a pointer to an <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a> interface
-instance, or NULL if <em class="parameter"><code>obj</code></em> does not implement <a class="link" href="libatspi-atspi-hypertext.html#AtspiHypertext"><span class="type">AtspiHypertext</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-image"></a><h3>atspi_accessible_get_image ()</h3>
-<pre class="programlisting"><a class="link" href="libatspi-atspi-image.html#AtspiImage"><span class="returnvalue">AtspiImage</span></a> *        atspi_accessible_get_image          (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
-<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
-<h3 class="title">Warning</h3>
-<p><code class="literal">atspi_accessible_get_image</code> has been deprecated since version 2.10 and should not be used in newly-written code. Use atspi_accessible_get_image_iface instead.
-Rename to: atspi_accessible_get_image_iface</p>
-</div>
-<p>
-Gets the <a class="link" href="libatspi-atspi-image.html#AtspiImage"><span class="type">AtspiImage</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a pointer to an <a class="link" href="libatspi-atspi-image.html#AtspiImage"><span class="type">AtspiImage</span></a> interface instance, or
-NULL if <em class="parameter"><code>obj</code></em> does not implement <a class="link" href="libatspi-atspi-image.html#AtspiImage"><span class="type">AtspiImage</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-selection"></a><h3>atspi_accessible_get_selection ()</h3>
-<pre class="programlisting"><a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="returnvalue">AtspiSelection</span></a> *    atspi_accessible_get_selection      (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
-<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
-<h3 class="title">Warning</h3>
-<p><code class="literal">atspi_accessible_get_selection</code> has been deprecated since version 2.10 and should not be used in newly-written code. Use atspi_accessible_get_selection_iface instead.
-Rename to: atspi_accessible_get_selection_iface</p>
-</div>
-<p>
-Gets the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a pointer to an <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> interface
-instance, or NULL if <em class="parameter"><code>obj</code></em> does not implement <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-table"></a><h3>atspi_accessible_get_table ()</h3>
-<pre class="programlisting"><a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="returnvalue">AtspiTable</span></a> *        atspi_accessible_get_table          (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
-<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
-<h3 class="title">Warning</h3>
-<p><code class="literal">atspi_accessible_get_table</code> has been deprecated since version 2.10 and should not be used in newly-written code. Use atspi_accessible_get_table_iface instead.
-Rename to: atspi_accessible_get_table_iface</p>
-</div>
-<p>
-Gets the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a pointer to an <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> interface instance, or
-NULL if <em class="parameter"><code>obj</code></em> does not implement <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-text"></a><h3>atspi_accessible_get_text ()</h3>
-<pre class="programlisting"><a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="returnvalue">AtspiText</span></a> *         atspi_accessible_get_text           (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
-<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
-<h3 class="title">Warning</h3>
-<p><code class="literal">atspi_accessible_get_text</code> has been deprecated since version 2.10 and should not be used in newly-written code. Use atspi_accessible_get_text_iface instead.
-Rename to: atspi_accessible_get_text_iface</p>
-</div>
-<p>
-Gets the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a pointer to an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> interface instance, or
-NULL if <em class="parameter"><code>obj</code></em> does not implement <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-value"></a><h3>atspi_accessible_get_value ()</h3>
-<pre class="programlisting"><a class="link" href="libatspi-atspi-value.html#AtspiValue"><span class="returnvalue">AtspiValue</span></a> *        atspi_accessible_get_value          (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
-<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
-<h3 class="title">Warning</h3>
-<p><code class="literal">atspi_accessible_get_value</code> has been deprecated since version 2.10 and should not be used in newly-written code. Use atspi_accessible_get_value_iface instead.
-Rename to: atspi_accessible_get_value_iface</p>
-</div>
-<p>
-Gets the <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a> interface for an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>a pointer to the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> instance to query.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a pointer to an <a class="link" href="libatspi-atspi-value.html#AtspiValue"><span class="type">AtspiValue</span></a> interface instance, or
-NULL if <em class="parameter"><code>obj</code></em> does not implement <a class="link" href="libatspi-atspi-value.html#AtspiValue"><span class="type">AtspiValue</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="atspi-accessible-get-interfaces"></a><h3>atspi_accessible_get_interfaces ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="returnvalue">GArray</span></a> *            atspi_accessible_get_interfaces     (<em class="parameter"><code><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> *obj</code></em>);</pre>
-<p>
-A set of pointers to all interfaces supported by an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>obj</code></em> :</span></p></td>
-<td>The <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> to query.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>A <a href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"><span class="type">GArray</span></a> of strings
-describing the interfaces supported by the object.  Interfaces are
-denoted in short-hand (i.e. "Component", "Text" etc.). <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gchar*][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
 </div>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.19</div>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

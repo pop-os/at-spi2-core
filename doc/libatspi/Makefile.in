@@ -172,6 +172,7 @@ GOBJ_CFLAGS = @GOBJ_CFLAGS@
 GOBJ_LIBS = @GOBJ_LIBS@
 GREP = @GREP@
 GTKDOC_CHECK = @GTKDOC_CHECK@
+GTKDOC_CHECK_PATH = @GTKDOC_CHECK_PATH@
 GTKDOC_DEPS_CFLAGS = @GTKDOC_DEPS_CFLAGS@
 GTKDOC_DEPS_LIBS = @GTKDOC_DEPS_LIBS@
 GTKDOC_MKPDF = @GTKDOC_MKPDF@
@@ -396,6 +397,7 @@ GPATH = $(srcdir)
 TARGET_DIR = $(HTML_DIR)/$(DOC_MODULE)
 SETUP_FILES = \
 	$(content_files)		\
+	$(expand_content_files)		\
 	$(DOC_MAIN_SGML_FILE)		\
 	$(DOC_MODULE)-sections.txt	\
 	$(DOC_MODULE)-overrides.txt
@@ -422,11 +424,11 @@ REPORT_FILES = \
 	$(DOC_MODULE)-undeclared.txt \
 	$(DOC_MODULE)-unused.txt
 
-CLEANFILES = $(SCANOBJ_FILES) $(REPORT_FILES) $(DOC_STAMPS)
-@ENABLE_GTK_DOC_TRUE@@GTK_DOC_BUILD_HTML_FALSE@HTML_BUILD_STAMP = 
-@ENABLE_GTK_DOC_TRUE@@GTK_DOC_BUILD_HTML_TRUE@HTML_BUILD_STAMP = html-build.stamp
-@ENABLE_GTK_DOC_TRUE@@GTK_DOC_BUILD_PDF_FALSE@PDF_BUILD_STAMP = 
-@ENABLE_GTK_DOC_TRUE@@GTK_DOC_BUILD_PDF_TRUE@PDF_BUILD_STAMP = pdf-build.stamp
+CLEANFILES = $(SCANOBJ_FILES) $(REPORT_FILES) $(DOC_STAMPS) gtkdoc-check.test
+@GTK_DOC_BUILD_HTML_FALSE@HTML_BUILD_STAMP = 
+@GTK_DOC_BUILD_HTML_TRUE@HTML_BUILD_STAMP = html-build.stamp
+@GTK_DOC_BUILD_PDF_FALSE@PDF_BUILD_STAMP = 
+@GTK_DOC_BUILD_PDF_TRUE@PDF_BUILD_STAMP = pdf-build.stamp
 
 #### setup ####
 GTK_DOC_V_SETUP = $(GTK_DOC_V_SETUP_$(V))
@@ -547,6 +549,7 @@ distdir: $(DISTFILES)
 	  dist-hook
 check-am: all-am
 check: check-am
+@ENABLE_GTK_DOC_FALSE@all-local:
 all-am: Makefile all-local
 installdirs:
 install: install-am
@@ -664,8 +667,15 @@ uninstall-am: uninstall-local
 	uninstall-am uninstall-local
 
 
-@ENABLE_GTK_DOC_TRUE@all-local: $(HTML_BUILD_STAMP) $(PDF_BUILD_STAMP)
-@ENABLE_GTK_DOC_FALSE@all-local:
+gtkdoc-check.test: Makefile
+	$(AM_V_GEN)echo "#!/bin/sh -e" > $@; \
+		echo "$(GTKDOC_CHECK_PATH) || exit 1" >> $@; \
+		chmod +x $@
+
+all-gtk-doc: $(HTML_BUILD_STAMP) $(PDF_BUILD_STAMP)
+.PHONY: all-gtk-doc
+
+@ENABLE_GTK_DOC_TRUE@all-local: all-gtk-doc
 
 docs: $(HTML_BUILD_STAMP) $(PDF_BUILD_STAMP)
 
@@ -673,20 +683,22 @@ $(REPORT_FILES): sgml-build.stamp
 
 setup-build.stamp:
 	-$(GTK_DOC_V_SETUP)if test "$(abs_srcdir)" != "$(abs_builddir)" ; then \
-	    files=`echo $(SETUP_FILES) $(expand_content_files) $(DOC_MODULE).types`; \
+	    files=`echo $(SETUP_FILES) $(DOC_MODULE).types`; \
 	    if test "x$$files" != "x" ; then \
 	        for file in $$files ; do \
+	            destdir=`dirname $(abs_builddir)/$$file` ;\
+	            test -d "$$destdir" || mkdir -p "$$destdir"; \
 	            test -f $(abs_srcdir)/$$file && \
-	                cp -pu $(abs_srcdir)/$$file $(abs_builddir)/$$file || true; \
+	                cp -pf $(abs_srcdir)/$$file $(abs_builddir)/$$file || true; \
 	        done; \
 	    fi; \
 	    test -d $(abs_srcdir)/tmpl && \
-	        { cp -rp $(abs_srcdir)/tmpl $(abs_builddir)/; \
+	        { cp -pR $(abs_srcdir)/tmpl $(abs_builddir)/; \
 	        chmod -R u+w $(abs_builddir)/tmpl; } \
 	fi
 	$(AM_V_at)touch setup-build.stamp
 
-scan-build.stamp: $(HFILE_GLOB) $(CFILE_GLOB)
+scan-build.stamp: setup-build.stamp $(HFILE_GLOB) $(CFILE_GLOB)
 	$(GTK_DOC_V_SCAN)_source_dir='' ; \
 	for i in $(DOC_SOURCE_DIR) ; do \
 	    _source_dir="$${_source_dir} --source-dir=$$i" ; \
@@ -716,7 +728,7 @@ tmpl-build.stamp: setup-build.stamp $(DOC_MODULE)-decl.txt $(SCANOBJ_FILES) $(DO
 	$(GTK_DOC_V_TMPL)gtkdoc-mktmpl --module=$(DOC_MODULE) $(MKTMPL_OPTIONS)
 	$(AM_V_at)if test "$(abs_srcdir)" != "$(abs_builddir)" ; then \
 	  if test -w $(abs_srcdir) ; then \
-	    cp -rp $(abs_builddir)/tmpl $(abs_srcdir)/; \
+	    cp -pR $(abs_builddir)/tmpl $(abs_srcdir)/; \
 	  fi \
 	fi
 	$(AM_V_at)touch tmpl-build.stamp
@@ -728,7 +740,7 @@ $(srcdir)/tmpl/*.sgml:
 	@true
 
 sgml-build.stamp: tmpl.stamp $(DOC_MODULE)-sections.txt $(srcdir)/tmpl/*.sgml $(expand_content_files)
-	$(GTK_DOC_V_XML)-chmod -R u+w $(srcdir) && _source_dir='' ; \
+	-$(GTK_DOC_V_XML)chmod -R u+w $(srcdir) && _source_dir='' ; \
 	for i in $(DOC_SOURCE_DIR) ; do \
 	    _source_dir="$${_source_dir} --source-dir=$$i" ; \
 	done ; \
@@ -738,7 +750,7 @@ sgml-build.stamp: tmpl.stamp $(DOC_MODULE)-sections.txt $(srcdir)/tmpl/*.sgml $(
 sgml.stamp: sgml-build.stamp
 	@true
 
-html-build.stamp: sgml.stamp $(DOC_MAIN_SGML_FILE) $(content_files)
+html-build.stamp: sgml.stamp $(DOC_MAIN_SGML_FILE) $(content_files) $(expand_content_files)
 	$(GTK_DOC_V_HTML)rm -rf html && mkdir html && \
 	mkhtml_options=""; \
 	gtkdoc-mkhtml 2>&1 --help | grep  >/dev/null "\-\-verbose"; \
@@ -764,7 +776,7 @@ html-build.stamp: sgml.stamp $(DOC_MAIN_SGML_FILE) $(content_files)
 	$(GTK_DOC_V_XREF)gtkdoc-fixxref --module=$(DOC_MODULE) --module-dir=html --html-dir=$(HTML_DIR) $(FIXXREF_OPTIONS)
 	$(AM_V_at)touch html-build.stamp
 
-pdf-build.stamp: sgml.stamp $(DOC_MAIN_SGML_FILE) $(content_files)
+pdf-build.stamp: sgml.stamp $(DOC_MAIN_SGML_FILE) $(content_files) $(expand_content_files)
 	$(GTK_DOC_V_PDF)rm -f $(DOC_MODULE).pdf && \
 	mkpdf_options=""; \
 	gtkdoc-mkpdf 2>&1 --help | grep  >/dev/null "\-\-verbose"; \
@@ -790,12 +802,18 @@ pdf-build.stamp: sgml.stamp $(DOC_MAIN_SGML_FILE) $(content_files)
 clean-local:
 	@rm -f *~ *.bak
 	@rm -rf .libs
+	@if echo $(SCAN_OPTIONS) | grep -q "\-\-rebuild-types" ; then \
+	  rm -f $(DOC_MODULE).types; \
+	fi
+	@if echo $(SCAN_OPTIONS) | grep -q "\-\-rebuild-sections" ; then \
+	  rm -f $(DOC_MODULE)-sections.txt; \
+	fi
 
 distclean-local:
 	@rm -rf xml html $(REPORT_FILES) $(DOC_MODULE).pdf \
 	    $(DOC_MODULE)-decl-list.txt $(DOC_MODULE)-decl.txt
 	@if test "$(abs_srcdir)" != "$(abs_builddir)" ; then \
-	    rm -f $(SETUP_FILES) $(expand_content_files) $(DOC_MODULE).types; \
+	    rm -f $(SETUP_FILES) $(DOC_MODULE).types; \
 	    rm -rf tmpl; \
 	fi
 
@@ -835,12 +853,14 @@ uninstall-local:
 #
 # Require gtk-doc when making dist
 #
-@ENABLE_GTK_DOC_TRUE@dist-check-gtkdoc: docs
-@ENABLE_GTK_DOC_FALSE@dist-check-gtkdoc:
-@ENABLE_GTK_DOC_FALSE@	@echo "*** gtk-doc must be installed and enabled in order to make dist"
-@ENABLE_GTK_DOC_FALSE@	@false
+@HAVE_GTK_DOC_TRUE@dist-check-gtkdoc: docs
+@HAVE_GTK_DOC_FALSE@dist-check-gtkdoc:
+@HAVE_GTK_DOC_FALSE@	@echo "*** gtk-doc is needed to run 'make dist'.         ***"
+@HAVE_GTK_DOC_FALSE@	@echo "*** gtk-doc was not found when 'configure' ran.   ***"
+@HAVE_GTK_DOC_FALSE@	@echo "*** please install gtk-doc and rerun 'configure'. ***"
+@HAVE_GTK_DOC_FALSE@	@false
 
-dist-hook: dist-check-gtkdoc dist-hook-local
+dist-hook: dist-check-gtkdoc all-gtk-doc dist-hook-local
 	@mkdir $(distdir)/tmpl
 	@mkdir $(distdir)/html
 	@-cp ./tmpl/*.sgml $(distdir)/tmpl
