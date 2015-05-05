@@ -1,9 +1,9 @@
-at-spi2-core (2.16.0-1) UNRELEASED; urgency=low
+at-spi2-core (2.16.0-1) unstable; urgency=low
 
   * New upstream release.
   * No longer Build-Depends on hardening-wrapper.
 
- -- Mario Lang <mlang@debian.org>  Mon, 04 May 2015 00:03:38 +0200
+ -- Mario Lang <mlang@debian.org>  Tue, 05 May 2015 13:22:27 +0200
 
 at-spi2-core (2.14.0-1) unstable; urgency=medium
 
