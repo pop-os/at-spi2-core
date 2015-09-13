@@ -1,3 +1,10 @@
+at-spi2-core (2.16.0-2) UNRELEASED; urgency=medium
+
+  * Enable accessibility in Qt4 and Qt5 applications when the kde desktop is
+    configured to start the screen reader.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 13 Sep 2015 19:43:28 +0200
+
 at-spi2-core (2.16.0-1) unstable; urgency=low
 
   * New upstream release.
