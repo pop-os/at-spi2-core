@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="ch01.html" title="API reference">
 <link rel="next" href="AtspiStateSet.html" title="atspi-stateset">
-<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.24.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -270,10 +270,10 @@ information onscreen.</p>
 </div>
 <div class="refsect1">
 <a name="libatspi-atspi-text.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    GBoxed
+<pre class="screen">    <a href="/opt/gnome/share/gtk-doc/html/gobject/gobject-Boxed-Types.html">GBoxed</a>
     <span class="lineart">├──</span> AtspiRange
     <span class="lineart">╰──</span> AtspiTextRange
-    GInterface
+    <a href="/opt/gnome/share/gtk-doc/html/gobject/GTypeModule.html">GInterface</a>
     <span class="lineart">╰──</span> AtspiText
 </pre>
 </div>
@@ -319,7 +319,6 @@ atspi_range_copy (<em class="parameter"><code><a class="link" href="libatspi-ats
 <div class="refsect3">
 <a name="id-1.2.2.11.2.6"></a><h4>Returns</h4>
 <p> the <a class="link" href="libatspi-atspi-text.html#AtspiRange"><span class="type">AtspiRange</span></a> copy of an <a class="link" href="libatspi-atspi-text.html#AtspiRange"><span class="type">AtspiRange</span></a> object.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -329,10 +328,6 @@ atspi_range_copy (<em class="parameter"><code><a class="link" href="libatspi-ats
 atspi_text_get_type ();</pre>
 <p>
 </p>
-<div class="refsect3">
-<a name="id-1.2.2.11.3.5"></a><h4>Returns</h4>
-<p></p>
-</div>
 </div>
 <hr>
 <div class="refsect2">
@@ -341,10 +336,6 @@ atspi_text_get_type ();</pre>
 atspi_text_range_get_type ();</pre>
 <p>
 </p>
-<div class="refsect3">
-<a name="id-1.2.2.11.4.5"></a><h4>Returns</h4>
-<p></p>
-</div>
 </div>
 <hr>
 <div class="refsect2">
@@ -372,7 +363,6 @@ atspi_text_get_character_count (<em class="parameter"><code><a class="link" href
 <a name="id-1.2.2.11.5.6"></a><h4>Returns</h4>
 <p> a <span class="type">gint</span> indicating the total number of
 characters in the <span class="type">AccessibleText</span> object.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -418,7 +408,6 @@ atspi_text_get_text (<em class="parameter"><code><a class="link" href="libatspi-
 <p> a text string containing characters from <em class="parameter"><code>start_offset</code></em>
 to <em class="parameter"><code>end_offset</code></em>
 -1, inclusive, encoded as UTF-8.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -446,7 +435,6 @@ atspi_text_get_caret_offset (<em class="parameter"><code><a class="link" href="l
 <div class="refsect3">
 <a name="id-1.2.2.11.7.6"></a><h4>Returns</h4>
 <p> a <span class="type">gint</span> indicating the current position of the text caret.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -465,8 +453,9 @@ atspi_text_get_attributes (<em class="parameter"><code><a class="link" href="lib
 <p>Gets the attributes applied to a range of text from an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a>
 object. The text attributes correspond to CSS attributes
 where possible.</p>
-<span style="color: red">&lt;em&gt;DEPRECATED&lt;/em&gt;</span><div class="refsect3">
-<a name="id-1.2.2.11.8.7"></a><h4>Parameters</h4>
+<span style="color: red">&lt;em&gt;DEPRECATED&lt;/em&gt;</span><p><span class="annotation">[<acronym title="Rename the original symbol's name to SYMBOL."><span class="acronym">rename-to</span></acronym> atspi_text_get_text_attributes]</span></p>
+<div class="refsect3">
+<a name="id-1.2.2.11.8.8"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -501,7 +490,7 @@ range. </p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.2.11.8.8"></a><h4>Returns</h4>
+<a name="id-1.2.2.11.8.9"></a><h4>Returns</h4>
 <p> a <span class="type">GHashTable</span>
 describing the attributes at the given character offset. </p>
 <p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gchar* gchar*][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
@@ -582,8 +571,9 @@ atspi_text_get_attribute_value (<em class="parameter"><code><a class="link" href
 <p>Use atspi_text_get_text_attribute_value instead.</p>
 </div>
 <p>Gets the value of a named attribute at a given offset.</p>
+<p><span class="annotation">[<acronym title="Rename the original symbol's name to SYMBOL."><span class="acronym">rename-to</span></acronym> atspi_text_get_text_attribute_value]</span></p>
 <div class="refsect3">
-<a name="id-1.2.2.11.10.6"></a><h4>Parameters</h4>
+<a name="id-1.2.2.11.10.7"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -610,7 +600,7 @@ atspi_text_get_attribute_value (<em class="parameter"><code><a class="link" href
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.2.11.10.7"></a><h4>Returns</h4>
+<a name="id-1.2.2.11.10.8"></a><h4>Returns</h4>
 <p> the value of a given attribute at the given
 offset, or <code class="literal">NULL</code> if not present. </p>
 <p><span class="annotation">[<acronym title="NULL may be passed as the value in, out, in-out; or as a return value."><span class="acronym">nullable</span></acronym>]</span></p>
@@ -683,7 +673,6 @@ atspi_text_set_caret_offset (<em class="parameter"><code><a class="link" href="l
 <div class="refsect3">
 <a name="id-1.2.2.11.12.6"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if successful, <span class="type">FALSE</span> otherwise.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -730,7 +719,6 @@ text string is a word, sentence, line, or attribute run.</p></td>
 <p> an <a class="link" href="libatspi-atspi-text.html#AtspiTextRange"><span class="type">AtspiTextRange</span></a> containing a UTF-8 string representing the
 delimited text, both of whose delimiting boundaries are before the
 current offset, or an empty string if no such text exists.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -781,7 +769,6 @@ text string is a word, sentence, line, or attribute run.</p></td>
 <p> an <a class="link" href="libatspi-atspi-text.html#AtspiTextRange"><span class="type">AtspiTextRange</span></a> containing a UTF-8 string representing the
 delimited text, whose delimiting boundaries bracket the
 current offset, or an empty string if no such text exists.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -829,7 +816,6 @@ text string is a word, sentence, line, or attribute run.</p></td>
 delimited text, both of whose delimiting boundaries are after or
 inclusive of the current offset, or an empty string if no such
 text exists.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -869,7 +855,6 @@ character is located.</p></td>
 UCS-4 unicode code point of the given character, or
 0xFFFFFFFF if the character in question cannot be represented
 in the UCS-4 encoding.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -914,7 +899,6 @@ for the returned values.</p></td>
 <div class="refsect3">
 <a name="id-1.2.2.11.17.6"></a><h4>Returns</h4>
 <p> An <a class="link" href="libatspi-atspi-component.html#AtspiRect"><span class="type">AtspiRect</span></a> specifying the position and size of the character.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -966,7 +950,6 @@ the values should be returned.</p></td>
 , <em class="parameter"><code>y</code></em>
 )
 in the specified coordinate system.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -1018,7 +1001,6 @@ for the returned values.</p></td>
 <a name="id-1.2.2.11.19.6"></a><h4>Returns</h4>
 <p> An <a class="link" href="libatspi-atspi-component.html#AtspiRect"><span class="type">AtspiRect</span></a> giving the position and size of the specified range
 of text.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -1132,7 +1114,6 @@ atspi_text_get_n_selections (<em class="parameter"><code><a class="link" href="l
 <p> a <span class="type">gint</span> indicating the current
 number of non-contiguous text selections active
 within an <a class="link" href="libatspi-atspi-text.html#AtspiText"><span class="type">AtspiText</span></a> object.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -1166,10 +1147,6 @@ atspi_text_get_selection (<em class="parameter"><code><a class="link" href="liba
 </tr>
 </tbody>
 </table></div>
-</div>
-<div class="refsect3">
-<a name="id-1.2.2.11.22.6"></a><h4>Returns</h4>
-<p></p>
 </div>
 </div>
 <hr>
@@ -1211,7 +1188,6 @@ atspi_text_add_selection (<em class="parameter"><code><a class="link" href="liba
 <div class="refsect3">
 <a name="id-1.2.2.11.23.6"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if successful, <span class="type">FALSE</span> otherwise.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -1247,7 +1223,6 @@ atspi_text_remove_selection (<em class="parameter"><code><a class="link" href="l
 <div class="refsect3">
 <a name="id-1.2.2.11.24.6"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if successful, <span class="type">FALSE</span> otherwise.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -1296,7 +1271,6 @@ after the selection.</p></td>
 <div class="refsect3">
 <a name="id-1.2.2.11.25.6"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if successful, <span class="type">FALSE</span> otherwise.</p>
-<p></p>
 </div>
 </div>
 </div>
@@ -1348,7 +1322,6 @@ after the selection.</p></td>
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.21.1</div>
+<hr>Generated by GTK-Doc V1.24.1</div>
 </body>
 </html>

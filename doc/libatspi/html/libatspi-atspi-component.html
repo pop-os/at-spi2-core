@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-atspi-hypertext.html" title="atspi-hypertext">
 <link rel="next" href="libatspi-atspi-registry.html" title="atspi-registry">
-<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.24.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -182,10 +182,10 @@
 </div>
 <div class="refsect1">
 <a name="libatspi-atspi-component.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    GBoxed
+<pre class="screen">    <a href="/opt/gnome/share/gtk-doc/html/gobject/gobject-Boxed-Types.html">GBoxed</a>
     <span class="lineart">├──</span> AtspiPoint
     <span class="lineart">╰──</span> AtspiRect
-    GInterface
+    <a href="/opt/gnome/share/gtk-doc/html/gobject/GTypeModule.html">GInterface</a>
     <span class="lineart">╰──</span> AtspiComponent
 </pre>
 </div>
@@ -223,10 +223,6 @@ AtspiComponent is implemented by
 atspi_rect_copy (<em class="parameter"><code><a class="link" href="libatspi-atspi-component.html#AtspiRect"><span class="type">AtspiRect</span></a> *src</code></em>);</pre>
 <p>
 </p>
-<div class="refsect3">
-<a name="id-1.2.22.11.3.5"></a><h4>Returns</h4>
-<p></p>
-</div>
 </div>
 <hr>
 <div class="refsect2">
@@ -242,10 +238,6 @@ atspi_rect_copy (<em class="parameter"><code><a class="link" href="libatspi-atsp
 atspi_point_get_type ();</pre>
 <p>
 </p>
-<div class="refsect3">
-<a name="id-1.2.22.11.5.5"></a><h4>Returns</h4>
-<p></p>
-</div>
 </div>
 <hr>
 <div class="refsect2">
@@ -254,10 +246,6 @@ atspi_point_get_type ();</pre>
 atspi_point_copy (<em class="parameter"><code><a class="link" href="libatspi-atspi-component.html#AtspiPoint"><span class="type">AtspiPoint</span></a> *src</code></em>);</pre>
 <p>
 </p>
-<div class="refsect3">
-<a name="id-1.2.22.11.6.5"></a><h4>Returns</h4>
-<p></p>
-</div>
 </div>
 <hr>
 <div class="refsect2">
@@ -266,10 +254,6 @@ atspi_point_copy (<em class="parameter"><code><a class="link" href="libatspi-ats
 atspi_component_get_type ();</pre>
 <p>
 </p>
-<div class="refsect3">
-<a name="id-1.2.22.11.7.5"></a><h4>Returns</h4>
-<p></p>
-</div>
 </div>
 <hr>
 <div class="refsect2">
@@ -322,7 +306,6 @@ atspi_component_contains (<em class="parameter"><code><a class="link" href="liba
 , <em class="parameter"><code>y</code></em>
 ),
 <span class="type">FALSE</span> otherwise.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -416,7 +399,6 @@ atspi_component_get_extents (<em class="parameter"><code><a class="link" href="l
 <div class="refsect3">
 <a name="id-1.2.22.11.10.6"></a><h4>Returns</h4>
 <p> An <a class="link" href="libatspi-atspi-component.html#AtspiRect"><span class="type">AtspiRect</span></a> giving the accessible's extents.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -454,7 +436,6 @@ atspi_component_get_position (<em class="parameter"><code><a class="link" href="
 <a name="id-1.2.22.11.11.6"></a><h4>Returns</h4>
 <p> An <a class="link" href="libatspi-atspi-component.html#AtspiPoint"><span class="type">AtspiPoint</span></a> giving the <em class="parameter"><code>obj</code></em>
 's position.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -483,7 +464,6 @@ atspi_component_get_size (<em class="parameter"><code><a class="link" href="liba
 <a name="id-1.2.22.11.12.6"></a><h4>Returns</h4>
 <p> An <a class="link" href="libatspi-atspi-component.html#AtspiPoint"><span class="type">AtspiPoint</span></a> giving the <em class="parameter"><code>obj</code></em>
 's size.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -512,7 +492,6 @@ atspi_component_get_layer (<em class="parameter"><code><a class="link" href="lib
 <div class="refsect3">
 <a name="id-1.2.22.11.13.6"></a><h4>Returns</h4>
 <p> the <a class="link" href="libatspi-atspi-constants.html#AtspiComponentLayer" title="enum AtspiComponentLayer"><span class="type">AtspiComponentLayer</span></a> into which this component is painted.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -542,7 +521,6 @@ atspi_component_get_mdi_z_order (<em class="parameter"><code><a class="link" hre
 <a name="id-1.2.22.11.14.6"></a><h4>Returns</h4>
 <p> a <span class="type">gshort</span> indicating the stacking order of the component
 in the MDI layer, or -1 if the component is not in the MDI layer.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -571,7 +549,6 @@ atspi_component_grab_focus (<em class="parameter"><code><a class="link" href="li
 <div class="refsect3">
 <a name="id-1.2.22.11.15.6"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if successful, <span class="type">FALSE</span> otherwise.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -599,7 +576,6 @@ atspi_component_get_alpha (<em class="parameter"><code><a class="link" href="lib
 <div class="refsect3">
 <a name="id-1.2.22.11.16.6"></a><h4>Returns</h4>
 <p> the opacity value of a component, as a <span class="type">gdouble</span> between 0.0 and 1.0. </p>
-<p></p>
 </div>
 </div>
 </div>
@@ -638,7 +614,6 @@ atspi_component_get_alpha (<em class="parameter"><code><a class="link" href="lib
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.21.1</div>
+<hr>Generated by GTK-Doc V1.24.1</div>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-atspi-selection.html" title="atspi-selection">
 <link rel="next" href="libatspi-atspi-hypertext.html" title="atspi-hypertext">
-<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.24.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -226,10 +226,6 @@ interface and content.
 atspi_event_listener_get_type (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
 <p>
 </p>
-<div class="refsect3">
-<a name="id-1.2.20.7.4.5"></a><h4>Returns</h4>
-<p></p>
-</div>
 </div>
 <hr>
 <div class="refsect2">
@@ -283,8 +279,9 @@ atspi_event_listener_new_simple (<em class="parameter"><code><a class="link" hre
                                  <em class="parameter"><code><span class="type">GDestroyNotify</span> callback_destroyed</code></em>);</pre>
 <p>Creates a new <a class="link" href="AtspiEventListener.html" title="atspi-event-listener"><span class="type">AtspiEventListener</span></a> associated with a specified <em class="parameter"><code>callback</code></em>
 .</p>
+<p><span class="annotation">[<acronym title="Exposed in C code, not necessarily available in other languages."><span class="acronym">skip</span></acronym>]</span></p>
 <div class="refsect3">
-<a name="id-1.2.20.7.6.5"></a><h4>Parameters</h4>
+<a name="id-1.2.20.7.6.6"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -308,7 +305,7 @@ and data associated with the callback should be freed.  Can be NULL.</p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.20.7.6.6"></a><h4>Returns</h4>
+<a name="id-1.2.20.7.6.7"></a><h4>Returns</h4>
 <p> A new <a class="link" href="AtspiEventListener.html" title="atspi-event-listener"><span class="type">AtspiEventListener</span></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -416,7 +413,6 @@ Examples: "focus:", "Gtk:GtkWidget:button_press_event".</p></td>
 <div class="refsect3">
 <a name="id-1.2.20.7.7.16"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if successful, otherwise <span class="type">FALSE</span>.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -469,7 +465,6 @@ for a description of the format.</p></td>
 <div class="refsect3">
 <a name="id-1.2.20.7.8.6"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if successfull, otherwise <span class="type">FALSE</span>.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -483,8 +478,9 @@ atspi_event_listener_register_no_data (<em class="parameter"><code><a class="lin
 <p>Registers an <span class="type">AtspiEventListenetSimpleCB</span>. The method is similar to 
 <a class="link" href="AtspiEventListener.html#atspi-event-listener-register" title="atspi_event_listener_register ()"><span class="type">atspi_event_listener_register</span></a>, but <em class="parameter"><code>callback</code></em>
  takes no user_data.</p>
+<p><span class="annotation">[<acronym title="Exposed in C code, not necessarily available in other languages."><span class="acronym">skip</span></acronym>]</span></p>
 <div class="refsect3">
-<a name="id-1.2.20.7.9.5"></a><h4>Parameters</h4>
+<a name="id-1.2.20.7.9.6"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -518,9 +514,8 @@ Examples: "focus:", "Gtk:GtkWidget:button_press_event".</p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.20.7.9.6"></a><h4>Returns</h4>
+<a name="id-1.2.20.7.9.7"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if successfull, otherwise <span class="type">FALSE</span>.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -558,7 +553,6 @@ listener is to be deregistered.</p></td>
 <div class="refsect3">
 <a name="id-1.2.20.7.10.6"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if successful, otherwise <span class="type">FALSE</span>.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -604,7 +598,6 @@ listener is to be deregistered.</p></td>
 <div class="refsect3">
 <a name="id-1.2.20.7.11.6"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if successful, otherwise <span class="type">FALSE</span>.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -617,8 +610,9 @@ atspi_event_listener_deregister_no_data
                                 <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>deregisters an <a class="link" href="AtspiEventListener.html#AtspiEventListenerSimpleCB" title="AtspiEventListenerSimpleCB ()"><span class="type">AtspiEventListenerSimpleCB</span></a> from the registry, for a specific
             event type.</p>
+<p><span class="annotation">[<acronym title="Exposed in C code, not necessarily available in other languages."><span class="acronym">skip</span></acronym>]</span></p>
 <div class="refsect3">
-<a name="id-1.2.20.7.12.5"></a><h4>Parameters</h4>
+<a name="id-1.2.20.7.12.6"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -642,9 +636,8 @@ listener is to be deregistered.</p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.20.7.12.6"></a><h4>Returns</h4>
+<a name="id-1.2.20.7.12.7"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if successful, otherwise <span class="type">FALSE</span>.</p>
-<p></p>
 </div>
 </div>
 </div>
@@ -669,7 +662,6 @@ listener is to be deregistered.</p></td>
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.21.1</div>
+<hr>Generated by GTK-Doc V1.24.1</div>
 </body>
 </html>
