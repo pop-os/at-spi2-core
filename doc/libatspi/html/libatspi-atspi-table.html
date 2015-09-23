@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-atspi-value.html" title="atspi-value">
 <link rel="next" href="libatspi-atspi-table-cell.html" title="atspi-table-cell">
-<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.24.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -267,7 +267,7 @@
 </div>
 <div class="refsect1">
 <a name="libatspi-atspi-table.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    GInterface
+<pre class="screen">    <a href="/opt/gnome/share/gtk-doc/html/gobject/GTypeModule.html">GInterface</a>
     <span class="lineart">╰──</span> AtspiTable
 </pre>
 </div>
@@ -377,7 +377,6 @@ atspi_table_get_n_rows (<em class="parameter"><code><a class="link" href="libats
 <div class="refsect3">
 <a name="id-1.2.17.9.4.6"></a><h4>Returns</h4>
 <p> a <span class="type">gint</span> indicating the number of rows in the table.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -407,7 +406,6 @@ atspi_table_get_n_columns (<em class="parameter"><code><a class="link" href="lib
 <div class="refsect3">
 <a name="id-1.2.17.9.5.6"></a><h4>Returns</h4>
 <p> a <span class="type">gint</span> indicating the number of columns in the table.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -499,7 +497,6 @@ coordinate, use <a class="link" href="libatspi-atspi-component.html#atspi-compon
 <a name="id-1.2.17.9.7.7"></a><h4>Returns</h4>
 <p> a <span class="type">gint</span> which serves as the index of a specified cell in the
 table, in a form usable by <span class="type">atspi_get_child_at_index</span>.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -540,7 +537,6 @@ child index.</p>
 <p> a <span class="type">gint</span> indicating the first row spanned by the child of a
 table, at the specified 1-D (zero-offset) <em class="parameter"><code>index</code></em>
 .</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -581,7 +577,6 @@ child index.</p>
 <p> a <span class="type">gint</span> indicating the first column spanned by the child of a
 table, at the specified 1-D (zero-offset) <em class="parameter"><code>index</code></em>
 .</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -618,7 +613,6 @@ atspi_table_get_row_description (<em class="parameter"><code><a class="link" hre
 <div class="refsect3">
 <a name="id-1.2.17.9.10.6"></a><h4>Returns</h4>
 <p> a UTF-8 string describing the specified table row, if available.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -655,7 +649,6 @@ atspi_table_get_column_description (<em class="parameter"><code><a class="link" 
 <div class="refsect3">
 <a name="id-1.2.17.9.11.6"></a><h4>Returns</h4>
 <p> a UTF-8 string describing the specified table column, if available.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -699,7 +692,6 @@ and/or columns).</p>
 <div class="refsect3">
 <a name="id-1.2.17.9.12.6"></a><h4>Returns</h4>
 <p> a <span class="type">gint</span> indicating the number of rows spanned by the specified cell.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -743,7 +735,6 @@ rows and/or columns).</p>
 <div class="refsect3">
 <a name="id-1.2.17.9.13.6"></a><h4>Returns</h4>
 <p> a <span class="type">gint</span> indicating the number of columns spanned by the specified cell.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -849,7 +840,6 @@ Not all tables support row selection.</p>
 <div class="refsect3">
 <a name="id-1.2.17.9.16.6"></a><h4>Returns</h4>
 <p> a <span class="type">gint</span> indicating the number of rows currently selected.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -937,7 +927,6 @@ Not all tables support column selection.</p>
 <div class="refsect3">
 <a name="id-1.2.17.9.19.6"></a><h4>Returns</h4>
 <p> a <span class="type">gint</span> indicating the number of columns currently selected.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -974,7 +963,6 @@ row selection.</p>
 <div class="refsect3">
 <a name="id-1.2.17.9.20.6"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if the specified row is currently selected, <span class="type">FALSE</span> if not.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -1011,7 +999,6 @@ Not all tables support column selection.</p>
 <div class="refsect3">
 <a name="id-1.2.17.9.21.6"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if the specified column is currently selected, <span class="type">FALSE</span> if not.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -1048,7 +1035,6 @@ Not all tables support row selection.</p>
 <div class="refsect3">
 <a name="id-1.2.17.9.22.6"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if the specified row was successfully selected, <span class="type">FALSE</span> if not.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -1085,7 +1071,6 @@ Not all tables support column selection.</p>
 <div class="refsect3">
 <a name="id-1.2.17.9.23.6"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if the specified column was successfully selected, <span class="type">FALSE</span> if not.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -1123,7 +1108,6 @@ Not all tables support row selection.</p>
 <a name="id-1.2.17.9.24.6"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if the specified row was successfully de-selected,
 <span class="type">FALSE</span> if not.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -1162,7 +1146,6 @@ Not all tables support column selection.</p>
 <a name="id-1.2.17.9.25.6"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if the specified column was successfully de-selected,
 <span class="type">FALSE</span> if not.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -1254,7 +1237,6 @@ if the child at index i corresponds to a selected table cell,
 cell, <span class="type">FALSE</span> if the index does not correspond to a cell.  If
 <span class="type">FALSE</span> is returned, the values of the out parameters are
 undefined.</p>
-<p></p>
 </div>
 </div>
 <hr>
@@ -1296,7 +1278,6 @@ atspi_table_is_selected (<em class="parameter"><code><a class="link" href="libat
 <div class="refsect3">
 <a name="id-1.2.17.9.27.6"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if the specified cell is currently selected, <span class="type">FALSE</span> if not.</p>
-<p></p>
 </div>
 </div>
 </div>
@@ -1311,7 +1292,6 @@ atspi_table_is_selected (<em class="parameter"><code><a class="link" href="libat
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.21.1</div>
+<hr>Generated by GTK-Doc V1.24.1</div>
 </body>
 </html>
