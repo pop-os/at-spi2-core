@@ -1,4 +1,4 @@
-at-spi2-core (2.18.0-1) UNRELEASED; urgency=medium
+at-spi2-core (2.18.0-1) unstable; urgency=medium
 
   [ Samuel Thibault ]
   * Enable accessibility in Qt4 and Qt5 applications when the kde desktop is
@@ -9,7 +9,7 @@ at-spi2-core (2.18.0-1) UNRELEASED; urgency=medium
   [ Luke Yelavich ]
   * New upstream release
 
- -- Samuel Thibault <sthibault@debian.org>  Sun, 13 Sep 2015 19:43:28 +0200
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 28 Sep 2015 23:32:55 +0200
 
 at-spi2-core (2.16.0-1) unstable; urgency=low
 
