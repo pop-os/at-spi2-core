@@ -3,6 +3,8 @@ at-spi2-core (2.18.0-1) UNRELEASED; urgency=medium
   [ Samuel Thibault ]
   * Enable accessibility in Qt4 and Qt5 applications when the kde desktop is
     configured to start the screen reader.
+  * rules: Disable PIE hardening to work around build issue with
+    gobject-introspection (see #797132).
 
   [ Luke Yelavich ]
   * New upstream release
