@@ -68,7 +68,7 @@ Depends: ${misc:Depends},
          gir1.2-atspi-2.0 (= ${binary:Version}),
          libatspi2.0-0 (= ${binary:Version}),
          libglib2.0-dev (>= 2.4.1-2),
-         libdbus-1-dev, libdbus-glib-1-dev, dbus,
+         libdbus-1-dev, libdbus-glib-1-dev,
          libglib2.0-dev,
          libxtst-dev
 Replaces: gir-repository-dev
