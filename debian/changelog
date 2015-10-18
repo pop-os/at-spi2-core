@@ -1,8 +1,12 @@
-at-spi2-core (2.18.0-2) UNRELEASED; urgency=medium
+at-spi2-core (2.18.1-1) UNRELEASED; urgency=medium
 
+  [ Luke Yelavich ]
+  * New upstream release
+
+  [ Samuel Thibault ]
   * control: Drop libatspi2.0-dev dbus dependency (Closes: #801369)
 
- -- Samuel Thibault <sthibault@debian.org>  Fri, 09 Oct 2015 10:53:37 +0200
+ -- Luke Yelavich <themuso@ubuntu.com>  Tue, 13 Oct 2015 08:30:10 +1100
 
 at-spi2-core (2.18.0-1) unstable; urgency=medium
 
