@@ -1,3 +1,9 @@
+at-spi2-core (2.18.3-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+
+ -- Luke Yelavich <themuso@ubuntu.com>  Wed, 11 Nov 2015 08:53:33 +1100
+
 at-spi2-core (2.18.2-1) unstable; urgency=medium
 
   [ Luke Yelavich ]
