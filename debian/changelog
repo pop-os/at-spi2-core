@@ -1,9 +1,13 @@
-at-spi2-core (2.18.2-1) UNRELEASED; urgency=medium
+at-spi2-core (2.18.2-1) unstable; urgency=medium
 
+  [ Luke Yelavich ]
   * New upstream release
   * Dropped patch, applied upstream
 
- -- Luke Yelavich <themuso@ubuntu.com>  Mon, 09 Nov 2015 17:28:47 +1100
+  [ Samuel Thibault ]
+  * patches/set_by_name_crash: New patch, fixes crash (Closes: #804720).
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 10 Nov 2015 22:23:41 +0100
 
 at-spi2-core (2.18.1-2) unstable; urgency=high
 
