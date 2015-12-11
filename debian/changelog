@@ -1,8 +1,8 @@
-at-spi2-core (2.18.3-2) UNRELEASED; urgency=medium
+at-spi2-core (2.18.3-2) unstable; urgency=medium
 
   * 90qt-a11y: Always enable accessibility.
 
- -- Samuel Thibault <sthibault@debian.org>  Fri, 11 Dec 2015 23:04:57 +0100
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 11 Dec 2015 23:06:10 +0100
 
 at-spi2-core (2.18.3-1) unstable; urgency=medium
 
