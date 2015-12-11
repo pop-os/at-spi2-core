@@ -1,32 +1,9 @@
 # -*- sh -*-
-# Xsession.d script to set the QT_ACCESSIBILITY env variable when accessibility
-# is enabled.
+# Xsession.d script to set the env variables to enable accessibility for Qt
 #
 # This file is sourced by Xsession(5), not executed.
 
-# gnome desktop
-if [ -x "/usr/bin/gsettings" ]; then
-	a11y_enabled=$(gsettings get org.gnome.desktop.interface toolkit-accessibility)
-	if [ "$a11y_enabled" = "true" ]; then
-		export QT_ACCESSIBILITY=1
-		export QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1
-	fi
-fi
+QT_ACCESSIBILITY=1
+QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1
 
-# KDE4 desktop
-if [ -x "/usr/bin/qdbus" ]; then
-	a11y_enabled=$(qdbus org.kde.kaccessibleapp /Adaptor speechEnabled)
-	if [ "$a11y_enabled" = "true" ]; then
-		export QT_ACCESSIBILITY=1
-		export QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1
-	fi
-fi
-
-# KDE5 desktop
-if [ -x "/usr/bin/kreadconfig5" ]; then
-	a11y_enabled=$(kreadconfig5 --file kaccessrc --group ScreenReader --key Enabled)
-	if [ "$a11y_enabled" = "true" ]; then
-		export QT_ACCESSIBILITY=1
-		export QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1
-	fi
-fi
+export QT_ACCESSIBILITY QT_LINUX_ACCESSIBILITY_ALWAYS_ON
