@@ -1,6 +1,5 @@
 #!/usr/bin/make -f
 
-DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 export DEB_BUILD_MAINT_OPTIONS=hardening=+all,-pie
 
 %:
@@ -8,8 +7,7 @@ export DEB_BUILD_MAINT_OPTIONS=hardening=+all,-pie
 
 override_dh_auto_configure:
 	ac_cv_lib_ICE_IceConnectionNumber=no \
-	dh_auto_configure -- --libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH) \
-			--libexecdir=\$${prefix}/lib/at-spi2-core \
+	dh_auto_configure -- --libexecdir=\$${prefix}/lib/at-spi2-core \
 			--enable-introspection \
 			--enable-gtk-doc
 
