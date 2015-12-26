@@ -1,4 +1,4 @@
-at-spi2-core (2.18.3-3) UNRELEASED; urgency=medium
+at-spi2-core (2.18.3-3) unstable; urgency=medium
 
   * patches/at-spi-by-default: New patch to start a11y bus by default, ready
     for use in all desktops (Closes: #786674).
@@ -6,7 +6,7 @@ at-spi2-core (2.18.3-3) UNRELEASED; urgency=medium
     ssh connection: a11y forwarding is not implemented yet (Closes: #728385).
   * rules: Clear.
 
- -- Samuel Thibault <sthibault@debian.org>  Wed, 23 Dec 2015 01:41:22 +0100
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 26 Dec 2015 17:37:41 +0100
 
 at-spi2-core (2.18.3-2) unstable; urgency=medium
 
