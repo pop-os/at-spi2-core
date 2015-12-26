@@ -1,0 +1,10 @@
+--- a/atspi/atspi-misc.c
++++ b/atspi/atspi-misc.c
+@@ -1588,6 +1588,7 @@ atspi_get_a11y_bus (void)
+ 
+   if (!a11y_bus)
+     {
++      if (!g_getenv("SSH_CONNECTION"))
+       g_warning ("Couldn't connect to accessibility bus: %s", error.message);
+       dbus_error_free (&error);
+       return NULL;
