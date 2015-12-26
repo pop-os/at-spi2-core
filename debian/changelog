@@ -1,7 +1,7 @@
 at-spi2-core (2.18.3-3) UNRELEASED; urgency=medium
 
   * patches/at-spi-by-default: New patch to start a11y bus by default, ready
-    for use (Closes: #786674).
+    for use in all desktops (Closes: #786674).
   * rules: Clear.
 
  -- Samuel Thibault <sthibault@debian.org>  Wed, 23 Dec 2015 01:41:22 +0100
