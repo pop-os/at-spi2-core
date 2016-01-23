@@ -24,7 +24,7 @@ override_dh_makeshlibs:
 	dh_girepository -pgir1.2-atspi-2.0
 
 override_dh_strip:
-	dh_strip -plibatspi2.0-0 --dbg-package=libatspi2.0-0-dbg
+	dh_strip -plibatspi2.0-0 --ddeb-migration='libatspi2.0-0-dbg (<< 2.18.3-4~)"
 	dh_strip -plibatspi0-udeb
-	dh_strip -pat-spi2-core --dbg-package=at-spi2-core-dbg
+	dh_strip -pat-spi2-core --ddeb-migration='at-spi2-core-dbg (<< 2.18.3-4~)"
 	dh_strip -pat-spi2-core-udeb
