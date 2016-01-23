@@ -8,7 +8,7 @@ Vcs-Git: git://git.debian.org/git/pkg-a11y/at-spi2-core.git
 Homepage: https://wiki.gnome.org/Accessibility
 Build-Depends: debhelper (>= 9.20150628),
                dh-autoreconf,
-               dbus,
+               dbus, libdbus-1-dev,
                libglib2.0-dev,
                libxtst-dev,
                libgirepository1.0-dev,
