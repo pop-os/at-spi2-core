@@ -1,1 +1,2 @@
 usr/share/gtk-doc
+xml/*.xml /usr/share/doc/at-spi2-doc/xml

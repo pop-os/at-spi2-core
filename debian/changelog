@@ -1,3 +1,9 @@
+at-spi2-core (2.18.3-5) UNRELEASED; urgency=medium
+
+  * Add formal xml files to the documentation.
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 10 Mar 2016 16:33:39 +0100
+
 at-spi2-core (2.18.3-4) unstable; urgency=medium
 
   * control: Replace libdbus-glib-1-dev dependencies with libdbus-1-dev.
