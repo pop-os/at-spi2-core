@@ -10,7 +10,8 @@ at-spi2-core (2.20.1-1) UNRELEASED; urgency=medium
 
 at-spi2-core (2.18.3-4) unstable; urgency=medium
 
-  * control: Replace libdbus-glib-1-dev dependencies with libdbus-1-dev.
+  * control: Replace libdbus-glib-1-dev dependencies with libdbus-1-dev
+    (Closes: #811009).
   * rules: Set ddeb-migration.
   * control: Depend on debhelper 9.20150628 for ddeb-migration.
   * control: Bump Standards-Version to 3.9.7 (no change).
