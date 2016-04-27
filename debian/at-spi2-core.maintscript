@@ -1,0 +1,1 @@
+rm_conffile /etc/at-spi2/accessibility.conf 2.20.1~
