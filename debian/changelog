@@ -1,6 +1,10 @@
-at-spi2-core (2.18.3-5) UNRELEASED; urgency=medium
+at-spi2-core (2.20.1-1) UNRELEASED; urgency=medium
 
+  [ Samuel Thibault ]
   * Add formal xml files to the documentation.
+
+  [ Luke Yelavich ]
+  * New upstream release
 
  -- Samuel Thibault <sthibault@debian.org>  Thu, 10 Mar 2016 16:33:39 +0100
 
