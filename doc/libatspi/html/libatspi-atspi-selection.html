@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-atspi-table-cell.html" title="atspi-table-cell">
 <link rel="next" href="AtspiEventListener.html" title="atspi-event-listener">
-<meta name="generator" content="GTK-Doc V1.24.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -155,7 +155,7 @@ atspi_selection_get_n_selected_children
 <p>Gets the number of children of an <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> implementor which are
        currently selected.</p>
 <div class="refsect3">
-<a name="id-1.2.19.9.2.5"></a><h4>Parameters</h4>
+<a name="atspi-selection-get-n-selected-children.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -170,7 +170,7 @@ atspi_selection_get_n_selected_children
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.19.9.2.6"></a><h4>Returns</h4>
+<a name="atspi-selection-get-n-selected-children.returns"></a><h4>Returns</h4>
 <p> a <span class="type">gint</span> indicating the number of <span class="type">Accessible</span> children
 of the <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> implementor which are currently selected.</p>
 </div>
@@ -193,7 +193,7 @@ atspi_selection_get_selected_child (<em class="parameter"><code><a class="link" 
  must lie between 0
      and <a class="link" href="libatspi-atspi-selection.html#atspi-selection-get-n-selected-children" title="atspi_selection_get_n_selected_children ()"><span class="type">atspi_selection_get_n_selected_children</span></a> - 1, inclusive.</p>
 <div class="refsect3">
-<a name="id-1.2.19.9.3.5"></a><h4>Parameters</h4>
+<a name="atspi-selection-get-selected-child.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -216,7 +216,7 @@ children is specified.</p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.19.9.3.6"></a><h4>Returns</h4>
+<a name="atspi-selection-get-selected-child.returns"></a><h4>Returns</h4>
 <p> a pointer to a selected <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> child
 object, specified by <em class="parameter"><code>selected_child_index</code></em>
 . </p>
@@ -235,7 +235,7 @@ atspi_selection_select_child (<em class="parameter"><code><a class="link" href="
         single selections, this may replace the (single) current
         selection.</p>
 <div class="refsect3">
-<a name="id-1.2.19.9.4.5"></a><h4>Parameters</h4>
+<a name="atspi-selection-select-child.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -258,7 +258,7 @@ is to be selected.</p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.19.9.4.6"></a><h4>Returns</h4>
+<a name="atspi-selection-select-child.returns"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if the child was successfully selected, <span class="type">FALSE</span> otherwise.</p>
 </div>
 </div>
@@ -279,7 +279,7 @@ atspi_selection_deselect_selected_child
  in <a class="link" href="libatspi-atspi-selection.html#atspi-selection-select-child" title="atspi_selection_select_child ()"><span class="type">atspi_selection_select_child</span></a>
          are asymmetric.</p>
 <div class="refsect3">
-<a name="id-1.2.19.9.5.5"></a><h4>Parameters</h4>
+<a name="atspi-selection-deselect-selected-child.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -302,7 +302,7 @@ of the <span class="type">Accessible</span> is to be selected.</p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.19.9.5.6"></a><h4>Returns</h4>
+<a name="atspi-selection-deselect-selected-child.returns"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if the child was successfully deselected, <span class="type">FALSE</span> otherwise.</p>
 </div>
 </div>
@@ -319,7 +319,7 @@ atspi_selection_deselect_child (<em class="parameter"><code><a class="link" href
          in the parent container.</p>
 <p>See <a class="link" href="libatspi-atspi-selection.html#atspi-selection-deselect-selected-child" title="atspi_selection_deselect_selected_child ()"><span class="type">atspi_selection_deselect_selected_child</span></a></p>
 <div class="refsect3">
-<a name="id-1.2.19.9.6.6"></a><h4>Parameters</h4>
+<a name="atspi-selection-deselect-child.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -342,7 +342,7 @@ of the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.19.9.6.7"></a><h4>Returns</h4>
+<a name="atspi-selection-deselect-child.returns"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if the child was successfully deselected, <span class="type">FALSE</span> otherwise.</p>
 </div>
 </div>
@@ -358,7 +358,7 @@ atspi_selection_is_child_selected (<em class="parameter"><code><a class="link" h
  is the index into the
        standard <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> container's list of children.</p>
 <div class="refsect3">
-<a name="id-1.2.19.9.7.5"></a><h4>Parameters</h4>
+<a name="atspi-selection-is-child-selected.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -380,7 +380,7 @@ atspi_selection_is_child_selected (<em class="parameter"><code><a class="link" h
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.19.9.7.6"></a><h4>Returns</h4>
+<a name="atspi-selection-is-child-selected.returns"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if the specified child is currently selected,
 <span class="type">FALSE</span> otherwise.</p>
 </div>
@@ -394,7 +394,7 @@ atspi_selection_select_all (<em class="parameter"><code><a class="link" href="li
 <p>Attempts to select all of the children of an <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> implementor.
 Not all <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> implementors support this operation.</p>
 <div class="refsect3">
-<a name="id-1.2.19.9.8.5"></a><h4>Parameters</h4>
+<a name="atspi-selection-select-all.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -409,7 +409,7 @@ Not all <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><spa
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.19.9.8.6"></a><h4>Returns</h4>
+<a name="atspi-selection-select-all.returns"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if successful, <span class="type">FALSE</span> otherwise.</p>
 </div>
 </div>
@@ -422,7 +422,7 @@ atspi_selection_clear_selection (<em class="parameter"><code><a class="link" hre
 <p>Clears the current selection, removing all selected children from the
       specified <a class="link" href="libatspi-atspi-selection.html#AtspiSelection"><span class="type">AtspiSelection</span></a> implementor's selection list.</p>
 <div class="refsect3">
-<a name="id-1.2.19.9.9.5"></a><h4>Parameters</h4>
+<a name="atspi-selection-clear-selection.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -437,7 +437,7 @@ atspi_selection_clear_selection (<em class="parameter"><code><a class="link" hre
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.19.9.9.6"></a><h4>Returns</h4>
+<a name="atspi-selection-clear-selection.returns"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if successful, <span class="type">FALSE</span> otherwise.</p>
 </div>
 </div>
@@ -453,6 +453,6 @@ atspi_selection_clear_selection (<em class="parameter"><code><a class="link" hre
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.24.1</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

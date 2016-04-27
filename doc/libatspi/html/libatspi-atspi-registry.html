@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-atspi-component.html" title="atspi-component">
 <link rel="next" href="libatspi-atspi-types.html" title="atspi-types">
-<meta name="generator" content="GTK-Doc V1.24.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -150,7 +150,7 @@ atspi_get_desktop_count ();</pre>
 NOTE: multiple virtual desktops are not implemented yet; as a 
 consequence, this function always returns 1.</p>
 <div class="refsect3">
-<a name="id-1.2.23.5.3.5"></a><h4>Returns</h4>
+<a name="atspi-get-desktop-count.returns"></a><h4>Returns</h4>
 <p> a <span class="type">gint</span> indicating the number of active virtual desktops.</p>
 </div>
 </div>
@@ -166,7 +166,7 @@ as a consequence, any <em class="parameter"><code>i</code></em>
  value different from 0 will not return a
 virtual desktop - instead it will return NULL.</p>
 <div class="refsect3">
-<a name="id-1.2.23.5.4.5"></a><h4>Parameters</h4>
+<a name="atspi-get-desktop.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -181,7 +181,7 @@ virtual desktop - instead it will return NULL.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.23.5.4.6"></a><h4>Returns</h4>
+<a name="atspi-get-desktop.returns"></a><h4>Returns</h4>
 <p> a pointer to the <em class="parameter"><code>i</code></em>
 -th virtual desktop's
 <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> representation. </p>
@@ -203,7 +203,7 @@ NOTE: currently multiple virtual desktops are not implemented;
 this implementation always returns a <span class="type">Garray</span> with a single
 <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> desktop.</p>
 <div class="refsect3">
-<a name="id-1.2.23.5.5.5"></a><h4>Returns</h4>
+<a name="atspi-get-desktop-list.returns"></a><h4>Returns</h4>
 <p> a <span class="type">GArray</span> of
 desktops. </p>
 <p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> AtspiAccessible*][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
@@ -228,7 +228,7 @@ atspi_register_keystroke_listener (<em class="parameter"><code><a class="link" h
 's callbacks returns <code class="literal">TRUE</code> 
             (other sync_type values may be available in the future).</p>
 <div class="refsect3">
-<a name="id-1.2.23.5.6.5"></a><h4>Parameters</h4>
+<a name="atspi-register-keystroke-listener.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -285,7 +285,7 @@ the behavior of the notification/listener transaction.</p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.23.5.6.6"></a><h4>Returns</h4>
+<a name="atspi-register-keystroke-listener.returns"></a><h4>Returns</h4>
 <p> <code class="literal">TRUE</code> if successful, otherwise <code class="literal">FALSE</code>.</p>
 </div>
 </div>
@@ -302,7 +302,7 @@ atspi_deregister_keystroke_listener (<em class="parameter"><code><a class="link"
            ceasing notification of events with modifiers matching <em class="parameter"><code>modmask</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.2.23.5.7.5"></a><h4>Parameters</h4>
+<a name="atspi-deregister-keystroke-listener.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -346,7 +346,7 @@ types of key events were requested (<a class="link" href="libatspi-atspi-constan
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.23.5.7.6"></a><h4>Returns</h4>
+<a name="atspi-deregister-keystroke-listener.returns"></a><h4>Returns</h4>
 <p> <code class="literal">TRUE</code> if successful, otherwise <code class="literal">FALSE</code>.</p>
 </div>
 </div>
@@ -360,7 +360,7 @@ atspi_register_device_event_listener (<em class="parameter"><code><a class="link
                                       <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Registers a listener for device events, for instance button events.</p>
 <div class="refsect3">
-<a name="id-1.2.23.5.8.5"></a><h4>Parameters</h4>
+<a name="atspi-register-device-event-listener.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -394,7 +394,7 @@ types of key events are requested (<a class="link" href="libatspi-atspi-constant
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.23.5.8.6"></a><h4>Returns</h4>
+<a name="atspi-register-device-event-listener.returns"></a><h4>Returns</h4>
 <p> <code class="literal">TRUE</code> if successful, otherwise <code class="literal">FALSE</code>.</p>
 </div>
 </div>
@@ -409,7 +409,7 @@ atspi_deregister_device_event_listener
 <p>Removes a device event listener from the registry's listener queue,
            ceasing notification of events of the specified type.</p>
 <div class="refsect3">
-<a name="id-1.2.23.5.9.5"></a><h4>Parameters</h4>
+<a name="atspi-deregister-device-event-listener.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -437,7 +437,7 @@ device events are requested.</p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.23.5.9.6"></a><h4>Returns</h4>
+<a name="atspi-deregister-device-event-listener.returns"></a><h4>Returns</h4>
 <p> <code class="literal">TRUE</code> if successful, otherwise <code class="literal">FALSE</code>.</p>
 </div>
 </div>
@@ -452,7 +452,7 @@ atspi_generate_keyboard_event (<em class="parameter"><code><span class="type">gl
 <p>Synthesizes a keyboard event (as if a hardware keyboard event occurred in the
 current UI context).</p>
 <div class="refsect3">
-<a name="id-1.2.23.5.10.5"></a><h4>Parameters</h4>
+<a name="atspi-generate-keyboard-event.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -495,7 +495,7 @@ whether to synthesize <a class="link" href="libatspi-atspi-constants.html#ATSPI-
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.23.5.10.6"></a><h4>Returns</h4>
+<a name="atspi-generate-keyboard-event.returns"></a><h4>Returns</h4>
 <p> <code class="literal">TRUE</code> if successful, otherwise <code class="literal">FALSE</code>.</p>
 </div>
 </div>
@@ -514,7 +514,7 @@ Event names: b1p = button 1 press; b2r = button 2 release;
              b3c = button 3 click; b2d = button 2 double-click;
              abs = absolute motion; rel = relative motion.</p>
 <div class="refsect3">
-<a name="id-1.2.23.5.11.5"></a><h4>Parameters</h4>
+<a name="atspi-generate-mouse-event.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -547,7 +547,7 @@ Event names: b1p = button 1 press; b2r = button 2 release;
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.23.5.11.6"></a><h4>Returns</h4>
+<a name="atspi-generate-mouse-event.returns"></a><h4>Returns</h4>
 <p> <code class="literal">TRUE</code> if successful, otherwise <code class="literal">FALSE</code>.</p>
 </div>
 </div>
@@ -557,6 +557,6 @@ Event names: b1p = button 1 press; b2r = button 2 release;
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.24.1</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

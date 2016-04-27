@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-atspi-collection.html" title="atspi-collection">
 <link rel="next" href="AtspiRelation.html" title="atspi-relation">
-<meta name="generator" content="GTK-Doc V1.24.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -123,7 +123,7 @@ atspi_action_get_n_actions (<em class="parameter"><code><a class="link" href="li
                             <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Get the number of actions invokable on an <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a> implementor.</p>
 <div class="refsect3">
-<a name="id-1.2.6.9.2.5"></a><h4>Parameters</h4>
+<a name="atspi-action-get-n-actions.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -138,7 +138,7 @@ atspi_action_get_n_actions (<em class="parameter"><code><a class="link" href="li
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.6.9.2.6"></a><h4>Returns</h4>
+<a name="atspi-action-get-n-actions.returns"></a><h4>Returns</h4>
 <p> an integer indicating the number of invocable actions.</p>
 </div>
 </div>
@@ -158,7 +158,7 @@ atspi_action_get_description (<em class="parameter"><code><a class="link" href="
      object implementing <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a>.</p>
 <p><span class="annotation">[<acronym title="Rename the original symbol's name to SYMBOL."><span class="acronym">rename-to</span></acronym> atspi_action_get_action_description]</span></p>
 <div class="refsect3">
-<a name="id-1.2.6.9.3.7"></a><h4>Parameters</h4>
+<a name="atspi-action-get-description.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -180,7 +180,7 @@ atspi_action_get_description (<em class="parameter"><code><a class="link" href="
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.6.9.3.8"></a><h4>Returns</h4>
+<a name="atspi-action-get-description.returns"></a><h4>Returns</h4>
 <p> a UTF-8 string describing the '<em class="parameter"><code>i</code></em>
 -th' invocable action.</p>
 </div>
@@ -215,7 +215,7 @@ atspi_action_get_key_binding (<em class="parameter"><code><a class="link" href="
        etc. (we use the same string as <code class="function">gtk_accelerator_name()</code> in 
        gtk+-2.X.</p>
 <div class="refsect3">
-<a name="id-1.2.6.9.4.5"></a><h4>Parameters</h4>
+<a name="atspi-action-get-key-binding.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -237,7 +237,7 @@ atspi_action_get_key_binding (<em class="parameter"><code><a class="link" href="
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.6.9.4.6"></a><h4>Returns</h4>
+<a name="atspi-action-get-key-binding.returns"></a><h4>Returns</h4>
 <p> a UTF-8 string which can be parsed to determine the <em class="parameter"><code>i</code></em>
 -th
 invocable action's keybindings.</p>
@@ -259,7 +259,7 @@ atspi_action_get_name (<em class="parameter"><code><a class="link" href="libatsp
      object implementing <a class="link" href="libatspi-atspi-action.html#AtspiAction"><span class="type">AtspiAction</span></a>.</p>
 <p><span class="annotation">[<acronym title="Rename the original symbol's name to SYMBOL."><span class="acronym">rename-to</span></acronym> atspi_action_get_action_name]</span></p>
 <div class="refsect3">
-<a name="id-1.2.6.9.5.7"></a><h4>Parameters</h4>
+<a name="atspi-action-get-name.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -281,7 +281,7 @@ atspi_action_get_name (<em class="parameter"><code><a class="link" href="libatsp
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.6.9.5.8"></a><h4>Returns</h4>
+<a name="atspi-action-get-name.returns"></a><h4>Returns</h4>
 <p> the non-localized name of the action, as a UTF-8 string.</p>
 </div>
 </div>
@@ -294,7 +294,7 @@ atspi_action_do_action (<em class="parameter"><code><a class="link" href="libats
                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Invoke the action indicated by <a class="link" href="index.html" title="libatspi Reference Manual"><span class="type">index</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.6.9.6.5"></a><h4>Parameters</h4>
+<a name="atspi-action-do-action.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -316,7 +316,7 @@ atspi_action_do_action (<em class="parameter"><code><a class="link" href="libats
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.6.9.6.6"></a><h4>Returns</h4>
+<a name="atspi-action-do-action.returns"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if the action is successfully invoked, otherwise <span class="type">FALSE</span>.</p>
 </div>
 </div>
@@ -332,6 +332,6 @@ atspi_action_do_action (<em class="parameter"><code><a class="link" href="libats
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.24.1</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

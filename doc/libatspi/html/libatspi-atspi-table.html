@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-atspi-value.html" title="atspi-value">
 <link rel="next" href="libatspi-atspi-table-cell.html" title="atspi-table-cell">
-<meta name="generator" content="GTK-Doc V1.24.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -300,7 +300,7 @@ atspi_table_get_caption (<em class="parameter"><code><a class="link" href="libat
                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Gets an accessible representation of the caption for an <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.2.5"></a><h4>Parameters</h4>
+<a name="atspi-table-get-caption.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -315,7 +315,7 @@ atspi_table_get_caption (<em class="parameter"><code><a class="link" href="libat
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.2.6"></a><h4>Returns</h4>
+<a name="atspi-table-get-caption.returns"></a><h4>Returns</h4>
 <p> an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object that serves as
 the table's caption. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
@@ -329,7 +329,7 @@ atspi_table_get_summary (<em class="parameter"><code><a class="link" href="libat
                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Gets an accessible object which summarizes the contents of an <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.3.5"></a><h4>Parameters</h4>
+<a name="atspi-table-get-summary.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -344,7 +344,7 @@ atspi_table_get_summary (<em class="parameter"><code><a class="link" href="libat
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.3.6"></a><h4>Returns</h4>
+<a name="atspi-table-get-summary.returns"></a><h4>Returns</h4>
 <p> an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object that serves as the
 table's summary (often a reduced <a class="link" href="libatspi-atspi-table.html#AtspiTable"><span class="type">AtspiTable</span></a>). </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
@@ -360,7 +360,7 @@ atspi_table_get_n_rows (<em class="parameter"><code><a class="link" href="libats
        exclusive of any rows that are programmatically hidden, but inclusive
        of rows that may be outside of the current scrolling window or viewport.</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.4.5"></a><h4>Parameters</h4>
+<a name="atspi-table-get-n-rows.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -375,7 +375,7 @@ atspi_table_get_n_rows (<em class="parameter"><code><a class="link" href="libats
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.4.6"></a><h4>Returns</h4>
+<a name="atspi-table-get-n-rows.returns"></a><h4>Returns</h4>
 <p> a <span class="type">gint</span> indicating the number of rows in the table.</p>
 </div>
 </div>
@@ -389,7 +389,7 @@ atspi_table_get_n_columns (<em class="parameter"><code><a class="link" href="lib
        exclusive of any columns that are programmatically hidden, but inclusive
        of columns that may be outside of the current scrolling window or viewport.</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.5.5"></a><h4>Parameters</h4>
+<a name="atspi-table-get-n-columns.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -404,7 +404,7 @@ atspi_table_get_n_columns (<em class="parameter"><code><a class="link" href="lib
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.5.6"></a><h4>Returns</h4>
+<a name="atspi-table-get-n-columns.returns"></a><h4>Returns</h4>
 <p> a <span class="type">gint</span> indicating the number of columns in the table.</p>
 </div>
 </div>
@@ -420,7 +420,7 @@ atspi_table_get_accessible_at (<em class="parameter"><code><a class="link" href=
 To get the accessible object at a particular (x, y) screen 
 coordinate, use <a class="link" href="libatspi-atspi-component.html#atspi-component-get-accessible-at-point" title="atspi_component_get_accessible_at_point ()"><span class="type">atspi_component_get_accessible_at_point</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.6.5"></a><h4>Parameters</h4>
+<a name="atspi-table-get-accessible-at.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -447,7 +447,7 @@ coordinate, use <a class="link" href="libatspi-atspi-component.html#atspi-compon
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.6.6"></a><h4>Returns</h4>
+<a name="atspi-table-get-accessible-at.returns"></a><h4>Returns</h4>
 <p> an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object representing the
 specified table cell. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
@@ -467,7 +467,7 @@ coordinate, use <a class="link" href="libatspi-atspi-component.html#atspi-compon
 <p><em class="parameter"><code>see</code></em>
  <a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-at-index" title="atspi_table_get_row_at_index ()"><span class="type">atspi_table_get_row_at_index</span></a>, <a class="link" href="libatspi-atspi-table.html#atspi-table-get-column-at-index" title="atspi_table_get_column_at_index ()"><span class="type">atspi_table_get_column_at_index</span></a></p>
 <div class="refsect3">
-<a name="id-1.2.17.9.7.6"></a><h4>Parameters</h4>
+<a name="atspi-table-get-index-at.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -494,7 +494,7 @@ coordinate, use <a class="link" href="libatspi-atspi-component.html#atspi-compon
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.7.7"></a><h4>Returns</h4>
+<a name="atspi-table-get-index-at.returns"></a><h4>Returns</h4>
 <p> a <span class="type">gint</span> which serves as the index of a specified cell in the
 table, in a form usable by <span class="type">atspi_get_child_at_index</span>.</p>
 </div>
@@ -511,7 +511,7 @@ child index.</p>
 <p><em class="parameter"><code>see</code></em>
  <a class="link" href="libatspi-atspi-table.html#atspi-table-get-index-at" title="atspi_table_get_index_at ()"><span class="type">atspi_table_get_index_at</span></a>, <a class="link" href="libatspi-atspi-table.html#atspi-table-get-column-at-index" title="atspi_table_get_column_at_index ()"><span class="type">atspi_table_get_column_at_index</span></a></p>
 <div class="refsect3">
-<a name="id-1.2.17.9.8.6"></a><h4>Parameters</h4>
+<a name="atspi-table-get-row-at-index.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -533,7 +533,7 @@ child index.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.8.7"></a><h4>Returns</h4>
+<a name="atspi-table-get-row-at-index.returns"></a><h4>Returns</h4>
 <p> a <span class="type">gint</span> indicating the first row spanned by the child of a
 table, at the specified 1-D (zero-offset) <em class="parameter"><code>index</code></em>
 .</p>
@@ -551,7 +551,7 @@ child index.</p>
 <p><em class="parameter"><code>see</code></em>
  <a class="link" href="libatspi-atspi-table.html#atspi-table-get-index-at" title="atspi_table_get_index_at ()"><span class="type">atspi_table_get_index_at</span></a>, <a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-at-index" title="atspi_table_get_row_at_index ()"><span class="type">atspi_table_get_row_at_index</span></a></p>
 <div class="refsect3">
-<a name="id-1.2.17.9.9.6"></a><h4>Parameters</h4>
+<a name="atspi-table-get-column-at-index.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -573,7 +573,7 @@ child index.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.9.7"></a><h4>Returns</h4>
+<a name="atspi-table-get-column-at-index.returns"></a><h4>Returns</h4>
 <p> a <span class="type">gint</span> indicating the first column spanned by the child of a
 table, at the specified 1-D (zero-offset) <em class="parameter"><code>index</code></em>
 .</p>
@@ -589,7 +589,7 @@ atspi_table_get_row_description (<em class="parameter"><code><a class="link" hre
 <p>Gets a text description of a particular table row.  This differs from
 <a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-header" title="atspi_table_get_row_header ()"><span class="type">atspi_table_get_row_header</span></a>, which returns an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a>.</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.10.5"></a><h4>Parameters</h4>
+<a name="atspi-table-get-row-description.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -611,7 +611,7 @@ atspi_table_get_row_description (<em class="parameter"><code><a class="link" hre
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.10.6"></a><h4>Returns</h4>
+<a name="atspi-table-get-row-description.returns"></a><h4>Returns</h4>
 <p> a UTF-8 string describing the specified table row, if available.</p>
 </div>
 </div>
@@ -625,7 +625,7 @@ atspi_table_get_column_description (<em class="parameter"><code><a class="link" 
 <p>Gets a text description of a particular table column.  This differs from
 <a class="link" href="libatspi-atspi-table.html#atspi-table-get-column-header" title="atspi_table_get_column_header ()"><span class="type">atspi_table_get_column_header</span></a>, which returns an <span class="type">Accessible</span>.</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.11.5"></a><h4>Parameters</h4>
+<a name="atspi-table-get-column-description.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -647,7 +647,7 @@ atspi_table_get_column_description (<em class="parameter"><code><a class="link" 
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.11.6"></a><h4>Returns</h4>
+<a name="atspi-table-get-column-description.returns"></a><h4>Returns</h4>
 <p> a UTF-8 string describing the specified table column, if available.</p>
 </div>
 </div>
@@ -663,7 +663,7 @@ atspi_table_get_row_extent_at (<em class="parameter"><code><a class="link" href=
 and column. (some tables can have cells which span multiple rows
 and/or columns).</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.12.5"></a><h4>Parameters</h4>
+<a name="atspi-table-get-row-extent-at.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -690,7 +690,7 @@ and/or columns).</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.12.6"></a><h4>Returns</h4>
+<a name="atspi-table-get-row-extent-at.returns"></a><h4>Returns</h4>
 <p> a <span class="type">gint</span> indicating the number of rows spanned by the specified cell.</p>
 </div>
 </div>
@@ -706,7 +706,7 @@ atspi_table_get_column_extent_at (<em class="parameter"><code><a class="link" hr
 row and column (some tables can have cells which span multiple
 rows and/or columns).</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.13.5"></a><h4>Parameters</h4>
+<a name="atspi-table-get-column-extent-at.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -733,7 +733,7 @@ rows and/or columns).</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.13.6"></a><h4>Returns</h4>
+<a name="atspi-table-get-column-extent-at.returns"></a><h4>Returns</h4>
 <p> a <span class="type">gint</span> indicating the number of columns spanned by the specified cell.</p>
 </div>
 </div>
@@ -747,7 +747,7 @@ atspi_table_get_row_header (<em class="parameter"><code><a class="link" href="li
 <p>Gets the header associated with a table row, if available. This differs from
 <a class="link" href="libatspi-atspi-table.html#atspi-table-get-row-description" title="atspi_table_get_row_description ()"><span class="type">atspi_table_get_row_description</span></a>, which returns a string.</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.14.5"></a><h4>Parameters</h4>
+<a name="atspi-table-get-row-header.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -769,7 +769,7 @@ atspi_table_get_row_header (<em class="parameter"><code><a class="link" href="li
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.14.6"></a><h4>Returns</h4>
+<a name="atspi-table-get-row-header.returns"></a><h4>Returns</h4>
 <p> an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> representation of the specified
 table row, if available. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
@@ -786,7 +786,7 @@ atspi_table_get_column_header (<em class="parameter"><code><a class="link" href=
 This differs from <a class="link" href="libatspi-atspi-table.html#atspi-table-get-column-description" title="atspi_table_get_column_description ()"><span class="type">atspi_table_get_column_description</span></a>, which
 returns a string.</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.15.5"></a><h4>Parameters</h4>
+<a name="atspi-table-get-column-header.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -808,7 +808,7 @@ returns a string.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.15.6"></a><h4>Returns</h4>
+<a name="atspi-table-get-column-header.returns"></a><h4>Returns</h4>
 <p> an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> representation of the
 specified table column, if available. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
@@ -823,7 +823,7 @@ atspi_table_get_n_selected_rows (<em class="parameter"><code><a class="link" hre
 <p>Query a table to find out how many rows are currently selected. 
 Not all tables support row selection.</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.16.5"></a><h4>Parameters</h4>
+<a name="atspi-table-get-n-selected-rows.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -838,7 +838,7 @@ Not all tables support row selection.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.16.6"></a><h4>Returns</h4>
+<a name="atspi-table-get-n-selected-rows.returns"></a><h4>Returns</h4>
 <p> a <span class="type">gint</span> indicating the number of rows currently selected.</p>
 </div>
 </div>
@@ -850,7 +850,7 @@ atspi_table_get_selected_rows (<em class="parameter"><code><a class="link" href=
                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Queries a table for a list of indices of rows which are currently selected.</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.17.5"></a><h4>Parameters</h4>
+<a name="atspi-table-get-selected-rows.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -865,7 +865,7 @@ atspi_table_get_selected_rows (<em class="parameter"><code><a class="link" href=
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.17.6"></a><h4>Returns</h4>
+<a name="atspi-table-get-selected-rows.returns"></a><h4>Returns</h4>
 <p> an array of <span class="type">gint</span> values,
 specifying which rows are currently selected. </p>
 <p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gint][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
@@ -880,7 +880,7 @@ atspi_table_get_selected_columns (<em class="parameter"><code><a class="link" hr
 <p>Queries a table for a list of indices of columns which are currently
 selected.</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.18.5"></a><h4>Parameters</h4>
+<a name="atspi-table-get-selected-columns.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -895,7 +895,7 @@ selected.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.18.6"></a><h4>Returns</h4>
+<a name="atspi-table-get-selected-columns.returns"></a><h4>Returns</h4>
 <p> an array of <span class="type">gint</span> values,
 specifying which columns are currently selected. </p>
 <p><span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> gint][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
@@ -910,7 +910,7 @@ atspi_table_get_n_selected_columns (<em class="parameter"><code><a class="link" 
 <p>Queries a table to find out how many columns are currently selected. 
 Not all tables support column selection.</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.19.5"></a><h4>Parameters</h4>
+<a name="atspi-table-get-n-selected-columns.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -925,7 +925,7 @@ Not all tables support column selection.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.19.6"></a><h4>Returns</h4>
+<a name="atspi-table-get-n-selected-columns.returns"></a><h4>Returns</h4>
 <p> a <span class="type">gint</span> indicating the number of columns currently selected.</p>
 </div>
 </div>
@@ -939,7 +939,7 @@ atspi_table_is_row_selected (<em class="parameter"><code><a class="link" href="l
 <p>Determines whether a table row is selected.  Not all tables support 
 row selection.</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.20.5"></a><h4>Parameters</h4>
+<a name="atspi-table-is-row-selected.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -961,7 +961,7 @@ row selection.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.20.6"></a><h4>Returns</h4>
+<a name="atspi-table-is-row-selected.returns"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if the specified row is currently selected, <span class="type">FALSE</span> if not.</p>
 </div>
 </div>
@@ -975,7 +975,7 @@ atspi_table_is_column_selected (<em class="parameter"><code><a class="link" href
 <p>Determines whether specified table column is selected.
 Not all tables support column selection.</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.21.5"></a><h4>Parameters</h4>
+<a name="atspi-table-is-column-selected.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -997,7 +997,7 @@ Not all tables support column selection.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.21.6"></a><h4>Returns</h4>
+<a name="atspi-table-is-column-selected.returns"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if the specified column is currently selected, <span class="type">FALSE</span> if not.</p>
 </div>
 </div>
@@ -1011,7 +1011,7 @@ atspi_table_add_row_selection (<em class="parameter"><code><a class="link" href=
 <p>Selects the specified row, adding it to the current row selection.
 Not all tables support row selection.</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.22.5"></a><h4>Parameters</h4>
+<a name="atspi-table-add-row-selection.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1033,7 +1033,7 @@ Not all tables support row selection.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.22.6"></a><h4>Returns</h4>
+<a name="atspi-table-add-row-selection.returns"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if the specified row was successfully selected, <span class="type">FALSE</span> if not.</p>
 </div>
 </div>
@@ -1047,7 +1047,7 @@ atspi_table_add_column_selection (<em class="parameter"><code><a class="link" hr
 <p>Selects the specified column, adding it to the current column selection.
 Not all tables support column selection.</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.23.5"></a><h4>Parameters</h4>
+<a name="atspi-table-add-column-selection.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1069,7 +1069,7 @@ Not all tables support column selection.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.23.6"></a><h4>Returns</h4>
+<a name="atspi-table-add-column-selection.returns"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if the specified column was successfully selected, <span class="type">FALSE</span> if not.</p>
 </div>
 </div>
@@ -1083,7 +1083,7 @@ atspi_table_remove_row_selection (<em class="parameter"><code><a class="link" hr
 <p>De-selects the specified row, removing it from the current row selection.
 Not all tables support row selection.</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.24.5"></a><h4>Parameters</h4>
+<a name="atspi-table-remove-row-selection.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1105,7 +1105,7 @@ Not all tables support row selection.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.24.6"></a><h4>Returns</h4>
+<a name="atspi-table-remove-row-selection.returns"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if the specified row was successfully de-selected,
 <span class="type">FALSE</span> if not.</p>
 </div>
@@ -1121,7 +1121,7 @@ atspi_table_remove_column_selection (<em class="parameter"><code><a class="link"
 selection.
 Not all tables support column selection.</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.25.5"></a><h4>Parameters</h4>
+<a name="atspi-table-remove-column-selection.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1143,7 +1143,7 @@ Not all tables support column selection.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.25.6"></a><h4>Returns</h4>
+<a name="atspi-table-remove-column-selection.returns"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if the specified column was successfully de-selected,
 <span class="type">FALSE</span> if not.</p>
 </div>
@@ -1178,7 +1178,7 @@ row, col, row_extents, col_extents,
 and is_selected will contain 2, 5, 1, 2, and 
 <span class="type">TRUE</span>, respectively.</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.26.8"></a><h4>Parameters</h4>
+<a name="atspi-table-get-row-column-extents-at-index.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1232,7 +1232,7 @@ if the child at index i corresponds to a selected table cell,
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.26.9"></a><h4>Returns</h4>
+<a name="atspi-table-get-row-column-extents-at-index.returns"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if the index is associated with a valid table
 cell, <span class="type">FALSE</span> if the index does not correspond to a cell.  If
 <span class="type">FALSE</span> is returned, the values of the out parameters are
@@ -1249,7 +1249,7 @@ atspi_table_is_selected (<em class="parameter"><code><a class="link" href="libat
                          <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Determines whether the cell at a specific row and column is selected.</p>
 <div class="refsect3">
-<a name="id-1.2.17.9.27.5"></a><h4>Parameters</h4>
+<a name="atspi-table-is-selected.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
@@ -1276,7 +1276,7 @@ atspi_table_is_selected (<em class="parameter"><code><a class="link" href="libat
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.2.17.9.27.6"></a><h4>Returns</h4>
+<a name="atspi-table-is-selected.returns"></a><h4>Returns</h4>
 <p> <span class="type">TRUE</span> if the specified cell is currently selected, <span class="type">FALSE</span> if not.</p>
 </div>
 </div>
@@ -1292,6 +1292,6 @@ atspi_table_is_selected (<em class="parameter"><code><a class="link" href="libat
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.24.1</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>
