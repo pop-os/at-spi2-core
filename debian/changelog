@@ -13,6 +13,8 @@ at-spi2-core (2.20.1-1) UNRELEASED; urgency=medium
       controlling AT-SPI D-Bus policy, if unmodified (if modified,
       the modified version /etc/at-spi2/accessibility.conf will still
       be used)
+  * debian/rules: warn if any files other than *.la are installed but not
+    packaged, to catch mistakes.
 
  -- Samuel Thibault <sthibault@debian.org>  Thu, 10 Mar 2016 16:33:39 +0100
 
