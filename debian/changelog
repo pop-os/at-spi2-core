@@ -5,7 +5,7 @@ at-spi2-core (2.20.1-1) UNRELEASED; urgency=medium
   * Add locale files. Thanks Simon for the notice.
 
   [ Simon McVittie ]
-  * New upstream release
+  * New upstream release (Closes: #820969)
     - drop all patches except patches/at-spi-by-default, applied upstream
     - install new systemd --user unit, which will put AT-SPI in its own
       cgroup if used with dbus-user-session
