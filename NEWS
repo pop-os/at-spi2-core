@@ -1,15 +1,33 @@
-What's new in at-spi2-core 2.18.3:
+What's new in at-spi2-core 2.20.1:
 
-* get_index_in_parent: Don't crash if the parent is defunct.
+* registryd: avoid crashing with a NULL keystring (bgo#764688).
 
-What's new in at-spi2-core 2.18.2:
+* Plug a memory leak in AtspiEventListener (bgo#764688).
 
-* Really don't crash if we get a children-changed event with a
-  non-existent child (bgo#755951).
+What's new in at-spi2-core 2.19.92:
 
-* Fixed crash during removal of last application in registryd (bgo#756513).
+* Support a stateless configuration by default (bgo#763540).
+
+What's new in at-spi2-core 2.19.91:
+
+* Don't display warnings when connecting to an app that no longer exists.
+
+What's new in at-spi2-core 2.19.90:
+
+* Don't display warning if unable to connect when logged in via ssh
+  (bgo#761600).
     
-What's new in at-spi2-core 2.18.1:
+* at-spi-bus-launcher: register with session manager (bgo#753931).
+
+What's new in at-spi2-core 2.19.2:
+
+* Disable xevie by default--it probably doesn't do anything anyhow.
+
+* get_index_in_parent: Don't crash if parent is defunct.
+
+* Don't crash when trying to set an invalid state (bgo#757915).
+
+What's new in at-spi2-core 2.19.1:
 
 * Don't crash if we get a children-changed event with a non-existent
   child (bgo#755951).
@@ -18,6 +36,8 @@ What's new in at-spi2-core 2.18.1:
   call fails (bgo#755727).
 
 * Fixed some atspi_text_ functions (bgo#755731).
+
+* Fixed crash during removal of last application in registryd (bgo#756513).
 
 What's new in at-spi2-core 2.17.90:
 

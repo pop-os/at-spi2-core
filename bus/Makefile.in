@@ -107,7 +107,8 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(libexecdir)" \
 	"$(DESTDIR)$(busconfigdir)" "$(DESTDIR)$(dbusservicedir)" \
-	"$(DESTDIR)$(default_sessiondir)"
+	"$(DESTDIR)$(default_sessiondir)" \
+	"$(DESTDIR)$(systemd_userdir)"
 PROGRAMS = $(libexec_PROGRAMS)
 am_at_spi_bus_launcher_OBJECTS =  \
 	at_spi_bus_launcher-at-spi-bus-launcher.$(OBJEXT)
@@ -191,7 +192,8 @@ am__uninstall_files_from_dir = { \
     || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
-DATA = $(busconfig_DATA) $(dbusservice_DATA) $(default_session_DATA)
+DATA = $(busconfig_DATA) $(dbusservice_DATA) $(default_session_DATA) \
+	$(systemd_user_DATA)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
 # and print each of them once, without duplicates.  Input order is
@@ -401,10 +403,11 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 CLEANFILES = at-spi-dbus-bus.desktop
-busconfigdir = $(sysconfdir)/at-spi2
+busconfigdir = $(datadir)/defaults/at-spi2
 busconfig_DATA = accessibility.conf
 at_spi_bus_launcher_SOURCES = at-spi-bus-launcher.c
 at_spi_bus_launcher_CPPFLAGS = -DSYSCONFDIR=\"$(sysconfdir)\" \
+                               -DDATADIR=\"$(datadir)\" \
                                -DDBUS_DAEMON=\"$(DBUS_DAEMON)\"
 
 at_spi_bus_launcher_CFLAGS = $(GIO_CFLAGS)
@@ -413,10 +416,13 @@ default_sessiondir = $(sysconfdir)/xdg/autostart
 default_session_DATA = at-spi-dbus-bus.desktop
 substitutions = "s,@libexecdir[@],$(libexecdir),"
 EXTRA_DIST = at-spi-dbus-bus.desktop.in org.a11y.Bus.service.in \
-	accessibility.conf.in
+	at-spi-dbus-bus.service.in accessibility.conf.in
 dbusservicedir = $(DBUS_SERVICES_DIR)
 dbusservice_DATA = org.a11y.Bus.service
+systemd_userdir = $(prefix)/lib/systemd/user
+systemd_user_DATA = at-spi-dbus-bus.service
 DISTCLEANFILES = org.a11y.Bus.service \
+	$(systemd_user_DATA) \
 	accessibility.conf
 
 all: all-am
@@ -617,6 +623,27 @@ uninstall-default_sessionDATA:
 	@list='$(default_session_DATA)'; test -n "$(default_sessiondir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(default_sessiondir)'; $(am__uninstall_files_from_dir)
+install-systemd_userDATA: $(systemd_user_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(systemd_user_DATA)'; test -n "$(systemd_userdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(systemd_userdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(systemd_userdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(systemd_userdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(systemd_userdir)" || exit $$?; \
+	done
+
+uninstall-systemd_userDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(systemd_user_DATA)'; test -n "$(systemd_userdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(systemd_userdir)'; $(am__uninstall_files_from_dir)
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -704,7 +731,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(PROGRAMS) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libexecdir)" "$(DESTDIR)$(busconfigdir)" "$(DESTDIR)$(dbusservicedir)" "$(DESTDIR)$(default_sessiondir)"; do \
+	for dir in "$(DESTDIR)$(libexecdir)" "$(DESTDIR)$(busconfigdir)" "$(DESTDIR)$(dbusservicedir)" "$(DESTDIR)$(default_sessiondir)" "$(DESTDIR)$(systemd_userdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -763,7 +790,7 @@ info: info-am
 info-am:
 
 install-data-am: install-busconfigDATA install-dbusserviceDATA \
-	install-default_sessionDATA
+	install-default_sessionDATA install-systemd_userDATA
 
 install-dvi: install-dvi-am
 
@@ -810,7 +837,8 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-busconfigDATA uninstall-dbusserviceDATA \
-	uninstall-default_sessionDATA uninstall-libexecPROGRAMS
+	uninstall-default_sessionDATA uninstall-libexecPROGRAMS \
+	uninstall-systemd_userDATA
 
 .MAKE: install-am install-strip
 
@@ -824,12 +852,13 @@ uninstall-am: uninstall-busconfigDATA uninstall-dbusserviceDATA \
 	install-exec install-exec-am install-html install-html-am \
 	install-info install-info-am install-libexecPROGRAMS \
 	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-am uninstall \
-	uninstall-am uninstall-busconfigDATA uninstall-dbusserviceDATA \
-	uninstall-default_sessionDATA uninstall-libexecPROGRAMS
+	install-ps-am install-strip install-systemd_userDATA \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags tags-am uninstall uninstall-am uninstall-busconfigDATA \
+	uninstall-dbusserviceDATA uninstall-default_sessionDATA \
+	uninstall-libexecPROGRAMS uninstall-systemd_userDATA
 
 .PRECIOUS: Makefile
 
@@ -837,6 +866,8 @@ at-spi-dbus-bus.desktop: at-spi-dbus-bus.desktop.in
 	sed -e$ $(substitutions)  $< > $@.tmp && mv $@.tmp $@
 
 org.a11y.Bus.service: org.a11y.Bus.service.in
+	sed -e $(substitutions) $< > $@.tmp && mv $@.tmp $@
+at-spi-dbus-bus.service: at-spi-dbus-bus.service.in Makefile
 	sed -e $(substitutions) $< > $@.tmp && mv $@.tmp $@
 
 accessibility.conf: accessibility.conf.in

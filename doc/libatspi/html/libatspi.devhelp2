@@ -232,9 +232,7 @@
     <keyword type="function" name="atspi_hypertext_get_link ()" link="libatspi-atspi-hypertext.html#atspi-hypertext-get-link"/>
     <keyword type="function" name="atspi_hypertext_get_link_index ()" link="libatspi-atspi-hypertext.html#atspi-hypertext-get-link-index"/>
     <keyword type="struct" name="AtspiHypertext" link="libatspi-atspi-hypertext.html#AtspiHypertext-struct"/>
-    <keyword type="macro" name="ATSPI_TYPE_RECT" link="libatspi-atspi-component.html#ATSPI-TYPE-RECT:CAPS"/>
     <keyword type="function" name="atspi_rect_copy ()" link="libatspi-atspi-component.html#atspi-rect-copy"/>
-    <keyword type="macro" name="ATSPI_TYPE_POINT" link="libatspi-atspi-component.html#ATSPI-TYPE-POINT:CAPS"/>
     <keyword type="function" name="atspi_point_get_type ()" link="libatspi-atspi-component.html#atspi-point-get-type"/>
     <keyword type="function" name="atspi_point_copy ()" link="libatspi-atspi-component.html#atspi-point-copy"/>
     <keyword type="function" name="atspi_component_get_type ()" link="libatspi-atspi-component.html#atspi-component-get-type"/>
@@ -248,7 +246,9 @@
     <keyword type="function" name="atspi_component_grab_focus ()" link="libatspi-atspi-component.html#atspi-component-grab-focus"/>
     <keyword type="function" name="atspi_component_get_alpha ()" link="libatspi-atspi-component.html#atspi-component-get-alpha"/>
     <keyword type="struct" name="struct AtspiRect" link="libatspi-atspi-component.html#AtspiRect-struct"/>
+    <keyword type="macro" name="ATSPI_TYPE_RECT" link="libatspi-atspi-component.html#ATSPI-TYPE-RECT:CAPS"/>
     <keyword type="struct" name="struct AtspiPoint" link="libatspi-atspi-component.html#AtspiPoint-struct"/>
+    <keyword type="macro" name="ATSPI_TYPE_POINT" link="libatspi-atspi-component.html#ATSPI-TYPE-POINT:CAPS"/>
     <keyword type="struct" name="AtspiComponent" link="libatspi-atspi-component.html#AtspiComponent-struct"/>
     <keyword type="function" name="atspi_key_definition_get_type ()" link="libatspi-atspi-registry.html#atspi-key-definition-get-type"/>
     <keyword type="function" name="atspi_get_desktop_count ()" link="libatspi-atspi-registry.html#atspi-get-desktop-count"/>
@@ -260,7 +260,6 @@
     <keyword type="function" name="atspi_deregister_device_event_listener ()" link="libatspi-atspi-registry.html#atspi-deregister-device-event-listener"/>
     <keyword type="function" name="atspi_generate_keyboard_event ()" link="libatspi-atspi-registry.html#atspi-generate-keyboard-event"/>
     <keyword type="function" name="atspi_generate_mouse_event ()" link="libatspi-atspi-registry.html#atspi-generate-mouse-event"/>
-    <keyword type="macro" name="ATSPI_TYPE_EVENT" link="libatspi-atspi-types.html#ATSPI-TYPE-EVENT:CAPS"/>
     <keyword type="struct" name="AtspiAccessible" link="libatspi-atspi-types.html#AtspiAccessible-struct"/>
     <keyword type="struct" name="AtspiAction" link="libatspi-atspi-types.html#AtspiAction-struct"/>
     <keyword type="struct" name="AtspiCollection" link="libatspi-atspi-types.html#AtspiCollection-struct"/>
@@ -283,38 +282,39 @@
     <keyword type="struct" name="struct AtspiEventListenerMode" link="libatspi-atspi-types.html#AtspiEventListenerMode"/>
     <keyword type="struct" name="struct AtspiKeyDefinition" link="libatspi-atspi-types.html#AtspiKeyDefinition-struct"/>
     <keyword type="struct" name="struct AtspiEvent" link="libatspi-atspi-types.html#AtspiEvent-struct"/>
+    <keyword type="macro" name="ATSPI_TYPE_EVENT" link="libatspi-atspi-types.html#ATSPI-TYPE-EVENT:CAPS"/>
     <keyword type="typedef" name="AtspiKeystrokeListener" link="libatspi-atspi-types.html#AtspiKeystrokeListener"/>
     <keyword type="enum" name="enum AtspiKeyListenerSyncType" link="libatspi-atspi-types.html#AtspiKeyListenerSyncType"/>
-    <keyword type="macro" name="ATSPI_COORD_TYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-COORD-TYPE-COUNT:CAPS"/>
-    <keyword type="macro" name="ATSPI_SORTORDER_COUNT" link="libatspi-atspi-constants.html#ATSPI-SORTORDER-COUNT:CAPS"/>
-    <keyword type="macro" name="ATSPI_MATCHTYPES_COUNT" link="libatspi-atspi-constants.html#ATSPI-MATCHTYPES-COUNT:CAPS"/>
-    <keyword type="macro" name="ATSPI_COMPONENTLAYER_COUNT" link="libatspi-atspi-constants.html#ATSPI-COMPONENTLAYER-COUNT:CAPS"/>
-    <keyword type="macro" name="ATSPI_TEXT_BOUNDARY_TYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-TEXT-BOUNDARY-TYPE-COUNT:CAPS"/>
-    <keyword type="macro" name="ATSPI_TEXT_CLIP_TYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-TEXT-CLIP-TYPE-COUNT:CAPS"/>
-    <keyword type="macro" name="ATSPI_STATETYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-STATETYPE-COUNT:CAPS"/>
-    <keyword type="macro" name="ATSPI_KEYEVENTTYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-KEYEVENTTYPE-COUNT:CAPS"/>
-    <keyword type="macro" name="ATSPI_EVENTTYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-EVENTTYPE-COUNT:CAPS"/>
-    <keyword type="macro" name="ATSPI_KEYSYNTHTYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-KEYSYNTHTYPE-COUNT:CAPS"/>
-    <keyword type="macro" name="ATSPI_MODIFIERTYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-MODIFIERTYPE-COUNT:CAPS"/>
-    <keyword type="macro" name="ATSPI_RELATIONTYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-RELATIONTYPE-COUNT:CAPS"/>
-    <keyword type="macro" name="ATSPI_ROLE_COUNT" link="libatspi-atspi-constants.html#ATSPI-ROLE-COUNT:CAPS"/>
     <keyword type="enum" name="enum AtspiLocaleType" link="libatspi-atspi-constants.html#AtspiLocaleType"/>
     <keyword type="macro" name="ATSPI_LOCALE_TYPE" link="libatspi-atspi-constants.html#ATSPI-LOCALE-TYPE:CAPS"/>
     <keyword type="enum" name="enum AtspiCoordType" link="libatspi-atspi-constants.html#AtspiCoordType"/>
+    <keyword type="macro" name="ATSPI_COORD_TYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-COORD-TYPE-COUNT:CAPS"/>
     <keyword type="enum" name="enum AtspiCollectionSortOrder" link="libatspi-atspi-constants.html#AtspiCollectionSortOrder"/>
+    <keyword type="macro" name="ATSPI_SORTORDER_COUNT" link="libatspi-atspi-constants.html#ATSPI-SORTORDER-COUNT:CAPS"/>
     <keyword type="enum" name="enum AtspiCollectionMatchType" link="libatspi-atspi-constants.html#AtspiCollectionMatchType"/>
+    <keyword type="macro" name="ATSPI_MATCHTYPES_COUNT" link="libatspi-atspi-constants.html#ATSPI-MATCHTYPES-COUNT:CAPS"/>
     <keyword type="enum" name="enum AtspiCollectionTreeTraversalType" link="libatspi-atspi-constants.html#AtspiCollectionTreeTraversalType"/>
     <keyword type="macro" name="ATSPI_TREETRAVERSALTYPE" link="libatspi-atspi-constants.html#ATSPI-TREETRAVERSALTYPE:CAPS"/>
     <keyword type="enum" name="enum AtspiComponentLayer" link="libatspi-atspi-constants.html#AtspiComponentLayer"/>
+    <keyword type="macro" name="ATSPI_COMPONENTLAYER_COUNT" link="libatspi-atspi-constants.html#ATSPI-COMPONENTLAYER-COUNT:CAPS"/>
     <keyword type="enum" name="enum AtspiTextBoundaryType" link="libatspi-atspi-constants.html#AtspiTextBoundaryType"/>
+    <keyword type="macro" name="ATSPI_TEXT_BOUNDARY_TYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-TEXT-BOUNDARY-TYPE-COUNT:CAPS"/>
     <keyword type="enum" name="enum AtspiTextClipType" link="libatspi-atspi-constants.html#AtspiTextClipType"/>
+    <keyword type="macro" name="ATSPI_TEXT_CLIP_TYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-TEXT-CLIP-TYPE-COUNT:CAPS"/>
     <keyword type="enum" name="enum AtspiStateType" link="libatspi-atspi-constants.html#AtspiStateType"/>
+    <keyword type="macro" name="ATSPI_STATETYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-STATETYPE-COUNT:CAPS"/>
     <keyword type="enum" name="enum AtspiKeyEventType" link="libatspi-atspi-constants.html#AtspiKeyEventType"/>
+    <keyword type="macro" name="ATSPI_KEYEVENTTYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-KEYEVENTTYPE-COUNT:CAPS"/>
     <keyword type="enum" name="enum AtspiEventType" link="libatspi-atspi-constants.html#AtspiEventType"/>
+    <keyword type="macro" name="ATSPI_EVENTTYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-EVENTTYPE-COUNT:CAPS"/>
     <keyword type="enum" name="enum AtspiKeySynthType" link="libatspi-atspi-constants.html#AtspiKeySynthType"/>
+    <keyword type="macro" name="ATSPI_KEYSYNTHTYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-KEYSYNTHTYPE-COUNT:CAPS"/>
     <keyword type="enum" name="enum AtspiModifierType" link="libatspi-atspi-constants.html#AtspiModifierType"/>
+    <keyword type="macro" name="ATSPI_MODIFIERTYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-MODIFIERTYPE-COUNT:CAPS"/>
     <keyword type="enum" name="enum AtspiRelationType" link="libatspi-atspi-constants.html#AtspiRelationType"/>
+    <keyword type="macro" name="ATSPI_RELATIONTYPE_COUNT" link="libatspi-atspi-constants.html#ATSPI-RELATIONTYPE-COUNT:CAPS"/>
     <keyword type="enum" name="enum AtspiRole" link="libatspi-atspi-constants.html#AtspiRole"/>
+    <keyword type="macro" name="ATSPI_ROLE_COUNT" link="libatspi-atspi-constants.html#ATSPI-ROLE-COUNT:CAPS"/>
     <keyword type="function" name="atspi_init ()" link="libatspi-atspi-misc.html#atspi-init"/>
     <keyword type="function" name="atspi_event_main ()" link="libatspi-atspi-misc.html#atspi-event-main"/>
     <keyword type="function" name="atspi_event_quit ()" link="libatspi-atspi-misc.html#atspi-event-quit"/>

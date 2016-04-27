@@ -1,4 +1,4 @@
-AC_INIT([at-spi2-core], [2.18.3], [accessibility-atspi@lists.linux-foundation.org])
+AC_INIT([at-spi2-core], [2.20.1], [accessibility-atspi@lists.linux-foundation.org])
 AC_PREREQ([2.59])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_MACRO_DIR([m4])
@@ -127,8 +127,8 @@ save_LIBS="$LIBS"
 LIBS=""
 AC_ARG_ENABLE(xevie,
 	[AS_HELP_STRING([--enable-xevie],
-		[Build with XEViE support [default=yes]])],
-	enable_xevie="$enableval", enable_xevie=yes)
+		[Build with XEViE support [default=no]])],
+	enable_xevie="$enableval", enable_xevie=no)
 
 if test -z "$backend_set"; then
   enable_x11_backend=yes
