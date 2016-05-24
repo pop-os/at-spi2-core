@@ -1,6 +1,10 @@
-at-spi2-core (2.20.1-2) UNRELEASED; urgency=medium
+at-spi2-core (2.20.2-1) UNRELEASED; urgency=medium
 
+  [ Samuel Thibault ]
   * control: Bump Standards-Version to 3.9.8 (no change)
+
+  [ Luke Yelavich ]
+  * New upstream release
 
  -- Samuel Thibault <sthibault@debian.org>  Sun, 22 May 2016 20:21:37 +0200
 
