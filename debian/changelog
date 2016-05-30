@@ -2,6 +2,8 @@ at-spi2-core (2.20.2-1) UNRELEASED; urgency=medium
 
   [ Samuel Thibault ]
   * control: Bump Standards-Version to 3.9.8 (no change)
+  * 90qt-a11y: Export $QT_ACCESSIBILITY and QT_LINUX_ACCESSIBILITY_ALWAYS_ON to
+    dbus user session as well, thanks Martin Pitt for the hint.
 
   [ Luke Yelavich ]
   * New upstream release
