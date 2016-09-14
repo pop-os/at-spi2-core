@@ -1,3 +1,9 @@
+at-spi2-core (2.20.2-2) unstable; urgency=medium
+
+  * control: Add missing intltool build-dependency (Closes: Bug#837819).
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 15 Sep 2016 01:52:36 +0200
+
 at-spi2-core (2.20.2-1) unstable; urgency=medium
 
   [ Samuel Thibault ]

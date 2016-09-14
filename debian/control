@@ -12,7 +12,7 @@ Build-Depends: debhelper (>= 9.20150628),
                libglib2.0-dev,
                libxtst-dev,
                libgirepository1.0-dev,
-               gtk-doc-tools (>= 1.09),
+               intltool, gtk-doc-tools (>= 1.09),
                gobject-introspection
 Standards-Version: 3.9.8
 
