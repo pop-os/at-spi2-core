@@ -1,3 +1,6 @@
+# We build atspi-gmain.c which is located in a different directory.
+AUTOMAKE_OPTIONS = subdir-objects
+
 noinst_LTLIBRARIES = libdbind.la
 
 AM_CPPFLAGS = \
@@ -13,9 +16,6 @@ libdbind_la_SOURCES = \
         dbind-any.h \
 	dbind-any.c
 libdbind_la_LIBADD = $(DBUS_LIBS) $(GLIB_LIBS)
-
-nodist_libdbind_la_sources = \
-        dbind-config.h
 
 TESTS = dbtest
 

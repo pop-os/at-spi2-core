@@ -1,4 +1,4 @@
-AC_INIT([at-spi2-core], [2.20.2], [accessibility-atspi@lists.linux-foundation.org])
+AC_INIT([at-spi2-core], [2.22.0], [accessibility-atspi@lists.linux-foundation.org])
 AC_PREREQ([2.59])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_MACRO_DIR([m4])
@@ -28,6 +28,7 @@ AM_INIT_AUTOMAKE([1.9 -Wall foreign no-dist-gzip dist-xz])
 AM_SILENT_RULES([yes])
 
 AC_PROG_CC
+AM_PROG_AR
 LT_INIT([disable-static])
 PKG_PROG_PKG_CONFIG
 
@@ -74,54 +75,56 @@ AC_ARG_ENABLE(x11,
                               [disable the X11 backend])],,
 			      [enable_x11=auto])
 
-if test x$no_x = xyes ; then
-	AC_MSG_WARN([X development libraries not found])
-  AM_CONDITIONAL(USE_X11, false)
-elif test x$enable_x11 = xauto; then
-	X_LIBS="$X_LIBS $X_PRE_LIBS -lX11 $X_EXTRA_LIBS"
-  AC_DEFINE(HAVE_X11, 1, [Define to use X11])
-  AM_CONDITIONAL(USE_X11, true)
+if test x$enable_x11 = xno; then
+	AM_CONDITIONAL(USE_X11, false)
+elif test x$no_x = xyes ; then
+	AC_MSG_ERROR([X development libraries not found])
 else
-  AM_CONDITIONAL(USE_X11, false)
-fi
-AC_SUBST(X_LIBS)
-AC_SUBST(HAVE_X11)
+	AM_CONDITIONAL(USE_X11, true)
+	X_LIBS="$X_LIBS $X_PRE_LIBS -lX11 $X_EXTRA_LIBS"
+	AC_SUBST(X_LIBS)
+	AC_DEFINE(HAVE_X11, 1, [Define to use X11])
+	AC_SUBST(HAVE_X11)
 
-save_LIBS="$LIBS"
-LIBS=""
-CPPFLAGS="$CPPFLAGS $X_CFLAGS"
-AC_CHECK_LIB(Xtst, XTestFakeKeyEvent, XTST_LIBS=-lXtst,[
-	AC_MSG_ERROR([Couldn't find the Xtst library. Check config.log])],
-	$X_LIBS)
-AC_SUBST(XTST_LIBS)
-LIBS="$LIBS $save_LIBS"
-
-save_LIBS="$LIBS"
-LIBS=""
-AC_CHECK_LIB(X11, XkbQueryExtension, have_xkb="maybe", have_xkb="no", $X_LIBS)
-if test "x$have_xkb" = "xmaybe"; then 
-	AC_CHECK_HEADER([X11/XKBlib.h], have_xkb=yes)
-fi
-if test "x$have_xkb" = "xyes"; then
-	AC_DEFINE([HAVE_XKB], [], [Xkb is present])
-fi
-LIBS="$LIBS $save_LIBS"
-
-save_LIBS="$LIBS"
-LIBS=""
-AC_CHECK_LIB(Xi, XOpenDevice, have_xinput="maybe", have_xinput="no", $X_LIBS)
-if test "x$have_xinput" = "xmaybe"; then
+	dnl Check for Xtst
 	save_LIBS="$LIBS"
-	LIBS="$LIBS $X_LIBS"
-	AC_CHECK_HEADER([X11/extensions/XInput.h], [have_xinput="yes"])
-	LIBS="$save_LIBS"
+	LIBS=""
+	CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+	AC_CHECK_LIB(Xtst, XTestFakeKeyEvent, XTST_LIBS=-lXtst,[
+		AC_MSG_ERROR([Couldn't find the Xtst library. Check config.log])],
+		$X_LIBS)
+	AC_SUBST(XTST_LIBS)
+	LIBS="$LIBS $save_LIBS"
+
+	dnl Check for XkbQueryExtension
+	save_LIBS="$LIBS"
+	LIBS=""
+	AC_CHECK_LIB(X11, XkbQueryExtension, have_xkb="maybe", have_xkb="no", $X_LIBS)
+	if test "x$have_xkb" = "xmaybe"; then 
+		AC_CHECK_HEADER([X11/XKBlib.h], have_xkb=yes)
+	fi
+	if test "x$have_xkb" = "xyes"; then
+		AC_DEFINE([HAVE_XKB], [], [Xkb is present])
+	fi
+	LIBS="$LIBS $save_LIBS"
+
+	dnl Check for Xi
+	save_LIBS="$LIBS"
+	LIBS=""
+	AC_CHECK_LIB(Xi, XOpenDevice, have_xinput="maybe", have_xinput="no", $X_LIBS)
+	if test "x$have_xinput" = "xmaybe"; then
+		save_LIBS="$LIBS"
+		LIBS="$LIBS $X_LIBS"
+		AC_CHECK_HEADER([X11/extensions/XInput.h], [have_xinput="yes"])
+		LIBS="$save_LIBS"
+	fi
+	if test "x$have_xinput" != "xyes"; then
+		AC_MSG_ERROR([Couldn't find the XInput library. Check config.log for details])
+	fi
+	XINPUT_LIBS="-lXi"
+	AC_SUBST(XINPUT_LIBS)
+	LIBS="$LIBS $save_LIBS"
 fi
-if test "x$have_xinput" != "xyes"; then
-	AC_MSG_ERROR([Couldn't find the XInput library. Check config.log for details])
-fi
-XINPUT_LIBS="-lXi"
-AC_SUBST(XINPUT_LIBS)
-LIBS="$LIBS $save_LIBS"
 
 save_LIBS="$LIBS"
 LIBS=""
@@ -192,14 +195,16 @@ AC_SUBST(LIBTOOL_EXPORT_OPTIONS)
 dnl find sizes & alignments
 orig_CPPFLAGS=$CPPFLAGS
 CPPFLAGS="$CPPFLAGS $DBUS_CFLAGS"
-DBIND_CHECK_ALIGNOF(char)
-DBIND_CHECK_ALIGNOF(dbus_bool_t)
-DBIND_CHECK_ALIGNOF(dbus_int16_t)
-DBIND_CHECK_ALIGNOF(dbus_int32_t)
-DBIND_CHECK_ALIGNOF(dbus_int64_t)
-DBIND_CHECK_ALIGNOF(double)
-DBIND_CHECK_ALIGNOF(dbind_pointer)
-DBIND_CHECK_ALIGNOF(dbind_struct)
+AC_CHECK_ALIGNOF(char)
+AC_CHECK_ALIGNOF(dbus_bool_t, [#include <dbus/dbus.h>])
+AC_CHECK_ALIGNOF(dbus_int16_t, [#include <dbus/dbus.h>])
+AC_CHECK_ALIGNOF(dbus_int32_t, [#include <dbus/dbus.h>])
+AC_CHECK_ALIGNOF(dbus_int64_t, [#include <dbus/dbus.h>])
+AC_CHECK_ALIGNOF(double, [#include <dbus/dbus.h>])
+AC_CHECK_ALIGNOF(dbind_pointer, [AC_INCLUDES_DEFAULT
+typedef void *dbind_pointer;])
+AC_CHECK_ALIGNOF(dbind_struct, [AC_INCLUDES_DEFAULT
+typedef struct {char s1;} dbind_struct;])
 
 GTK_DOC_CHECK([1.09])
 
@@ -210,7 +215,6 @@ CPPFLAGS=$orig_CPPFLAGS
 AC_CONFIG_FILES([Makefile po/Makefile.in
 	xml/Makefile
 	dbind/Makefile
-dbind/dbind-config.h
 	atspi/Makefile
 	registryd/Makefile
 	bus/Makefile

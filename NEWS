@@ -1,12 +1,36 @@
-What's new in at-spi2-core 2.20.2:
+What's new in at-spi2-core 2.2.0:
 
-* Fixed an invalid memory access when fetching an accessible..
+* at-spi-bus-launcher: fix uninitialized variable.
 
-What's new in at-spi2-core 2.20.1:
+* Fix return value error in session_manager_connect (bgo#768881).
+
+* Updated translations.
+
+What's new in at-spi2-core 2.21.4:
+
+* Fixed a crash in atspi_accessible_clear_cache.
+
+* Fixed a crash caused by at-spi2-registryd dying.
+
+* Fixed some session management issues in at-spi-bus-launcher.
+
+What's new in at-spi2-core 2.21.2:
+
+* Allow building without Xtst, Xi with --disable-x11
+
+* ref_accessible_desktop: don't unref reply until we're finished with it
+
+* Updated translations.
+
+What's new in at-spi2-core 2.21.1:
 
 * registryd: avoid crashing with a NULL keystring (bgo#764688).
 
 * Plug a memory leak in AtspiEventListener (bgo#764688).
+
+* Fix parsing of at-spi-bus-launcher command line arguments (bgo#765220).
+
+* Build clean-ups.
 
 What's new in at-spi2-core 2.19.92:
 

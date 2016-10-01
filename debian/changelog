@@ -1,3 +1,13 @@
+at-spi2-core (2.22.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * gir1.2-atspi-2.0.install: Move to multi-arch directory.
+  * control:
+    - Make gir1.2-atspi-2.0 multi-arch: same.
+    - Make libatspi2.0-dev multi-arch: same.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 01 Oct 2016 22:12:09 +0200
+
 at-spi2-core (2.20.2-2) unstable; urgency=medium
 
   * control: Add missing intltool build-dependency (Closes: Bug#837819).
