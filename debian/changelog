@@ -1,5 +1,6 @@
 at-spi2-core (2.22.0-2) UNRELEASED; urgency=medium
 
+  * rules: Really disable PIE.
   * control: Remove Mario from Uploaders (Closes: Bug#840860).
 
  -- Samuel Thibault <sthibault@debian.org>  Sat, 15 Oct 2016 23:12:40 +0200
