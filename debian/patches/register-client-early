@@ -1,0 +1,17 @@
+https://lists.linuxfoundation.org/pipermail/accessibility-atspi/2016-October/000714.html
+
+In our case, the launcher is started by the session manager, so it should already be running.
+
+diff --git a/bus/at-spi-bus-launcher.c b/bus/at-spi-bus-launcher.c
+index 5125180..2138edf 100644
+--- a/bus/at-spi-bus-launcher.c
++++ b/bus/at-spi-bus-launcher.c
+@@ -244,6 +244,8 @@ session_manager_connect (A11yBusLauncher *app)
+         GVariant *res;
+   GError *error = NULL;
+ 
++  register_client(app);
++
+         sm_proxy = g_dbus_proxy_new_for_bus_sync (G_BUS_TYPE_SESSION, 0, NULL,
+                                               SM_DBUS_NAME,
+                                               SM_DBUS_PATH,
