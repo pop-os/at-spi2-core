@@ -1,3 +1,10 @@
+at-spi2-core (2.22.0-4) unstable; urgency=medium
+
+  * patches/register-client-early: Fix crash by moving registration after
+    getting sm_proxy (Closes: Bug#840618).
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 15 Nov 2016 00:18:33 +0100
+
 at-spi2-core (2.22.0-3) unstable; urgency=medium
 
   * patches/register-client-early: Register at-spi-bus-launcher early, to
