@@ -1,7 +1,16 @@
+at-spi2-core (2.22.0-5) unstable; urgency=medium
+
+  * patches/register-client-early: Replace by upstream proposed fix:
+    - patches/revert-register-late: Revert change.
+    - patches/register-client-not-too-early: But delay client registration a
+    bit (Closes: Bug#848996).
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 27 Dec 2016 19:14:48 +0100
+
 at-spi2-core (2.22.0-4) unstable; urgency=medium
 
   * patches/register-client-early: Fix crash by moving registration after
-    getting sm_proxy (Closes: Bug#840618).
+    getting sm_proxy (Closes: Bug#843002).
 
  -- Samuel Thibault <sthibault@debian.org>  Tue, 15 Nov 2016 00:18:33 +0100
 
