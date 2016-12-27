@@ -1,4 +1,5 @@
 https://lists.linuxfoundation.org/pipermail/accessibility-atspi/2016-October/000714.html
+https://bugzilla.gnome.org/show_bug.cgi?id=774441
 
 In our case, the launcher is started by the session manager, so it should already be running.
 
