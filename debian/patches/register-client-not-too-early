@@ -1,9 +1,13 @@
-See https://bugzilla.gnome.org/show_bug.cgi?id=774441
+commit 685ad09cf927b0f48727839c13a01478154ca863
+Author: Alberts Muktupāvels <alberts.muktupavels@gmail.com>
+Date:   Sun Dec 4 15:42:01 2016 +0200
 
- bus/at-spi-bus-launcher.c | 19 ++++++++++++++++---
- 1 file changed, 16 insertions(+), 3 deletions(-)
---- a/bus/at-spi-bus-launcher.c	
-+++ a/bus/at-spi-bus-launcher.c	
+    at-spi-bus-launcher: session management fixes
+
+diff --git a/bus/at-spi-bus-launcher.c b/bus/at-spi-bus-launcher.c
+index 54aa07f..93d8fad 100644
+--- a/bus/at-spi-bus-launcher.c
++++ b/bus/at-spi-bus-launcher.c
 @@ -205,6 +205,17 @@ register_client (A11yBusLauncher *app)
  }
  
