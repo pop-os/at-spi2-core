@@ -1,3 +1,9 @@
+at-spi2-core (2.22.0-7) UNRELEASED; urgency=medium
+
+  * Use canonical anonscm vcs URL.
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 20 Jan 2017 23:12:16 +0100
+
 at-spi2-core (2.22.0-6) unstable; urgency=medium
 
   * patches/git-329ef2c4ebcb3aec6dcfcac15357fd583a60c969:
