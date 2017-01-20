@@ -1,3 +1,9 @@
+at-spi2-core (2.22.0-6) UNRELEASED; urgency=medium
+
+  * Use canonical anonscm vcs URL.
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 20 Jan 2017 23:12:16 +0100
+
 at-spi2-core (2.22.0-5) unstable; urgency=medium
 
   * patches/register-client-early: Replace by upstream proposed fix:
