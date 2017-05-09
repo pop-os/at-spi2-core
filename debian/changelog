@@ -1,5 +1,8 @@
 at-spi2-core (2.22.0-6) unstable; urgency=medium
 
+  * patches/git-329ef2c4ebcb3aec6dcfcac15357fd583a60c969:
+    clear root accessible's ref to the app, fixes Orca sometimes hanging when
+    apps are quit.
   * patches/git-eba079f3e72e61e6b55d81727ab50c85d505d296:
     atspi_table_cell_get_position: don't crash on error
 
