@@ -1,9 +1,9 @@
-at-spi2-core (2.22.0-6) UNRELEASED; urgency=medium
+at-spi2-core (2.22.0-6) unstable; urgency=medium
 
   * patches/git-eba079f3e72e61e6b55d81727ab50c85d505d296:
     atspi_table_cell_get_position: don't crash on error
 
- -- Samuel Thibault <sthibault@debian.org>  Tue, 09 May 2017 21:43:09 +0200
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 09 May 2017 21:44:08 +0200
 
 at-spi2-core (2.22.0-5) unstable; urgency=medium
 
