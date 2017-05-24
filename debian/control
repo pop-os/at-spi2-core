@@ -3,8 +3,8 @@ Section: misc
 Priority: optional
 Maintainer: Debian Accessibility Team <debian-accessibility@lists.debian.org>
 Uploaders: Samuel Thibault <sthibault@debian.org>, Jordi Mallach <jordi@debian.org>
-Vcs-Browser: https://anonscm.debian.org/git/pkg-a11y/at-spi2-core.git
-Vcs-Git: https://anonscm.debian.org/git/pkg-a11y/at-spi2-core.git
+Vcs-Browser: http://git.debian.org/?p=pkg-a11y/at-spi2-core.git;a=summary
+Vcs-Git: git://git.debian.org/git/pkg-a11y/at-spi2-core.git
 Homepage: https://wiki.gnome.org/Accessibility
 Build-Depends: debhelper (>= 9.20150628),
                dh-autoreconf,
