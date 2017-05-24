@@ -2,6 +2,11 @@ at-spi2-core (2.24.1-1) UNRELEASED; urgency=medium
 
   [ Jeremy Bicha ]
   * New upstream release.
+  * Drop patches applied in new release:
+    - revert-register-late
+    - register-client-not-too-early
+    - git-329ef2c4ebcb3aec6dcfcac15357fd583a60c969
+    - git-eba079f3e72e61e6b55d81727ab50c85d505d296
 
   [ Samuel Thibault ]
   * Use canonical anonscm vcs URL.
