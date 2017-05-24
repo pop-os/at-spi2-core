@@ -203,6 +203,7 @@
     <keyword type="function" name="atspi_table_cell_get_column_index ()" link="libatspi-atspi-table-cell.html#atspi-table-cell-get-column-index"/>
     <keyword type="function" name="atspi_table_cell_get_row_span ()" link="libatspi-atspi-table-cell.html#atspi-table-cell-get-row-span"/>
     <keyword type="function" name="atspi_table_cell_get_row_header_cells ()" link="libatspi-atspi-table-cell.html#atspi-table-cell-get-row-header-cells"/>
+    <keyword type="function" name="atspi_table_cell_get_position ()" link="libatspi-atspi-table-cell.html#atspi-table-cell-get-position"/>
     <keyword type="function" name="atspi_table_cell_get_row_column_span ()" link="libatspi-atspi-table-cell.html#atspi-table-cell-get-row-column-span"/>
     <keyword type="function" name="atspi_table_cell_get_table ()" link="libatspi-atspi-table-cell.html#atspi-table-cell-get-table"/>
     <keyword type="struct" name="AtspiTableCell" link="libatspi-atspi-table-cell.html#AtspiTableCell-struct"/>

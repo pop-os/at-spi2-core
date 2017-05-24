@@ -23,7 +23,7 @@
 
 /* deviceeventcontroller.c: implement the DeviceEventController interface */
 
-#include <config.h>
+#include "config.h"
 
 #undef  SPI_XKB_DEBUG
 #undef  SPI_DEBUG
@@ -39,11 +39,14 @@
 #include <dbus/dbus.h>
 
 #include "paths.h"
-#include "keymasks.h"
 #include "de-types.h"
 #include "de-marshaller.h"
+#include "keymasks.h"
+
+#ifdef HAVE_X11
 #include "display.h"
 #include "event-source.h"
+#endif
 
 #include "deviceeventcontroller.h"
 #include "reentrant-list.h"
@@ -64,10 +67,13 @@ struct _SpiPoint {
     gint y;
 };
 typedef struct _SpiPoint SpiPoint;
+
 static unsigned int mouse_mask_state = 0;
 static unsigned int key_modifier_mask =
-  Mod1Mask | Mod2Mask | Mod3Mask | Mod4Mask | Mod5Mask | ShiftMask | LockMask | ControlMask | SPI_KEYMASK_NUMLOCK;
-static unsigned int _numlock_physical_mask = Mod2Mask; /* a guess, will be reset */
+  SPI_KEYMASK_MOD1 | SPI_KEYMASK_MOD2 | SPI_KEYMASK_MOD3 | SPI_KEYMASK_MOD4 |
+  SPI_KEYMASK_MOD5 | SPI_KEYMASK_SHIFT | SPI_KEYMASK_SHIFTLOCK |
+  SPI_KEYMASK_CONTROL | SPI_KEYMASK_NUMLOCK;
+static unsigned int _numlock_physical_mask = SPI_KEYMASK_MOD2; /* a guess, will be reset */
 
 static gboolean have_mouse_listener = FALSE;
 static gboolean have_mouse_event_listener = FALSE;
@@ -632,7 +638,7 @@ handle_keygrab (SpiDEController         *controller,
   grab_mask.mod_mask = key_listener->mask;
   if (g_slist_length (key_listener->keys) == 0) /* special case means AnyKey/AllKeys */
     {
-      grab_mask.key_val = AnyKey;
+      grab_mask.key_val = 0L; /* AnyKey */
 #ifdef SPI_DEBUG
       fprintf (stderr, "AnyKey grab!");
 #endif
@@ -1749,7 +1755,7 @@ impl_generate_keyboard_event (DBusConnection *bus, DBusMessage *message, void *u
 	       * in our arg list; it can contain either
 	       * a keycode or a keysym.
 	       */
-	      spi_dec_synth_keysym (controller, (KeySym) keycode);
+	      spi_dec_synth_keysym (controller, keycode);
 	      break;
       case Accessibility_KEY_STRING:
 	      if (!spi_dec_plat_synth_keystring (controller, synth_type, keycode, keystring))
