@@ -1,5 +1,9 @@
-at-spi2-core (2.22.0-7) UNRELEASED; urgency=medium
+at-spi2-core (2.24.1-1) UNRELEASED; urgency=medium
 
+  [ Jeremy Bicha ]
+  * New upstream release.
+
+  [ Samuel Thibault ]
   * Use canonical anonscm vcs URL.
 
  -- Samuel Thibault <sthibault@debian.org>  Fri, 20 Jan 2017 23:12:16 +0100
