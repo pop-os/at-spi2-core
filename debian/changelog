@@ -10,6 +10,7 @@ at-spi2-core (2.24.1-1) UNRELEASED; urgency=medium
 
   [ Samuel Thibault ]
   * Use canonical anonscm vcs URL.
+  * control: Update maintainer mailing list.
   * re-enable PIE, gobject-introspection doesn't pose problem any more
     (Closes: Bug#865597).
 
