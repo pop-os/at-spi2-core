@@ -1,6 +1,6 @@
 at-spi2-core (2.24.1-2) UNRELEASED; urgency=medium
 
-  * control: Bump Standards-Version to 4.0.1 (no changes).
+  * control: Bump Standards-Version to 4.1.0 (no changes).
 
  -- Samuel Thibault <sthibault@debian.org>  Thu, 10 Aug 2017 21:20:02 +0200
 
