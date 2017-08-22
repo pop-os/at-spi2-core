@@ -1,0 +1,30 @@
+commit 2347dad97cd903f6b7fed5a56b738e9ecdf80cac
+Author: Mike Gorse <mgorse@suse.com>
+Date:   Mon May 8 18:59:40 2017 -0500
+
+    atspi_accessible_get_parent: move check for NULL AtspiApplication object
+    
+    Now, if we don't have a cached parent, then we always either return NULL
+    or make a D-Bus call. This might make the code more robust, and hoping
+    that it will fix https://bugzilla.gnome.org/show_bug.cgi?id=767074,
+    though in theory it should make no difference there.
+
+diff --git a/atspi/atspi-accessible.c b/atspi/atspi-accessible.c
+index 4547ef7..b84317f 100644
+--- a/atspi/atspi-accessible.c
++++ b/atspi/atspi-accessible.c
+@@ -268,11 +268,12 @@ atspi_accessible_get_parent (AtspiAccessible *obj, GError **error)
+ {
+   g_return_val_if_fail (obj != NULL, NULL);
+ 
+-  if (obj->parent.app &&
+-      !_atspi_accessible_test_cache (obj, ATSPI_CACHE_PARENT))
++  if (!_atspi_accessible_test_cache (obj, ATSPI_CACHE_PARENT))
+   {
+     DBusMessage *message, *reply;
+     DBusMessageIter iter, iter_variant;
++    if (!obj->parent.app)
++      return NULL;
+     message = dbus_message_new_method_call (obj->parent.app->bus_name,
+                                             obj->parent.path,
+                                             DBUS_INTERFACE_PROPERTIES, "Get");
