@@ -1,10 +1,10 @@
-at-spi2-core (2.24.1-2) UNRELEASED; urgency=medium
+at-spi2-core (2.24.1-2) unstable; urgency=medium
 
   * control: Bump Standards-Version to 4.1.0 (no changes).
   * patches/accessible_get_parent.diff: Upstream fix for crash on switching
     between windows (Closes: Bug#872912).
 
- -- Samuel Thibault <sthibault@debian.org>  Thu, 10 Aug 2017 21:20:02 +0200
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 22 Aug 2017 21:13:53 +0200
 
 at-spi2-core (2.24.1-1) unstable; urgency=medium
 
