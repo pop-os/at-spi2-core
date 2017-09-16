@@ -3,8 +3,8 @@
 
 #include "atspi-enum-types.h"
 
-/* enumerations from "atspi-constants.h" */
-#include "atspi-constants.h"
+/* enumerations from "./atspi-constants.h" */
+#include "./atspi-constants.h"
 
 GType
 atspi_locale_type_get_type (void)
@@ -654,6 +654,18 @@ atspi_relation_type_get_type (void)
 			{ ATSPI_RELATION_DESCRIBED_BY,
 			  "ATSPI_RELATION_DESCRIBED_BY",
 			  "described-by" },
+			{ ATSPI_RELATION_DETAILS,
+			  "ATSPI_RELATION_DETAILS",
+			  "details" },
+			{ ATSPI_RELATION_DETAILS_FOR,
+			  "ATSPI_RELATION_DETAILS_FOR",
+			  "details-for" },
+			{ ATSPI_RELATION_ERROR_MESSAGE,
+			  "ATSPI_RELATION_ERROR_MESSAGE",
+			  "error-message" },
+			{ ATSPI_RELATION_ERROR_FOR,
+			  "ATSPI_RELATION_ERROR_FOR",
+			  "error-for" },
 			{ ATSPI_RELATION_LAST_DEFINED,
 			  "ATSPI_RELATION_LAST_DEFINED",
 			  "last-defined" },
@@ -1037,6 +1049,18 @@ atspi_role_get_type (void)
 			{ ATSPI_ROLE_SUPERSCRIPT,
 			  "ATSPI_ROLE_SUPERSCRIPT",
 			  "superscript" },
+			{ ATSPI_ROLE_DESCRIPTION_LIST,
+			  "ATSPI_ROLE_DESCRIPTION_LIST",
+			  "description-list" },
+			{ ATSPI_ROLE_DESCRIPTION_TERM,
+			  "ATSPI_ROLE_DESCRIPTION_TERM",
+			  "description-term" },
+			{ ATSPI_ROLE_DESCRIPTION_VALUE,
+			  "ATSPI_ROLE_DESCRIPTION_VALUE",
+			  "description-value" },
+			{ ATSPI_ROLE_FOOTNOTE,
+			  "ATSPI_ROLE_FOOTNOTE",
+			  "footnote" },
 			{ ATSPI_ROLE_LAST_DEFINED,
 			  "ATSPI_ROLE_LAST_DEFINED",
 			  "last-defined" },
@@ -1102,8 +1126,8 @@ atspi_cache_get_type (void)
 	return the_type;
 }
 
-/* enumerations from "atspi-types.h" */
-#include "atspi-types.h"
+/* enumerations from "./atspi-types.h" */
+#include "./atspi-types.h"
 
 GType
 atspi_key_listener_sync_type_get_type (void)

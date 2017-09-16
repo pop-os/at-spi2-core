@@ -1682,20 +1682,75 @@ of assistive technology clients, even though the previous toplevel
 <tr>
 <td class="enum_member_name"><p><a name="ATSPI-RELATION-DESCRIPTION-FOR:CAPS"></a>ATSPI_RELATION_DESCRIPTION_FOR</p></td>
 <td class="enum_member_description">
-<p>Indicates that an object provides
-descriptive information about another object; more verbose than
-<em class="parameter"><code>ATSPI_RELATION_LABEL_FOR</code></em>
-.</p>
+<p>Reciprocal of <a class="link" href="libatspi-atspi-constants.html#ATSPI-RELATION-DESCRIBED-BY:CAPS"><code class="literal">ATSPI_RELATION_DESCRIBED_BY</code></a>.
+Indicates that this object provides descriptive information about the target
+object(s). See also <a class="link" href="libatspi-atspi-constants.html#ATSPI-RELATION-DETAILS-FOR:CAPS"><code class="literal">ATSPI_RELATION_DETAILS_FOR</code></a> and <a class="link" href="libatspi-atspi-constants.html#ATSPI-RELATION-ERROR-FOR:CAPS"><code class="literal">ATSPI_RELATION_ERROR_FOR</code></a>.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="ATSPI-RELATION-DESCRIBED-BY:CAPS"></a>ATSPI_RELATION_DESCRIBED_BY</p></td>
 <td class="enum_member_description">
-<p>Indicates that another object provides
-descriptive information about this object; more verbose than
-<em class="parameter"><code>ATSPI_RELATION_LABELLED_BY</code></em>
-.</p>
+<p>Reciprocal of <a class="link" href="libatspi-atspi-constants.html#ATSPI-RELATION-DESCRIPTION-FOR:CAPS"><code class="literal">ATSPI_RELATION_DESCRIPTION_FOR</code></a>.
+Indicates that one or more target objects provide descriptive information
+about this object. This relation type is most appropriate for information
+that is not essential as its presentation may be user-configurable and/or
+limited to an on-demand mechanism such as an assistive technology command.
+For brief, essential information such as can be found in a widget's on-screen
+label, use <a class="link" href="libatspi-atspi-constants.html#ATSPI-RELATION-LABELLED-BY:CAPS"><code class="literal">ATSPI_RELATION_LABELLED_BY</code></a>. For an on-screen error message, use
+<a class="link" href="libatspi-atspi-constants.html#ATSPI-RELATION-ERROR-MESSAGE:CAPS"><code class="literal">ATSPI_RELATION_ERROR_MESSAGE</code></a>. For lengthy extended descriptive information
+contained in an on-screen object, consider using <a class="link" href="libatspi-atspi-constants.html#ATSPI-RELATION-DETAILS:CAPS"><code class="literal">ATSPI_RELATION_DETAILS</code></a> as
+assistive technologies may provide a means for the user to navigate to
+objects containing detailed descriptions so that their content can be more
+closely reviewed.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="ATSPI-RELATION-DETAILS:CAPS"></a>ATSPI_RELATION_DETAILS</p></td>
+<td class="enum_member_description">
+<p>Reciprocal of <a class="link" href="libatspi-atspi-constants.html#ATSPI-RELATION-DETAILS-FOR:CAPS"><code class="literal">ATSPI_RELATION_DETAILS_FOR</code></a>. Indicates
+that this object has a detailed or extended description, the contents of
+which can be found in the target object(s). This relation type is most
+appropriate for information that is sufficiently lengthy as to make
+navigation to the container of that information desirable. For less verbose
+information suitable for announcement only, see <a class="link" href="libatspi-atspi-constants.html#ATSPI-RELATION-DESCRIBED-BY:CAPS"><code class="literal">ATSPI_RELATION_DESCRIBED_BY</code></a>.
+If the detailed information describes an error condition,
+<a class="link" href="libatspi-atspi-constants.html#ATSPI-RELATION-ERROR-FOR:CAPS"><code class="literal">ATSPI_RELATION_ERROR_FOR</code></a> should be used instead. <em class="parameter"><code>Since</code></em>
+: 2.26.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="ATSPI-RELATION-DETAILS-FOR:CAPS"></a>ATSPI_RELATION_DETAILS_FOR</p></td>
+<td class="enum_member_description">
+<p>Reciprocal of <a class="link" href="libatspi-atspi-constants.html#ATSPI-RELATION-DETAILS:CAPS"><code class="literal">ATSPI_RELATION_DETAILS</code></a>. Indicates
+that this object provides a detailed or extended description about the target
+object(s). See also <a class="link" href="libatspi-atspi-constants.html#ATSPI-RELATION-DESCRIPTION-FOR:CAPS"><code class="literal">ATSPI_RELATION_DESCRIPTION_FOR</code></a> and
+<a class="link" href="libatspi-atspi-constants.html#ATSPI-RELATION-ERROR-FOR:CAPS"><code class="literal">ATSPI_RELATION_ERROR_FOR</code></a>. <em class="parameter"><code>Since</code></em>
+: 2.26.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="ATSPI-RELATION-ERROR-MESSAGE:CAPS"></a>ATSPI_RELATION_ERROR_MESSAGE</p></td>
+<td class="enum_member_description">
+<p>Reciprocal of <a class="link" href="libatspi-atspi-constants.html#ATSPI-RELATION-ERROR-FOR:CAPS"><code class="literal">ATSPI_RELATION_ERROR_FOR</code></a>.
+Indicates that this object has one or more errors, the nature of which is
+described in the contents of the target object(s). Objects that have this
+relation type should also contain <a class="link" href="libatspi-atspi-constants.html#ATSPI-STATE-INVALID-ENTRY:CAPS"><code class="literal">ATSPI_STATE_INVALID_ENTRY</code></a> in their
+<a class="link" href="AtspiStateSet.html" title="atspi-stateset"><span class="type">AtspiStateSet</span></a>. <em class="parameter"><code>Since</code></em>
+: 2.26.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="ATSPI-RELATION-ERROR-FOR:CAPS"></a>ATSPI_RELATION_ERROR_FOR</p></td>
+<td class="enum_member_description">
+<p>Reciprocal of <a class="link" href="libatspi-atspi-constants.html#ATSPI-RELATION-ERROR-MESSAGE:CAPS"><code class="literal">ATSPI_RELATION_ERROR_MESSAGE</code></a>.
+Indicates that this object contains an error message describing an invalid
+condition in the target object(s). <em class="parameter"><code>Since</code></em>
+: 2.26.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -1714,7 +1769,7 @@ determine the size of the enumeration. </p>
 <hr>
 <div class="refsect2">
 <a name="ATSPI-RELATIONTYPE-COUNT:CAPS"></a><h3>ATSPI_RELATIONTYPE_COUNT</h3>
-<pre class="programlisting">#define ATSPI_RELATIONTYPE_COUNT (19+1)
+<pre class="programlisting">#define ATSPI_RELATIONTYPE_COUNT (23+1)
 </pre>
 <p>One higher than the highest valid value of <a class="link" href="libatspi-atspi-constants.html#AtspiRelationType" title="enum AtspiRelationType"><span class="type">AtspiRelationType</span></a>.</p>
 </div>
@@ -2817,6 +2872,48 @@ superscript. <em class="parameter"><code>Since</code></em>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
+<td class="enum_member_name"><p><a name="ATSPI-ROLE-DESCRIPTION-LIST:CAPS"></a>ATSPI_ROLE_DESCRIPTION_LIST</p></td>
+<td class="enum_member_description">
+<p>An object that represents a list of term-value
+groups. A term-value group represents an individual description and consist
+of one or more names (<em class="parameter"><code>ATSPI_ROLE_DESCRIPTION_TERM</code></em>
+) followed by one or more
+values (<em class="parameter"><code>ATSPI_ROLE_DESCRIPTION_VALUE</code></em>
+). For each list, there should not be
+more than one group with the same term name. <em class="parameter"><code>Since</code></em>
+: 2.26.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="ATSPI-ROLE-DESCRIPTION-TERM:CAPS"></a>ATSPI_ROLE_DESCRIPTION_TERM</p></td>
+<td class="enum_member_description">
+<p>An object that represents the term, or name,
+part of a term-description group in a description list. <em class="parameter"><code>Since</code></em>
+: 2.26.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="ATSPI-ROLE-DESCRIPTION-VALUE:CAPS"></a>ATSPI_ROLE_DESCRIPTION_VALUE</p></td>
+<td class="enum_member_description">
+<p>An object that represents the description,
+definition, or value of a term-description group in a description list.
+The values within a group are alternatives, meaning that you can have
+several <em class="parameter"><code>ATSPI_ROLE_DESCRIPTION_VALUE</code></em>
+ objects for a given
+<em class="parameter"><code>ATSPI_ROLE_DESCRIPTION_TERM</code></em>
+. <em class="parameter"><code>Since</code></em>
+: 2.26.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="ATSPI-ROLE-FOOTNOTE:CAPS"></a>ATSPI_ROLE_FOOTNOTE</p></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
 <td class="enum_member_name"><p><a name="ATSPI-ROLE-LAST-DEFINED:CAPS"></a>ATSPI_ROLE_LAST_DEFINED</p></td>
 <td class="enum_member_description">
 <p>Not a valid role, used for finding end of
@@ -2831,7 +2928,7 @@ enumeration.</p>
 <hr>
 <div class="refsect2">
 <a name="ATSPI-ROLE-COUNT:CAPS"></a><h3>ATSPI_ROLE_COUNT</h3>
-<pre class="programlisting">#define ATSPI_ROLE_COUNT (121+1)
+<pre class="programlisting">#define ATSPI_ROLE_COUNT (125+1)
 </pre>
 <p>One higher than the highest valid value of <a class="link" href="libatspi-atspi-constants.html#AtspiRole" title="enum AtspiRole"><span class="type">AtspiRole</span></a>.</p>
 </div>
