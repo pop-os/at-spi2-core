@@ -6,6 +6,7 @@ at-spi2-core (2.26.0-1) UNRELEASED; urgency=medium
   * New upstream release
   * debian/control:
     - Build-depend on libxkbcommon-x11-dev and libxkbcommon-dev
+  * Drop accessible_get_parent.diff: Applied in new release
 
   [ Samuel Thibault ]
   * 90qt-a11y: Stop setting QT_LINUX_ACCESSIBILITY_ALWAYS_ON, starting from at
