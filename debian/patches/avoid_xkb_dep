@@ -1,0 +1,17 @@
+---
+ configure.ac |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+--- a/configure.ac
++++ b/configure.ac
+@@ -109,8 +109,8 @@ AS_IF([test "x$enable_x11" = xno], [
+     # XKB (optional)
+     PKG_CHECK_MODULES(XKB, [xkbcommon-x11], [
+       AC_DEFINE(HAVE_XKB, 1, [Define to use XKB])
+-      X11_CFLAGS="$X11_CFLAGS $XKB_CFLAGS"
+-      X11_LIBS="$X11_LIBS $XKB_LIBS"
++      #X11_CFLAGS="$X11_CFLAGS $XKB_CFLAGS"
++      #X11_LIBS="$X11_LIBS $XKB_LIBS"
+     ], [:])
+   ])
+ 
