@@ -4,6 +4,8 @@ at-spi2-core (2.26.0-1) UNRELEASED; urgency=medium
 
   [ Jeremy Bicha ]
   * New upstream release
+  * debian/control:
+    - Build-depend on libxkbcommon-x11-dev and libxkbcommon-dev
 
   [ Samuel Thibault ]
   * 90qt-a11y: Stop setting QT_LINUX_ACCESSIBILITY_ALWAYS_ON, starting from at
