@@ -198,6 +198,7 @@ handle_get_bus_address (DBusPendingCall *pending, void *user_data)
             dbus_connection_unref (app->bus);
           }
         app->bus = bus;
+        atspi_dbus_connection_setup_with_g_main(bus, g_main_context_default());
       }
       else
       {
@@ -1019,7 +1020,6 @@ static GSList *hung_processes;
 static void
 remove_hung_process (DBusPendingCall *pending, void *data)
 {
-
   hung_processes = g_slist_remove (hung_processes, data);
   g_free (data);
   dbus_pending_call_unref (pending);
@@ -1533,7 +1533,7 @@ get_accessibility_bus_address_dbus (void)
     g_warning ("Error retrieving accessibility bus address: %s: %s",
                error.name, error.message);
     dbus_error_free (&error);
-    return NULL;
+    goto out;
   }
   
   {
@@ -1545,12 +1545,14 @@ get_accessibility_bus_address_dbus (void)
 				DBUS_TYPE_INVALID))
       {
 	dbus_message_unref (reply);
-	return NULL;
+        goto out;
       }
     address = g_strdup (tmp_address);
     dbus_message_unref (reply);
   }
   
+out:
+  dbus_connection_unref (session_bus);
   return address;
 }
 
@@ -1575,6 +1577,7 @@ atspi_get_a11y_bus (void)
 {
   DBusError error;
   char *address = NULL;
+  const char *address_env = NULL;
 
   if (a11y_bus && dbus_connection_get_is_connected (a11y_bus))
     return a11y_bus;
@@ -1583,8 +1586,12 @@ atspi_get_a11y_bus (void)
     if (!dbus_connection_allocate_data_slot (&a11y_dbus_slot))
       g_warning ("at-spi: Unable to allocate D-Bus slot");
 
+  address_env = g_getenv ("AT_SPI_BUS_ADDRESS");
+  if (address_env != NULL && *address_env != 0)
+    address = g_strdup (address_env);
 #ifdef HAVE_X11
-  address = get_accessibility_bus_address_x11 ();
+  if (!address)
+    address = get_accessibility_bus_address_x11 ();
 #endif
   if (!address)
     address = get_accessibility_bus_address_dbus ();
@@ -1676,6 +1683,17 @@ atspi_set_main_context (GMainContext *cnx)
   }
   atspi_main_context = cnx;
   atspi_dbus_connection_setup_with_g_main (atspi_get_a11y_bus (), cnx);
+
+  if (desktop)
+  {
+    gint i;
+    for (i = desktop->children->len - 1; i >= 0; i--)
+    {
+      AtspiAccessible *child = g_ptr_array_index (desktop->children, i);
+      if (child->parent.app && child->parent.app->bus)
+        atspi_dbus_connection_setup_with_g_main (child->parent.app->bus, cnx);
+    }
+  }
 }
 
 #ifdef DEBUG_REF_COUNTS

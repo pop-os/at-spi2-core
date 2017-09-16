@@ -504,6 +504,10 @@
     <keyword type="constant" name="ATSPI_RELATION_PARENT_WINDOW_OF" link="libatspi-atspi-constants.html#ATSPI-RELATION-PARENT-WINDOW-OF:CAPS"/>
     <keyword type="constant" name="ATSPI_RELATION_DESCRIPTION_FOR" link="libatspi-atspi-constants.html#ATSPI-RELATION-DESCRIPTION-FOR:CAPS"/>
     <keyword type="constant" name="ATSPI_RELATION_DESCRIBED_BY" link="libatspi-atspi-constants.html#ATSPI-RELATION-DESCRIBED-BY:CAPS"/>
+    <keyword type="constant" name="ATSPI_RELATION_DETAILS" link="libatspi-atspi-constants.html#ATSPI-RELATION-DETAILS:CAPS"/>
+    <keyword type="constant" name="ATSPI_RELATION_DETAILS_FOR" link="libatspi-atspi-constants.html#ATSPI-RELATION-DETAILS-FOR:CAPS"/>
+    <keyword type="constant" name="ATSPI_RELATION_ERROR_MESSAGE" link="libatspi-atspi-constants.html#ATSPI-RELATION-ERROR-MESSAGE:CAPS"/>
+    <keyword type="constant" name="ATSPI_RELATION_ERROR_FOR" link="libatspi-atspi-constants.html#ATSPI-RELATION-ERROR-FOR:CAPS"/>
     <keyword type="constant" name="ATSPI_RELATION_LAST_DEFINED" link="libatspi-atspi-constants.html#ATSPI-RELATION-LAST-DEFINED:CAPS"/>
     <keyword type="constant" name="ATSPI_ROLE_INVALID" link="libatspi-atspi-constants.html#ATSPI-ROLE-INVALID:CAPS"/>
     <keyword type="constant" name="ATSPI_ROLE_ACCELERATOR_LABEL" link="libatspi-atspi-constants.html#ATSPI-ROLE-ACCELERATOR-LABEL:CAPS"/>
@@ -626,6 +630,10 @@
     <keyword type="constant" name="ATSPI_ROLE_MATH_ROOT" link="libatspi-atspi-constants.html#ATSPI-ROLE-MATH-ROOT:CAPS"/>
     <keyword type="constant" name="ATSPI_ROLE_SUBSCRIPT" link="libatspi-atspi-constants.html#ATSPI-ROLE-SUBSCRIPT:CAPS"/>
     <keyword type="constant" name="ATSPI_ROLE_SUPERSCRIPT" link="libatspi-atspi-constants.html#ATSPI-ROLE-SUPERSCRIPT:CAPS"/>
+    <keyword type="constant" name="ATSPI_ROLE_DESCRIPTION_LIST" link="libatspi-atspi-constants.html#ATSPI-ROLE-DESCRIPTION-LIST:CAPS"/>
+    <keyword type="constant" name="ATSPI_ROLE_DESCRIPTION_TERM" link="libatspi-atspi-constants.html#ATSPI-ROLE-DESCRIPTION-TERM:CAPS"/>
+    <keyword type="constant" name="ATSPI_ROLE_DESCRIPTION_VALUE" link="libatspi-atspi-constants.html#ATSPI-ROLE-DESCRIPTION-VALUE:CAPS"/>
+    <keyword type="constant" name="ATSPI_ROLE_FOOTNOTE" link="libatspi-atspi-constants.html#ATSPI-ROLE-FOOTNOTE:CAPS"/>
     <keyword type="constant" name="ATSPI_ROLE_LAST_DEFINED" link="libatspi-atspi-constants.html#ATSPI-ROLE-LAST-DEFINED:CAPS"/>
   </functions>
 </book>

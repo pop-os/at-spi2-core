@@ -8,7 +8,7 @@
 
 G_BEGIN_DECLS
 
-/* Enumerations from "atspi-constants.h" */
+/* Enumerations from "./atspi-constants.h" */
 
 #define ATSPI_TYPE_LOCALE_TYPE	(atspi_locale_type_get_type())
 GType atspi_locale_type_get_type	(void) G_GNUC_CONST;
@@ -61,7 +61,7 @@ GType atspi_role_get_type	(void) G_GNUC_CONST;
 #define ATSPI_TYPE_CACHE	(atspi_cache_get_type())
 GType atspi_cache_get_type	(void) G_GNUC_CONST;
 
-/* Enumerations from "atspi-types.h" */
+/* Enumerations from "./atspi-types.h" */
 
 #define ATSPI_TYPE_KEY_LISTENER_SYNC_TYPE	(atspi_key_listener_sync_type_get_type())
 GType atspi_key_listener_sync_type_get_type	(void) G_GNUC_CONST;
