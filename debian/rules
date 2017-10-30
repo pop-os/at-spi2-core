@@ -3,13 +3,13 @@
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
 %:
-	dh $@
+	dh $@ --buildsystem=meson
 
 override_dh_auto_configure:
 	ac_cv_lib_ICE_IceConnectionNumber=no \
-	dh_auto_configure -- --libexecdir=\$${prefix}/lib/at-spi2-core \
-			--enable-introspection \
-			--enable-gtk-doc
+	dh_auto_configure -- --libexecdir=/usr/lib/at-spi2-core \
+			-Denable-introspection=yes \
+			-Denable_docs=true
 
 override_dh_auto_install:
 	dh_auto_install
