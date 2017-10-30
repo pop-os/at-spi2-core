@@ -1,2 +1,3 @@
-version=3
-http://ftp.gnome.org/pub/GNOME/sources/at-spi2-core/(\d.[0-9]*[02468])/at-spi2-core-([\d.]*).tar.xz
+version=4
+https://download.gnome.org/sources/@PACKAGE@/([\d\.]+[02468])/ \
+	@PACKAGE@@ANY_VERSION@\.tar\.xz
