@@ -6,8 +6,7 @@ Uploaders: Samuel Thibault <sthibault@debian.org>, Jordi Mallach <jordi@debian.o
 Vcs-Browser: https://anonscm.debian.org/git/pkg-a11y/at-spi2-core.git
 Vcs-Git: https://anonscm.debian.org/git/pkg-a11y/at-spi2-core.git
 Homepage: https://wiki.gnome.org/Accessibility
-Build-Depends: debhelper (>= 9.20150628),
-               dh-autoreconf,
+Build-Depends: debhelper (>= 10),
                dbus, libdbus-1-dev,
                libglib2.0-dev,
                libxkbcommon-x11-dev,
