@@ -2,22 +2,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>atspi-relation: libatspi Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<title>AtspiRelation: libatspi Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.2">
 <link rel="home" href="index.html" title="libatspi Reference Manual">
 <link rel="up" href="ch01.html" title="API reference">
 <link rel="prev" href="libatspi-atspi-action.html" title="atspi-action">
 <link rel="next" href="libatspi-atspi-image.html" title="atspi-image">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.26 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
-<td width="100%" align="left" class="shortcuts">
-<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
-                  <a href="#AtspiRelation.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
-                  <a href="#AtspiRelation.object-hierarchy" class="shortcut">Object Hierarchy</a></span>
-</td>
+<td width="100%" align="left" class="shortcuts"></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
 <td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
 <td><a accesskey="p" href="libatspi-atspi-action.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
@@ -25,17 +21,20 @@
 </tr></table>
 <div class="refentry">
 <a name="AtspiRelation"></a><div class="titlepage"></div>
-<div class="refnamediv"><table width="100%"><tr>
-<td valign="top">
-<h2><span class="refentrytitle"><a name="AtspiRelation.top_of_page"></a>atspi-relation</span></h2>
-<p>atspi-relation —  An interface via which non-hierarchical relationships
- are indicated.</p>
-</td>
-<td class="gallery_image" valign="top" align="right"></td>
-</tr></table></div>
+
+<div class="refnamediv">
+<h2><span class="refentrytitle"><a name="AtspiRelation.top_of_page"></a>AtspiRelation</span></h2>
+<p>
+AtspiRelation
+
+</p>
+</div>
+
 <div class="refsect1">
 <a name="AtspiRelation.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table width="100%" border="0">
+
+<div class="informaltable">
+<table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -51,7 +50,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="/usr/share/gtk-doc/html/glibglib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>
+<a class="link" href=""><span class="returnvalue">gint</span></a>
 </td>
 <td class="function_name">
 <a class="link" href="AtspiRelation.html#atspi-relation-get-n-targets" title="atspi_relation_get_n_targets ()">atspi_relation_get_n_targets</a> <span class="c_punctuation">()</span>
@@ -66,11 +65,14 @@
 </td>
 </tr>
 </tbody>
-</table></div>
+</table>
+</div>
 </div>
 <div class="refsect1">
 <a name="AtspiRelation.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table width="100%" border="0">
+
+<div class="informaltable">
+<table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -85,32 +87,38 @@
 <td class="function_name"><a class="link" href="AtspiRelation.html#AtspiRelationClass" title="struct AtspiRelationClass">AtspiRelationClass</a></td>
 </tr>
 </tbody>
-</table></div>
+</table>
+</div>
 </div>
 <div class="refsect1">
 <a name="AtspiRelation.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="/usr/share/gtk-doc/html/gobjectgobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+
+<pre class="screen">    <a class="link" href="">GObject</a>
     <span class="lineart">╰──</span> AtspiRelation
 </pre>
 </div>
+
+
 <div class="refsect1">
 <a name="AtspiRelation.description"></a><h2>Description</h2>
-<p>
- An interface via which non-hierarchical relationships
- are indicated. An instance of this interface represents
- a "one-to-many" correspondance.
-</p>
+
+
 </div>
 <div class="refsect1">
 <a name="AtspiRelation.functions_details"></a><h2>Functions</h2>
+
 <div class="refsect2">
 <a name="atspi-relation-get-relation-type"></a><h3>atspi_relation_get_relation_type ()</h3>
+
+<a class="indexterm" name="id-1.2.7.7.2.2"></a>
 <pre class="programlisting"><a class="link" href="libatspi-atspi-constants.html#AtspiRelationType" title="enum AtspiRelationType"><span class="returnvalue">AtspiRelationType</span></a>
-atspi_relation_get_relation_type (<em class="parameter"><code><a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> *obj</code></em>);</pre>
-<p>Gets the type of relationship represented by an <a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a>.</p>
+atspi_relation_get_relation_type (<em class="parameter"><code><a class="link" href="AtspiRelation.html" title="AtspiRelation"><span class="type">AtspiRelation</span></a> *obj</code></em>);</pre>
+<p>Gets the type of relationship represented by an <a class="link" href="AtspiRelation.html" title="AtspiRelation"><span class="type">AtspiRelation</span></a>.</p>
 <div class="refsect3">
 <a name="atspi-relation-get-relation-type.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+
+<div class="informaltable">
+<table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -118,28 +126,33 @@ atspi_relation_get_relation_type (<em class="parameter"><code><a class="link" hr
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>obj</p></td>
-<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> object to query.</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiRelation.html" title="AtspiRelation"><span class="type">AtspiRelation</span></a> object to query.</p></td>
 <td class="parameter_annotations"> </td>
 </tr></tbody>
-</table></div>
+</table>
+</div>
 </div>
 <div class="refsect3">
 <a name="atspi-relation-get-relation-type.returns"></a><h4>Returns</h4>
+
 <p> an <a class="link" href="libatspi-atspi-constants.html#AtspiRelationType" title="enum AtspiRelationType"><span class="type">AtspiRelationType</span></a> indicating the type of relation
-encapsulated in this <a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> object.</p>
+encapsulated in this <a class="link" href="AtspiRelation.html" title="AtspiRelation"><span class="type">AtspiRelation</span></a> object.</p>
 </div>
 </div>
-<hr>
 <div class="refsect2">
 <a name="atspi-relation-get-n-targets"></a><h3>atspi_relation_get_n_targets ()</h3>
-<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glibglib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>
-atspi_relation_get_n_targets (<em class="parameter"><code><a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> *obj</code></em>);</pre>
+
+<a class="indexterm" name="id-1.2.7.7.3.2"></a>
+<pre class="programlisting"><a class="link" href=""><span class="returnvalue">gint</span></a>
+atspi_relation_get_n_targets (<em class="parameter"><code><a class="link" href="AtspiRelation.html" title="AtspiRelation"><span class="type">AtspiRelation</span></a> *obj</code></em>);</pre>
 <p>Gets the number of objects which this relationship has as its
       target objects (the subject is the <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> from which this
-      <a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> originated).</p>
+      <a class="link" href="AtspiRelation.html" title="AtspiRelation"><span class="type">AtspiRelation</span></a> originated).</p>
 <div class="refsect3">
 <a name="atspi-relation-get-n-targets.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+
+<div class="informaltable">
+<table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -147,29 +160,34 @@ atspi_relation_get_n_targets (<em class="parameter"><code><a class="link" href="
 </colgroup>
 <tbody><tr>
 <td class="parameter_name"><p>obj</p></td>
-<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> object to query.</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiRelation.html" title="AtspiRelation"><span class="type">AtspiRelation</span></a> object to query.</p></td>
 <td class="parameter_annotations"> </td>
 </tr></tbody>
-</table></div>
+</table>
+</div>
 </div>
 <div class="refsect3">
 <a name="atspi-relation-get-n-targets.returns"></a><h4>Returns</h4>
-<p> a <a href="/usr/share/gtk-doc/html/glibglib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating how many target objects which the
-originating <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object has the <a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a>
+
+<p> a <a class="link" href=""><span class="type">gint</span></a> indicating how many target objects which the
+originating <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> object has the <a class="link" href="AtspiRelation.html" title="AtspiRelation"><span class="type">AtspiRelation</span></a>
 relationship with.</p>
 </div>
 </div>
-<hr>
 <div class="refsect2">
 <a name="atspi-relation-get-target"></a><h3>atspi_relation_get_target ()</h3>
+
+<a class="indexterm" name="id-1.2.7.7.4.2"></a>
 <pre class="programlisting"><a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="returnvalue">AtspiAccessible</span></a> *
-atspi_relation_get_target (<em class="parameter"><code><a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> *obj</code></em>,
-                           <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glibglib-Basic-Types.html#gint"><span class="type">gint</span></a> i</code></em>);</pre>
+atspi_relation_get_target (<em class="parameter"><code><a class="link" href="AtspiRelation.html" title="AtspiRelation"><span class="type">AtspiRelation</span></a> *obj</code></em>,
+                           <em class="parameter"><code><a class="link" href=""><span class="type">gint</span></a> i</code></em>);</pre>
 <p>Gets the <em class="parameter"><code>i</code></em>
--th target of a specified <a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> relationship.</p>
+-th target of a specified <a class="link" href="AtspiRelation.html" title="AtspiRelation"><span class="type">AtspiRelation</span></a> relationship.</p>
 <div class="refsect3">
 <a name="atspi-relation-get-target.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+
+<div class="informaltable">
+<table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -178,48 +196,53 @@ atspi_relation_get_target (<em class="parameter"><code><a class="link" href="Ats
 <tbody>
 <tr>
 <td class="parameter_name"><p>obj</p></td>
-<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> object to query.</p></td>
+<td class="parameter_description"><p>a pointer to the <a class="link" href="AtspiRelation.html" title="AtspiRelation"><span class="type">AtspiRelation</span></a> object to query.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>i</p></td>
-<td class="parameter_description"><p>a (zero-index) <a href="/usr/share/gtk-doc/html/glibglib-Basic-Types.html#gint"><span class="type">gint</span></a> indicating which (of possibly several) target is requested.</p></td>
+<td class="parameter_description"><p>a (zero-index) <a class="link" href=""><span class="type">gint</span></a> indicating which (of possibly several) target is requested.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
-</table></div>
+</table>
+</div>
 </div>
 <div class="refsect3">
 <a name="atspi-relation-get-target.returns"></a><h4>Returns</h4>
-<p> an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> which is the <em class="parameter"><code>i</code></em>
+
+<p>an <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> which is the <em class="parameter"><code>i</code></em>
 -th object
 with which the originating <a class="link" href="AtspiAccessible.html" title="AtspiAccessible"><span class="type">AtspiAccessible</span></a> has relationship
-specified in the <a class="link" href="AtspiRelation.html" title="atspi-relation"><span class="type">AtspiRelation</span></a> object. </p>
-<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+specified in the <a class="link" href="AtspiRelation.html" title="AtspiRelation"><span class="type">AtspiRelation</span></a> object. </p>
+<p><span class="annotation">[<acronym class="acronym">transfer full</acronym>]</span></p>
 </div>
 </div>
+
 </div>
 <div class="refsect1">
 <a name="AtspiRelation.other_details"></a><h2>Types and Values</h2>
+
 <div class="refsect2">
 <a name="AtspiRelation-struct"></a><h3>struct AtspiRelation</h3>
+
+<a class="indexterm" name="id-1.2.7.8.2.2"></a>
 <pre class="programlisting">struct AtspiRelation;</pre>
-<p>
-</p>
 </div>
-<hr>
 <div class="refsect2">
 <a name="AtspiRelationClass"></a><h3>struct AtspiRelationClass</h3>
+
+<a class="indexterm" name="id-1.2.7.8.3.2"></a>
 <pre class="programlisting">struct AtspiRelationClass {
   GObjectClass parent_class;
 };
 </pre>
-<p>
-</p>
 </div>
+
 </div>
+
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.26</div>
 </body>
 </html>

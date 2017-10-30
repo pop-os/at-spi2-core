@@ -173,13 +173,14 @@ atspi_accessible_finalize (GObject *object)
 {
   AtspiAccessible *accessible = ATSPI_ACCESSIBLE (object);
 
-    g_free (accessible->description);
-    g_free (accessible->name);
+  g_free (accessible->description);
+  g_free (accessible->name);
+
   if (accessible->attributes)
     g_hash_table_unref (accessible->attributes);
 
-    if (accessible->priv->cache)
-      g_hash_table_destroy (accessible->priv->cache);
+  if (accessible->priv->cache)
+    g_hash_table_destroy (accessible->priv->cache);
 
 #ifdef DEBUG_REF_COUNTS
   accessible_count--;
@@ -268,11 +269,12 @@ atspi_accessible_get_parent (AtspiAccessible *obj, GError **error)
 {
   g_return_val_if_fail (obj != NULL, NULL);
 
-  if (obj->parent.app &&
-      !_atspi_accessible_test_cache (obj, ATSPI_CACHE_PARENT))
+  if (!_atspi_accessible_test_cache (obj, ATSPI_CACHE_PARENT))
   {
     DBusMessage *message, *reply;
     DBusMessageIter iter, iter_variant;
+    if (!obj->parent.app)
+      return NULL;
     message = dbus_message_new_method_call (obj->parent.app->bus_name,
                                             obj->parent.path,
                                             DBUS_INTERFACE_PROPERTIES, "Get");
