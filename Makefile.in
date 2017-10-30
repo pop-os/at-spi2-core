@@ -204,7 +204,8 @@ am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/atspi-2.pc.in \
 	$(top_srcdir)/config/missing ABOUT-NLS AUTHORS COPYING \
 	ChangeLog INSTALL NEWS README config/ar-lib config/compile \
 	config/config.guess config/config.rpath config/config.sub \
-	config/install-sh config/ltmain.sh config/missing
+	config/depcomp config/install-sh config/ltmain.sh \
+	config/missing
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -433,7 +434,8 @@ ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 EXTRA_DIST = \
 	atspi-2.pc.in \
 	meson.build \
-	meson_options.txt
+	meson_options.txt \
+        po/meson.build
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = atspi-2.pc
