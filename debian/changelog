@@ -1,10 +1,10 @@
-at-spi2-core (2.26.1-1) UNRELEASED; urgency=medium
+at-spi2-core (2.26.1-1) unstable; urgency=medium
 
   * New upstream release.
     - patches/avoid_xkb_dep: Drop, fixed upstream.
   * control: Bump Standards-Version to 4.1.1 (no changes).
 
- -- Samuel Thibault <sthibault@debian.org>  Fri, 29 Sep 2017 00:42:57 +0200
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 30 Oct 2017 19:50:11 +0100
 
 at-spi2-core (2.26.0-2) unstable; urgency=medium
 
