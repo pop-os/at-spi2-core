@@ -11,17 +11,10 @@ override_dh_auto_configure:
 			-Denable-introspection=yes \
 			-Denable_docs=true
 
-override_dh_auto_install:
-	dh_auto_install
-	for file in $$(find debian/tmp/usr/lib/ -name "*.la"); do \
-		sed -i "/dependency_libs/ s/'.*'/''/" $$file ; \
-	done
-
 override_dh_auto_test:
 
-override_dh_install:
-	rm -f debian/tmp/usr/lib/*/*.la
-	dh_install --list-missing
+override_dh_missing:
+	dh_missing --fail-missing
 
 override_dh_makeshlibs:
 	dh_makeshlibs -a --add-udeb=libatspi0-udeb -V 'libatspi2.0-0 (>= 2.9.90)'
