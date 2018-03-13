@@ -3,6 +3,7 @@ at-spi2-core (2.28.0-1) UNRELEASED; urgency=medium
   * Team upload
   * New upstream release
     - Includes reproducible build fix from Chris Lamb (Closes: #883359)
+  * Bump debhelper compat to 11
 
  -- Jeremy Bicha <jbicha@debian.org>  Mon, 12 Mar 2018 20:45:48 -0400
 

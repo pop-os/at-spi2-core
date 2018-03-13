@@ -6,7 +6,7 @@ Uploaders: Samuel Thibault <sthibault@debian.org>, Jordi Mallach <jordi@debian.o
 Vcs-Browser: https://anonscm.debian.org/git/pkg-a11y/at-spi2-core.git
 Vcs-Git: https://anonscm.debian.org/git/pkg-a11y/at-spi2-core.git
 Homepage: https://wiki.gnome.org/Accessibility
-Build-Depends: debhelper (>= 10.3~),
+Build-Depends: debhelper (>= 11.1.3),
                dbus, libdbus-1-dev,
                libglib2.0-dev,
                libxkbcommon-x11-dev,
@@ -14,7 +14,7 @@ Build-Depends: debhelper (>= 10.3~),
                libxtst-dev,
                meson (>= 0.40.1),
                libgirepository1.0-dev,
-               intltool, gtk-doc-tools (>= 1.09),
+               gtk-doc-tools (>= 1.09),
                gobject-introspection
 Standards-Version: 4.1.1
 
