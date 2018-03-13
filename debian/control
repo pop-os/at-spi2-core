@@ -16,7 +16,7 @@ Build-Depends: debhelper (>= 11.1.3),
                libgirepository1.0-dev,
                gtk-doc-tools (>= 1.09),
                gobject-introspection
-Standards-Version: 4.1.1
+Standards-Version: 4.1.3
 
 Package: at-spi2-core
 Architecture: any
@@ -63,7 +63,6 @@ Depends: ${misc:Depends},
          libatspi2.0-0 (= ${binary:Version}),
          libglib2.0-dev (>= 2.4.1-2),
          libdbus-1-dev,
-         libglib2.0-dev,
          libxtst-dev
 Replaces: gir-repository-dev
 Description: Development files for the assistive technology service provider
