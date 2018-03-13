@@ -3,7 +3,7 @@
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
 %:
-	dh $@ --buildsystem=meson
+	dh $@
 
 override_dh_auto_configure:
 	ac_cv_lib_ICE_IceConnectionNumber=no \
