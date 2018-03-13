@@ -1,5 +1,5 @@
 project('at-spi2-core', 'c',
-        version: '2.26.2',
+        version: '2.28.0',
         license: 'LGPLv2.1+',
         default_options: [
           'buildtype=debugoptimized',
@@ -8,7 +8,7 @@ project('at-spi2-core', 'c',
         ],
         meson_version: '>= 0.40.1')
 
-add_project_arguments([ '-D_POSIX_C_SOURCE', '-D_DEFAULT_SOURCE' ], language: 'c')
+add_project_arguments([ '-D_POSIX_C_SOURCE=200809L', '-D_DEFAULT_SOURCE' ], language: 'c')
 
 atspi_gir_ns = 'Atspi'
 
