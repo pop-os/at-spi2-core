@@ -75,7 +75,8 @@ Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-         ${gir:Depends}
+         ${gir:Depends},
+         libatspi2.0-0 (>= ${binary:Version})
 Replaces: gir1.0-gtk-2.0 (<< 2.22),
           gobject-introspection-repository
 Description: Assistive Technology Service Provider (GObject introspection)
