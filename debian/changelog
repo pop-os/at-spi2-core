@@ -1,9 +1,9 @@
-at-spi2-core (2.28.0-2) UNRELEASED; urgency=medium
+at-spi2-core (2.28.0-2) unstable; urgency=high
 
   * control: Make sure we upgrade libatspi2.0-0 while upgrading
     gir1.2-atspi-2.0, notably for role values etc.
 
- -- Samuel Thibault <sthibault@debian.org>  Wed, 04 Apr 2018 16:17:21 +0200
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 20 Apr 2018 13:44:30 +0200
 
 at-spi2-core (2.28.0-1) unstable; urgency=medium
 
