@@ -1,4 +1,4 @@
-at-spi2-core (2.28.0-3) UNRELEASED; urgency=medium
+at-spi2-core (2.28.0-3) unstable; urgency=medium
 
   * Team upload
 
@@ -9,7 +9,7 @@ at-spi2-core (2.28.0-3) UNRELEASED; urgency=medium
   * Demote at-spi2-doc's Recommends: devhelp to Suggests
   * Update Vcs fields for migration to https://salsa.debian.org/
 
- -- Samuel Thibault <sthibault@debian.org>  Sat, 28 Apr 2018 16:41:30 +0200
+ -- Jeremy Bicha <jbicha@debian.org>  Mon, 30 Apr 2018 15:01:17 -0400
 
 at-spi2-core (2.28.0-2) unstable; urgency=high
 
