@@ -1,4 +1,4 @@
-at-spi2-core (2.28.0-3) unstable; urgency=medium
+at-spi2-core (2.28.0-3) UNRELEASED; urgency=medium
 
   * Team upload
 
@@ -8,7 +8,7 @@ at-spi2-core (2.28.0-3) unstable; urgency=medium
   [ Jeremy Bicha ]
   * Demote at-spi2-doc's Recommends: devhelp to Suggests
 
- -- Jeremy Bicha <jbicha@debian.org>  Mon, 30 Apr 2018 14:58:20 -0400
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 28 Apr 2018 16:41:30 +0200
 
 at-spi2-core (2.28.0-2) unstable; urgency=high
 
