@@ -1,6 +1,12 @@
 at-spi2-core (2.28.0-3) UNRELEASED; urgency=medium
 
+  * Team upload
+
+  [ Samuel Thibault ]
   * Bump Standards-Version to 4.1.4 (no changes).
+
+  [ Jeremy Bicha ]
+  * Demote at-spi2-doc's Recommends: devhelp to Suggests
 
  -- Samuel Thibault <sthibault@debian.org>  Sat, 28 Apr 2018 16:41:30 +0200
 

@@ -87,6 +87,6 @@ Package: at-spi2-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}
-Recommends: devhelp
+Suggests: devhelp
 Description: Assistive Technology Service Provider Interface (Documentation)
  This package contains documentation for the at-spi2 interface.
