@@ -1,3 +1,9 @@
+at-spi2-core (2.28.0-4) UNRELEASED; urgency=medium
+
+  * Bump Standards-Version to 4.1.5 (no changes).
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 08 Jul 2018 15:45:17 +0200
+
 at-spi2-core (2.28.0-3) unstable; urgency=medium
 
   * Team upload
