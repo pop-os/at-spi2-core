@@ -86,6 +86,7 @@ Description: Assistive Technology Service Provider (GObject introspection)
 Package: at-spi2-doc
 Section: doc
 Architecture: all
+Multi-Arch: foreign
 Depends: ${misc:Depends}
 Suggests: devhelp
 Description: Assistive Technology Service Provider Interface (Documentation)
