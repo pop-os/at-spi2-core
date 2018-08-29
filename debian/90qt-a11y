@@ -8,5 +8,5 @@ QT_ACCESSIBILITY=1
 export QT_ACCESSIBILITY
 
 if [ -x "/usr/bin/dbus-update-activation-environment" ]; then
-        dbus-update-activation-environment --verbose --systemd QT_ACCESSIBILITY QT_LINUX_ACCESSIBILITY_ALWAYS_ON
+        dbus-update-activation-environment --verbose --systemd QT_ACCESSIBILITY
 fi
