@@ -1,3 +1,9 @@
+at-spi2-core (2.29.1-1) experimental; urgency=medium
+
+  * New upstream beta release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 25 Aug 2018 21:39:59 +0200
+
 at-spi2-core (2.28.0-4) UNRELEASED; urgency=medium
 
   * Bump Standards-Version to 4.2.0 (no changes).
