@@ -1,9 +1,16 @@
-at-spi2-core (2.30.0-1) UNRELEASED; urgency=medium
+at-spi2-core (2.30.0-1) unstable; urgency=medium
 
+  [ Jeremy Bicha ]
   * Team upload
   * New upstream release
+  * Build-Depend on gedit and xvfb for build tests
+  * debian/rules: Run build tests
+  * Release to unstable
 
- -- Jeremy Bicha <jbicha@debian.org>  Fri, 14 Sep 2018 19:34:59 -0400
+  [ Samuel Thibault ]
+  - 90qt-a11y: Do not export variable not defined any more
+
+ -- Jeremy Bicha <jbicha@debian.org>  Fri, 14 Sep 2018 19:38:54 -0400
 
 at-spi2-core (2.29.1-1) experimental; urgency=medium
 
@@ -15,7 +22,6 @@ at-spi2-core (2.28.0-4) UNRELEASED; urgency=medium
 
   * Bump Standards-Version to 4.2.0 (no changes).
   * control: Mark at-spi2-doc Multi-Arch: foreign.
-  * 90qt-a11y: Do not export variable not defined any more.
 
  -- Samuel Thibault <sthibault@debian.org>  Sun, 08 Jul 2018 15:45:17 +0200
 
