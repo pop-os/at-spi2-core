@@ -12,6 +12,7 @@ override_dh_auto_configure:
 			-Denable_docs=true
 
 override_dh_auto_test:
+	dbus-run-session -- xvfb-run dh_auto_test
 
 override_dh_missing:
 	dh_missing --fail-missing
