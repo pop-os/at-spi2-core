@@ -1,5 +1,14 @@
-Accessibility is now always started by default, ready for use
+From: Samuel Thibault <samuel.thibault@ens-lyon.org>
+Date: Sat, 26 Dec 2015 17:19:57 +0100
+Subject: at-spi-by-default
 
+Accessibility is now always started by default, ready for use
+---
+ bus/at-spi-dbus-bus.desktop.in | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/bus/at-spi-dbus-bus.desktop.in b/bus/at-spi-dbus-bus.desktop.in
+index b3c90bd..22f6b75 100644
 --- a/bus/at-spi-dbus-bus.desktop.in
 +++ b/bus/at-spi-dbus-bus.desktop.in
 @@ -2,8 +2,6 @@
