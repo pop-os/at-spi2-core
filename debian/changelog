@@ -1,3 +1,9 @@
+at-spi2-core (2.30.0-3) UNRELEASED; urgency=medium
+
+  * patches/meson: Fix dbind documentation build with meson.
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 23 Oct 2018 17:45:47 +0200
+
 at-spi2-core (2.30.0-2) unstable; urgency=medium
 
   * Add disable-test-that-needs-installed-dbus-service.patch
