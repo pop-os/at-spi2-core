@@ -9,7 +9,7 @@ override_dh_auto_configure:
 	ac_cv_lib_ICE_IceConnectionNumber=no \
 	dh_auto_configure -- --libexecdir=/usr/lib/at-spi2-core \
 			-Denable-introspection=yes \
-			-Denable_docs=true
+			-Denable_docs=false
 
 override_dh_auto_test:
 	dbus-run-session -- xvfb-run dh_auto_test

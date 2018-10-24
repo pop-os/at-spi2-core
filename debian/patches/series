@@ -1,3 +1,3 @@
 at-spi-by-default
 disable-test-that-needs-installed-dbus-service.patch
-meson
+#meson
