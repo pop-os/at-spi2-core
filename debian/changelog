@@ -2,7 +2,7 @@ at-spi2-core (2.30.0-4) unstable; urgency=medium
 
   * patches/meson: Disable, actually completely breaks execution.
   * rules: Disable documentation generation, avoids #911697.
-  * at-spi2-doc.install: Disable installng documentation.
+  * at-spi2-doc.install: Disable installing documentation.
 
  -- Samuel Thibault <sthibault@debian.org>  Wed, 24 Oct 2018 09:29:13 +0200
 
