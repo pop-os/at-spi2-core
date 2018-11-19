@@ -1,0 +1,111 @@
+commit 77313dabdc76ebd012d003e253a79596e3acc72d
+Author: Samuel Thibault <samuel.thibault@ens-lyon.org>
+Date:   Sun Nov 18 15:24:16 2018 -0600
+
+        Add support for locking/unlocking modifiers
+
+diff --git a/atspi/atspi-constants.h b/atspi/atspi-constants.h
+index d9ad154..b9f41ef 100644
+--- a/atspi/atspi-constants.h
++++ b/atspi/atspi-constants.h
+@@ -715,6 +715,8 @@ typedef enum {
+  * subject to the out-of-keymap limitations described for
+  * @ATSPI_KEY_SYM. In practice this limitation primarily effects
+  * Chinese and Japanese locales.
++ * @ATSPI_KEY_LOCKMODIFIERS: Emulates locking a set of modifiers.
++ * @ATSPI_KEY_UNLOCKMODIFIERS: Emulates unlocking a set of modifiers.
+  *
+  * Enumeration used when synthesizing keyboard input via
+  * #atspi_generate_keyboard_event.
+@@ -726,6 +728,8 @@ typedef enum {
+     ATSPI_KEY_PRESSRELEASE,
+     ATSPI_KEY_SYM,
+     ATSPI_KEY_STRING,
++    ATSPI_KEY_LOCKMODIFIERS,
++    ATSPI_KEY_UNLOCKMODIFIERS,
+ } AtspiKeySynthType;
+ 
+ /**
+diff --git a/atspi/atspi-registry.c b/atspi/atspi-registry.c
+index c9b11f0..76b1926 100644
+--- a/atspi/atspi-registry.c
++++ b/atspi/atspi-registry.c
+@@ -426,8 +426,8 @@ atspi_deregister_device_event_listener (AtspiDeviceListener *listener,
+ 
+ /**
+  * atspi_generate_keyboard_event:
+- * @keyval: a #gint indicating the keycode or keysym of the key event
+- *           being synthesized.
++ * @keyval: a #gint indicating the keycode or keysym or modifier mask of the
++ *           key event being synthesized.
+  * @keystring: (allow-none): an (optional) UTF-8 string which, if
+  *           @synth_type is %ATSPI_KEY_STRING, indicates a 'composed'
+  *           keyboard input string being synthesized; this type of
+@@ -436,7 +436,8 @@ atspi_deregister_device_event_listener (AtspiDeviceListener *listener,
+  *           input method (such as XIM) were used.
+  * @synth_type: an #AtspiKeySynthType flag indicating whether @keyval
+  *           is to be interpreted as a keysym rather than a keycode
+- *           (%ATSPI_KEY_SYM) or a string (%ATSPI_KEY_STRING), or
++ *           (%ATSPI_KEY_SYM) or a string (%ATSPI_KEY_STRING) or a modifier
++ *           mask (%ATSPI_KEY_LOCKMODIFIERS and %ATSPI_KEY_UNLOCKMODIFIERS), or
+  *           whether to synthesize %ATSPI_KEY_PRESS,
+  *           %ATSPI_KEY_RELEASE, or both (%ATSPI_KEY_PRESSRELEASE).
+  * @error: (allow-none): a pointer to a %NULL #GError pointer, or %NULL
+diff --git a/doc/libatspi/tmpl/atspi-constants.sgml b/doc/libatspi/tmpl/atspi-constants.sgml
+index 24bb07f..af2ec33 100644
+--- a/doc/libatspi/tmpl/atspi-constants.sgml
++++ b/doc/libatspi/tmpl/atspi-constants.sgml
+@@ -291,6 +291,8 @@ Constant definitions needed by multiple interfaces.
+ @ATSPI_KEY_PRESSRELEASE: 
+ @ATSPI_KEY_SYM: 
+ @ATSPI_KEY_STRING: 
++@ATSPI_KEY_LOCKMODIFIERS: 
++@ATSPI_KEY_UNLOCKMODIFIERS: 
+ 
+ <!-- ##### MACRO ATSPI_KEYSYNTHTYPE_COUNT ##### -->
+ <para>
+diff --git a/idl/controller.didl b/idl/controller.didl
+index 53b5f71..4519a0a 100644
+--- a/idl/controller.didl
++++ b/idl/controller.didl
+@@ -6,7 +6,9 @@ interface org.freestandards.atspi.DeviceEventController {
+ 		KEY_RELEASE,
+ 		KEY_PRESSRELEASE,
+ 		KEY_SYM,
+-		KEY_STRING
++		KEY_STRING,
++		KEY_LOCKMODIFIERS,
++		KEY_UNLOCKMODIFIERS
+ 	}
+ 
+         /*
+diff --git a/registryd/de-types.h b/registryd/de-types.h
+index a338e38..f08823c 100644
+--- a/registryd/de-types.h
++++ b/registryd/de-types.h
+@@ -47,6 +47,8 @@ typedef enum {
+     Accessibility_KEY_PRESSRELEASE,
+     Accessibility_KEY_SYM,
+     Accessibility_KEY_STRING,
++    Accessibility_KEY_LOCKMODIFIERS,
++    Accessibility_KEY_UNLOCKMODIFIERS,
+ } Accessibility_KeySynthType;
+ 
+ typedef struct _Accessibility_DeviceEvent Accessibility_DeviceEvent;
+diff --git a/registryd/deviceeventcontroller.c b/registryd/deviceeventcontroller.c
+index 0c965ef..4e25ad6 100644
+--- a/registryd/deviceeventcontroller.c
++++ b/registryd/deviceeventcontroller.c
+@@ -1762,6 +1762,12 @@ impl_generate_keyboard_event (DBusConnection *bus, DBusMessage *message, void *u
+ 		      fprintf (stderr, "Keystring synthesis failure, string=%s\n",
+ 			       keystring);
+ 	      break;
++      case Accessibility_KEY_LOCKMODIFIERS:
++	      spi_dec_plat_lock_modifiers (controller, keycode);
++	      break;
++      case Accessibility_KEY_UNLOCKMODIFIERS:
++	      spi_dec_plat_unlock_modifiers (controller, keycode);
++	      break;
+     }
+   reply = dbus_message_new_method_return (message);
+   return reply;

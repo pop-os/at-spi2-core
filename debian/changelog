@@ -3,6 +3,7 @@ at-spi2-core (2.30.0-5) UNRELEASED; urgency=medium
   * patches/meson: Drop patch.
   * rules: re-enable documentation generation.
   * at-spi2-doc.install: Re-enable installing documentation.
+  * patches/git-lockmods: Support locking/unlocking modifiers.
 
  -- Samuel Thibault <sthibault@debian.org>  Thu, 15 Nov 2018 23:29:10 +0100
 
