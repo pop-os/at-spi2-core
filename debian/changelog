@@ -1,3 +1,9 @@
+at-spi2-core (2.30.0-6) UNRELEASED; urgency=medium
+
+  * 90qt-a11y.conf: Set QT_ACCESSIBILITY to 1 in Wayland sessions too.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 09 Feb 2019 15:50:02 +0100
+
 at-spi2-core (2.30.0-5) unstable; urgency=medium
 
   * patches/meson: Drop patch.
