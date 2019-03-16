@@ -1,9 +1,11 @@
-at-spi2-core (2.32.0-1) UNRELEASED; urgency=medium
+at-spi2-core (2.32.0-1) experimental; urgency=medium
 
   * Team upload
   * New upstream release
+  * Update configure flags
+  * Drop debian/patches/git-lockmods: Applied in new release
 
- -- Jeremy Bicha <jbicha@debian.org>  Sat, 16 Mar 2019 17:48:27 -0400
+ -- Jeremy Bicha <jbicha@debian.org>  Sat, 16 Mar 2019 17:55:45 -0400
 
 at-spi2-core (2.30.0-7) unstable; urgency=medium
 
