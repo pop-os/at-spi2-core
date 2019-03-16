@@ -25,7 +25,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <signal.h>
-#ifdef __linux
+#ifdef __linux__
 #include <sys/prctl.h>
 #include <sys/socket.h>
 #include <sys/un.h>
@@ -278,7 +278,7 @@ setup_bus_child_daemon (gpointer data)
   close (app->pipefd[1]);
 
   /* On Linux, tell the bus process to exit if this process goes away */
-#ifdef __linux
+#ifdef __linux__
   prctl (PR_SET_PDEATHSIG, 15);
 #endif
 }
@@ -293,7 +293,9 @@ ensure_a11y_bus_daemon (A11yBusLauncher *app, char *config_path)
 
   if (pipe (app->pipefd) < 0)
     g_error ("Failed to create pipe: %s", strerror (errno));
-  
+
+  g_clear_pointer (&app->a11y_launch_error_message, g_free);
+
   if (!g_spawn_async (NULL,
                       argv,
                       NULL,
@@ -388,6 +390,8 @@ ensure_a11y_bus_broker (A11yBusLauncher *app, char *config_path)
 
   if (listen (app->listenfd, 1024) < 0)
     g_error ("Failed to listen on socket: %s", strerror(errno));
+
+  g_clear_pointer (&app->a11y_launch_error_message, g_free);
 
   if (!g_spawn_async (NULL,
                       argv,
