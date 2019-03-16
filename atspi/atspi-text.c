@@ -618,6 +618,8 @@ atspi_text_get_character_at_offset (AtspiText *obj,
  *
  * Gets a bounding box containing the glyph representing
  *        the character at a particular text offset.
+ * The returned values are meaningful only if the Text has both
+ * STATE_VISIBLE and STATE_SHOWING.
  *
  * Returns: An #AtspiRect specifying the position and size of the character.
  *
@@ -690,6 +692,8 @@ atspi_text_get_offset_at_point (AtspiText *obj,
  *        for the returned values.
  *
  * Gets the bounding box for text within a range in an  #AtspiText object.
+ * The returned values are meaningful only if the Text has both
+ * STATE_VISIBLE and STATE_SHOWING.
  *
  * Returns: An #AtspiRect giving the position and size of the specified range
  *          of text.
@@ -888,6 +892,72 @@ atspi_text_set_selection (AtspiText *obj,
   g_return_val_if_fail (obj != NULL, FALSE);
 
   _atspi_dbus_call (obj, atspi_interface_text, "SetSelection", error, "iii=>b", d_selection_num, d_start_offset, d_end_offset, &retval);
+
+  return retval;
+}
+
+/**
+ * atspi_text_scroll_substring_to:
+ * @obj: a pointer to the #AtspiText object on which to operate.
+ * @start_offset: a #gint indicating the start of the desired text range.
+ * @end_offset: a #gint indicating the first character past the desired range.
+ * @type: a #AtspiScrollType indicating where the object should be placed on the
+ *        screen.
+ *
+ * Scrolls whatever container of the #AtspiText text range so it becomes
+ * visible on the screen.
+ *
+ * Returns: #TRUE if successful, #FALSE otherwise.
+ **/
+gboolean
+atspi_text_scroll_substring_to (AtspiText *obj,
+                               gint start_offset,
+                               gint end_offset,
+                               AtspiScrollType type,
+                               GError **error)
+{
+  dbus_bool_t retval = FALSE;
+
+  g_return_val_if_fail (obj != NULL, FALSE);
+
+  _atspi_dbus_call (obj, atspi_interface_text, "ScrollSubstringTo",
+                    error, "iiu=>b",
+                    start_offset, end_offset, type, &retval);
+
+  return retval;
+}
+
+/**
+ * atspi_text_scroll_substring_to_point:
+ * @obj: a pointer to the #AtspiText object on which to operate.
+ * @start_offset: a #gint indicating the start of the desired text range.
+ * @end_offset: a #gint indicating the first character past the desired range.
+ * @coords: a #AtspiCoordType indicating whether the coordinates are relative to
+ *          the screen, to the window, or to the parent object.
+ * @x: the x coordinate of the point to reach
+ * @y: the y coordinate of the point to reach
+ *
+ * Scrolls whatever container of the #AtspiText text range so it becomes
+ * visible on the screen at a given position.
+ *
+ * Returns: #TRUE if successful, #FALSE otherwise.
+ **/
+gboolean
+atspi_text_scroll_substring_to_point (AtspiText *obj,
+                                     gint start_offset,
+                                     gint end_offset,
+                                     AtspiCoordType coords,
+                                     gint x,
+                                     gint y,
+                                     GError **error)
+{
+  dbus_bool_t retval = FALSE;
+
+  g_return_val_if_fail (obj != NULL, FALSE);
+
+  _atspi_dbus_call (obj, atspi_interface_text, "ScrollSubstringToPoint",
+                    error, "iiuii=>b",
+                    start_offset, end_offset, coords, x, y, &retval);
 
   return retval;
 }
