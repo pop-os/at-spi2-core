@@ -71,6 +71,7 @@ const char *atspi_interface_table = ATSPI_DBUS_INTERFACE_TABLE;
 const char *atspi_interface_table_cell = ATSPI_DBUS_INTERFACE_TABLE_CELL;
 const char *atspi_interface_text = ATSPI_DBUS_INTERFACE_TEXT;
 const char *atspi_interface_cache = ATSPI_DBUS_INTERFACE_CACHE;
+const char *atspi_interface_screen_reader = ATSPI_DBUS_INTERFACE_SCREEN_READER;
 const char *atspi_interface_value = ATSPI_DBUS_INTERFACE_VALUE;
 
 static const char *interfaces[] =
@@ -740,6 +741,11 @@ process_deferred_message (BusDataClosure *closure)
   {
     _atspi_dbus_handle_event (closure->bus, closure->message, closure->data);
   }
+  if (dbus_message_is_signal (closure->message, atspi_interface_screen_reader,
+      "ReadingPosition"))
+  {
+    _atspi_dbus_handle_event (closure->bus, closure->message, closure->data);
+  }
   if (dbus_message_is_method_call (closure->message, atspi_interface_device_event_listener, "NotifyEvent"))
   {
     _atspi_dbus_handle_DeviceEvent (closure->bus,
@@ -834,6 +840,11 @@ atspi_dbus_filter (DBusConnection *bus, DBusMessage *message, void *data)
     return defer_message (bus, message, data);
   }
   if (dbus_message_is_signal (message, atspi_interface_cache, "RemoveAccessible"))
+  {
+    return defer_message (bus, message, data);
+  }
+  if (dbus_message_is_signal (message, atspi_interface_screen_reader,
+      "ReadingPosition"))
   {
     return defer_message (bus, message, data);
   }
@@ -1590,7 +1601,7 @@ atspi_get_a11y_bus (void)
   if (address_env != NULL && *address_env != 0)
     address = g_strdup (address_env);
 #ifdef HAVE_X11
-  if (!address)
+  if (!address && g_strcmp0 (g_getenv ("XDG_SESSION_TYPE"), "x11") == 0)
     address = get_accessibility_bus_address_x11 ();
 #endif
   if (!address)
@@ -1848,4 +1859,51 @@ _atspi_set_error_no_sync (GError **error)
 {
   g_set_error_literal (error, ATSPI_ERROR, ATSPI_ERROR_SYNC_NOT_ALLOWED,
                         _("Attempted synchronous call where prohibited"));
+}
+
+static const char *sr_introspection = "<!DOCTYPE node PUBLIC \"-//freedesktop//DTD D-BUS Object Introspection 1.0//EN\"\n"
+"\"http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd\">\n"
+"<node name=\"/org/a11y/atspi/screenreader\">\n"
+"  <interface name=\"org.a11y.Atspi.ScreenReader\">\n"
+"    <signal name=\"ReadingPosition\">\n"
+"      <arg type=\"i\"/>\n"
+"      <arg type=\"i\"/>\n"
+"    </signal>\n"
+"  </interface>\n"
+"</node>";
+
+static DBusHandlerResult
+screen_reader_filter (DBusConnection *bus, DBusMessage *message, void *user_data)
+{
+  if (dbus_message_is_method_call (message, DBUS_INTERFACE_INTROSPECTABLE,
+      "Introspect"))
+  {
+    DBusMessage *reply = dbus_message_new_method_return (message);
+    dbus_message_append_args (reply, DBUS_TYPE_STRING, &sr_introspection,
+                              DBUS_TYPE_INVALID);
+    dbus_connection_send (bus, reply, NULL);
+    dbus_message_unref (reply);
+    return DBUS_HANDLER_RESULT_HANDLED;
+  }
+  return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+}
+
+gboolean
+_atspi_prepare_screen_reader_interface ()
+{
+  static gint initialized = 0;
+  DBusConnection *a11y_bus = _atspi_bus ();
+
+  if (initialized)
+    return (initialized > 0);
+
+  if (dbus_bus_request_name (a11y_bus, "org.a11y.Atspi.ScreenReader", 0, NULL) < 0)
+  {
+    initialized = -1;
+    return FALSE;
+  }
+
+  initialized = 1;
+  dbus_connection_add_filter (a11y_bus, screen_reader_filter, NULL, NULL);
+  return TRUE;
 }
