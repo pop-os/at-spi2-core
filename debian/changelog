@@ -3,6 +3,7 @@ at-spi2-core (2.33.1-1) UNRELEASED; urgency=medium
   * New upstream release
     - patches/startx-fix: Fix enabling x11 bits when the X session is started
     with startx.
+  * control: Add dh-sequence-gir alternative to gobject-introspection.
 
  -- Samuel Thibault <sthibault@debian.org>  Tue, 21 May 2019 11:56:41 +0200
 
