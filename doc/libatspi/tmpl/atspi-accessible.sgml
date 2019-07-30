@@ -322,13 +322,3 @@ actually have children.
 @Returns: 
 
 
-<!-- ##### FUNCTION atspi_accessible_get_accessible_id ##### -->
-<para>
-
-</para>
-
-@obj: 
-@error: 
-@Returns: 
-
-
