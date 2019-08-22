@@ -1,6 +1,6 @@
-at-spi2-core (2.33.2-1) UNRELEASED; urgency=medium
+at-spi2-core (2.33.90-1) UNRELEASED; urgency=medium
 
-  * New upstream snapshot.
+  * New upstream beta release.
 
  -- Samuel Thibault <sthibault@debian.org>  Thu, 22 Aug 2019 20:47:31 +0200
 
