@@ -1762,6 +1762,12 @@ impl_generate_keyboard_event (DBusConnection *bus, DBusMessage *message, void *u
 		      fprintf (stderr, "Keystring synthesis failure, string=%s\n",
 			       keystring);
 	      break;
+      case Accessibility_KEY_LOCKMODIFIERS:
+	      spi_dec_plat_lock_modifiers (controller, keycode);
+	      break;
+      case Accessibility_KEY_UNLOCKMODIFIERS:
+	      spi_dec_plat_unlock_modifiers (controller, keycode);
+	      break;
     }
   reply = dbus_message_new_method_return (message);
   return reply;
@@ -1850,7 +1856,7 @@ spi_device_event_controller_class_init (SpiDEControllerClass *klass)
   object_class->finalize = spi_device_event_controller_object_finalize;
 
 #ifdef HAVE_X11
-  if (g_getenv ("DISPLAY"))
+  if (g_getenv ("DISPLAY") != NULL && g_getenv ("WAYLAND_DISPLAY") == NULL)
     spi_dec_setup_x11 (klass);
   else
 #endif

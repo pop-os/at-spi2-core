@@ -64,6 +64,8 @@ typedef struct _AtspiAccessibleClass AtspiAccessibleClass;
 struct _AtspiAccessibleClass
 {
   AtspiObjectClass parent_class;
+
+  void (*region_changed) (AtspiAccessible *accessible, gint current_offset, gint last_offset);
 };
 
 GType atspi_accessible_get_type (void); 
@@ -166,6 +168,8 @@ void atspi_accessible_set_cache_mask (AtspiAccessible *accessible, AtspiCache ma
 void atspi_accessible_clear_cache (AtspiAccessible *obj);
 
 guint atspi_accessible_get_process_id (AtspiAccessible *accessible, GError **error);
+
+gchar * atspi_accessible_get_accessible_id (AtspiAccessible *obj, GError **error);
 
 /* private */
 void _atspi_accessible_add_cache (AtspiAccessible *accessible, AtspiCache flag);

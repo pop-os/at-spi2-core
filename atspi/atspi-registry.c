@@ -424,10 +424,16 @@ atspi_deregister_device_event_listener (AtspiDeviceListener *listener,
   return TRUE;
 }
 
+static gboolean
+using_mutter ()
+{
+  return (g_getenv ("WAYLAND_DISPLAY") != NULL);
+}
+
 /**
  * atspi_generate_keyboard_event:
- * @keyval: a #gint indicating the keycode or keysym of the key event
- *           being synthesized.
+ * @keyval: a #gint indicating the keycode or keysym or modifier mask of the
+ *           key event being synthesized.
  * @keystring: (allow-none): an (optional) UTF-8 string which, if
  *           @synth_type is %ATSPI_KEY_STRING, indicates a 'composed'
  *           keyboard input string being synthesized; this type of
@@ -436,7 +442,8 @@ atspi_deregister_device_event_listener (AtspiDeviceListener *listener,
  *           input method (such as XIM) were used.
  * @synth_type: an #AtspiKeySynthType flag indicating whether @keyval
  *           is to be interpreted as a keysym rather than a keycode
- *           (%ATSPI_KEY_SYM) or a string (%ATSPI_KEY_STRING), or
+ *           (%ATSPI_KEY_SYM) or a string (%ATSPI_KEY_STRING) or a modifier
+ *           mask (%ATSPI_KEY_LOCKMODIFIERS and %ATSPI_KEY_UNLOCKMODIFIERS), or
  *           whether to synthesize %ATSPI_KEY_PRESS,
  *           %ATSPI_KEY_RELEASE, or both (%ATSPI_KEY_PRESSRELEASE).
  * @error: (allow-none): a pointer to a %NULL #GError pointer, or %NULL
@@ -454,6 +461,12 @@ atspi_generate_keyboard_event (glong keyval,
   dbus_uint32_t d_synth_type = synth_type;
   dbus_int32_t d_keyval = keyval;
   DBusError d_error;
+
+  if (using_mutter ())
+  {
+    if (_atspi_mutter_generate_keyboard_event (keyval, keystring, synth_type, error))
+      return TRUE;
+  }
 
   dbus_error_init (&d_error);
   if (!keystring)
@@ -491,6 +504,14 @@ atspi_generate_mouse_event (glong x, glong y, const gchar *name, GError **error)
   dbus_int32_t d_x = x, d_y = y;
   DBusError d_error;
 
+  g_return_val_if_fail (name != NULL, FALSE);
+
+  if (using_mutter ())
+  {
+    if (_atspi_mutter_generate_mouse_event (x, y, name, error))
+      return TRUE;
+  }
+
   dbus_error_init (&d_error);
   dbind_method_call_reentrant (_atspi_bus(), atspi_bus_registry,
                                atspi_path_dec, atspi_interface_dec,
@@ -503,6 +524,27 @@ atspi_generate_mouse_event (glong x, glong y, const gchar *name, GError **error)
     }
 
   return TRUE;
+}
+
+/**
+ * atspi_set_reference_window:
+ *
+ * @accessible: the #AtspiAccessible corresponding to the window to select.
+ *              should be a top-level window with a role of
+ *              ATSPI_ROLE_APPLICATION.
+ *
+ * Sets the reference window that will be used when atspi_generate_mouse_event
+ * is called. Coordinates will be assumed to be relative to this window. This
+ * is needed because, due to Wayland's security model, it is not currently
+ * possible to retrieve global coordinates.
+ * If NULL is passed, then AT-SPI will use the window that has focus at the
+ * time that atspi_generate_mouse_event is called.
+ */
+void
+atspi_set_reference_window (AtspiAccessible *accessible)
+{
+  if (using_mutter ())
+    _atspi_mutter_set_reference_window (accessible);
 }
 
 AtspiKeyDefinition *

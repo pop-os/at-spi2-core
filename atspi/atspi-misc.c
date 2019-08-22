@@ -203,7 +203,7 @@ handle_get_bus_address (DBusPendingCall *pending, void *user_data)
       else
       {
         if (!strcmp (error.name, DBUS_ERROR_FILE_NOT_FOUND))
-          g_warning ("Unable to open bus connection: %s", error.message);
+          g_warning ("AT-SPI: Unable to open bus connection: %s", error.message);
         dbus_error_free (&error);
       }
     }
@@ -1258,7 +1258,7 @@ _atspi_dbus_get_property (gpointer obj, const char *interface, const char *name,
   dbus_message_iter_init (reply, &iter);
   if (dbus_message_iter_get_arg_type (&iter) != 'v')
   {
-    g_warning ("AT-SPI: expected a variant when fetching %s from interface %s; got %s\n", name, interface, dbus_message_get_signature (reply));
+    g_warning ("atspi_dbus_get_property: expected a variant when fetching %s from interface %s; got %s\n", name, interface, dbus_message_get_signature (reply));
     goto done;
   }
   dbus_message_iter_recurse (&iter, &iter_variant);
@@ -1530,7 +1530,7 @@ get_accessibility_bus_address_dbus (void)
 
   if (!reply)
   {
-    g_warning ("Error retrieving accessibility bus address: %s: %s",
+    g_warning ("AT-SPI: Error retrieving accessibility bus address: %s: %s",
                error.name, error.message);
     dbus_error_free (&error);
     goto out;
@@ -1584,13 +1584,14 @@ atspi_get_a11y_bus (void)
 
   if (a11y_dbus_slot == -1)
     if (!dbus_connection_allocate_data_slot (&a11y_dbus_slot))
-      g_warning ("at-spi: Unable to allocate D-Bus slot");
+      g_warning ("AT-SPI: Unable to allocate D-Bus slot");
 
   address_env = g_getenv ("AT_SPI_BUS_ADDRESS");
   if (address_env != NULL && *address_env != 0)
     address = g_strdup (address_env);
 #ifdef HAVE_X11
-  if (!address)
+  if (!address && g_getenv ("DISPLAY") != NULL &&
+      g_getenv ("WAYLAND_DISPLAY") == NULL)
     address = get_accessibility_bus_address_x11 ();
 #endif
   if (!address)
@@ -1848,4 +1849,51 @@ _atspi_set_error_no_sync (GError **error)
 {
   g_set_error_literal (error, ATSPI_ERROR, ATSPI_ERROR_SYNC_NOT_ALLOWED,
                         _("Attempted synchronous call where prohibited"));
+}
+
+static const char *sr_introspection = "<!DOCTYPE node PUBLIC \"-//freedesktop//DTD D-BUS Object Introspection 1.0//EN\"\n"
+"\"http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd\">\n"
+"<node name=\"/org/a11y/atspi/screenreader\">\n"
+"  <interface name=\"org.a11y.Atspi.ScreenReader\">\n"
+"    <signal name=\"ReadingPosition\">\n"
+"      <arg type=\"i\"/>\n"
+"      <arg type=\"i\"/>\n"
+"    </signal>\n"
+"  </interface>\n"
+"</node>";
+
+static DBusHandlerResult
+screen_reader_filter (DBusConnection *bus, DBusMessage *message, void *user_data)
+{
+  if (dbus_message_is_method_call (message, DBUS_INTERFACE_INTROSPECTABLE,
+      "Introspect"))
+  {
+    DBusMessage *reply = dbus_message_new_method_return (message);
+    dbus_message_append_args (reply, DBUS_TYPE_STRING, &sr_introspection,
+                              DBUS_TYPE_INVALID);
+    dbus_connection_send (bus, reply, NULL);
+    dbus_message_unref (reply);
+    return DBUS_HANDLER_RESULT_HANDLED;
+  }
+  return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+}
+
+gboolean
+_atspi_prepare_screen_reader_interface ()
+{
+  static gint initialized = 0;
+  DBusConnection *a11y_bus = _atspi_bus ();
+
+  if (initialized)
+    return (initialized > 0);
+
+  if (dbus_bus_request_name (a11y_bus, "org.a11y.Atspi.ScreenReader", 0, NULL) < 0)
+  {
+    initialized = -1;
+    return FALSE;
+  }
+
+  initialized = 1;
+  dbus_connection_add_filter (a11y_bus, screen_reader_filter, NULL, NULL);
+  return TRUE;
 }

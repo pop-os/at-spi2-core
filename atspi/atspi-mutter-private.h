@@ -2,10 +2,8 @@
  * AT-SPI - Assistive Technology Service Provider Interface
  * (Gnome Accessibility Project; http://developer.gnome.org/projects/gap)
  *
- * Copyright 2002 Ximian, Inc.
- *           2002 Sun Microsystems Inc.
- * Copyright 2010, 2011 Novell, Inc.
- *
+ * Copyright 2019 SUSE LLC.
+ *           
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -23,25 +21,16 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#ifndef _ATSPI_ACCESSIBLE_PRIVATE_H_
-#define _ATSPI_ACCESSIBLE_PRIVATE_H_
+#ifndef _ATSPI_MUTTER_H_
+#define _ATSPI_MUTTER_H_
 
 G_BEGIN_DECLS
 
-#include "atspi-accessible.h"
-#include "atspimarshal.h"
+gboolean _atspi_mutter_generate_keyboard_event (glong keyval, const gchar *keystring, AtspiKeySynthType synth_type, GError **error);
 
-struct _AtspiAccessiblePrivate
-{
-  GHashTable *cache;
-  guint cache_ref_count;
-};
+gboolean _atspi_mutter_generate_mouse_event (glong x, glong y, const gchar *name, GError **error);
 
-GHashTable *
-_atspi_accessible_ref_cache (AtspiAccessible *accessible);
-
-void
-_atspi_accessible_unref_cache (AtspiAccessible *accessible);
+void _atspi_mutter_set_reference_window (AtspiAccessible *accessible);
 G_END_DECLS
 
-#endif	/* _ATSPI_ACCESSIBLE_H_ */
+#endif	/* _ATSPI_MUTTER_H_ */

@@ -13,6 +13,7 @@ atspi_sources = [
   'atspi-hypertext.c',
   'atspi-image.c',
   'atspi-matchrule.c',
+  'atspi-mutter.c',
   'atspi-misc.c',
   'atspi-object.c',
   'atspi-registry.c',
@@ -57,7 +58,14 @@ atspi_headers = [
 
 atspi_includedir = join_paths(get_option('prefix'), get_option('includedir'), 'at-spi-2.0', 'atspi')
 
-install_headers(atspi_headers, subdir: atspi_includedir)
+install_headers(atspi_headers, install_dir: atspi_includedir)
+
+# Marshallers
+atspi_marshals = gnome.genmarshal('atspimarshal',
+  sources: 'atspimarshal.list',
+  prefix: 'atspi_marshal',
+)
+atspi_marshal_h = atspi_marshals[1]
 
 atspi_enums = gnome.mkenums('atspi-enum-types',
                             sources: [ 'atspi-constants.h', 'atspi-types.h' ],
@@ -67,7 +75,7 @@ atspi_enums = gnome.mkenums('atspi-enum-types',
                             install_header: true)
 atspi_enum_h = atspi_enums[1]
 
-atspi = library('atspi', atspi_sources + atspi_enums,
+atspi = library('atspi', atspi_sources + atspi_enums + atspi_marshals,
                        version: soversion,
                        soversion: soversion.split('.')[0],
                        include_directories: [ root_inc, registryd_inc ],
@@ -113,3 +121,13 @@ if have_gir
   )
 endif
 
+pkgconfig = import('pkgconfig')
+pkgconfig.generate(
+  name: 'atspi',
+  description: 'Accessibility Technology software library',
+  version: meson.project_version(),
+  libraries: atspi,
+  requires: 'dbus-1 glib-2.0',
+  subdirs: 'at-spi-2.0',
+  filebase: 'atspi-2',
+)

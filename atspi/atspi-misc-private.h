@@ -125,7 +125,7 @@ void _atspi_dbus_set_state (AtspiAccessible *accessible, DBusMessageIter *iter);
   } \
   if (strcmp (dbus_message_get_signature (message), type) != 0) \
   { \
-    g_warning ("at-spi: Expected message signature %s but got %s at %s line %d", type, dbus_message_get_signature (message), __FILE__, __LINE__); \
+    g_warning ("AT-SPI: Expected message signature %s but got %s at %s line %d", type, dbus_message_get_signature (message), __FILE__, __LINE__); \
     dbus_message_unref (message); \
     return (ret); \
   }
@@ -166,6 +166,8 @@ gboolean _atspi_get_allow_sync ();
 gboolean _atspi_set_allow_sync (gboolean val);
 
 void _atspi_set_error_no_sync (GError **error);
+
+gboolean _atspi_prepare_screen_reader_interface ();
 G_END_DECLS
 
 #endif	/* _ATSPI_MISC_PRIVATE_H_ */
