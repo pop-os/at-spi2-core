@@ -1,6 +1,7 @@
 at-spi2-core (2.32.1-2) UNRELEASED; urgency=medium
 
   * control: Bump Standards-Version to 4.4.0 (no changes).
+  * rules: Fix build against newer debhelper.
 
  -- Samuel Thibault <sthibault@debian.org>  Mon, 05 Aug 2019 23:17:12 +0200
 

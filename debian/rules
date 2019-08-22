@@ -18,7 +18,8 @@ override_dh_missing:
 	dh_missing --fail-missing
 
 override_dh_makeshlibs:
-	dh_makeshlibs -a --add-udeb=libatspi0-udeb -V 'libatspi2.0-0 (>= 2.9.90)'
+	dh_makeshlibs -plibatspi2.0-0 --add-udeb=libatspi0-udeb -V 'libatspi2.0-0 (>= 2.9.90)'
+	dh_makeshlibs -a --remaining-packages
 	dh_girepository -pgir1.2-atspi-2.0
 
 override_dh_strip:
