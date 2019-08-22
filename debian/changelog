@@ -1,4 +1,4 @@
-at-spi2-core (2.33.90-1) unstable; urgency=medium
+at-spi2-core (2.33.90-1) experimental; urgency=medium
 
   * New upstream beta release.
 
