@@ -9,4 +9,4 @@ gcc dbind/dbtest.c -o $WORKDIR/dbtest  \
 	$(pkg-config --cflags dbus-1) $(pkg-config --libs dbus-1) \
 	$(pkg-config --cflags atspi-2) $(pkg-config --libs atspi-2)
 
-exec dbus-run-session --dbus-daemon debian/tests/dbus-daemon -- xvfb-run /bin/sh -c "/usr/lib/at-spi2-core/at-spi-bus-launcher & /usr/lib/at-spi2-core/at-spi2-registryd 2> /dev/null & $WORKDIR/dbtest"
+exec dbus-run-session $WORKDIR/dbtest
