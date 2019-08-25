@@ -1,0 +1,41 @@
+https://gitlab.gnome.org/GNOME/at-spi2-core/merge_requests/21
+
+commit 8b81f14a1e46504d37272f00662a3fb2e2d8adab
+Author: Samuel Thibault <samuel.thibault@ens-lyon.org>
+Date:   Sun Aug 25 16:28:24 2019 +0200
+
+    atspi_accessible_dispose: Avoid unreferencing NULL
+    
+    The children array may contain NULL entries, when the children have not
+    all been inspected yet for instance.  In such a case
+    atspi_accessible_dispose's call to g_ptr_array_free would warn out when
+    freeing array items with g_object_unref.  We should thus check for NULL
+    to avoid such warning.
+
+diff --git a/atspi/atspi-accessible.c b/atspi/atspi-accessible.c
+index 0f3c7f7..8c60b28 100644
+--- a/atspi/atspi-accessible.c
++++ b/atspi/atspi-accessible.c
+@@ -162,6 +162,13 @@ G_DEFINE_TYPE_WITH_CODE (AtspiAccessible, atspi_accessible, ATSPI_TYPE_OBJECT,
+ static gint accessible_count = 0;
+ #endif
+ 
++static void
++atspi_accessible_unref (GObject *accessible)
++{
++  if (accessible != NULL)
++    g_object_unref(accessible);
++}
++
+ static void
+ atspi_accessible_init (AtspiAccessible *accessible)
+ {
+@@ -173,7 +180,7 @@ atspi_accessible_init (AtspiAccessible *accessible)
+ 
+   accessible->priv = atspi_accessible_get_instance_private (accessible);
+ 
+-  accessible->children = g_ptr_array_new_with_free_func (g_object_unref);
++  accessible->children = g_ptr_array_new_with_free_func (atspi_accessible_unref);
+ }
+ 
+ static void

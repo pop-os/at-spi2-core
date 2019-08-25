@@ -1,0 +1,2 @@
+Tests: gedit dbind
+Depends: libatspi2.0-dev, build-essential, xauth, xvfb, dbus

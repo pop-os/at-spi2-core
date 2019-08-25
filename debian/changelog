@@ -1,3 +1,13 @@
+at-spi2-core (2.32.1-3) UNRELEASED; urgency=medium
+
+  * patches/{cleanup_warn,unref_warn,dbtest_quiet}: Disable annoying stderr
+    output.
+  * patches/test_disable_teamspaces: Disable teamspace testing, does not seem
+    to be available in Debian.
+  * tests: Run dbind/dbtest and tests/memory in autopkgtest.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 25 Aug 2019 16:26:04 +0200
+
 at-spi2-core (2.32.1-2) unstable; urgency=medium
 
   * control: Bump Standards-Version to 4.4.0 (no changes).
