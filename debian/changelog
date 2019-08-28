@@ -4,6 +4,8 @@ at-spi2-core (2.32.1-5) UNRELEASED; urgency=medium
     X display.
   * debian/tests/gedit: Do not start at-spi session by hand, dbus should be
     doing it.
+  * debian/{90qt-a11y,90qt-a11y.conf}: Remove, useless now that qt-at-spi is
+    removed.
 
  -- Samuel Thibault <sthibault@debian.org>  Wed, 28 Aug 2019 02:57:36 +0200
 
