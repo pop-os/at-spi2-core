@@ -6,8 +6,9 @@ at-spi2-core (2.32.1-5) UNRELEASED; urgency=medium
     doing it.
   * debian/{90qt-a11y,90qt-a11y.conf}: Remove, useless now that qt-at-spi is
     removed.
+  * tests/: Fix temporary directory path.
 
- -- Samuel Thibault <sthibault@debian.org>  Wed, 28 Aug 2019 02:57:36 +0200
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 31 Aug 2019 01:29:22 +0200
 
 at-spi2-core (2.32.1-4) unstable; urgency=medium
 
