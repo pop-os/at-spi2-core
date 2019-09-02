@@ -1,11 +1,11 @@
-at-spi2-core (2.33.92-1) UNRELEASED; urgency=medium
+at-spi2-core (2.33.92-1) experimental; urgency=medium
 
   * New upstream beta release.
     - patches/unref_warn: Remove, upstreamed.
     - patches/cleanup_warn: Remove, upstreamed.
     - patches/noreply_nowarn: Remove, upstreamed.
 
- -- Samuel Thibault <sthibault@debian.org>  Mon, 02 Sep 2019 23:52:54 +0200
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 03 Sep 2019 00:49:50 +0200
 
 at-spi2-core (2.33.90-1) experimental; urgency=medium
 
