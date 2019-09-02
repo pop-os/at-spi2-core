@@ -7,19 +7,19 @@
  * Copyright 2010, 2011 Novell, Inc.
  *
  * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
+ * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
+ * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
 
 #include "atspi-private.h"
@@ -163,6 +163,13 @@ static gint accessible_count = 0;
 #endif
 
 static void
+atspi_accessible_unref (GObject *accessible)
+{
+  if (accessible != NULL)
+    g_object_unref(accessible);
+}
+
+static void
 atspi_accessible_init (AtspiAccessible *accessible)
 {
 #ifdef DEBUG_REF_COUNTS
@@ -173,7 +180,7 @@ atspi_accessible_init (AtspiAccessible *accessible)
 
   accessible->priv = atspi_accessible_get_instance_private (accessible);
 
-  accessible->children = g_ptr_array_new_with_free_func (g_object_unref);
+  accessible->children = g_ptr_array_new_with_free_func (atspi_accessible_unref);
 }
 
 static void

@@ -7,19 +7,19 @@
  * Copyright 2010, 2011 Novell, Inc.
  *
  * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
+ * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
+ * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
 
 /*
@@ -159,7 +159,8 @@ cleanup ()
   for (i = desktop->children->len - 1; i >= 0; i--)
   {
     AtspiAccessible *child = g_ptr_array_index (desktop->children, i);
-    g_object_run_dispose (G_OBJECT (child->parent.app));
+    if (child->parent.app)
+      g_object_run_dispose (G_OBJECT (child->parent.app));
     g_object_run_dispose (G_OBJECT (child));
   }
 
@@ -531,8 +532,9 @@ handle_get_items (DBusPendingCall *pending, void *user_data)
   {
     const char *sender = dbus_message_get_sender (reply);
     const char *error = NULL;
-    if (!strcmp (dbus_message_get_error_name (reply),
-                 DBUS_ERROR_SERVICE_UNKNOWN))
+    const char *error_name = dbus_message_get_error_name (reply);
+    if (!strcmp (error_name, DBUS_ERROR_SERVICE_UNKNOWN)
+     || !strcmp (error_name, DBUS_ERROR_NO_REPLY))
     {
     }
     else
