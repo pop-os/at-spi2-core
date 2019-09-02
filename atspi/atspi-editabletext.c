@@ -6,19 +6,19 @@
  * Copyright 2001, 2002 Ximian, Inc.
  *
  * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
+ * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
+ * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
 
 #include "atspi-private.h"
@@ -86,8 +86,8 @@ atspi_editable_text_set_text_contents (AtspiEditableText *obj,
  * @position: a #gint indicating the character offset at which to insert
  *       the new text.  
  * @text: a string representing the text to insert, in UTF-8 encoding.
- * @length:  the number of characters of text to insert. If the character
- * count of text is less than or equal to length, the entire contents
+ * @length:  the number of characters of text to insert, in bytes. If the
+ * byte count of text is less than or equal to length, the entire contents
  * of text will be inserted.
  *
  * Inserts text into an #AtspiEditableText object.
