@@ -4,6 +4,35 @@ at-spi2-core (2.33.90-1) experimental; urgency=medium
 
  -- Samuel Thibault <sthibault@debian.org>  Thu, 22 Aug 2019 21:53:46 +0200
 
+at-spi2-core (2.32.1-5) UNRELEASED; urgency=medium
+
+  * rules: Run xvfb before dbus session, to make sure dbus doesn't catch host
+    X display.
+  * debian/tests/gedit: Do not start at-spi session by hand, dbus should be
+    doing it.
+  * debian/{90qt-a11y,90qt-a11y.conf}: Remove, useless now that qt-at-spi is
+    removed.
+  * tests/: Fix temporary directory path.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 31 Aug 2019 01:29:22 +0200
+
+at-spi2-core (2.32.1-4) unstable; urgency=medium
+
+  * Make xvfb-run allocate a server number.
+  * patches/noreply_nowarn: Do not warn when get_items does not get a reply.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 25 Aug 2019 23:22:44 +0200
+
+at-spi2-core (2.32.1-3) unstable; urgency=medium
+
+  * patches/{cleanup_warn,unref_warn,dbtest_quiet}: Disable annoying stderr
+    output.
+  * patches/test_disable_teamspaces: Disable teamspace testing, does not seem
+    to be available in Debian.
+  * tests: Run dbind/dbtest and tests/memory in autopkgtest.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 25 Aug 2019 17:48:05 +0200
+
 at-spi2-core (2.32.1-2) unstable; urgency=medium
 
   * control: Bump Standards-Version to 4.4.0 (no changes).

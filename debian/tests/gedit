@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+WORKDIR=$AUTOPKGTEST_TMP
+gcc test/memory.c -o $WORKDIR/memory  \
+	$(pkg-config --cflags atspi-2) $(pkg-config --libs atspi-2) \
+	$(pkg-config --cflags gobject-2.0) $(pkg-config --libs gobject-2.0)
+
+exec xvfb-run -a dbus-run-session --dbus-daemon debian/tests/dbus-daemon -- $WORKDIR/memory
