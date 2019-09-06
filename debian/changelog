@@ -1,9 +1,9 @@
-at-spi2-core (2.33.92-2) UNRELEASED; urgency=medium
+at-spi2-core (2.33.92-2) experimental; urgency=medium
 
   * patches/at_spi_bus: Fix setting the AT_SPI_BUS X property, needed e.g. when
     running applications as root with just setting DISPLAY and XAUTHORITY.
 
- -- Samuel Thibault <sthibault@debian.org>  Fri, 06 Sep 2019 03:46:56 +0200
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 06 Sep 2019 03:48:15 +0200
 
 at-spi2-core (2.33.92-1) experimental; urgency=medium
 
