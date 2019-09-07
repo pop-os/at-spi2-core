@@ -1,3 +1,9 @@
+at-spi2-core (2.33.92-3) UNRELEASED; urgency=medium
+
+  * control: Bump meson build-dep to 0.50.0.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 07 Sep 2019 14:55:05 +0200
+
 at-spi2-core (2.33.92-2) experimental; urgency=medium
 
   * patches/at_spi_bus: Fix setting the AT_SPI_BUS X property, needed e.g. when
