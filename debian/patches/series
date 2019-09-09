@@ -2,4 +2,3 @@ at-spi-by-default
 disable-test-that-needs-installed-dbus-service.patch
 dbtest_quiet
 test_disable_teamspaces
-at_spi_bus
