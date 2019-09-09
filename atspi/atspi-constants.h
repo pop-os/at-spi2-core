@@ -6,19 +6,19 @@
  * Copyright (c) 2012 SUSE LINUX Products GmbH, Nuernberg, Germany.
  *
  * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
+ * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
+ * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
 
 /* TODO: Auto-generate this file again
@@ -1234,6 +1234,12 @@ typedef enum {
  * @ATSPI_ROLE_DESCRIPTION_VALUE: An object that represents the description,
  *  definition, or value of a term. @Since: 2.26.
  * @ATSPI_ROLE_FOOTNOTE: An object that contains the text of a footnote. @Since: 2.26.
+ * @ATSPI_ROLE_CONTENT_DELETION: Content previously deleted or proposed to be
+ * deleted, e.g. in revision history or a content view providing suggestions
+ * from reviewers. @Since: 2.34.
+ * @ATSPI_ROLE_CONTENT_INSERTION: Content previously inserted or proposed to be
+ * inserted, e.g. in revision history or a content view providing suggestions
+ * from reviewers. @Since: 2.34.
  *  @ATSPI_ROLE_LAST_DEFINED: Not a valid role, used for finding end of
  *  enumeration.
  *
@@ -1367,6 +1373,8 @@ typedef enum {
     ATSPI_ROLE_DESCRIPTION_TERM,
     ATSPI_ROLE_DESCRIPTION_VALUE,
     ATSPI_ROLE_FOOTNOTE,
+    ATSPI_ROLE_CONTENT_DELETION,
+    ATSPI_ROLE_CONTENT_INSERTION,
     ATSPI_ROLE_LAST_DEFINED,
 } AtspiRole;
 
@@ -1375,7 +1383,7 @@ typedef enum {
  *
  * One higher than the highest valid value of #AtspiRole.
  */
-#define ATSPI_ROLE_COUNT (125+1)
+#define ATSPI_ROLE_COUNT (127+1)
 
 typedef enum
 {
@@ -1461,6 +1469,9 @@ typedef enum {
 #define ATSPI_DBUS_INTERFACE_TEXT "org.a11y.atspi.Text"
 #define ATSPI_DBUS_INTERFACE_VALUE "org.a11y.atspi.Value"
 #define ATSPI_DBUS_INTERFACE_SOCKET "org.a11y.atspi.Socket"
+
+#define ATSPI_DBUS_PATH_SCREEN_READER "/org/a11y/atspi/screenreader"
+#define ATSPI_DBUS_INTERFACE_EVENT_SCREEN_READER "org.a11y.atspi.Event.ScreenReader"
 
 #ifdef __cplusplus
 }

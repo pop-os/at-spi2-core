@@ -5,19 +5,19 @@
  * Copyright 2011-2018 Red Hat, Inc.
  *
  * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
+ * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
+ * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
 
 #include "config.h"
@@ -63,6 +63,9 @@ typedef struct {
   /* -1 == error, 0 == pending, > 0 == running */
   int a11y_bus_pid;
   char *a11y_bus_address;
+#ifdef HAVE_X11
+  gboolean x11_prop_set;
+#endif
   int pipefd[2];
   int listenfd;
   char *a11y_launch_error_message;
@@ -323,6 +326,7 @@ ensure_a11y_bus_daemon (A11yBusLauncher *app, char *config_path)
     {
       app->a11y_launch_error_message = g_strdup_printf ("Failed to read address: %s", strerror (errno));
       kill (app->a11y_bus_pid, SIGTERM);
+      app->a11y_bus_pid = -1;
       goto error;
     }
   close (app->pipefd[0]);
@@ -466,20 +470,22 @@ ensure_a11y_bus (A11yBusLauncher *app)
 #endif
 
 #ifdef HAVE_X11
-  {
-    Display *display = XOpenDisplay (NULL);
-    if (display)
-      {
-        Atom bus_address_atom = XInternAtom (display, "AT_SPI_BUS", False);
-        XChangeProperty (display,
-                         XDefaultRootWindow (display),
-                         bus_address_atom,
-                         XA_STRING, 8, PropModeReplace,
-                         (guchar *) app->a11y_bus_address, strlen (app->a11y_bus_address));
-        XFlush (display);
-        XCloseDisplay (display);
-      }
-  }
+  if (g_getenv ("DISPLAY") != NULL && g_getenv ("WAYLAND_DISPLAY") == NULL)
+    {
+      Display *display = XOpenDisplay (NULL);
+      if (display)
+        {
+          Atom bus_address_atom = XInternAtom (display, "AT_SPI_BUS", False);
+          XChangeProperty (display,
+                           XDefaultRootWindow (display),
+                           bus_address_atom,
+                           XA_STRING, 8, PropModeReplace,
+                           (guchar *) app->a11y_bus_address, strlen (app->a11y_bus_address));
+          XFlush (display);
+          XCloseDisplay (display);
+          app->x11_prop_set = TRUE;
+        }
+    }
 #endif
 
   return TRUE;
@@ -677,16 +683,6 @@ on_bus_acquired (GDBusConnection *connection,
     }
   app->session_bus = connection;
 
-  if (app->launch_immediately)
-    {
-      ensure_a11y_bus (app);
-      if (app->state == A11Y_BUS_STATE_ERROR)
-        {
-          g_main_loop_quit (app->loop);
-          return;
-        }
-    }
-
   error = NULL;
   registration_id = g_dbus_connection_register_object (connection,
                                                        "/org/a11y/bus",
@@ -728,6 +724,18 @@ on_name_acquired (GDBusConnection *connection,
                   const gchar     *name,
                   gpointer         user_data)
 {
+  A11yBusLauncher *app = user_data;
+
+  if (app->launch_immediately)
+    {
+      ensure_a11y_bus (app);
+      if (app->state == A11Y_BUS_STATE_ERROR)
+        {
+          g_main_loop_quit (app->loop);
+          return;
+        }
+    }
+
   g_bus_watch_name (G_BUS_TYPE_SESSION,
                     "org.gnome.SessionManager",
                     G_BUS_NAME_WATCHER_FLAGS_NONE,
@@ -769,50 +777,6 @@ init_sigterm_handling (A11yBusLauncher *app)
                   G_IO_IN | G_IO_ERR | G_IO_HUP,
                   on_sigterm_pipe,
                   app);
-}
-
-static gboolean
-already_running ()
-{
-#ifdef HAVE_X11
-  Atom AT_SPI_BUS;
-  Atom actual_type;
-  Display *bridge_display;
-  int actual_format;
-  unsigned char *data = NULL;
-  unsigned long nitems;
-  unsigned long leftover;
-  gboolean result = FALSE;
-
-  bridge_display = XOpenDisplay (NULL);
-  if (!bridge_display)
-	      return FALSE;
-      
-  AT_SPI_BUS = XInternAtom (bridge_display, "AT_SPI_BUS", False);
-  XGetWindowProperty (bridge_display,
-		      XDefaultRootWindow (bridge_display),
-		      AT_SPI_BUS, 0L,
-		      (long) BUFSIZ, False,
-		      (Atom) 31, &actual_type, &actual_format,
-		      &nitems, &leftover, &data);
-
-  if (data)
-  {
-    GDBusConnection *bus;
-    bus = g_dbus_connection_new_for_address_sync ((const gchar *)data, 0,
-                                                  NULL, NULL, NULL);
-    if (bus != NULL)
-      {
-        result = TRUE;
-        g_object_unref (bus);
-      }
-  }
-
-  XCloseDisplay (bridge_display);
-  return result;
-#else
-  return FALSE;
-#endif
 }
 
 static GSettings *
@@ -859,9 +823,6 @@ main (int    argc,
   gboolean a11y_set = FALSE;
   gboolean screen_reader_set = FALSE;
   gint i;
-
-  if (already_running ())
-    return 0;
 
   _global_app = g_slice_new0 (A11yBusLauncher);
   _global_app->loop = g_main_loop_new (NULL, FALSE);
@@ -931,19 +892,20 @@ main (int    argc,
    * we don't want early login processes to pick up the stale address.
    */
 #ifdef HAVE_X11
-  {
-    Display *display = XOpenDisplay (NULL);
-    if (display)
-      {
-        Atom bus_address_atom = XInternAtom (display, "AT_SPI_BUS", False);
-        XDeleteProperty (display,
-                         XDefaultRootWindow (display),
-                         bus_address_atom);
+  if (_global_app->x11_prop_set)
+    {
+      Display *display = XOpenDisplay (NULL);
+      if (display)
+        {
+          Atom bus_address_atom = XInternAtom (display, "AT_SPI_BUS", False);
+          XDeleteProperty (display,
+                           XDefaultRootWindow (display),
+                           bus_address_atom);
 
-        XFlush (display);
-        XCloseDisplay (display);
-      }
-  }
+          XFlush (display);
+          XCloseDisplay (display);
+        }
+    }
 #endif
 
   if (_global_app->a11y_launch_error_message)

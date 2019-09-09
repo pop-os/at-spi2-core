@@ -7,19 +7,19 @@
  * Copyright 2001, 2002 Ximian, Inc.
  *
  * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
+ * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
+ * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
 
 /* atspi_registry.c: Global functions wrapping the registry */
@@ -424,6 +424,12 @@ atspi_deregister_device_event_listener (AtspiDeviceListener *listener,
   return TRUE;
 }
 
+static gboolean
+using_mutter ()
+{
+  return (g_getenv ("WAYLAND_DISPLAY") != NULL);
+}
+
 /**
  * atspi_generate_keyboard_event:
  * @keyval: a #gint indicating the keycode or keysym or modifier mask of the
@@ -455,6 +461,12 @@ atspi_generate_keyboard_event (glong keyval,
   dbus_uint32_t d_synth_type = synth_type;
   dbus_int32_t d_keyval = keyval;
   DBusError d_error;
+
+  if (using_mutter ())
+  {
+    if (_atspi_mutter_generate_keyboard_event (keyval, keystring, synth_type, error))
+      return TRUE;
+  }
 
   dbus_error_init (&d_error);
   if (!keystring)
@@ -492,6 +504,14 @@ atspi_generate_mouse_event (glong x, glong y, const gchar *name, GError **error)
   dbus_int32_t d_x = x, d_y = y;
   DBusError d_error;
 
+  g_return_val_if_fail (name != NULL, FALSE);
+
+  if (using_mutter ())
+  {
+    if (_atspi_mutter_generate_mouse_event (x, y, name, error))
+      return TRUE;
+  }
+
   dbus_error_init (&d_error);
   dbind_method_call_reentrant (_atspi_bus(), atspi_bus_registry,
                                atspi_path_dec, atspi_interface_dec,
@@ -504,6 +524,27 @@ atspi_generate_mouse_event (glong x, glong y, const gchar *name, GError **error)
     }
 
   return TRUE;
+}
+
+/**
+ * atspi_set_reference_window:
+ *
+ * @accessible: the #AtspiAccessible corresponding to the window to select.
+ *              should be a top-level window with a role of
+ *              ATSPI_ROLE_APPLICATION.
+ *
+ * Sets the reference window that will be used when atspi_generate_mouse_event
+ * is called. Coordinates will be assumed to be relative to this window. This
+ * is needed because, due to Wayland's security model, it is not currently
+ * possible to retrieve global coordinates.
+ * If NULL is passed, then AT-SPI will use the window that has focus at the
+ * time that atspi_generate_mouse_event is called.
+ */
+void
+atspi_set_reference_window (AtspiAccessible *accessible)
+{
+  if (using_mutter ())
+    _atspi_mutter_set_reference_window (accessible);
 }
 
 AtspiKeyDefinition *

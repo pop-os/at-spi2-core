@@ -7,19 +7,19 @@
  * Copyright 2010, 2011 Novell, Inc.
  *
  * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
+ * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
+ * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
 
 /*
@@ -159,7 +159,8 @@ cleanup ()
   for (i = desktop->children->len - 1; i >= 0; i--)
   {
     AtspiAccessible *child = g_ptr_array_index (desktop->children, i);
-    g_object_run_dispose (G_OBJECT (child->parent.app));
+    if (child->parent.app)
+      g_object_run_dispose (G_OBJECT (child->parent.app));
     g_object_run_dispose (G_OBJECT (child));
   }
 
@@ -531,8 +532,9 @@ handle_get_items (DBusPendingCall *pending, void *user_data)
   {
     const char *sender = dbus_message_get_sender (reply);
     const char *error = NULL;
-    if (!strcmp (dbus_message_get_error_name (reply),
-                 DBUS_ERROR_SERVICE_UNKNOWN))
+    const char *error_name = dbus_message_get_error_name (reply);
+    if (!strcmp (error_name, DBUS_ERROR_SERVICE_UNKNOWN)
+     || !strcmp (error_name, DBUS_ERROR_NO_REPLY))
     {
     }
     else
@@ -1590,7 +1592,8 @@ atspi_get_a11y_bus (void)
   if (address_env != NULL && *address_env != 0)
     address = g_strdup (address_env);
 #ifdef HAVE_X11
-  if (!address)
+  if (!address && g_getenv ("DISPLAY") != NULL &&
+      g_getenv ("WAYLAND_DISPLAY") == NULL)
     address = get_accessibility_bus_address_x11 ();
 #endif
   if (!address)
@@ -1848,4 +1851,51 @@ _atspi_set_error_no_sync (GError **error)
 {
   g_set_error_literal (error, ATSPI_ERROR, ATSPI_ERROR_SYNC_NOT_ALLOWED,
                         _("Attempted synchronous call where prohibited"));
+}
+
+static const char *sr_introspection = "<!DOCTYPE node PUBLIC \"-//freedesktop//DTD D-BUS Object Introspection 1.0//EN\"\n"
+"\"http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd\">\n"
+"<node name=\"/org/a11y/atspi/screenreader\">\n"
+"  <interface name=\"org.a11y.Atspi.ScreenReader\">\n"
+"    <signal name=\"ReadingPosition\">\n"
+"      <arg type=\"i\"/>\n"
+"      <arg type=\"i\"/>\n"
+"    </signal>\n"
+"  </interface>\n"
+"</node>";
+
+static DBusHandlerResult
+screen_reader_filter (DBusConnection *bus, DBusMessage *message, void *user_data)
+{
+  if (dbus_message_is_method_call (message, DBUS_INTERFACE_INTROSPECTABLE,
+      "Introspect"))
+  {
+    DBusMessage *reply = dbus_message_new_method_return (message);
+    dbus_message_append_args (reply, DBUS_TYPE_STRING, &sr_introspection,
+                              DBUS_TYPE_INVALID);
+    dbus_connection_send (bus, reply, NULL);
+    dbus_message_unref (reply);
+    return DBUS_HANDLER_RESULT_HANDLED;
+  }
+  return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+}
+
+gboolean
+_atspi_prepare_screen_reader_interface ()
+{
+  static gint initialized = 0;
+  DBusConnection *a11y_bus = _atspi_bus ();
+
+  if (initialized)
+    return (initialized > 0);
+
+  if (dbus_bus_request_name (a11y_bus, "org.a11y.Atspi.ScreenReader", 0, NULL) < 0)
+  {
+    initialized = -1;
+    return FALSE;
+  }
+
+  initialized = 1;
+  dbus_connection_add_filter (a11y_bus, screen_reader_filter, NULL, NULL);
+  return TRUE;
 }

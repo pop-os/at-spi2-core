@@ -7,27 +7,81 @@
  * Copyright 2010, 2011 Novell, Inc.
  *
  * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
+ * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
+ * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
 
 #include "atspi-private.h"
 #include "atspi-accessible-private.h"
 #include <string.h>
 
+enum {
+  REGION_CHANGED,
+  LAST_SIGNAL
+};
+
 static gboolean enable_caching = FALSE;
 static guint quark_locale;
+
+static guint atspi_accessible_signals[LAST_SIGNAL] = { 0, };
+
+static gboolean
+screen_reader_signal_watcher (GSignalInvocationHint *signal_hint,
+                              guint                  n_param_values,
+                              const GValue          *param_values,
+                              gpointer               data)
+{
+  GObject *object;
+  AtspiAccessible *accessible;
+  GSignalQuery signal_query;
+  const char *name;
+  DBusMessage *signal;
+  DBusMessageIter iter, iter_struct, iter_variant, iter_array;
+  dbus_int32_t detail1, detail2;
+  const char *detail = "";
+
+  object = g_value_get_object (param_values + 0);
+  g_return_val_if_fail (ATSPI_IS_ACCESSIBLE(object), FALSE);
+
+  g_signal_query (signal_hint->signal_id, &signal_query);
+  name = signal_query.signal_name;
+  detail1 = g_value_get_int (param_values + 1);
+  detail2 = g_value_get_int (param_values + 2);
+  accessible = ATSPI_ACCESSIBLE (object);
+
+  signal = dbus_message_new_signal (ATSPI_DBUS_PATH_SCREEN_READER,
+                                    ATSPI_DBUS_INTERFACE_EVENT_SCREEN_READER,
+                                    "RegionChanged");
+  dbus_message_iter_init_append (signal, &iter);
+  dbus_message_iter_append_basic (&iter, DBUS_TYPE_STRING, &detail);
+  dbus_message_iter_append_basic (&iter, DBUS_TYPE_INT32, &detail1);
+  dbus_message_iter_append_basic (&iter, DBUS_TYPE_INT32, &detail2);
+  dbus_message_iter_open_container (&iter, DBUS_TYPE_VARIANT, "(so)",
+                                    &iter_variant);
+  dbus_message_iter_open_container (&iter_variant, DBUS_TYPE_STRUCT, NULL,
+                                    &iter_struct);
+  dbus_message_iter_append_basic (&iter_struct, DBUS_TYPE_STRING, &accessible->parent.app->bus_name);
+  dbus_message_iter_append_basic (&iter_struct, DBUS_TYPE_OBJECT_PATH, &accessible->parent.path);
+  dbus_message_iter_close_container (&iter_variant, &iter_struct);
+  dbus_message_iter_close_container (&iter, &iter_variant);
+  dbus_message_iter_open_container (&iter, DBUS_TYPE_ARRAY, "{sv}",
+                                    &iter_array);
+  dbus_message_iter_close_container (&iter, &iter_array);
+  dbus_connection_send (_atspi_bus (), signal, NULL);
+  dbus_message_unref (signal);
+  return TRUE; 
+}
 
 static void
 atspi_action_interface_init (AtspiAction *action)
@@ -109,6 +163,13 @@ static gint accessible_count = 0;
 #endif
 
 static void
+atspi_accessible_unref (GObject *accessible)
+{
+  if (accessible != NULL)
+    g_object_unref(accessible);
+}
+
+static void
 atspi_accessible_init (AtspiAccessible *accessible)
 {
 #ifdef DEBUG_REF_COUNTS
@@ -119,7 +180,7 @@ atspi_accessible_init (AtspiAccessible *accessible)
 
   accessible->priv = atspi_accessible_get_instance_private (accessible);
 
-  accessible->children = g_ptr_array_new_with_free_func (g_object_unref);
+  accessible->children = g_ptr_array_new_with_free_func (atspi_accessible_unref);
 }
 
 static void
@@ -189,6 +250,8 @@ atspi_accessible_finalize (GObject *object)
 #endif
 
   G_OBJECT_CLASS (atspi_accessible_parent_class)->finalize (object);
+
+  /* TODO: remove emission hook */
 }
 
 static void
@@ -200,6 +263,33 @@ atspi_accessible_class_init (AtspiAccessibleClass *klass)
   object_class->finalize = atspi_accessible_finalize;
 
   quark_locale = g_quark_from_string ("accessible-locale");
+
+  /**
+   * AtspiAccessible::region-changed:
+   * @atspiaccessible: the object which received the signal
+   * @arg1: an integer specifying the current offset of the text being read,
+   *        if the object is textual.
+   * @arg2: an integer specifying the ending offset of the text being read,
+   *        if the object is textual.
+   *
+   * The signal "region-changed" is emitted by a screen reader to indicate
+   * that it is now reading or tracking a new object, or, a new piece of
+   * text within an object. This allows a magnifier to gain the information
+   * needed to highlight the object that the screen reader is reading.
+   */
+  atspi_accessible_signals[REGION_CHANGED] =
+    g_signal_new ("region_changed",
+		  G_TYPE_FROM_CLASS (klass),
+		  G_SIGNAL_RUN_LAST,
+		  G_STRUCT_OFFSET (AtspiAccessibleClass, region_changed), 
+		  NULL, NULL,
+		  atspi_marshal_VOID__INT_INT,
+		  G_TYPE_NONE,
+		  2, G_TYPE_INT, G_TYPE_INT);
+
+  g_signal_add_emission_hook (atspi_accessible_signals[REGION_CHANGED], 0,
+                              screen_reader_signal_watcher, NULL,
+                              (GDestroyNotify) NULL);
 }
 
 /**
@@ -1765,6 +1855,33 @@ atspi_accessible_get_object_locale (AtspiAccessible *accessible, GError **error)
                                g_free);
   }
   return locale;
+}
+
+/**
+ * atspi_accessible_get_accessible_id:
+ * @obj: an #AtspiAccessible
+ *
+ * Gets the accessible id of the accessible.  This is not meant to be presented
+ * to the user, but to be an id which is stable over application development.
+ * Typically, this is the gtkbuilder id.
+ *
+ * Since: 2.34
+ *
+ * Returns: a character string representing the accessible id of the
+ * #AtspiAccessible object or NULL on exception.
+ **/
+gchar*
+atspi_accessible_get_accessible_id (AtspiAccessible *obj, GError **error)
+{
+  gchar *accessible_id;
+
+  g_return_val_if_fail (obj != NULL, NULL);
+
+  if (!_atspi_dbus_get_property (obj, atspi_interface_accessible,
+				 "AccessibleId", error, "s", &accessible_id))
+    return NULL;
+
+  return accessible_id;
 }
 
 void

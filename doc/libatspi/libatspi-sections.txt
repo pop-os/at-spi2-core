@@ -251,6 +251,7 @@ atspi_accessible_get_table_iface
 atspi_accessible_get_text_iface
 atspi_accessible_get_value_iface
 atspi_accessible_get_interfaces
+atspi_accessible_get_accessible_id
 <SUBSECTION Standard>
 ATSPI_ACCESSIBLE
 ATSPI_IS_ACCESSIBLE
@@ -503,6 +504,7 @@ atspi_register_device_event_listener
 atspi_deregister_device_event_listener
 atspi_generate_keyboard_event
 atspi_generate_mouse_event
+atspi_set_reference_window
 </SECTION>
 
 <SECTION>

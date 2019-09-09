@@ -8,19 +8,19 @@
  *           
  *
  * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
+ * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
+ * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
 
 #ifndef _ATSPI_ACCESSIBLE_H_
@@ -64,6 +64,8 @@ typedef struct _AtspiAccessibleClass AtspiAccessibleClass;
 struct _AtspiAccessibleClass
 {
   AtspiObjectClass parent_class;
+
+  void (*region_changed) (AtspiAccessible *accessible, gint current_offset, gint last_offset);
 };
 
 GType atspi_accessible_get_type (void); 
@@ -166,6 +168,8 @@ void atspi_accessible_set_cache_mask (AtspiAccessible *accessible, AtspiCache ma
 void atspi_accessible_clear_cache (AtspiAccessible *obj);
 
 guint atspi_accessible_get_process_id (AtspiAccessible *accessible, GError **error);
+
+gchar * atspi_accessible_get_accessible_id (AtspiAccessible *obj, GError **error);
 
 /* private */
 void _atspi_accessible_add_cache (AtspiAccessible *accessible, AtspiCache flag);
