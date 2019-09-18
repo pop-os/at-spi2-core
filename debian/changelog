@@ -7,6 +7,7 @@ at-spi2-core (2.34.0-2) UNRELEASED; urgency=medium
     debuggability.
   * rules, tests/gedit: Prevent Xvfb from resetting between clients, it seems to
     be creating a period of time during which clients can't connect.
+  * watch: Generalize pattern.
 
  -- Samuel Thibault <sthibault@debian.org>  Wed, 11 Sep 2019 00:12:23 +0200
 
