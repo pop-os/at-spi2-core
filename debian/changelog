@@ -1,4 +1,4 @@
-at-spi2-core (2.34.0-2) UNRELEASED; urgency=medium
+at-spi2-core (2.34.0-2) unstable; urgency=medium
 
   * debian/at-spi2-core.maintscript: Remove qt conffiles (Closes: Bug#939917)
   * debian/at-spi2-core.maintscript: Drop old rule for
@@ -9,7 +9,7 @@ at-spi2-core (2.34.0-2) UNRELEASED; urgency=medium
     be creating a period of time during which clients can't connect.
   * watch: Generalize pattern.
 
- -- Samuel Thibault <sthibault@debian.org>  Wed, 11 Sep 2019 00:12:23 +0200
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 22 Sep 2019 23:38:20 +0200
 
 at-spi2-core (2.34.0-1) unstable; urgency=medium
 
