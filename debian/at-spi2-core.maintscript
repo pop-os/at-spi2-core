@@ -1,2 +1,0 @@
-rm_conffile /etc/X11/Xsession.d/90qt-a11y 2.34.0-2~
-rm_conffile /etc/environment.d/90qt-a11y.conf 2.34.0-2~

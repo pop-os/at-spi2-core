@@ -1,3 +1,11 @@
+at-spi2-core (2.34.0-3) UNRELEASED; urgency=medium
+
+  * debian/{90qt-a11y,90qt-a11y.conf}: Re-introduce. Some people might still
+    have qt4 applications and qt-at-spi installed, so better still support
+    them.  Also, backports into buster and stretch will want it.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 22 Sep 2019 23:38:20 +0200
+
 at-spi2-core (2.34.0-2) unstable; urgency=medium
 
   * debian/at-spi2-core.maintscript: Remove qt conffiles (Closes: Bug#939917)
