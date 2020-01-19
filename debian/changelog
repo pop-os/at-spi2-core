@@ -1,3 +1,9 @@
+at-spi2-core (2.35.1-1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 19 Jan 2020 01:02:55 +0100
+
 at-spi2-core (2.34.0-4) UNRELEASED; urgency=medium
 
   [ Steve Langasek ]
