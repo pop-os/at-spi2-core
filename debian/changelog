@@ -1,6 +1,7 @@
 at-spi2-core (2.35.92-1) experimental; urgency=medium
 
   * New upstream release.
+    - debian/patches/shutdown-fix: Comes with upstream.
 
  -- Samuel Thibault <sthibault@debian.org>  Tue, 03 Mar 2020 20:40:59 +0100
 
