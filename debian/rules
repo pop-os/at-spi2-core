@@ -7,8 +7,7 @@ export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
 override_dh_auto_configure:
 	ac_cv_lib_ICE_IceConnectionNumber=no \
-	dh_auto_configure -- --libexecdir=/usr/lib/at-spi2-core \
-			-Dintrospection=yes \
+	dh_auto_configure -- -Dintrospection=yes \
 			-Ddocs=true
 
 override_dh_auto_test:
