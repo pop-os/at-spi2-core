@@ -3,7 +3,7 @@ at-spi2-core (2.36.0-2) unstable; urgency=medium
   [ Samuel Thibault ]
   * control: Downgrade meson requirement.
 
-  [Laurent Bigonville]
+  [ Laurent Bigonville ]
   * Bump debhelper compatibility to 12 and move the daemons to /usr/libexec
 
  -- Samuel Thibault <sthibault@debian.org>  Mon, 16 Mar 2020 00:08:02 +0100
