@@ -1,6 +1,8 @@
 at-spi2-core (2.36.0-3) UNRELEASED; urgency=medium
 
   * Trim trailing whitespace.
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository,
+    Repository-Browse.
 
  -- Debian Janitor <janitor@jelmer.uk>  Mon, 20 Apr 2020 04:53:28 +0000
 
