@@ -1,9 +1,13 @@
 at-spi2-core (2.36.0-3) UNRELEASED; urgency=medium
 
+  [ Debian Janitor ]
   * Trim trailing whitespace.
   * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository,
     Repository-Browse.
   * Update standards version to 4.5.0, no changes needed.
+
+  [ Samuel Thibault ]
+  * control: Update alioth list domain.
 
  -- Debian Janitor <janitor@jelmer.uk>  Mon, 20 Apr 2020 04:53:28 +0000
 
