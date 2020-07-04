@@ -8,6 +8,7 @@ at-spi2-core (2.36.0-3) UNRELEASED; urgency=medium
 
   [ Samuel Thibault ]
   * control: Update alioth list domain.
+  * patches/euro: Fix synthesizing the euro character.
 
  -- Debian Janitor <janitor@jelmer.uk>  Mon, 20 Apr 2020 04:53:28 +0000
 
