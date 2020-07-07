@@ -9,8 +9,9 @@ at-spi2-core (2.36.0-3) UNRELEASED; urgency=medium
   [ Samuel Thibault ]
   * control: Update alioth list domain.
   * patches/euro: Fix synthesizing the euro character.
+  * patches/latin-accent: Fix synthesizing latin accent which are not latin1.
 
- -- Debian Janitor <janitor@jelmer.uk>  Mon, 20 Apr 2020 04:53:28 +0000
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 07 Jul 2020 10:13:31 +0200
 
 at-spi2-core (2.36.0-2) unstable; urgency=medium
 
