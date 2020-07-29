@@ -11,6 +11,9 @@ at-spi2-core (2.36.0-3) UNRELEASED; urgency=medium
   * patches/euro: Fix synthesizing the euro character.
   * patches/latin-accent: Fix synthesizing latin accent which are not latin1.
 
+  [ Alexander Volkov ]
+  * Fix build when nocheck profile is enabled
+
  -- Samuel Thibault <sthibault@debian.org>  Tue, 07 Jul 2020 10:13:31 +0200
 
 at-spi2-core (2.36.0-2) unstable; urgency=medium
