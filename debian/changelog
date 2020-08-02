@@ -1,3 +1,10 @@
+at-spi2-core (2.36.0-4) UNRELEASED; urgency=medium
+
+  * debian/tests/gedit: clear XDG_RUNTIME_DIR to avoid interaction with host
+    environment.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 02 Aug 2020 19:17:44 +0200
+
 at-spi2-core (2.36.0-3) unstable; urgency=medium
 
   [ Debian Janitor ]
