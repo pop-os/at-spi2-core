@@ -1,6 +1,8 @@
 We want to be able to catch any warning on stderr, drop useless expected
 print there.
 
+https://gitlab.gnome.org/GNOME/at-spi2-core/-/merge_requests/44
+
 ---
  dbind/dbtest.c |   18 +++++++++---------
  1 file changed, 9 insertions(+), 9 deletions(-)
