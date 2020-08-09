@@ -3,6 +3,7 @@
 set -e
 
 WORKDIR=$AUTOPKGTEST_TMP
+SRCDIR=$PWD
 
 if [ -n "${DEB_HOST_GNU_TYPE:-}" ]; then
     CROSS_COMPILE="$DEB_HOST_GNU_TYPE-"
@@ -25,4 +26,5 @@ ${CROSS_COMPILE}gcc test/memory.c -o $WORKDIR/memory  \
 	$(${CROSS_COMPILE}pkg-config --libs gobject-2.0)
 
 unset XDG_RUNTIME_DIR
-exec xvfb-run -s -noreset -a dbus-run-session --dbus-daemon debian/tests/dbus-daemon -- $WORKDIR/memory
+cd $WORKDIR
+exec xvfb-run -s -noreset -a dbus-run-session --dbus-daemon $SRCDIR/debian/tests/dbus-daemon -- ./memory

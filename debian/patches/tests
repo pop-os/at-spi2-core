@@ -1,0 +1,15 @@
+---
+ test/memory.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/test/memory.c
++++ b/test/memory.c
+@@ -84,7 +84,7 @@ main()
+   atspi_event_listener_register (listener, "object:children-changed", NULL);
+   child_pid = fork ();
+   if (!child_pid)
+-    execlp ("test/test-application", "test/test-application", NULL);
++    execlp ("./test-application", "./test-application", NULL);
+   atspi_event_main ();
+   return 0;
+ }

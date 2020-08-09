@@ -1,3 +1,4 @@
 at-spi-by-default
 disable-test-that-needs-installed-dbus-service.patch
 test_disable_teamspaces
+tests

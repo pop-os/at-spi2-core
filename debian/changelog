@@ -9,6 +9,7 @@ at-spi2-core (2.37.90-1) experimental; urgency=medium
     - tests/gedit: Rename to memory. Compile test application used instead of
     gedit.
     - tests/control: Drop gedit dependency.
+    - patches/tests: Fix path to test application.
 
  -- Samuel Thibault <sthibault@debian.org>  Sun, 09 Aug 2020 16:23:17 +0200
 
