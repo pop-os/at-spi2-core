@@ -1,6 +1,7 @@
 at-spi2-core (2.37.90-1) experimental; urgency=medium
 
   * New upstream beta release.
+    - control: Bump meson build-dep.
     - patches/dbtest_quiet: Upstreamed.
     - patches/euro: Upstreamed.
     - patches/latin-accent: Upstreamed.
