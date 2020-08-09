@@ -1,12 +1,20 @@
 https://gitlab.gnome.org/GNOME/at-spi2-core/-/merge_requests/43/diffs
 
 ---
- test/memory.c |    5 +++++
- 1 file changed, 5 insertions(+)
+ test/memory.c |    6 ++++++
+ 1 file changed, 6 insertions(+)
 
 --- a/test/memory.c
 +++ b/test/memory.c
-@@ -15,19 +15,24 @@ basic (AtspiAccessible *obj)
+@@ -2,6 +2,7 @@
+ #include <stdlib.h>
+ #include <unistd.h>
+ #include <string.h>
++#include <stdio.h>
+ 
+ pid_t child_pid;
+ AtspiEventListener *listener;
+@@ -15,19 +16,24 @@ basic (AtspiAccessible *obj)
    AtspiAccessible *accessible;
    GError *error = NULL;
  
