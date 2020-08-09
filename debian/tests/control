@@ -1,2 +1,2 @@
-Tests: gedit dbind
-Depends: libatspi2.0-dev, build-essential, xauth, xvfb, dbus, at-spi2-core, gedit:native
+Tests: memory dbind
+Depends: libatspi2.0-dev, build-essential, xauth, xvfb, dbus, at-spi2-core

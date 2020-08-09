@@ -6,19 +6,14 @@ since we don't want to build-depend on ourself
 
 https://gitlab.gnome.org/GNOME/at-spi2-core/issues/6
 ---
- test/meson.build | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ test/meson.build |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/test/meson.build b/test/meson.build
-index 1fb35a8..608eac0 100644
 --- a/test/meson.build
 +++ b/test/meson.build
-@@ -1,4 +1,4 @@
--test('memory',
--     executable('memory', 'memory.c',
--                include_directories: root_inc,
--                dependencies: [ atspi_dep ]))
-+# test('memory',
-+#      executable('memory', 'memory.c',
-+#                 include_directories: root_inc,
-+#                 dependencies: [ atspi_dep ]))
+@@ -10,4 +10,4 @@ memory = executable('memory',
+                     dependencies: [ atspi_dep ],
+                    )
+ 
+-test('memory', memory, depends: testapp)
++#test('memory', memory, depends: testapp)
