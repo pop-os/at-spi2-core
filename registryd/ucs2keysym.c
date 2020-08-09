@@ -34,128 +34,132 @@
 #include <X11/X.h>
 #include "deviceeventcontroller.h"	/* for prototype */
 
+/* DO NOT UPATE BY HAND!
+ * This table can be regenerated from Xorg's keysymdef.h with the ucs2keysym.sh
+ * script.  */
 struct codepair {
   unsigned short keysym;
   unsigned short ucs;
 } keysymtab[] = {
+  { 0x0abd, 0x002e }, /*                decimalpoint . FULL STOP */
   { 0x0ba3, 0x003c }, /*                   leftcaret < LESS-THAN SIGN */
   { 0x0ba6, 0x003e }, /*                  rightcaret > GREATER-THAN SIGN */
   { 0x0bc6, 0x005f }, /*                    underbar _ LOW LINE */
   { 0x0bc0, 0x00af }, /*                     overbar ¯ MACRON */
 
+  { 0x03c0, 0x0100 }, /*                     Amacron Ā LATIN CAPITAL LETTER A WITH MACRON */
+  { 0x03e0, 0x0101 }, /*                     amacron ā LATIN SMALL LETTER A WITH MACRON */
+  { 0x01c3, 0x0102 }, /*                      Abreve Ă LATIN CAPITAL LETTER A WITH BREVE */
+  { 0x01e3, 0x0103 }, /*                      abreve ă LATIN SMALL LETTER A WITH BREVE */
   { 0x01a1, 0x0104 }, /*                     Aogonek Ą LATIN CAPITAL LETTER A WITH OGONEK */
   { 0x01b1, 0x0105 }, /*                     aogonek ą LATIN SMALL LETTER A WITH OGONEK */
-  { 0x01a5, 0x013d }, /*                      Lcaron Ľ LATIN CAPITAL LETTER L WITH CARON */
-  { 0x01a3, 0x0141 }, /*                     Lstroke Ł LATIN CAPITAL LETTER L WITH STROKE */
-  { 0x01a6, 0x015a }, /*                      Sacute Ś LATIN CAPITAL LETTER S WITH ACUTE */
-  { 0x01aa, 0x015e }, /*                    Scedilla Ş LATIN CAPITAL LETTER S WITH CEDILLA */
-  { 0x01a9, 0x0160 }, /*                      Scaron Š LATIN CAPITAL LETTER S WITH CARON */
-  { 0x01ab, 0x0164 }, /*                      Tcaron Ť LATIN CAPITAL LETTER T WITH CARON */
-  { 0x01ac, 0x0179 }, /*                      Zacute Ź LATIN CAPITAL LETTER Z WITH ACUTE */
-  { 0x01af, 0x017b }, /*                   Zabovedot Ż LATIN CAPITAL LETTER Z WITH DOT ABOVE */
-  { 0x01ae, 0x017d }, /*                      Zcaron Ž LATIN CAPITAL LETTER Z WITH CARON */
-  { 0x01b3, 0x0142 }, /*                     lstroke ł LATIN SMALL LETTER L WITH STROKE */
-  { 0x01b5, 0x013e }, /*                      lcaron ľ LATIN SMALL LETTER L WITH CARON */
-  { 0x01b6, 0x015b }, /*                      sacute ś LATIN SMALL LETTER S WITH ACUTE */
-  { 0x01b9, 0x0161 }, /*                      scaron š LATIN SMALL LETTER S WITH CARON */
-  { 0x01ba, 0x015f }, /*                    scedilla ş LATIN SMALL LETTER S WITH CEDILLA */
-  { 0x01bb, 0x0165 }, /*                      tcaron ť LATIN SMALL LETTER T WITH CARON */
-  { 0x01bc, 0x017a }, /*                      zacute ź LATIN SMALL LETTER Z WITH ACUTE */
-  { 0x01be, 0x017e }, /*                      zcaron ž LATIN SMALL LETTER Z WITH CARON */
-  { 0x01bf, 0x017c }, /*                   zabovedot ż LATIN SMALL LETTER Z WITH DOT ABOVE */
-  { 0x01c0, 0x0154 }, /*                      Racute Ŕ LATIN CAPITAL LETTER R WITH ACUTE */
-  { 0x01c3, 0x0102 }, /*                      Abreve Ă LATIN CAPITAL LETTER A WITH BREVE */
-  { 0x01c5, 0x0139 }, /*                      Lacute Ĺ LATIN CAPITAL LETTER L WITH ACUTE */
   { 0x01c6, 0x0106 }, /*                      Cacute Ć LATIN CAPITAL LETTER C WITH ACUTE */
-  { 0x01c8, 0x010c }, /*                      Ccaron Č LATIN CAPITAL LETTER C WITH CARON */
-  { 0x01ca, 0x0118 }, /*                     Eogonek Ę LATIN CAPITAL LETTER E WITH OGONEK */
-  { 0x01cc, 0x011a }, /*                      Ecaron Ě LATIN CAPITAL LETTER E WITH CARON */
-  { 0x01cf, 0x010e }, /*                      Dcaron Ď LATIN CAPITAL LETTER D WITH CARON */
-  { 0x01d0, 0x0110 }, /*                     Dstroke Đ LATIN CAPITAL LETTER D WITH STROKE */
-  { 0x01d1, 0x0143 }, /*                      Nacute Ń LATIN CAPITAL LETTER N WITH ACUTE */
-  { 0x01d2, 0x0147 }, /*                      Ncaron Ň LATIN CAPITAL LETTER N WITH CARON */
-  { 0x01d5, 0x0150 }, /*                Odoubleacute Ő LATIN CAPITAL LETTER O WITH DOUBLE ACUTE */
-  { 0x01d8, 0x0158 }, /*                      Rcaron Ř LATIN CAPITAL LETTER R WITH CARON */
-  { 0x01d9, 0x016e }, /*                       Uring Ů LATIN CAPITAL LETTER U WITH RING ABOVE */
-  { 0x01db, 0x0170 }, /*                Udoubleacute Ű LATIN CAPITAL LETTER U WITH DOUBLE ACUTE */
-  { 0x01de, 0x0162 }, /*                    Tcedilla Ţ LATIN CAPITAL LETTER T WITH CEDILLA */
-  { 0x01e0, 0x0155 }, /*                      racute ŕ LATIN SMALL LETTER R WITH ACUTE */
-  { 0x01e3, 0x0103 }, /*                      abreve ă LATIN SMALL LETTER A WITH BREVE */
-  { 0x01e5, 0x013a }, /*                      lacute ĺ LATIN SMALL LETTER L WITH ACUTE */
   { 0x01e6, 0x0107 }, /*                      cacute ć LATIN SMALL LETTER C WITH ACUTE */
-  { 0x01e8, 0x010d }, /*                      ccaron č LATIN SMALL LETTER C WITH CARON */
-  { 0x01ea, 0x0119 }, /*                     eogonek ę LATIN SMALL LETTER E WITH OGONEK */
-  { 0x01ec, 0x011b }, /*                      ecaron ě LATIN SMALL LETTER E WITH CARON */
-  { 0x01ef, 0x010f }, /*                      dcaron ď LATIN SMALL LETTER D WITH CARON */
-  { 0x01f0, 0x0111 }, /*                     dstroke đ LATIN SMALL LETTER D WITH STROKE */
-  { 0x01f1, 0x0144 }, /*                      nacute ń LATIN SMALL LETTER N WITH ACUTE */
-  { 0x01f2, 0x0148 }, /*                      ncaron ň LATIN SMALL LETTER N WITH CARON */
-  { 0x01f5, 0x0151 }, /*                odoubleacute ő LATIN SMALL LETTER O WITH DOUBLE ACUTE */
-  { 0x01f8, 0x0159 }, /*                      rcaron ř LATIN SMALL LETTER R WITH CARON */
-  { 0x01f9, 0x016f }, /*                       uring ů LATIN SMALL LETTER U WITH RING ABOVE */
-  { 0x01fb, 0x0171 }, /*                udoubleacute ű LATIN SMALL LETTER U WITH DOUBLE ACUTE */
-  { 0x01fe, 0x0163 }, /*                    tcedilla ţ LATIN SMALL LETTER T WITH CEDILLA */
-  { 0x02a1, 0x0126 }, /*                     Hstroke Ħ LATIN CAPITAL LETTER H WITH STROKE */
-  { 0x02a6, 0x0124 }, /*                 Hcircumflex Ĥ LATIN CAPITAL LETTER H WITH CIRCUMFLEX */
-  { 0x02a9, 0x0130 }, /*                   Iabovedot İ LATIN CAPITAL LETTER I WITH DOT ABOVE */
-  { 0x02ab, 0x011e }, /*                      Gbreve Ğ LATIN CAPITAL LETTER G WITH BREVE */
-  { 0x02ac, 0x0134 }, /*                 Jcircumflex Ĵ LATIN CAPITAL LETTER J WITH CIRCUMFLEX */
-  { 0x02b1, 0x0127 }, /*                     hstroke ħ LATIN SMALL LETTER H WITH STROKE */
-  { 0x02b6, 0x0125 }, /*                 hcircumflex ĥ LATIN SMALL LETTER H WITH CIRCUMFLEX */
-  { 0x02b9, 0x0131 }, /*                    idotless ı LATIN SMALL LETTER DOTLESS I */
-  { 0x02bb, 0x011f }, /*                      gbreve ğ LATIN SMALL LETTER G WITH BREVE */
-  { 0x02bc, 0x0135 }, /*                 jcircumflex ĵ LATIN SMALL LETTER J WITH CIRCUMFLEX */
-  { 0x02c5, 0x010a }, /*                   Cabovedot Ċ LATIN CAPITAL LETTER C WITH DOT ABOVE */
   { 0x02c6, 0x0108 }, /*                 Ccircumflex Ĉ LATIN CAPITAL LETTER C WITH CIRCUMFLEX */
-  { 0x02d5, 0x0120 }, /*                   Gabovedot Ġ LATIN CAPITAL LETTER G WITH DOT ABOVE */
-  { 0x02d8, 0x011c }, /*                 Gcircumflex Ĝ LATIN CAPITAL LETTER G WITH CIRCUMFLEX */
-  { 0x02dd, 0x016c }, /*                      Ubreve Ŭ LATIN CAPITAL LETTER U WITH BREVE */
-  { 0x02de, 0x015c }, /*                 Scircumflex Ŝ LATIN CAPITAL LETTER S WITH CIRCUMFLEX */
-  { 0x02e5, 0x010b }, /*                   cabovedot ċ LATIN SMALL LETTER C WITH DOT ABOVE */
   { 0x02e6, 0x0109 }, /*                 ccircumflex ĉ LATIN SMALL LETTER C WITH CIRCUMFLEX */
-  { 0x02f5, 0x0121 }, /*                   gabovedot ġ LATIN SMALL LETTER G WITH DOT ABOVE */
-  { 0x02f8, 0x011d }, /*                 gcircumflex ĝ LATIN SMALL LETTER G WITH CIRCUMFLEX */
-  { 0x02fd, 0x016d }, /*                      ubreve ŭ LATIN SMALL LETTER U WITH BREVE */
-  { 0x02fe, 0x015d }, /*                 scircumflex ŝ LATIN SMALL LETTER S WITH CIRCUMFLEX */
-  { 0x03a2, 0x0138 }, /*                         kra ĸ LATIN SMALL LETTER KRA */
-  { 0x03a3, 0x0156 }, /*                    Rcedilla Ŗ LATIN CAPITAL LETTER R WITH CEDILLA */
-  { 0x03a5, 0x0128 }, /*                      Itilde Ĩ LATIN CAPITAL LETTER I WITH TILDE */
-  { 0x03a6, 0x013b }, /*                    Lcedilla Ļ LATIN CAPITAL LETTER L WITH CEDILLA */
+  { 0x02c5, 0x010a }, /*                   Cabovedot Ċ LATIN CAPITAL LETTER C WITH DOT ABOVE */
+  { 0x02e5, 0x010b }, /*                   cabovedot ċ LATIN SMALL LETTER C WITH DOT ABOVE */
+  { 0x01c8, 0x010c }, /*                      Ccaron Č LATIN CAPITAL LETTER C WITH CARON */
+  { 0x01e8, 0x010d }, /*                      ccaron č LATIN SMALL LETTER C WITH CARON */
+  { 0x01cf, 0x010e }, /*                      Dcaron Ď LATIN CAPITAL LETTER D WITH CARON */
+  { 0x01ef, 0x010f }, /*                      dcaron ď LATIN SMALL LETTER D WITH CARON */
+  { 0x01d0, 0x0110 }, /*                     Dstroke Đ LATIN CAPITAL LETTER D WITH STROKE */
+  { 0x01f0, 0x0111 }, /*                     dstroke đ LATIN SMALL LETTER D WITH STROKE */
   { 0x03aa, 0x0112 }, /*                     Emacron Ē LATIN CAPITAL LETTER E WITH MACRON */
-  { 0x03ab, 0x0122 }, /*                    Gcedilla Ģ LATIN CAPITAL LETTER G WITH CEDILLA */
-  { 0x03ac, 0x0166 }, /*                      Tslash Ŧ LATIN CAPITAL LETTER T WITH STROKE */
-  { 0x03b3, 0x0157 }, /*                    rcedilla ŗ LATIN SMALL LETTER R WITH CEDILLA */
-  { 0x03b5, 0x0129 }, /*                      itilde ĩ LATIN SMALL LETTER I WITH TILDE */
-  { 0x03b6, 0x013c }, /*                    lcedilla ļ LATIN SMALL LETTER L WITH CEDILLA */
   { 0x03ba, 0x0113 }, /*                     emacron ē LATIN SMALL LETTER E WITH MACRON */
+  { 0x03cc, 0x0116 }, /*                   Eabovedot Ė LATIN CAPITAL LETTER E WITH DOT ABOVE */
+  { 0x03ec, 0x0117 }, /*                   eabovedot ė LATIN SMALL LETTER E WITH DOT ABOVE */
+  { 0x01ca, 0x0118 }, /*                     Eogonek Ę LATIN CAPITAL LETTER E WITH OGONEK */
+  { 0x01ea, 0x0119 }, /*                     eogonek ę LATIN SMALL LETTER E WITH OGONEK */
+  { 0x01cc, 0x011a }, /*                      Ecaron Ě LATIN CAPITAL LETTER E WITH CARON */
+  { 0x01ec, 0x011b }, /*                      ecaron ě LATIN SMALL LETTER E WITH CARON */
+  { 0x02d8, 0x011c }, /*                 Gcircumflex Ĝ LATIN CAPITAL LETTER G WITH CIRCUMFLEX */
+  { 0x02f8, 0x011d }, /*                 gcircumflex ĝ LATIN SMALL LETTER G WITH CIRCUMFLEX */
+  { 0x02ab, 0x011e }, /*                      Gbreve Ğ LATIN CAPITAL LETTER G WITH BREVE */
+  { 0x02bb, 0x011f }, /*                      gbreve ğ LATIN SMALL LETTER G WITH BREVE */
+  { 0x02d5, 0x0120 }, /*                   Gabovedot Ġ LATIN CAPITAL LETTER G WITH DOT ABOVE */
+  { 0x02f5, 0x0121 }, /*                   gabovedot ġ LATIN SMALL LETTER G WITH DOT ABOVE */
+  { 0x03ab, 0x0122 }, /*                    Gcedilla Ģ LATIN CAPITAL LETTER G WITH CEDILLA */
   { 0x03bb, 0x0123 }, /*                    gcedilla ģ LATIN SMALL LETTER G WITH CEDILLA */
-  { 0x03bc, 0x0167 }, /*                      tslash ŧ LATIN SMALL LETTER T WITH STROKE */
+  { 0x02a6, 0x0124 }, /*                 Hcircumflex Ĥ LATIN CAPITAL LETTER H WITH CIRCUMFLEX */
+  { 0x02b6, 0x0125 }, /*                 hcircumflex ĥ LATIN SMALL LETTER H WITH CIRCUMFLEX */
+  { 0x02a1, 0x0126 }, /*                     Hstroke Ħ LATIN CAPITAL LETTER H WITH STROKE */
+  { 0x02b1, 0x0127 }, /*                     hstroke ħ LATIN SMALL LETTER H WITH STROKE */
+  { 0x03a5, 0x0128 }, /*                      Itilde Ĩ LATIN CAPITAL LETTER I WITH TILDE */
+  { 0x03b5, 0x0129 }, /*                      itilde ĩ LATIN SMALL LETTER I WITH TILDE */
+  { 0x03cf, 0x012a }, /*                     Imacron Ī LATIN CAPITAL LETTER I WITH MACRON */
+  { 0x03ef, 0x012b }, /*                     imacron ī LATIN SMALL LETTER I WITH MACRON */
+  { 0x03c7, 0x012e }, /*                     Iogonek Į LATIN CAPITAL LETTER I WITH OGONEK */
+  { 0x03e7, 0x012f }, /*                     iogonek į LATIN SMALL LETTER I WITH OGONEK */
+  { 0x02a9, 0x0130 }, /*                   Iabovedot İ LATIN CAPITAL LETTER I WITH DOT ABOVE */
+  { 0x02b9, 0x0131 }, /*                    idotless ı LATIN SMALL LETTER DOTLESS I */
+  { 0x02ac, 0x0134 }, /*                 Jcircumflex Ĵ LATIN CAPITAL LETTER J WITH CIRCUMFLEX */
+  { 0x02bc, 0x0135 }, /*                 jcircumflex ĵ LATIN SMALL LETTER J WITH CIRCUMFLEX */
+  { 0x03d3, 0x0136 }, /*                    Kcedilla Ķ LATIN CAPITAL LETTER K WITH CEDILLA */
+  { 0x03f3, 0x0137 }, /*                    kcedilla ķ LATIN SMALL LETTER K WITH CEDILLA */
+  { 0x03a2, 0x0138 }, /*                         kra ĸ LATIN SMALL LETTER KRA */
+  { 0x01c5, 0x0139 }, /*                      Lacute Ĺ LATIN CAPITAL LETTER L WITH ACUTE */
+  { 0x01e5, 0x013a }, /*                      lacute ĺ LATIN SMALL LETTER L WITH ACUTE */
+  { 0x03a6, 0x013b }, /*                    Lcedilla Ļ LATIN CAPITAL LETTER L WITH CEDILLA */
+  { 0x03b6, 0x013c }, /*                    lcedilla ļ LATIN SMALL LETTER L WITH CEDILLA */
+  { 0x01a5, 0x013d }, /*                      Lcaron Ľ LATIN CAPITAL LETTER L WITH CARON */
+  { 0x01b5, 0x013e }, /*                      lcaron ľ LATIN SMALL LETTER L WITH CARON */
+  { 0x01a3, 0x0141 }, /*                     Lstroke Ł LATIN CAPITAL LETTER L WITH STROKE */
+  { 0x01b3, 0x0142 }, /*                     lstroke ł LATIN SMALL LETTER L WITH STROKE */
+  { 0x01d1, 0x0143 }, /*                      Nacute Ń LATIN CAPITAL LETTER N WITH ACUTE */
+  { 0x01f1, 0x0144 }, /*                      nacute ń LATIN SMALL LETTER N WITH ACUTE */
+  { 0x03d1, 0x0145 }, /*                    Ncedilla Ņ LATIN CAPITAL LETTER N WITH CEDILLA */
+  { 0x03f1, 0x0146 }, /*                    ncedilla ņ LATIN SMALL LETTER N WITH CEDILLA */
+  { 0x01d2, 0x0147 }, /*                      Ncaron Ň LATIN CAPITAL LETTER N WITH CARON */
+  { 0x01f2, 0x0148 }, /*                      ncaron ň LATIN SMALL LETTER N WITH CARON */
   { 0x03bd, 0x014a }, /*                         ENG Ŋ LATIN CAPITAL LETTER ENG */
   { 0x03bf, 0x014b }, /*                         eng ŋ LATIN SMALL LETTER ENG */
-  { 0x03c0, 0x0100 }, /*                     Amacron Ā LATIN CAPITAL LETTER A WITH MACRON */
-  { 0x03c7, 0x012e }, /*                     Iogonek Į LATIN CAPITAL LETTER I WITH OGONEK */
-  { 0x03cc, 0x0116 }, /*                   Eabovedot Ė LATIN CAPITAL LETTER E WITH DOT ABOVE */
-  { 0x03cf, 0x012a }, /*                     Imacron Ī LATIN CAPITAL LETTER I WITH MACRON */
-  { 0x03d1, 0x0145 }, /*                    Ncedilla Ņ LATIN CAPITAL LETTER N WITH CEDILLA */
   { 0x03d2, 0x014c }, /*                     Omacron Ō LATIN CAPITAL LETTER O WITH MACRON */
-  { 0x03d3, 0x0136 }, /*                    Kcedilla Ķ LATIN CAPITAL LETTER K WITH CEDILLA */
-  { 0x03d9, 0x0172 }, /*                     Uogonek Ų LATIN CAPITAL LETTER U WITH OGONEK */
-  { 0x03dd, 0x0168 }, /*                      Utilde Ũ LATIN CAPITAL LETTER U WITH TILDE */
-  { 0x03de, 0x016a }, /*                     Umacron Ū LATIN CAPITAL LETTER U WITH MACRON */
-  { 0x03e0, 0x0101 }, /*                     amacron ā LATIN SMALL LETTER A WITH MACRON */
-  { 0x03e7, 0x012f }, /*                     iogonek į LATIN SMALL LETTER I WITH OGONEK */
-  { 0x03ec, 0x0117 }, /*                   eabovedot ė LATIN SMALL LETTER E WITH DOT ABOVE */
-  { 0x03ef, 0x012b }, /*                     imacron ī LATIN SMALL LETTER I WITH MACRON */
-  { 0x03f1, 0x0146 }, /*                    ncedilla ņ LATIN SMALL LETTER N WITH CEDILLA */
   { 0x03f2, 0x014d }, /*                     omacron ō LATIN SMALL LETTER O WITH MACRON */
-  { 0x03f3, 0x0137 }, /*                    kcedilla ķ LATIN SMALL LETTER K WITH CEDILLA */
-  { 0x03f9, 0x0173 }, /*                     uogonek ų LATIN SMALL LETTER U WITH OGONEK */
-  { 0x03fd, 0x0169 }, /*                      utilde ũ LATIN SMALL LETTER U WITH TILDE */
-  { 0x03fe, 0x016b }, /*                     umacron ū LATIN SMALL LETTER U WITH MACRON */
-  { 0x08f6, 0x0192 }, /*                    function ƒ LATIN SMALL LETTER F WITH HOOK */
+  { 0x01d5, 0x0150 }, /*                Odoubleacute Ő LATIN CAPITAL LETTER O WITH DOUBLE ACUTE */
+  { 0x01f5, 0x0151 }, /*                odoubleacute ő LATIN SMALL LETTER O WITH DOUBLE ACUTE */
   { 0x13bc, 0x0152 }, /*                          OE Œ LATIN CAPITAL LIGATURE OE */
   { 0x13bd, 0x0153 }, /*                          oe œ LATIN SMALL LIGATURE OE */
+  { 0x01c0, 0x0154 }, /*                      Racute Ŕ LATIN CAPITAL LETTER R WITH ACUTE */
+  { 0x01e0, 0x0155 }, /*                      racute ŕ LATIN SMALL LETTER R WITH ACUTE */
+  { 0x03a3, 0x0156 }, /*                    Rcedilla Ŗ LATIN CAPITAL LETTER R WITH CEDILLA */
+  { 0x03b3, 0x0157 }, /*                    rcedilla ŗ LATIN SMALL LETTER R WITH CEDILLA */
+  { 0x01d8, 0x0158 }, /*                      Rcaron Ř LATIN CAPITAL LETTER R WITH CARON */
+  { 0x01f8, 0x0159 }, /*                      rcaron ř LATIN SMALL LETTER R WITH CARON */
+  { 0x01a6, 0x015a }, /*                      Sacute Ś LATIN CAPITAL LETTER S WITH ACUTE */
+  { 0x01b6, 0x015b }, /*                      sacute ś LATIN SMALL LETTER S WITH ACUTE */
+  { 0x02de, 0x015c }, /*                 Scircumflex Ŝ LATIN CAPITAL LETTER S WITH CIRCUMFLEX */
+  { 0x02fe, 0x015d }, /*                 scircumflex ŝ LATIN SMALL LETTER S WITH CIRCUMFLEX */
+  { 0x01aa, 0x015e }, /*                    Scedilla Ş LATIN CAPITAL LETTER S WITH CEDILLA */
+  { 0x01ba, 0x015f }, /*                    scedilla ş LATIN SMALL LETTER S WITH CEDILLA */
+  { 0x01a9, 0x0160 }, /*                      Scaron Š LATIN CAPITAL LETTER S WITH CARON */
+  { 0x01b9, 0x0161 }, /*                      scaron š LATIN SMALL LETTER S WITH CARON */
+  { 0x01de, 0x0162 }, /*                    Tcedilla Ţ LATIN CAPITAL LETTER T WITH CEDILLA */
+  { 0x01fe, 0x0163 }, /*                    tcedilla ţ LATIN SMALL LETTER T WITH CEDILLA */
+  { 0x01ab, 0x0164 }, /*                      Tcaron Ť LATIN CAPITAL LETTER T WITH CARON */
+  { 0x01bb, 0x0165 }, /*                      tcaron ť LATIN SMALL LETTER T WITH CARON */
+  { 0x03ac, 0x0166 }, /*                      Tslash Ŧ LATIN CAPITAL LETTER T WITH STROKE */
+  { 0x03bc, 0x0167 }, /*                      tslash ŧ LATIN SMALL LETTER T WITH STROKE */
+  { 0x03dd, 0x0168 }, /*                      Utilde Ũ LATIN CAPITAL LETTER U WITH TILDE */
+  { 0x03fd, 0x0169 }, /*                      utilde ũ LATIN SMALL LETTER U WITH TILDE */
+  { 0x03de, 0x016a }, /*                     Umacron Ū LATIN CAPITAL LETTER U WITH MACRON */
+  { 0x03fe, 0x016b }, /*                     umacron ū LATIN SMALL LETTER U WITH MACRON */
+  { 0x02dd, 0x016c }, /*                      Ubreve Ŭ LATIN CAPITAL LETTER U WITH BREVE */
+  { 0x02fd, 0x016d }, /*                      ubreve ŭ LATIN SMALL LETTER U WITH BREVE */
+  { 0x01d9, 0x016e }, /*                       Uring Ů LATIN CAPITAL LETTER U WITH RING ABOVE */
+  { 0x01f9, 0x016f }, /*                       uring ů LATIN SMALL LETTER U WITH RING ABOVE */
+  { 0x01db, 0x0170 }, /*                Udoubleacute Ű LATIN CAPITAL LETTER U WITH DOUBLE ACUTE */
+  { 0x01fb, 0x0171 }, /*                udoubleacute ű LATIN SMALL LETTER U WITH DOUBLE ACUTE */
+  { 0x03d9, 0x0172 }, /*                     Uogonek Ų LATIN CAPITAL LETTER U WITH OGONEK */
+  { 0x03f9, 0x0173 }, /*                     uogonek ų LATIN SMALL LETTER U WITH OGONEK */
   { 0x13be, 0x0178 }, /*                  Ydiaeresis Ÿ LATIN CAPITAL LETTER Y WITH DIAERESIS */
+  { 0x01ac, 0x0179 }, /*                      Zacute Ź LATIN CAPITAL LETTER Z WITH ACUTE */
+  { 0x01bc, 0x017a }, /*                      zacute ź LATIN SMALL LETTER Z WITH ACUTE */
+  { 0x01af, 0x017b }, /*                   Zabovedot Ż LATIN CAPITAL LETTER Z WITH DOT ABOVE */
+  { 0x01bf, 0x017c }, /*                   zabovedot ż LATIN SMALL LETTER Z WITH DOT ABOVE */
+  { 0x01ae, 0x017d }, /*                      Zcaron Ž LATIN CAPITAL LETTER Z WITH CARON */
+  { 0x01be, 0x017e }, /*                      zcaron ž LATIN SMALL LETTER Z WITH CARON */
+  { 0x08f6, 0x0192 }, /*                    function ƒ LATIN SMALL LETTER F WITH HOOK */
 
   { 0x01b7, 0x02c7 }, /*                       caron ˇ CARON */
   { 0x01a2, 0x02d8 }, /*                       breve ˘ BREVE */
@@ -196,7 +200,7 @@ struct codepair {
   { 0x07d7, 0x03a7 }, /*                   Greek_CHI Χ GREEK CAPITAL LETTER CHI */
   { 0x07d8, 0x03a8 }, /*                   Greek_PSI Ψ GREEK CAPITAL LETTER PSI */
   { 0x07d9, 0x03a9 }, /*                 Greek_OMEGA Ω GREEK CAPITAL LETTER OMEGA */
-  { 0x07a5, 0x03aa }, /*         Greek_IOTAdiaeresis Ϊ GREEK CAPITAL LETTER IOTA WITH DIALYTIKA */
+  { 0x07a5, 0x03aa }, /*          Greek_IOTAdieresis Ϊ GREEK CAPITAL LETTER IOTA WITH DIALYTIKA */
   { 0x07a9, 0x03ab }, /*       Greek_UPSILONdieresis Ϋ GREEK CAPITAL LETTER UPSILON WITH DIALYTIKA */
   { 0x07b1, 0x03ac }, /*           Greek_alphaaccent ά GREEK SMALL LETTER ALPHA WITH TONOS */
   { 0x07b2, 0x03ad }, /*         Greek_epsilonaccent έ GREEK SMALL LETTER EPSILON WITH TONOS */
@@ -326,6 +330,8 @@ struct codepair {
   { 0x06ac, 0x045c }, /*               Macedonia_kje ќ CYRILLIC SMALL LETTER KJE */
   { 0x06ae, 0x045e }, /*         Byelorussian_shortu ў CYRILLIC SMALL LETTER SHORT U */
   { 0x06af, 0x045f }, /*               Cyrillic_dzhe џ CYRILLIC SMALL LETTER DZHE */
+  { 0x06bd, 0x0490 }, /*   Ukrainian_GHE_WITH_UPTURN Ґ CYRILLIC CAPITAL LETTER GHE WITH UPTURN */
+  { 0x06ad, 0x0491 }, /*   Ukrainian_ghe_with_upturn ґ CYRILLIC SMALL LETTER GHE WITH UPTURN */
 
   { 0x0ce0, 0x05d0 }, /*                hebrew_aleph א HEBREW LETTER ALEF */
   { 0x0ce1, 0x05d1 }, /*                  hebrew_bet ב HEBREW LETTER BET */
@@ -519,7 +525,6 @@ struct codepair {
   { 0x0ef9, 0x11f0 }, /*  Hangul_J_KkogjiDalrinIeung ᇰ HANGUL JONGSEONG YESIEUNG */
   { 0x0efa, 0x11f9 }, /*        Hangul_J_YeorinHieuh ᇹ HANGUL JONGSEONG YEORINHIEUH */
 
- 
   { 0x0aa2, 0x2002 }, /*                     enspace   EN SPACE */
   { 0x0aa1, 0x2003 }, /*                     emspace   EM SPACE */
   { 0x0aa3, 0x2004 }, /*                    em3space   THREE-PER-EM SPACE */
@@ -544,12 +549,13 @@ struct codepair {
   { 0x0ae6, 0x2022 }, /*          enfilledcircbullet • BULLET */
   { 0x0aaf, 0x2025 }, /*             doubbaselinedot ‥ TWO DOT LEADER */
   { 0x0aae, 0x2026 }, /*                    ellipsis … HORIZONTAL ELLIPSIS */
+  { 0x0ad5, 0x2030 }, /*                    permille ‰ PER MILLE SIGN */
   { 0x0ad6, 0x2032 }, /*                     minutes ′ PRIME */
   { 0x0ad7, 0x2033 }, /*                     seconds ″ DOUBLE PRIME */
   { 0x0afc, 0x2038 }, /*                       caret ‸ CARET */
   { 0x047e, 0x203e }, /*                    overline ‾ OVERLINE */
   { 0x0eff, 0x20a9 }, /*                  Korean_Won ₩ WON SIGN */
-  { 0x13a4, 0x20ac }, /*                        Euro € EURO SIGN */
+  { 0x20ac, 0x20ac }, /*                    EuroSign € EURO SIGN */
 
   { 0x0ab8, 0x2105 }, /*                      careof ℅ CARE OF */
   { 0x06b0, 0x2116 }, /*                  numerosign № NUMERO SIGN */
@@ -574,15 +580,20 @@ struct codepair {
   { 0x08fe, 0x2193 }, /*                   downarrow ↓ DOWNWARDS ARROW */
   { 0x08ce, 0x21d2 }, /*                     implies ⇒ RIGHTWARDS DOUBLE ARROW */
   { 0x08cd, 0x21d4 }, /*                    ifonlyif ⇔ LEFT RIGHT DOUBLE ARROW */
+
   { 0x08ef, 0x2202 }, /*           partialderivative ∂ PARTIAL DIFFERENTIAL */
   { 0x08c5, 0x2207 }, /*                       nabla ∇ NABLA */
   { 0x0bca, 0x2218 }, /*                         jot ∘ RING OPERATOR */
   { 0x08d6, 0x221a }, /*                     radical √ SQUARE ROOT */
   { 0x08c1, 0x221d }, /*                   variation ∝ PROPORTIONAL TO */
   { 0x08c2, 0x221e }, /*                    infinity ∞ INFINITY */
+  { 0x0ba9, 0x2227 }, /*                     upcaret ∧ LOGICAL AND */
   { 0x08de, 0x2227 }, /*                  logicaland ∧ LOGICAL AND */
+  { 0x0ba8, 0x2228 }, /*                   downcaret ∨ LOGICAL OR */
   { 0x08df, 0x2228 }, /*                   logicalor ∨ LOGICAL OR */
+  { 0x0bc3, 0x2229 }, /*                      upshoe ∩ INTERSECTION */
   { 0x08dc, 0x2229 }, /*                intersection ∩ INTERSECTION */
+  { 0x0bd6, 0x222a }, /*                    downshoe ∪ UNION */
   { 0x08dd, 0x222a }, /*                       union ∪ UNION */
   { 0x08bf, 0x222b }, /*                    integral ∫ INTEGRAL */
   { 0x08c0, 0x2234 }, /*                   therefore ∴ THEREFORE */
@@ -592,44 +603,51 @@ struct codepair {
   { 0x08cf, 0x2261 }, /*                   identical ≡ IDENTICAL TO */
   { 0x08bc, 0x2264 }, /*               lessthanequal ≤ LESS-THAN OR EQUAL TO */
   { 0x08be, 0x2265 }, /*            greaterthanequal ≥ GREATER-THAN OR EQUAL TO */
+  { 0x0bda, 0x2282 }, /*                    leftshoe ⊂ SUBSET OF */
   { 0x08da, 0x2282 }, /*                  includedin ⊂ SUBSET OF */
+  { 0x0bd8, 0x2283 }, /*                   rightshoe ⊃ SUPERSET OF */
   { 0x08db, 0x2283 }, /*                    includes ⊃ SUPERSET OF */
-  { 0x0bdc, 0x22a2 }, /*                    lefttack ⊢ RIGHT TACK */
-  { 0x0bfc, 0x22a3 }, /*                   righttack ⊣ LEFT TACK */
-  { 0x0bce, 0x22a4 }, /*                      uptack ⊤ DOWN TACK */
-  { 0x0bc2, 0x22a5 }, /*                    downtack ⊥ UP TACK */
+  { 0x0bfc, 0x22a2 }, /*                   righttack ⊢ RIGHT TACK */
+  { 0x0bdc, 0x22a3 }, /*                    lefttack ⊣ LEFT TACK */
+  { 0x0bc2, 0x22a4 }, /*                    downtack ⊤ DOWN TACK */
+  { 0x0bce, 0x22a5 }, /*                      uptack ⊥ UP TACK */
+
   { 0x0bd3, 0x2308 }, /*                     upstile ⌈ LEFT CEILING */
   { 0x0bc4, 0x230a }, /*                   downstile ⌊ LEFT FLOOR */
   { 0x0afa, 0x2315 }, /*           telephonerecorder ⌕ TELEPHONE RECORDER */
   { 0x08a4, 0x2320 }, /*                 topintegral ⌠ TOP HALF INTEGRAL */
   { 0x08a5, 0x2321 }, /*                 botintegral ⌡ BOTTOM HALF INTEGRAL */
-  { 0x0abc, 0x2329 }, /*            leftanglebracket 〈 LEFT-POINTING ANGLE BRACKET */
-  { 0x0abe, 0x232a }, /*           rightanglebracket 〉 RIGHT-POINTING ANGLE BRACKET */
+  { 0x0abc, 0x2329 }, /*            leftanglebracket 〈 LEFT-POINTING ANGLE BRACKET, not U+27E8 per xterm source */
+  { 0x0abe, 0x232a }, /*           rightanglebracket 〉 RIGHT-POINTING ANGLE BRACKET, not U+27E9 per xterm source */
   { 0x0bcc, 0x2395 }, /*                        quad ⎕ APL FUNCTIONAL SYMBOL QUAD */
-  { 0x08ab, 0x239b }, /*               topleftparens ⎛ ??? */
-  { 0x08ac, 0x239d }, /*               botleftparens ⎝ ??? */
-  { 0x08ad, 0x239e }, /*              toprightparens ⎞ ??? */
-  { 0x08ae, 0x23a0 }, /*              botrightparens ⎠ ??? */
-  { 0x08a7, 0x23a1 }, /*            topleftsqbracket ⎡ ??? */
-  { 0x08a8, 0x23a3 }, /*            botleftsqbracket ⎣ ??? */
-  { 0x08a9, 0x23a4 }, /*           toprightsqbracket ⎤ ??? */
-  { 0x08aa, 0x23a6 }, /*           botrightsqbracket ⎦ ??? */
-  { 0x08af, 0x23a8 }, /*        leftmiddlecurlybrace ⎨ ??? */
-  { 0x08b0, 0x23ac }, /*       rightmiddlecurlybrace ⎬ ??? */
-  { 0x08a1, 0x23b7 }, /*                 leftradical ⎷ ??? */
-  { 0x09ef, 0x23ba }, /*              horizlinescan1 ⎺ HORIZONTAL SCAN LINE-1 (Unicode 3.2 draft) */
-  { 0x09f0, 0x23bb }, /*              horizlinescan3 ⎻ HORIZONTAL SCAN LINE-3 (Unicode 3.2 draft) */
-  { 0x09f2, 0x23bc }, /*              horizlinescan7 ⎼ HORIZONTAL SCAN LINE-7 (Unicode 3.2 draft) */
-  { 0x09f3, 0x23bd }, /*              horizlinescan9 ⎽ HORIZONTAL SCAN LINE-9 (Unicode 3.2 draft) */
+  { 0x08ab, 0x239b }, /*               topleftparens ⎛ LEFT PARENTHESIS UPPER HOOK */
+  { 0x08ac, 0x239d }, /*               botleftparens ⎝ LEFT PARENTHESIS LOWER HOOK */
+  { 0x08ad, 0x239e }, /*              toprightparens ⎞ RIGHT PARENTHESIS UPPER HOOK */
+  { 0x08ae, 0x23a0 }, /*              botrightparens ⎠ RIGHT PARENTHESIS LOWER HOOK */
+  { 0x08a7, 0x23a1 }, /*            topleftsqbracket ⎡ LEFT SQUARE BRACKET UPPER CORNER */
+  { 0x08a8, 0x23a3 }, /*            botleftsqbracket ⎣ LEFT SQUARE BRACKET LOWER CORNER */
+  { 0x08a9, 0x23a4 }, /*           toprightsqbracket ⎤ RIGHT SQUARE BRACKET UPPER CORNER */
+  { 0x08aa, 0x23a6 }, /*           botrightsqbracket ⎦ RIGHT SQUARE BRACKET LOWER CORNER */
+  { 0x08af, 0x23a8 }, /*        leftmiddlecurlybrace ⎨ LEFT CURLY BRACKET MIDDLE PIECE */
+  { 0x08b0, 0x23ac }, /*       rightmiddlecurlybrace ⎬ RIGHT CURLY BRACKET MIDDLE PIECE */
+  { 0x08a1, 0x23b7 }, /*                 leftradical ⎷ RADICAL SYMBOL BOTTOM */
+  { 0x09ef, 0x23ba }, /*              horizlinescan1 ⎺ HORIZONTAL SCAN LINE-1 */
+  { 0x09f0, 0x23bb }, /*              horizlinescan3 ⎻ HORIZONTAL SCAN LINE-3 */
+  { 0x09f2, 0x23bc }, /*              horizlinescan7 ⎼ HORIZONTAL SCAN LINE-7 */
+  { 0x09f3, 0x23bd }, /*              horizlinescan9 ⎽ HORIZONTAL SCAN LINE-9 */
+
   { 0x09e2, 0x2409 }, /*                          ht ␉ SYMBOL FOR HORIZONTAL TABULATION */
+  { 0x09e5, 0x240a }, /*                          lf ␊ SYMBOL FOR LINE FEED */
+  { 0x09e9, 0x240b }, /*                          vt ␋ SYMBOL FOR VERTICAL TABULATION */
   { 0x09e3, 0x240c }, /*                          ff ␌ SYMBOL FOR FORM FEED */
   { 0x09e4, 0x240d }, /*                          cr ␍ SYMBOL FOR CARRIAGE RETURN */
-  { 0x09e5, 0x240a }, /*                          lf ␊ SYMBOL FOR LINE FEED */
+  { 0x0aac, 0x2423 }, /*                 signifblank ␣ OPEN BOX */
   { 0x09e8, 0x2424 }, /*                          nl ␤ SYMBOL FOR NEWLINE */
-  { 0x09e9, 0x240b }, /*                          vt ␋ SYMBOL FOR VERTICAL TABULATION */
 
   { 0x08a3, 0x2500 }, /*              horizconnector ─ BOX DRAWINGS LIGHT HORIZONTAL */
+  { 0x09f1, 0x2500 }, /*              horizlinescan5 ─ BOX DRAWINGS LIGHT HORIZONTAL */
   { 0x08a6, 0x2502 }, /*               vertconnector │ BOX DRAWINGS LIGHT VERTICAL */
+  { 0x09f8, 0x2502 }, /*                     vertbar │ BOX DRAWINGS LIGHT VERTICAL */
   { 0x08a2, 0x250c }, /*              topleftradical ┌ BOX DRAWINGS LIGHT DOWN AND RIGHT */
   { 0x09ec, 0x250c }, /*                upleftcorner ┌ BOX DRAWINGS LIGHT DOWN AND RIGHT */
   { 0x09eb, 0x2510 }, /*               uprightcorner ┐ BOX DRAWINGS LIGHT DOWN AND LEFT */
@@ -638,8 +656,8 @@ struct codepair {
   { 0x09f4, 0x251c }, /*                       leftt ├ BOX DRAWINGS LIGHT VERTICAL AND RIGHT */
   { 0x09f5, 0x2524 }, /*                      rightt ┤ BOX DRAWINGS LIGHT VERTICAL AND LEFT */
   { 0x09f7, 0x252c }, /*                        topt ┬ BOX DRAWINGS LIGHT DOWN AND HORIZONTAL */
-  { 0x09ee, 0x253c }, /*               crossinglines ┼ BOX DRAWINGS LIGHT VERTICAL AND HORIZONTAL */
   { 0x09f6, 0x2534 }, /*                        bott ┴ BOX DRAWINGS LIGHT UP AND HORIZONTAL */
+  { 0x09ee, 0x253c }, /*               crossinglines ┼ BOX DRAWINGS LIGHT VERTICAL AND HORIZONTAL */
   { 0x09e1, 0x2592 }, /*                checkerboard ▒ MEDIUM SHADE */
   { 0x0ae7, 0x25aa }, /*            enfilledsqbullet ▪ BLACK SMALL SQUARE */
   { 0x0ae1, 0x25ab }, /*          enopensquarebullet ▫ WHITE SMALL SQUARE */
@@ -657,16 +675,29 @@ struct codepair {
   { 0x0acc, 0x25c1 }, /*            leftopentriangle ◁ WHITE LEFT-POINTING TRIANGLE */
   { 0x09e0, 0x25c6 }, /*                soliddiamond ◆ BLACK DIAMOND */
   { 0x0ace, 0x25cb }, /*                emopencircle ○ WHITE CIRCLE */
+  { 0x0bcf, 0x25cb }, /*                      circle ○ WHITE CIRCLE */
   { 0x0ade, 0x25cf }, /*              emfilledcircle ● BLACK CIRCLE */
   { 0x0ae0, 0x25e6 }, /*            enopencircbullet ◦ WHITE BULLET */
+
+  { 0x0ae5, 0x2606 }, /*                    openstar ☆ WHITE STAR */
+  { 0x0af9, 0x260e }, /*                   telephone ☎ BLACK TELEPHONE */
+  { 0x0aca, 0x2613 }, /*               signaturemark ☓ SALTIRE */
+  { 0x0aea, 0x261c }, /*                 leftpointer ☜ WHITE LEFT POINTING INDEX */
+  { 0x0aeb, 0x261e }, /*                rightpointer ☞ WHITE RIGHT POINTING INDEX */
+  { 0x0af8, 0x2640 }, /*                femalesymbol ♀ FEMALE SIGN */
+  { 0x0af7, 0x2642 }, /*                  malesymbol ♂ MALE SIGN */
+  { 0x0aec, 0x2663 }, /*                        club ♣ BLACK CLUB SUIT */
   { 0x0aee, 0x2665 }, /*                       heart ♥ BLACK HEART SUIT */
   { 0x0aed, 0x2666 }, /*                     diamond ♦ BLACK DIAMOND SUIT */
-  { 0x0af5, 0x266f }, /*                musicalsharp ♯ MUSIC SHARP SIGN */
   { 0x0af6, 0x266d }, /*                 musicalflat ♭ MUSIC FLAT SIGN */
+  { 0x0af5, 0x266f }, /*                musicalsharp ♯ MUSIC SHARP SIGN */
+
   { 0x0af3, 0x2713 }, /*                   checkmark ✓ CHECK MARK */
   { 0x0af4, 0x2717 }, /*                 ballotcross ✗ BALLOT X */
   { 0x0ad9, 0x271d }, /*                  latincross ✝ LATIN CROSS */
   { 0x0af0, 0x2720 }, /*                maltesecross ✠ MALTESE CROSS */
+  { 0x0abc, 0x27e8 }, /*            leftanglebracket ⟨ MATHEMATICAL LEFT ANGLE BRACKET */
+  { 0x0abe, 0x27e9 }, /*           rightanglebracket ⟩ MATHEMATICAL RIGHT ANGLE BRACKET */
 
   { 0x04a4, 0x3001 }, /*                  kana_comma 、 IDEOGRAPHIC COMMA */
   { 0x04a1, 0x3002 }, /*               kana_fullstop 。 IDEOGRAPHIC FULL STOP */
@@ -824,9 +855,7 @@ long ucs2keysym (long ucs)
 
 long keysym2ucs(long keysym)
 {
-    int min = 0;
-    int max = sizeof(keysymtab) / sizeof(struct codepair) - 1;
-    int mid;
+    int i;
 
     /* first check for Latin-1 characters (1:1 mapping) */
     if ((keysym >= 0x0020 && keysym <= 0x007e) ||
@@ -837,16 +866,10 @@ long keysym2ucs(long keysym)
     if ((keysym & 0xff000000) == 0x01000000)
 	return keysym & 0x00ffffff;
 
-    /* binary search in table */
-    while (max >= min) {
-	mid = (min + max) / 2;
-	if (keysymtab[mid].keysym < keysym)
-	    min = mid + 1;
-	else if (keysymtab[mid].keysym > keysym)
-	    max = mid - 1;
-	else {
+    for (i = 0; i < sizeof(keysymtab) / sizeof(keysymtab[0]); i++) {
+	if (keysymtab[i].keysym == keysym) {
 	    /* found it */
-	    return keysymtab[mid].ucs;
+	    return keysymtab[i].ucs;
 	}
     }
 

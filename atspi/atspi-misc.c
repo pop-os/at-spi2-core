@@ -35,6 +35,7 @@
 #include "atspi-gmain.h"
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 static void handle_get_items (DBusPendingCall *pending, void *user_data);
 
@@ -1898,4 +1899,34 @@ _atspi_prepare_screen_reader_interface ()
   initialized = 1;
   dbus_connection_add_filter (a11y_bus, screen_reader_filter, NULL, NULL);
   return TRUE;
+}
+
+gchar *
+_atspi_strdup_and_adjust_for_dbus (const char *s)
+{
+  gchar *d = g_strdup (s);
+  gchar *p;
+  int parts = 0;
+
+  if (!d)
+    return NULL;
+
+  for (p = d; *p; p++)
+  {
+    if (*p == '-')
+    {
+      memmove (p, p + 1, g_utf8_strlen (p, -1));
+      *p = toupper (*p);
+    }
+    else if (*p == ':')
+    {
+      parts++;
+      if (parts == 2)
+        break;
+      p [1] = toupper (p [1]);
+    }
+  }
+
+  d [0] = toupper (d [0]);
+  return d;
 }
