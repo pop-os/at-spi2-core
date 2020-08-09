@@ -1,12 +1,12 @@
 project('at-spi2-core', 'c',
-        version: '2.36.0',
+        version: '2.37.90',
         license: 'LGPLv2.1+',
         default_options: [
           'buildtype=debugoptimized',
           'warning_level=1',
           'c_std=c99',
         ],
-        meson_version: '>= 0.40.1')
+        meson_version: '>= 0.46.0')
 
 add_project_arguments([ '-D_POSIX_C_SOURCE=200809L', '-D_DEFAULT_SOURCE' ], language: 'c')
 

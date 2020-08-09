@@ -1,3 +1,13 @@
+at-spi2-core (2.37.90-1) experimental; urgency=medium
+
+  * New upstream beta release.
+    - patches/dbtest_quiet: Upstreamed.
+    - patches/euro: Upstreamed.
+    - patches/latin-accent: Upstreamed.
+    - patches/memory_verbose: Upstreamed.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 09 Aug 2020 16:23:17 +0200
+
 at-spi2-core (2.36.0-4) UNRELEASED; urgency=medium
 
   * debian/tests/gedit: clear XDG_RUNTIME_DIR to avoid interaction with host
