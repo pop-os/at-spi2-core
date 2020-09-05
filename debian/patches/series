@@ -3,5 +3,4 @@ at-spi-by-default
 disable-test-that-needs-installed-dbus-service.patch
 dbtest_quiet
 test_disable_teamspaces
-euro
 memory_verbose
