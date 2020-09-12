@@ -335,40 +335,10 @@ demarshal_rect (DBusMessageIter *iter, AtspiRect *rect)
   return TRUE;
 }
 
-static gchar *
-strdup_and_adjust_for_dbus (const char *s)
-{
-  gchar *d = g_strdup (s);
-  gchar *p;
-  int parts = 0;
-
-  if (!d)
-    return NULL;
-
-  for (p = d; *p; p++)
-  {
-    if (*p == '-')
-    {
-      memmove (p, p + 1, g_utf8_strlen (p, -1));
-      *p = toupper (*p);
-    }
-    else if (*p == ':')
-    {
-      parts++;
-      if (parts == 2)
-        break;
-      p [1] = toupper (p [1]);
-    }
-  }
-
-  d [0] = toupper (d [0]);
-  return d;
-}
-
 static gboolean
 convert_event_type_to_dbus (const char *eventType, char **categoryp, char **namep, char **detailp, GPtrArray **matchrule_array)
 {
-  gchar *tmp = strdup_and_adjust_for_dbus (eventType);
+  gchar *tmp = _atspi_strdup_and_adjust_for_dbus (eventType);
   char *category = NULL, *name = NULL, *detail = NULL;
   char *saveptr = NULL;
 
@@ -630,7 +600,7 @@ copy_event_properties (GArray *src)
   for (i = 0; i < src->len; i++)
     {
       gchar *dup = g_strdup (g_array_index (src, char *, i));
-    g_array_append_val (dst, dup);
+      g_array_append_val (dst, dup);
     }
   return dst;
 }

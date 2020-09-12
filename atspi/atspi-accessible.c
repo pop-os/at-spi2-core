@@ -28,6 +28,7 @@
 
 enum {
   REGION_CHANGED,
+  MODE_CHANGED,
   LAST_SIGNAL
 };
 
@@ -48,21 +49,28 @@ screen_reader_signal_watcher (GSignalInvocationHint *signal_hint,
   const char *name;
   DBusMessage *signal;
   DBusMessageIter iter, iter_struct, iter_variant, iter_array;
-  dbus_int32_t detail1, detail2;
+  dbus_int32_t detail1 = 0, detail2 = 0;
   const char *detail = "";
+  gchar *dbus_name;
 
   object = g_value_get_object (param_values + 0);
   g_return_val_if_fail (ATSPI_IS_ACCESSIBLE(object), FALSE);
 
   g_signal_query (signal_hint->signal_id, &signal_query);
   name = signal_query.signal_name;
-  detail1 = g_value_get_int (param_values + 1);
-  detail2 = g_value_get_int (param_values + 2);
+  if (signal_hint->detail)
+    detail = g_quark_to_string (signal_hint->detail);
+  if (n_param_values > 1)
+    detail1 = g_value_get_int (param_values + 1);
+  if (n_param_values > 2 && G_VALUE_HOLDS_INT (param_values + 2))
+    detail2 = g_value_get_int (param_values + 2);
   accessible = ATSPI_ACCESSIBLE (object);
 
+  dbus_name = _atspi_strdup_and_adjust_for_dbus (name);
   signal = dbus_message_new_signal (ATSPI_DBUS_PATH_SCREEN_READER,
                                     ATSPI_DBUS_INTERFACE_EVENT_SCREEN_READER,
-                                    "RegionChanged");
+                                    dbus_name);
+  g_free (dbus_name);
   dbus_message_iter_init_append (signal, &iter);
   dbus_message_iter_append_basic (&iter, DBUS_TYPE_STRING, &detail);
   dbus_message_iter_append_basic (&iter, DBUS_TYPE_INT32, &detail1);
@@ -287,7 +295,34 @@ atspi_accessible_class_init (AtspiAccessibleClass *klass)
 		  G_TYPE_NONE,
 		  2, G_TYPE_INT, G_TYPE_INT);
 
+  /**
+   * AtspiAccessible::mode-changed:
+   * @atspiaccessible: the object which received the signal
+   * @arg1: a boolean specifying whether the mode is being toggled on or off.
+   * @why: an optional string explaining why the mode changed.
+   *
+   * The signal "mode-changed" is emitted by a screen reader to indicate
+   * that its mode has changed. This signal supports the following details:
+   * focus-tracking
+   * flat-review
+   * mouse-review
+   * say-all
+   * caret-tracking
+  */
+  atspi_accessible_signals[MODE_CHANGED] =
+    g_signal_new ("mode_changed",
+		  G_TYPE_FROM_CLASS (klass),
+		  G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+		  G_STRUCT_OFFSET (AtspiAccessibleClass, mode_changed), 
+		  NULL, NULL,
+		  atspi_marshal_VOID__INT_STRING,
+		  G_TYPE_NONE,
+		  2, G_TYPE_INT, G_TYPE_STRING);
+
   g_signal_add_emission_hook (atspi_accessible_signals[REGION_CHANGED], 0,
+                              screen_reader_signal_watcher, NULL,
+                              (GDestroyNotify) NULL);
+  g_signal_add_emission_hook (atspi_accessible_signals[MODE_CHANGED], 0,
                               screen_reader_signal_watcher, NULL,
                               (GDestroyNotify) NULL);
 }
@@ -1706,7 +1741,7 @@ atspi_accessible_set_cache_mask (AtspiAccessible *accessible, AtspiCache mask)
 {
   g_return_if_fail (accessible != NULL);
   g_return_if_fail (accessible->parent.app != NULL);
-  g_return_if_fail (accessible == accessible->parent.app->root);
+  g_return_if_fail (accessible == accessible->parent.app->root || accessible->role == ATSPI_ROLE_APPLICATION);
   accessible->parent.app->cache = mask;
   enable_caching = TRUE;
 }
