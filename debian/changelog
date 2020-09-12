@@ -19,14 +19,16 @@ at-spi2-core (2.37.90-1) experimental; urgency=medium
 
  -- Samuel Thibault <sthibault@debian.org>  Sun, 09 Aug 2020 16:23:17 +0200
 
-at-spi2-core (2.36.0-4) UNRELEASED; urgency=medium
+at-spi2-core (2.36.1-1) unstable; urgency=medium
 
+  * New upstream release.
+    - debian/patches/euro: Upstreamed.
   * debian/tests/gedit: clear XDG_RUNTIME_DIR to avoid interaction with host
     environment.
   * debian/patches/memory_verbose: Make the memory test more verbose.
   * debian/patches/dbtest_quiet: Make the dbtest back verbose too.
 
- -- Samuel Thibault <sthibault@debian.org>  Sun, 02 Aug 2020 19:17:44 +0200
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 05 Sep 2020 17:53:07 +0200
 
 at-spi2-core (2.36.0-3) unstable; urgency=medium
 
