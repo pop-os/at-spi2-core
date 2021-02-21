@@ -133,6 +133,8 @@ _atspi_bus ()
 
 static AtspiAccessible *desktop;
 
+static void cleanup_deferred_message (void);
+
 static void
 cleanup ()
 {
@@ -146,15 +148,8 @@ cleanup ()
       g_hash_table_destroy (refs);
     }
 
-  if (bus)
-    {
-      dbus_connection_close (bus);
-      dbus_connection_unref (bus);
-      bus = NULL;
-    }
-
   if (!desktop)
-    return;
+    goto end;
 
   /* TODO: Do we need this code, or should we just dispose the desktop? */
   for (i = desktop->children->len - 1; i >= 0; i--)
@@ -168,6 +163,14 @@ cleanup ()
   g_object_run_dispose (G_OBJECT (desktop->parent.app));
   g_object_unref (desktop);
   desktop = NULL;
+
+end:
+  if (bus)
+    {
+      dbus_connection_close (bus);
+      dbus_connection_unref (bus);
+      bus = NULL;
+    }
 }
 
 static gboolean atspi_inited = FALSE;
@@ -455,7 +458,15 @@ add_accessible_from_iter (DBusMessageIter *iter)
     if (index >= 0 && accessible->accessible_parent)
     {
       if (index >= accessible->accessible_parent->children->len)
+      {
+        /* There is no room for this object */
         g_ptr_array_set_size (accessible->accessible_parent->children, index + 1);
+      }
+      else
+      {
+        /* This place is already taken - let's free this place with dignity */
+        g_object_unref (g_ptr_array_index (accessible->accessible_parent->children, index));
+      }
       g_ptr_array_index (accessible->accessible_parent->children, index) = g_object_ref (accessible);
     }
 
@@ -763,6 +774,23 @@ process_deferred_message (BusDataClosure *closure)
 }
 
 static GQueue *deferred_messages = NULL;
+
+static void
+destroy_deferred_message_item(gpointer ptr)
+{
+  /* TODO this is still memory leak on c->data */
+  BusDataClosure *c = ptr;
+  dbus_message_unref (c->message);
+  dbus_connection_unref (c->bus);
+  g_free (c);
+}
+
+static void
+cleanup_deferred_message(void)
+{
+  g_queue_free_full (deferred_messages, destroy_deferred_message_item);
+  deferred_messages = NULL;
+}
 
 static gboolean
 process_deferred_messages (void)
@@ -1272,10 +1300,17 @@ _atspi_dbus_get_property (gpointer obj, const char *interface, const char *name,
   }
   if (!strcmp (type, "(so)"))
   {
+    g_object_unref (*(AtspiAccessible**)data);
     *((AtspiAccessible **)data) = _atspi_dbus_return_accessible_from_iter (&iter_variant);
   }
   else
   {
+    if (type [0] == 's')
+    {
+      g_free (*(char**)data);
+      *(char**) data = NULL;
+    }
+
     dbus_message_iter_get_basic (&iter_variant, data);
     if (type [0] == 's')
       *(char **)data = g_strdup (*(char **)data);
@@ -1553,7 +1588,7 @@ get_accessibility_bus_address_dbus (void)
     address = g_strdup (tmp_address);
     dbus_message_unref (reply);
   }
-  
+
 out:
   dbus_connection_unref (session_bus);
   return address;
