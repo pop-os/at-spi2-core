@@ -1,10 +1,17 @@
 at-spi2-core (2.39.90-1) UNRELEASED; urgency=medium
 
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 21 Feb 2021 19:36:09 +0100
+
+at-spi2-core (2.39.1-1) experimental; urgency=medium
+
   [ Samuel Thibault ]
   * New upstream release
 
   [ Helmut Grohne ]
-  * Drop libxkbcommon*-dev dependencies unused since 2.26.1. (Closes: Bug#981162)
+  * Drop libxkbcommon*-dev dependencies unused since 2.26.1.
+    (Closes: Bug#981162)
 
  -- Samuel Thibault <sthibault@debian.org>  Sun, 21 Feb 2021 19:36:09 +0100
 
