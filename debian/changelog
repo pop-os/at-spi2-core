@@ -1,4 +1,4 @@
-at-spi2-core (2.39.1-1) UNRELEASED; urgency=medium
+at-spi2-core (2.39.1-1) experimental; urgency=medium
 
   [ Samuel Thibault ]
   * New upstream release
