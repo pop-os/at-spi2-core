@@ -1,4 +1,4 @@
-at-spi2-core (2.38.0-2.1) UNRELEASED; urgency=medium
+at-spi2-core (2.38.0-3) UNRELEASED; urgency=medium
 
   [ Helmut Grohne ]
   * Drop libxkbcommon*-dev dependencies unused since 2.26.1. (Closes: Bug#981162)
