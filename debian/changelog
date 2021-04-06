@@ -1,7 +1,8 @@
 at-spi2-core (2.38.0-3) UNRELEASED; urgency=medium
 
   [ Helmut Grohne ]
-  * Drop libxkbcommon*-dev dependencies unused since 2.26.1. (Closes: Bug#981162)
+  * Drop libxkbcommon*-dev dependencies unused since 2.26.1. (Closes:
+    Bug#981162)
 
   [ Samuel Thibault ]
   * control: Set Rules-Requires-Root to no.
