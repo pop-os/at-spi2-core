@@ -2,6 +2,7 @@ at-spi2-core (2.40.1-1) experimental; urgency=medium
 
   [ Samuel Thibault ]
   * New upstream release.
+    - patches/double-free: Upstreamed.
 
   [ Helmut Grohne ]
   * Drop libxkbcommon*-dev dependencies unused since 2.26.1.
