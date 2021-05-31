@@ -8,7 +8,7 @@ Build-Depends: debhelper-compat (= 12),
                gedit <!nocheck>,
                libglib2.0-dev,
                libxtst-dev,
-               meson (>= 0.46.0),
+               meson,
                libgirepository1.0-dev,
                gtk-doc-tools (>= 1.09),
                gobject-introspection | dh-sequence-gir,
@@ -24,7 +24,6 @@ Package: at-spi2-core
 Architecture: any
 Multi-Arch: foreign
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Breaks: gdm3 (<< 3.4)
 Description: Assistive Technology Service Provider Interface (dbus core)
  This package contains the core components of GNOME Accessibility.
 
