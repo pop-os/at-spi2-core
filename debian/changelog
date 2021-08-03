@@ -1,6 +1,7 @@
 at-spi2-core (2.40.1-2) UNRELEASED; urgency=medium
 
   * control: Add libx11-dev build-dep.
+  * control: Bump libglib2.0-dev build-dep version.
 
  -- Samuel Thibault <sthibault@debian.org>  Tue, 03 Aug 2021 17:03:54 +0200
 

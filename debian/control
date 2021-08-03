@@ -6,7 +6,7 @@ Uploaders: Samuel Thibault <sthibault@debian.org>, Jordi Mallach <jordi@debian.o
 Build-Depends: debhelper-compat (= 12),
                dbus, libdbus-1-dev,
                gedit <!nocheck>,
-               libglib2.0-dev,
+               libglib2.0-dev (>= 2.62),
                libx11-dev, libxtst-dev,
                meson (>= 0.46.0),
                libgirepository1.0-dev,
