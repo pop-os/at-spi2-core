@@ -1,3 +1,9 @@
+at-spi2-core (2.40.3-3) unstable; urgency=medium
+
+  * control: Make dbus-broker and libsystemd-dev deps linux-only.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 15 Aug 2021 22:24:21 +0200
+
 at-spi2-core (2.40.3-2) unstable; urgency=medium
 
   * libatspi2.0-0.lintian-overrides: avoid warning about package name vs
