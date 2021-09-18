@@ -1,3 +1,9 @@
+at-spi2-core (2.42.0-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 19 Sep 2021 01:23:16 +0200
+
 at-spi2-core (2.40.3-3) unstable; urgency=medium
 
   * control: Make dbus-broker and libsystemd-dev deps linux-only.
