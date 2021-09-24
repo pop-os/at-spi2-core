@@ -11,7 +11,7 @@ Build-Depends: debhelper-compat (= 12),
                libx11-dev, libxtst-dev,
                meson,
                libgirepository1.0-dev,
-               gtk-doc-tools (>= 1.09),
+               gtk-doc-tools,
                gobject-introspection | dh-sequence-gir,
                xauth <!nocheck>,
                xvfb <!nocheck>
@@ -63,7 +63,7 @@ Multi-Arch: same
 Depends: ${misc:Depends},
          gir1.2-atspi-2.0 (= ${binary:Version}),
          libatspi2.0-0 (= ${binary:Version}),
-         libglib2.0-dev (>= 2.4.1-2),
+         libglib2.0-dev,
          libdbus-1-dev,
          libxtst-dev
 Replaces: gir-repository-dev
