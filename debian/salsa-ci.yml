@@ -3,4 +3,8 @@ include:
   - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/salsa-ci.yml
   - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/pipeline-jobs.yml
 
+# needs cross-gir
+#test-crossbuild-arm64:
+#  allow_failure: false
+
 # vim: ts=2 sw=2 et sts=2 ft=yaml
