@@ -7,8 +7,10 @@ export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
 override_dh_auto_configure:
 	ac_cv_lib_ICE_IceConnectionNumber=no \
-	dh_auto_configure -- -Dintrospection=yes \
-			-Ddocs=true
+	dh_auto_configure -- \
+		-Dintrospection=yes \
+		-Ddocs=true \
+		-Ddefault_bus=dbus-broker
 
 override_dh_auto_test:
 ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
