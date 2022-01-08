@@ -1,3 +1,9 @@
+at-spi2-core (2.42.0-3) UNRELEASED; urgency=medium
+
+  * control: Bump Standards-Version to 4.6.0 (no change)
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 08 Jan 2022 16:44:58 +0100
+
 at-spi2-core (2.42.0-2) unstable; urgency=medium
 
   [ Michael Biebl ]

@@ -16,7 +16,7 @@ Build-Depends: debhelper-compat (= 12),
                xauth <!nocheck>,
                xvfb <!nocheck>
 Rules-Requires-Root: no
-Standards-Version: 4.5.0
+Standards-Version: 4.6.0
 Vcs-Browser: https://salsa.debian.org/a11y-team/at-spi2-core
 Vcs-Git: https://salsa.debian.org/a11y-team/at-spi2-core.git
 Homepage: https://wiki.gnome.org/Accessibility
