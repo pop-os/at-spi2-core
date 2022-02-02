@@ -1,6 +1,14 @@
 at-spi2-core (2.42.0-3) UNRELEASED; urgency=medium
 
+  [ Samuel Thibault ]
   * control: Bump Standards-Version to 4.6.0 (no change)
+
+  [ Debian Janitor ]
+  * Bump debhelper from old 12 to 13.
+    + Drop check for DEB_BUILD_OPTIONS containing "nocheck", since debhelper now
+      does this.
+    + debian/rules: Drop --fail-missing argument to dh_missing, which is now the
+      default.
 
  -- Samuel Thibault <sthibault@debian.org>  Sat, 08 Jan 2022 16:44:58 +0100
 
