@@ -9,6 +9,7 @@ at-spi2-core (2.42.0-3) UNRELEASED; urgency=medium
       does this.
     + debian/rules: Drop --fail-missing argument to dh_missing, which is now the
       default.
+  * Set upstream metadata fields: Contact.
 
  -- Samuel Thibault <sthibault@debian.org>  Sat, 08 Jan 2022 16:44:58 +0100
 
