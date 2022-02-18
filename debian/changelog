@@ -11,6 +11,8 @@ at-spi2-core (2.42.0-3) UNRELEASED; urgency=medium
       default.
   * Set upstream metadata fields: Contact.
   * Set field Upstream-Contact in debian/copyright.
+  * Remove obsolete field Contact from debian/upstream/metadata (already present
+    in machine-readable debian/copyright).
 
  -- Samuel Thibault <sthibault@debian.org>  Sat, 08 Jan 2022 16:44:58 +0100
 
