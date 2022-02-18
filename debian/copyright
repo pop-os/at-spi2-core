@@ -1,6 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: at-spi2-core
 Source: https://download.gnome.org/sources/at-spi2-core/
+Upstream-Contact: Mike Gorse
 
 Files: *
 Copyright: 2001-2003 Sun Microsystems Inc.
