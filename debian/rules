@@ -13,12 +13,7 @@ override_dh_auto_configure:
 		-Ddefault_bus=dbus-broker
 
 override_dh_auto_test:
-ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 	xvfb-run -s -noreset -a dbus-run-session -- dh_auto_test
-endif
-
-override_dh_missing:
-	dh_missing --fail-missing
 
 override_dh_makeshlibs:
 	dh_makeshlibs -plibatspi2.0-0 --add-udeb=libatspi0-udeb -V 'libatspi2.0-0 (>= 2.9.90)'
