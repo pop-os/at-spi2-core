@@ -1,3 +1,9 @@
+at-spi2-core (2.44.0-2) unstable; urgency=medium
+
+  * tests/control: Add gsettings-desktop-schemas dep.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 20 Mar 2022 18:04:00 +0100
+
 at-spi2-core (2.44.0-1) unstable; urgency=medium
 
   [ Samuel Thibault ]

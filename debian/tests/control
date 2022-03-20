@@ -1,2 +1,2 @@
 Tests: memory dbind
-Depends: libatspi2.0-dev, build-essential, xauth, xvfb, dbus, at-spi2-core
+Depends: libatspi2.0-dev, build-essential, xauth, xvfb, dbus, at-spi2-core, gsettings-desktop-schemas
