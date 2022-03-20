@@ -1,5 +1,5 @@
 project('at-spi2-core', 'c',
-        version: '2.42.0',
+        version: '2.44.0',
         license: 'LGPLv2.1+',
         default_options: [
           'buildtype=debugoptimized',
@@ -47,6 +47,7 @@ libdbus_req_version = '>= 1.5'
 glib_req_version = '>= 2.62.0'
 gobject_req_version = '>= 2.0.0'
 gio_req_version = '>= 2.28.0'
+gir_req_version = '>= 0.6.7'
 
 libdbus_dep = dependency('dbus-1', version: libdbus_req_version)
 glib_dep = dependency('glib-2.0', version: glib_req_version)
@@ -62,6 +63,8 @@ endif
 
 x11_deps = []
 x11_option = get_option('x11')
+# ensure x11_dep is defined for use elsewhere, such as bus/meson.build
+x11_dep = dependency('', required: false)
 if x11_option != 'no'
   x11_dep = dependency('x11', required: false)
 
@@ -104,7 +107,7 @@ have_gir = false
 
 introspection_option = get_option('introspection')
 if introspection_option != 'no'
-  gir_dep = dependency('gobject-introspection-1.0', version: '>= 0.6.7', required: false)
+  gir_dep = dependency('gobject-introspection-1.0', version: gir_req_version, required: false)
 
   if gir_dep.found()
     have_gir = true
