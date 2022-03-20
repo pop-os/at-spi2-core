@@ -43,15 +43,15 @@
 #include "de-marshaller.h"
 #include "keymasks.h"
 
+#include "deviceeventcontroller.h"
+#include "reentrant-list.h"
+#include "introspection.h"
+
 #ifdef HAVE_X11
+#include "deviceeventcontroller-x11.h"
 #include "display.h"
 #include "event-source.h"
 #endif
-
-#include "deviceeventcontroller.h"
-#include "reentrant-list.h"
-
-#include "introspection.h"
 
 #define CHECK_RELEASE_DELAY 20
 #define BIT(c, x)       (c[x/8]&(1<<(x%8)))
@@ -59,6 +59,16 @@ static SpiDEController *saved_controller;
 
 /* Our parent Gtk object type */
 #define PARENT_TYPE G_TYPE_OBJECT
+
+#ifndef HAVE_X11
+/* If we are using X11, SpiDEControllerPrivate is defined in deviceeventcontroller-x11.h.
+ * Otherwise, there is no private data and so we use a dummy struct.
+ * This is so that G_ADD_PRIVATE() will have a type to work with.
+ */
+typedef struct {
+  int _dummy;
+} SpiDEControllerPrivate;
+#endif
 
 /* A pointer to our parent object class */
 static int spi_error_code = 0;
@@ -97,7 +107,8 @@ static gboolean eventtype_seq_contains_event (dbus_uint32_t types,
 static gboolean spi_dec_poll_mouse_moving (gpointer data);
 static gboolean spi_dec_poll_mouse_idle (gpointer data);
 
-G_DEFINE_TYPE(SpiDEController, spi_device_event_controller, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_CODE(SpiDEController, spi_device_event_controller, G_TYPE_OBJECT,
+                        G_ADD_PRIVATE (SpiDEController))
 
 static gint
 spi_dec_plat_get_keycode (SpiDEController *controller,
@@ -111,7 +122,13 @@ spi_dec_plat_get_keycode (SpiDEController *controller,
   if (klass->plat.get_keycode)
     return klass->plat.get_keycode (controller, keysym, key_str, fix, modmask);
   else
-    return keysym;
+    {
+      if (modmask)
+        {
+          *modmask = 0;
+        }
+      return keysym;
+    }
 }
 
 static guint
@@ -123,7 +140,13 @@ spi_dec_plat_mouse_check (SpiDEController *controller,
   if (klass->plat.mouse_check)
     return klass->plat.mouse_check (controller, x, y, moved);
   else
-    return 0;
+    {
+      if (moved)
+        {
+          *moved = FALSE;
+        }
+      return 0;
+    }
 }
 
 static gboolean
@@ -873,8 +896,8 @@ reset_hung_process (DBusPendingCall *pending, void *data)
   {
     if (!strcmp (l->data, dest))
     {
-      g_free (l->data);
       hung_processes = g_slist_remove (hung_processes, l->data);
+      g_free (l->data);
       break;
     }
   }
@@ -898,8 +921,8 @@ reset_hung_process_from_ping (DBusPendingCall *pending, void *data)
   {
     if (!strcmp (l->data, data))
     {
-      g_free (l->data);
       hung_processes = g_slist_remove (hung_processes, l->data);
+      g_free (l->data);
       break;
     }
   }
@@ -1675,6 +1698,7 @@ impl_get_device_event_listeners (DBusConnection *bus,
 static unsigned
 get_modifier_state (SpiDEController *controller)
 {
+	spi_dec_poll_mouse_moved (controller);
 	return mouse_mask_state;
 }
 
@@ -1696,12 +1720,17 @@ spi_dec_synth_keysym (SpiDEController *controller, long keysym)
 	if (synth_mods != modifiers) {
 		lock_mods = synth_mods & ~modifiers;
 		spi_dec_plat_lock_modifiers (controller, lock_mods);
+		if (modifiers & LockMask)
+			spi_dec_plat_unlock_modifiers (controller, LockMask);
 	}
 	spi_dec_plat_synth_keycode_press (controller, key_synth_code);
 	spi_dec_plat_synth_keycode_release (controller, key_synth_code);
 
-	if (synth_mods != modifiers) 
+	if (synth_mods != modifiers) {
 		spi_dec_plat_unlock_modifiers (controller, lock_mods);
+		if (modifiers & LockMask)
+			spi_dec_plat_lock_modifiers (controller, LockMask);
+	}
 	return TRUE;
 }
 
@@ -1858,9 +1887,7 @@ spi_device_event_controller_class_init (SpiDEControllerClass *klass)
 #ifdef HAVE_X11
   if (g_getenv ("DISPLAY") != NULL && g_getenv ("WAYLAND_DISPLAY") == NULL)
     spi_dec_setup_x11 (klass);
-  else
 #endif
-  g_type_class_add_private (object_class, sizeof (long)); /* dummy */
 }
 
 static void
@@ -1869,10 +1896,6 @@ spi_device_event_controller_init (SpiDEController *device_event_controller)
   SpiDEControllerClass *klass;
   klass = SPI_DEVICE_EVENT_CONTROLLER_GET_CLASS (device_event_controller);
 
-  /* TODO: shouldn't be gpointer below */
-  device_event_controller->priv = G_TYPE_INSTANCE_GET_PRIVATE (device_event_controller,
-                                              SPI_DEVICE_EVENT_CONTROLLER_TYPE,
-                                              gpointer);
   device_event_controller->message_queue = g_queue_new ();
   saved_controller = device_event_controller;
 

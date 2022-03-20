@@ -42,6 +42,7 @@
 #ifdef DBUS_BROKER
 #include <systemd/sd-login.h>
 #endif
+#include <sys/stat.h>
 
 typedef enum {
   A11Y_BUS_STATE_IDLE = 0,
@@ -64,7 +65,8 @@ typedef struct {
 
   A11yBusState state;
   /* -1 == error, 0 == pending, > 0 == running */
-  int a11y_bus_pid;
+  GPid a11y_bus_pid;
+  char *socket_name;
   char *a11y_bus_address;
 #ifdef HAVE_X11
   gboolean x11_prop_set;
@@ -84,10 +86,10 @@ static const gchar introspection_xml[] =
   "      <arg type='s' name='address' direction='out'/>"
   "    </method>"
   "  </interface>"
-  "<interface name='org.a11y.Status'>"
-  "<property name='IsEnabled' type='b' access='readwrite'/>"
-  "<property name='ScreenReaderEnabled' type='b' access='readwrite'/>"
-  "</interface>"
+  "  <interface name='org.a11y.Status'>"
+  "    <property name='IsEnabled' type='b' access='readwrite'/>"
+  "    <property name='ScreenReaderEnabled' type='b' access='readwrite'/>"
+  "  </interface>"
   "</node>";
 static GDBusNodeInfo *introspection_data = NULL;
 
@@ -248,19 +250,44 @@ name_appeared_handler (GDBusConnection *connection,
  * Read all data from a file descriptor to a C string buffer.
  */
 static gboolean
-unix_read_all_fd_to_string (int      fd,
-                            char    *buf,
-                            ssize_t  max_bytes)
+unix_read_all_fd_to_string (int       fd,
+                            char     *buf,
+                            ssize_t   max_bytes,
+                            char    **error_msg)
 {
-  ssize_t bytes_read;
+  g_assert (max_bytes > 1);
+  *error_msg = NULL;
 
-  while (max_bytes > 1 && (bytes_read = read (fd, buf, MIN (4096, max_bytes - 1))))
+  max_bytes -= 1; /* allow space for nul terminator */
+
+  while (max_bytes > 1)
     {
-      if (bytes_read < 0)
-        return FALSE;
-      buf += bytes_read;
-      max_bytes -= bytes_read;
+      ssize_t bytes_read;
+
+    again:
+      bytes_read = read (fd, buf, max_bytes);
+
+      if (bytes_read == 0)
+        {
+          break;
+        }
+      else if (bytes_read > 0)
+        {
+          buf += bytes_read;
+          max_bytes -= bytes_read;
+        }
+      else if (errno == EINTR)
+        {
+          goto again;
+        }
+      else
+        {
+          int err_save = errno;
+          *error_msg = g_strdup_printf ("Failed to read data from accessibility bus: %s", g_strerror (err_save));
+          return FALSE;
+        }
     }
+
   *buf = '\0';
   return TRUE;
 }
@@ -284,53 +311,69 @@ on_bus_exited (GPid     pid,
         app->a11y_launch_error_message = g_strdup_printf ("Bus stopped by signal %d", WSTOPSIG (status));
     }
   g_main_loop_quit (app->loop);
-} 
-
-#ifdef DBUS_DAEMON
-static void
-setup_bus_child_daemon (gpointer data)
-{
-  A11yBusLauncher *app = data;
-  (void) app;
-
-  close (app->pipefd[0]);
-  dup2 (app->pipefd[1], 3);
-  close (app->pipefd[1]);
-
-  /* On Linux, tell the bus process to exit if this process goes away */
-#ifdef __linux__
-  prctl (PR_SET_PDEATHSIG, 15);
-#endif
 }
 
+#ifdef DBUS_DAEMON
 static gboolean
 ensure_a11y_bus_daemon (A11yBusLauncher *app, char *config_path)
 {
-  char *argv[] = { DBUS_DAEMON, config_path, "--nofork", "--print-address", "3", NULL };
-  GPid pid;
-  char addr_buf[2048];
-  GError *error = NULL;
+  char *address_param;
+
+  if (app->socket_name)
+    {
+      gchar *escaped_address = g_dbus_address_escape_value (app->socket_name);
+      address_param = g_strconcat ("--address=unix:path=", escaped_address, NULL);
+      g_free (escaped_address);
+    }
+  else
+    {
+      address_param = NULL;
+    }
 
   if (pipe (app->pipefd) < 0)
     g_error ("Failed to create pipe: %s", strerror (errno));
 
+  char *print_address_fd_param = g_strdup_printf ("%d", app->pipefd[1]);
+
+  char *argv[] = { DBUS_DAEMON, config_path, "--nofork", "--print-address", print_address_fd_param, address_param, NULL };
+  gint source_fds[1] = { app->pipefd[1] };
+  gint target_fds[1] = { app->pipefd[1] };
+  G_STATIC_ASSERT (G_N_ELEMENTS (source_fds) == G_N_ELEMENTS (target_fds));
+  GPid pid;
+  char addr_buf[2048];
+  GError *error = NULL;
+  char *error_from_read;
+
   g_clear_pointer (&app->a11y_launch_error_message, g_free);
 
-  if (!g_spawn_async (NULL,
-                      argv,
-                      NULL,
-                      G_SPAWN_SEARCH_PATH | G_SPAWN_DO_NOT_REAP_CHILD,
-                      setup_bus_child_daemon,
-                      app,
-                      &pid,
-                      &error))
+  if (!g_spawn_async_with_pipes_and_fds (NULL,
+                                         (const gchar * const *) argv,
+                                         NULL,
+                                         G_SPAWN_SEARCH_PATH | G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_LEAVE_DESCRIPTORS_OPEN,
+                                         NULL, /* child_setup */
+                                         app,
+                                         -1, /* stdin_fd */
+                                         -1, /* stdout_fd */
+                                         -1, /* stdout_fd */
+                                         source_fds,
+                                         target_fds,
+                                         G_N_ELEMENTS (source_fds), /* n_fds in source_fds and target_fds */
+                                         &pid,
+                                         NULL, /* stdin_pipe_out */
+                                         NULL, /* stdout_pipe_out */
+                                         NULL, /* stderr_pipe_out */
+                                         &error))
     {
       app->a11y_bus_pid = -1;
       app->a11y_launch_error_message = g_strdup (error->message);
       g_clear_error (&error);
+      g_free (address_param);
+      g_free (print_address_fd_param);
       goto error;
     }
 
+  g_free (address_param);
+  g_free (print_address_fd_param);
   close (app->pipefd[1]);
   app->pipefd[1] = -1;
 
@@ -339,10 +382,12 @@ ensure_a11y_bus_daemon (A11yBusLauncher *app, char *config_path)
   app->state = A11Y_BUS_STATE_READING_ADDRESS;
   app->a11y_bus_pid = pid;
   g_debug ("Launched a11y bus, child is %ld", (long) pid);
-  if (!unix_read_all_fd_to_string (app->pipefd[0], addr_buf, sizeof (addr_buf)))
+  error_from_read = NULL;
+  if (!unix_read_all_fd_to_string (app->pipefd[0], addr_buf, sizeof (addr_buf), &error_from_read))
     {
-      app->a11y_launch_error_message = g_strdup_printf ("Failed to read address: %s", strerror (errno));
+      app->a11y_launch_error_message = error_from_read;
       kill (app->a11y_bus_pid, SIGTERM);
+      g_spawn_close_pid (app->a11y_bus_pid);
       app->a11y_bus_pid = -1;
       goto error;
     }
@@ -386,9 +431,6 @@ setup_bus_child_broker (gpointer data)
   pid_str = g_strdup_printf("%u", getpid());
   g_setenv("LISTEN_PID", pid_str, TRUE);
   g_free(pid_str);
-
-  /* Tell the bus process to exit if this process goes away */
-  prctl (PR_SET_PDEATHSIG, SIGTERM);
 }
 
 static gboolean
@@ -396,10 +438,16 @@ ensure_a11y_bus_broker (A11yBusLauncher *app, char *config_path)
 {
   char *argv[] = { DBUS_BROKER, config_path, "--scope", "user", NULL };
   char *unit;
-  struct sockaddr_un addr = { .sun_family = AF_UNIX };
+  struct sockaddr_un addr = { .sun_family = AF_UNIX, '\0' };
   socklen_t addr_len = sizeof(addr);
   GPid pid;
   GError *error = NULL;
+
+  if (app->socket_name)
+    {
+      strcpy (addr.sun_path, app->socket_name);
+      unlink (app->socket_name);
+    }
 
   /* This detects whether we are running under systemd. We only try to
    * use dbus-broker if we are running under systemd because D-Bus
@@ -418,10 +466,11 @@ ensure_a11y_bus_broker (A11yBusLauncher *app, char *config_path)
   if ((app->listenfd = socket (PF_UNIX, SOCK_STREAM | SOCK_NONBLOCK, 0)) < 0)
     g_error ("Failed to create listening socket: %s", strerror (errno));
 
-  if (bind (app->listenfd, (struct sockaddr *)&addr, sizeof(sa_family_t)) < 0)
+  if (bind (app->listenfd, (struct sockaddr *)&addr, addr_len) < 0)
     g_error ("Failed to bind listening socket: %s", strerror (errno));
 
-  if (getsockname (app->listenfd, (struct sockaddr *)&addr, &addr_len) < 0)
+  if (!app->socket_name &&
+      getsockname (app->listenfd, (struct sockaddr *)&addr, &addr_len) < 0)
     g_error ("Failed to get socket name for listening socket: %s", strerror(errno));
 
   if (listen (app->listenfd, 1024) < 0)
@@ -452,7 +501,10 @@ ensure_a11y_bus_broker (A11yBusLauncher *app, char *config_path)
   g_debug ("Launched a11y bus, child is %ld", (long) pid);
   app->state = A11Y_BUS_STATE_RUNNING;
 
-  app->a11y_bus_address = g_strconcat("unix:abstract=", addr.sun_path + 1, NULL);
+  if (app->socket_name)
+    app->a11y_bus_address = g_strconcat("unix:path=", addr.sun_path, NULL);
+  else
+    app->a11y_bus_address = g_strconcat("unix:abstract=", addr.sun_path + 1, NULL);
   g_debug ("a11y bus address: %s", app->a11y_bus_address);
 
   return TRUE;
@@ -476,6 +528,7 @@ ensure_a11y_bus (A11yBusLauncher *app)
 {
   char *config_path = NULL;
   gboolean success = FALSE;
+  const gchar *xdg_runtime_dir;
 
   if (app->a11y_bus_pid != 0)
     return FALSE;
@@ -484,6 +537,36 @@ ensure_a11y_bus (A11yBusLauncher *app)
       config_path = "--config-file="SYSCONFDIR"/at-spi2/accessibility.conf";
   else
       config_path = "--config-file="DATADIR"/defaults/at-spi2/accessibility.conf";
+
+    xdg_runtime_dir = g_get_user_runtime_dir ();
+    if (xdg_runtime_dir)
+      {
+        const gchar *display = g_getenv ("DISPLAY");
+        gchar *at_spi_dir = g_strconcat (xdg_runtime_dir, "/at-spi", NULL);
+        gchar *p;
+        mkdir (xdg_runtime_dir, 0700);
+        if (!g_path_is_absolute (at_spi_dir))
+        {
+          gchar *new_dir = g_canonicalize_filename (at_spi_dir, NULL);
+          g_free (at_spi_dir);
+          at_spi_dir = new_dir;
+        }
+        if (mkdir (at_spi_dir, 0700) == 0 || errno == EEXIST)
+          {
+            app->socket_name = g_strconcat (at_spi_dir, "/bus", display, NULL);
+            g_free (at_spi_dir);
+            p = strchr (app->socket_name, ':');
+            if (p)
+              *p = '_';
+            if (strlen (app->socket_name) >= 100)
+              {
+                g_free (app->socket_name);
+                app->socket_name = NULL;
+              }
+          }
+        else
+          g_free (at_spi_dir);
+      }
 
 #ifdef WANT_DBUS_BROKER
     success = ensure_a11y_bus_broker (app, config_path);
@@ -816,6 +899,11 @@ get_schema (const gchar *name)
 {
 #if GLIB_CHECK_VERSION (2, 32, 0)
   GSettingsSchemaSource *source = g_settings_schema_source_get_default ();
+  if (!source)
+    {
+      g_error ("Cannot get the default GSettingsSchemaSource - is the gsettings-desktop-schemas package installed?");
+    }
+
   GSettingsSchema *schema = g_settings_schema_source_lookup (source, name, FALSE);
 
   if (schema == NULL)
@@ -856,7 +944,7 @@ main (int    argc,
   gboolean screen_reader_set = FALSE;
   gint i;
 
-  _global_app = g_slice_new0 (A11yBusLauncher);
+  _global_app = g_new0 (A11yBusLauncher, 1);
   _global_app->loop = g_main_loop_new (NULL, FALSE);
 
   for (i = 1; i < argc; i++)
@@ -917,7 +1005,11 @@ main (int    argc,
   g_main_loop_run (_global_app->loop);
 
   if (_global_app->a11y_bus_pid > 0)
-    kill (_global_app->a11y_bus_pid, SIGTERM);
+    {
+      kill (_global_app->a11y_bus_pid, SIGTERM);
+      g_spawn_close_pid (_global_app->a11y_bus_pid);
+      _global_app->a11y_bus_pid = -1;
+    }
 
   /* Clear the X property if our bus is gone; in the case where e.g. 
    * GDM is launching a login on an X server it was using before,
