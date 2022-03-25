@@ -1,3 +1,11 @@
+at-spi2-core (2.44.0-3) unstable; urgency=medium
+
+  * control: Add gsettings-desktop-schemas dep to at-spi2-core
+    (Closes: Bug#1008197)
+  * tests/control: Drop gsettings-desktop-schemas dep.
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 25 Mar 2022 18:55:45 +0100
+
 at-spi2-core (2.44.0-2) unstable; urgency=medium
 
   * tests/control: Add gsettings-desktop-schemas dep.

@@ -24,7 +24,7 @@ Homepage: https://wiki.gnome.org/Accessibility
 Package: at-spi2-core
 Architecture: any
 Multi-Arch: foreign
-Depends: ${misc:Depends}, ${shlibs:Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}, gsettings-desktop-schemas
 Description: Assistive Technology Service Provider Interface (dbus core)
  This package contains the core components of GNOME Accessibility.
 
