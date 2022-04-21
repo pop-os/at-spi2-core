@@ -1,3 +1,9 @@
+at-spi2-core (2.44.1-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 21 Apr 2022 23:17:03 +0200
+
 at-spi2-core (2.44.0-3) unstable; urgency=medium
 
   * control: Add gsettings-desktop-schemas dep to at-spi2-core
