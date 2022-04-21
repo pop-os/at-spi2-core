@@ -896,8 +896,9 @@ reset_hung_process (DBusPendingCall *pending, void *data)
   {
     if (!strcmp (l->data, dest))
     {
-      hung_processes = g_slist_remove (hung_processes, l->data);
-      g_free (l->data);
+      gpointer l_data = l->data;
+      hung_processes = g_slist_remove (hung_processes, l_data);
+      g_free (l_data);
       break;
     }
   }
@@ -921,8 +922,9 @@ reset_hung_process_from_ping (DBusPendingCall *pending, void *data)
   {
     if (!strcmp (l->data, data))
     {
-      hung_processes = g_slist_remove (hung_processes, l->data);
-      g_free (l->data);
+      gpointer l_data = l->data;
+      hung_processes = g_slist_remove (hung_processes, l_data);
+      g_free (l_data);
       break;
     }
   }
@@ -1388,6 +1390,7 @@ impl_register_keystroke_listener (DBusConnection *bus,
     Accessibility_KeyDefinition *kd = (Accessibility_KeyDefinition *)g_malloc(sizeof(Accessibility_KeyDefinition));
     if (!spi_dbus_message_iter_get_struct(&iter_array, DBUS_TYPE_INT32, &kd->keycode, DBUS_TYPE_INT32, &kd->keysym, DBUS_TYPE_STRING, &keystring, DBUS_TYPE_INVALID))
     {
+      g_free(kd);
       break;
     }
     kd->keystring = g_strdup (keystring);
@@ -1598,6 +1601,7 @@ impl_deregister_keystroke_listener (DBusConnection *bus,
 
     if (!spi_dbus_message_iter_get_struct(&iter_array, DBUS_TYPE_INT32, &kd->keycode, DBUS_TYPE_INT32, &kd->keysym, DBUS_TYPE_STRING, &keystring, DBUS_TYPE_INVALID))
     {
+      g_free(kd);
       break;
     }
     kd->keystring = g_strdup (keystring);
@@ -1720,16 +1724,16 @@ spi_dec_synth_keysym (SpiDEController *controller, long keysym)
 	if (synth_mods != modifiers) {
 		lock_mods = synth_mods & ~modifiers;
 		spi_dec_plat_lock_modifiers (controller, lock_mods);
-		if (modifiers & LockMask)
-			spi_dec_plat_unlock_modifiers (controller, LockMask);
+		if (modifiers & SPI_KEYMASK_SHIFTLOCK)
+			spi_dec_plat_unlock_modifiers (controller, SPI_KEYMASK_SHIFTLOCK);
 	}
 	spi_dec_plat_synth_keycode_press (controller, key_synth_code);
 	spi_dec_plat_synth_keycode_release (controller, key_synth_code);
 
 	if (synth_mods != modifiers) {
 		spi_dec_plat_unlock_modifiers (controller, lock_mods);
-		if (modifiers & LockMask)
-			spi_dec_plat_lock_modifiers (controller, LockMask);
+		if (modifiers & SPI_KEYMASK_SHIFTLOCK)
+			spi_dec_plat_lock_modifiers (controller, SPI_KEYMASK_SHIFTLOCK);
 	}
 	return TRUE;
 }
