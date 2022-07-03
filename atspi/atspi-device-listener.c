@@ -236,7 +236,7 @@ atspi_device_listener_new (AtspiDeviceListenerCB callback,
  * @callback: (scope notified): an #AtspiDeviceListenerCB callback function,
  *            or NULL.
  * @callback_destroyed: A #GDestroyNotify called when the listener is freed
- * and data associated with the callback should be freed.  It an be NULL.
+ * and data associated with the callback should be freed.  It can be NULL.
  *
  * Creates a new #AtspiDeviceListener with a specified callback function.
  * This method is similar to #atspi_device_listener_new, but callback
@@ -339,7 +339,7 @@ read_device_event_from_iter (DBusMessageIter *iter, AtspiDeviceEvent *event)
 }
 
 DBusHandlerResult
-_atspi_dbus_handle_DeviceEvent (DBusConnection *bus, DBusMessage *message, void *data)
+_atspi_dbus_handle_DeviceEvent (DBusConnection *bus, DBusMessage *message)
 {
   const char *path = dbus_message_get_path (message);
   int id;

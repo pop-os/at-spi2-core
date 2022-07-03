@@ -4,6 +4,8 @@
 
   <method name="RegisterEvent">
     <arg direction="in" name="event" type="s">
+    <arg direction="in" name="properties" type="as">
+    <arg direction="in" name="app_bus_name" type="s">
     </arg>
   </method>
 
@@ -18,13 +20,13 @@
   </method>
 
   <signal name="EventListenerRegistered">
-    <arg direction="out" name="bus" type="s"/>
-    <arg direction="out" name="path" type="s"/>
+    <arg name="bus" type="s"/>
+    <arg name="path" type="s"/>
   </signal>
 
   <signal name="EventListenerDeregistered">
-    <arg direction="out" name="bus" type="s"/>
-    <arg direction="out" name="path" type="s"/>
+    <arg name="bus" type="s"/>
+    <arg name="path" type="s"/>
   </signal>
 </interface>
 </node>
