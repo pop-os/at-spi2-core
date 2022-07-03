@@ -1,0 +1,4 @@
+usr/lib/*/libatk-1.0.so
+usr/lib/*/pkgconfig/atk.pc
+usr/include/atk-*
+usr/share/gir-1.0/Atk-*

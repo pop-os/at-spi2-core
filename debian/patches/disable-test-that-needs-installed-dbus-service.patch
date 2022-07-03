@@ -9,11 +9,15 @@ https://gitlab.gnome.org/GNOME/at-spi2-core/issues/6
  test/meson.build |    2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
---- a/test/meson.build
-+++ b/test/meson.build
-@@ -10,4 +10,4 @@ memory = executable('memory',
+--- a/tests/atspi/meson.build
++++ b/tests/atspi/meson.build
+@@ -10,9 +10,3 @@ memory = executable('memory',
                      dependencies: [ atspi_dep ],
                     )
  
--test('memory', memory, depends: testapp)
-+#test('memory', memory, depends: testapp)
+-test(
+-  'memory',
+-  memory,
+-  depends: testapp,
+-  is_parallel: false,
+-)

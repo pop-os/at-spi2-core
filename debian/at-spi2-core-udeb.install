@@ -2,4 +2,4 @@ etc
 usr/lib/systemd/user
 usr/libexec
 usr/share/dbus-1
-usr/share/locale
+usr/share/locale/*/LC_MESSAGES/at-spi2-core.mo

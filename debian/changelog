@@ -1,3 +1,12 @@
+at-spi2-core (2.45.1-1) experimental; urgency=medium
+
+  * New upstream development release.
+  * debian/: include packages from atk1.0 and at-spi2-atk source packages.
+  * Drop libatk1.0-data package, the atk10.mo translations are now included in
+    at-spi2-core.mo.
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 04 Jul 2022 00:15:17 +0200
+
 at-spi2-core (2.44.1-1) unstable; urgency=medium
 
   * New upstream release.

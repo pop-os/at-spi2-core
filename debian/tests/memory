@@ -11,7 +11,15 @@ else
     CROSS_COMPILE=
 fi
 
-${CROSS_COMPILE}gcc test/test-application.c -o $WORKDIR/test-application  \
+for i in testdocument testrole testrelation teststateset testvalue ; do
+	${CROSS_COMPILE}gcc tests/atk/$i.c -o $WORKDIR/$i $(${CROSS_COMPILE}pkg-config --cflags --libs atk)
+	echo "build: OK"
+	[ -x $WORKDIR/$i ]
+	$WORKDIR/$i
+	echo "run: OK"
+done
+
+${CROSS_COMPILE}gcc tests/atspi/test-application.c -o $WORKDIR/test-application  \
 	$(${CROSS_COMPILE}pkg-config --cflags atspi-2) \
 	$(${CROSS_COMPILE}pkg-config --libs atspi-2) \
 	$(${CROSS_COMPILE}pkg-config --cflags glib-2.0) \
@@ -19,7 +27,7 @@ ${CROSS_COMPILE}gcc test/test-application.c -o $WORKDIR/test-application  \
 	$(${CROSS_COMPILE}pkg-config --cflags dbus-1) \
 	$(${CROSS_COMPILE}pkg-config --libs dbus-1)
 
-${CROSS_COMPILE}gcc test/memory.c -o $WORKDIR/memory  \
+${CROSS_COMPILE}gcc tests/atspi/memory.c -o $WORKDIR/memory  \
 	$(${CROSS_COMPILE}pkg-config --cflags atspi-2) \
 	$(${CROSS_COMPILE}pkg-config --libs atspi-2) \
 	$(${CROSS_COMPILE}pkg-config --cflags gobject-2.0) \
