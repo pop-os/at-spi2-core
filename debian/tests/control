@@ -7,5 +7,5 @@ Depends: build-essential,
          libatk-bridge2.0-dev,
          xauth, xvfb, dbus, at-spi2-core (>= 2.33.92)
 
-Tests: build
+Tests: build atk-tests
 Depends: libatk1.0-dev, build-essential
