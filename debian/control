@@ -39,7 +39,7 @@ Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Package-Type: udeb
 Description: Assistive Technology Service Provider Interface (D-Bus core for d-i)
- This package contains the core components of GNOME Accessibility for the debian
+ This package contains the core components of GNOME Accessibility for the Debian
  installer.
 
 Package: libatspi2.0-0
@@ -59,7 +59,7 @@ Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Package-Type: udeb
 Description: Assistive Technology Service Provider Interface - module for d-i
- This package contains the AT-SPI shared library, for the debian installer.
+ This package contains the AT-SPI shared library, for the Debian installer.
 
 Package: libatspi2.0-dev
 Section: libdevel
@@ -173,7 +173,7 @@ Architecture: any
 Depends: ${misc:Depends},
          ${shlibs:Depends}
 Description: ATK accessibility toolkit
- This is a udeb, or a microdeb, for the debian-installer.
+ This is a udeb, or a microdeb, for the Debian installer.
  .
  ATK is a toolkit providing accessibility interfaces for applications or
  other toolkits. By implementing these interfaces, those other toolkits or
