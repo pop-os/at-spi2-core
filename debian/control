@@ -30,7 +30,7 @@ Package: at-spi2-core
 Architecture: any
 Multi-Arch: foreign
 Depends: ${misc:Depends}, ${shlibs:Depends}, gsettings-desktop-schemas
-Description: Assistive Technology Service Provider Interface (dbus core)
+Description: Assistive Technology Service Provider Interface (D-Bus core)
  This package contains the core components of GNOME Accessibility.
 
 Package: at-spi2-core-udeb
@@ -38,7 +38,7 @@ Section: debian-installer
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Package-Type: udeb
-Description: Assistive Technology Service Provider Interface (dbus core for d-i)
+Description: Assistive Technology Service Provider Interface (D-Bus core for d-i)
  This package contains the core components of GNOME Accessibility for the debian
  installer.
 
