@@ -1,6 +1,7 @@
 at-spi2-core (2.45.1-2) UNRELEASED; urgency=medium
 
   * control: Fix libatk1.0-0 section back to libs.
+  * libatk-bridge2.0-0.symbols: Add Build-Depends-Package.
 
  -- Samuel Thibault <sthibault@debian.org>  Wed, 06 Jul 2022 10:15:03 +0200
 

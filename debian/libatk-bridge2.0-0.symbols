@@ -1,4 +1,5 @@
 libatk-bridge-2.0.so.0 libatk-bridge2.0-0 #MINVER#
+* Build-Depends-Package: libatk-bridge2.0-dev
  _atk_bridge_find_property_func@Base 2.26.0
  _atk_bridge_remove_pending_application_registration@Base 2.34.1-2~
  _atk_bridge_schedule_application_registration@Base 2.34.1-2~
