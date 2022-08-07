@@ -1,5 +1,5 @@
 project('at-spi2-core', 'c',
-        version: '2.45.1',
+        version: '2.45.90',
         license: 'LGPLv2.1+',
         default_options: [
           'buildtype=debugoptimized',
@@ -209,6 +209,7 @@ endif
 install_data('at-spi2-atk.desktop',
              install_dir: join_paths(get_option('libdir'), 'gnome-settings-daemon-3.0', 'gtk-modules'))
 
+subdir('xml')
 subdir('dbind')
 subdir('atspi')
 subdir('bus')

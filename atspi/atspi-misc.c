@@ -43,7 +43,6 @@ static DBusConnection *bus = NULL;
 static GHashTable *live_refs = NULL;
 static gint method_call_timeout = 800;
 static gint app_startup_time = 15000;
-static gboolean allow_sync = TRUE;
 
 GMainLoop *atspi_main_loop;
 GMainContext *atspi_main_context;
@@ -411,7 +410,7 @@ add_app_to_desktop (AtspiAccessible *a, const char *bus_name)
   return (obj != NULL);
 }
 
-void
+static void
 get_reference_from_iter (DBusMessageIter *iter, const char **app_name, const char **path)
 {
   DBusMessageIter iter_struct;
@@ -427,8 +426,8 @@ static void
 add_accessible_from_iter (DBusMessageIter *iter)
 {
   DBusMessageIter iter_struct, iter_array;
-  const char *app_name, *path;
   AtspiAccessible *accessible;
+  AtspiAccessible *parent;
   const char *name, *description;
   dbus_uint32_t role;
   gboolean children_cached = FALSE;
@@ -437,8 +436,7 @@ add_accessible_from_iter (DBusMessageIter *iter)
   dbus_message_iter_recurse (iter, &iter_struct);
 
   /* get accessible */
-  get_reference_from_iter (&iter_struct, &app_name, &path);
-  accessible = ref_accessible (app_name, path);
+  accessible = _atspi_dbus_consume_accessible (&iter_struct);
   if (!accessible)
     return;
 
@@ -446,10 +444,10 @@ add_accessible_from_iter (DBusMessageIter *iter)
   dbus_message_iter_next (&iter_struct);
 
   /* get parent */
-  get_reference_from_iter (&iter_struct, &app_name, &path);
+  parent = _atspi_dbus_consume_accessible (&iter_struct);
   if (accessible->accessible_parent)
     g_object_unref (accessible->accessible_parent);
-  accessible->accessible_parent = ref_accessible (app_name, path);
+  accessible->accessible_parent = parent;
 
   if (dbus_message_iter_get_arg_type (&iter_struct) == 'i')
   {
@@ -488,8 +486,7 @@ add_accessible_from_iter (DBusMessageIter *iter)
     while (dbus_message_iter_get_arg_type (&iter_array) != DBUS_TYPE_INVALID)
     {
       AtspiAccessible *child;
-      get_reference_from_iter (&iter_array, &app_name, &path);
-      child = ref_accessible (app_name, path);
+      child = _atspi_dbus_consume_accessible (&iter_array);
       g_ptr_array_remove (accessible->children, child);
       g_ptr_array_add (accessible->children, child);
     }
@@ -662,7 +659,7 @@ _atspi_dbus_return_accessible_from_message (DBusMessage *message)
   if (!strcmp (signature, "(so)"))
   {
     dbus_message_iter_init (message, &iter);
-    retval =  _atspi_dbus_return_accessible_from_iter (&iter);
+    retval =  _atspi_dbus_consume_accessible (&iter);
   }
   else
   {
@@ -672,8 +669,9 @@ _atspi_dbus_return_accessible_from_message (DBusMessage *message)
   return retval;
 }
 
+/* Enters an iter which must be already pointing to a (so) and returns the accessible for it */
 AtspiAccessible *
-_atspi_dbus_return_accessible_from_iter (DBusMessageIter *iter)
+_atspi_dbus_consume_accessible (DBusMessageIter *iter)
 {
   const char *app_name, *path;
 
@@ -1103,12 +1101,6 @@ _atspi_dbus_call (gpointer obj, const char *interface, const char *method, GErro
   if (!check_app (aobj->app, error))
     return FALSE;
 
-  if (!allow_sync)
-  {
-    _atspi_set_error_no_sync (error);
-    return FALSE;
-  }
-
   va_start (args, type);
   dbus_error_init (&err);
   set_timeout (aobj->app);
@@ -1213,12 +1205,6 @@ _atspi_dbus_get_property (gpointer obj, const char *interface, const char *name,
   if (!check_app (aobj->app, error))
     return FALSE;
 
-  if (!allow_sync)
-  {
-    _atspi_set_error_no_sync (error);
-    return FALSE;
-  }
-
   message = dbus_message_new_method_call (aobj->app->bus_name,
                                           aobj->path,
                                           "org.freedesktop.DBus.Properties",
@@ -1264,7 +1250,7 @@ _atspi_dbus_get_property (gpointer obj, const char *interface, const char *name,
   }
   if (!strcmp (type, "(so)"))
   {
-    *((AtspiAccessible **)data) = _atspi_dbus_return_accessible_from_iter (&iter_variant);
+    *((AtspiAccessible **)data) = _atspi_dbus_consume_accessible (&iter_variant);
   }
   else
   {
@@ -1392,36 +1378,98 @@ _atspi_dbus_attribute_array_from_iter (DBusMessageIter *iter)
   return array;
 }
 
-void
-_atspi_dbus_set_interfaces (AtspiAccessible *accessible, DBusMessageIter *iter)
-{
-  DBusMessageIter iter_array;
-  char *iter_sig = dbus_message_iter_get_signature (iter);
+typedef enum {
+  DEMARSHAL_STATUS_SUCCESS,
+  DEMARSHAL_STATUS_INVALID_SIGNATURE,
+  DEMARSHAL_STATUS_INVALID_VALUE,
+} DemarshalStatus;
 
-  accessible->interfaces = 0;
-  if (strcmp (iter_sig, "as") != 0)
+typedef struct {
+  /* array of (char *) */
+  GPtrArray *names;
+} InterfaceNames;
+
+static DemarshalStatus
+interface_names_demarshal (DBusMessageIter *iter, InterfaceNames **out_interfaces)
+{
+  char *sig = dbus_message_iter_get_signature (iter);
+  gboolean matches = strcmp (sig, "as") == 0;
+  dbus_free (sig);
+
+  *out_interfaces = NULL;
+
+  GPtrArray *names = g_ptr_array_new_with_free_func (g_free);
+
+  if (!matches)
   {
-    g_warning ("_atspi_dbus_set_interfaces: Passed iterator with invalid signature %s", iter_sig);
-    dbus_free (iter_sig);
-    return;
+    return DEMARSHAL_STATUS_INVALID_SIGNATURE;
   }
-  dbus_free (iter_sig);
+
+  DBusMessageIter iter_array;
   dbus_message_iter_recurse (iter, &iter_array);
   while (dbus_message_iter_get_arg_type (&iter_array) != DBUS_TYPE_INVALID)
   {
     const char *iface;
-    gint n;
     dbus_message_iter_get_basic (&iter_array, &iface);
-    if (!strcmp (iface, "org.freedesktop.DBus.Introspectable")) continue;
-    n = _atspi_get_iface_num (iface);
-    if (n == -1)
-    {
-      g_warning ("AT-SPI: Unknown interface %s", iface);
-    }
-    else
-      accessible->interfaces |= (1 << n);
+    g_ptr_array_add (names, g_strdup (iface));
     dbus_message_iter_next (&iter_array);
   }
+
+  InterfaceNames *ifaces = g_new0 (InterfaceNames, 1);
+  ifaces->names = names;
+  *out_interfaces = ifaces;
+  return DEMARSHAL_STATUS_SUCCESS;
+}
+
+/* Converts an array of interface names to a value suitable for AtspiAccessible.interfaces */
+static gint
+interface_names_to_bitmask (const InterfaceNames *ifaces)
+{
+  gint val = 0;
+  guint i;
+
+  g_assert (ifaces->names != NULL);
+
+  for (i = 0; i < ifaces->names->len; i++)
+    {
+      const char *name = g_ptr_array_index (ifaces->names, i);
+      gint iface_num = _atspi_get_iface_num (name);
+      if (iface_num == -1)
+        {
+          g_warning ("AT-SPI: Unknown interface %s", name);
+        }
+      else
+        {
+          val |= (1 << iface_num);
+        }
+    }
+
+  return val;
+}
+
+static void
+interface_names_free (InterfaceNames *ifaces)
+{
+  g_ptr_array_free (ifaces->names, TRUE);
+  g_free (ifaces);
+}
+
+void
+_atspi_dbus_set_interfaces (AtspiAccessible *accessible, DBusMessageIter *iter)
+{
+  InterfaceNames *ifaces;
+
+  accessible->interfaces = 0;
+
+  if (interface_names_demarshal (iter, &ifaces) != DEMARSHAL_STATUS_SUCCESS)
+  {
+    g_warning ("Passed iterator with invalid signature");
+    return;
+  }
+
+  accessible->interfaces = interface_names_to_bitmask (ifaces);
+  interface_names_free (ifaces);
+
   _atspi_accessible_add_cache (accessible, ATSPI_CACHE_INTERFACES);
 }
 
@@ -1864,28 +1912,6 @@ _atspi_dbus_update_cache_from_dict (AtspiAccessible *accessible, DBusMessageIter
   }
 
   return cache;
-}
-
-gboolean
-_atspi_get_allow_sync ()
-{
-  return allow_sync;
-}
-
-gboolean
-_atspi_set_allow_sync (gboolean val)
-{
-  gboolean ret = allow_sync;
-
-  allow_sync = val;
-  return ret;
-}
-
-void
-_atspi_set_error_no_sync (GError **error)
-{
-  g_set_error_literal (error, ATSPI_ERROR, ATSPI_ERROR_SYNC_NOT_ALLOWED,
-                        _("Attempted synchronous call where prohibited"));
 }
 
 static const char *sr_introspection = "<!DOCTYPE node PUBLIC \"-//freedesktop//DTD D-BUS Object Introspection 1.0//EN\"\n"

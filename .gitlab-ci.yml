@@ -59,15 +59,18 @@ opensuse-x86_64:
     - meson install -C _build
     - mkdir /tmp/test+dir+with+funny+chars
     - export XDG_RUNTIME_DIR=/tmp/test+dir+with+funny+chars # See https://gitlab.gnome.org/GNOME/at-spi2-core/-/issues/48
+    - dbus-run-session -- ci/run-registryd-tests.sh
     - dbus-run-session -- ci/run-tests.sh
   artifacts:
     reports:
-      junit: "_build/meson-logs/testlog.junit.xml"
+      junit:
+        - "_build/meson-logs/testlog.junit.xml"
+        - "_build/tests/registryd/registryd-pytest.junit.xml"
     when: always
     name: "at-spi2-core-${CI_COMMIT_REF_NAME}"
     paths:
-      - "${CI_PROJECT_DIR}/_build/meson-logs"
-      - "${CI_PROJECT_DIR}/_build/atspi/Atspi-2.0.gir"
+      - "_build/meson-logs"
+      - "_build/tests/registryd"
 
 fedora-x86_64:
   stage: build
@@ -87,8 +90,7 @@ fedora-x86_64:
     when: always
     name: "at-spi2-core-${CI_COMMIT_REF_NAME}"
     paths:
-      - "${CI_PROJECT_DIR}/_build/meson-logs"
-      - "${CI_PROJECT_DIR}/_build/atspi/Atspi-2.0.gir"
+      - "_build/meson-logs"
 
 # Run static analysis on the code.
 #
@@ -119,6 +121,11 @@ asan-build:
   needs: ['opensuse-container@x86_64']
   variables:
     MESON_EXTRA_FLAGS: "--buildtype=debug -Db_sanitize=address -Db_lundef=false -Dintrospection=no -Ddocs=false"
+    # Add a suppressions file for address-sanitizer.  Looks like libdbus has a minor leak that is hurting
+    # the tests while run with asan.  Hopefully this will go away once we convert everything to gdbus.
+    #
+    # https://gitlab.freedesktop.org/dbus/dbus/-/issues/326
+    LSAN_OPTIONS: "suppressions=${CI_PROJECT_DIR}/ci/address-sanitizer.supp"
   script:
     - CC=clang meson setup ${MESON_EXTRA_FLAGS} --prefix /usr _build .
     - meson compile -C _build
@@ -128,7 +135,7 @@ asan-build:
     name: "at-spi2-core-${CI_JOB_NAME}-${CI_COMMIT_REF_NAME}"
     when: always
     paths:
-      - "_asan_build/meson-logs"
+      - "${CI_PROJECT_DIR}/_build/meson-logs"
   allow_failure: true
 
 # Run the test suite and extract code coverage information.
@@ -144,9 +151,11 @@ coverage:
     MESON_EXTRA_FLAGS: "--buildtype=debug -Ddocs=false -Dintrospection=no"
     CFLAGS: "-coverage -ftest-coverage -fprofile-arcs"
   script:
+    - source ./ci/env.sh
     - meson setup ${MESON_EXTRA_FLAGS} --prefix /usr _build .
     - meson compile -C _build
     - meson install -C _build
+    - dbus-run-session -- ci/run-registryd-tests.sh
     - dbus-run-session -- ci/run-tests.sh
     - mkdir -p public
     - grcov _build --source-dir ./ --prefix-dir ../ --output-type cobertura --branch --ignore-not-existing -o coverage.xml
@@ -160,7 +169,9 @@ coverage:
     expire_in: 2 days
     when: always
     reports:
-      cobertura: coverage.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
     paths:
       - "_build/meson-logs"
       - public
