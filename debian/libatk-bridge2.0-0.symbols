@@ -103,6 +103,13 @@ libatk-bridge-2.0.so.0 libatk-bridge2.0-0 #MINVER#
  spi_org_a11y_atspi_DeviceEventListener@Base 2.26.0
  spi_org_a11y_atspi_Document@Base 2.26.0
  spi_org_a11y_atspi_EditableText@Base 2.26.0
+ spi_org_a11y_atspi_Event_Document@Base 2.45.90
+ spi_org_a11y_atspi_Event_Focus@Base 2.45.90
+ spi_org_a11y_atspi_Event_Keyboard@Base 2.45.90
+ spi_org_a11y_atspi_Event_Mouse@Base 2.45.90
+ spi_org_a11y_atspi_Event_Object@Base 2.45.90
+ spi_org_a11y_atspi_Event_Terminal@Base 2.45.90
+ spi_org_a11y_atspi_Event_Window@Base 2.45.90
  spi_org_a11y_atspi_Hyperlink@Base 2.26.0
  spi_org_a11y_atspi_Hypertext@Base 2.26.0
  spi_org_a11y_atspi_Image@Base 2.26.0
