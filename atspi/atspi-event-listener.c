@@ -461,6 +461,7 @@ listener_entry_free (EventListenerEntry *e)
  *            object:column-deleted
  *            object:model-changed
  *            object:active-descendant-changed
+ *            object:announcement
  *
  *  (screen reader events)
 *             screen-reader:region-changed
@@ -1139,7 +1140,7 @@ _atspi_dbus_handle_event (DBusConnection *bus, DBusMessage *message)
       else
       {
         AtspiAccessible *accessible;
- 	accessible = _atspi_dbus_return_accessible_from_iter (&iter_variant);
+ 	accessible = _atspi_dbus_consume_accessible (&iter_variant);
         if (!strcmp (category, "ScreenReader"))
         {
           g_object_unref (e.source);

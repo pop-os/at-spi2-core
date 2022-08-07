@@ -53,8 +53,6 @@
 #include "deviceeventcontroller.h"
 #include "reentrant-list.h"
 
-#include "introspection.h"
-
 static void spi_dec_x11_emit_modifier_event (SpiDEController *controller,
 			     guint prev_mask,
 			     guint current_mask);
@@ -66,11 +64,10 @@ static Accessibility_DeviceEvent pressed_event;
 static void wait_for_release_event (XEvent *event, SpiDEController *controller);
 
 static int spi_error_code = 0;
-struct _SpiPoint {
+typedef struct {
     gint x;
     gint y;
-};
-typedef struct _SpiPoint SpiPoint;
+} SpiPoint;
 static SpiPoint last_mouse_pos_static = {0, 0}; 
 static SpiPoint *last_mouse_pos = &last_mouse_pos_static;
 static unsigned int mouse_mask_state = 0;
