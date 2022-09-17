@@ -1,3 +1,9 @@
+at-spi2-core (2.46.0-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 17 Sep 2022 20:42:47 +0200
+
 at-spi2-core (2.45.91-1) experimental; urgency=medium
 
   * New upstream development release.
