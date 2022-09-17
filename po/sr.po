@@ -1,28 +1,814 @@
+# Serbian translation of atk (at-spi2-core)
+# Courtesy of Prevod.org team (http://www.prevod.org/) -- 2003, 2004, 2009.
+# This file is distributed under the same license as the atk package.
+# Maintainer: Данило Шеган <dsegan@gmx.net>
+# Reviewed on 2004-03-05 by Александар Урошевић <urke@users.sourceforge.net>
+# Reviewed on 2004-08-06 by: Данило Шеган <danilo@prevod.org>
 # Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011, 2014.
 msgid ""
 msgstr ""
-"Project-Id-Version: at-spi2-core\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=at-"
-"spi&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-02-03 23:50+0000\n"
-"PO-Revision-Date: 2014-03-15 11:09+0200\n"
-"Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
+"Project-Id-Version: atk\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/at-spi2-core/issues\n"
+"POT-Creation-Date: 2022-07-25 14:47+0000\n"
+"PO-Revision-Date: 2022-08-06 16:28+0200\n"
+"Last-Translator: Марко М. Костић <marko.m.kostic@gmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
-"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Project-Style: gnome\n"
+"X-Generator: Poedit 3.1.1\n"
 
-#: ../atspi/atspi-component.c:325 ../atspi/atspi-misc.c:1034
-#: ../atspi/atspi-value.c:111
+#: atk/atkhyperlink.c:126
+msgid "Selected Link"
+msgstr "Изабрана веза"
+
+#: atk/atkhyperlink.c:127
+msgid "Specifies whether the AtkHyperlink object is selected"
+msgstr "Одређује да ли је изабран објекат Атк Хипервезе"
+
+#: atk/atkhyperlink.c:133
+msgid "Number of Anchors"
+msgstr "Број смерница"
+
+#: atk/atkhyperlink.c:134
+msgid "The number of anchors associated with the AtkHyperlink object"
+msgstr "Број смерница објекта Атк Хипервезе"
+
+#: atk/atkhyperlink.c:142
+msgid "End index"
+msgstr "Завршни индекс"
+
+#: atk/atkhyperlink.c:143
+msgid "The end index of the AtkHyperlink object"
+msgstr "Завршни индекс објекта Атк Хипервезе"
+
+#: atk/atkhyperlink.c:151
+msgid "Start index"
+msgstr "Почетни индекс"
+
+#: atk/atkhyperlink.c:152
+msgid "The start index of the AtkHyperlink object"
+msgstr "Почетни индекс објекта Атк Хипервезе"
+
+#: atk/atkobject.c:98
+msgid "invalid"
+msgstr "неисправно"
+
+#: atk/atkobject.c:99
+msgid "accelerator label"
+msgstr "ознака пречице"
+
+#: atk/atkobject.c:100
+msgid "alert"
+msgstr "упозорење"
+
+#: atk/atkobject.c:101
+msgid "animation"
+msgstr "анимација"
+
+#: atk/atkobject.c:102
+msgid "arrow"
+msgstr "стрелица"
+
+#: atk/atkobject.c:103
+msgid "calendar"
+msgstr "календар"
+
+#: atk/atkobject.c:104
+msgid "canvas"
+msgstr "слика"
+
+#: atk/atkobject.c:105
+msgid "check box"
+msgstr "кућица за означавање"
+
+#: atk/atkobject.c:106
+msgid "check menu item"
+msgstr "ставка менија за означавање"
+
+#: atk/atkobject.c:107
+msgid "color chooser"
+msgstr "избор боје"
+
+#: atk/atkobject.c:108
+msgid "column header"
+msgstr "заглавље колоне"
+
+#: atk/atkobject.c:109
+msgid "combo box"
+msgstr "комбинована кућица"
+
+#: atk/atkobject.c:110
+msgid "dateeditor"
+msgstr "уређивач датума"
+
+#: atk/atkobject.c:111
+msgid "desktop icon"
+msgstr "иконица радне површи"
+
+#: atk/atkobject.c:112
+msgid "desktop frame"
+msgstr "оквир радне површи"
+
+#: atk/atkobject.c:113
+msgid "dial"
+msgstr "позови"
+
+#: atk/atkobject.c:114
+msgid "dialog"
+msgstr "прозорче"
+
+#: atk/atkobject.c:115
+msgid "directory pane"
+msgstr "листа директоријума"
+
+#: atk/atkobject.c:116
+msgid "drawing area"
+msgstr "површина за цртање"
+
+#: atk/atkobject.c:117
+msgid "file chooser"
+msgstr "избор датотеке"
+
+#: atk/atkobject.c:118
+msgid "filler"
+msgstr "пуњач"
+
+#. I know it looks wrong but that is what Java returns
+#: atk/atkobject.c:120
+msgid "fontchooser"
+msgstr "избор словног лика"
+
+#: atk/atkobject.c:121
+msgid "frame"
+msgstr "оквир"
+
+#: atk/atkobject.c:122
+msgid "glass pane"
+msgstr "стаклена зона"
+
+#: atk/atkobject.c:123
+msgid "html container"
+msgstr "хтмл садржалац"
+
+#: atk/atkobject.c:124
+msgid "icon"
+msgstr "иконица"
+
+#: atk/atkobject.c:125
+msgid "image"
+msgstr "слика"
+
+#: atk/atkobject.c:126
+msgid "internal frame"
+msgstr "унутрашњи оквир"
+
+#: atk/atkobject.c:127
+msgid "label"
+msgstr "ознака"
+
+#: atk/atkobject.c:128
+msgid "layered pane"
+msgstr "послагане плоче"
+
+#: atk/atkobject.c:129
+msgid "list"
+msgstr "списак"
+
+#: atk/atkobject.c:130
+msgid "list item"
+msgstr "ставка списка"
+
+#: atk/atkobject.c:131
+msgid "menu"
+msgstr "мени"
+
+#: atk/atkobject.c:132
+msgid "menu bar"
+msgstr "главни мени"
+
+#: atk/atkobject.c:133
+msgid "menu button"
+msgstr "дугме менија"
+
+#: atk/atkobject.c:134
+msgid "menu item"
+msgstr "ставка менија"
+
+#: atk/atkobject.c:135
+msgid "option pane"
+msgstr "плоча опција"
+
+#: atk/atkobject.c:136
+msgid "page tab"
+msgstr "лист"
+
+#: atk/atkobject.c:137
+msgid "page tab list"
+msgstr "списак листова"
+
+#: atk/atkobject.c:138
+msgid "panel"
+msgstr "панел"
+
+#: atk/atkobject.c:139
+msgid "password text"
+msgstr "текст лозинке"
+
+#: atk/atkobject.c:140
+msgid "popup menu"
+msgstr "искачући мени"
+
+#: atk/atkobject.c:141
+msgid "progress bar"
+msgstr "линија напредовања"
+
+#: atk/atkobject.c:142
+msgid "push button"
+msgstr "дугме"
+
+#: atk/atkobject.c:143
+msgid "radio button"
+msgstr "искључиво дугме"
+
+#: atk/atkobject.c:144
+msgid "radio menu item"
+msgstr "искључива ставка менија"
+
+#: atk/atkobject.c:145
+msgid "root pane"
+msgstr "корена плоча"
+
+#: atk/atkobject.c:146
+msgid "row header"
+msgstr "заглавље реда"
+
+#: atk/atkobject.c:147
+msgid "scroll bar"
+msgstr "линија за померање"
+
+#: atk/atkobject.c:148
+msgid "scroll pane"
+msgstr "плоча за померање"
+
+#: atk/atkobject.c:149
+msgid "separator"
+msgstr "раздвајач"
+
+#: atk/atkobject.c:150
+msgid "slider"
+msgstr "клизач"
+
+#: atk/atkobject.c:151
+msgid "split pane"
+msgstr "плоча за раздвајање"
+
+#: atk/atkobject.c:152
+msgid "spin button"
+msgstr "вртеће дугме"
+
+#: atk/atkobject.c:153
+msgid "statusbar"
+msgstr "линија стања"
+
+#: atk/atkobject.c:154
+msgid "table"
+msgstr "табела"
+
+#: atk/atkobject.c:155
+msgid "table cell"
+msgstr "поље табеле"
+
+#: atk/atkobject.c:156
+msgid "table column header"
+msgstr "заглавље колоне табеле"
+
+#: atk/atkobject.c:157
+msgid "table row header"
+msgstr "заглавље реда табеле"
+
+#: atk/atkobject.c:158
+msgid "tear off menu item"
+msgstr "одвојива ставка менија"
+
+#: atk/atkobject.c:159
+msgid "terminal"
+msgstr "терминал"
+
+#: atk/atkobject.c:160
+msgid "text"
+msgstr "текст"
+
+#: atk/atkobject.c:161
+msgid "toggle button"
+msgstr "прекидач дугме"
+
+#: atk/atkobject.c:162
+msgid "tool bar"
+msgstr "линија алатки"
+
+#: atk/atkobject.c:163
+msgid "tool tip"
+msgstr "облачић обавештења"
+
+#: atk/atkobject.c:164
+msgid "tree"
+msgstr "стабло"
+
+#: atk/atkobject.c:165
+msgid "tree table"
+msgstr "табела стабла"
+
+#: atk/atkobject.c:166
+msgid "unknown"
+msgstr "непознато"
+
+#: atk/atkobject.c:167
+msgid "viewport"
+msgstr "поглед"
+
+#: atk/atkobject.c:168
+msgid "window"
+msgstr "прозор"
+
+#: atk/atkobject.c:169
+msgid "header"
+msgstr "заглавље"
+
+#: atk/atkobject.c:170
+msgid "footer"
+msgstr "подножје"
+
+#: atk/atkobject.c:171
+msgid "paragraph"
+msgstr "пасус"
+
+#: atk/atkobject.c:172
+msgid "ruler"
+msgstr "лењир"
+
+#: atk/atkobject.c:173
+msgid "application"
+msgstr "програм"
+
+#: atk/atkobject.c:174
+msgid "autocomplete"
+msgstr "самодопуњавање"
+
+#: atk/atkobject.c:175
+msgid "edit bar"
+msgstr "поље за унос"
+
+# састојак уместо „део“ (part)
+#: atk/atkobject.c:176
+msgid "embedded component"
+msgstr "угњеждени састојак"
+
+#: atk/atkobject.c:177
+msgid "entry"
+msgstr "ставка"
+
+#: atk/atkobject.c:178
+msgid "chart"
+msgstr "табела"
+
+#: atk/atkobject.c:179
+msgid "caption"
+msgstr "натпис"
+
+#: atk/atkobject.c:180
+msgid "document frame"
+msgstr "оквир документа"
+
+#: atk/atkobject.c:181
+msgid "heading"
+msgstr "курс"
+
+#: atk/atkobject.c:182
+msgid "page"
+msgstr "страна"
+
+#: atk/atkobject.c:183
+msgid "section"
+msgstr "одељак"
+
+#: atk/atkobject.c:184
+msgid "redundant object"
+msgstr "поновљени објекат"
+
+#: atk/atkobject.c:185
+msgid "form"
+msgstr "формулар"
+
+#: atk/atkobject.c:186
+msgid "link"
+msgstr "веза"
+
+#: atk/atkobject.c:187
+msgid "input method window"
+msgstr "прозор начина уноса"
+
+#: atk/atkobject.c:188
+msgid "table row"
+msgstr "ред табеле"
+
+#: atk/atkobject.c:189
+msgid "tree item"
+msgstr "ставка стабла"
+
+#: atk/atkobject.c:190
+msgid "document spreadsheet"
+msgstr "таблица документа"
+
+#: atk/atkobject.c:191
+msgid "document presentation"
+msgstr "презентација документа"
+
+#: atk/atkobject.c:192
+msgid "document text"
+msgstr "текст документа"
+
+#: atk/atkobject.c:193
+msgid "document web"
+msgstr "веб документа"
+
+#: atk/atkobject.c:194
+msgid "document email"
+msgstr "е-пошта документа"
+
+#: atk/atkobject.c:195
+msgid "comment"
+msgstr "примедба"
+
+#: atk/atkobject.c:196
+msgid "list box"
+msgstr "листа"
+
+#: atk/atkobject.c:197
+msgid "grouping"
+msgstr "груписање"
+
+#: atk/atkobject.c:198
+msgid "image map"
+msgstr "мапа слике"
+
+#: atk/atkobject.c:199
+msgid "notification"
+msgstr "обавештење"
+
+#: atk/atkobject.c:200
+msgid "info bar"
+msgstr "линија обавештења"
+
+#: atk/atkobject.c:201
+msgid "level bar"
+msgstr "трака нивоа"
+
+#: atk/atkobject.c:202
+msgid "title bar"
+msgstr "трака наслова"
+
+#: atk/atkobject.c:203
+msgid "block quote"
+msgstr "блок цитата"
+
+#: atk/atkobject.c:204
+msgid "audio"
+msgstr "звук"
+
+#: atk/atkobject.c:205
+msgid "video"
+msgstr "снимак"
+
+#: atk/atkobject.c:206
+msgid "definition"
+msgstr "одредница"
+
+#: atk/atkobject.c:207
+msgid "article"
+msgstr "чланак"
+
+#: atk/atkobject.c:208
+msgid "landmark"
+msgstr "орјентир"
+
+#: atk/atkobject.c:209
+msgid "log"
+msgstr "дневник"
+
+#: atk/atkobject.c:210
+msgid "marquee"
+msgstr "реклама"
+
+#: atk/atkobject.c:211
+msgid "math"
+msgstr "матиш"
+
+#: atk/atkobject.c:212
+msgid "rating"
+msgstr "пласман"
+
+#: atk/atkobject.c:213
+msgid "timer"
+msgstr "одбројавач"
+
+#: atk/atkobject.c:214
+msgid "description list"
+msgstr "списак описа"
+
+#: atk/atkobject.c:215
+msgid "description term"
+msgstr "термин описа"
+
+#: atk/atkobject.c:216
+msgid "description value"
+msgstr "вредност описа"
+
+#: atk/atkobject.c:392
+msgid "Accessible Name"
+msgstr "Приступачно име"
+
+#: atk/atkobject.c:393
+msgid "Object instance’s name formatted for assistive technology access"
+msgstr ""
+"Име инстанце објекта прилагођено приступу помоћу технологија за испомоћ"
+
+#: atk/atkobject.c:399
+msgid "Accessible Description"
+msgstr "Приступачан опис"
+
+#: atk/atkobject.c:400
+msgid "Description of an object, formatted for assistive technology access"
+msgstr "Опис објекта прилагођен приступу помоћу технологија за испомоћ"
+
+#: atk/atkobject.c:406
+msgid "Accessible Parent"
+msgstr "Приступачан садржалац"
+
+#: atk/atkobject.c:407
+msgid "Parent of the current accessible as returned by atk_object_get_parent()"
+msgstr ""
+"Садржалац тренутног приступачног како га даје „atk_object_get_parent()“"
+
+#: atk/atkobject.c:423
+msgid "Accessible Value"
+msgstr "Приступачна вредност"
+
+#: atk/atkobject.c:424
+msgid "Is used to notify that the value has changed"
+msgstr "Користи се за обавештавање да је вредност измењена"
+
+#: atk/atkobject.c:432
+msgid "Accessible Role"
+msgstr "Приступачна улога"
+
+#: atk/atkobject.c:433
+msgid "The accessible role of this object"
+msgstr "Приступачна улога овог објекта"
+
+#: atk/atkobject.c:440
+msgid "Accessible Layer"
+msgstr "Слој приступачности"
+
+#: atk/atkobject.c:441
+msgid "The accessible layer of this object"
+msgstr "Слој приступачности овог објекта"
+
+#: atk/atkobject.c:449
+msgid "Accessible MDI Value"
+msgstr "Приступачна МДИ вредност"
+
+#: atk/atkobject.c:450
+msgid "The accessible MDI value of this object"
+msgstr "Приступачна МДИ вредност овог објекта"
+
+#: atk/atkobject.c:466
+msgid "Accessible Table Caption"
+msgstr "Приступачан наслов табеле"
+
+#: atk/atkobject.c:467
+msgid ""
+"Is used to notify that the table caption has changed; this property should "
+"not be used. accessible-table-caption-object should be used instead"
+msgstr ""
+"Користи се за обавештавање да је измењен наслов табеле; не треба користити "
+"ову особину, већ „accessible-table-caption-object“"
+
+#: atk/atkobject.c:481
+msgid "Accessible Table Column Header"
+msgstr "Приступачно заглавље колоне табеле"
+
+#: atk/atkobject.c:482
+msgid "Is used to notify that the table column header has changed"
+msgstr "Користи се за обавештавање да је измењено заглавље колоне у табели"
+
+#: atk/atkobject.c:497
+msgid "Accessible Table Column Description"
+msgstr "Приступачан опис колоне табеле"
+
+#: atk/atkobject.c:498
+msgid "Is used to notify that the table column description has changed"
+msgstr "Користи се за обавештавање да је измењен опис колоне у табели"
+
+#: atk/atkobject.c:513
+msgid "Accessible Table Row Header"
+msgstr "Приступачно заглавље реда табеле"
+
+#: atk/atkobject.c:514
+msgid "Is used to notify that the table row header has changed"
+msgstr "Користи се за обавештавање да је измењено заглавље реда у табели"
+
+#: atk/atkobject.c:528
+msgid "Accessible Table Row Description"
+msgstr "Приступачан опис реда табеле"
+
+#: atk/atkobject.c:529
+msgid "Is used to notify that the table row description has changed"
+msgstr "Користи се за обавештавање да је измењен опис реда у табели"
+
+#: atk/atkobject.c:535
+msgid "Accessible Table Summary"
+msgstr "Приступачан сажетак табеле"
+
+#: atk/atkobject.c:536
+msgid "Is used to notify that the table summary has changed"
+msgstr "Користи се за обавештавање да је измењен сажетак табеле"
+
+#: atk/atkobject.c:542
+msgid "Accessible Table Caption Object"
+msgstr "Приступачан објекат наслова табеле"
+
+#: atk/atkobject.c:543
+msgid "Is used to notify that the table caption has changed"
+msgstr "Користи се за обавештавање да је измењен наслов табеле"
+
+#: atk/atkobject.c:549
+msgid "Number of Accessible Hypertext Links"
+msgstr "Број приступачних веза у надтексту"
+
+#: atk/atkobject.c:550
+msgid "The number of links which the current AtkHypertext has"
+msgstr "Колико веза садржи текући Атк Хипертекст"
+
+#. Translators: This string describes a range within value-related
+#. * widgets such as a password-strength meter. Note that what such a
+#. * widget presents is controlled by application developers. Thus
+#. * assistive technologies such as screen readers are expected to
+#. * present this string alone or as a token in a list.
+#.
+#: atk/atkvalue.c:194
+msgid "very weak"
+msgstr "врло слабо"
+
+#. Translators: This string describes a range within value-related
+#. * widgets such as a password-strength meter. Note that what such a
+#. * widget presents is controlled by application developers. Thus
+#. * assistive technologies such as screen readers are expected to
+#. * present this string alone or as a token in a list.
+#.
+#: atk/atkvalue.c:201
+msgid "weak"
+msgstr "слабо"
+
+#. Translators: This string describes a range within value-related
+#. * widgets such as a password-strength meter. Note that what such a
+#. * widget presents is controlled by application developers. Thus
+#. * assistive technologies such as screen readers are expected to
+#. * present this string alone or as a token in a list.
+#.
+#: atk/atkvalue.c:208
+msgid "acceptable"
+msgstr "прихватљиво"
+
+#. Translators: This string describes a range within value-related
+#. * widgets such as a password-strength meter. Note that what such a
+#. * widget presents is controlled by application developers. Thus
+#. * assistive technologies such as screen readers are expected to
+#. * present this string alone or as a token in a list.
+#.
+#: atk/atkvalue.c:215
+msgid "strong"
+msgstr "јако"
+
+#. Translators: This string describes a range within value-related
+#. * widgets such as a password-strength meter. Note that what such a
+#. * widget presents is controlled by application developers. Thus
+#. * assistive technologies such as screen readers are expected to
+#. * present this string alone or as a token in a list.
+#.
+#: atk/atkvalue.c:222
+msgid "very strong"
+msgstr "врло јако"
+
+#. Translators: This string describes a range within value-related
+#. * widgets such as a volume slider. Note that what such a widget
+#. * presents (e.g. temperature, volume, price) is controlled by
+#. * application developers. Thus assistive technologies such as screen
+#. * readers are expected to present this string alone or as a token in
+#. * a list.
+#.
+#: atk/atkvalue.c:230
+msgid "very low"
+msgstr "врло ниско"
+
+#. Translators: This string describes a range within value-related
+#. * widgets such as a volume slider. Note that what such a widget
+#. * presents (e.g. temperature, volume, price) is controlled by
+#. * application developers. Thus assistive technologies such as screen
+#. * readers are expected to present this string alone or as a token in
+#. * a list.
+#.
+#: atk/atkvalue.c:238
+msgid "medium"
+msgstr "средње"
+
+#. Translators: This string describes a range within value-related
+#. * widgets such as a volume slider. Note that what such a widget
+#. * presents (e.g. temperature, volume, price) is controlled by
+#. * application developers. Thus assistive technologies such as screen
+#. * readers are expected to present this string alone or as a token in
+#. * a list.
+#.
+#: atk/atkvalue.c:246
+msgid "high"
+msgstr "високо"
+
+#. Translators: This string describes a range within value-related
+#. * widgets such as a volume slider. Note that what such a widget
+#. * presents (e.g. temperature, volume, price) is controlled by
+#. * application developers. Thus assistive technologies such as screen
+#. * readers are expected to present this string alone or as a token in
+#. * a list.
+#.
+#: atk/atkvalue.c:254
+msgid "very high"
+msgstr "врло високо"
+
+#. Translators: This string describes a range within value-related
+#. * widgets such as a hard drive usage. Note that what such a widget
+#. * presents (e.g. hard drive usage, network traffic) is controlled by
+#. * application developers. Thus assistive technologies such as screen
+#. * readers are expected to present this string alone or as a token in
+#. * a list.
+#.
+#: atk/atkvalue.c:262
+msgid "very bad"
+msgstr "врло лоше"
+
+#. Translators: This string describes a range within value-related
+#. * widgets such as a hard drive usage. Note that what such a widget
+#. * presents (e.g. hard drive usage, network traffic) is controlled by
+#. * application developers. Thus assistive technologies such as screen
+#. * readers are expected to present this string alone or as a token in
+#. * a list.
+#.
+#: atk/atkvalue.c:270
+msgid "bad"
+msgstr "лоше"
+
+#. Translators: This string describes a range within value-related
+#. * widgets such as a hard drive usage. Note that what such a widget
+#. * presents (e.g. hard drive usage, network traffic) is controlled by
+#. * application developers. Thus assistive technologies such as screen
+#. * readers are expected to present this string alone or as a token in
+#. * a list.
+#.
+#: atk/atkvalue.c:278
+msgid "good"
+msgstr "добро"
+
+#. Translators: This string describes a range within value-related
+#. * widgets such as a hard drive usage. Note that what such a widget
+#. * presents (e.g. hard drive usage, network traffic) is controlled by
+#. * application developers. Thus assistive technologies such as screen
+#. * readers are expected to present this string alone or as a token in
+#. * a list.
+#.
+#: atk/atkvalue.c:286
+msgid "very good"
+msgstr "врло добро"
+
+#. Translators: This string describes a range within value-related
+#. * widgets such as a hard drive usage. Note that what such a widget
+#. * presents (e.g. hard drive usage, network traffic) is controlled by
+#. * application developers. Thus assistive technologies such as screen
+#. * readers are expected to present this string alone or as a token in
+#. * a list.
+#.
+#: atk/atkvalue.c:294
+msgid "best"
+msgstr "најбоље"
+
+#: atspi/atspi-component.c:332 atspi/atspi-misc.c:1063 atspi/atspi-value.c:111
 msgid "The application no longer exists"
 msgstr "Програм не постоји више"
 
-#: ../atspi/atspi-misc.c:1777
-msgid "Attempted synchronous call where prohibited"
-msgstr "Покушан је усаглашени позив где је забрањен"
+#~ msgid "Attempted synchronous call where prohibited"
+#~ msgstr "Покушан је усаглашени позив где је забрањен"
 
 #~ msgid "AT-SPI: Unknown signature %s for RemoveAccessible"
 #~ msgstr "АТ-СПИ: Непознат потпис „%s“ за „Уклони доступног“"
@@ -91,3 +877,6 @@ msgstr "Покушан је усаглашени позив где је забр
 
 #~ msgid "Got invalid signature %s for signal %s from interface %s\n"
 #~ msgstr "Добих неисправан потпис „%s“ за сигнал „%s“ са сучеља „%s“\n"
+
+#~ msgid "Is used to notify that the parent has changed"
+#~ msgstr "Користи се за обавештавање да је садржалац измењен"
