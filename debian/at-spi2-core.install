@@ -3,6 +3,5 @@ usr/lib/systemd/user
 usr/libexec
 usr/share/dbus-1
 usr/share/defaults
-usr/share/locale/*/LC_MESSAGES/at-spi2-core.mo
 debian/90qt-a11y etc/X11/Xsession.d
 debian/90qt-a11y.conf etc/environment.d

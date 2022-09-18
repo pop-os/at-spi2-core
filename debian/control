@@ -29,9 +29,18 @@ Homepage: https://wiki.gnome.org/Accessibility
 Package: at-spi2-core
 Architecture: any
 Multi-Arch: foreign
-Depends: ${misc:Depends}, ${shlibs:Depends}, gsettings-desktop-schemas
+Depends: ${misc:Depends}, ${shlibs:Depends}, at-spi2-common, gsettings-desktop-schemas
 Description: Assistive Technology Service Provider Interface (D-Bus core)
  This package contains the core components of GNOME Accessibility.
+
+Package: at-spi2-common
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Breaks: at-spi2-core (<< 2.46.0-2~)
+Replaces: at-spi2-core (<< 2.46.0-2~)
+Description: Assistive Technology Service Provider Interface (common files)
+ This package contains the common resource files of GNOME Accessibility.
 
 Package: at-spi2-core-udeb
 Section: debian-installer
@@ -157,7 +166,7 @@ Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-Recommends: at-spi2-core
+         at-spi2-common
 Description: ATK accessibility toolkit
  ATK is a toolkit providing accessibility interfaces for applications or
  other toolkits. By implementing these interfaces, those other toolkits or
