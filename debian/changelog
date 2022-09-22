@@ -1,3 +1,10 @@
+at-spi2-core (2.46.0-3) unstable; urgency=medium
+
+  [ Sebastien Bacher ]
+  * Temporarily revert an upstream change that made one test hang
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Thu, 22 Sep 2022 12:13:10 -0400
+
 at-spi2-core (2.46.0-2) unstable; urgency=medium
 
   * control, at-spi2-{core,common}.install: Move translated messages from
