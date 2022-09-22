@@ -2,6 +2,7 @@ at-spi2-core (2.46.0-4) UNRELEASED; urgency=medium
 
   * Remove obsolete field Contact from debian/upstream/metadata (already present
     in machine-readable debian/copyright).
+  * Update standards version to 4.6.1, no changes needed.
 
  -- Debian Janitor <janitor@jelmer.uk>  Thu, 22 Sep 2022 19:41:52 -0000
 
