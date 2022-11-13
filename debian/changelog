@@ -1,5 +1,9 @@
 at-spi2-core (2.46.0-4) UNRELEASED; urgency=medium
 
+  [ Samuel Thibault ]
+  * tests/control: Depend on dbus-daemon instead of dbus.
+
+  [ Debian Janitor ]
   * Remove obsolete field Contact from debian/upstream/metadata (already present
     in machine-readable debian/copyright).
   * Update standards version to 4.6.1, no changes needed.
