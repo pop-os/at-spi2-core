@@ -1,14 +1,17 @@
-at-spi2-core (2.46.0-4) UNRELEASED; urgency=medium
+at-spi2-core (2.46.0-4) unstable; urgency=medium
 
   [ Samuel Thibault ]
   * tests/control: Depend on dbus-daemon instead of dbus.
+
+  [ Jeremy Bicha ]
+  * debian/control: Drop obsolete Build-Depends on gedit
 
   [ Debian Janitor ]
   * Remove obsolete field Contact from debian/upstream/metadata (already present
     in machine-readable debian/copyright).
   * Update standards version to 4.6.1, no changes needed.
 
- -- Debian Janitor <janitor@jelmer.uk>  Thu, 22 Sep 2022 19:41:52 -0000
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Fri, 18 Nov 2022 11:39:35 -0500
 
 at-spi2-core (2.46.0-3) unstable; urgency=medium
 
