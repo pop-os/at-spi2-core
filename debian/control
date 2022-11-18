@@ -6,7 +6,6 @@ Uploaders: Samuel Thibault <sthibault@debian.org>, Jordi Mallach <jordi@debian.o
 Build-Depends: debhelper-compat (= 13),
                dbus, libdbus-1-dev,
                dbus-broker [linux-any], libsystemd-dev [linux-any],
-               gedit <!nocheck>,
                libglib2.0-dev (>= 2.62),
                libxml2-dev,
                libx11-dev, libxtst-dev,
