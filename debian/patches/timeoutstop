@@ -1,0 +1,25 @@
+commit 145f9c53ca9ed73d0edb39abac12141cd40a2526
+Author: Samuel Thibault <samuel.thibault@ens-lyon.org>
+Date:   Wed Jan 25 20:07:12 2023 +0100
+
+    at-spi-dbus-bus service: set stop timeout to 5s
+    
+    As reported on
+    https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=890833
+    
+    sometimes the at-spi bus may hang, and system shutdown then gets stuck.
+    We'd better avoid hanging the whole system shutdown just for this, and
+    just wait for 5s, like many other gnome user service pieces.
+    
+    Of course, at-spi2-core shouldn't be getting stuck, but better avoid
+    hurting people, which makes them tend to just disable accessibility...
+
+diff --git a/bus/at-spi-dbus-bus.service.in b/bus/at-spi-dbus-bus.service.in
+index cc41e24e..3c0b674b 100644
+--- a/bus/at-spi-dbus-bus.service.in
++++ b/bus/at-spi-dbus-bus.service.in
+@@ -7,3 +7,4 @@ Type=dbus
+ BusName=org.a11y.Bus
+ ExecStart=@libexecdir@/at-spi-bus-launcher
+ Slice=session.slice
++TimeoutStopSec=5

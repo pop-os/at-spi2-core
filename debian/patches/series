@@ -2,3 +2,4 @@ workaround_tests_issue.patch
 at-spi-by-default
 disable-test-that-needs-installed-dbus-service.patch
 tests
+timeoutstop
