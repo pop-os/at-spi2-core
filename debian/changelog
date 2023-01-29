@@ -1,8 +1,8 @@
-at-spi2-core (2.46.0-5) UNRELEASED; urgency=medium
+at-spi2-core (2.46.0-5) unstable; urgency=medium
 
   * patches/timeoutstop: Set stop timeout to 5s (Closes: #890833).
 
- -- Samuel Thibault <sthibault@debian.org>  Wed, 25 Jan 2023 23:30:27 +0100
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 29 Jan 2023 17:39:36 +0100
 
 at-spi2-core (2.46.0-4) unstable; urgency=medium
 
