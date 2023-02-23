@@ -13,8 +13,8 @@ include:
 variables:
   # When branching change the suffix to avoid conflicts with images
   # from the main branch
-  BASE_TAG: "2022-07-12.0-main"
-  RUST_STABLE: "1.58.1"
+  BASE_TAG: "2022-12-13.3-main"
+  RUST_STABLE: "1.64.0"
 
 .container.opensuse@x86_64:
   stage: "container-build"
@@ -35,7 +35,6 @@ variables:
       glib2-devel
       gobject-introspection-devel
       gsettings-desktop-schemas
-      gtk-doc
       itstool
       libXi-devel
       libXtst-devel
@@ -45,14 +44,19 @@ variables:
       llvm
       meson
       ninja
+      python3-pip
       python310
       python310-gobject
       python310-pytest
       python310-python-dbusmock
       tar
       wget
+      which
+      xorg-x11-devel
+      xvfb-run
     FDO_DISTRIBUTION_EXEC: >-
-      bash ci/install-rust.sh ${RUST_STABLE} x86_64-unknown-linux-gnu
+      bash ci/install-rust.sh ${RUST_STABLE} x86_64-unknown-linux-gnu &&
+      pip3 install gi-docgen sphinx sphinx_rtd_theme
 
 opensuse-container@x86_64:
   extends:
@@ -64,7 +68,7 @@ opensuse-container@x86_64:
   stage: "container-build"
   variables:
     FDO_DISTRIBUTION_TAG: "x86_64-${BASE_TAG}"
-    FDO_DISTRIBUTION_VERSION: "35"
+    FDO_DISTRIBUTION_VERSION: "37"
     FDO_UPSTREAM_REPO: "gnome/at-spi2-core"
     FDO_DISTRIBUTION_PACKAGES: >-
       clang
@@ -79,7 +83,6 @@ opensuse-container@x86_64:
       glib2-devel
       gobject-introspection-devel
       gsettings-desktop-schemas
-      gtk-doc
       itstool
       lcov
       libXi-devel
@@ -87,10 +90,13 @@ opensuse-container@x86_64:
       libasan
       libxkbcommon-devel
       libxml2-devel
-      meson
+      ninja-build
       procps
-      python38
+      python3
+      python3-pip
       systemd-devel
+    FDO_DISTRIBUTION_EXEC: >-
+      pip3 install meson==0.64
 
 fedora-container@x86_64:
   extends:

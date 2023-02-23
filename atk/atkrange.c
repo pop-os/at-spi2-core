@@ -24,9 +24,9 @@
 #include "atkvalue.h"
 
 /**
- * SECTION:atkrange
- * @Short_description: A given range or subrange, to be used with #AtkValue
- * @Title:AtkRange
+ * AtkRange:
+ *
+ * A given range or subrange, to be used with #AtkValue
  *
  * #AtkRange are used on #AtkValue, in order to represent the full
  * range of a given component (for example an slider or a range
@@ -35,7 +35,8 @@
  * details.
  */
 
-struct _AtkRange {
+struct _AtkRange
+{
   gdouble lower;
   gdouble upper;
   gchar *description;
@@ -80,9 +81,7 @@ atk_range_free (AtkRange *range)
   g_slice_free (AtkRange, range);
 }
 
-G_DEFINE_BOXED_TYPE (AtkRange, atk_range, atk_range_copy,
-                     atk_range_free)
-
+G_DEFINE_BOXED_TYPE (AtkRange, atk_range, atk_range_copy, atk_range_free)
 
 /**
  * atk_range_new:
@@ -97,10 +96,10 @@ G_DEFINE_BOXED_TYPE (AtkRange, atk_range, atk_range_copy,
  * Returns: (transfer full): a new #AtkRange
  *
  */
-AtkRange*
-atk_range_new  (gdouble   lower_limit,
-                gdouble   upper_limit,
-                const gchar *description)
+AtkRange *
+atk_range_new (gdouble lower_limit,
+               gdouble upper_limit,
+               const gchar *description)
 {
   AtkRange *range;
 
@@ -125,7 +124,7 @@ atk_range_new  (gdouble   lower_limit,
  * Returns: the lower limit of @range
  */
 gdouble
-atk_range_get_lower_limit  (AtkRange *range)
+atk_range_get_lower_limit (AtkRange *range)
 {
   g_return_val_if_fail (range != NULL, 0);
 
@@ -160,8 +159,8 @@ atk_range_get_upper_limit (AtkRange *range)
  *
  * Returns: the human-readable description of @range
  */
-const gchar*
-atk_range_get_description  (AtkRange *range)
+const gchar *
+atk_range_get_description (AtkRange *range)
 {
   g_return_val_if_fail (range != NULL, NULL);
 

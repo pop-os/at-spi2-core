@@ -27,8 +27,24 @@
  *
  */
 
-#include "atspi-private.h"
 #include "atspi-accessible-private.h"
+#include "atspi-private.h"
+
+/**
+ * AtspiComponent
+ *
+ * An interface implemented by objects which have onscreen visual
+ * representations.
+ *
+ * The Component interface is implemented by objects which occupy on-screen
+ * space, e.g. objects which have onscreen visual representations. The methods
+ * in Component allow clients to identify where the objects lie in the onscreen
+ * coordinate system, their relative size, stacking order, and position. It
+ * also provides a mechanism whereby keyboard focus may be transferred to
+ * specific user interface elements programmatically.  This is a 2D API.
+ * Coordinates of 3D objects are projected into the 2-dimensional screen view
+ * for purposes of this interface.
+ */
 
 void
 atspi_rect_free (AtspiRect *rect)
@@ -75,9 +91,10 @@ G_DEFINE_BOXED_TYPE (AtspiPoint, atspi_point, atspi_point_copy, g_free)
  **/
 gboolean
 atspi_component_contains (AtspiComponent *obj,
-                              gint x,
-                              gint y,
-                              AtspiCoordType ctype, GError **error)
+                          gint x,
+                          gint y,
+                          AtspiCoordType ctype,
+                          GError **error)
 {
   dbus_bool_t retval = FALSE;
   dbus_int32_t d_x = x, d_y = y;
@@ -107,9 +124,10 @@ atspi_component_contains (AtspiComponent *obj,
  **/
 AtspiAccessible *
 atspi_component_get_accessible_at_point (AtspiComponent *obj,
-                                          gint x,
-                                          gint y,
-                                          AtspiCoordType ctype, GError **error)
+                                         gint x,
+                                         gint y,
+                                         AtspiCoordType ctype,
+                                         GError **error)
 {
   dbus_int32_t d_x = x, d_y = y;
   dbus_uint32_t d_ctype = ctype;
@@ -136,7 +154,8 @@ atspi_component_get_accessible_at_point (AtspiComponent *obj,
  **/
 AtspiRect *
 atspi_component_get_extents (AtspiComponent *obj,
-                                AtspiCoordType ctype, GError **error)
+                             AtspiCoordType ctype,
+                             GError **error)
 {
   dbus_uint32_t d_ctype = ctype;
   AtspiRect bbox;
@@ -147,13 +166,13 @@ atspi_component_get_extents (AtspiComponent *obj,
 
   accessible = ATSPI_ACCESSIBLE (obj);
   if (accessible->priv->cache && ctype == ATSPI_COORD_TYPE_SCREEN)
-  {
-    GValue *val = g_hash_table_lookup (accessible->priv->cache, "Component.ScreenExtents");
-    if (val)
     {
-      return g_value_dup_boxed (val);
+      GValue *val = g_hash_table_lookup (accessible->priv->cache, "Component.ScreenExtents");
+      if (val)
+        {
+          return g_value_dup_boxed (val);
+        }
     }
-  }
 
   _atspi_dbus_call (obj, atspi_interface_component, "GetExtents", error, "u=>(iiii)", d_ctype, &bbox);
   return atspi_rect_copy (&bbox);
@@ -173,7 +192,8 @@ atspi_component_get_extents (AtspiComponent *obj,
  **/
 AtspiPoint *
 atspi_component_get_position (AtspiComponent *obj,
-                                 AtspiCoordType ctype, GError **error)
+                              AtspiCoordType ctype,
+                              GError **error)
 {
   dbus_int32_t d_x, d_y;
   dbus_uint32_t d_ctype = ctype;
@@ -221,7 +241,7 @@ atspi_component_get_size (AtspiComponent *obj, GError **error)
  * atspi_component_get_layer:
  * @obj: a pointer to the #AtspiComponent to query.
  *
- * Queries which layer the component is painted into, to help determine its 
+ * Queries which layer the component is painted into, to help determine its
  *      visibility in terms of stacking order.
  *
  * Returns: the #AtspiComponentLayer into which this component is painted.
@@ -243,7 +263,7 @@ atspi_component_get_layer (AtspiComponent *obj, GError **error)
  * Queries the z stacking order of a component which is in the MDI or window
  *       layer. (Bigger z-order numbers mean nearer the top)
  *
- * Returns: a #gshort indicating the stacking order of the component 
+ * Returns: a #gshort indicating the stacking order of the component
  *       in the MDI layer, or -1 if the component is not in the MDI layer.
  **/
 gshort
@@ -282,10 +302,10 @@ atspi_component_grab_focus (AtspiComponent *obj, GError **error)
  *
  * Gets the opacity/alpha value of a component, if alpha blending is in use.
  *
- * Returns: the opacity value of a component, as a #gdouble between 0.0 and 1.0. 
+ * Returns: the opacity value of a component, as a #gdouble between 0.0 and 1.0.
  **/
-gdouble      
-atspi_component_get_alpha    (AtspiComponent *obj, GError **error)
+gdouble
+atspi_component_get_alpha (AtspiComponent *obj, GError **error)
 {
   double retval = 1;
 
@@ -297,8 +317,8 @@ atspi_component_get_alpha    (AtspiComponent *obj, GError **error)
 /**
  * atspi_component_set_extents:
  * @obj: a pointer to the #AtspiComponent to move.
- * @x: the new vertical position to which the component should be moved.
- * @y: the new horizontal position to which the component should be moved.
+ * @x: the new horizontal position to which the component should be moved.
+ * @y: the new vertical position to which the component should be moved.
  * @width: the width to which the component should be resized.
  * @height: the height to which the component should be resized.
  * @ctype: the coordinate system in which the position is specified.
@@ -327,11 +347,11 @@ atspi_component_set_extents (AtspiComponent *obj,
   g_return_val_if_fail (obj != NULL, FALSE);
 
   if (!aobj->parent.app || !aobj->parent.app->bus_name)
-  {
-    g_set_error_literal (error, ATSPI_ERROR, ATSPI_ERROR_APPLICATION_GONE,
-                          _("The application no longer exists"));
-    return FALSE;
-  }
+    {
+      g_set_error_literal (error, ATSPI_ERROR, ATSPI_ERROR_APPLICATION_GONE,
+                           _ ("The application no longer exists"));
+      return FALSE;
+    }
 
   message = dbus_message_new_method_call (aobj->parent.app->bus_name,
                                           aobj->parent.path,
@@ -342,10 +362,10 @@ atspi_component_set_extents (AtspiComponent *obj,
 
   dbus_message_iter_init_append (message, &iter);
   if (!dbus_message_iter_open_container (&iter, DBUS_TYPE_STRUCT, NULL, &iter_struct))
-  {
-    dbus_message_unref (message);
-    return FALSE;
-  }
+    {
+      dbus_message_unref (message);
+      return FALSE;
+    }
   dbus_message_iter_append_basic (&iter_struct, DBUS_TYPE_INT32, &d_x);
   dbus_message_iter_append_basic (&iter_struct, DBUS_TYPE_INT32, &d_y);
   dbus_message_iter_append_basic (&iter_struct, DBUS_TYPE_INT32, &d_width);
@@ -355,7 +375,7 @@ atspi_component_set_extents (AtspiComponent *obj,
 
   reply = _atspi_dbus_send_with_reply_and_block (message, error);
   dbus_message_get_args (reply, NULL, DBUS_TYPE_BOOLEAN, &retval,
-                              DBUS_TYPE_INVALID);
+                         DBUS_TYPE_INVALID);
   dbus_message_unref (reply);
   return retval;
 }
@@ -363,8 +383,8 @@ atspi_component_set_extents (AtspiComponent *obj,
 /**
  * atspi_component_set_position:
  * @obj: a pointer to the #AtspiComponent to move.
- * @x: the new vertical position to which the component should be moved.
- * @y: the new horizontal position to which the component should be moved.
+ * @x: the new horizontal position to which the component should be moved.
+ * @y: the new vertical position to which the component should be moved.
  * @ctype: the coordinate system in which the position is specified.
  *         (e.g. ATSPI_COORD_TYPE_WINDOW, ATSPI_COORD_TYPE_SCREEN).
  *
@@ -397,7 +417,7 @@ atspi_component_set_position (AtspiComponent *obj,
  * @width: the width to which the component should be resized.
  * @height: the height to which the component should be resized.
  *
- * Resizes the specified component to the given coordinates.
+ * Resizes the specified component to the given pixel dimensions.
  *
  * Returns: #TRUE if successful; #FALSE otherwise.
  **/
@@ -485,16 +505,15 @@ atspi_component_get_type (void)
 {
   static GType type = 0;
 
-  if (!type) {
-    static const GTypeInfo tinfo =
+  if (!type)
     {
-      sizeof (AtspiComponent),
-      (GBaseInitFunc) atspi_component_base_init,
-      (GBaseFinalizeFunc) NULL,
-    };
+      static const GTypeInfo tinfo = {
+        sizeof (AtspiComponent),
+        (GBaseInitFunc) atspi_component_base_init,
+        (GBaseFinalizeFunc) NULL,
+      };
 
-    type = g_type_register_static (G_TYPE_INTERFACE, "AtspiComponent", &tinfo, 0);
-
-  }
+      type = g_type_register_static (G_TYPE_INTERFACE, "AtspiComponent", &tinfo, 0);
+    }
   return type;
 }

@@ -22,10 +22,9 @@
 #include "atkstreamablecontent.h"
 
 /**
- * SECTION:atkstreamablecontent
- * @Short_description: The ATK interface which provides access to
- *  streamable content.
- * @Title:AtkStreamableContent
+ * AtkStreamableContent:
+ *
+ * The ATK interface which provides access to streamable content.
  *
  * An interface whereby an object allows its backing content to be
  * streamed to clients.  Typical implementors would be images or
@@ -50,17 +49,17 @@ atk_streamable_content_get_type (void)
 {
   static GType type = 0;
 
-  if (!type) {
-    GTypeInfo tinfo =
+  if (!type)
     {
-      sizeof (AtkStreamableContentIface),
-      (GBaseInitFunc) NULL,
-      (GBaseFinalizeFunc) NULL,
+      GTypeInfo tinfo = {
+        sizeof (AtkStreamableContentIface),
+        (GBaseInitFunc) NULL,
+        (GBaseFinalizeFunc) NULL,
 
-    };
+      };
 
-    type = g_type_register_static (G_TYPE_INTERFACE, "AtkStreamableContent", &tinfo, 0);
-  }
+      type = g_type_register_static (G_TYPE_INTERFACE, "AtkStreamableContent", &tinfo, 0);
+    }
 
   return type;
 }
@@ -99,9 +98,9 @@ atk_streamable_content_get_n_mime_types (AtkStreamableContent *streamable)
  * Returns: a gchar* representing the specified mime type; the caller
  * should not free the character string.
  **/
-const gchar*
+const gchar *
 atk_streamable_content_get_mime_type (AtkStreamableContent *streamable,
-                                      gint                 i)
+                                      gint i)
 {
   AtkStreamableContentIface *iface;
 
@@ -126,9 +125,9 @@ atk_streamable_content_get_mime_type (AtkStreamableContent *streamable,
  * Returns: (transfer full): A #GIOChannel which contains the content in the
  * specified mime type.
  **/
-GIOChannel*
+GIOChannel *
 atk_streamable_content_get_stream (AtkStreamableContent *streamable,
-                                   const gchar          *mime_type)
+                                   const gchar *mime_type)
 {
   AtkStreamableContentIface *iface;
 
@@ -146,14 +145,14 @@ atk_streamable_content_get_stream (AtkStreamableContent *streamable,
 /**
  * atk_streamable_content_get_uri:
  * @streamable: a GObject instance that implements AtkStreamableContentIface
- * @mime_type: a gchar* representing the mime type, or NULL to request a URI 
+ * @mime_type: a gchar* representing the mime type, or NULL to request a URI
  * for the default mime type.
  *
  * Get a string representing a URI in IETF standard format
  * (see http://www.ietf.org/rfc/rfc2396.txt) from which the object's content
  * may be streamed in the specified mime-type, if one is available.
  * If mime_type is NULL, the URI for the default (and possibly only) mime-type is
- * returned. 
+ * returned.
  *
  * Note that it is possible for get_uri to return NULL but for
  * get_stream to work nonetheless, since not all GIOChannels connect to URIs.
@@ -163,9 +162,9 @@ atk_streamable_content_get_stream (AtkStreamableContent *streamable,
  *
  * Since: 1.12
  **/
-const gchar*
+const gchar *
 atk_streamable_content_get_uri (AtkStreamableContent *streamable,
-				const gchar          *mime_type)
+                                const gchar *mime_type)
 {
   AtkStreamableContentIface *iface;
 
