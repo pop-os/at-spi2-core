@@ -393,17 +393,6 @@ Copyright: 2001-2003 Sun Microsystems Inc.
   2008-2010 Codethink Ltd.
 License: LGPL-2.1+
 
-Files: registryd/de-marshaller.c
-Copyright: 2008-2011, Novell, Inc.
-License: LGPL-2.1+
-
-Files: registryd/de-marshaller.h
-  registryd/de-types.h
-Copyright: 2009, Codethink Ltd
-  2001, 2002, Ximian, Inc.
-  2001, 2002, Sun Microsystems Inc.
-License: LGPL-2.1+
-
 Files: registryd/deviceeventcontroller-x11.c
   registryd/deviceeventcontroller.c
 Copyright: 2001, 2003, Sun Microsystems Inc.

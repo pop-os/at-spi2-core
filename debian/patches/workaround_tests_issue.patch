@@ -12,17 +12,17 @@ index d2fb14b..7844461 100644
 --- a/tests/at-spi2-atk/test-application.c
 +++ b/tests/at-spi2-atk/test-application.c
 @@ -31,9 +31,7 @@
- #include <stdio.h>
- #include <string.h>
- #include <stdlib.h>
--#include <signal.h>
- #include <glib.h>
--#include <glib-unix.h>
- #include <atk/atk.h>
- #include <atk-bridge.h>
  #include "my-atk.h"
+ #include <atk-bridge.h>
+ #include <atk/atk.h>
+-#include <glib-unix.h>
+ #include <glib.h>
+-#include <signal.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
 @@ -95,14 +93,6 @@ static GOptionEntry optentries[] = {
-   {NULL}
+   { NULL }
  };
  
 -static gboolean
@@ -33,9 +33,9 @@ index d2fb14b..7844461 100644
 -  return G_SOURCE_REMOVE;
 -}
 -
- int main (int argc, char *argv[])
+ int
+ main (int argc, char *argv[])
  {
-   GOptionContext *opt;
 @@ -119,7 +109,6 @@ int main (int argc, char *argv[])
    atk_bridge_adaptor_init (NULL, NULL);
  

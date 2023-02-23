@@ -9,7 +9,7 @@ export DEB_LDFLAGS_MAINT_APPEND = -Wl,-z,defs
 override_dh_auto_configure:
 	ac_cv_lib_ICE_IceConnectionNumber=no \
 	dh_auto_configure -- \
-		-Dintrospection=yes \
+		-Dintrospection=enabled \
 		-Ddocs=true \
 		-Ddefault_bus=dbus-broker
 

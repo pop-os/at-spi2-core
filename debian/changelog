@@ -1,3 +1,18 @@
+at-spi2-core (2.47.1-1) experimental; urgency=medium
+
+  * New upstream beta release.
+    - patches/workaround_tests_issue.patch: Refresh.
+    - rules: Switch from -Dintrospection=yes to -Dintrospection=enabled.
+    - control: Add gi-docgen and python3-sphinx build-deps.
+    - at-spi2-doc.install: Install usr/share/doc/libatspi instead of
+    usr/share/gtk-doc/html/libatspi.
+    - libatk1.0-doc.install: Install usr/share/doc/atk instead of
+    usr/share/gtk-doc/html/atk.
+    - libatk-bridge2.0-0.symbols: Remove spi_dbus_emit_valist symbol.
+    - at-spi2-doc.doc-base: Register libatspi doc.
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 23 Feb 2023 01:26:51 +0100
+
 at-spi2-core (2.46.0-5) unstable; urgency=medium
 
   * patches/timeoutstop: Set stop timeout to 5s (Closes: #890833).
