@@ -19,22 +19,23 @@
 
 #include "config.h"
 
-#include "atkwindow.h"
 #include "atkmarshal.h"
+#include "atkwindow.h"
 
 /**
- * SECTION:atkwindow
- * @Short_description: The ATK Interface provided by UI components that represent a top-level window.
- * @Title: AtkWindow
- * @See_also: #AtkObject
+ * AtkWindow:
+ *
+ * The ATK Interface provided by UI components that represent a top-level window.
  *
  * #AtkWindow should be implemented by the UI elements that represent
  * a top-level window, such as the main window of an application or
  * dialog.
  *
+ * See [class@AtkObject]
  */
 
-enum {
+enum
+{
   ACTIVATE,
   CREATE,
   DEACTIVATE,
@@ -53,13 +54,13 @@ static guint
 atk_window_add_signal (const gchar *name)
 {
   return g_signal_new (name,
-		       ATK_TYPE_WINDOW,
-		       G_SIGNAL_RUN_LAST,
-		       0,
-		       (GSignalAccumulator) NULL, NULL,
-		       g_cclosure_marshal_VOID__VOID,
-		       G_TYPE_NONE,
-		       0);
+                       ATK_TYPE_WINDOW,
+                       G_SIGNAL_RUN_LAST,
+                       0,
+                       (GSignalAccumulator) NULL, NULL,
+                       g_cclosure_marshal_VOID__VOID,
+                       G_TYPE_NONE,
+                       0);
 }
 
 typedef AtkWindowIface AtkWindowInterface;

@@ -2,11 +2,11 @@ atspi_introspection_path = ''
 
 registryd_sources = [
   introspection_generated,
-  'de-marshaller.c',
+  'deviceeventcontroller.c',
+  'marshal-dbus.c',
+  'reentrant-list.c',
   'registry-main.c',
   'registry.c',
-  'deviceeventcontroller.c',
-  'reentrant-list.c',
 ]
 
 registryd_deps = [
@@ -16,18 +16,15 @@ registryd_deps = [
   dl_dep,
 ]
 
-x11_option = get_option('x11')
-if x11_option != 'no'
-  if x11_dep.found()
-    registryd_sources += [
-      'deviceeventcontroller-x11.c',
-      'display.c',
-      'event-source.c',
-      'ucs2keysym.c',
-    ]
+if x11_dep.found()
+  registryd_sources += [
+    'deviceeventcontroller-x11.c',
+    'display.c',
+    'event-source.c',
+    'ucs2keysym.c',
+  ]
 
-    registryd_deps += x11_deps 
-  endif
+  registryd_deps += x11_deps 
 endif
 
 executable('at-spi2-registryd', registryd_sources,

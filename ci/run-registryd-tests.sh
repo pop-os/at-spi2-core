@@ -5,7 +5,8 @@ set -eu
 echo "About to run the tests.  First we'll launch a gnome-session DBus mock."
 
 python3 -m dbusmock --session org.gnome.SessionManager /org/gnome/SessionManager org.gnome.SessionManager &
-sleep 1
+
+gdbus wait --session --timeout 10 org.gnome.SessionManager
 
 gdbus call --session \
       --dest org.gnome.SessionManager \
@@ -16,6 +17,6 @@ mkdir -p _build/tests/registryd
 
 cd tests/registryd
 
-pytest --junit-xml=../../_build/tests/registryd/registryd-pytest.junit.xml
+python3 -m pytest --junit-xml=../../_build/tests/registryd/registryd-pytest.junit.xml
 
 kill %1  # Kill python dbusmock

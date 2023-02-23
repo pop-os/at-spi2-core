@@ -23,6 +23,21 @@
  */
 
 #include "atspi-private.h"
+
+/**
+ * AtspiText:
+ *
+ * An interface implemented by objects which place textual
+ * information onscreen.
+ *
+ * The text interface should be implemented by objects which place textual
+ * information onscreen as character strings or glyphs. The text interface
+ * allows access to textual content including display attributes and
+ * semantic hints associated with runs of text, and to bounding boc
+ * information for glyphs and substrings. It also alows portions of text to
+ * be selected, if the objects StateSet includes STATE_SELECTABLE_TEXT.
+ */
+
 /**
  * atspi_range_copy:
  * @src: a pointer to the source #AtspiRange object that will be copied.
@@ -61,8 +76,7 @@ atspi_text_range_free (AtspiTextRange *range)
   g_free (range);
 }
 
-G_DEFINE_BOXED_TYPE (AtspiTextRange, atspi_text_range, atspi_text_range_copy,
-                     atspi_text_range_free)
+G_DEFINE_BOXED_TYPE (AtspiTextRange, atspi_text_range, atspi_text_range_copy, atspi_text_range_free)
 
 /**
  * atspi_text_get_character_count:
@@ -100,9 +114,9 @@ atspi_text_get_character_count (AtspiText *obj, GError **error)
  **/
 gchar *
 atspi_text_get_text (AtspiText *obj,
-                        gint start_offset,
-                        gint end_offset,
-                        GError **error)
+                     gint start_offset,
+                     gint end_offset,
+                     GError **error)
 {
   gchar *retval = NULL;
   dbus_int32_t d_start_offset = start_offset, d_end_offset = end_offset;
@@ -159,10 +173,10 @@ atspi_text_get_caret_offset (AtspiText *obj, GError **error)
  **/
 GHashTable *
 atspi_text_get_attributes (AtspiText *obj,
-			   gint offset,
-			   gint *start_offset,
-			   gint *end_offset,
-			   GError **error)
+                           gint offset,
+                           gint *start_offset,
+                           gint *end_offset,
+                           GError **error)
 {
   return atspi_text_get_text_attributes (obj, offset, start_offset, end_offset, error);
 }
@@ -187,10 +201,10 @@ atspi_text_get_attributes (AtspiText *obj,
  **/
 GHashTable *
 atspi_text_get_text_attributes (AtspiText *obj,
-			   gint offset,
-			   gint *start_offset,
-			   gint *end_offset,
-			   GError **error)
+                                gint offset,
+                                gint *start_offset,
+                                gint *end_offset,
+                                GError **error)
 {
   dbus_int32_t d_offset = offset;
   dbus_int32_t d_start_offset, d_end_offset;
@@ -199,7 +213,7 @@ atspi_text_get_text_attributes (AtspiText *obj,
   GHashTable *ret = NULL;
 
   if (obj == NULL)
-   return NULL;
+    return NULL;
 
   reply = _atspi_dbus_call_partial (obj, atspi_interface_text, "GetAttributes", error, "i", d_offset);
   _ATSPI_DBUS_CHECK_SIG (reply, "a{ss}ii", error, ret)
@@ -227,7 +241,7 @@ atspi_text_get_text_attributes (AtspiText *obj,
  *        search is based.
  * @include_defaults: a #bool that, when set as #FALSE, indicates the call
  * should only return those attributes which are explicitly set on the current
- * attribute run, omitting any attributes which are inherited from the 
+ * attribute run, omitting any attributes which are inherited from the
  * default values.
  * @start_offset: (out): a #gint pointer indicating the start of the desired text
  *                range.
@@ -242,11 +256,11 @@ atspi_text_get_text_attributes (AtspiText *obj,
  **/
 GHashTable *
 atspi_text_get_attribute_run (AtspiText *obj,
-			      gint offset,
-			      gboolean include_defaults,
-			      gint *start_offset,
-			      gint *end_offset,
-			      GError **error)
+                              gint offset,
+                              gboolean include_defaults,
+                              gint *start_offset,
+                              gint *end_offset,
+                              GError **error)
 {
   dbus_int32_t d_offset = offset;
   dbus_int32_t d_start_offset, d_end_offset;
@@ -255,7 +269,7 @@ atspi_text_get_attribute_run (AtspiText *obj,
   GHashTable *ret = NULL;
 
   if (obj == NULL)
-   return NULL;
+    return NULL;
 
   reply = _atspi_dbus_call_partial (obj, atspi_interface_text,
                                     "GetAttributeRun", error, "ib", d_offset,
@@ -323,7 +337,7 @@ atspi_text_get_text_attribute_value (AtspiText *obj,
 
   g_return_val_if_fail (obj != NULL, NULL);
 
-  _atspi_dbus_call (obj, atspi_interface_text, "GetAttributeValue", error, "is=>s", d_i, (const gchar *)attribute_value, &retval);
+  _atspi_dbus_call (obj, atspi_interface_text, "GetAttributeValue", error, "is=>s", d_i, (const gchar *) attribute_value, &retval);
 
   if (!retval)
     retval = g_strdup ("");
@@ -336,7 +350,7 @@ atspi_text_get_text_attribute_value (AtspiText *obj,
  * @obj: a pointer to the #AtspiText object to query.
  *
  * Gets the default attributes applied to an #AtspiText
- * object. The text attributes correspond to CSS attributes 
+ * object. The text attributes correspond to CSS attributes
  * where possible. The combination of this attribute set and
  * the attributes reported by #atspi_text_get_attributes
  * describes the entire set of text attributes over a range.
@@ -350,12 +364,11 @@ atspi_text_get_default_attributes (AtspiText *obj, GError **error)
 {
   DBusMessage *reply;
 
-    g_return_val_if_fail (obj != NULL, NULL);
+  g_return_val_if_fail (obj != NULL, NULL);
 
   reply = _atspi_dbus_call_partial (obj, atspi_interface_text, "GetDefaultAttributes", error, "");
   return _atspi_dbus_return_hash_from_message (reply);
 }
-
 
 /**
  * atspi_text_set_caret_offset:
@@ -368,8 +381,8 @@ atspi_text_get_default_attributes (AtspiText *obj, GError **error)
  **/
 gboolean
 atspi_text_set_caret_offset (AtspiText *obj,
-                               gint new_offset,
-                               GError **error)
+                             gint new_offset,
+                             GError **error)
 {
   dbus_int32_t d_new_offset = new_offset;
   dbus_bool_t retval = FALSE;
@@ -398,9 +411,9 @@ atspi_text_set_caret_offset (AtspiText *obj,
  **/
 AtspiTextRange *
 atspi_text_get_text_before_offset (AtspiText *obj,
-                                    gint offset,
-                                    AtspiTextBoundaryType type,
-                                    GError **error)
+                                   gint offset,
+                                   AtspiTextBoundaryType type,
+                                   GError **error)
 {
   dbus_int32_t d_offset = offset;
   dbus_uint32_t d_type = type;
@@ -512,9 +525,9 @@ atspi_text_get_string_at_offset (AtspiText *obj,
  **/
 AtspiTextRange *
 atspi_text_get_text_at_offset (AtspiText *obj,
-                                    gint offset,
-                                    AtspiTextBoundaryType type,
-                                    GError **error)
+                               gint offset,
+                               AtspiTextBoundaryType type,
+                               GError **error)
 {
   dbus_int32_t d_offset = offset;
   dbus_uint32_t d_type = type;
@@ -555,9 +568,9 @@ atspi_text_get_text_at_offset (AtspiText *obj,
  **/
 AtspiTextRange *
 atspi_text_get_text_after_offset (AtspiText *obj,
-                                    gint offset,
-                                    AtspiTextBoundaryType type,
-                                    GError **error)
+                                  gint offset,
+                                  AtspiTextBoundaryType type,
+                                  GError **error)
 {
   dbus_int32_t d_offset = offset;
   dbus_uint32_t d_type = type;
@@ -595,8 +608,8 @@ atspi_text_get_text_after_offset (AtspiText *obj,
  **/
 guint
 atspi_text_get_character_at_offset (AtspiText *obj,
-                                     gint offset,
-                                     GError **error)
+                                    gint offset,
+                                    GError **error)
 {
   dbus_int32_t d_offset = offset;
   dbus_int32_t retval = -1;
@@ -626,9 +639,9 @@ atspi_text_get_character_at_offset (AtspiText *obj,
  **/
 AtspiRect *
 atspi_text_get_character_extents (AtspiText *obj,
-                                    gint offset,
-				    AtspiCoordType type,
-				    GError **error)
+                                  gint offset,
+                                  AtspiCoordType type,
+                                  GError **error)
 {
   dbus_int32_t d_offset = offset;
   dbus_uint32_t d_type = type;
@@ -665,10 +678,10 @@ atspi_text_get_character_extents (AtspiText *obj,
  **/
 gint
 atspi_text_get_offset_at_point (AtspiText *obj,
-                                 gint x,
-                                 gint y,
-				 AtspiCoordType type,
-				 GError **error)
+                                gint x,
+                                gint y,
+                                AtspiCoordType type,
+                                GError **error)
 {
   dbus_int32_t d_x = x, d_y = y;
   dbus_uint32_t d_type = type;
@@ -701,10 +714,10 @@ atspi_text_get_offset_at_point (AtspiText *obj,
  **/
 AtspiRect *
 atspi_text_get_range_extents (AtspiText *obj,
-				gint start_offset,
-				gint end_offset,
-				AtspiCoordType type,
-				GError **error)
+                              gint start_offset,
+                              gint end_offset,
+                              AtspiCoordType type,
+                              GError **error)
 {
   dbus_int32_t d_start_offset = start_offset, d_end_offset = end_offset;
   dbus_uint32_t d_type = type;
@@ -747,14 +760,14 @@ atspi_text_get_range_extents (AtspiText *obj,
  **/
 GArray *
 atspi_text_get_bounded_ranges (AtspiText *obj,
-				 gint x,
-				 gint y,
-				 gint width,
-				 gint height,
-				 AtspiCoordType type,
-				 AtspiTextClipType clipTypeX,
-				 AtspiTextClipType clipTypeY,
-				 GError **error)
+                               gint x,
+                               gint y,
+                               gint width,
+                               gint height,
+                               AtspiCoordType type,
+                               AtspiTextClipType clipTypeX,
+                               AtspiTextClipType clipTypeY,
+                               GError **error)
 {
   dbus_int32_t d_x = x, d_y = y, d_width = width, d_height = height;
   dbus_uint32_t d_type = type;
@@ -801,8 +814,8 @@ atspi_text_get_n_selections (AtspiText *obj, GError **error)
  **/
 AtspiRange *
 atspi_text_get_selection (AtspiText *obj,
-			     gint selection_num,
-			     GError **error)
+                          gint selection_num,
+                          GError **error)
 {
   dbus_int32_t d_selection_num = selection_num;
   dbus_int32_t d_start_offset, d_end_offset;
@@ -832,8 +845,9 @@ atspi_text_get_selection (AtspiText *obj,
  **/
 gboolean
 atspi_text_add_selection (AtspiText *obj,
-			     gint start_offset, gint end_offset,
-			     GError **error)
+                          gint start_offset,
+                          gint end_offset,
+                          GError **error)
 {
   dbus_int32_t d_start_offset = start_offset, d_end_offset = end_offset;
   dbus_bool_t retval = FALSE;
@@ -854,8 +868,8 @@ atspi_text_add_selection (AtspiText *obj,
  **/
 gboolean
 atspi_text_remove_selection (AtspiText *obj,
-				gint selection_num,
-				GError **error)
+                             gint selection_num,
+                             GError **error)
 {
   dbus_int32_t d_selection_num = selection_num;
   dbus_bool_t retval = FALSE;
@@ -881,10 +895,10 @@ atspi_text_remove_selection (AtspiText *obj,
  **/
 gboolean
 atspi_text_set_selection (AtspiText *obj,
-			     gint selection_num,
-			     gint start_offset,
-			     gint end_offset,
-			     GError **error)
+                          gint selection_num,
+                          gint start_offset,
+                          gint end_offset,
+                          GError **error)
 {
   dbus_int32_t d_selection_num = selection_num, d_start_offset = start_offset, d_end_offset = end_offset;
   dbus_bool_t retval = FALSE;
@@ -911,10 +925,10 @@ atspi_text_set_selection (AtspiText *obj,
  **/
 gboolean
 atspi_text_scroll_substring_to (AtspiText *obj,
-                               gint start_offset,
-                               gint end_offset,
-                               AtspiScrollType type,
-                               GError **error)
+                                gint start_offset,
+                                gint end_offset,
+                                AtspiScrollType type,
+                                GError **error)
 {
   dbus_bool_t retval = FALSE;
 
@@ -944,12 +958,12 @@ atspi_text_scroll_substring_to (AtspiText *obj,
  **/
 gboolean
 atspi_text_scroll_substring_to_point (AtspiText *obj,
-                                     gint start_offset,
-                                     gint end_offset,
-                                     AtspiCoordType coords,
-                                     gint x,
-                                     gint y,
-                                     GError **error)
+                                      gint start_offset,
+                                      gint end_offset,
+                                      AtspiCoordType coords,
+                                      gint x,
+                                      gint y,
+                                      GError **error)
 {
   dbus_bool_t retval = FALSE;
 
@@ -972,16 +986,15 @@ atspi_text_get_type (void)
 {
   static GType type = 0;
 
-  if (!type) {
-    static const GTypeInfo tinfo =
+  if (!type)
     {
-      sizeof (AtspiText),
-      (GBaseInitFunc) atspi_text_base_init,
-      (GBaseFinalizeFunc) NULL,
-    };
+      static const GTypeInfo tinfo = {
+        sizeof (AtspiText),
+        (GBaseInitFunc) atspi_text_base_init,
+        (GBaseFinalizeFunc) NULL,
+      };
 
-    type = g_type_register_static (G_TYPE_INTERFACE, "AtspiText", &tinfo, 0);
-
-  }
+      type = g_type_register_static (G_TYPE_INTERFACE, "AtspiText", &tinfo, 0);
+    }
   return type;
 }

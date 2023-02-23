@@ -23,6 +23,16 @@
 
 #include "atspi-private.h"
 
+/**
+ * AtspiApplication:
+ *
+ * An interface identifying the root object associated
+ * with a running application.
+ *
+ * An interface identifying an object which is the root of the
+ * hierarchy associated with a running application.
+ */
+
 G_DEFINE_TYPE (AtspiApplication, atspi_application, G_TYPE_OBJECT)
 
 static void
@@ -42,26 +52,26 @@ atspi_application_dispose (GObject *object)
   AtspiApplication *application = ATSPI_APPLICATION (object);
 
   if (application->bus)
-  {
-    if (application->bus != _atspi_bus ())
-      dbus_connection_close (application->bus);
-    dbus_connection_unref (application->bus);
-    application->bus = NULL;
-  }
+    {
+      if (application->bus != _atspi_bus ())
+        dbus_connection_close (application->bus);
+      dbus_connection_unref (application->bus);
+      application->bus = NULL;
+    }
 
   if (application->hash)
-  {
-    g_hash_table_foreach (application->hash, dispose_accessible, NULL);
-    g_hash_table_unref (application->hash);
-    application->hash = NULL;
-  }
+    {
+      g_hash_table_foreach (application->hash, dispose_accessible, NULL);
+      g_hash_table_unref (application->hash);
+      application->hash = NULL;
+    }
 
   if (application->root)
-  {
-    g_clear_object (&application->root->parent.app);
-    g_object_unref (application->root);
-    application->root = NULL;
-  }
+    {
+      g_clear_object (&application->root->parent.app);
+      g_object_unref (application->root);
+      application->root = NULL;
+    }
 
   G_OBJECT_CLASS (atspi_application_parent_class)->dispose (object);
 }
@@ -92,7 +102,7 @@ AtspiApplication *
 _atspi_application_new (const gchar *bus_name)
 {
   AtspiApplication *application;
-  
+
   application = g_object_new (ATSPI_TYPE_APPLICATION, NULL);
   application->bus_name = g_strdup (bus_name);
   application->root = NULL;
