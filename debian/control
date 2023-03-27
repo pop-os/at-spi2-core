@@ -9,7 +9,7 @@ Build-Depends: debhelper-compat (= 13),
                libglib2.0-dev (>= 2.62),
                libxml2-dev,
                libx11-dev, libxtst-dev,
-               meson (>= 0.56.2),
+               meson (>= 0.63.0),
                pkg-config,
                libgirepository1.0-dev,
                gtk-doc-tools, gi-docgen, python3-sphinx,
@@ -19,6 +19,7 @@ Build-Depends: debhelper-compat (= 13),
                at-spi2-core <!nocheck>,
 Build-Depends-Indep: docbook-xml <!nodoc>,
                      libglib2.0-doc <!nodoc>,
+                     libglib2.0-dev-bin <!nodoc>
 Rules-Requires-Root: no
 Standards-Version: 4.6.1
 Vcs-Browser: https://salsa.debian.org/a11y-team/at-spi2-core
