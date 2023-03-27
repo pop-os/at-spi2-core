@@ -1,12 +1,12 @@
 project('at-spi2-core', 'c',
-        version: '2.47.1',
+        version: '2.48.0',
         license: 'LGPLv2.1+',
         default_options: [
           'buildtype=debugoptimized',
           'warning_level=1',
           'c_std=c99',
         ],
-        meson_version: '>= 0.64.0')
+        meson_version: '>= 0.63.0')
 
 add_project_arguments([ '-D_POSIX_C_SOURCE=200809L', '-D_DEFAULT_SOURCE' ], language: 'c')
 
@@ -127,7 +127,10 @@ gmodule_req_version = '>= 2.0.0'
 gio_req_version = '>= 2.28.0'
 libxml_req_version = '>= 2.9.1'
 
-libdbus_dep = dependency('dbus-1', version: libdbus_req_version)
+if not get_option('atk_only')
+  libdbus_dep = dependency('dbus-1', version: libdbus_req_version)
+endif
+
 glib_dep = dependency('glib-2.0', version: glib_req_version)
 gobject_dep = dependency('gobject-2.0', version: gobject_req_version)
 gio_dep = dependency('gio-2.0', version: gio_req_version)
@@ -166,10 +169,12 @@ dbus_alignments = [
   'dbus_int64_t',
 ]
 
-foreach a: dbus_alignments
-  at_spi_conf.set('ALIGNOF_' + a.underscorify().to_upper(),
-                  cc.alignment(a, prefix: '#include <dbus/dbus.h>', dependencies: libdbus_dep))
-endforeach
+if not get_option('atk_only')
+  foreach a: dbus_alignments
+    at_spi_conf.set('ALIGNOF_' + a.underscorify().to_upper(),
+                    cc.alignment(a, prefix: '#include <dbus/dbus.h>', dependencies: libdbus_dep))
+  endforeach
+endif
 
 at_spi_conf.set('ALIGNOF_DBIND_POINTER', cc.alignment('dbind_pointer', prefix: 'typedef void *dbind_pointer;'))
 at_spi_conf.set('ALIGNOF_DBIND_STRUCT', cc.alignment('dbind_struct', prefix: 'typedef struct { char s1; } dbind_struct;'))
@@ -191,18 +196,21 @@ else
   p2p_cflags = []
 endif
 
-install_data('at-spi2-atk.desktop',
-             install_dir: join_paths(get_option('libdir'), 'gnome-settings-daemon-3.0', 'gtk-modules'))
-
-subdir('xml')
-subdir('dbind')
-subdir('atspi')
-subdir('bus')
-subdir('registryd')
 subdir('atk')
-subdir('droute')
-subdir('atk-adaptor')
-subdir('tests')
+
+if not get_option('atk_only')
+  install_data('at-spi2-atk.desktop',
+               install_dir: join_paths(get_option('libdir'), 'gnome-settings-daemon-3.0', 'gtk-modules'))
+
+  subdir('xml')
+  subdir('dbind')
+  subdir('atspi')
+  subdir('bus')
+  subdir('registryd')
+  subdir('droute')
+  subdir('atk-adaptor')
+  subdir('tests')
+endif
 
 if get_option('docs')
   subdir('doc')
