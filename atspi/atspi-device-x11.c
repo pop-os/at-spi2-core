@@ -330,6 +330,7 @@ do_event_dispatch (gpointer user_data)
   XComposeStatus status;
   guint modifiers;
 
+  g_object_ref (device);
   while (XPending (display))
     {
       XNextEvent (display, &xevent);
@@ -392,6 +393,8 @@ do_event_dispatch (gpointer user_data)
             continue;
         }
     }
+
+  g_object_unref (device);
   return TRUE;
 }
 
@@ -617,17 +620,15 @@ atspi_device_x11_finalize (GObject *object)
 {
   AtspiDeviceX11 *device = ATSPI_DEVICE_X11 (object);
   AtspiDeviceX11Private *priv = atspi_device_x11_get_instance_private (device);
-  GSList *l;
 
-  for (l = priv->key_grabs; l; l = l->next)
+  while (priv->key_grabs)
     {
-      AtspiX11KeyGrab *grab = l->data;
+      AtspiX11KeyGrab *grab = priv->key_grabs->data;
       disable_key_grab (device, grab);
       g_boxed_free (ATSPI_TYPE_KEY_DEFINITION, grab->kd);
       g_free (grab);
+      priv->key_grabs = g_slist_remove (priv->key_grabs, grab);
     }
-  g_slist_free (priv->key_grabs);
-  priv->key_grabs = NULL;
 
   g_slist_free_full (priv->modifiers, g_free);
   priv->modifiers = NULL;
