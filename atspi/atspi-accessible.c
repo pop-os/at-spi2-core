@@ -490,9 +490,12 @@ atspi_accessible_get_child_at_index (AtspiAccessible *obj,
       if (!obj->children)
         return NULL; /* assume disposed */
 
-      child = g_ptr_array_index (obj->children, child_index);
-      if (child)
-        return g_object_ref (child);
+      if (child_index < obj->children->len)
+        {
+          child = g_ptr_array_index (obj->children, child_index);
+          if (child)
+            return g_object_ref (child);
+        }
     }
 
   reply = _atspi_dbus_call_partial (obj, atspi_interface_accessible,
@@ -1731,6 +1734,21 @@ atspi_accessible_set_cache_mask (AtspiAccessible *accessible, AtspiCache mask)
   enable_caching = TRUE;
 }
 
+static void
+atspi_accessible_clear_cache_internal (AtspiAccessible *obj, guint iteration_stamp)
+{
+  gint i;
+
+  if (obj && obj->priv->iteration_stamp != iteration_stamp)
+    {
+      obj->priv->iteration_stamp = iteration_stamp;
+      obj->cached_properties = ATSPI_CACHE_NONE;
+      if (obj->children)
+        for (i = 0; i < obj->children->len; i++)
+          atspi_accessible_clear_cache_internal (g_ptr_array_index (obj->children, i), iteration_stamp);
+    }
+}
+
 /**
  * atspi_accessible_clear_cache:
  * @obj: The #AtspiAccessible whose cache to clear.
@@ -1741,15 +1759,9 @@ atspi_accessible_set_cache_mask (AtspiAccessible *accessible, AtspiCache mask)
 void
 atspi_accessible_clear_cache (AtspiAccessible *obj)
 {
-  gint i;
+  static guint iteration_stamp = 0;
 
-  if (obj)
-    {
-      obj->cached_properties = ATSPI_CACHE_NONE;
-      if (obj->children)
-        for (i = 0; i < obj->children->len; i++)
-          atspi_accessible_clear_cache (g_ptr_array_index (obj->children, i));
-    }
+  atspi_accessible_clear_cache_internal (obj, ++iteration_stamp);
 }
 
 /**
