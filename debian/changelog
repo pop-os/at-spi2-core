@@ -1,3 +1,10 @@
+at-spi2-core (2.49.90-2) unstable; urgency=medium
+
+  * d/rules, d/meson/no-exe-wrapper.ini: Work around FTBFS on mips64el
+    Mitigates: #1041499
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 07 Aug 2023 15:01:51 -0400
+
 at-spi2-core (2.49.90-1) unstable; urgency=medium
 
   * Team upload
