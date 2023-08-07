@@ -1,3 +1,10 @@
+at-spi2-core (2.49.90-1) UNRELEASED; urgency=medium
+
+  * Team upload
+  * New upstream release
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 07 Aug 2023 09:32:02 -0400
+
 at-spi2-core (2.48.3-1) unstable; urgency=medium
 
   * New upstream release.
