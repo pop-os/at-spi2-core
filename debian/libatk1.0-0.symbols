@@ -89,6 +89,7 @@ libatk-1.0.so.0 libatk1.0-0 #MINVER#
  atk_implementor_ref_accessible@Base 1.12.4
  atk_key_event_type_get_type@Base 1.12.4
  atk_layer_get_type@Base 1.12.4
+ atk_live_get_type@Base 2.49.90
  atk_misc_get_instance@Base 1.18.0
  atk_misc_get_type@Base 1.18.0
  atk_misc_instance@Base 1.18.0
