@@ -1,9 +1,12 @@
-at-spi2-core (2.49.90-1) UNRELEASED; urgency=medium
+at-spi2-core (2.49.90-1) unstable; urgency=medium
 
   * Team upload
   * New upstream release
+  * Update symbols files
+  * Update standards version to 4.6.2, no changes needed
+  * Drop CI workaround patch: hopefully no longer needed after upstream changes
 
- -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 07 Aug 2023 09:32:02 -0400
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 07 Aug 2023 09:53:15 -0400
 
 at-spi2-core (2.48.3-1) unstable; urgency=medium
 
