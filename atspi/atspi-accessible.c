@@ -342,15 +342,20 @@ gchar *
 atspi_accessible_get_name (AtspiAccessible *obj, GError **error)
 {
   g_return_val_if_fail (obj != NULL, g_strdup (""));
+  gchar *name = NULL;
 
   if (!_atspi_accessible_test_cache (obj, ATSPI_CACHE_NAME))
     {
       g_free (obj->name);
       obj->name = NULL;
       if (!_atspi_dbus_get_property (obj, atspi_interface_accessible, "Name", error,
-                                     "s", &obj->name))
+                                     "s", &name))
         return g_strdup ("");
       _atspi_accessible_add_cache (obj, ATSPI_CACHE_NAME);
+      if (!obj->name)
+        obj->name = name;
+      else
+        free (name);
     }
   return g_strdup (obj->name);
 }
@@ -368,6 +373,7 @@ gchar *
 atspi_accessible_get_description (AtspiAccessible *obj, GError **error)
 {
   g_return_val_if_fail (obj != NULL, g_strdup (""));
+  gchar *description = NULL;
 
   if (!_atspi_accessible_test_cache (obj, ATSPI_CACHE_DESCRIPTION))
     {
@@ -378,6 +384,10 @@ atspi_accessible_get_description (AtspiAccessible *obj, GError **error)
                                      &obj->description))
         return g_strdup ("");
       _atspi_accessible_add_cache (obj, ATSPI_CACHE_DESCRIPTION);
+      if (!obj->description)
+        obj->description = description;
+      else
+        free (description);
     }
   return g_strdup (obj->description);
 }
@@ -509,6 +519,8 @@ atspi_accessible_get_child_at_index (AtspiAccessible *obj,
     {
       if (child_index >= obj->children->len)
         g_ptr_array_set_size (obj->children, child_index + 1);
+      else if (g_ptr_array_index (obj->children, child_index))
+        g_object_unref (g_ptr_array_index (obj->children, child_index));
       g_ptr_array_index (obj->children, child_index) = g_object_ref (child);
     }
   return child;
@@ -672,8 +684,13 @@ gchar *
 atspi_accessible_get_localized_role_name (AtspiAccessible *obj, GError **error)
 {
   char *retval = NULL;
+  AtspiRole role;
 
   g_return_val_if_fail (obj != NULL, NULL);
+
+  role = atspi_accessible_get_role (obj, error);
+  if (role >= 0 && role < ATSPI_ROLE_COUNT && role != ATSPI_ROLE_EXTENDED)
+    return atspi_role_get_localized_name (role);
 
   _atspi_dbus_call (obj, atspi_interface_accessible, "GetLocalizedRoleName", error, "=>s", &retval);
 
@@ -1702,7 +1719,6 @@ _atspi_accessible_new (AtspiApplication *app, const gchar *path)
   AtspiAccessible *accessible;
 
   accessible = g_object_new (ATSPI_TYPE_ACCESSIBLE, NULL);
-  g_return_val_if_fail (accessible != NULL, NULL);
 
   accessible->parent.app = g_object_ref (app);
   accessible->parent.path = g_strdup (path);
@@ -1742,11 +1758,24 @@ atspi_accessible_clear_cache_internal (AtspiAccessible *obj, guint iteration_sta
   if (obj && obj->priv->iteration_stamp != iteration_stamp)
     {
       obj->priv->iteration_stamp = iteration_stamp;
-      obj->cached_properties = ATSPI_CACHE_NONE;
+      atspi_accessible_clear_cache_single (obj);
       if (obj->children)
         for (i = 0; i < obj->children->len; i++)
           atspi_accessible_clear_cache_internal (g_ptr_array_index (obj->children, i), iteration_stamp);
     }
+}
+
+/**
+ * atspi_accessible_clear_cache_single:
+ * @obj: The #AtspiAccessible whose cache to clear.
+ *
+ * Clears the cached information only for the given accessible.
+ */
+void
+atspi_accessible_clear_cache_single (AtspiAccessible *obj)
+{
+  if (obj)
+    obj->cached_properties = ATSPI_CACHE_NONE;
 }
 
 /**

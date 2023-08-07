@@ -34,6 +34,7 @@
 #endif
 #include "atspi-gmain.h"
 #include <ctype.h>
+#include <locale.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -42,6 +43,143 @@
  *
  * Miscellaneous methods for using AT-SPI services.
  */
+
+/* These are listed here for extraction by intltool */
+#if 0
+  N_("invalid")
+  N_("accelerator label")
+  N_("alert")
+  N_("animation")
+  N_("arrow")
+  N_("calendar")
+  N_("canvas")
+  N_("check box")
+  N_("check menu item")
+  N_("color chooser")
+  N_("column header")
+  N_("combo box")
+  N_("dateeditor")
+  N_("desktop icon")
+  N_("desktop frame")
+  N_("dial")
+  N_("dialog")
+  N_("directory pane")
+  N_("drawing area")
+  N_("file chooser")
+  N_("filler")
+  /* I know it looks wrong but that is what Java returns */
+  N_("fontchooser")
+  N_("frame")
+  N_("glass pane")
+  N_("html container")
+  N_("icon")
+  N_("image")
+  N_("internal frame")
+  N_("label")
+  N_("layered pane")
+  N_("list")
+  N_("list item")
+  N_("menu")
+  N_("menu bar")
+  N_("menu button")
+  N_("menu item")
+  N_("option pane")
+  N_("page tab")
+  N_("page tab list")
+  N_("panel")
+  N_("password text")
+  N_("popup menu")
+  N_("progress bar")
+  N_("push button")
+  N_("radio button")
+  N_("radio menu item")
+  N_("root pane")
+  N_("row header")
+  N_("scroll bar")
+  N_("scroll pane")
+  N_("separator")
+  N_("slider")
+  N_("split pane")
+  N_("spin button")
+  N_("statusbar")
+  N_("table")
+  N_("table cell")
+  N_("table column header")
+  N_("table row header")
+  N_("tear off menu item")
+  N_("terminal")
+  N_("text")
+  N_("toggle button")
+  N_("tool bar")
+  N_("tool tip")
+  N_("tree")
+  N_("tree table")
+  N_("unknown")
+  N_("viewport")
+  N_("window")
+  N_("header")
+  N_("footer")
+  N_("paragraph")
+  N_("ruler")
+  N_("application")
+  N_("autocomplete")
+  N_("edit bar")
+  N_("embedded component")
+  N_("entry")
+  N_("chart")
+  N_("caption")
+  N_("document frame")
+  N_("heading")
+  N_("page")
+  N_("section")
+  N_("redundant object")
+  N_("form")
+  N_("link")
+  N_("input method window")
+  N_("table row")
+  N_("tree item")
+  N_("document spreadsheet")
+  N_("document presentation")
+  N_("document text")
+  N_("document web")
+  N_("document email")
+  N_("comment")
+  N_("list box")
+  N_("grouping")
+  N_("image map")
+  N_("notification")
+  N_("info bar")
+  N_("level bar")
+  N_("title bar")
+  N_("block quote")
+  N_("audio")
+  N_("video")
+  N_("definition")
+  N_("article")
+  N_("landmark")
+  N_("log")
+  N_("marquee")
+  N_("math")
+  N_("rating")
+  N_("timer")
+  N_("description list")
+  N_("description term")
+  N_("description value")
+#endif /* 0 */
+
+static void
+_gettext_initialization (void)
+{
+  static gboolean gettext_initialized = FALSE;
+
+  if (!gettext_initialized)
+    {
+      gettext_initialized = TRUE;
+      setlocale (LC_ALL, "");
+      bindtextdomain (GETTEXT_PACKAGE, ATSPI_LOCALEDIR);
+      bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+    }
+}
 
 static void handle_get_items (DBusPendingCall *pending, void *user_data);
 
@@ -98,6 +236,27 @@ static const char *interfaces[] = {
   ATSPI_DBUS_INTERFACE_VALUE,
   NULL
 };
+
+/* Holds a dbus object reference as a pair of app_name/path.  These have the lifetime
+ * of the DBusMessage that is being processed.
+ */
+typedef struct
+{
+  const char *app_name;
+  const char *path;
+} ReferenceFromMessage;
+
+static void
+get_reference_from_iter (DBusMessageIter *iter, ReferenceFromMessage *ref)
+{
+  DBusMessageIter iter_struct;
+
+  dbus_message_iter_recurse (iter, &iter_struct);
+  dbus_message_iter_get_basic (&iter_struct, &ref->app_name);
+  dbus_message_iter_next (&iter_struct);
+  dbus_message_iter_get_basic (&iter_struct, &ref->path);
+  dbus_message_iter_next (iter);
+}
 
 gint
 _atspi_get_iface_num (const char *iface)
@@ -215,7 +374,8 @@ handle_get_bus_address (DBusPendingCall *pending, void *user_data)
             }
           else
             {
-              if (!strcmp (error.name, DBUS_ERROR_FILE_NOT_FOUND))
+              if (!strcmp (error.name, DBUS_ERROR_FILE_NOT_FOUND) &&
+                  !g_getenv ("ATSPI_IN_TESTS"))
                 g_warning ("AT-SPI: Unable to open bus connection: %s", error.message);
               dbus_error_free (&error);
             }
@@ -249,18 +409,14 @@ get_application (const char *bus_name)
   if (!app_hash)
     {
       app_hash = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, (GDestroyNotify) g_object_unref);
-      if (!app_hash)
-        return NULL;
     }
   app = g_hash_table_lookup (app_hash, bus_name);
   if (app)
     return app;
   bus_name_dup = g_strdup (bus_name);
-  if (!bus_name_dup)
-    return NULL;
+
   // TODO: change below to something that will send state-change:defunct notification if necessary */
   app = _atspi_application_new (bus_name);
-  app->hash = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_object_unref);
   app->bus = dbus_connection_ref (_atspi_bus ());
   gettimeofday (&app->time_added, NULL);
   app->cache = ATSPI_CACHE_UNDEFINED;
@@ -280,17 +436,17 @@ get_application (const char *bus_name)
 }
 
 static AtspiAccessible *
-ref_accessible (const char *app_name, const char *path)
+ref_accessible (ReferenceFromMessage *ref)
 {
   AtspiApplication *app;
   AtspiAccessible *a;
 
-  if (!strcmp (path, ATSPI_DBUS_PATH_NULL))
+  if (!strcmp (ref->path, ATSPI_DBUS_PATH_NULL))
     return NULL;
 
-  app = get_application (app_name);
+  app = get_application (ref->app_name);
 
-  if (!strcmp (path, "/org/a11y/atspi/accessible/root"))
+  if (!strcmp (ref->path, "/org/a11y/atspi/accessible/root"))
     {
       if (!app->root)
         {
@@ -301,14 +457,12 @@ ref_accessible (const char *app_name, const char *path)
       return g_object_ref (app->root);
     }
 
-  a = g_hash_table_lookup (app->hash, path);
+  a = g_hash_table_lookup (app->hash, ref->path);
   if (a)
     {
       return g_object_ref (a);
     }
-  a = _atspi_accessible_new (app, path);
-  if (!a)
-    return NULL;
+  a = _atspi_accessible_new (app, ref->path);
   g_hash_table_insert (app->hash, g_strdup (a->parent.path), g_object_ref (a));
   return a;
 }
@@ -349,10 +503,9 @@ typedef struct
 static DBusHandlerResult
 handle_remove_accessible (DBusConnection *bus, DBusMessage *message)
 {
-  const char *sender = dbus_message_get_sender (message);
+  ReferenceFromMessage ref;
   AtspiApplication *app;
-  const char *path;
-  DBusMessageIter iter, iter_struct;
+  DBusMessageIter iter;
   const char *signature = dbus_message_get_signature (message);
   AtspiAccessible *a;
 
@@ -363,12 +516,10 @@ handle_remove_accessible (DBusConnection *bus, DBusMessage *message)
     }
 
   dbus_message_iter_init (message, &iter);
-  dbus_message_iter_recurse (&iter, &iter_struct);
-  dbus_message_iter_get_basic (&iter_struct, &sender);
-  dbus_message_iter_next (&iter_struct);
-  dbus_message_iter_get_basic (&iter_struct, &path);
-  app = get_application (sender);
-  a = ref_accessible (sender, path);
+
+  get_reference_from_iter (&iter, &ref);
+  app = get_application (ref.app_name);
+  a = ref_accessible (&ref);
   if (!a)
     return DBUS_HANDLER_RESULT_HANDLED;
   g_object_run_dispose (G_OBJECT (a));
@@ -415,23 +566,15 @@ handle_name_owner_changed (DBusConnection *bus, DBusMessage *message)
 static gboolean
 add_app_to_desktop (AtspiAccessible *a, const char *bus_name)
 {
-  AtspiAccessible *obj = ref_accessible (bus_name, atspi_path_root);
+  ReferenceFromMessage ref = {
+    .app_name = bus_name,
+    .path = atspi_path_root,
+  };
+  AtspiAccessible *obj = ref_accessible (&ref);
   /* The app will be added to the desktop as a side-effect of calling
    * ref_accessible */
   g_object_unref (obj);
   return (obj != NULL);
-}
-
-static void
-get_reference_from_iter (DBusMessageIter *iter, const char **app_name, const char **path)
-{
-  DBusMessageIter iter_struct;
-
-  dbus_message_iter_recurse (iter, &iter_struct);
-  dbus_message_iter_get_basic (&iter_struct, app_name);
-  dbus_message_iter_next (&iter_struct);
-  dbus_message_iter_get_basic (&iter_struct, path);
-  dbus_message_iter_next (iter);
 }
 
 static void
@@ -602,10 +745,6 @@ ref_accessible_desktop (AtspiApplication *app)
       return desktop;
     }
   desktop = _atspi_accessible_new (app, atspi_path_root);
-  if (!desktop)
-    {
-      return NULL;
-    }
   g_hash_table_insert (app->hash, g_strdup (desktop->parent.path),
                        g_object_ref (desktop));
   app->root = g_object_ref (desktop);
@@ -633,9 +772,10 @@ ref_accessible_desktop (AtspiApplication *app)
   dbus_message_iter_recurse (&iter, &iter_array);
   while (dbus_message_iter_get_arg_type (&iter_array) != DBUS_TYPE_INVALID)
     {
-      const char *app_name, *path;
-      get_reference_from_iter (&iter_array, &app_name, &path);
-      add_app_to_desktop (desktop, app_name);
+      ReferenceFromMessage ref;
+
+      get_reference_from_iter (&iter_array, &ref);
+      add_app_to_desktop (desktop, ref.app_name);
     }
 
   /* Record the alternate name as an alias for org.a11y.atspi.Registry */
@@ -651,6 +791,10 @@ ref_accessible_desktop (AtspiApplication *app)
 AtspiAccessible *
 _atspi_ref_accessible (const char *app, const char *path)
 {
+  ReferenceFromMessage ref = {
+    .app_name = app,
+    .path = path,
+  };
   AtspiApplication *a = get_application (app);
   if (!a)
     return NULL;
@@ -660,7 +804,7 @@ _atspi_ref_accessible (const char *app, const char *path)
         g_object_unref (ref_accessible_desktop (a)); /* sets a->root */
       return g_object_ref (a->root);
     }
-  return ref_accessible (app, path);
+  return ref_accessible (&ref);
 }
 
 AtspiAccessible *
@@ -691,10 +835,10 @@ _atspi_dbus_return_accessible_from_message (DBusMessage *message)
 AtspiAccessible *
 _atspi_dbus_consume_accessible (DBusMessageIter *iter)
 {
-  const char *app_name, *path;
+  ReferenceFromMessage ref;
 
-  get_reference_from_iter (iter, &app_name, &path);
-  return ref_accessible (app_name, path);
+  get_reference_from_iter (iter, &ref);
+  return ref_accessible (&ref);
 }
 
 AtspiHyperlink *
@@ -724,10 +868,10 @@ _atspi_dbus_return_hyperlink_from_message (DBusMessage *message)
 AtspiHyperlink *
 _atspi_dbus_return_hyperlink_from_iter (DBusMessageIter *iter)
 {
-  const char *app_name, *path;
+  ReferenceFromMessage ref;
 
-  get_reference_from_iter (iter, &app_name, &path);
-  return ref_hyperlink (app_name, path);
+  get_reference_from_iter (iter, &ref);
+  return ref_hyperlink (ref.app_name, ref.path);
 }
 
 const char *cache_signal_type = "((so)(so)(so)iiassusau)";
@@ -768,21 +912,21 @@ process_deferred_message (BusDataClosure *closure)
   if (type == DBUS_MESSAGE_TYPE_SIGNAL &&
       !strncmp (interface, "org.a11y.atspi.Event.", 21))
     {
-      _atspi_dbus_handle_event (closure->bus, closure->message);
+      _atspi_dbus_handle_event (closure->message);
     }
-  if (dbus_message_is_method_call (closure->message, atspi_interface_device_event_listener, "NotifyEvent"))
+  else if (dbus_message_is_method_call (closure->message, atspi_interface_device_event_listener, "NotifyEvent"))
     {
       _atspi_dbus_handle_DeviceEvent (closure->bus, closure->message);
     }
-  if (dbus_message_is_signal (closure->message, atspi_interface_cache, "AddAccessible"))
+  else if (dbus_message_is_signal (closure->message, atspi_interface_cache, "AddAccessible"))
     {
       handle_add_accessible (closure->bus, closure->message);
     }
-  if (dbus_message_is_signal (closure->message, atspi_interface_cache, "RemoveAccessible"))
+  else if (dbus_message_is_signal (closure->message, atspi_interface_cache, "RemoveAccessible"))
     {
       handle_remove_accessible (closure->bus, closure->message);
     }
-  if (dbus_message_is_signal (closure->message, "org.freedesktop.DBus", "NameOwnerChanged"))
+  else if (dbus_message_is_signal (closure->message, "org.freedesktop.DBus", "NameOwnerChanged"))
     {
       handle_name_owner_changed (closure->bus, closure->message);
     }
@@ -977,6 +1121,7 @@ atspi_event_main (void)
 {
   atspi_main_loop = g_main_loop_new (NULL, FALSE);
   g_main_loop_run (atspi_main_loop);
+  g_main_loop_unref (atspi_main_loop);
   atspi_main_loop = NULL;
 }
 
@@ -1111,6 +1256,10 @@ set_timeout (AtspiApplication *app)
     dbind_set_timeout (method_call_timeout);
 }
 
+/* Makes a DBus call and returns a success value.  Simple return values can be demarshaled automatically
+ * by passing their types after a "=>" marker in the @type argument (e.g. s=>i for a call that takes a string
+ * and returns an int).
+ */
 dbus_bool_t
 _atspi_dbus_call (gpointer obj, const char *interface, const char *method, GError **error, const char *type, ...)
 {
@@ -1139,25 +1288,7 @@ _atspi_dbus_call (gpointer obj, const char *interface, const char *method, GErro
   return retval;
 }
 
-DBusMessage *
-_atspi_dbus_call_partial (gpointer obj,
-                          const char *interface,
-                          const char *method,
-                          GError **error,
-                          const char *type,
-                          ...)
-{
-  DBusMessage *ret;
-  va_list args;
-
-  va_start (args, type);
-  ret = _atspi_dbus_call_partial_va (obj, interface, method, error, type, args);
-  va_end (args);
-
-  return ret;
-}
-
-DBusMessage *
+static DBusMessage *
 _atspi_dbus_call_partial_va (gpointer obj,
                              const char *interface,
                              const char *method,
@@ -1208,6 +1339,28 @@ out:
     }
 
   return reply;
+}
+
+/* Makes a DBus call but returns the raw DBusMessage reply.  Use this
+ * when you need to demarshal complex return values by hand.  Remember
+ * to dbus_message_unref() the return value when you are done.
+ */
+DBusMessage *
+_atspi_dbus_call_partial (gpointer obj,
+                          const char *interface,
+                          const char *method,
+                          GError **error,
+                          const char *type,
+                          ...)
+{
+  DBusMessage *ret;
+  va_list args;
+
+  va_start (args, type);
+  ret = _atspi_dbus_call_partial_va (obj, interface, method, error, type, args);
+  va_end (args);
+
+  return ret;
 }
 
 dbus_bool_t
@@ -1842,7 +1995,6 @@ _atspi_name_compat (gchar *name)
  * @role: an #AtspiRole object to query.
  *
  * Gets a localizable string that indicates the name of an #AtspiRole.
- * <em>DEPRECATED.</em>
  *
  * Returns: a localizable string name for an #AtspiRole enumerated type.
  **/
@@ -1869,6 +2021,33 @@ atspi_role_get_name (AtspiRole role)
     return _atspi_name_compat (retval);
 
   return NULL;
+}
+
+/**
+ * atspi_role_get_localized_name:
+ * @role: an #AtspiRole object to query.
+ *
+ * Gets the localized description string describing the #AtspiRole @role.
+ *
+ * Returns: the localized string describing the AtspiRole
+ **/
+gchar *
+atspi_role_get_localized_name (AtspiRole role)
+{
+  gchar *raw_name = NULL;
+  const char *translated_name;
+
+  _gettext_initialization ();
+
+  raw_name = atspi_role_get_name (role);
+  translated_name = dgettext (GETTEXT_PACKAGE, raw_name);
+  if (translated_name != raw_name)
+    {
+      g_free (raw_name);
+      return g_strdup (translated_name);
+    }
+  else
+    return raw_name;
 }
 
 GHashTable *
@@ -2015,4 +2194,25 @@ _atspi_strdup_and_adjust_for_dbus (const char *s)
 
   d[0] = toupper (d[0]);
   return d;
+}
+
+/**
+ * atspi_get_version:
+ * @major: (out): the major version.
+ * @minor: (out): the minor version.
+ * @micro: (out): the micro/patch version.
+ *
+ * Returns the version of the AT-SPI library being used at runtime.
+
+* Since: 2.50
+ */
+void
+atspi_get_version (gint *major, gint *minor, gint *micro)
+{
+  if (major)
+    *major = ATSPI_MAJOR_VERSION;
+  if (minor)
+    *minor = ATSPI_MINOR_VERSION;
+  if (micro)
+    *micro = ATSPI_MICRO_VERSION;
 }

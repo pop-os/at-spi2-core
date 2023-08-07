@@ -26,15 +26,9 @@
 #define DATA_FILE TESTS_DATA_DIR "/test-accessible.xml"
 
 static void
-teardown_state_set_test (gpointer fixture, gconstpointer user_data)
+atk_test_accessible_get_state_set (TestAppFixture *fixture, gconstpointer user_data)
 {
-  terminate_app ();
-}
-
-static void
-atk_test_accessible_get_state_set (gpointer fixture, gconstpointer user_data)
-{
-  AtspiAccessible *obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *obj = fixture->root_obj;
   AtspiAccessible *child = atspi_accessible_get_child_at_index (obj, 0, NULL);
   AtspiStateSet *states = atspi_accessible_get_state_set (child);
   GArray *states_arr = atspi_state_set_get_states (states);
@@ -51,10 +45,13 @@ atk_test_accessible_get_state_set (gpointer fixture, gconstpointer user_data)
       g_assert (atspi_state_set_contains (states, ATSPI_STATE_MODAL));
       g_assert (atspi_state_set_contains (states, ATSPI_STATE_MULTI_LINE));
     }
+  g_array_free (states_arr, TRUE);
+  g_object_unref (states);
+  g_object_unref (child);
 }
 
 static void
-atk_test_state_set_new (gpointer fixture, gconstpointer user_data)
+atk_test_state_set_new (TestAppFixture *fixture, gconstpointer user_data)
 {
   GArray *states_arr = g_array_new (FALSE, FALSE, sizeof (AtspiStateType));
 
@@ -69,17 +66,20 @@ atk_test_state_set_new (gpointer fixture, gconstpointer user_data)
 
   g_assert (atspi_state_set_contains (ss, ATSPI_STATE_FOCUSABLE));
   g_assert (atspi_state_set_contains (ss, ATSPI_STATE_FOCUSED));
+  g_object_unref (ss);
+  g_array_free (states_arr, TRUE);
 }
 
 static void
-atk_test_state_set_set_by_name (gpointer fixture, gconstpointer user_data)
+atk_test_state_set_set_by_name (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *obj = fixture->root_obj;
   AtspiAccessible *child = atspi_accessible_get_child_at_index (obj, 0, NULL);
   AtspiStateSet *states = atspi_accessible_get_state_set (child);
   GArray *states_arr = atspi_state_set_get_states (states);
 
   atspi_state_set_set_by_name (states, "modal", FALSE);
+  g_array_free (states_arr, TRUE);
 
   states_arr = atspi_state_set_get_states (states);
 
@@ -89,12 +89,15 @@ atk_test_state_set_set_by_name (gpointer fixture, gconstpointer user_data)
 
   atspi_state_set_set_by_name (states, "modal", TRUE);
   g_assert (atspi_state_set_contains (states, ATSPI_STATE_MODAL));
+  g_array_free (states_arr, TRUE);
+  g_object_unref (states);
+  g_object_unref (child);
 }
 
 static void
-atk_test_state_set_add (gpointer fixture, gconstpointer user_data)
+atk_test_state_set_add (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *obj = fixture->root_obj;
   AtspiAccessible *child = atspi_accessible_get_child_at_index (obj, 0, NULL);
   AtspiStateSet *states = atspi_accessible_get_state_set (child);
 
@@ -103,12 +106,14 @@ atk_test_state_set_add (gpointer fixture, gconstpointer user_data)
   atspi_state_set_add (states, ATSPI_STATE_FOCUSABLE);
 
   g_assert (atspi_state_set_contains (states, ATSPI_STATE_FOCUSABLE));
+  g_object_unref (states);
+  g_object_unref (child);
 }
 
 static void
-atk_test_state_set_compare (gpointer fixture, gconstpointer user_data)
+atk_test_state_set_compare (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *obj = fixture->root_obj;
   AtspiAccessible *child = atspi_accessible_get_child_at_index (obj, 0, NULL);
   AtspiStateSet *states = atspi_accessible_get_state_set (child);
   GArray *states_arr = g_array_new (FALSE, FALSE, sizeof (AtspiStateType));
@@ -129,23 +134,30 @@ atk_test_state_set_compare (gpointer fixture, gconstpointer user_data)
   g_assert (atspi_state_set_contains (ret, ATSPI_STATE_MULTI_LINE));
   g_assert (atspi_state_set_contains (ret, ATSPI_STATE_FOCUSED));
   g_assert (atspi_state_set_contains (ret, ATSPI_STATE_FOCUSABLE));
+  g_object_unref (ret);
+  g_object_unref (ss);
+  g_array_free (states_arr, TRUE);
+  g_object_unref (states);
+  g_object_unref (child);
 }
 
 static void
-atk_test_state_set_contains (gpointer fixture, gconstpointer user_data)
+atk_test_state_set_contains (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *obj = fixture->root_obj;
   AtspiAccessible *child = atspi_accessible_get_child_at_index (obj, 0, NULL);
   AtspiStateSet *states = atspi_accessible_get_state_set (child);
 
   g_assert (!atspi_state_set_contains (states, ATSPI_STATE_FOCUSABLE));
   g_assert (atspi_state_set_contains (states, ATSPI_STATE_MODAL));
+  g_object_unref (states);
+  g_object_unref (child);
 }
 
 static void
-atk_test_state_set_equals (gpointer fixture, gconstpointer user_data)
+atk_test_state_set_equals (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *obj = fixture->root_obj;
   AtspiAccessible *child = atspi_accessible_get_child_at_index (obj, 0, NULL);
   AtspiStateSet *states = atspi_accessible_get_state_set (child);
   GArray *states_arr = g_array_new (FALSE, FALSE, sizeof (AtspiStateType));
@@ -161,12 +173,16 @@ atk_test_state_set_equals (gpointer fixture, gconstpointer user_data)
   AtspiStateSet *ss = atspi_state_set_new (states_arr);
 
   g_assert (atspi_state_set_equals (states, ss));
+  g_object_unref (ss);
+  g_array_free (states_arr, TRUE);
+  g_object_unref (states);
+  g_object_unref (child);
 }
 
 static void
-atk_test_state_set_get_states (gpointer fixture, gconstpointer user_data)
+atk_test_state_set_get_states (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *obj = fixture->root_obj;
   AtspiAccessible *child = atspi_accessible_get_child_at_index (obj, 0, NULL);
   AtspiStateSet *states = atspi_accessible_get_state_set (child);
   GArray *states_arr = atspi_state_set_get_states (states);
@@ -181,59 +197,69 @@ atk_test_state_set_get_states (gpointer fixture, gconstpointer user_data)
     g_assert_cmpint (valid_states[i], ==, g_array_index (states_arr, AtspiStateType, i));
   g_assert (atspi_state_set_contains (states, ATSPI_STATE_MODAL));
   g_assert (atspi_state_set_contains (states, ATSPI_STATE_MULTI_LINE));
+  g_array_free (states_arr, TRUE);
+  g_object_unref (states);
+  g_object_unref (child);
 }
 
 static void
-atk_test_state_set_is_empty (gpointer fixture, gconstpointer user_data)
+atk_test_state_set_is_empty (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *obj = fixture->root_obj;
   AtspiAccessible *child = atspi_accessible_get_child_at_index (obj, 0, NULL);
   AtspiStateSet *states = atspi_accessible_get_state_set (child);
   AtspiStateSet *root_states = atspi_accessible_get_state_set (obj);
 
   g_assert (!atspi_state_set_is_empty (states));
   g_assert (atspi_state_set_is_empty (root_states));
+  g_object_unref (root_states);
+  g_object_unref (states);
+  g_object_unref (child);
 }
 
 static void
-atk_test_state_set_remove (gpointer fixture, gconstpointer user_data)
+atk_test_state_set_remove (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *obj = fixture->root_obj;
   AtspiAccessible *child = atspi_accessible_get_child_at_index (obj, 0, NULL);
   AtspiStateSet *states = atspi_accessible_get_state_set (child);
   GArray *states_arr = atspi_state_set_get_states (states);
 
   g_assert_cmpint (states_arr->len, ==, 2);
   atspi_state_set_remove (states, ATSPI_STATE_MODAL);
+  g_array_free (states_arr, TRUE);
 
   states_arr = atspi_state_set_get_states (states);
 
   g_assert_cmpint (states_arr->len, ==, 1);
   g_assert (!atspi_state_set_contains (states, ATSPI_STATE_MODAL));
   g_assert (atspi_state_set_contains (states, ATSPI_STATE_MULTI_LINE));
+  g_array_free (states_arr, TRUE);
+  g_object_unref (states);
+  g_object_unref (child);
 }
 
 void
 atk_test_state_set (void)
 {
-  g_test_add_vtable (ATK_TEST_PATH_STATE_SET "/atk_test_accessible_get_state_set",
-                     0, NULL, NULL, atk_test_accessible_get_state_set, teardown_state_set_test);
-  g_test_add_vtable (ATK_TEST_PATH_STATE_SET "/atk_test_state_set_new",
-                     0, NULL, NULL, atk_test_state_set_new, teardown_state_set_test);
-  g_test_add_vtable (ATK_TEST_PATH_STATE_SET "/atk_test_state_set_set_by_name",
-                     0, NULL, NULL, atk_test_state_set_set_by_name, teardown_state_set_test);
-  g_test_add_vtable (ATK_TEST_PATH_STATE_SET "/atk_test_state_set_add",
-                     0, NULL, NULL, atk_test_state_set_add, teardown_state_set_test);
-  g_test_add_vtable (ATK_TEST_PATH_STATE_SET "/atk_test_state_set_compare",
-                     0, NULL, NULL, atk_test_state_set_compare, teardown_state_set_test);
-  g_test_add_vtable (ATK_TEST_PATH_STATE_SET "/atk_test_state_set_contains",
-                     0, NULL, NULL, atk_test_state_set_contains, teardown_state_set_test);
-  g_test_add_vtable (ATK_TEST_PATH_STATE_SET "/atk_test_state_set_equals",
-                     0, NULL, NULL, atk_test_state_set_equals, teardown_state_set_test);
-  g_test_add_vtable (ATK_TEST_PATH_STATE_SET "/atk_test_state_set_get_states",
-                     0, NULL, NULL, atk_test_state_set_get_states, teardown_state_set_test);
-  g_test_add_vtable (ATK_TEST_PATH_STATE_SET "/atk_test_state_set_is_empty",
-                     0, NULL, NULL, atk_test_state_set_is_empty, teardown_state_set_test);
-  g_test_add_vtable (ATK_TEST_PATH_STATE_SET "/atk_test_state_set_remove",
-                     0, NULL, NULL, atk_test_state_set_remove, teardown_state_set_test);
+  g_test_add ("/state_set/atk_test_accessible_get_state_set",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_accessible_get_state_set, fixture_teardown);
+  g_test_add ("/state_set/atk_test_state_set_new",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_state_set_new, fixture_teardown);
+  g_test_add ("/state_set/atk_test_state_set_set_by_name",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_state_set_set_by_name, fixture_teardown);
+  g_test_add ("/state_set/atk_test_state_set_add",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_state_set_add, fixture_teardown);
+  g_test_add ("/state_set/atk_test_state_set_compare",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_state_set_compare, fixture_teardown);
+  g_test_add ("/state_set/atk_test_state_set_contains",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_state_set_contains, fixture_teardown);
+  g_test_add ("/state_set/atk_test_state_set_equals",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_state_set_equals, fixture_teardown);
+  g_test_add ("/state_set/atk_test_state_set_get_states",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_state_set_get_states, fixture_teardown);
+  g_test_add ("/state_set/atk_test_state_set_is_empty",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_state_set_is_empty, fixture_teardown);
+  g_test_add ("/state_set/atk_test_state_set_remove",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_state_set_remove, fixture_teardown);
 }

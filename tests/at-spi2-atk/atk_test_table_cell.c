@@ -24,9 +24,9 @@
 #define DATA_FILE TESTS_DATA_DIR "/test-table.xml"
 
 static void
-atk_test_accessible_get_table_cell (gpointer fixture, gconstpointer user_data)
+atk_test_accessible_get_table_cell (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -34,12 +34,15 @@ atk_test_accessible_get_table_cell (gpointer fixture, gconstpointer user_data)
   AtspiAccessible *cell = atspi_accessible_get_child_at_index (child, 9, NULL);
   AtspiTableCell *obj = atspi_accessible_get_table_cell (cell);
   g_assert (obj);
+  g_object_unref (obj);
+  g_object_unref (cell);
+  g_object_unref (child);
 }
 
 static void
-atk_test_table_cell_get_column_span (gpointer fixture, gconstpointer user_data)
+atk_test_table_cell_get_column_span (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -49,19 +52,24 @@ atk_test_table_cell_get_column_span (gpointer fixture, gconstpointer user_data)
   g_assert (obj);
 
   g_assert_cmpint (3, ==, atspi_table_cell_get_column_span (obj, NULL));
+  g_object_unref (obj);
+  g_object_unref (cell);
 
   cell = atspi_accessible_get_child_at_index (child, 11, NULL);
   obj = atspi_accessible_get_table_cell (cell);
   g_assert (obj);
 
   g_assert_cmpint (1, ==, atspi_table_cell_get_column_span (obj, NULL));
+  g_object_unref (obj);
+  g_object_unref (cell);
+  g_object_unref (child);
 }
 
 /*
 static void
-atk_test_table_cell_get_column_header_cells (gpointer fixture, gconstpointer user_data)
+atk_test_table_cell_get_column_header_cells (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -72,13 +80,17 @@ atk_test_table_cell_get_column_header_cells (gpointer fixture, gconstpointer use
 
   GPtrArray *ret = atspi_table_cell_get_column_header_cells (obj, NULL);
   g_assert_cmpint (3, ==, ret->len);
+  g_array_free (ret, TRUE);
+  g_object_unref (obj);
+  g_object_unref (cell);
+  g_object_unref (child);
 }
 */
 
 static void
-atk_test_table_cell_get_row_span (gpointer fixture, gconstpointer user_data)
+atk_test_table_cell_get_row_span (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -88,19 +100,24 @@ atk_test_table_cell_get_row_span (gpointer fixture, gconstpointer user_data)
   g_assert (obj);
 
   g_assert_cmpint (2, ==, atspi_table_cell_get_row_span (obj, NULL));
+  g_object_unref (obj);
+  g_object_unref (cell);
 
   cell = atspi_accessible_get_child_at_index (child, 11, NULL);
   obj = atspi_accessible_get_table_cell (cell);
   g_assert (obj);
 
   g_assert_cmpint (1, ==, atspi_table_cell_get_column_span (obj, NULL));
+  g_object_unref (obj);
+  g_object_unref (cell);
+  g_object_unref (child);
 }
 
 /*
 static void
-atk_test_table_cell_get_row_header_cells (gpointer fixture, gconstpointer user_data)
+atk_test_table_cell_get_row_header_cells (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -111,13 +128,17 @@ atk_test_table_cell_get_row_header_cells (gpointer fixture, gconstpointer user_d
 
   GPtrArray *ret = atspi_table_cell_get_row_header_cells (obj, NULL);
   g_assert_cmpint (4, ==, ret->len);
+  g_array_free (ret, TRUE);
+  g_object_unref (obj);
+  g_object_unref (cell);
+  g_object_unref (child);
 }
 */
 
 static void
-atk_test_table_cell_get_row_column_span (gpointer fixture, gconstpointer user_data)
+atk_test_table_cell_get_row_column_span (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -137,12 +158,15 @@ atk_test_table_cell_get_row_column_span (gpointer fixture, gconstpointer user_da
   g_assert_cmpint (column, ==, 0);
   g_assert_cmpint (row_span, ==, 2);
   g_assert_cmpint (column_span, ==, 1);
+  g_object_unref (obj);
+  g_object_unref (cell);
+  g_object_unref (child);
 }
 
 static void
-atk_test_table_cell_get_position (gpointer fixture, gconstpointer user_data)
+atk_test_table_cell_get_position (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -159,12 +183,15 @@ atk_test_table_cell_get_position (gpointer fixture, gconstpointer user_data)
   /* TODO: not a very good test for the app to return (-1, -1) */
   g_assert_cmpint (row, ==, -1);
   g_assert_cmpint (column, ==, -1);
+  g_object_unref (obj);
+  g_object_unref (cell);
+  g_object_unref (child);
 }
 
 static void
-atk_test_table_cell_get_table (gpointer fixture, gconstpointer user_data)
+atk_test_table_cell_get_table (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -176,35 +203,33 @@ atk_test_table_cell_get_table (gpointer fixture, gconstpointer user_data)
   AtspiAccessible *tab = atspi_table_cell_get_table (obj, NULL);
   g_assert (tab);
   g_assert (child == tab);
-}
-
-static void
-teardown_table_cell_test (gpointer fixture, gconstpointer user_data)
-{
-  terminate_app ();
+  g_object_unref (tab);
+  g_object_unref (obj);
+  g_object_unref (cell);
+  g_object_unref (child);
 }
 
 void
 atk_test_table_cell (void)
 {
-  g_test_add_vtable (ATK_TEST_PATH_TABLE_CELL "/atk_test_accessible_get_table_cell",
-                     0, NULL, NULL, atk_test_accessible_get_table_cell, teardown_table_cell_test);
-  g_test_add_vtable (ATK_TEST_PATH_TABLE_CELL "/atk_test_table_cell_get_column_span",
-                     0, NULL, NULL, atk_test_table_cell_get_column_span, teardown_table_cell_test);
+  g_test_add ("/table_cell/atk_test_accessible_get_table_cell",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_accessible_get_table_cell, fixture_teardown);
+  g_test_add ("/table_cell/atk_test_table_cell_get_column_span",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_table_cell_get_column_span, fixture_teardown);
   /*
-    g_test_add_vtable (ATK_TEST_PATH_TABLE_CELL "/atk_test_table_cell_get_column_header_cells",
-                       0, NULL, NULL, atk_test_table_cell_get_column_header_cells, teardown_table_cell_test);
+    g_test_add ("/table_cell/atk_test_table_cell_get_column_header_cells",
+                TestAppFixture, DATA_FILE, fixture_setup, atk_test_table_cell_get_column_header_cells, fixture_teardown);
   */
-  g_test_add_vtable (ATK_TEST_PATH_TABLE_CELL "/atk_test_table_cell_get_row_span",
-                     0, NULL, NULL, atk_test_table_cell_get_row_span, teardown_table_cell_test);
+  g_test_add ("/table_cell/atk_test_table_cell_get_row_span",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_table_cell_get_row_span, fixture_teardown);
   /*
-    g_test_add_vtable (ATK_TEST_PATH_TABLE_CELL "/atk_test_table_cell_get_row_header_cells",
-                       0, NULL, NULL, atk_test_table_cell_get_row_header_cells, teardown_table_cell_test);
+    g_test_add ("/table_cell/atk_test_table_cell_get_row_header_cells",
+                TestAppFixture, DATA_FILE, fixture_setup, atk_test_table_cell_get_row_header_cells, fixture_teardown);
   */
-  g_test_add_vtable (ATK_TEST_PATH_TABLE_CELL "/atk_test_table_cell_get_row_column_span",
-                     0, NULL, NULL, atk_test_table_cell_get_row_column_span, teardown_table_cell_test);
-  g_test_add_vtable (ATK_TEST_PATH_TABLE_CELL "/atk_test_table_cell_get_position",
-                     0, NULL, NULL, atk_test_table_cell_get_position, teardown_table_cell_test);
-  g_test_add_vtable (ATK_TEST_PATH_TABLE_CELL "/atk_test_table_cell_get_table",
-                     0, NULL, NULL, atk_test_table_cell_get_table, teardown_table_cell_test);
+  g_test_add ("/table_cell/atk_test_table_cell_get_row_column_span",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_table_cell_get_row_column_span, fixture_teardown);
+  g_test_add ("/table_cell/atk_test_table_cell_get_position",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_table_cell_get_position, fixture_teardown);
+  g_test_add ("/table_cell/atk_test_table_cell_get_table",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_table_cell_get_table, fixture_teardown);
 }

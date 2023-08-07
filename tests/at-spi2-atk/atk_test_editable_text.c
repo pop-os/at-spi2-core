@@ -26,26 +26,22 @@
 #define DATA_FILE TESTS_DATA_DIR "/test-editable-text.xml"
 
 static void
-teardown_editable_text_test (gpointer fixture, gconstpointer user_data)
+atk_test_editable_text_get_editable_text_iface (TestAppFixture *fixture, gconstpointer user_data)
 {
-  terminate_app ();
-}
-
-static void
-atk_test_editable_text_get_editable_text_iface (gpointer fixture, gconstpointer user_data)
-{
-  AtspiAccessible *obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *obj = fixture->root_obj;
   AtspiAccessible *child = atspi_accessible_get_child_at_index (obj, 1, NULL);
   AtspiEditableText *iface = atspi_accessible_get_editable_text_iface (child);
   g_assert (iface != NULL);
+  g_object_unref (iface);
+  g_object_unref (child);
 }
 
 #if 0
 /* Function is in docs but not implemented */
 static void
-atk_test_editable_text_set_attributes  (gpointer fixture, gconstpointer user_data)
+atk_test_editable_text_set_attributes  (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *obj = fixture->root_obj;
   AtspiAccessible *child = atspi_accessible_get_child_at_index (obj, 1, NULL);
   AtspiEditableText *iface = atspi_accessible_get_editable_text_iface (child);
   g_assert (iface != NULL);
@@ -55,74 +51,84 @@ atk_test_editable_text_set_attributes  (gpointer fixture, gconstpointer user_dat
 #endif
 
 static void
-atk_test_editable_text_insert_text (gpointer fixture, gconstpointer user_data)
+atk_test_editable_text_insert_text (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *obj = fixture->root_obj;
   AtspiAccessible *child = atspi_accessible_get_child_at_index (obj, 1, NULL);
   AtspiEditableText *iface = atspi_accessible_get_editable_text_iface (child);
   g_assert (iface != NULL);
   g_assert (atspi_editable_text_insert_text (iface, 0, "test_text", 9, NULL));
+  g_object_unref (iface);
+  g_object_unref (child);
 }
 
 static void
-atk_test_editable_text_copy_text (gpointer fixture, gconstpointer user_data)
+atk_test_editable_text_copy_text (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *obj = fixture->root_obj;
   AtspiAccessible *child = atspi_accessible_get_child_at_index (obj, 1, NULL);
   AtspiEditableText *iface = atspi_accessible_get_editable_text_iface (child);
   g_assert (iface != NULL);
   g_assert (atspi_editable_text_copy_text (iface, 1, 2, NULL));
+  g_object_unref (iface);
+  g_object_unref (child);
 }
 
 static void
-atk_test_editable_text_cut_text (gpointer fixture, gconstpointer user_data)
+atk_test_editable_text_cut_text (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *obj = fixture->root_obj;
   AtspiAccessible *child = atspi_accessible_get_child_at_index (obj, 1, NULL);
   AtspiEditableText *iface = atspi_accessible_get_editable_text_iface (child);
   g_assert (iface != NULL);
   g_assert (atspi_editable_text_cut_text (iface, 1, 2, NULL));
+  g_object_unref (iface);
+  g_object_unref (child);
 }
 
 static void
-atk_test_editable_text_delete_text (gpointer fixture, gconstpointer user_data)
+atk_test_editable_text_delete_text (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *obj = fixture->root_obj;
   AtspiAccessible *child = atspi_accessible_get_child_at_index (obj, 1, NULL);
   AtspiEditableText *iface = atspi_accessible_get_editable_text_iface (child);
   g_assert (iface != NULL);
 
   g_assert (atspi_editable_text_delete_text (iface, 1, 2, NULL));
+  g_object_unref (iface);
+  g_object_unref (child);
 }
 
 static void
-atk_test_editable_text_paste_text (gpointer fixture, gconstpointer user_data)
+atk_test_editable_text_paste_text (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *obj = fixture->root_obj;
   AtspiAccessible *child = atspi_accessible_get_child_at_index (obj, 1, NULL);
   AtspiEditableText *iface = atspi_accessible_get_editable_text_iface (child);
   g_assert (iface != NULL);
 
   g_assert (atspi_editable_text_paste_text (iface, 2, NULL));
+  g_object_unref (iface);
+  g_object_unref (child);
 }
 
 void
 atk_test_editable_text (void)
 {
-  g_test_add_vtable (ATK_TEST_PATH_EDIT_TEXT "/atk_test_editable_text_get_editable_text_iface",
-                     0, NULL, NULL, atk_test_editable_text_get_editable_text_iface, teardown_editable_text_test);
+  g_test_add ("/editable_text/atk_test_editable_text_get_editable_text_iface",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_editable_text_get_editable_text_iface, fixture_teardown);
 #if 0
-  g_test_add_vtable (ATK_TEST_PATH_EDIT_TEXT "/atk_test_editable_text_set_attributes",
-                     0, NULL, NULL, atk_test_editable_text_set_attributes, teardown_editable_text_test);
+  g_test_add ("/editable_text/atk_test_editable_text_set_attributes",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_editable_text_set_attributes, fixture_teardown);
 #endif
-  g_test_add_vtable (ATK_TEST_PATH_EDIT_TEXT "/atk_test_editable_text_insert_text",
-                     0, NULL, NULL, atk_test_editable_text_insert_text, teardown_editable_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_EDIT_TEXT "/atk_test_editable_text_copy_text",
-                     0, NULL, NULL, atk_test_editable_text_copy_text, teardown_editable_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_EDIT_TEXT "/atk_test_editable_text_cut_text",
-                     0, NULL, NULL, atk_test_editable_text_cut_text, teardown_editable_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_EDIT_TEXT "/atk_test_editable_text_delete_text",
-                     0, NULL, NULL, atk_test_editable_text_delete_text, teardown_editable_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_EDIT_TEXT "/atk_test_editable_text_paste_text",
-                     0, NULL, NULL, atk_test_editable_text_paste_text, teardown_editable_text_test);
+  g_test_add ("/editable_text/atk_test_editable_text_insert_text",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_editable_text_insert_text, fixture_teardown);
+  g_test_add ("/editable_text/atk_test_editable_text_copy_text",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_editable_text_copy_text, fixture_teardown);
+  g_test_add ("/editable_text/atk_test_editable_text_cut_text",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_editable_text_cut_text, fixture_teardown);
+  g_test_add ("/editable_text/atk_test_editable_text_delete_text",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_editable_text_delete_text, fixture_teardown);
+  g_test_add ("/editable_text/atk_test_editable_text_paste_text",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_editable_text_paste_text, fixture_teardown);
 }

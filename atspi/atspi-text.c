@@ -164,7 +164,6 @@ atspi_text_get_caret_offset (AtspiText *obj, GError **error)
  * Gets the attributes applied to a range of text from an #AtspiText
  * object. The text attributes correspond to CSS attributes
  * where possible.
- * <em>DEPRECATED</em>
  *
  * Returns: (element-type gchar* gchar*) (transfer full): a #GHashTable
  * describing the attributes at the given character offset.
@@ -194,7 +193,6 @@ atspi_text_get_attributes (AtspiText *obj,
  * Gets the attributes applied to a range of text from an #AtspiText
  * object. The text attributes correspond to CSS attributes
  * where possible.
- * <em>DEPRECATED</em>
  *
  * Returns: (element-type gchar* gchar*) (transfer full): a #GHashTable
  * describing the attributes at the given character offset.
@@ -308,10 +306,10 @@ atspi_text_get_attribute_run (AtspiText *obj,
 gchar *
 atspi_text_get_attribute_value (AtspiText *obj,
                                 gint offset,
-                                gchar *attribute_value,
+                                const gchar *attribute_name,
                                 GError **error)
 {
-  return atspi_text_get_text_attribute_value (obj, offset, attribute_value,
+  return atspi_text_get_text_attribute_value (obj, offset, attribute_name,
                                               error);
 }
 
@@ -329,7 +327,7 @@ atspi_text_get_attribute_value (AtspiText *obj,
 gchar *
 atspi_text_get_text_attribute_value (AtspiText *obj,
                                      gint offset,
-                                     gchar *attribute_value,
+                                     const gchar *attribute_name,
                                      GError **error)
 {
   gchar *retval = NULL;
@@ -337,7 +335,7 @@ atspi_text_get_text_attribute_value (AtspiText *obj,
 
   g_return_val_if_fail (obj != NULL, NULL);
 
-  _atspi_dbus_call (obj, atspi_interface_text, "GetAttributeValue", error, "is=>s", d_i, (const gchar *) attribute_value, &retval);
+  _atspi_dbus_call (obj, atspi_interface_text, "GetAttributeValue", error, "is=>s", d_i, attribute_name, &retval);
 
   if (!retval)
     retval = g_strdup ("");
