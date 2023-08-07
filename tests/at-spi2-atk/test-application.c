@@ -34,6 +34,7 @@
 #include <atk/atk.h>
 #include <glib-unix.h>
 #include <glib.h>
+#include <locale.h>
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -100,6 +101,7 @@ static gboolean
 sigterm_received_cb (gpointer user_data)
 {
   GMainLoop *mainloop = user_data;
+  g_print ("test application received SIGTERM\n");
   g_main_loop_quit (mainloop);
   return G_SOURCE_REMOVE;
 }
@@ -116,13 +118,20 @@ main (int argc, char *argv[])
   if (!g_option_context_parse (opt, &argc, &argv, &err))
     g_error ("Option parsing failed: %s\n", err->message);
 
+  setlocale (LC_ALL, "");
   setup_atk_util ();
   test_init (tdata_path);
-  atk_bridge_adaptor_init (NULL, NULL);
+
+  atk_bridge_adaptor_init (&argc, &argv);
 
   mainloop = g_main_loop_new (NULL, FALSE);
   g_unix_signal_add (SIGTERM, sigterm_received_cb, mainloop);
   g_main_loop_run (mainloop);
 
+  g_print ("test application exited main loop; terminating after cleanup\n");
+
+  atk_bridge_adaptor_cleanup ();
+
+  g_print ("test application %d exiting!\n", getpid ());
   return 0;
 }

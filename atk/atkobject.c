@@ -91,132 +91,10 @@ enum
   VISIBLE_DATA_CHANGED,
   ACTIVE_DESCENDANT_CHANGED,
   ANNOUNCEMENT,
+  NOTIFICATION,
 
   LAST_SIGNAL
 };
-
-/* These are listed here for extraction by intltool */
-#if 0
-  N_("invalid")
-  N_("accelerator label")
-  N_("alert")
-  N_("animation")
-  N_("arrow")
-  N_("calendar")
-  N_("canvas")
-  N_("check box")
-  N_("check menu item")
-  N_("color chooser")
-  N_("column header")
-  N_("combo box")
-  N_("dateeditor")
-  N_("desktop icon")
-  N_("desktop frame")
-  N_("dial")
-  N_("dialog")
-  N_("directory pane")
-  N_("drawing area")
-  N_("file chooser")
-  N_("filler")
-  /* I know it looks wrong but that is what Java returns */
-  N_("fontchooser")
-  N_("frame")
-  N_("glass pane")
-  N_("html container")
-  N_("icon")
-  N_("image")
-  N_("internal frame")
-  N_("label")
-  N_("layered pane")
-  N_("list")
-  N_("list item")
-  N_("menu")
-  N_("menu bar")
-  N_("menu button")
-  N_("menu item")
-  N_("option pane")
-  N_("page tab")
-  N_("page tab list")
-  N_("panel")
-  N_("password text")
-  N_("popup menu")
-  N_("progress bar")
-  N_("push button")
-  N_("radio button")
-  N_("radio menu item")
-  N_("root pane")
-  N_("row header")
-  N_("scroll bar")
-  N_("scroll pane")
-  N_("separator")
-  N_("slider")
-  N_("split pane")
-  N_("spin button")
-  N_("statusbar")
-  N_("table")
-  N_("table cell")
-  N_("table column header")
-  N_("table row header")
-  N_("tear off menu item")
-  N_("terminal")
-  N_("text")
-  N_("toggle button")
-  N_("tool bar")
-  N_("tool tip")
-  N_("tree")
-  N_("tree table")
-  N_("unknown")
-  N_("viewport")
-  N_("window")
-  N_("header")
-  N_("footer")
-  N_("paragraph")
-  N_("ruler")
-  N_("application")
-  N_("autocomplete")
-  N_("edit bar")
-  N_("embedded component")
-  N_("entry")
-  N_("chart")
-  N_("caption")
-  N_("document frame")
-  N_("heading")
-  N_("page")
-  N_("section")
-  N_("redundant object")
-  N_("form")
-  N_("link")
-  N_("input method window")
-  N_("table row")
-  N_("tree item")
-  N_("document spreadsheet")
-  N_("document presentation")
-  N_("document text")
-  N_("document web")
-  N_("document email")
-  N_("comment")
-  N_("list box")
-  N_("grouping")
-  N_("image map")
-  N_("notification")
-  N_("info bar")
-  N_("level bar")
-  N_("title bar")
-  N_("block quote")
-  N_("audio")
-  N_("video")
-  N_("definition")
-  N_("article")
-  N_("landmark")
-  N_("log")
-  N_("marquee")
-  N_("math")
-  N_("rating")
-  N_("timer")
-  N_("description list")
-  N_("description term")
-  N_("description value")
-#endif /* 0 */
 
 typedef struct
 {
@@ -691,6 +569,8 @@ atk_object_class_init (AtkObjectClass *klass)
    * The "announcement" signal can be emitted to pass an announcement on to
    * be read by a screen reader.
    *
+   * Depcrecated (2.50): Use AtkObject::notification instead.
+   *
    * Since: 2.46
    */
   atk_object_signals[ANNOUNCEMENT] =
@@ -702,6 +582,28 @@ atk_object_class_init (AtkObjectClass *klass)
                     g_cclosure_marshal_VOID__STRING,
                     G_TYPE_NONE,
                     1, G_TYPE_STRING);
+
+  /**
+   * AtkObject::notification
+   * @atkobject: the object which received the signal.
+   * @arg1: the text to be announced.
+   * @arg2: an #AtkLive specifying the politeness of the notification.
+   * Should be either ATK_LIVE_POLITE or ATK_LIVE_ASSERTIVE.
+   *
+   * The "notification" signal can be emitted to pass an announcement on to
+   * be read by a screen reader.
+   *
+   * Since: 2.50
+   */
+  atk_object_signals[NOTIFICATION] =
+      g_signal_new ("notification",
+                    G_TYPE_FROM_CLASS (klass),
+                    G_SIGNAL_RUN_LAST,
+                    0, /* no class handler in order to avoid breaking ABI */
+                    NULL, NULL,
+                    atk_marshal_VOID__STRING_INT,
+                    G_TYPE_NONE,
+                    2, G_TYPE_STRING, G_TYPE_INT);
 }
 
 static void

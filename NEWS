@@ -1,3 +1,34 @@
+What's new in at-spi2-core 2.49.90:
+
+* Fix a test failure/timeout.
+
+* Add atspi_get_version() to return the runtime version of the library.
+
+* Collection: fix match testing for attributes.
+
+* Fix a NULL pointer dereference when deregistering an event listener that
+  doesn't include a detail.
+
+* Fix the documentation for interfaces in collection match rules.
+
+* Add an AtspiLive enum to specify the politeness level for live regions,
+  and document that this should be used for Announcement signals. Also add a
+  notification signal in atk to replace the announcement signal that lacks
+  the politeness information.
+
+
+* Add an asynchronous version of atspi_generate_mouse_event.
+
+What's new in at-spi2-core 2.49.1:
+
+* TableCell.xml: Add Get{Column,Row}HeaderCells methods
+
+* atspi_accessible_get_localized_role_name: Use internal names when possible.
+
+* Add a non-recursive function to clear a single object's cache.
+
+* Code clean-ups.
+
 What's new in at-spi2-core 2.48.3:
 
 * Fix the build when dbus-broker is not set to be used by default.

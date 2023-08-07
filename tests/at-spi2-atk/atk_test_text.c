@@ -36,9 +36,9 @@ GHRunc_find (gpointer key, gpointer value, gpointer user_data)
 }
 
 static void
-atk_test_text_get_character_count (gpointer fixture, gconstpointer user_data)
+atk_test_text_get_character_count (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -46,12 +46,14 @@ atk_test_text_get_character_count (gpointer fixture, gconstpointer user_data)
 
   gint count = atspi_text_get_character_count (obj, NULL);
   g_assert_cmpint (count, ==, 16);
+  g_object_unref (obj);
+  g_object_unref (child);
 }
 
 static void
-atk_test_text_get_text (gpointer fixture, gconstpointer user_data)
+atk_test_text_get_text (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -60,12 +62,14 @@ atk_test_text_get_text (gpointer fixture, gconstpointer user_data)
   gchar *text = atspi_text_get_text (obj, 9, 14, NULL);
   g_assert_cmpstr (text, ==, "works");
   g_free (text);
+  g_object_unref (obj);
+  g_object_unref (child);
 }
 
 static void
-atk_test_text_get_caret_offset (gpointer fixture, gconstpointer user_data)
+atk_test_text_get_caret_offset (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -73,12 +77,14 @@ atk_test_text_get_caret_offset (gpointer fixture, gconstpointer user_data)
 
   gint pos = atspi_text_get_caret_offset (obj, NULL);
   g_assert_cmpint (pos, ==, -1);
+  g_object_unref (obj);
+  g_object_unref (child);
 }
 
 static void
-atk_test_text_set_caret_offset (gpointer fixture, gconstpointer user_data)
+atk_test_text_set_caret_offset (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -88,11 +94,13 @@ atk_test_text_set_caret_offset (gpointer fixture, gconstpointer user_data)
   g_assert_false (atspi_text_set_caret_offset (obj, -1, NULL));
   gint pos = atspi_text_get_caret_offset (obj, NULL);
   g_assert_cmpint (pos, ==, 5);
+  g_object_unref (obj);
+  g_object_unref (child);
 }
 static void
-atk_test_text_get_character_at_offset (gpointer fixture, gconstpointer user_data)
+atk_test_text_get_character_at_offset (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -100,12 +108,14 @@ atk_test_text_get_character_at_offset (gpointer fixture, gconstpointer user_data
 
   guint chr = atspi_text_get_character_at_offset (obj, 5, NULL);
   g_assert_cmpint (chr, ==, 32);
+  g_object_unref (obj);
+  g_object_unref (child);
 }
 
 static void
-atk_test_text_get_character_extents (gpointer fixture, gconstpointer user_data)
+atk_test_text_get_character_extents (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -118,12 +128,14 @@ atk_test_text_get_character_extents (gpointer fixture, gconstpointer user_data)
   g_assert_cmpint (rec->height, ==, 30);
 
   g_free (rec);
+  g_object_unref (obj);
+  g_object_unref (child);
 }
 
 static void
-atk_test_text_get_range_extents (gpointer fixture, gconstpointer user_data)
+atk_test_text_get_range_extents (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -137,24 +149,28 @@ atk_test_text_get_range_extents (gpointer fixture, gconstpointer user_data)
   g_assert_cmpint (rec->height, ==, 30);
 
   g_free (rec);
+  g_object_unref (obj);
+  g_object_unref (child);
 }
 
 static void
-atk_test_text_add_selection (gpointer fixture, gconstpointer user_data)
+atk_test_text_add_selection (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
   AtspiText *obj = atspi_accessible_get_text_iface (child);
 
   g_assert_true (atspi_text_add_selection (obj, 9, 14, NULL));
+  g_object_unref (obj);
+  g_object_unref (child);
 }
 
 static void
-atk_test_text_get_n_selections (gpointer fixture, gconstpointer user_data)
+atk_test_text_get_n_selections (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -167,12 +183,14 @@ atk_test_text_get_n_selections (gpointer fixture, gconstpointer user_data)
   g_assert_true (atspi_text_add_selection (obj, 9, 14, NULL));
   n = atspi_text_get_n_selections (obj, NULL);
   g_assert_cmpint (n, ==, 3);
+  g_object_unref (obj);
+  g_object_unref (child);
 }
 
 static void
-atk_test_text_get_selection (gpointer fixture, gconstpointer user_data)
+atk_test_text_get_selection (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -192,12 +210,14 @@ atk_test_text_get_selection (gpointer fixture, gconstpointer user_data)
   g_assert_cmpint (range->start_offset, ==, 14);
   g_assert_cmpint (range->end_offset, ==, 15);
   g_free (range);
+  g_object_unref (obj);
+  g_object_unref (child);
 }
 
 static void
-atk_test_text_set_selection (gpointer fixture, gconstpointer user_data)
+atk_test_text_set_selection (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -219,12 +239,14 @@ atk_test_text_set_selection (gpointer fixture, gconstpointer user_data)
   g_assert_cmpint (range->start_offset, ==, 3);
   g_assert_cmpint (range->end_offset, ==, 4);
   g_free (range);
+  g_object_unref (obj);
+  g_object_unref (child);
 }
 
 static void
-atk_test_text_remove_selection (gpointer fixture, gconstpointer user_data)
+atk_test_text_remove_selection (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -245,12 +267,14 @@ atk_test_text_remove_selection (gpointer fixture, gconstpointer user_data)
   g_assert_true (atspi_text_remove_selection (obj, 0, NULL));
   n = atspi_text_get_n_selections (obj, NULL);
   g_assert_cmpint (n, ==, 0);
+  g_object_unref (obj);
+  g_object_unref (child);
 }
 
 static void
-atk_test_text_get_offset_at_point (gpointer fixture, gconstpointer user_data)
+atk_test_text_get_offset_at_point (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -258,12 +282,14 @@ atk_test_text_get_offset_at_point (gpointer fixture, gconstpointer user_data)
 
   gint n = atspi_text_get_offset_at_point (obj, 0, 0, ATSPI_COORD_TYPE_SCREEN, NULL);
   g_assert_cmpint (n, ==, 5);
+  g_object_unref (obj);
+  g_object_unref (child);
 }
 
 static void
-atk_test_text_get_text_attribute_value (gpointer fixture, gconstpointer user_data)
+atk_test_text_get_text_attribute_value (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -281,12 +307,14 @@ atk_test_text_get_text_attribute_value (gpointer fixture, gconstpointer user_dat
   g_assert (str);
   g_assert_cmpstr (str, ==, "off");
   g_free (str);
+  g_object_unref (obj);
+  g_object_unref (child);
 }
 
 static void
-atk_test_text_get_attribute_run (gpointer fixture, gconstpointer user_data)
+atk_test_text_get_attribute_run (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -303,12 +331,14 @@ atk_test_text_get_attribute_run (gpointer fixture, gconstpointer user_data)
   g_assert_cmpint (start_offset, ==, 5);
   g_assert_cmpint (end_offset, ==, 10);
   g_hash_table_destroy (tab);
+  g_object_unref (obj);
+  g_object_unref (child);
 }
 
 static void
-atk_test_text_get_defualt_attributes (gpointer fixture, gconstpointer user_data)
+atk_test_text_get_default_attributes (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -321,12 +351,14 @@ atk_test_text_get_defualt_attributes (gpointer fixture, gconstpointer user_data)
   g_assert_cmpstr ((const char *) g_hash_table_find (tab, GHRunc_find, "underline_text"), ==, "off");
   g_assert_cmpstr ((const char *) g_hash_table_find (tab, GHRunc_find, "dummy_text"), ==, "");
   g_hash_table_destroy (tab);
+  g_object_unref (obj);
+  g_object_unref (child);
 }
 
 static void
-atk_test_text_get_text_attributes (gpointer fixture, gconstpointer user_data)
+atk_test_text_get_text_attributes (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -343,12 +375,14 @@ atk_test_text_get_text_attributes (gpointer fixture, gconstpointer user_data)
   g_assert_cmpint (start_offset, ==, 5);
   g_assert_cmpint (end_offset, ==, 10);
   g_hash_table_destroy (tab);
+  g_object_unref (obj);
+  g_object_unref (child);
 }
 
 static void
-atk_test_text_get_string_at_offset_s1 (gpointer fixture, gconstpointer user_data)
+atk_test_text_get_string_at_offset_s1 (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -360,7 +394,7 @@ atk_test_text_get_string_at_offset_s1 (gpointer fixture, gconstpointer user_data
   g_assert_cmpint (range->end_offset, ==, 1);
   g_assert_cmpstr (range->content, ==, "t");
 
-  g_free (range);
+  g_boxed_free (ATSPI_TYPE_TEXT_RANGE, range);
 
   range = atspi_text_get_string_at_offset (obj, 5, ATSPI_TEXT_GRANULARITY_WORD, NULL);
 
@@ -368,12 +402,15 @@ atk_test_text_get_string_at_offset_s1 (gpointer fixture, gconstpointer user_data
   g_assert_cmpint (range->end_offset, ==, 7);
   g_assert_cmpstr (range->content, ==, "it");
 
-  g_free (range);
+  g_boxed_free (ATSPI_TYPE_TEXT_RANGE, range);
+  g_object_unref (obj);
+  g_object_unref (child);
 }
+
 static void
-atk_test_text_get_string_at_offset_s2 (gpointer fixture, gconstpointer user_data)
+atk_test_text_get_string_at_offset_s2 (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 1, NULL);
   g_assert (child);
@@ -385,7 +422,7 @@ atk_test_text_get_string_at_offset_s2 (gpointer fixture, gconstpointer user_data
   g_assert_cmpint (range->end_offset, ==, 34);
   g_assert_cmpstr (range->content, ==, "Second sentence.");
 
-  g_free (range);
+  g_boxed_free (ATSPI_TYPE_TEXT_RANGE, range);
 
   range = atspi_text_get_string_at_offset (obj, 21, ATSPI_TEXT_GRANULARITY_LINE, NULL);
 
@@ -393,7 +430,7 @@ atk_test_text_get_string_at_offset_s2 (gpointer fixture, gconstpointer user_data
   g_assert_cmpint (range->end_offset, ==, 34);
   g_assert_cmpstr (range->content, ==, "Second sentence.");
 
-  g_free (range);
+  g_boxed_free (ATSPI_TYPE_TEXT_RANGE, range);
 
   range = atspi_text_get_string_at_offset (obj, 0, ATSPI_TEXT_GRANULARITY_PARAGRAPH, NULL);
 
@@ -401,13 +438,15 @@ atk_test_text_get_string_at_offset_s2 (gpointer fixture, gconstpointer user_data
   g_assert_cmpint (range->end_offset, ==, 0);
   g_assert_cmpstr (range->content, ==, "");
 
-  g_free (range);
+  g_boxed_free (ATSPI_TYPE_TEXT_RANGE, range);
+  g_object_unref (obj);
+  g_object_unref (child);
 }
 
 static void
-atk_test_text_get_bounded_ranges (gpointer fixture, gconstpointer user_data)
+atk_test_text_get_bounded_ranges (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *_obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *_obj = fixture->root_obj;
   g_assert (_obj);
   AtspiAccessible *child = atspi_accessible_get_child_at_index (_obj, 0, NULL);
   g_assert (child);
@@ -421,63 +460,61 @@ atk_test_text_get_bounded_ranges (gpointer fixture, gconstpointer user_data)
   g_assert_cmpint (range->start_offset, ==, 0);
   g_assert_cmpint (range->end_offset, ==, 5);
   g_assert_cmpstr (range->content, ==, "text0");
+  g_free (range->content);
 
   range = &g_array_index (array, AtspiTextRange, 1);
   g_assert_cmpint (g_array_get_element_size (array), ==, sizeof (AtspiTextRange));
   g_assert_cmpint (range->start_offset, ==, 6);
   g_assert_cmpint (range->end_offset, ==, 10);
   g_assert_cmpstr (range->content, ==, "it w");
+  g_free (range->content);
 
   g_array_free (array, TRUE);
-}
-
-static void
-teardown_text_test (gpointer fixture, gconstpointer user_data)
-{
-  terminate_app ();
+  g_object_unref (obj);
+  g_object_unref (child);
 }
 
 void
 atk_test_text (void)
 {
-  g_test_add_vtable (ATK_TEST_PATH_TEXT "/atk_test_text_get_character_count",
-                     0, NULL, NULL, atk_test_text_get_character_count, teardown_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_TEXT "/atk_test_text_get_text",
-                     0, NULL, NULL, atk_test_text_get_text, teardown_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_TEXT "/atk_test_text_get_caret_offset",
-                     0, NULL, NULL, atk_test_text_get_caret_offset, teardown_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_TEXT "/atk_test_text_get_text_attributes",
-                     0, NULL, NULL, atk_test_text_get_text_attributes, teardown_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_TEXT "/atk_test_text_get_attribute_run",
-                     0, NULL, NULL, atk_test_text_get_attribute_run, teardown_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_TEXT "/atk_test_text_get_text_attribute_value",
-                     0, NULL, NULL, atk_test_text_get_text_attribute_value, teardown_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_TEXT "/atk_test_text_get_defualt_attributes",
-                     0, NULL, NULL, atk_test_text_get_defualt_attributes, teardown_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_TEXT "/atk_test_text_set_caret_offset",
-                     0, NULL, NULL, atk_test_text_set_caret_offset, teardown_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_TEXT "/atk_test_text_get_string_at_offset_s1",
-                     0, NULL, NULL, atk_test_text_get_string_at_offset_s1, teardown_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_TEXT "/atk_test_text_get_string_at_offset_s2",
-                     0, NULL, NULL, atk_test_text_get_string_at_offset_s2, teardown_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_TEXT "/atk_test_text_get_character_at_offset",
-                     0, NULL, NULL, atk_test_text_get_character_at_offset, teardown_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_TEXT "/atk_test_text_get_character_extents",
-                     0, NULL, NULL, atk_test_text_get_character_extents, teardown_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_TEXT "/atk_test_text_get_offset_at_point",
-                     0, NULL, NULL, atk_test_text_get_offset_at_point, teardown_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_TEXT "/atk_test_text_get_range_extents",
-                     0, NULL, NULL, atk_test_text_get_range_extents, teardown_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_TEXT "/atk_test_text_get_bounded_ranges",
-                     0, NULL, NULL, atk_test_text_get_bounded_ranges, teardown_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_TEXT "/atk_test_text_get_n_selections",
-                     0, NULL, NULL, atk_test_text_get_n_selections, teardown_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_TEXT "/atk_test_text_get_selection",
-                     0, NULL, NULL, atk_test_text_get_selection, teardown_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_TEXT "/atk_test_text_add_selection",
-                     0, NULL, NULL, atk_test_text_add_selection, teardown_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_TEXT "/atk_test_text_remove_selection",
-                     0, NULL, NULL, atk_test_text_remove_selection, teardown_text_test);
-  g_test_add_vtable (ATK_TEST_PATH_TEXT "/atk_test_text_set_selection",
-                     0, NULL, NULL, atk_test_text_set_selection, teardown_text_test);
+  g_test_add ("/text/atk_test_text_get_character_count",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_text_get_character_count, fixture_teardown);
+  g_test_add ("/text/atk_test_text_get_text",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_text_get_text, fixture_teardown);
+  g_test_add ("/text/atk_test_text_get_caret_offset",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_text_get_caret_offset, fixture_teardown);
+  g_test_add ("/text/atk_test_text_get_text_attributes",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_text_get_text_attributes, fixture_teardown);
+  g_test_add ("/text/atk_test_text_get_attribute_run",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_text_get_attribute_run, fixture_teardown);
+  g_test_add ("/text/atk_test_text_get_text_attribute_value",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_text_get_text_attribute_value, fixture_teardown);
+  g_test_add ("/text/atk_test_text_get_default_attributes",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_text_get_default_attributes, fixture_teardown);
+  g_test_add ("/text/atk_test_text_set_caret_offset",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_text_set_caret_offset, fixture_teardown);
+  g_test_add ("/text/atk_test_text_get_string_at_offset_s1",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_text_get_string_at_offset_s1, fixture_teardown);
+  g_test_add ("/text/atk_test_text_get_string_at_offset_s2",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_text_get_string_at_offset_s2, fixture_teardown);
+  g_test_add ("/text/atk_test_text_get_character_at_offset",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_text_get_character_at_offset, fixture_teardown);
+  g_test_add ("/text/atk_test_text_get_character_extents",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_text_get_character_extents, fixture_teardown);
+  g_test_add ("/text/atk_test_text_get_offset_at_point",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_text_get_offset_at_point, fixture_teardown);
+  g_test_add ("/text/atk_test_text_get_range_extents",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_text_get_range_extents, fixture_teardown);
+  g_test_add ("/text/atk_test_text_get_bounded_ranges",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_text_get_bounded_ranges, fixture_teardown);
+  g_test_add ("/text/atk_test_text_get_n_selections",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_text_get_n_selections, fixture_teardown);
+  g_test_add ("/text/atk_test_text_get_selection",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_text_get_selection, fixture_teardown);
+  g_test_add ("/text/atk_test_text_add_selection",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_text_add_selection, fixture_teardown);
+  g_test_add ("/text/atk_test_text_remove_selection",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_text_remove_selection, fixture_teardown);
+  g_test_add ("/text/atk_test_text_set_selection",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_text_set_selection, fixture_teardown);
 }

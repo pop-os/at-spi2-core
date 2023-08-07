@@ -26,23 +26,26 @@
 #define DATA_FILE TESTS_DATA_DIR "/test-collection.xml"
 
 static void
-teardown_collection_test (gpointer fixture, gconstpointer user_data)
+atk_test_collection_get_collection_iface (TestAppFixture *fixture, gconstpointer user_data)
 {
-  terminate_app ();
-}
-
-static void
-atk_test_collection_get_collection_iface (gpointer fixture, gconstpointer user_data)
-{
-  AtspiAccessible *obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *obj = fixture->root_obj;
   AtspiCollection *iface = atspi_accessible_get_collection_iface (obj);
   g_assert (iface);
+  g_object_unref (iface);
 }
 
 static void
-atk_test_collection_get_matches (gpointer fixture, gconstpointer user_data)
+check_and_unref (GArray *array, gint index, const char *expected_name)
 {
-  AtspiAccessible *obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *accessible = g_array_index (array, AtspiAccessible *, index);
+  check_name (accessible, expected_name);
+  g_object_unref (accessible);
+}
+
+static void
+atk_test_collection_get_matches (TestAppFixture *fixture, gconstpointer user_data)
+{
+  AtspiAccessible *obj = fixture->root_obj;
   AtspiCollection *iface = atspi_accessible_get_collection_iface (obj);
   g_assert (iface);
 
@@ -60,6 +63,7 @@ atk_test_collection_get_matches (gpointer fixture, gconstpointer user_data)
                                NULL,
                                ATSPI_Collection_MATCH_ALL,
                                FALSE);
+  g_object_unref (ss);
   GArray *ret = atspi_collection_get_matches (iface,
                                               rule,
                                               ATSPI_Collection_SORT_ORDER_CANONICAL,
@@ -68,17 +72,18 @@ atk_test_collection_get_matches (gpointer fixture, gconstpointer user_data)
                                               NULL);
   g_assert_cmpint (2, ==, ret->len);
 
-  AtspiAccessible *get = NULL;
-  get = g_array_index (ret, AtspiAccessible *, 0);
-  g_assert_cmpstr ("obj1", ==, atspi_accessible_get_name (get, NULL));
-  get = g_array_index (ret, AtspiAccessible *, 1);
-  g_assert_cmpstr ("obj3", ==, atspi_accessible_get_name (get, NULL));
+  check_and_unref (ret, 0, "obj1");
+  check_and_unref (ret, 1, "obj3");
+  g_array_free (ret, TRUE);
+  g_object_unref (rule);
+  g_object_unref (child);
+  g_object_unref (iface);
 }
 
 static void
-atk_test_collection_get_matches_to (gpointer fixture, gconstpointer user_data)
+atk_test_collection_get_matches_to (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *obj = fixture->root_obj;
   AtspiCollection *iface = atspi_accessible_get_collection_iface (obj);
   g_assert (iface);
 
@@ -97,6 +102,7 @@ atk_test_collection_get_matches_to (gpointer fixture, gconstpointer user_data)
                                NULL,
                                ATSPI_Collection_MATCH_ALL,
                                FALSE);
+  g_object_unref (ss);
   GArray *ret = atspi_collection_get_matches_to (iface,
                                                  child1,
                                                  rule,
@@ -107,16 +113,20 @@ atk_test_collection_get_matches_to (gpointer fixture, gconstpointer user_data)
                                                  FALSE,
                                                  NULL);
   g_assert_cmpint (1, ==, ret->len);
-  AtspiAccessible *get = NULL;
-  get = g_array_index (ret, AtspiAccessible *, 0);
-  g_assert_cmpstr ("obj1", ==, atspi_accessible_get_name (get, NULL));
+  check_and_unref (ret, 0, "obj1");
+  g_array_free (ret, TRUE);
+  g_object_unref (rule);
+  g_object_unref (child1);
+  g_object_unref (child);
+  g_object_unref (iface);
 }
 
 static void
-atk_test_collection_get_matches_from (gpointer fixture, gconstpointer user_data)
+atk_test_collection_get_matches_from (TestAppFixture *fixture, gconstpointer user_data)
 {
-  AtspiAccessible *obj = get_root_obj (DATA_FILE);
+  AtspiAccessible *obj = fixture->root_obj;
   AtspiCollection *iface = atspi_accessible_get_collection_iface (obj);
+  GHashTable *attributes;
   g_assert (iface);
 
   AtspiAccessible *child = atspi_accessible_get_child_at_index (obj, 0, NULL);
@@ -142,25 +152,52 @@ atk_test_collection_get_matches_from (gpointer fixture, gconstpointer user_data)
                                                    0,
                                                    FALSE,
                                                    NULL);
+  g_object_unref (ss);
   g_assert_cmpint (3, ==, ret->len);
-  AtspiAccessible *get = NULL;
-  get = g_array_index (ret, AtspiAccessible *, 0);
-  g_assert_cmpstr ("obj2/1", ==, atspi_accessible_get_name (get, NULL));
-  get = g_array_index (ret, AtspiAccessible *, 1);
-  g_assert_cmpstr ("obj3", ==, atspi_accessible_get_name (get, NULL));
-  get = g_array_index (ret, AtspiAccessible *, 2);
-  g_assert_cmpstr ("obj3", ==, atspi_accessible_get_name (get, NULL));
+  check_and_unref (ret, 0, "obj2/1");
+  check_and_unref (ret, 1, "obj3");
+  check_and_unref (ret, 2, "obj3");
+  g_array_free (ret, TRUE);
+  g_object_unref (rule);
+
+  attributes = g_hash_table_new (g_str_hash, g_str_equal);
+  g_hash_table_insert (attributes, "layout-guess", "true");
+  rule = atspi_match_rule_new (NULL,
+                               ATSPI_Collection_MATCH_ALL,
+                               attributes,
+                               ATSPI_Collection_MATCH_NONE,
+                               NULL,
+                               ATSPI_Collection_MATCH_ALL,
+                               NULL,
+                               ATSPI_Collection_MATCH_ALL,
+                               FALSE);
+  ret = atspi_collection_get_matches_from (iface,
+                                           child1,
+                                           rule,
+                                           ATSPI_Collection_SORT_ORDER_CANONICAL,
+                                           ATSPI_Collection_TREE_INORDER,
+                                           0,
+                                           FALSE,
+                                           NULL);
+  g_hash_table_unref (attributes);
+  g_assert_cmpint (6, ==, ret->len);
+  g_array_free (ret, TRUE);
+  g_object_unref (rule);
+
+  g_object_unref (child1);
+  g_object_unref (child);
+  g_object_unref (iface);
 }
 
 void
 atk_test_collection (void)
 {
-  g_test_add_vtable (ATK_TEST_PATH_COLLECTION "/atk_test_collection_get_collection_iface",
-                     0, NULL, NULL, atk_test_collection_get_collection_iface, teardown_collection_test);
-  g_test_add_vtable (ATK_TEST_PATH_COLLECTION "/atk_test_collection_get_matches",
-                     0, NULL, NULL, atk_test_collection_get_matches, teardown_collection_test);
-  g_test_add_vtable (ATK_TEST_PATH_COLLECTION "/atk_test_collection_get_matches_to",
-                     0, NULL, NULL, atk_test_collection_get_matches_to, teardown_collection_test);
-  g_test_add_vtable (ATK_TEST_PATH_COLLECTION "/atk_test_collection_get_matches_from",
-                     0, NULL, NULL, atk_test_collection_get_matches_from, teardown_collection_test);
+  g_test_add ("/collection/atk_test_collection_get_collection_iface",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_collection_get_collection_iface, fixture_teardown);
+  g_test_add ("/collection/atk_test_collection_get_matches",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_collection_get_matches, fixture_teardown);
+  g_test_add ("/collection/atk_test_collection_get_matches_to",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_collection_get_matches_to, fixture_teardown);
+  g_test_add ("/collection/atk_test_collection_get_matches_from",
+              TestAppFixture, DATA_FILE, fixture_setup, atk_test_collection_get_matches_from, fixture_teardown);
 }
