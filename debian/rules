@@ -3,6 +3,12 @@
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 export DEB_LDFLAGS_MAINT_APPEND = -Wl,-z,defs
 
+configure_options :=
+
+ifeq ($(DEB_HOST_ARCH),$(DEB_BUILD_ARCH))
+configure_options += --native-file=$(CURDIR)/debian/meson/no-exe-wrapper.ini
+endif
+
 %:
 	dh $@
 
@@ -11,6 +17,7 @@ override_dh_auto_configure:
 	dh_auto_configure -- \
 		-Dintrospection=enabled \
 		-Ddocs=true \
+		$(configure_options) \
 		-Ddefault_bus=dbus-broker
 
 override_dh_auto_test:
