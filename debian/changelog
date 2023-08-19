@@ -1,3 +1,9 @@
+at-spi2-core (2.49.90-3) unstable; urgency=medium
+
+  * Restore and rebase patch to work around hanging tests
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Fri, 18 Aug 2023 23:13:07 -0400
+
 at-spi2-core (2.49.90-2) unstable; urgency=medium
 
   * d/rules, d/meson/no-exe-wrapper.ini: Work around FTBFS on mips64el
