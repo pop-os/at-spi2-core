@@ -5,6 +5,9 @@ set -e
 WORKDIR=$AUTOPKGTEST_TMP
 SRCDIR=$PWD
 
+patch -p1 < debian/tests-patches/test-application-path.patch 2>&1 || true
+
+
 if [ -n "${DEB_HOST_GNU_TYPE:-}" ]; then
     CROSS_COMPILE="$DEB_HOST_GNU_TYPE-"
 else
@@ -28,3 +31,6 @@ ${CROSS_COMPILE}gcc tests/atspi/memory.c -o $WORKDIR/memory  \
 unset XDG_RUNTIME_DIR
 cd $WORKDIR
 exec xvfb-run -s -noreset -a dbus-run-session --dbus-daemon $SRCDIR/debian/tests/dbus-daemon -- ./memory
+
+cd $SRCDIR
+patch -p1 -R < debian/tests-patches/test-application-path.patch
