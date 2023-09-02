@@ -605,7 +605,8 @@ add_accessible_from_iter (DBusMessageIter *iter)
   if (parent == accessible)
     {
       guint pid = atspi_accessible_get_process_id (accessible, NULL);
-      g_warning ("Process %d sent an accessible with itself as its parent. This shouldn't happen.", pid);
+      if (!g_getenv ("ATSPI_IN_TESTS"))
+        g_warning ("Process %d sent an accessible with itself as its parent. This shouldn't happen.", pid);
       accessible->accessible_parent = NULL;
     }
   else
@@ -2215,4 +2216,31 @@ atspi_get_version (gint *major, gint *minor, gint *micro)
     *minor = ATSPI_MINOR_VERSION;
   if (micro)
     *micro = ATSPI_MICRO_VERSION;
+}
+
+gboolean
+_atspi_key_is_on_keypad (gint keycode)
+{
+  switch (keycode)
+    {
+    case 106: /* / */
+    case 63:  /* * */
+    case 82:  /* - */
+    case 79:  /* 7 */
+    case 80:  /* 8 */
+    case 91:  /* 9 */
+    case 86:  /* + */
+    case 83:  /* 4 */
+    case 84:  /* 5 */
+    case 85:  /* 6 */
+    case 87:  /* 1 */
+    case 88:  /* 2 */
+    case 89:  /* 3 */
+    case 104: /* enter */
+    case 90:  /* 0 */
+    case 81:  /* . */
+      return TRUE;
+    default:
+      return FALSE;
+    }
 }
