@@ -38,8 +38,6 @@ struct _AtspiDeviceX11Private
   Window focused_window;
   GSource *source;
   int xi_opcode;
-  int device_id;
-  int device_id_alt;
   GSList *modifiers;
   GSList *key_grabs;
   guint virtual_mods_enabled;
@@ -200,11 +198,12 @@ static void
 grab_key (AtspiDeviceX11 *x11_device, Window window, int keycode, int modmask)
 {
   AtspiDeviceX11Private *priv = atspi_device_x11_get_instance_private (x11_device);
+  gboolean include_numlock = !_atspi_key_is_on_keypad (keycode);
 
   grab_key_aux (x11_device, window, keycode, modmask);
   if (!(modmask & LockMask))
     grab_key_aux (x11_device, window, keycode, modmask | LockMask);
-  if (!(modmask & priv->numlock_physical_mask))
+  if (include_numlock && !(modmask & priv->numlock_physical_mask))
     {
       grab_key_aux (x11_device, window, keycode, modmask | priv->numlock_physical_mask);
       if (!(modmask & LockMask))
@@ -234,7 +233,7 @@ ungrab_key_aux (AtspiDeviceX11 *x11_device, Window window, int keycode, int modm
   xi_modifiers.modifiers = modmask;
   xi_modifiers.status = 0;
 
-  XIUngrabKeycode (priv->display, XIAllMasterDevices, keycode, window, sizeof (xi_modifiers), &xi_modifiers);
+  XIUngrabKeycode (priv->display, XIAllMasterDevices, keycode, window, 1, &xi_modifiers);
 }
 
 static void
@@ -283,9 +282,14 @@ refresh_key_grabs (AtspiDeviceX11 *x11_device)
   for (l = priv->key_grabs; l; l = l->next)
     {
       AtspiX11KeyGrab *grab = l->data;
-      gboolean new_enabled = grab_should_be_enabled (x11_device, grab);
       if (grab->window != priv->focused_window)
         disable_key_grab (x11_device, grab);
+    }
+
+  for (l = priv->key_grabs; l; l = l->next)
+    {
+      AtspiX11KeyGrab *grab = l->data;
+      gboolean new_enabled = grab_should_be_enabled (x11_device, grab);
       if (new_enabled && !grab->enabled)
         enable_key_grab (x11_device, grab);
       else if (grab->enabled && !new_enabled)
@@ -366,19 +370,11 @@ do_event_dispatch (gpointer user_data)
                   XLookupString ((XKeyEvent *) &keyevent, text, sizeof (text), &keysym, &status);
                   if (text[0] < ' ')
                     text[0] = '\0';
-                  /* The deviceid can change. Would be nice to find a better way of
-                     handling this */
-                  if (priv->device_id && priv->device_id_alt && xiDevEv->deviceid != priv->device_id && xiDevEv->deviceid != priv->device_id_alt)
-                    priv->device_id = priv->device_id_alt = 0;
-                  else if (priv->device_id && !priv->device_id_alt && xiDevEv->deviceid != priv->device_id)
-                    priv->device_id_alt = xiDevEv->deviceid;
-                  if (!priv->device_id)
-                    priv->device_id = xiDevEv->deviceid;
                   set_virtual_modifier (device, xiRawEv->detail, xevent.xcookie.evtype == XI_KeyPress);
                   modifiers = keyevent.xkey.state | priv->virtual_mods_enabled;
                   if (modifiers & priv->numlock_physical_mask)
                     modifiers |= (1 << ATSPI_MODIFIER_NUMLOCK);
-                  if (xiDevEv->deviceid == priv->device_id)
+                  if (xiDevEv->deviceid == xiDevEv->sourceid)
                     atspi_device_notify_key (ATSPI_DEVICE (device), (xevent.xcookie.evtype == XI_KeyPress), xiRawEv->detail, keysym, modifiers, text);
                   /* otherwise it's probably a duplicate event from a key grab */
                   XFreeEventData (priv->display, &xevent.xcookie);
