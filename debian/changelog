@@ -1,3 +1,9 @@
+at-spi2-core (2.49.91-2) unstable; urgency=medium
+
+  * Restore workaround_tests_issue.patch: still needed for Ubuntu autopkgtests
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Sat, 02 Sep 2023 21:16:21 -0400
+
 at-spi2-core (2.49.91-1) unstable; urgency=medium
 
   * Team upload
