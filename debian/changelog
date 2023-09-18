@@ -1,3 +1,9 @@
+at-spi2-core (2.50.0-1) unstable; urgency=medium
+
+  * New upstream version 2.50.0
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 18 Sep 2023 09:55:59 -0400
+
 at-spi2-core (2.49.91-2) unstable; urgency=medium
 
   * Restore workaround_tests_issue.patch: still needed for Ubuntu autopkgtests
