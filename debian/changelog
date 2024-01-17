@@ -1,3 +1,10 @@
+at-spi2-core (2.50.0-2) UNRELEASED; urgency=medium
+
+  * control: Add Depends: ${gir:Depends} and Provides: ${gir:Provides}
+    (Closes: Bug#1061083).
+
+ -- Samuel Thibault <sthibault@debian.org>  Wed, 17 Jan 2024 19:31:04 +0100
+
 at-spi2-core (2.50.0-1) unstable; urgency=medium
 
   * New upstream version 2.50.0

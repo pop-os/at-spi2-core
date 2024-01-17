@@ -80,9 +80,10 @@ Depends: ${gir:Depends},
          libatspi2.0-0 (= ${binary:Version}),
          libglib2.0-dev,
          libdbus-1-dev,
-         libxtst-dev
-Provides: ${gir:Provides}
+         libxtst-dev,
+         ${gir:Depends},
 Replaces: gir-repository-dev
+Provides: ${gir:Provides}
 Description: Development files for the assistive technology service provider
  These are the development files for at-spi2, needed for compilation of
  programs which use it.
@@ -203,8 +204,9 @@ Depends: ${gir:Depends},
          gir1.2-atk-1.0 (= ${binary:Version}),
          pkg-config,
          libglib2.0-dev
-Provides: ${gir:Provides}
+         ${gir:Depends},
 Replaces: gir-repository-dev
+Provides: ${gir:Provides}
 Description: Development files for the ATK accessibility toolkit
  ATK is a toolkit providing accessibility interfaces for applications or
  other toolkits. By implementing these interfaces, those other toolkits or
