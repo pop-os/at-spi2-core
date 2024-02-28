@@ -22,6 +22,7 @@
 
 #include "atspi-device.h"
 #include "atspi-device-legacy.h"
+#include "atspi-device-mutter.h"
 #include "atspi-device-x11.h"
 #include "atspi-private.h"
 
@@ -65,9 +66,10 @@ atspi_device_finalize (GObject *object)
   device_parent_class->finalize (object);
 }
 
-static void
+static gboolean
 atspi_device_real_add_key_grab (AtspiDevice *device, AtspiKeyDefinition *kd)
 {
+  return TRUE;
 }
 
 static void
@@ -97,10 +99,21 @@ atspi_device_class_init (AtspiDeviceClass *klass)
 AtspiDevice *
 atspi_device_new ()
 {
+  AtspiDevice *device;
+  const gchar *desktop;
+
 #ifdef HAVE_X11
   if (!g_getenv ("WAYLAND_DISPLAY") && !g_getenv ("ATSPI_USE_LEGACY_DEVICE"))
     return ATSPI_DEVICE (atspi_device_x11_new ());
 #endif
+
+  desktop = g_getenv ("XDG_CURRENT_DESKTOP");
+  if (desktop && !strcmp (desktop, "GNOME"))
+    {
+      device = ATSPI_DEVICE (atspi_device_mutter_new ());
+      if (device)
+        return device;
+    }
 
   return ATSPI_DEVICE (atspi_device_legacy_new ());
 }
@@ -122,7 +135,7 @@ key_matches_modifiers (gint keycode, guint key_mods, guint grab_mods)
 }
 
 gboolean
-atspi_device_notify_key (AtspiDevice *device, gboolean pressed, int keycode, int keysym, gint state, gchar *text)
+atspi_device_notify_key (AtspiDevice *device, gboolean pressed, int keycode, int keysym, gint state, const gchar *text)
 {
   AtspiDevicePrivate *priv = atspi_device_get_instance_private (device);
   GSList *l;
@@ -181,22 +194,6 @@ get_grab_id (AtspiDevice *device)
   return priv->last_grab_id++;
 }
 
-static gboolean
-grab_has_duplicate (AtspiDevice *device, AtspiKeyGrab *grab)
-{
-  AtspiDevicePrivate *priv = atspi_device_get_instance_private (device);
-  GSList *l;
-
-  for (l = priv->keygrabs; l; l = l->next)
-    {
-      AtspiKeyGrab *other_grab = l->data;
-      if (other_grab->id != grab->id && other_grab->keycode == grab->keycode && other_grab->modifiers == grab->modifiers)
-        return TRUE;
-    }
-
-  return FALSE;
-}
-
 /**
  *atspi_device_add_key_grab:
  * @device: the device.
@@ -207,14 +204,20 @@ grab_has_duplicate (AtspiDevice *device, AtspiKeyGrab *grab)
  * @callback_destroyed: callback function to be called when @callback is
  *                      destroyed.
  *
- * Returns: an identifier that can be later used to remove the grab.
+ * Returns: an identifier that can be later used to remove the grab, or 0
+ * if the key/modifier combination could not be grabbed.
  * Add a key grab for the given key/modifier combination.
  */
 guint
 atspi_device_add_key_grab (AtspiDevice *device, AtspiKeyDefinition *kd, AtspiKeyCallback callback, void *user_data, GDestroyNotify callback_destroyed)
 {
   AtspiDevicePrivate *priv = atspi_device_get_instance_private (device);
-  AtspiKeyGrab *grab = g_new (AtspiKeyGrab, 1);
+  AtspiKeyGrab *grab;
+
+  if (!ATSPI_DEVICE_GET_CLASS (device)->add_key_grab (device, kd))
+    return 0;
+
+  grab = g_new (AtspiKeyGrab, 1);
   grab->keycode = kd->keycode;
   grab->keysym = kd->keysym;
   grab->modifiers = kd->modifiers;
@@ -224,8 +227,6 @@ atspi_device_add_key_grab (AtspiDevice *device, AtspiKeyDefinition *kd, AtspiKey
   grab->id = get_grab_id (device);
   priv->keygrabs = g_slist_append (priv->keygrabs, grab);
 
-  if (!grab_has_duplicate (device, grab))
-    ATSPI_DEVICE_GET_CLASS (device)->add_key_grab (device, kd);
   return grab->id;
 }
 
@@ -247,8 +248,7 @@ atspi_device_remove_key_grab (AtspiDevice *device, guint id)
       AtspiKeyGrab *grab = l->data;
       if (grab->id == id)
         {
-          if (!grab_has_duplicate (device, grab))
-            ATSPI_DEVICE_GET_CLASS (device)->remove_key_grab (device, id);
+          ATSPI_DEVICE_GET_CLASS (device)->remove_key_grab (device, id);
           priv->keygrabs = g_slist_remove (priv->keygrabs, grab);
           if (grab->callback_destroyed)
             (*grab->callback_destroyed) (grab->callback);
@@ -409,4 +409,32 @@ atspi_device_ungrab_keyboard (AtspiDevice *device)
 {
   if (ATSPI_DEVICE_GET_CLASS (device)->ungrab_keyboard)
     ATSPI_DEVICE_GET_CLASS (device)->ungrab_keyboard (device);
+}
+
+/**
+ * atspi_device_generate_mouse_event:
+ * @device: the device.
+ * @obj: The #AtspiAccessible that should receive the click.
+ * @x: a #gint indicating the x coordinate of the mouse event, relative to
+ *     @obj..
+ * @y: a #gint indicating the y coordinate of the mouse event, relative to
+ *     @obj..
+ * @name: a string indicating which mouse event to be synthesized
+ *        (e.g. "b1p", "b1c", "b2r", "rel", "abs").
+ * @error: (allow-none): a pointer to a %NULL #GError pointer, or %NULL
+ *
+ * Synthesizes a mouse event at a specific screen coordinate.
+ * Most AT clients should use the #AccessibleAction interface when
+ * tempted to generate mouse events, rather than this method.
+ * Event names: b1p = button 1 press; b2r = button 2 release;
+ *              b3c = button 3 click; b2d = button 2 double-click;
+ *              abs = absolute motion; rel = relative motion.
+ *
+ * Since: 2.52
+ **/
+void
+atspi_device_generate_mouse_event (AtspiDevice *device, AtspiAccessible *obj, gint x, gint y, const gchar *name, GError **error)
+{
+  if (ATSPI_DEVICE_GET_CLASS (device)->generate_mouse_event)
+    ATSPI_DEVICE_GET_CLASS (device)->generate_mouse_event (device, obj, x, y, name, error);
 }
