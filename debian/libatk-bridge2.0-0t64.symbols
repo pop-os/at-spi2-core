@@ -50,6 +50,7 @@ libatk-bridge-2.0.so.0 libatk-bridge2.0-0t64 #MINVER#
  spi_dbus_demarshal_deviceEvent@Base 2.26.0
  spi_dbus_emit_signal@Base 2.26.0
  spi_dbus_general_error@Base 2.26.0
+ spi_dbus_get_object_from_iter@Base 2.51.90
  spi_dbus_marshal_deviceEvent@Base 2.26.0
  spi_dbus_message_iter_append_struct@Base 2.26.0
  spi_dbus_message_iter_get_struct@Base 2.26.0

@@ -37,8 +37,10 @@ libatk-1.0.so.0 libatk1.0-0t64 #MINVER#
  atk_document_get_document_type@Base 1.12.4
  atk_document_get_locale@Base 1.12.4
  atk_document_get_page_count@Base 2.11.6
+ atk_document_get_text_selections@Base 2.51.90
  atk_document_get_type@Base 1.12.4
  atk_document_set_attribute_value@Base 1.12.4
+ atk_document_set_text_selections@Base 2.51.90
  atk_editable_text_copy_text@Base 1.12.4
  atk_editable_text_cut_text@Base 1.12.4
  atk_editable_text_delete_text@Base 1.12.4
@@ -108,6 +110,7 @@ libatk-1.0.so.0 libatk1.0-0t64 #MINVER#
  atk_object_get_accessible_id@Base 2.33.1
  atk_object_get_attributes@Base 1.12.4
  atk_object_get_description@Base 1.12.4
+ atk_object_get_help_text@Base 2.51.90
  atk_object_get_index_in_parent@Base 1.12.4
  atk_object_get_layer@Base 1.12.4
  atk_object_get_mdi_zorder@Base 1.12.4
@@ -127,6 +130,7 @@ libatk-1.0.so.0 libatk1.0-0t64 #MINVER#
  atk_object_remove_relationship@Base 1.12.4
  atk_object_set_accessible_id@Base 2.33.1
  atk_object_set_description@Base 1.12.4
+ atk_object_set_help_text@Base 2.51.90
  atk_object_set_name@Base 1.12.4
  atk_object_set_parent@Base 1.12.4
  atk_object_set_role@Base 1.12.4
