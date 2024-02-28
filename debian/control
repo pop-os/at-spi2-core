@@ -3,7 +3,7 @@ Section: misc
 Priority: optional
 Maintainer: Debian Accessibility Team <pkg-a11y-devel@alioth-lists.debian.net>
 Uploaders: Samuel Thibault <sthibault@debian.org>, Jordi Mallach <jordi@debian.org>
-Build-Depends: debhelper-compat (= 13),
+Build-Depends: dpkg-dev (>= 1.22.5), debhelper-compat (= 13),
                dbus, libdbus-1-dev,
                dbus-broker [linux-any], libsystemd-dev [linux-any],
                libglib2.0-dev (>= 2.62),
@@ -51,7 +51,10 @@ Description: Assistive Technology Service Provider Interface (D-Bus core for d-i
  This package contains the core components of GNOME Accessibility for the Debian
  installer.
 
-Package: libatspi2.0-0
+Package: libatspi2.0-0t64
+Provides: ${t64:Provides}
+Replaces: libatspi2.0-0
+Breaks: libatspi2.0-0 (<< ${source:Version})
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -77,7 +80,7 @@ Multi-Arch: same
 Depends: ${gir:Depends},
          ${misc:Depends},
          gir1.2-atspi-2.0 (= ${binary:Version}),
-         libatspi2.0-0 (= ${binary:Version}),
+         libatspi2.0-0t64 (= ${binary:Version}),
          libglib2.0-dev,
          libdbus-1-dev,
          libxtst-dev,
@@ -95,7 +98,7 @@ Multi-Arch: same
 Depends: ${misc:Depends},
          ${shlibs:Depends},
          ${gir:Depends},
-         libatspi2.0-0 (>= ${binary:Version})
+         libatspi2.0-0t64 (>= ${binary:Version})
 Replaces: gir1.0-gtk-2.0 (<< 2.22),
           gobject-introspection-repository
 Description: Assistive Technology Service Provider (GObject introspection)
@@ -120,7 +123,7 @@ Replaces: at-spi
 Provides: at-spi
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-         libatk-bridge2.0-0 (>= ${binary:Version})
+         libatk-bridge2.0-0t64 (>= ${binary:Version})
 Description: AT-SPI 2 toolkit bridge
  This package includes a gtk-module that bridges ATK to the new
  D-Bus based AT-SPI.
@@ -133,7 +136,10 @@ Package-Type: udeb
 Description: AT-SPI 2 toolkit bridge - module for d-i
  This package includes the gtk-module for the Debian installer.
 
-Package: libatk-bridge2.0-0
+Package: libatk-bridge2.0-0t64
+Provides: ${t64:Provides}
+Replaces: libatk-bridge2.0-0
+Breaks: libatk-bridge2.0-0 (<< ${source:Version})
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -155,7 +161,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libatk-bridge2.0-0 (= ${binary:Version}),
+         libatk-bridge2.0-0t64 (= ${binary:Version}),
          libatk1.0-dev,
          libglib2.0-dev,
          libatspi2.0-dev
@@ -163,7 +169,10 @@ Description: Development files for the AT-SPI 2 toolkit bridge
  These are the development files for libatk-bridge2.0, needed for
  compilation of programs which use it.
 
-Package: libatk1.0-0
+Package: libatk1.0-0t64
+Provides: ${t64:Provides}
+Replaces: libatk1.0-0
+Breaks: libatk1.0-0 (<< ${source:Version})
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -200,7 +209,7 @@ Architecture: any
 Multi-Arch: same
 Depends: ${gir:Depends},
          ${misc:Depends},
-         libatk1.0-0 (= ${binary:Version}),
+         libatk1.0-0t64 (= ${binary:Version}),
          gir1.2-atk-1.0 (= ${binary:Version}),
          pkg-config,
          libglib2.0-dev,
