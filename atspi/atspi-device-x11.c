@@ -173,13 +173,14 @@ grab_has_active_duplicate (AtspiDeviceX11 *x11_device, AtspiX11KeyGrab *grab)
   return FALSE;
 }
 
-static void
+static gboolean
 grab_key_aux (AtspiDeviceX11 *x11_device, Window window, int keycode, int modmask)
 {
   AtspiDeviceX11Private *priv = atspi_device_x11_get_instance_private (x11_device);
   XIGrabModifiers xi_modifiers;
   XIEventMask eventmask;
   unsigned char mask[XIMaskLen (XI_LASTEVENT)] = { 0 };
+  int ret;
 
   xi_modifiers.modifiers = modmask;
   xi_modifiers.status = 0;
@@ -191,37 +192,44 @@ grab_key_aux (AtspiDeviceX11 *x11_device, Window window, int keycode, int modmas
   XISetMask (mask, XI_KeyPress);
   XISetMask (mask, XI_KeyRelease);
 
-  XIGrabKeycode (priv->display, XIAllMasterDevices, keycode, window, XIGrabModeSync, XIGrabModeAsync, False, &eventmask, 1, &xi_modifiers);
+  ret = XIGrabKeycode (priv->display, XIAllMasterDevices, keycode, window, XIGrabModeSync, XIGrabModeAsync, False, &eventmask, 1, &xi_modifiers);
+  return (ret == 0);
 }
 
-static void
+static gboolean
 grab_key (AtspiDeviceX11 *x11_device, Window window, int keycode, int modmask)
 {
   AtspiDeviceX11Private *priv = atspi_device_x11_get_instance_private (x11_device);
   gboolean include_numlock = !_atspi_key_is_on_keypad (keycode);
+  gboolean ret = FALSE;
 
-  grab_key_aux (x11_device, window, keycode, modmask);
+  ret |= grab_key_aux (x11_device, window, keycode, modmask);
   if (!(modmask & LockMask))
-    grab_key_aux (x11_device, window, keycode, modmask | LockMask);
+    ret |= grab_key_aux (x11_device, window, keycode, modmask | LockMask);
   if (include_numlock && !(modmask & priv->numlock_physical_mask))
     {
-      grab_key_aux (x11_device, window, keycode, modmask | priv->numlock_physical_mask);
+      ret |= grab_key_aux (x11_device, window, keycode, modmask | priv->numlock_physical_mask);
       if (!(modmask & LockMask))
-        grab_key_aux (x11_device, window, keycode, modmask | LockMask | priv->numlock_physical_mask);
+        ret |= grab_key_aux (x11_device, window, keycode, modmask | LockMask | priv->numlock_physical_mask);
     }
+  return ret;
 }
 
-static void
+static gboolean
 enable_key_grab (AtspiDeviceX11 *x11_device, AtspiX11KeyGrab *grab)
 {
   AtspiDeviceX11Private *priv = atspi_device_x11_get_instance_private (x11_device);
+  gboolean ret;
 
-  g_return_if_fail (priv->display != NULL);
+  g_return_val_if_fail (priv->display != NULL, FALSE);
 
-  if (!grab_has_active_duplicate (x11_device, grab))
-    grab_key (x11_device, priv->focused_window, grab->kd->keycode, grab->kd->modifiers & ~ATSPI_VIRTUAL_MODIFIER_MASK);
+  if (grab_has_active_duplicate (x11_device, grab))
+    ret = TRUE;
+  else
+    ret = grab_key (x11_device, priv->focused_window, grab->kd->keycode, grab->kd->modifiers & ~ATSPI_VIRTUAL_MODIFIER_MASK);
   grab->enabled = TRUE;
   grab->window = priv->focused_window;
+  return ret;
 }
 
 static void
@@ -644,19 +652,31 @@ atspi_device_x11_finalize (GObject *object)
   device_x11_parent_class->finalize (object);
 }
 
-static void
+static gboolean
 atspi_device_x11_add_key_grab (AtspiDevice *device, AtspiKeyDefinition *kd)
 {
   AtspiDeviceX11 *x11_device = ATSPI_DEVICE_X11 (device);
   AtspiDeviceX11Private *priv = atspi_device_x11_get_instance_private (x11_device);
   AtspiX11KeyGrab *grab;
+  gboolean ret;
 
   grab = g_new0 (AtspiX11KeyGrab, 1);
   grab->kd = g_boxed_copy (ATSPI_TYPE_KEY_DEFINITION, kd);
   grab->enabled = FALSE;
-  priv->key_grabs = g_slist_append (priv->key_grabs, grab);
   if (grab_should_be_enabled (x11_device, grab))
-    enable_key_grab (x11_device, grab);
+    ret = enable_key_grab (x11_device, grab);
+  else
+    ret = TRUE;
+
+  if (ret)
+    priv->key_grabs = g_slist_append (priv->key_grabs, grab);
+  else
+    {
+      g_boxed_free (ATSPI_TYPE_KEY_DEFINITION, grab->kd);
+      g_free (grab);
+    }
+
+  return ret;
 }
 
 static void
@@ -755,6 +775,35 @@ atspi_device_x11_ungrab_keyboard (AtspiDevice *device)
 }
 
 static void
+atspi_device_x11_generate_mouse_event (AtspiDevice *device, AtspiAccessible *obj, gint x, gint y, const gchar *name, GError **error)
+{
+  AtspiPoint *p;
+
+  p = atspi_component_get_position (ATSPI_COMPONENT (obj), ATSPI_COORD_TYPE_SCREEN, error);
+  if (p->y == -1 && atspi_accessible_get_role (obj, NULL) == ATSPI_ROLE_APPLICATION)
+    {
+      g_clear_error (error);
+      g_free (p);
+      AtspiAccessible *child = atspi_accessible_get_child_at_index (obj, 0, NULL);
+      if (child)
+        {
+          p = atspi_component_get_position (ATSPI_COMPONENT (child), ATSPI_COORD_TYPE_SCREEN, error);
+          g_object_unref (child);
+        }
+    }
+
+  if (p->y == -1 || p->x == -1)
+    return;
+
+  x += p->x;
+  y += p->y;
+  g_free (p);
+
+  /* TODO: do this in process */
+  atspi_generate_mouse_event (x, y, name, error);
+}
+
+static void
 atspi_device_x11_class_init (AtspiDeviceX11Class *klass)
 {
   AtspiDeviceClass *device_class = ATSPI_DEVICE_CLASS (klass);
@@ -769,6 +818,7 @@ atspi_device_x11_class_init (AtspiDeviceX11Class *klass)
   device_class->get_locked_modifiers = atspi_device_x11_get_locked_modifiers;
   device_class->grab_keyboard = atspi_device_x11_grab_keyboard;
   device_class->ungrab_keyboard = atspi_device_x11_ungrab_keyboard;
+  device_class->generate_mouse_event = atspi_device_x11_generate_mouse_event;
   object_class->finalize = atspi_device_x11_finalize;
 }
 

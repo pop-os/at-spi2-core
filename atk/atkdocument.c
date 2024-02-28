@@ -20,6 +20,7 @@
 #include "config.h"
 
 #include "atkdocument.h"
+#include "atkmarshal.h"
 
 /**
  * AtkDocument:
@@ -43,6 +44,7 @@ enum
   RELOAD,
   LOAD_STOPPED,
   PAGE_CHANGED,
+  DOCUMENT_ATTRIBUTE_CHANGED,
   LAST_SIGNAL
 };
 
@@ -158,6 +160,28 @@ atk_document_base_init (AtkDocumentIface *class)
                         g_cclosure_marshal_VOID__INT,
                         G_TYPE_NONE, 1, G_TYPE_INT);
 
+      /**
+       * AtkDocument::document-attribute-changed
+       * @atkdocument: the object which received the signal.
+       * @arg1: the name of the attribute being modified, or %NULL if not
+       *          available.
+       * @arg2: the attribute's new value, or %null if not available.
+       *
+       * The "document-attribute-changed" signal should be emitted when there is a
+       * change to one of the document attributes returned by
+       * atk_document_get_attributes.
+       *
+       * Since: 2.52
+       */
+      atk_document_signals[DOCUMENT_ATTRIBUTE_CHANGED] =
+          g_signal_new ("document-attribute-changed",
+                        ATK_TYPE_DOCUMENT,
+                        G_SIGNAL_RUN_LAST,
+                        0,
+                        NULL, NULL,
+                        atk_marshal_VOID__STRING_STRING,
+                        G_TYPE_NONE,
+                        2, G_TYPE_STRING, G_TYPE_STRING);
       initialized = TRUE;
     }
 }
@@ -420,4 +444,58 @@ atk_document_get_page_count (AtkDocument *document)
     {
       return -1;
     }
+}
+
+/**
+ * atk_document_get_text_selections:
+ * @document: an #AtkDocument
+ *
+ * Returns an array of AtkTextSelections within this document.
+ *
+ * Returns: (element-type AtkTextSelection) (transfer full): a GArray of
+ * AtkTextSelection structures representing the selection.
+ */
+GArray *
+atk_document_get_text_selections (AtkDocument *document)
+{
+  AtkDocumentIface *iface;
+
+  g_return_val_if_fail (ATK_IS_DOCUMENT (document), NULL);
+
+  iface = ATK_DOCUMENT_GET_IFACE (document);
+
+  if (iface->get_text_selections)
+    return (*(iface->get_text_selections)) (document);
+  else
+    return NULL;
+}
+
+/**
+ * atk_document_set_text_selections:
+ * @document: an #AtkDocument.
+ * @selections: (element-type AtkTextSelection): a GArray of AtkTextSelections
+ *              to be selected.
+ *
+ * Makes 1 or more selections within this document denoted by the given
+ * array of AtkTextSelections. Any existing physical selection (inside or
+ * outside this document) is replaced by the new selections. All objects within
+ * the given selection ranges must be descendants of this document. Otherwise
+ * FALSE will be returned.
+ *
+ * Returns TRUE if the selection was made successfully; FALSE otherwise.
+ */
+gboolean
+atk_document_set_text_selections (AtkDocument *document,
+                                  GArray *selections)
+{
+  AtkDocumentIface *iface;
+
+  g_return_val_if_fail (ATK_IS_DOCUMENT (document), FALSE);
+
+  iface = ATK_DOCUMENT_GET_IFACE (document);
+
+  if (iface->set_text_selections)
+    return (*(iface->set_text_selections)) (document, selections);
+  else
+    return FALSE;
 }
