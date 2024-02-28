@@ -84,7 +84,6 @@ Depends: ${gir:Depends},
          libglib2.0-dev,
          libdbus-1-dev,
          libxtst-dev,
-         ${gir:Depends},
 Replaces: gir-repository-dev
 Provides: ${gir:Provides}
 Description: Development files for the assistive technology service provider
@@ -213,7 +212,6 @@ Depends: ${gir:Depends},
          gir1.2-atk-1.0 (= ${binary:Version}),
          pkgconf,
          libglib2.0-dev,
-         ${gir:Depends},
 Replaces: gir-repository-dev
 Provides: ${gir:Provides}
 Description: Development files for the ATK accessibility toolkit
