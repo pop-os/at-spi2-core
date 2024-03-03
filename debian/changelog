@@ -1,3 +1,10 @@
+at-spi2-core (2.51.90-2) unstable; urgency=medium
+
+  * control: Replace libgirepository1.0-dev build-dep with gir1.2-dbus-1.0-dev
+    gir1.2-glib-2.0-dev gir1.2-gobject-2.0-dev.  Closes: Bug#1065316.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 03 Mar 2024 02:19:20 +0100
+
 at-spi2-core (2.51.90-1) unstable; urgency=medium
 
   * Team upload
