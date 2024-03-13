@@ -1,6 +1,7 @@
 at-spi2-core (2.51.90-3) unstable; urgency=medium
 
   * patches/missing-function-declaration: Fix build with qa=+bug-implicit-func.
+    Closes: Bug#1066283.
 
  -- Samuel Thibault <sthibault@debian.org>  Wed, 13 Mar 2024 11:44:52 +0100
 
