@@ -2,3 +2,4 @@ at-spi-by-default
 workaround_tests_issue.patch
 Back-out-code-to-generate-mouse-events-on-mutter.patch
 Drop-unused-xkbcommon-dependency.patch
+missing-function-declaration

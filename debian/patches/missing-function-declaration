@@ -1,0 +1,20 @@
+commit 9f6e84d7a1884e6e33c74ca0604a2b07b1f0cdfa
+Author: Samuel Thibault <samuel.thibault@ens-lyon.org>
+Date:   Mon Mar 11 14:54:38 2024 +0100
+
+    Fix missing function declaration for getpid
+
+---
+ tests/at-spi2-atk/test-application.c |    1 +
+ 1 file changed, 1 insertion(+)
+
+--- a/tests/at-spi2-atk/test-application.c
++++ b/tests/at-spi2-atk/test-application.c
+@@ -36,6 +36,7 @@
+ #include <locale.h>
+ #include <stdio.h>
+ #include <stdlib.h>
++#include <unistd.h>
+ #include <string.h>
+ 
+ static AtkObject *root_accessible;
