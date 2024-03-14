@@ -5,7 +5,8 @@ Maintainer: Debian Accessibility Team <pkg-a11y-devel@alioth-lists.debian.net>
 Uploaders: Samuel Thibault <sthibault@debian.org>, Jordi Mallach <jordi@debian.org>
 Build-Depends: dpkg-dev (>= 1.22.5), debhelper-compat (= 13),
                dbus, libdbus-1-dev,
-               dbus-broker [linux-any], libsystemd-dev [linux-any],
+               dbus-broker [amd64 arm64 i386 mips64el ppc64el riscv64 s390x alpha hppa ia64 loong64 ppc64 sparc64],
+               libsystemd-dev [linux-any],
                libglib2.0-dev (>= 2.62),
                libxml2-dev,
                libx11-dev, libxtst-dev,
