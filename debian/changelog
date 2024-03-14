@@ -1,5 +1,6 @@
-at-spi2-core (2.51.90-4) UNRELEASED; urgency=medium
+at-spi2-core (2.51.90-4) unstable; urgency=medium
 
+  [ Simon McVittie ]
   * d/control, d/rules: Temporarily only use dbus-broker on 64-bit
     architectures, plus i386.
     This breaks a dependency cycle on the architectures affected by the
@@ -12,7 +13,7 @@ at-spi2-core (2.51.90-4) UNRELEASED; urgency=medium
     during the 64-bit time_t transition. It normally has a circular
     build-dependency on an older version of itself. (Closes: #1066844)
 
- -- Simon McVittie <smcv@debian.org>  Thu, 14 Mar 2024 10:39:38 +0000
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 14 Mar 2024 11:43:19 +0100
 
 at-spi2-core (2.51.90-3) unstable; urgency=medium
 
