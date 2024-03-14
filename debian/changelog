@@ -1,3 +1,19 @@
+at-spi2-core (2.51.90-4) UNRELEASED; urgency=medium
+
+  * d/control, d/rules: Temporarily only use dbus-broker on 64-bit
+    architectures, plus i386.
+    This breaks a dependency cycle on the architectures affected by the
+    64-bit time_t transition:
+    at-spi2-core, dbus-broker, systemd, cryptsetup, libssh, openssh-server,
+    gtk+3.0, at-spi-2-core. It can be reverted after the transition has
+    finished. (Partially reopens: #998062)
+  * d/control, d/rules: Temporarily skip tests on 32-bit except for i386.
+    This allows at-spi2-core to be re-bootstrapped on those architectures
+    during the 64-bit time_t transition. It normally has a circular
+    build-dependency on an older version of itself. (Closes: #1066844)
+
+ -- Simon McVittie <smcv@debian.org>  Thu, 14 Mar 2024 10:39:38 +0000
+
 at-spi2-core (2.51.90-3) unstable; urgency=medium
 
   * patches/missing-function-declaration: Fix build with qa=+bug-implicit-func.

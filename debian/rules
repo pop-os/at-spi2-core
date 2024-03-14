@@ -9,6 +9,10 @@ ifeq ($(DEB_HOST_ARCH),$(DEB_BUILD_ARCH))
 configure_options += --native-file=$(CURDIR)/debian/meson/no-exe-wrapper.ini
 endif
 
+ifneq ($(DEB_HOST_ARCH_BITS)$(filter i386,$(DEB_HOST_ARCH_CPU)),32)
+configure_options += -Ddefault_bus=dbus-broker
+endif
+
 %:
 	dh $@
 
@@ -17,12 +21,15 @@ override_dh_auto_configure:
 	dh_auto_configure -- \
 		-Dintrospection=enabled \
 		-Ddocs=true \
-		$(configure_options) \
-		-Ddefault_bus=dbus-broker
+		$(configure_options)
 
 override_dh_auto_test:
 ifeq ($(filter nocheck,$(DEB_BUILD_OPTIONS)),)
+ifeq ($(DEB_HOST_ARCH_BITS)$(filter i386,$(DEB_HOST_ARCH_CPU)),32)
+	: # Tests temporarily skipped for 64-bit time_t transition
+else
 	xvfb-run -s -noreset -a dbus-run-session -- dh_auto_test
+endif
 endif
 
 override_dh_makeshlibs:
