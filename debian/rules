@@ -25,7 +25,11 @@ override_dh_auto_configure:
 
 override_dh_auto_test:
 ifeq ($(filter nocheck,$(DEB_BUILD_OPTIONS)),)
+ifeq ($(DEB_HOST_ARCH_BITS)$(filter i386,$(DEB_HOST_ARCH_CPU)),32)
+	: # Tests temporarily skipped for 64-bit time_t transition
+else
 	xvfb-run -s -noreset -a dbus-run-session -- dh_auto_test
+endif
 endif
 
 override_dh_makeshlibs:
