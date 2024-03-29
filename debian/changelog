@@ -1,5 +1,11 @@
-at-spi2-core (2.51.90-5) UNRELEASED; urgency=medium
+at-spi2-core (2.52.0-1) UNRELEASED; urgency=medium
 
+  * Team upload
+
+  [ Jeremy Bícha ]
+  * New upstream release
+
+  [ Samuel Thibault ]
   * d/control, rules: Revert 2.51.90-4 changes, now that architectures have
     caught up.
 
