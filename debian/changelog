@@ -1,15 +1,16 @@
-at-spi2-core (2.52.0-1) UNRELEASED; urgency=medium
+at-spi2-core (2.52.0-1) unstable; urgency=medium
 
   * Team upload
 
   [ Jeremy Bícha ]
   * New upstream release
+  * Drop 3 patches applied in new release
 
   [ Samuel Thibault ]
   * d/control, rules: Revert 2.51.90-4 changes, now that architectures have
     caught up.
 
- -- Samuel Thibault <sthibault@debian.org>  Thu, 14 Mar 2024 12:52:55 +0100
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Fri, 29 Mar 2024 10:11:50 -0400
 
 at-spi2-core (2.51.90-4) unstable; urgency=medium
 
