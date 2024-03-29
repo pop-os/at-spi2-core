@@ -434,6 +434,27 @@ atspi_text_get_text_before_offset (AtspiText *obj,
   return range;
 }
 
+static AtspiTextBoundaryType
+get_legacy_boundary_type (AtspiTextGranularity granularity)
+{
+  switch (granularity)
+    {
+    case ATSPI_TEXT_GRANULARITY_CHAR:
+      return ATSPI_TEXT_BOUNDARY_CHAR;
+    case ATSPI_TEXT_GRANULARITY_WORD:
+      return ATSPI_TEXT_BOUNDARY_WORD_START;
+    case ATSPI_TEXT_GRANULARITY_SENTENCE:
+      return ATSPI_TEXT_BOUNDARY_SENTENCE_START;
+    case ATSPI_TEXT_GRANULARITY_LINE:
+      return ATSPI_TEXT_BOUNDARY_LINE_START;
+    case ATSPI_TEXT_GRANULARITY_PARAGRAPH:
+      /* This is not implemented in previous versions of ATSPI */
+      /* fall through to default case */
+    default:
+      return -1;
+    }
+}
+
 /**
  * atspi_text_get_string_at_offset:
  * @obj: an #AtspiText
@@ -487,14 +508,29 @@ atspi_text_get_string_at_offset (AtspiText *obj,
   dbus_uint32_t d_granularity = granularity;
   dbus_int32_t d_start_offset = -1, d_end_offset = -1;
   AtspiTextRange *range = g_new0 (AtspiTextRange, 1);
+  GError *local_error = NULL;
 
   range->start_offset = range->end_offset = -1;
   if (!obj)
     return range;
 
-  _atspi_dbus_call (obj, atspi_interface_text, "GetStringAtOffset", error,
+  _atspi_dbus_call (obj, atspi_interface_text, "GetStringAtOffset", &local_error,
                     "iu=>sii", d_offset, d_granularity, &range->content,
                     &d_start_offset, &d_end_offset);
+
+  if (local_error)
+    {
+      AtspiTextBoundaryType boundary = get_legacy_boundary_type (granularity);
+      if (boundary == -1)
+	{
+          g_propagate_error (error, local_error);
+          return range;
+	}
+
+      g_clear_error (&local_error);
+      atspi_text_range_free (range);
+      return atspi_text_get_text_at_offset (obj, offset, boundary, error);
+    }
 
   range->start_offset = d_start_offset;
   range->end_offset = d_end_offset;
