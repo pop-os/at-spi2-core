@@ -7,7 +7,7 @@ Subject: workaround tests issue
  1 file changed, 12 deletions(-)
 
 diff --git a/tests/at-spi2-atk/test-application.c b/tests/at-spi2-atk/test-application.c
-index 6be8f0d..853263c 100644
+index 908fafc..9e35a69 100644
 --- a/tests/at-spi2-atk/test-application.c
 +++ b/tests/at-spi2-atk/test-application.c
 @@ -32,10 +32,8 @@
@@ -20,7 +20,7 @@ index 6be8f0d..853263c 100644
 -#include <signal.h>
  #include <stdio.h>
  #include <stdlib.h>
- #include <unistd.h>
+ #include <string.h>
 @@ -98,15 +96,6 @@ static GOptionEntry optentries[] = {
    { NULL }
  };
