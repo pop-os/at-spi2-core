@@ -1,15 +1,16 @@
-at-spi2-core (2.53.1-1) UNRELEASED; urgency=medium
+at-spi2-core (2.53.1-1) unstable; urgency=medium
 
   * Team upload
 
   [ Jeremy Bícha ]
   * New upstream release
+  * Cherry-pick patch related to the "push button" → "button" rename
 
   [ Samuel Thibault ]
   * tests/*: Always unpatch on exit.
   * test build profiles
 
- -- Jeremy Bícha <jbicha@ubuntu.com>  Wed, 07 Aug 2024 08:43:04 -0400
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Wed, 07 Aug 2024 08:54:05 -0400
 
 at-spi2-core (2.52.0-1) unstable; urgency=medium
 
