@@ -88,26 +88,33 @@ atspi_match_rule_class_init (AtspiMatchRuleClass *klass)
 
 /**
  * atspi_match_rule_new:
- * @states: An #AtspiStateSet specifying the states to match or NULL if none.
+ * @states: (allow-none): An #AtspiStateSet specifying the states to match or
+ *          NULL if none.
  * @statematchtype: An #AtspiCollectionMatchType specifying how to interpret
- *          @states.
- * @attributes: (element-type gchar* gchar*): A #GHashTable specifying
- *          attributes to match. To specify multiple attribute values,
- *          separate each value with a :: If an attribute value contains a :,
- *          then it can be escaped by preceding it with a \. A backslash can
- *          likewise be escaped by inserting a double backslash.
+ *                  @states.
+ * @attributes: (element-type gchar* gchar*) (allow-none): A #GHashTable
+ *              specifying attributes to match. To specify multiple attribute
+ *              values, separate each value with a :: If an attribute value
+ *              contains a :, then it can be escaped by preceding it with a \.
+ *              A backslash can likewise be escaped by inserting a double
+ *              backslash.
  * @attributematchtype: An #AtspiCollectionMatchType specifying how to
  *          interpret @attributes.
- * @interfaces: (element-type gchar*): An array of interfaces to match, or
- *          NULL if not applicable.  Interface names should be specified
- *          by the final component of their DBus names (Accessible,
- *          Component, etc).
+ * @interfaces: (element-type gchar*) (allow-none): An array of interfaces to
+ *              match, or NULL if not applicable.  Interface names should be
+ *              specified by the final component of their DBus names
+ *              (Accessible, Component, etc). For Action, it is possible to
+ *              specify an action name by enclosing it in parenthesis after
+ *              the interface name, in which case only accessibles that
+ *              implement that particular action will be returned. For
+ *              instance, Action(click) will return accessibles that provide
+ *              an action called "click".
  * @interfacematchtype: An #AtspiCollectionMatchType specifying how to
- *          interpret @interfaces.
- * @roles: (element-type AtspiRole): A #GArray of roles to match, or NULL if
- *          not applicable.
+ *                      interpret @interfaces.
+ * @roles: (element-type AtspiRole) (allow-none): A #GArray of roles to match,
+ *         or NULL if not applicable.
  * @rolematchtype: An #AtspiCollectionMatchType specifying how to
- *          interpret @roles.
+ *                 interpret @roles.
  * @invert: if #TRUE, the match rule should be denied (inverted); if #FALSE,
  *          it should not. For example, if the match rule defines that a match is
  *          an object of ROLE_HEADING which has STATE_FOCUSABLE and a click action,
@@ -149,8 +156,6 @@ atspi_match_rule_new (AtspiStateSet *states,
                                      (gpointer *) &value))
         g_hash_table_insert (rule->attributes, g_strdup (key), g_strdup (value));
     }
-  else
-    rule->attributes = NULL;
   rule->attributematchtype = attributematchtype;
 
   if (interfaces)
@@ -175,8 +180,6 @@ atspi_match_rule_new (AtspiStateSet *states,
             g_warning ("AT-SPI: unexpected role %d\n", role);
         }
     }
-  else
-    rule->roles[0] = rule->roles[1] = 0;
   rule->rolematchtype = rolematchtype;
 
   rule->invert = invert;

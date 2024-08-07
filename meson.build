@@ -1,5 +1,5 @@
 project('at-spi2-core', 'c',
-        version: '2.52.0',
+        version: '2.53.1',
         license: 'LGPLv2.1+',
         default_options: [
           'buildtype=debugoptimized',
@@ -193,12 +193,6 @@ configure_file(output: 'config.h', configuration: at_spi_conf)
 
 pkgconfig = import('pkgconfig')
 gnome = import('gnome')
-
-if get_option('disable_p2p')
-  p2p_cflags = [ '-DDISABLE_P2P' ]
-else
-  p2p_cflags = []
-endif
 
 subdir('atk')
 
