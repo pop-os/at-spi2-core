@@ -1,8 +1,12 @@
 at-spi2-core (2.52.0-2) UNRELEASED; urgency=medium
 
-  * tests/*: Always unpatch on exit.
+  * Team upload
 
- -- Samuel Thibault <sthibault@debian.org>  Sat, 13 Jul 2024 19:41:11 +0200
+  [ Samuel Thibault ]
+  * tests/*: Always unpatch on exit.
+  * test build profiles
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Wed, 07 Aug 2024 08:43:04 -0400
 
 at-spi2-core (2.52.0-1) unstable; urgency=medium
 
