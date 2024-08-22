@@ -1,0 +1,57 @@
+commit 996a34fa94b89129abcab0a55f81cf8af113ebcd
+Author: Michael Weghorn <m.weghorn@posteo.de>
+Date:   Fri Aug 9 09:29:20 2024 +0200
+
+    Make ATSPI_ROLE_PUSH_BUTTON an enum value again
+    
+        commit 0c2ebfad9ebf92913a326143345b841d54fa1866
+        Date:   Tue Aug 6 16:02:55 2024 -0500
+    
+            Rename ATSPI_ROLE_PUSH_BUTTON to ATSPI_ROLE_BUTTON
+    
+    had renamed `ATSPI_ROLE_PUSH_BUTTON` to
+    `ATSPI_ROLE_BUTTON` and added a
+    `ATSPI_ROLE_PUSH_BUTTON` define for backwards
+    compatibility.
+    
+    While that works for C programs, it fails for
+    e.g. Orca (git main as of bea9eb989609d4f59a8c8048dc735323d7710a32)
+    which uses the Python bindings:
+    
+        Traceback (most recent call last):
+          File ".../orca/bin/orca", line 50, in <module>
+            from orca import script_manager
+          File ".../orca/lib/python3/dist-packages/orca/script_manager.py", line 42, in <module>
+            from .scripts import apps, default, sleepmode, toolkits
+          File ".../orca/lib/python3/dist-packages/orca/scripts/default.py", line 47, in <module>
+            from orca import script
+          File ".../orca/lib/python3/dist-packages/orca/script.py", line 49, in <module>
+            from . import braille_generator
+          File ".../orca/lib/python3/dist-packages/orca/braille_generator.py", line 48, in <module>
+            from .braille_rolenames import shortRoleNames
+          File ".../orca/lib/python3/dist-packages/orca/braille_rolenames.py", line 187, in <module>
+            Atspi.Role.PUSH_BUTTON: _("btn"),
+            ^^^^^^^^^^^^^^^^^^^^^^
+        AttributeError: type object 'Role' has no attribute 'PUSH_BUTTON'. Did you mean: 'SPIN_BUTTON'?
+    
+    Make `ATSPI_ROLE_PUSH_BUTTON` an enum value again
+    to fix that.
+
+diff --git a/atspi/atspi-constants.h b/atspi/atspi-constants.h
+index 2c18ad7c..99c6c026 100644
+--- a/atspi/atspi-constants.h
++++ b/atspi/atspi-constants.h
+@@ -1414,10 +1414,10 @@ extern "C"
+     ATSPI_ROLE_SUGGESTION,
+     ATSPI_ROLE_PUSH_BUTTON_MENU,
+     ATSPI_ROLE_LAST_DEFINED,
+-  } AtspiRole;
+ 
+-/* For backwards compatibility */
+-#define ATSPI_ROLE_PUSH_BUTTON ATSPI_ROLE_BUTTON
++    /* For backwards compatibility */
++    ATSPI_ROLE_PUSH_BUTTON = ATSPI_ROLE_BUTTON,
++  } AtspiRole;
+ 
+ /**
+  * ATSPI_ROLE_COUNT:

@@ -1,3 +1,10 @@
+at-spi2-core (2.53.1-2) unstable; urgency=medium
+
+  * patches/git-push-button-enum.patch: Cherry-pick fix for push button enum
+    break (Closes: #1078244).
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 22 Aug 2024 23:58:39 +0200
+
 at-spi2-core (2.53.1-1) unstable; urgency=medium
 
   * Team upload

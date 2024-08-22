@@ -1,3 +1,4 @@
 at-spi-by-default
 workaround_tests_issue.patch
 xml-ATSPI_ROLE_PUSH_BUTTON-ATSPI_ROLE_BUTTON.patch
+git-push-button-enum.patch
