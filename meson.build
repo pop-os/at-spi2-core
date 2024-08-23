@@ -162,6 +162,10 @@ if x11_dep.found()
   x11_deps += xinput_dep
 endif
 
+libei_dep = dependency('libei-1.0')
+wayland_client_dep = dependency('wayland-client')
+xkbcommon_dep = dependency('xkbcommon')
+
 # Alignments
 at_spi_conf.set('ALIGNOF_CHAR', cc.alignment('char'))
 at_spi_conf.set('ALIGNOF_DOUBLE', cc.alignment('double'))
