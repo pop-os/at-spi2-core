@@ -31,7 +31,8 @@ Homepage: https://wiki.gnome.org/Accessibility
 Package: at-spi2-core
 Architecture: any
 Multi-Arch: foreign
-Depends: ${misc:Depends}, ${shlibs:Depends}, at-spi2-common, gsettings-desktop-schemas
+Depends: ${misc:Depends}, ${shlibs:Depends}, at-spi2-common, gsettings-desktop-schemas,
+ libatspi2.0-0t64 (= ${binary:Version})
 Description: Assistive Technology Service Provider Interface (D-Bus core)
  This package contains the core components of GNOME Accessibility.
 
@@ -99,7 +100,7 @@ Multi-Arch: same
 Depends: ${misc:Depends},
          ${shlibs:Depends},
          ${gir:Depends},
-         libatspi2.0-0t64 (>= ${binary:Version})
+         libatspi2.0-0t64 (= ${binary:Version})
 Replaces: gir1.0-gtk-2.0 (<< 2.22),
           gobject-introspection-repository
 Description: Assistive Technology Service Provider (GObject introspection)
@@ -124,7 +125,7 @@ Replaces: at-spi
 Provides: at-spi
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-         libatk-bridge2.0-0t64 (>= ${binary:Version})
+         libatk-bridge2.0-0t64 (= ${binary:Version})
 Description: AT-SPI 2 toolkit bridge
  This package includes a gtk-module that bridges ATK to the new
  D-Bus based AT-SPI.
@@ -145,7 +146,9 @@ Section: libs
 Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
-Depends: ${misc:Depends}, ${shlibs:Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends},
+ libatspi2.0-0t64 (= ${binary:Version}),
+ libatk1.0-0t64 (= ${binary:Version}),
 Description: AT-SPI 2 toolkit bridge - shared library
  This package contains the ATK bridge shared library.
 
@@ -165,7 +168,7 @@ Depends: ${misc:Depends},
          libatk-bridge2.0-0t64 (= ${binary:Version}),
          libatk1.0-dev,
          libglib2.0-dev,
-         libatspi2.0-dev
+         libatspi2.0-dev (= ${binary:Version})
 Description: Development files for the AT-SPI 2 toolkit bridge
  These are the development files for libatk-bridge2.0, needed for
  compilation of programs which use it.
@@ -249,7 +252,8 @@ Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-         ${gir:Depends}
+         ${gir:Depends},
+         libatk1.0-0t64 (= ${binary:Version})
 Description: ATK accessibility toolkit (GObject introspection)
  ATK is a toolkit providing accessibility interfaces for applications or
  other toolkits. By implementing these interfaces, those other toolkits or

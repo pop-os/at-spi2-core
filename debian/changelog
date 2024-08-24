@@ -1,3 +1,9 @@
+at-spi2-core (2.53.1-3) UNRELEASED; urgency=medium
+
+  * control: Tighten version dependencies between at-spi2-core packages.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 24 Aug 2024 20:45:36 +0200
+
 at-spi2-core (2.53.1-2) unstable; urgency=medium
 
   * patches/git-push-button-enum.patch: Cherry-pick fix for push button enum
