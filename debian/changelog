@@ -1,12 +1,15 @@
-at-spi2-core (2.54.0-1) UNRELEASED; urgency=medium
+at-spi2-core (2.54.0-1) unstable; urgency=medium
+
+  * Team upload
 
   [ Jeremy Bícha ]
   * New upstream release
+  * Remove 2 patches applied in new release
 
   [ Samuel Thibault ]
   * control: Tighten version dependencies between at-spi2-core packages.
 
- -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 16 Sep 2024 07:32:20 -0400
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 16 Sep 2024 07:34:32 -0400
 
 at-spi2-core (2.53.1-2) unstable; urgency=medium
 
