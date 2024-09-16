@@ -1,8 +1,12 @@
-at-spi2-core (2.53.1-3) UNRELEASED; urgency=medium
+at-spi2-core (2.54.0-1) UNRELEASED; urgency=medium
 
+  [ Jeremy Bícha ]
+  * New upstream release
+
+  [ Samuel Thibault ]
   * control: Tighten version dependencies between at-spi2-core packages.
 
- -- Samuel Thibault <sthibault@debian.org>  Sat, 24 Aug 2024 20:45:36 +0200
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 16 Sep 2024 07:32:20 -0400
 
 at-spi2-core (2.53.1-2) unstable; urgency=medium
 
