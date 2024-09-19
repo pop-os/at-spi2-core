@@ -166,6 +166,13 @@ libei_dep = dependency('libei-1.0')
 wayland_client_dep = dependency('wayland-client')
 xkbcommon_dep = dependency('xkbcommon')
 
+if cc.has_function(
+  'wl_display_create_queue_with_name',
+  prefix : '#include <wayland-client.h>',
+  dependencies: wayland_client_dep)
+  add_project_arguments([ '-DHAVE_WL_CREATE_QUEUE_WITH_NAME' ], language: 'c')
+endif
+
 # Alignments
 at_spi_conf.set('ALIGNOF_CHAR', cc.alignment('char'))
 at_spi_conf.set('ALIGNOF_DOUBLE', cc.alignment('double'))

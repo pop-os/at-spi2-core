@@ -436,7 +436,11 @@ atspi_device_cosmic_init (AtspiDeviceCosmic *device)
 
   priv->wl_display = wl_display_connect(NULL);
   // TODO error
+#ifdef HAVE_WL_CREATE_QUEUE_WITH_NAME
   priv->wl_event_queue = wl_display_create_queue_with_name (priv->wl_display, "atspi display queue");
+#else
+  priv->wl_event_queue = wl_display_create_queue (priv->wl_display);
+#endif
   struct wl_registry *wl_registry = wl_display_get_registry(priv->wl_display);
   wl_proxy_set_queue ((struct wl_proxy *)wl_registry, priv->wl_event_queue);
   wl_registry_add_listener(wl_registry, &registry_listener, device);
