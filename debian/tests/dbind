@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -e
+
+WORKDIR=$AUTOPKGTEST_TMP
+
+if [ -n "${DEB_HOST_GNU_TYPE:-}" ]; then
+    CROSS_COMPILE="$DEB_HOST_GNU_TYPE-"
+else
+    CROSS_COMPILE=
+fi
+
+${CROSS_COMPILE}gcc dbind/dbtest.c -o $WORKDIR/dbtest  \
+	-I . \
+	$(${CROSS_COMPILE}pkg-config --cflags glib-2.0) \
+	$(${CROSS_COMPILE}pkg-config --libs glib-2.0) \
+	$(${CROSS_COMPILE}pkg-config --cflags dbus-1) \
+	$(${CROSS_COMPILE}pkg-config --libs dbus-1) \
+	$(${CROSS_COMPILE}pkg-config --cflags atspi-2) \
+	$(${CROSS_COMPILE}pkg-config --libs atspi-2)
+
+exec dbus-run-session $WORKDIR/dbtest

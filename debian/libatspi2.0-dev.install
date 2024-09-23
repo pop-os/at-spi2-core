@@ -1,0 +1,4 @@
+usr/lib/*/pkgconfig/atspi-*
+usr/include/at-spi-*
+usr/lib/*/libatspi.so
+usr/share/gir-1.0/Atspi-*

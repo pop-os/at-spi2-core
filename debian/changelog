@@ -1,0 +1,1304 @@
+at-spi2-core (2.54.0-1) unstable; urgency=medium
+
+  * Team upload
+
+  [ Jeremy Bícha ]
+  * New upstream release
+  * Remove 2 patches applied in new release
+
+  [ Samuel Thibault ]
+  * control: Tighten version dependencies between at-spi2-core packages.
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 16 Sep 2024 07:34:32 -0400
+
+at-spi2-core (2.53.1-2) unstable; urgency=medium
+
+  * patches/git-push-button-enum.patch: Cherry-pick fix for push button enum
+    break (Closes: #1078244).
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 22 Aug 2024 23:58:39 +0200
+
+at-spi2-core (2.53.1-1) unstable; urgency=medium
+
+  * Team upload
+
+  [ Jeremy Bícha ]
+  * New upstream release
+  * Cherry-pick patch related to the "push button" → "button" rename
+
+  [ Samuel Thibault ]
+  * tests/*: Always unpatch on exit.
+  * test build profiles
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Wed, 07 Aug 2024 08:54:05 -0400
+
+at-spi2-core (2.52.0-1) unstable; urgency=medium
+
+  * Team upload
+
+  [ Jeremy Bícha ]
+  * New upstream release
+  * Drop 3 patches applied in new release
+
+  [ Samuel Thibault ]
+  * d/control, rules: Revert 2.51.90-4 changes, now that architectures have
+    caught up.
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Fri, 29 Mar 2024 10:11:50 -0400
+
+at-spi2-core (2.51.90-4) unstable; urgency=medium
+
+  [ Simon McVittie ]
+  * d/control, d/rules: Temporarily only use dbus-broker on 64-bit
+    architectures, plus i386.
+    This breaks a dependency cycle on the architectures affected by the
+    64-bit time_t transition:
+    at-spi2-core, dbus-broker, systemd, cryptsetup, libssh, openssh-server,
+    gtk+3.0, at-spi-2-core. It can be reverted after the transition has
+    finished. (Partially reopens: #998062)
+  * d/control, d/rules: Temporarily skip tests on 32-bit except for i386.
+    This allows at-spi2-core to be re-bootstrapped on those architectures
+    during the 64-bit time_t transition. It normally has a circular
+    build-dependency on an older version of itself. (Closes: #1066844)
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 14 Mar 2024 11:43:19 +0100
+
+at-spi2-core (2.51.90-3) unstable; urgency=medium
+
+  * patches/missing-function-declaration: Fix build with qa=+bug-implicit-func.
+    Closes: Bug#1066283.
+
+ -- Samuel Thibault <sthibault@debian.org>  Wed, 13 Mar 2024 11:44:52 +0100
+
+at-spi2-core (2.51.90-2) unstable; urgency=medium
+
+  * control: Replace libgirepository1.0-dev build-dep with gir1.2-dbus-1.0-dev
+    gir1.2-glib-2.0-dev gir1.2-gobject-2.0-dev.  Closes: Bug#1065316.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 03 Mar 2024 02:19:20 +0100
+
+at-spi2-core (2.51.90-1) unstable; urgency=medium
+
+  * Team upload
+
+  [ Jeremy Bícha ]
+  * New upstream release
+  * Cherry-pick patches to drop new libei dependency
+  * debian/*.symbols: Add new symbols
+
+  [ Samuel Thibault ]
+  * control: Add Depends: ${gir:Depends} and Provides: ${gir:Provides}
+    (Closes: Bug#1061083)
+  * control: Replace pkg-config deps with pkgconf
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Wed, 28 Feb 2024 10:20:22 -0500
+
+at-spi2-core (2.50.0-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Rename libraries for 64-bit time_t transition.  Closes: #1061923
+
+ -- Steve Langasek <vorlon@debian.org>  Wed, 28 Feb 2024 01:56:17 +0000
+
+at-spi2-core (2.50.0-1) unstable; urgency=medium
+
+  * New upstream version 2.50.0
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 18 Sep 2023 09:55:59 -0400
+
+at-spi2-core (2.49.91-2) unstable; urgency=medium
+
+  * Restore workaround_tests_issue.patch: still needed for Ubuntu autopkgtests
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Sat, 02 Sep 2023 21:16:21 -0400
+
+at-spi2-core (2.49.91-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release
+  * Drop CI workaround patch: hopefully no longer needed after upstream changes
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Sat, 02 Sep 2023 11:18:00 -0400
+
+at-spi2-core (2.49.90-5) unstable; urgency=medium
+
+  * Restore test-application-path.patch but only for autopkgtests
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Wed, 23 Aug 2023 10:34:41 -0400
+
+at-spi2-core (2.49.90-4) unstable; urgency=medium
+
+  * Drop 2 tests patches that are no longer required
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Fri, 18 Aug 2023 23:27:34 -0400
+
+at-spi2-core (2.49.90-3) unstable; urgency=medium
+
+  * Restore and rebase patch to work around hanging tests
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Fri, 18 Aug 2023 23:13:07 -0400
+
+at-spi2-core (2.49.90-2) unstable; urgency=medium
+
+  * d/rules, d/meson/no-exe-wrapper.ini: Work around FTBFS on mips64el
+    Mitigates: #1041499
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 07 Aug 2023 15:01:51 -0400
+
+at-spi2-core (2.49.90-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release
+  * Update symbols files
+  * Update standards version to 4.6.2, no changes needed
+  * Drop CI workaround patch: hopefully no longer needed after upstream changes
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 07 Aug 2023 09:53:15 -0400
+
+at-spi2-core (2.48.3-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 11 Jun 2023 18:20:20 +0200
+
+at-spi2-core (2.48.0-1) experimental; urgency=medium
+
+  * New upstream release.
+    - patches/timeoutstop: Upstreamed.
+    - control: Bump meson version accordingly. Add libglib2.0-dev-bin
+    arch-indep build-dep.
+    - libatk1.0-doc.links: Update documentation links.
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 28 Mar 2023 00:09:25 +0200
+
+at-spi2-core (2.47.1-1) experimental; urgency=medium
+
+  * New upstream beta release.
+    - patches/workaround_tests_issue.patch: Refresh.
+    - rules: Switch from -Dintrospection=yes to -Dintrospection=enabled.
+    - control: Add gi-docgen and python3-sphinx build-deps.
+    - at-spi2-doc.install: Install usr/share/doc/libatspi instead of
+    usr/share/gtk-doc/html/libatspi.
+    - libatk1.0-doc.install: Install usr/share/doc/atk instead of
+    usr/share/gtk-doc/html/atk.
+    - libatk-bridge2.0-0.symbols: Remove spi_dbus_emit_valist symbol.
+    - at-spi2-doc.doc-base: Register libatspi doc.
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 23 Feb 2023 01:26:51 +0100
+
+at-spi2-core (2.46.0-5) unstable; urgency=medium
+
+  * patches/timeoutstop: Set stop timeout to 5s (Closes: #890833).
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 29 Jan 2023 17:39:36 +0100
+
+at-spi2-core (2.46.0-4) unstable; urgency=medium
+
+  [ Samuel Thibault ]
+  * tests/control: Depend on dbus-daemon instead of dbus.
+
+  [ Jeremy Bicha ]
+  * debian/control: Drop obsolete Build-Depends on gedit
+
+  [ Debian Janitor ]
+  * Remove obsolete field Contact from debian/upstream/metadata (already present
+    in machine-readable debian/copyright).
+  * Update standards version to 4.6.1, no changes needed.
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Fri, 18 Nov 2022 11:39:35 -0500
+
+at-spi2-core (2.46.0-3) unstable; urgency=medium
+
+  [ Sebastien Bacher ]
+  * Temporarily revert an upstream change that made one test hang
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Thu, 22 Sep 2022 12:13:10 -0400
+
+at-spi2-core (2.46.0-2) unstable; urgency=medium
+
+  * control, at-spi2-{core,common}.install: Move translated messages from
+    at-spi2-core to new at-spi2-common package, so that libatk1.0-0 can depend
+    on the latter only (Closes: Bug#1020213).
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 19 Sep 2022 00:51:16 +0200
+
+at-spi2-core (2.46.0-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 17 Sep 2022 20:42:47 +0200
+
+at-spi2-core (2.45.91-1) experimental; urgency=medium
+
+  * New upstream development release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 27 Aug 2022 16:08:57 +0200
+
+at-spi2-core (2.45.90-1) experimental; urgency=medium
+
+  * New upstream development release.
+    - patches/test_disable_teamspaces: Drop, fixed upstream.
+    - libatk-bridge2.0-0.symbols: Update.
+    - copyright: Update.
+  * control: Fix libatk1.0-0 section back to libs.
+  * libatk-bridge2.0-0.symbols: Add Build-Depends-Package.
+  * control: Fix D-Bus and Debian spelling.
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 08 Aug 2022 00:09:11 +0200
+
+at-spi2-core (2.45.1-1) experimental; urgency=medium
+
+  * New upstream development release.
+  * debian/: include packages from atk1.0 and at-spi2-atk source packages.
+  * Drop libatk1.0-data package, the atk10.mo translations are now included in
+    at-spi2-core.mo.
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 04 Jul 2022 00:15:17 +0200
+
+at-spi2-core (2.44.1-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 21 Apr 2022 23:17:03 +0200
+
+at-spi2-core (2.44.0-3) unstable; urgency=medium
+
+  * control: Add gsettings-desktop-schemas dep to at-spi2-core
+    (Closes: Bug#1008197)
+  * tests/control: Drop gsettings-desktop-schemas dep.
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 25 Mar 2022 18:55:45 +0100
+
+at-spi2-core (2.44.0-2) unstable; urgency=medium
+
+  * tests/control: Add gsettings-desktop-schemas dep.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 20 Mar 2022 18:04:00 +0100
+
+at-spi2-core (2.44.0-1) unstable; urgency=medium
+
+  [ Samuel Thibault ]
+  * New upstream release.
+    - patches/tests: Refresh patch.
+    - at-spi2-core.docs: Update README.md file name.
+  * control: Bump Standards-Version to 4.6.0 (no change)
+
+  [ Debian Janitor ]
+  * Bump debhelper from old 12 to 13.
+    + Drop check for DEB_BUILD_OPTIONS containing "nocheck", since debhelper now
+      does this.
+    + debian/rules: Drop --fail-missing argument to dh_missing, which is now the
+      default.
+  * Set upstream metadata fields: Contact.
+  * Set field Upstream-Contact in debian/copyright.
+  * Remove obsolete field Contact from debian/upstream/metadata (already present
+    in machine-readable debian/copyright).
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 20 Mar 2022 17:23:03 +0100
+
+at-spi2-core (2.42.0-2) unstable; urgency=medium
+
+  [ Michael Biebl ]
+  * rules: Use dbus-broker by default when available (Closes: #998062)
+
+  [ Debian Janitor ]
+  * Remove constraints unnecessary since buster:
+    + Build-Depends: Drop versioned constraint on gtk-doc-tools.
+    + libatspi2.0-dev: Drop versioned constraint on libglib2.0-dev in Depends.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 30 Oct 2021 17:21:47 +0200
+
+at-spi2-core (2.42.0-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 19 Sep 2021 01:23:16 +0200
+
+at-spi2-core (2.40.3-3) unstable; urgency=medium
+
+  * control: Make dbus-broker and libsystemd-dev deps linux-only.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 15 Aug 2021 22:24:21 +0200
+
+at-spi2-core (2.40.3-2) unstable; urgency=medium
+
+  * libatspi2.0-0.lintian-overrides: avoid warning about package name vs
+    soname.
+  * control: Add dbus-broker, libsystemd-dev build-dep.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 15 Aug 2021 12:57:02 +0200
+
+at-spi2-core (2.40.3-1) experimental; urgency=medium
+
+  * New upstream release.
+  * control: Add libx11-dev build-dep.
+  * control: Bump libglib2.0-dev build-dep version.
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 05 Aug 2021 16:31:59 +0200
+
+at-spi2-core (2.40.2-1) experimental; urgency=medium
+
+  [ Samuel Thibault ]
+  * New upstream release.
+
+  [ Debian Janitor ]
+  * Remove constraints unnecessary since stretch:
+    + Build-Depends: Drop versioned constraint on meson.
+    + at-spi2-core: Drop versioned constraint on gdm3 in Breaks.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 06 Jun 2021 00:04:12 +0200
+
+at-spi2-core (2.40.1-1) experimental; urgency=medium
+
+  [ Samuel Thibault ]
+  * New upstream release.
+    - patches/double-free: Upstreamed.
+
+  [ Samuel Thibault ]
+  * control: Set Rules-Requires-Root to no.
+  * rules: Drop ddeb-migration rules, now useless.
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 07 May 2021 00:41:33 +0200
+
+at-spi2-core (2.40.0-1) experimental; urgency=medium
+
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 19 Mar 2021 21:12:20 +0100
+
+at-spi2-core (2.39.91-1) experimental; urgency=medium
+
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 13 Mar 2021 23:28:10 +0100
+
+at-spi2-core (2.39.90.1-1) experimental; urgency=medium
+
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 22 Feb 2021 19:42:13 +0100
+
+at-spi2-core (2.39.1-1) experimental; urgency=medium
+
+  [ Samuel Thibault ]
+  * New upstream release
+
+  [ Helmut Grohne ]
+  * Drop libxkbcommon*-dev dependencies unused since 2.26.1.
+    (Closes: Bug#981162)
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 21 Feb 2021 19:36:09 +0100
+
+at-spi2-core (2.38.0-3) unstable; urgency=medium
+
+  * patches/double-free: Fix double free. Fixes crash of accerciser when
+    closing an application.
+
+ -- Samuel Thibault <sthibault@debian.org>  Wed, 21 Apr 2021 23:44:28 +0200
+
+at-spi2-core (2.38.0-2) unstable; urgency=medium
+
+  * Upload to unstable.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 12 Sep 2020 23:07:32 +0200
+
+at-spi2-core (2.38.0-1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 12 Sep 2020 21:44:19 +0200
+
+at-spi2-core (2.37.92-1) experimental; urgency=medium
+
+  * New upstream beta release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 05 Sep 2020 17:50:46 +0200
+
+at-spi2-core (2.37.90-1) experimental; urgency=medium
+
+  * New upstream beta release.
+    - control: Bump meson build-dep.
+    - patches/dbtest_quiet: Upstreamed.
+    - patches/euro: Upstreamed.
+    - patches/latin-accent: Upstreamed.
+    - patches/memory_verbose: Upstreamed.
+    - tests/gedit: Rename to memory. Compile test application used instead of
+    gedit.
+    - tests/control: Drop gedit dependency.
+    - patches/tests: Fix path to test application.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 09 Aug 2020 16:23:17 +0200
+
+at-spi2-core (2.36.1-1) unstable; urgency=medium
+
+  * New upstream release.
+    - debian/patches/euro: Upstreamed.
+  * debian/tests/gedit: clear XDG_RUNTIME_DIR to avoid interaction with host
+    environment.
+  * debian/patches/memory_verbose: Make the memory test more verbose.
+  * debian/patches/dbtest_quiet: Make the dbtest back verbose too.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 05 Sep 2020 17:53:07 +0200
+
+at-spi2-core (2.36.0-3) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Trim trailing whitespace.
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository,
+    Repository-Browse.
+  * Update standards version to 4.5.0, no changes needed.
+
+  [ Samuel Thibault ]
+  * control: Update alioth list domain.
+  * patches/euro: Fix synthesizing the euro character.
+  * patches/latin-accent: Fix synthesizing latin accent which are not latin1.
+
+  [ Alexander Volkov ]
+  * Fix build when nocheck profile is enabled
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 02 Aug 2020 01:18:25 +0200
+
+at-spi2-core (2.36.0-2) unstable; urgency=medium
+
+  [ Samuel Thibault ]
+  * control: Downgrade meson requirement.
+
+  [ Laurent Bigonville ]
+  * Bump debhelper compatibility to 12 and move the daemons to /usr/libexec
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 16 Mar 2020 00:08:02 +0100
+
+at-spi2-core (2.36.0-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 08 Mar 2020 16:15:21 +0100
+
+at-spi2-core (2.35.92-1) experimental; urgency=medium
+
+  * New upstream release.
+    - debian/patches/shutdown-fix: Comes with upstream.
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 03 Mar 2020 20:40:59 +0100
+
+at-spi2-core (2.35.1-1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 19 Jan 2020 01:02:55 +0100
+
+at-spi2-core (2.34.0-4) unstable; urgency=medium
+
+  [ Steve Langasek ]
+  * debian/tests/control: Use native gedit for tests, there is no need to pull
+    cross-packages for gedit in order to test at-spi2 (Closes: Bug#946361)
+  * debian/tests/{dbind,gedit}: Use cross-compilation toolchain when requested
+    to.
+
+  [ Samuel Thibault ]
+  * debian/patches/shutdown-fix: Upstream fix for shutdown.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 01 Mar 2020 14:58:37 +0100
+
+at-spi2-core (2.34.0-3) unstable; urgency=medium
+
+  * debian/{90qt-a11y,90qt-a11y.conf}: Re-introduce. Some people might still
+    have qt4 applications and qt-at-spi installed, so better still support
+    them.  Also, backports into buster and stretch will want it.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 29 Sep 2019 14:43:33 +0200
+
+at-spi2-core (2.34.0-2) unstable; urgency=medium
+
+  * debian/at-spi2-core.maintscript: Remove qt conffiles (Closes: Bug#939917)
+  * debian/at-spi2-core.maintscript: Drop old rule for
+    /etc/at-spi2/accessibility.conf.
+  * debian/tests/dbus-daemon: Send all dbus output to stdout, for
+    debuggability.
+  * rules, tests/gedit: Prevent Xvfb from resetting between clients, it seems to
+    be creating a period of time during which clients can't connect.
+  * watch: Generalize pattern.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 22 Sep 2019 23:38:20 +0200
+
+at-spi2-core (2.34.0-1) unstable; urgency=medium
+
+  * New upstream release.
+    - patches/at_spi_bus: Upstreamed.
+  * control: Bump meson build-dep to 0.50.0.
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 09 Sep 2019 23:01:53 +0200
+
+at-spi2-core (2.33.92-2) experimental; urgency=medium
+
+  * patches/at_spi_bus: Fix setting the AT_SPI_BUS X property, needed e.g. when
+    running applications as root with just setting DISPLAY and XAUTHORITY.
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 06 Sep 2019 03:48:15 +0200
+
+at-spi2-core (2.33.92-1) experimental; urgency=medium
+
+  * New upstream beta release.
+    - patches/unref_warn: Remove, upstreamed.
+    - patches/cleanup_warn: Remove, upstreamed.
+    - patches/noreply_nowarn: Remove, upstreamed.
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 03 Sep 2019 00:49:50 +0200
+
+at-spi2-core (2.33.90-1) experimental; urgency=medium
+
+  * New upstream beta release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 22 Aug 2019 21:53:46 +0200
+
+at-spi2-core (2.32.1-5) UNRELEASED; urgency=medium
+
+  * rules: Run xvfb before dbus session, to make sure dbus doesn't catch host
+    X display.
+  * debian/tests/gedit: Do not start at-spi session by hand, dbus should be
+    doing it.
+  * debian/{90qt-a11y,90qt-a11y.conf}: Remove, useless now that qt-at-spi is
+    removed.
+  * tests/: Fix temporary directory path.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 31 Aug 2019 01:29:22 +0200
+
+at-spi2-core (2.32.1-4) unstable; urgency=medium
+
+  * Make xvfb-run allocate a server number.
+  * patches/noreply_nowarn: Do not warn when get_items does not get a reply.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 25 Aug 2019 23:22:44 +0200
+
+at-spi2-core (2.32.1-3) unstable; urgency=medium
+
+  * patches/{cleanup_warn,unref_warn,dbtest_quiet}: Disable annoying stderr
+    output.
+  * patches/test_disable_teamspaces: Disable teamspace testing, does not seem
+    to be available in Debian.
+  * tests: Run dbind/dbtest and tests/memory in autopkgtest.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 25 Aug 2019 17:48:05 +0200
+
+at-spi2-core (2.32.1-2) unstable; urgency=medium
+
+  * control: Bump Standards-Version to 4.4.0 (no changes).
+  * rules: Fix build against newer debhelper.
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 22 Aug 2019 21:08:04 +0200
+
+at-spi2-core (2.32.1-1) unstable; urgency=medium
+
+  * New upstream release
+  * control: Add dh-sequence-gir alternative to gobject-introspection.
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 30 Jul 2019 19:41:13 +0200
+
+at-spi2-core (2.32.0-1) experimental; urgency=medium
+
+  * Team upload
+  * New upstream release
+  * Update configure flags
+  * Drop debian/patches/git-lockmods: Applied in new release
+
+ -- Jeremy Bicha <jbicha@debian.org>  Sat, 16 Mar 2019 17:55:45 -0400
+
+at-spi2-core (2.30.0-7) unstable; urgency=medium
+
+  * Move 90qt-a11y.conf to /etc to allow administrators to disable it if
+    needed.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 09 Feb 2019 16:14:06 +0100
+
+at-spi2-core (2.30.0-6) unstable; urgency=medium
+
+  * 90qt-a11y.conf: Set QT_ACCESSIBILITY to 1 in Wayland sessions too.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 09 Feb 2019 15:57:07 +0100
+
+at-spi2-core (2.30.0-5) unstable; urgency=medium
+
+  * patches/meson: Drop patch.
+  * rules: re-enable documentation generation.
+  * at-spi2-doc.install: Re-enable installing documentation.
+  * patches/git-lockmods: Support locking/unlocking modifiers.
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 19 Nov 2018 21:06:44 +0100
+
+at-spi2-core (2.30.0-4) unstable; urgency=medium
+
+  * patches/meson: Disable, actually completely breaks execution.
+  * rules: Disable documentation generation, avoids #911697.
+  * at-spi2-doc.install: Disable installing documentation.
+
+ -- Samuel Thibault <sthibault@debian.org>  Wed, 24 Oct 2018 09:29:13 +0200
+
+at-spi2-core (2.30.0-3) unstable; urgency=medium
+
+  * patches/meson: Fix dbind documentation build with meson
+    (Closes: Bug#911697)
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 23 Oct 2018 17:46:33 +0200
+
+at-spi2-core (2.30.0-2) unstable; urgency=medium
+
+  * Add disable-test-that-needs-installed-dbus-service.patch
+
+ -- Jeremy Bicha <jbicha@debian.org>  Fri, 14 Sep 2018 22:52:53 -0400
+
+at-spi2-core (2.30.0-1) unstable; urgency=medium
+
+  [ Jeremy Bicha ]
+  * Team upload
+  * New upstream release
+  * Build-Depend on gedit and xvfb for build tests
+  * debian/rules: Run build tests
+  * Release to unstable
+
+  [ Samuel Thibault ]
+  - 90qt-a11y: Do not export variable not defined any more
+
+ -- Jeremy Bicha <jbicha@debian.org>  Fri, 14 Sep 2018 19:38:54 -0400
+
+at-spi2-core (2.29.1-1) experimental; urgency=medium
+
+  * New upstream beta release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 25 Aug 2018 21:39:59 +0200
+
+at-spi2-core (2.28.0-4) UNRELEASED; urgency=medium
+
+  * Bump Standards-Version to 4.2.0 (no changes).
+  * control: Mark at-spi2-doc Multi-Arch: foreign.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 08 Jul 2018 15:45:17 +0200
+
+at-spi2-core (2.28.0-3) unstable; urgency=medium
+
+  * Team upload
+
+  [ Samuel Thibault ]
+  * Bump Standards-Version to 4.1.4 (no changes).
+
+  [ Jeremy Bicha ]
+  * Demote at-spi2-doc's Recommends: devhelp to Suggests
+  * Update Vcs fields for migration to https://salsa.debian.org/
+
+ -- Jeremy Bicha <jbicha@debian.org>  Mon, 30 Apr 2018 15:01:17 -0400
+
+at-spi2-core (2.28.0-2) unstable; urgency=high
+
+  * control: Make sure we upgrade libatspi2.0-0 while upgrading
+    gir1.2-atspi-2.0, notably for role values etc.
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 20 Apr 2018 13:44:30 +0200
+
+at-spi2-core (2.28.0-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release
+    - Includes reproducible build fix from Chris Lamb (Closes: #883359)
+  * Bump debhelper compat to 11
+  * Bump Standards-Version to 4.1.3
+
+ -- Jeremy Bicha <jbicha@debian.org>  Mon, 12 Mar 2018 21:02:24 -0400
+
+at-spi2-core (2.26.2-2) unstable; urgency=medium
+
+  * Team upload
+  * Build with meson
+  * Bump debhelper compat to 10
+  * Use dh_missing --fail-missing
+  * Update debian/watch
+
+ -- Jeremy Bicha <jbicha@debian.org>  Sat, 25 Nov 2017 23:47:08 -0500
+
+at-spi2-core (2.26.2-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 30 Oct 2017 22:20:56 +0100
+
+at-spi2-core (2.26.1-1) unstable; urgency=medium
+
+  * New upstream release.
+    - patches/avoid_xkb_dep: Drop, fixed upstream.
+  * control: Bump Standards-Version to 4.1.1 (no changes).
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 30 Oct 2017 19:50:11 +0100
+
+at-spi2-core (2.26.0-2) unstable; urgency=medium
+
+  * patches/avoid_xkb_dep: Do not link against xkbcommon, we don't actually
+    need it (Closes: Bug#875945).
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 16 Sep 2017 13:42:33 +0200
+
+at-spi2-core (2.26.0-1) unstable; urgency=medium
+
+  * Team upload
+
+  [ Jeremy Bicha ]
+  * New upstream release
+  * debian/control:
+    - Build-depend on libxkbcommon-x11-dev and libxkbcommon-dev
+  * Drop accessible_get_parent.diff: Applied in new release
+
+  [ Samuel Thibault ]
+  * 90qt-a11y: Stop setting QT_LINUX_ACCESSIBILITY_ALWAYS_ON, starting from at
+    least 5.9, qt5base does not need it any more to enable accessibility
+    (Closes: Bug#874172).
+
+ -- Jeremy Bicha <jbicha@debian.org>  Fri, 15 Sep 2017 20:30:21 -0400
+
+at-spi2-core (2.24.1-2) unstable; urgency=medium
+
+  * control: Bump Standards-Version to 4.1.0 (no changes).
+  * patches/accessible_get_parent.diff: Upstream fix for crash on switching
+    between windows (Closes: Bug#872912).
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 22 Aug 2017 21:13:53 +0200
+
+at-spi2-core (2.24.1-1) unstable; urgency=medium
+
+  * Team upload
+
+  [ Jeremy Bicha ]
+  * New upstream release.
+  * Drop patches applied in new release:
+    - revert-register-late
+    - register-client-not-too-early
+    - git-329ef2c4ebcb3aec6dcfcac15357fd583a60c969
+    - git-eba079f3e72e61e6b55d81727ab50c85d505d296
+
+  [ Samuel Thibault ]
+  * Use canonical anonscm vcs URL.
+  * control: Update maintainer mailing list.
+  * re-enable PIE, gobject-introspection doesn't pose problem any more
+    (Closes: Bug#865597).
+
+  [ Paul Gevers ]
+  * Rewrite d/copyright
+
+ -- Paul Gevers <elbrus@debian.org>  Tue, 04 Jul 2017 20:31:25 +0200
+
+at-spi2-core (2.22.0-6) unstable; urgency=medium
+
+  * patches/git-329ef2c4ebcb3aec6dcfcac15357fd583a60c969:
+    clear root accessible's ref to the app, fixes Orca sometimes hanging when
+    apps are quit.
+  * patches/git-eba079f3e72e61e6b55d81727ab50c85d505d296:
+    atspi_table_cell_get_position: don't crash on error
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 09 May 2017 21:44:08 +0200
+
+at-spi2-core (2.22.0-5) unstable; urgency=medium
+
+  * patches/register-client-early: Replace by upstream proposed fix:
+    - patches/revert-register-late: Revert change.
+    - patches/register-client-not-too-early: But delay client registration a
+    bit (Closes: Bug#848996).
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 27 Dec 2016 19:14:48 +0100
+
+at-spi2-core (2.22.0-4) unstable; urgency=medium
+
+  * patches/register-client-early: Fix crash by moving registration after
+    getting sm_proxy (Closes: Bug#843002).
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 15 Nov 2016 00:18:33 +0100
+
+at-spi2-core (2.22.0-3) unstable; urgency=medium
+
+  * patches/register-client-early: Register at-spi-bus-launcher early, to
+    avoid deadlock with gnome-session (Closes: Bug#840618).
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 01 Nov 2016 00:30:45 +0100
+
+at-spi2-core (2.22.0-2) unstable; urgency=medium
+
+  * rules: Really disable PIE.
+  * control: Remove Mario from Uploaders (Closes: Bug#840860).
+
+ -- Samuel Thibault <sthibault@debian.org>  Wed, 26 Oct 2016 11:14:15 +0200
+
+at-spi2-core (2.22.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * gir1.2-atspi-2.0.install: Move to multi-arch directory.
+  * control:
+    - Make gir1.2-atspi-2.0 multi-arch: same.
+    - Make libatspi2.0-dev multi-arch: same.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 01 Oct 2016 22:12:09 +0200
+
+at-spi2-core (2.20.2-2) unstable; urgency=medium
+
+  * control: Add missing intltool build-dependency (Closes: Bug#837819).
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 15 Sep 2016 01:52:36 +0200
+
+at-spi2-core (2.20.2-1) unstable; urgency=medium
+
+  [ Samuel Thibault ]
+  * control: Bump Standards-Version to 3.9.8 (no change)
+  * 90qt-a11y: Export $QT_ACCESSIBILITY and QT_LINUX_ACCESSIBILITY_ALWAYS_ON to
+    dbus user session as well, thanks Martin Pitt for the hint.
+
+  [ Luke Yelavich ]
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 30 May 2016 20:09:23 +0200
+
+at-spi2-core (2.20.1-1) unstable; urgency=medium
+
+  [ Samuel Thibault ]
+  * Add formal xml files to the documentation.
+  * Add locale files. Thanks Simon for the notice.
+
+  [ Simon McVittie ]
+  * New upstream release (Closes: #820969)
+    - drop all patches except patches/at-spi-by-default, applied upstream
+    - install new systemd --user unit, which will put AT-SPI in its own
+      cgroup if used with dbus-user-session
+    - debian/at-spi2-core.maintscript: clean up obsolete conffile
+      controlling AT-SPI D-Bus policy, if unmodified (if modified,
+      the modified version /etc/at-spi2/accessibility.conf will still
+      be used)
+  * debian/rules: warn if any files other than *.la are installed but not
+    packaged, to catch mistakes.
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 28 Apr 2016 01:37:32 +0200
+
+at-spi2-core (2.18.3-4) unstable; urgency=medium
+
+  * control: Replace libdbus-glib-1-dev dependencies with libdbus-1-dev
+    (Closes: #811009).
+  * rules: Set ddeb-migration.
+  * control: Depend on debhelper 9.20150628 for ddeb-migration.
+  * control: Bump Standards-Version to 3.9.7 (no change).
+  * patches/register_with_session_manager: Cherry-pick from uptsream
+    (Closes: #812555).
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 11 Feb 2016 00:55:32 +0100
+
+at-spi2-core (2.18.3-3) unstable; urgency=medium
+
+  * patches/at-spi-by-default: New patch to start a11y bus by default, ready
+    for use in all desktops (Closes: #786674).
+  * patches/no_a11y_warning_ssh: Disable a11y failure warning when inside an
+    ssh connection: a11y forwarding is not implemented yet (Closes: #728385).
+  * rules: Clear.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 26 Dec 2015 17:37:41 +0100
+
+at-spi2-core (2.18.3-2) unstable; urgency=medium
+
+  * 90qt-a11y: Always enable accessibility.
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 11 Dec 2015 23:06:10 +0100
+
+at-spi2-core (2.18.3-1) unstable; urgency=medium
+
+  [ Luke Yelavich ]
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Wed, 11 Nov 2015 00:03:14 +0100
+
+at-spi2-core (2.18.2-1) unstable; urgency=medium
+
+  [ Luke Yelavich ]
+  * New upstream release
+  * Dropped patch, applied upstream
+
+  [ Samuel Thibault ]
+  * patches/set_by_name_crash: New patch, fixes crash (Closes: #804720).
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 10 Nov 2015 22:23:41 +0100
+
+at-spi2-core (2.18.1-2) unstable; urgency=high
+
+  * patches/git-09a604d: Cherry-pick upstream patch to fix crash fix
+    (Closes: #803098)
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 26 Oct 2015 20:39:37 +0100
+
+at-spi2-core (2.18.1-1) unstable; urgency=medium
+
+  [ Luke Yelavich ]
+  * New upstream release
+
+  [ Samuel Thibault ]
+  * control: Drop libatspi2.0-dev dbus dependency (Closes: #801369)
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 18 Oct 2015 13:41:26 +0200
+
+at-spi2-core (2.18.0-1) unstable; urgency=medium
+
+  [ Samuel Thibault ]
+  * Enable accessibility in Qt4 and Qt5 applications when the kde desktop is
+    configured to start the screen reader.
+  * rules: Disable PIE hardening to work around build issue with
+    gobject-introspection (see #797132).
+
+  [ Luke Yelavich ]
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 28 Sep 2015 23:32:55 +0200
+
+at-spi2-core (2.16.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * No longer Build-Depends on hardening-wrapper.
+
+ -- Mario Lang <mlang@debian.org>  Tue, 05 May 2015 13:22:27 +0200
+
+at-spi2-core (2.14.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * rules: Set ac_cv_lib_ICE_IceConnectionNumber=no to avoid a spurious libice6
+    dependency (which makes udeb packages uninstallable) (Closes: #754208)
+  * Bump Standards-Version to 3.9.6 (no changes).
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 09 Oct 2014 22:24:21 +0200
+
+at-spi2-core (2.12.0-2) unstable; urgency=medium
+
+  [ Cyril Brulebois ]
+  * Fix generated shlibs file by removing stray, static copy
+    (debian/libatspi2.0-0.shlibs), and by moving the version to the
+    dh_makeshlibs call (-V flag). This will fix reverse-depending udeb
+    uninstallability as soon as at-spi2-atk is rebuilt (Closes: Bug#754033)
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 17 Jul 2014 22:29:27 +0200
+
+at-spi2-core (2.12.0-1) unstable; urgency=low
+
+  [ Samuel Thibault ]
+  * control: Fix typo in package description (Closes: Bug#745283)
+
+  [ Mario Lang]
+  * debian/control: Remove unused Build-Depends on gir1.2-glib-2.0.
+  * New upstream release.
+  * debian/watch: Only track even releases.
+  * debian/control: Add myself to Uploaders.
+
+ -- Mario Lang <mlang@debian.org>  Tue, 08 Jul 2014 12:25:50 +0200
+
+at-spi2-core (2.10.2-3) unstable; urgency=low
+
+  [ Paul Gevers ]
+  * Team upload.
+  * Update watch file
+  * Update homepage
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 19 Apr 2014 21:37:05 +0200
+
+at-spi2-core (2.10.2-2) unstable; urgency=medium
+
+  * control: Build-depend on dh-autoreconf.
+  * rules: Pass --with autoreconf to dh.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 04 Jan 2014 14:17:21 +0100
+
+at-spi2-core (2.10.2-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 15 Dec 2013 19:36:38 +0100
+
+at-spi2-core (2.10.1-1) unstable; urgency=low
+
+  [ Samuel Thibault ]
+  * Bump Standards-Version to 3.9.5 (no changes).
+
+  [ Luke Yelavich ]
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 05 Nov 2013 01:15:15 +0100
+
+at-spi2-core (2.10.0-1) unstable; urgency=low
+
+  [ Luke Yelavich ]
+  * New upstream release
+  * Bump shlibs
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 24 Sep 2013 23:39:36 +0200
+
+at-spi2-core (2.9.5-2) unstable; urgency=low
+
+  * Add libatspi0-udeb package, needed by libatk-bridge-2.0-0-udeb.
+    (Closes: #723951)
+  * Add at-spi2-core-udeb, for future d-i accessibility.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 21 Sep 2013 22:49:23 +0200
+
+at-spi2-core (2.9.5-1) unstable; urgency=low
+
+  [ Luke Yelavich ]
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 13 Aug 2013 23:17:56 +0200
+
+at-spi2-core (2.9.4-1) unstable; urgency=low
+
+  [ Luke Yelavich ]
+  * Bump libatspi2.0-0 shlibs as required. We should move to using symbols,
+    but this will solve the immediate problem for now. (Closes: #714314)
+  * New upstream release
+
+  [ Samuel Thibault ]
+  * Bump Standards-Version to 3.9.4 (no changes).
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 13 Jul 2013 19:14:51 +0200
+
+at-spi2-core (2.9.3-1) unstable; urgency=low
+
+  [ Luke Yelavich ]
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Wed, 19 Jun 2013 00:16:03 +0200
+
+at-spi2-core (2.9.2-1) unstable; urgency=low
+
+  [ Luke Yelavich ]
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Wed, 29 May 2013 23:23:23 +0200
+
+at-spi2-core (2.8.0-2) unstable; urgency=low
+
+  * Upload to unstable
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 10 May 2013 00:58:34 +0200
+
+at-spi2-core (2.8.0-1) experimental; urgency=low
+
+  [ Luke Yelavich ]
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 26 Mar 2013 22:45:54 +0100
+
+at-spi2-core (2.7.91-1) experimental; urgency=low
+
+  [ Luke Yelavich ]
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 10 Mar 2013 17:55:58 +0100
+
+at-spi2-core (2.7.5-1) experimental; urgency=low
+
+  [ Luke Yelavich ]
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 25 Feb 2013 23:02:27 +0100
+
+at-spi2-core (2.7.4.1-1) experimental; urgency=low
+
+  [ Luke Yelavich ]
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Wed, 16 Jan 2013 11:13:40 +0100
+
+at-spi2-core (2.7.3-1) experimental; urgency=low
+
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 18 Dec 2012 23:28:28 +0100
+
+at-spi2-core (2.7.2-1) experimental; urgency=low
+
+  [ Luke Yelavich ]
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 07 Dec 2012 04:02:28 +0100
+
+at-spi2-core (2.7.1-1) experimental; urgency=low
+
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 22 Oct 2012 22:09:26 +0200
+
+at-spi2-core (2.6.0-1) experimental; urgency=low
+
+  * at-spi2-core.docs: Add NEWS.
+  * copyright: update.
+  * patches/pl: Remove upstream patch.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 30 Sep 2012 18:17:21 +0200
+
+at-spi2-core (2.6.0-0ubuntu1) quantal; urgency=low
+
+  * New upstream release
+    - Fix some annotations.
+    - Exit, rather than crash, when unable to open an X display (BGO#660407).
+    - Fix various memory leaks (BGO#684033).
+
+ -- Luke Yelavich <themuso@ubuntu.com>  Tue, 25 Sep 2012 09:44:38 +1000
+
+at-spi2-core (2.5.92-0ubuntu1) quantal; urgency=low
+
+  * New upstream release
+    - Fix some annotations.
+    - Exit, rather than crash, when unable to open an X display (BGO#660407).
+    - Fix various memory leaks (BGO#684033).
+
+ -- Luke Yelavich <themuso@ubuntu.com>  Tue, 18 Sep 2012 14:30:32 +1000
+
+at-spi2-core (2.5.91-0ubuntu1) quantal-proposed; urgency=low
+
+  * New upstream release (LP: #1046583)
+    - Fix build with -fno-common.
+    - Add glib-2.0 to requires in at-spi2.pc (BGO#682595)
+
+ -- Luke Yelavich <themuso@ubuntu.com>  Thu, 06 Sep 2012 09:14:23 +1000
+
+at-spi2-core (2.5.5-0ubuntu1) quantal; urgency=low
+
+  * New upstream release
+    - Add atspi_action_get_localized_name (BGO#680598).
+    - Allow building from out of source directory (BGO#680281)
+
+ -- Luke Yelavich <themuso@ubuntu.com>  Tue, 07 Aug 2012 12:06:10 +1000
+
+at-spi2-core (2.5.4-0ubuntu1) quantal; urgency=low
+
+  [ Mario Lang ]
+  * Add Breaks on gdm3 < 3.4 (Closes: Bug#663027).
+
+  [ Luke Yelavich ]
+  * New upstream release
+    - Fix a missing return value.
+    - Fix a crash when unable to remove a match rule.
+
+ -- Luke Yelavich <themuso@ubuntu.com>  Tue, 17 Jul 2012 09:46:35 +1000
+
+at-spi2-core (2.5.3-2) unstable; urgency=low
+
+  [ Mario Lang ]
+  * Add Breaks on gdm3 < 3.4 (Closes: Bug#663027).
+
+  [ Samuel Thibault ]
+  * patches/pl: Cherry-pick from upstream: Update pl translation.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 30 Sep 2012 17:51:06 +0200
+
+at-spi2-core (2.5.3-1) unstable; urgency=low
+
+  [ Samuel Thibault ]
+  * control: Fix Homepage URL, thanks DUCK!
+
+  [ Luke Yelavich ]
+  * New upstream release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 28 Jun 2012 23:35:54 -0300
+
+at-spi2-core (2.5.2-1) unstable; urgency=low
+
+  [ Luke Yelavich ]
+  * debian/90qt-a11y: Add missing left brace. The script still works, but it
+    helps to be complete and portable.
+
+  [ Samuel Thibault ]
+  * New upstream release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Wed, 06 Jun 2012 01:02:04 +0200
+
+at-spi2-core (2.5.1-1) unstable; urgency=low
+
+  [ Samuel Thibault ]
+  * New upstream release.
+
+  [ Luke Ylavich ]
+  * Move the at-spi2-core binaries to usr/lib.
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 03 May 2012 01:31:10 +0200
+
+at-spi2-core (2.4.1-1) unstable; urgency=low
+
+  [ Jordi Mallach ]
+  * Get rid of source/options, to get standard compression of the debian.tar.
+
+  [ Samuel Thibault ]
+  * New upstream release.
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 16 Apr 2012 22:55:37 +0200
+
+at-spi2-core (2.4.0-1) unstable; urgency=low
+
+  [ Mario Lang ]
+  * Removing myself from Uploaders.
+
+  [ Jordi Mallach ]
+  * Add myself to Uploaders.
+  * New upstream release.
+  * Bump to debhelper v9.
+  * Make -dev package depend on gir1.2-atspi-2.0, per g-i policy.
+  * As gir packages are not M-A ready yet, drop M-A: same flag from -dev
+    package, as it depends on a non-M-A package.
+  * Promote ${misc:Depends} in -doc to Depends.
+
+ -- Jordi Mallach <jordi@debian.org>  Thu, 29 Mar 2012 15:18:23 +0200
+
+at-spi2-core (2.3.92-1) unstable; urgency=low
+
+  [ Samuel Thibault ]
+  * New upstream release.
+
+  [ Mario Lang ]
+  * libatspi2.0-0: Downgrade Depends on at-spi2-core to Recommends
+    (Closes: Bug#663112).
+
+ -- Samuel Thibault <sthibault@debian.org>  Wed, 21 Mar 2012 01:08:27 +0100
+
+at-spi2-core (2.3.91-1) unstable; urgency=low
+
+  [ Samuel Thibault ]
+  * New upstream release.
+  * control: Fix gir1.2-atspi-2.0 section into 'introspection'.
+  * watch: Include odd versions again, use .xz suffix.
+
+  [ Mario Lang ]
+  * Make sure libatspi2.0-0 depends on at-spi2-core.
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 06 Mar 2012 02:07:35 +0100
+
+at-spi2-core (2.3.90-1) unstable; urgency=low
+
+  [ Luke Yelavich ]
+  * New upstream release
+  * Build for multi-arch
+  * Set the QT_ACCESSIBILITY environment variable if the toolkit-accessibility
+    gsettings key is enabled
+  * Add documentation in new at-spi2-doc package
+
+  [ Mario Lang ]
+  * debian/control: Put libatspi2.0-0 and gir1.2-atspi-2.0 in section libs.
+  * Add NEWS to debian/at-spi2-core.docs.
+  * Install atspi-2.pc.
+
+  [ Samuel Thibault ]
+  * control: Depend on hardening-check.
+  * rules: Set DEB_BUILD_HARDENING=1 to enable hardening.
+  * control: Bump Standards-Version to 3.9.3 (no changes).
+
+  [ Jason White ]
+  * Add at-spi2-core-dbg and libatspi2.0-0-dbg packages.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 26 Feb 2012 15:55:35 +0100
+
+at-spi2-core (2.0.2-1) unstable; urgency=low
+
+  [ Mario Lang ]
+  * Initial Debian package. (Closes: Bug#540332)
+
+  [ Luke Yelavich ]
+  * New upstream releases.
+
+  [ Samuel Thibault ]
+  * Add myself as uploader.
+
+  [ Mario Lang ]
+  * Make debian/copyright follow DEP5.
+
+ -- Mario Lang <mlang@debian.org>  Sat, 28 May 2011 17:46:58 +0200

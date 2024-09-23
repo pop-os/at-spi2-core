@@ -1,0 +1,2 @@
+# Yes, it does not use any symbol from libc, only glib, it's really just a very simple module bridge
+library-not-linked-against-libc [usr/lib/*/gtk-2.0/modules/libatk-bridge.so]

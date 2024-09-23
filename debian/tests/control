@@ -1,0 +1,11 @@
+Tests: memory dbind
+Depends: libatspi2.0-dev, build-essential, xauth, xvfb, dbus-daemon, at-spi2-core
+
+Tests: tests
+Depends: build-essential,
+         @builddeps@,
+         libatk-bridge2.0-dev,
+         xauth, xvfb, dbus, at-spi2-core (>= 2.33.92)
+
+Tests: build atk-tests
+Depends: libatk1.0-dev, build-essential

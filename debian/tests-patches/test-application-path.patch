@@ -1,0 +1,18 @@
+From: Samuel Thibault <samuel.thibault@ens-lyon.org>
+Date: Sun, 9 Aug 2020 16:45:09 -0400
+Subject: Adjust test application patch
+---
+ test/memory.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/tests/atspi/memory.c
++++ b/tests/atspi/memory.c
+@@ -86,7 +86,7 @@ main()
+   child_pid = fork ();
+   if (child_pid == 0)
+     {
+-      g_assert_no_errno (execlp ("tests/atspi/test-application", "tests/atspi/test-application", NULL));
++      g_assert_no_errno (execlp ("./test-application", "./test-application", NULL));
+     }
+   else if (child_pid == -1)
+     {
