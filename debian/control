@@ -19,6 +19,7 @@ Build-Depends: dpkg-dev (>= 1.22.5), debhelper-compat (= 13),
                xauth <!nocheck>,
                xvfb <!nocheck>,
                at-spi2-core <!nocheck>,
+               libei-dev, libwayland-dev, libxkbcommon-dev,
 Build-Depends-Indep: docbook-xml <!nodoc>,
                      libglib2.0-doc <!nodoc>,
                      libglib2.0-dev-bin <!nodoc>
