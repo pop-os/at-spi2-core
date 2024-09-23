@@ -1,0 +1,264 @@
+Source: at-spi2-core
+Section: misc
+Priority: optional
+Maintainer: Debian Accessibility Team <pkg-a11y-devel@alioth-lists.debian.net>
+Uploaders: Samuel Thibault <sthibault@debian.org>, Jordi Mallach <jordi@debian.org>
+Build-Depends: dpkg-dev (>= 1.22.5), debhelper-compat (= 13),
+               dbus, libdbus-1-dev,
+               dbus-broker [linux-any], libsystemd-dev [linux-any],
+               libglib2.0-dev (>= 2.62),
+               libxml2-dev,
+               libx11-dev, libxtst-dev,
+               meson (>= 0.63.0),
+               pkgconf,
+               gtk-doc-tools, gi-docgen, python3-sphinx,
+               gir1.2-dbus-1.0-dev,
+               gir1.2-glib-2.0-dev,
+               gir1.2-gobject-2.0-dev,
+               gobject-introspection | dh-sequence-gir,
+               xauth <!nocheck>,
+               xvfb <!nocheck>,
+               at-spi2-core <!nocheck>,
+Build-Depends-Indep: docbook-xml <!nodoc>,
+                     libglib2.0-doc <!nodoc>,
+                     libglib2.0-dev-bin <!nodoc>
+Rules-Requires-Root: no
+Standards-Version: 4.6.2
+Vcs-Browser: https://salsa.debian.org/a11y-team/at-spi2-core
+Vcs-Git: https://salsa.debian.org/a11y-team/at-spi2-core.git
+Homepage: https://wiki.gnome.org/Accessibility
+
+Package: at-spi2-core
+Architecture: any
+Multi-Arch: foreign
+Depends: ${misc:Depends}, ${shlibs:Depends}, at-spi2-common, gsettings-desktop-schemas,
+ libatspi2.0-0t64 (= ${binary:Version})
+Description: Assistive Technology Service Provider Interface (D-Bus core)
+ This package contains the core components of GNOME Accessibility.
+
+Package: at-spi2-common
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Breaks: at-spi2-core (<< 2.46.0-2~)
+Replaces: at-spi2-core (<< 2.46.0-2~)
+Description: Assistive Technology Service Provider Interface (common files)
+ This package contains the common resource files of GNOME Accessibility.
+
+Package: at-spi2-core-udeb
+Section: debian-installer
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Package-Type: udeb
+Description: Assistive Technology Service Provider Interface (D-Bus core for d-i)
+ This package contains the core components of GNOME Accessibility for the Debian
+ installer.
+
+Package: libatspi2.0-0t64
+Provides: ${t64:Provides}
+Replaces: libatspi2.0-0
+Breaks: libatspi2.0-0 (<< ${source:Version})
+Section: libs
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Recommends: at-spi2-core (= ${binary:Version})
+Description: Assistive Technology Service Provider Interface - shared library
+ This package contains the shared library for applications that wish to use
+ the at-spi interface.
+
+Package: libatspi0-udeb
+Section: debian-installer
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Package-Type: udeb
+Description: Assistive Technology Service Provider Interface - module for d-i
+ This package contains the AT-SPI shared library, for the Debian installer.
+
+Package: libatspi2.0-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${gir:Depends},
+         ${misc:Depends},
+         gir1.2-atspi-2.0 (= ${binary:Version}),
+         libatspi2.0-0t64 (= ${binary:Version}),
+         libglib2.0-dev,
+         libdbus-1-dev,
+         libxtst-dev,
+Replaces: gir-repository-dev
+Provides: ${gir:Provides}
+Description: Development files for the assistive technology service provider
+ These are the development files for at-spi2, needed for compilation of
+ programs which use it.
+
+Package: gir1.2-atspi-2.0
+Section: introspection
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         ${gir:Depends},
+         libatspi2.0-0t64 (= ${binary:Version})
+Replaces: gir1.0-gtk-2.0 (<< 2.22),
+          gobject-introspection-repository
+Description: Assistive Technology Service Provider (GObject introspection)
+ This package can be used by other packages using the GIRepository format to
+ generate dynamic bindings
+
+Package: at-spi2-doc
+Section: doc
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Suggests: devhelp
+Description: Assistive Technology Service Provider Interface (Documentation)
+ This package contains documentation for the at-spi2 interface.
+
+Package: libatk-adaptor
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Conflicts: at-spi
+Replaces: at-spi
+Provides: at-spi
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         libatk-bridge2.0-0t64 (= ${binary:Version})
+Description: AT-SPI 2 toolkit bridge
+ This package includes a gtk-module that bridges ATK to the new
+ D-Bus based AT-SPI.
+
+Package: libatk-adaptor-udeb
+Architecture: any
+Section: debian-installer
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Package-Type: udeb
+Description: AT-SPI 2 toolkit bridge - module for d-i
+ This package includes the gtk-module for the Debian installer.
+
+Package: libatk-bridge2.0-0t64
+Provides: ${t64:Provides}
+Replaces: libatk-bridge2.0-0
+Breaks: libatk-bridge2.0-0 (<< ${source:Version})
+Section: libs
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends},
+ libatspi2.0-0t64 (= ${binary:Version}),
+ libatk1.0-0t64 (= ${binary:Version}),
+Description: AT-SPI 2 toolkit bridge - shared library
+ This package contains the ATK bridge shared library.
+
+Package: libatk-bridge-2.0-0-udeb
+Section: debian-installer
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Package-Type: udeb
+Description: AT-SPI 2 toolkit bridge - shared library for d-i
+ This package contains the ATK bridge shared library, for the Debian installer.
+
+Package: libatk-bridge2.0-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libatk-bridge2.0-0t64 (= ${binary:Version}),
+         libatk1.0-dev,
+         libglib2.0-dev,
+         libatspi2.0-dev (= ${binary:Version})
+Description: Development files for the AT-SPI 2 toolkit bridge
+ These are the development files for libatk-bridge2.0, needed for
+ compilation of programs which use it.
+
+Package: libatk1.0-0t64
+Provides: ${t64:Provides}
+Replaces: libatk1.0-0
+Breaks: libatk1.0-0 (<< ${source:Version})
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         at-spi2-common
+Description: ATK accessibility toolkit
+ ATK is a toolkit providing accessibility interfaces for applications or
+ other toolkits. By implementing these interfaces, those other toolkits or
+ applications can be used with tools such as screen readers, magnifiers, and
+ other alternative input devices.
+ .
+ This is the runtime part of ATK, needed to run applications built with it.
+
+Package: libatk1.0-udeb
+Package-Type: udeb
+Section: debian-installer
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends}
+Description: ATK accessibility toolkit
+ This is a udeb, or a microdeb, for the Debian installer.
+ .
+ ATK is a toolkit providing accessibility interfaces for applications or
+ other toolkits. By implementing these interfaces, those other toolkits or
+ applications can be used with tools such as screen readers, magnifiers, and
+ other alternative input devices.
+ .
+ This is a stripped down version of the runtime part of ATK.
+
+Package: libatk1.0-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${gir:Depends},
+         ${misc:Depends},
+         libatk1.0-0t64 (= ${binary:Version}),
+         gir1.2-atk-1.0 (= ${binary:Version}),
+         pkgconf,
+         libglib2.0-dev,
+Replaces: gir-repository-dev
+Provides: ${gir:Provides}
+Description: Development files for the ATK accessibility toolkit
+ ATK is a toolkit providing accessibility interfaces for applications or
+ other toolkits. By implementing these interfaces, those other toolkits or
+ applications can be used with tools such as screen readers, magnifiers, and
+ other alternative input devices.
+ .
+ These are the development files for ATK, needed for compilation of
+ programs or toolkits which use it.
+
+Package: libatk1.0-doc
+Section: doc
+Build-Profiles: <!nodoc>
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Suggests: libglib2.0-doc,
+          libgtk-3-doc,
+          devhelp
+Description: Documentation files for the ATK toolkit
+ ATK is a toolkit providing accessibility interfaces for applications or
+ other toolkits. By implementing these interfaces, those other toolkits or
+ applications can be used with tools such as screen readers, magnifiers, and
+ other alternative input devices.
+ .
+ This contains the HTML documentation for the ATK library in
+ /usr/share/doc/libatk1.0-doc/ .
+
+Package: gir1.2-atk-1.0
+Section: introspection
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         ${gir:Depends},
+         libatk1.0-0t64 (= ${binary:Version})
+Description: ATK accessibility toolkit (GObject introspection)
+ ATK is a toolkit providing accessibility interfaces for applications or
+ other toolkits. By implementing these interfaces, those other toolkits or
+ applications can be used with tools such as screen readers, magnifiers, and
+ other alternative input devices.
+ .
+ This package can be used by other packages using the GIRepository format to
+ generate dynamic bindings

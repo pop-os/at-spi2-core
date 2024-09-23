@@ -1,0 +1,22 @@
+From: Samuel Thibault <samuel.thibault@ens-lyon.org>
+Date: Sat, 26 Dec 2015 17:19:57 +0100
+Subject: at-spi-by-default
+
+Accessibility is now always started by default, ready for use
+---
+ bus/at-spi-dbus-bus.desktop.in | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/bus/at-spi-dbus-bus.desktop.in b/bus/at-spi-dbus-bus.desktop.in
+index a45d27e..22f6b75 100644
+--- a/bus/at-spi-dbus-bus.desktop.in
++++ b/bus/at-spi-dbus-bus.desktop.in
+@@ -2,8 +2,6 @@
+ Type=Application
+ Name=AT-SPI D-Bus Bus
+ Exec=@libexecdir@/at-spi-bus-launcher --launch-immediately
+-OnlyShowIn=GNOME;Unity;
+ NoDisplay=true
+-AutostartCondition=GSettings org.gnome.desktop.interface toolkit-accessibility
+ X-GNOME-AutoRestart=true
+ X-GNOME-Autostart-Phase=Initialization

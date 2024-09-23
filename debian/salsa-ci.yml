@@ -1,0 +1,21 @@
+---
+include:
+  - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/salsa-ci.yml
+  - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/pipeline-jobs.yml
+
+# needs cross-gir
+#test-crossbuild-arm64:
+#  allow_failure: false
+
+variables:
+  SALSA_CI_REPROTEST_ENABLE_DIFFOSCOPE: 1
+  SALSA_CI_ENABLE_BUILD_PACKAGE_PROFILES: 1
+
+test-build-profiles:
+  extends: .test-build-package-profiles
+  parallel:
+    matrix:
+      - BUILD_PROFILES: nocheck
+      - BUILD_PROFILES: nodoc
+
+# vim: ts=2 sw=2 et sts=2 ft=yaml

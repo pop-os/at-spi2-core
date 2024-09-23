@@ -1,0 +1,34 @@
+#!/bin/sh
+# autopkgtest check: Build and run a program against atk1.0-dev, to verify that the
+# headers and pkg-config file are installed correctly
+# (C) 2012 Canonical Ltd.
+# Author: Daniel Kessel <d.kessel@gmx.de>
+
+set -e
+
+WORKDIR=$AUTOPKGTEST_TMP
+trap "rm -rf $WORKDIR" 0 INT QUIT ABRT PIPE TERM
+cd $WORKDIR
+cat <<EOF > atk1.0-dev_test.c
+#include <atk-1.0/atk/atk.h>
+
+int main()
+{
+    if (NULL == atk_get_version()) {
+	return 1;
+    } else {
+	return 0;
+    }
+}
+EOF
+
+if [ -n "${DEB_HOST_GNU_TYPE:-}" ]; then
+    CROSS_COMPILE="$DEB_HOST_GNU_TYPE-"
+else
+    CROSS_COMPILE=
+fi
+${CROSS_COMPILE}gcc -Wall -Werror -o atk1.0-dev_test atk1.0-dev_test.c `${CROSS_COMPILE}pkg-config --cflags --libs atk`
+echo "build: OK"
+[ -x atk1.0-dev_test ]
+./atk1.0-dev_test
+echo "run: OK"

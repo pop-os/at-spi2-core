@@ -1,0 +1,5 @@
+usr/lib/*/gtk-*/modules
+usr/lib/*/gnome-settings-daemon-3.0 usr/lib
+usr/lib/*/gnome-settings-daemon-3.0/* usr/lib/unity-settings-daemon-1.0
+debian/90atk-adaptor etc/X11/Xsession.d
+debian/90atk-adaptor.conf etc/environment.d

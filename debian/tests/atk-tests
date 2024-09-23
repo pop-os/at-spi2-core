@@ -1,0 +1,18 @@
+#!/bin/sh
+
+set -e
+
+WORKDIR=$AUTOPKGTEST_TMP
+
+if [ -n "${DEB_HOST_GNU_TYPE:-}" ]; then
+    CROSS_COMPILE="$DEB_HOST_GNU_TYPE-"
+else
+    CROSS_COMPILE=
+fi
+for i in testdocument testrole testrelation teststateset testvalue ; do
+	${CROSS_COMPILE}gcc tests/atk/$i.c -o $WORKDIR/$i $(${CROSS_COMPILE}pkg-config --cflags --libs atk)
+	echo "build: OK"
+	[ -x $WORKDIR/$i ]
+	$WORKDIR/$i
+	echo "run: OK"
+done

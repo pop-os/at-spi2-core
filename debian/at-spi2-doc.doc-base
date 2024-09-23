@@ -1,0 +1,10 @@
+Document: libatspi
+Title: AT-SPI Reference Manual
+Author: Bill Haneman, Marc Mulcahy, and Padraig Obriain
+Abstract: The AT-SPI library is used for accessibility in the GTK+
+ library; this details how to program using it.
+Section: Accessibility
+
+Format: HTML
+Index: /usr/share/doc/libatspi/index.html
+Files: /usr/share/doc/libatspi/*.html

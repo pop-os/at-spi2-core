@@ -1,0 +1,47 @@
+From: Sebastien Bacher <seb128@ubuntu.com>
+Date: Thu, 22 Sep 2022 11:29:26 -0400
+Subject: workaround tests issue
+
+---
+ tests/at-spi2-atk/test-application.c | 12 ------------
+ 1 file changed, 12 deletions(-)
+
+diff --git a/tests/at-spi2-atk/test-application.c b/tests/at-spi2-atk/test-application.c
+index 908fafc..9e35a69 100644
+--- a/tests/at-spi2-atk/test-application.c
++++ b/tests/at-spi2-atk/test-application.c
+@@ -32,10 +32,8 @@
+ #include "my-atk.h"
+ #include <atk-bridge.h>
+ #include <atk/atk.h>
+-#include <glib-unix.h>
+ #include <glib.h>
+ #include <locale.h>
+-#include <signal.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+@@ -98,15 +96,6 @@ static GOptionEntry optentries[] = {
+   { NULL }
+ };
+ 
+-static gboolean
+-sigterm_received_cb (gpointer user_data)
+-{
+-  GMainLoop *mainloop = user_data;
+-  g_print ("test application received SIGTERM\n");
+-  g_main_loop_quit (mainloop);
+-  return G_SOURCE_REMOVE;
+-}
+-
+ int
+ main (int argc, char *argv[])
+ {
+@@ -126,7 +115,6 @@ main (int argc, char *argv[])
+   atk_bridge_adaptor_init (&argc, &argv);
+ 
+   mainloop = g_main_loop_new (NULL, FALSE);
+-  g_unix_signal_add (SIGTERM, sigterm_received_cb, mainloop);
+   g_main_loop_run (mainloop);
+ 
+   g_print ("test application exited main loop; terminating after cleanup\n");

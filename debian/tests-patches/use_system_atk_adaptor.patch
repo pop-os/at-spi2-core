@@ -1,0 +1,13 @@
+diff --git a/tests/at-spi2-atk/meson.build b/tests/at-spi2-atk/meson.build
+index 4207fad..63b6e1d 100644
+--- a/tests/at-spi2-atk/meson.build
++++ b/tests/at-spi2-atk/meson.build
+@@ -11,6 +11,8 @@ testutils = static_library('testutils', [ 'atk_test_util.c' ],
+                            c_args: ['-DTESTS_BUILD_DIR="@0@"'.format(meson.current_build_dir()) ] )
+ testutils_dep = declare_dependency(link_with: testutils)
+ 
++libatk_bridge_dep = dependency('atk-bridge-2.0')
++
+ # tests:
+ #  - name
+ #  - sources
