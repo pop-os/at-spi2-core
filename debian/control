@@ -38,7 +38,7 @@ Description: Assistive Technology Service Provider Interface (D-Bus core)
  This package contains the core components of GNOME Accessibility.
 
 Package: at-spi2-common
-Architecture: all
+Architecture: amd64 arm64
 Multi-Arch: foreign
 Depends: ${misc:Depends}
 Breaks: at-spi2-core (<< 2.46.0-2~)
@@ -110,7 +110,7 @@ Description: Assistive Technology Service Provider (GObject introspection)
 
 Package: at-spi2-doc
 Section: doc
-Architecture: all
+Architecture: amd64 arm64
 Multi-Arch: foreign
 Depends: ${misc:Depends}
 Suggests: devhelp
@@ -232,7 +232,7 @@ Description: Development files for the ATK accessibility toolkit
 Package: libatk1.0-doc
 Section: doc
 Build-Profiles: <!nodoc>
-Architecture: all
+Architecture: amd64 arm64
 Multi-Arch: foreign
 Depends: ${misc:Depends}
 Suggests: libglib2.0-doc,
