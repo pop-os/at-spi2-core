@@ -104,9 +104,11 @@ atspi_device_new ()
     return ATSPI_DEVICE (atspi_device_x11_new ());
 #endif
 
+#ifdef HAVE_COSMIC
   const gchar *desktop = g_getenv ("XDG_CURRENT_DESKTOP");
   if (desktop && (strcasecmp (desktop, "cosmic") == 0) && !g_getenv ("ATSPI_USE_LEGACY_DEVICE"))
     return ATSPI_DEVICE (atspi_device_cosmic_new ());
+#endif
 
   return ATSPI_DEVICE (atspi_device_legacy_new ());
 }

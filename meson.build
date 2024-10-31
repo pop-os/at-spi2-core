@@ -162,15 +162,21 @@ if x11_dep.found()
   x11_deps += xinput_dep
 endif
 
-libei_dep = dependency('libei-1.0')
-wayland_client_dep = dependency('wayland-client')
-xkbcommon_dep = dependency('xkbcommon')
-
-if cc.has_function(
-  'wl_display_create_queue_with_name',
-  prefix : '#include <wayland-client.h>',
-  dependencies: wayland_client_dep)
-  add_project_arguments([ '-DHAVE_WL_CREATE_QUEUE_WITH_NAME' ], language: 'c')
+libei_dep = dependency('libei-1.0', required : false)
+wayland_client_dep = dependency('wayland-client', required : false)
+xkbcommon_dep = dependency('xkbcommon', required : false)
+have_cosmic = libei_dep.found() and wayland_client_dep.found() and xkbcommon_dep.found()
+if have_cosmic
+  cosmic_deps = [libei_dep, wayland_client_dep, xkbcommon_dep]
+  at_spi_conf.set('HAVE_COSMIC', 1)
+  if cc.has_function(
+    'wl_display_create_queue_with_name',
+    prefix : '#include <wayland-client.h>',
+    dependencies: wayland_client_dep)
+    add_project_arguments([ '-DHAVE_WL_CREATE_QUEUE_WITH_NAME' ], language: 'c')
+  endif
+else
+  cosmic_deps = []
 endif
 
 # Alignments

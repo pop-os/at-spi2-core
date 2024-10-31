@@ -5,7 +5,6 @@ atspi_sources = [
   'atspi-collection.c',
   'atspi-component.c',
   'atspi-device.c',
-  'atspi-device-cosmic.c',
   'atspi-device-legacy.c',
   'atspi-device-listener.c',
   'atspi-document.c',
@@ -26,7 +25,6 @@ atspi_sources = [
   'atspi-table-cell.c',
   'atspi-text.c',
   'atspi-value.c',
-  'cosmic-atspi.c',
 ]
 
 atspi_headers = [
@@ -38,7 +36,6 @@ atspi_headers = [
   'atspi-component.h',
   'atspi-constants.h',
   'atspi-device.h',
-  'atspi-device-cosmic.h',
   'atspi-device-legacy.h',
   'atspi-device-listener.h',
   'atspi-document.h',
@@ -63,8 +60,13 @@ atspi_headers = [
 ]
 
 if x11_dep.found()
-  atspi_sources += ['atspi-device-x11.c']
-  atspi_headers += ['atspi-device-x11.h']
+  atspi_sources += ['cosmic-atspi.c', 'atspi-device-x11.c']
+  atspi_headers += ['cosmic-atspi.c', 'atspi-device-x11.h']
+endif
+
+if have_cosmic
+  atspi_sources += ['atspi-device-cosmic.c']
+  atspi_headers += ['atspi-device-cosmic.h']
 endif
 
 atspi_includedir = join_paths(get_option('prefix'), get_option('includedir'), 'at-spi-2.0', 'atspi')
@@ -102,7 +104,7 @@ atspi = library('atspi', atspi_sources + atspi_enums + atspi_marshals,
                        version: soversion,
                        soversion: soversion.split('.')[0],
                        include_directories: [ root_inc, registryd_inc ],
-                       dependencies: [ libdbus_dep, gobject_dep, gio_dep, dbind_dep, x11_deps, libei_dep, wayland_client_dep, xkbcommon_dep, ],
+                       dependencies: [ libdbus_dep, gobject_dep, gio_dep, dbind_dep, x11_deps, cosmic_deps, ],
                        install: true)
 
 atspi_dep = declare_dependency(link_with: atspi,
