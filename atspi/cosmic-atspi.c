@@ -51,6 +51,8 @@ static const struct wl_message cosmic_atspi_manager_v1_requests[] = {
 	{ "remove_key_grab", "uau", cosmic_atspi_v1_types + 0 },
 	{ "grab_keyboard", "", cosmic_atspi_v1_types + 0 },
 	{ "ungrab_keyboard", "", cosmic_atspi_v1_types + 0 },
+	{ "add_virtual_modifier", "2u", cosmic_atspi_v1_types + 0 },
+	{ "remove_virtual_modifier", "2u", cosmic_atspi_v1_types + 0 },
 };
 
 static const struct wl_message cosmic_atspi_manager_v1_events[] = {
@@ -58,8 +60,8 @@ static const struct wl_message cosmic_atspi_manager_v1_events[] = {
 };
 
 WL_PRIVATE const struct wl_interface cosmic_atspi_manager_v1_interface = {
-	"cosmic_atspi_manager_v1", 1,
-	5, cosmic_atspi_manager_v1_requests,
+	"cosmic_atspi_manager_v1", 2,
+	7, cosmic_atspi_manager_v1_requests,
 	1, cosmic_atspi_manager_v1_events,
 };
 

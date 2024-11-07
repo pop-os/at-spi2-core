@@ -302,6 +302,9 @@ atspi_device_cosmic_map_modifier (AtspiDevice *device, gint keycode)
   entry->modifier = ret;
   priv->modifiers = g_slist_append (priv->modifiers, entry);
 
+  if (priv->atspi_manager && cosmic_atspi_manager_v1_get_version (priv->atspi_manager) >= 2)
+    cosmic_atspi_manager_v1_add_virtual_modifier (priv->atspi_manager, keycode - 8);
+
   return ret;
 }
 
@@ -323,6 +326,9 @@ atspi_device_cosmic_unmap_modifier (AtspiDevice *device, gint keycode)
           return;
         }
     }
+
+  if (priv->atspi_manager && cosmic_atspi_manager_v1_get_version (priv->atspi_manager) >= 2)
+    cosmic_atspi_manager_v1_remove_virtual_modifier (priv->atspi_manager, keycode - 8);
 }
 
 static guint
@@ -431,7 +437,7 @@ registry_handle_global(void *data, struct wl_registry *registry,
   AtspiDeviceCosmicPrivate *priv = atspi_device_cosmic_get_instance_private (device);
 
   if (strcmp(interface, "cosmic_atspi_manager_v1") == 0) {
-    priv->atspi_manager = wl_registry_bind(registry, name, &cosmic_atspi_manager_v1_interface, 1);
+    priv->atspi_manager = wl_registry_bind(registry, name, &cosmic_atspi_manager_v1_interface, 2);
     cosmic_atspi_manager_v1_add_listener(priv->atspi_manager, &cosmic_atspi_listener, data);
   }
 }

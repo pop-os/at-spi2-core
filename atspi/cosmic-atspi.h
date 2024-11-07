@@ -104,6 +104,8 @@ cosmic_atspi_manager_v1_add_listener(struct cosmic_atspi_manager_v1 *cosmic_atsp
 #define COSMIC_ATSPI_MANAGER_V1_REMOVE_KEY_GRAB 2
 #define COSMIC_ATSPI_MANAGER_V1_GRAB_KEYBOARD 3
 #define COSMIC_ATSPI_MANAGER_V1_UNGRAB_KEYBOARD 4
+#define COSMIC_ATSPI_MANAGER_V1_ADD_VIRTUAL_MODIFIER 5
+#define COSMIC_ATSPI_MANAGER_V1_REMOVE_VIRTUAL_MODIFIER 6
 
 /**
  * @ingroup iface_cosmic_atspi_manager_v1
@@ -130,6 +132,14 @@ cosmic_atspi_manager_v1_add_listener(struct cosmic_atspi_manager_v1 *cosmic_atsp
  * @ingroup iface_cosmic_atspi_manager_v1
  */
 #define COSMIC_ATSPI_MANAGER_V1_UNGRAB_KEYBOARD_SINCE_VERSION 1
+/**
+ * @ingroup iface_cosmic_atspi_manager_v1
+ */
+#define COSMIC_ATSPI_MANAGER_V1_ADD_VIRTUAL_MODIFIER_SINCE_VERSION 2
+/**
+ * @ingroup iface_cosmic_atspi_manager_v1
+ */
+#define COSMIC_ATSPI_MANAGER_V1_REMOVE_VIRTUAL_MODIFIER_SINCE_VERSION 2
 
 /** @ingroup iface_cosmic_atspi_manager_v1 */
 static inline void
@@ -209,6 +219,26 @@ cosmic_atspi_manager_v1_ungrab_keyboard(struct cosmic_atspi_manager_v1 *cosmic_a
 {
 	wl_proxy_marshal_flags((struct wl_proxy *) cosmic_atspi_manager_v1,
 			 COSMIC_ATSPI_MANAGER_V1_UNGRAB_KEYBOARD, NULL, wl_proxy_get_version((struct wl_proxy *) cosmic_atspi_manager_v1), 0);
+}
+
+/**
+ * @ingroup iface_cosmic_atspi_manager_v1
+ */
+static inline void
+cosmic_atspi_manager_v1_add_virtual_modifier(struct cosmic_atspi_manager_v1 *cosmic_atspi_manager_v1, uint32_t mods)
+{
+	wl_proxy_marshal_flags((struct wl_proxy *) cosmic_atspi_manager_v1,
+			 COSMIC_ATSPI_MANAGER_V1_ADD_VIRTUAL_MODIFIER, NULL, wl_proxy_get_version((struct wl_proxy *) cosmic_atspi_manager_v1), 0, mods);
+}
+
+/**
+ * @ingroup iface_cosmic_atspi_manager_v1
+ */
+static inline void
+cosmic_atspi_manager_v1_remove_virtual_modifier(struct cosmic_atspi_manager_v1 *cosmic_atspi_manager_v1, uint32_t mods)
+{
+	wl_proxy_marshal_flags((struct wl_proxy *) cosmic_atspi_manager_v1,
+			 COSMIC_ATSPI_MANAGER_V1_REMOVE_VIRTUAL_MODIFIER, NULL, wl_proxy_get_version((struct wl_proxy *) cosmic_atspi_manager_v1), 0, mods);
 }
 
 #ifdef  __cplusplus
