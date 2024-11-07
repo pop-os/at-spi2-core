@@ -13,17 +13,42 @@ extern "C" {
 
 /**
  * @page page_cosmic_atspi_v1 The cosmic_atspi_v1 protocol
- * 
+ * atspi accessibility protocol
  *
  * @section page_desc_cosmic_atspi_v1 Description
  *
+ * This protocol provides a relatively straightforward mapping of AtpsiDevice
+ * in the at-spi2-core library, so it's possible to add a Wayland backend for it.
+ *
+ * This provides a way for screen reader key bindings to work.
+ *
+ * This is a temporary solution until a better protocol is available for this purpose.
  *
  * @section page_ifaces_cosmic_atspi_v1 Interfaces
- * - @subpage page_iface_cosmic_atspi_manager_v1 - 
+ * - @subpage page_iface_cosmic_atspi_manager_v1 - atspi manager global
  * @section page_copyright_cosmic_atspi_v1 Copyright
  * <pre>
  *
- * foo bar
+ * Copyright © 2024 System76
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice (including the next
+ * paragraph) shall be included in all copies or substantial portions of the
+ * Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
  * </pre>
  */
 struct cosmic_atspi_manager_v1;
@@ -34,12 +59,14 @@ struct cosmic_atspi_manager_v1;
  * @page page_iface_cosmic_atspi_manager_v1 cosmic_atspi_manager_v1
  * @section page_iface_cosmic_atspi_manager_v1_desc Description
  *
+ * Manager for adding grabs and monitoring key input.
  * @section page_iface_cosmic_atspi_manager_v1_api API
  * See @ref iface_cosmic_atspi_manager_v1.
  */
 /**
  * @defgroup iface_cosmic_atspi_manager_v1 The cosmic_atspi_manager_v1 interface
  *
+ * Manager for adding grabs and monitoring key input.
  */
 extern const struct wl_interface cosmic_atspi_manager_v1_interface;
 #endif
@@ -50,9 +77,10 @@ extern const struct wl_interface cosmic_atspi_manager_v1_interface;
  */
 struct cosmic_atspi_manager_v1_listener {
 	/**
-	 * 
+	 * Get eis socket fd
 	 *
-	 * 
+	 * Produces an fd that can be used with libei to monitor keyboard
+	 * input.
 	 * @param fd eis file descriptor
 	 */
 	void (*key_events_eis)(void *data,
@@ -126,6 +154,7 @@ cosmic_atspi_manager_v1_get_version(struct cosmic_atspi_manager_v1 *cosmic_atspi
 /**
  * @ingroup iface_cosmic_atspi_manager_v1
  *
+ * Any grabs that are still active will be disabled.
  */
 static inline void
 cosmic_atspi_manager_v1_destroy(struct cosmic_atspi_manager_v1 *cosmic_atspi_manager_v1)
@@ -137,6 +166,7 @@ cosmic_atspi_manager_v1_destroy(struct cosmic_atspi_manager_v1 *cosmic_atspi_man
 /**
  * @ingroup iface_cosmic_atspi_manager_v1
  *
+ * Grab the given key combination, so it will not be sent to clients.
  */
 static inline void
 cosmic_atspi_manager_v1_add_key_grab(struct cosmic_atspi_manager_v1 *cosmic_atspi_manager_v1, uint32_t mods, struct wl_array *virtual_mods, uint32_t key)
@@ -148,6 +178,7 @@ cosmic_atspi_manager_v1_add_key_grab(struct cosmic_atspi_manager_v1 *cosmic_atsp
 /**
  * @ingroup iface_cosmic_atspi_manager_v1
  *
+ * Disables a grab added with add_key_grab.
  */
 static inline void
 cosmic_atspi_manager_v1_remove_key_grab(struct cosmic_atspi_manager_v1 *cosmic_atspi_manager_v1, uint32_t mods, struct wl_array *virtual_mods, uint32_t key)
@@ -159,6 +190,7 @@ cosmic_atspi_manager_v1_remove_key_grab(struct cosmic_atspi_manager_v1 *cosmic_a
 /**
  * @ingroup iface_cosmic_atspi_manager_v1
  *
+ * Grab keyboard, so key input will not be sent to clients.
  */
 static inline void
 cosmic_atspi_manager_v1_grab_keyboard(struct cosmic_atspi_manager_v1 *cosmic_atspi_manager_v1)
@@ -170,6 +202,7 @@ cosmic_atspi_manager_v1_grab_keyboard(struct cosmic_atspi_manager_v1 *cosmic_ats
 /**
  * @ingroup iface_cosmic_atspi_manager_v1
  *
+ * Disables a grab added with grab_keyboard.
  */
 static inline void
 cosmic_atspi_manager_v1_ungrab_keyboard(struct cosmic_atspi_manager_v1 *cosmic_atspi_manager_v1)
