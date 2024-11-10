@@ -9,6 +9,9 @@ ifeq ($(DEB_HOST_ARCH),$(DEB_BUILD_ARCH))
 configure_options += --native-file=$(CURDIR)/debian/meson/no-exe-wrapper.ini
 endif
 
+DO_PACKAGES := $(shell dh_listpackages)
+configure_options += -Ddocs=$(if $(filter at-spi2-doc libatk1.0-doc,$(DO_PACKAGES)),true,false)
+
 %:
 	dh $@
 
@@ -16,7 +19,6 @@ override_dh_auto_configure:
 	ac_cv_lib_ICE_IceConnectionNumber=no \
 	dh_auto_configure -- \
 		-Dintrospection=enabled \
-		-Ddocs=true \
 		$(configure_options) \
 		-Ddefault_bus=dbus-broker
 

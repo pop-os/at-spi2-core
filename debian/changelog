@@ -1,3 +1,10 @@
+at-spi2-core (2.54.0-1.1) UNRELEASED; urgency=medium
+
+  * Improve cross building: Skip documentation in arch-only build.
+    (Closes: Bug#1087292)
+
+ -- Helmut Grohne <helmut@subdivi.de>  Sun, 10 Nov 2024 17:31:35 +0100
+
 at-spi2-core (2.54.0-1) unstable; urgency=medium
 
   * Team upload
