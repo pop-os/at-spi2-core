@@ -88,6 +88,7 @@ Depends: ${gir:Depends},
          libglib2.0-dev,
          libdbus-1-dev,
          libxtst-dev,
+         libei-dev [amd64 arm64],
 Replaces: gir-repository-dev
 Provides: ${gir:Provides}
 Description: Development files for the assistive technology service provider
