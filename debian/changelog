@@ -1,9 +1,13 @@
-at-spi2-core (2.54.0-1.1) UNRELEASED; urgency=medium
+at-spi2-core (2.55.0-1) unstable; urgency=medium
 
+  [ Samuel Thibault ]
+  * New upstream release
+
+  [ Helmut Grohne ]
   * Improve cross building: Skip documentation in arch-only build.
     (Closes: Bug#1087292)
 
- -- Helmut Grohne <helmut@subdivi.de>  Sun, 10 Nov 2024 17:31:35 +0100
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 11 Jan 2025 01:49:07 +0100
 
 at-spi2-core (2.54.0-1) unstable; urgency=medium
 
