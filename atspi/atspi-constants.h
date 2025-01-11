@@ -1015,7 +1015,7 @@ extern "C"
    * choices.
    * @ATSPI_ROLE_PROGRESS_BAR: An object used to indicate how much of a task has
    * been completed.
-   * @ATSPI_ROLE_PUSH_BUTTON: An object the user can manipulate to tell the
+   * @ATSPI_ROLE_BUTTON: An object the user can manipulate to tell the
    * application to do something.
    * @ATSPI_ROLE_RADIO_BUTTON: A specialized check box that will cause other
    * radio buttons in the same group to become unchecked when this one is
@@ -1326,7 +1326,7 @@ extern "C"
     ATSPI_ROLE_PASSWORD_TEXT,
     ATSPI_ROLE_POPUP_MENU,
     ATSPI_ROLE_PROGRESS_BAR,
-    ATSPI_ROLE_PUSH_BUTTON,
+    ATSPI_ROLE_BUTTON,
     ATSPI_ROLE_RADIO_BUTTON,
     ATSPI_ROLE_RADIO_MENU_ITEM,
     ATSPI_ROLE_ROOT_PANE,
@@ -1414,6 +1414,9 @@ extern "C"
     ATSPI_ROLE_SUGGESTION,
     ATSPI_ROLE_PUSH_BUTTON_MENU,
     ATSPI_ROLE_LAST_DEFINED,
+
+    /* For backwards compatibility */
+    ATSPI_ROLE_PUSH_BUTTON = ATSPI_ROLE_BUTTON,
   } AtspiRole;
 
 /**

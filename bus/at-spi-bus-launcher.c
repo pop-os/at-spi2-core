@@ -569,15 +569,20 @@ ensure_a11y_bus (A11yBusLauncher *app)
         g_free (at_spi_dir);
     }
 
+  const gchar *dbus_preference = g_getenv ("ATSPI_DBUS_IMPLEMENTATION");
 #ifdef WANT_DBUS_BROKER
-  success = ensure_a11y_bus_broker (app, config_path);
+  // try dbus-broker first unless dbus-daemon explicitly selected via env var
+  if (g_strcmp0 (dbus_preference, "dbus-daemon") != 0)
+    success = ensure_a11y_bus_broker (app, config_path);
   if (!success)
     {
       if (!ensure_a11y_bus_daemon (app, config_path))
         return FALSE;
     }
 #else
-  success = ensure_a11y_bus_daemon (app, config_path);
+  // try dbus-daemon first unless dbus-broker explicitly selected via env var
+  if (g_strcmp0 (dbus_preference, "dbus-broker") != 0)
+    success = ensure_a11y_bus_daemon (app, config_path);
   if (!success)
     {
       if (!ensure_a11y_bus_broker (app, config_path))
@@ -887,6 +892,7 @@ init_sigterm_handling (A11yBusLauncher *app)
                   G_IO_IN | G_IO_ERR | G_IO_HUP,
                   on_sigterm_pipe,
                   app);
+  g_io_channel_unref (sigterm_channel);
 }
 
 static GSettings *

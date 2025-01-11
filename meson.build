@@ -1,5 +1,5 @@
 project('at-spi2-core', 'c',
-        version: '2.52.0',
+        version: '2.55.0',
         license: 'LGPLv2.1+',
         default_options: [
           'buildtype=debugoptimized',
@@ -8,7 +8,7 @@ project('at-spi2-core', 'c',
         ],
         meson_version: '>= 0.63.0')
 
-add_project_arguments([ '-D_POSIX_C_SOURCE=200809L', '-D_DEFAULT_SOURCE' ], language: 'c')
+add_project_arguments([ '-D_XOPEN_SOURCE=700', '-D_DEFAULT_SOURCE' ], language: 'c')
 
 fs = import('fs')
 
@@ -193,12 +193,6 @@ configure_file(output: 'config.h', configuration: at_spi_conf)
 
 pkgconfig = import('pkgconfig')
 gnome = import('gnome')
-
-if get_option('disable_p2p')
-  p2p_cflags = [ '-DDISABLE_P2P' ]
-else
-  p2p_cflags = []
-endif
 
 subdir('atk')
 
