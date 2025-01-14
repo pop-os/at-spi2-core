@@ -40,7 +40,7 @@ at-spi2-core (2.53.1-1) unstable; urgency=medium
   * Team upload
 
   [ Jeremy Bícha ]
-  * New upstream release
+  * New upstream release (Closes: #998429)
   * Cherry-pick patch related to the "push button" → "button" rename
 
   [ Samuel Thibault ]
