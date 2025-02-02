@@ -1,3 +1,9 @@
+at-spi2-core (2.55.2-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 02 Feb 2025 02:33:11 +0100
+
 at-spi2-core (2.55.0.1-1) unstable; urgency=medium
 
   * New upstream release (Closes: #1093025)
