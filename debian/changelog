@@ -1,3 +1,15 @@
+at-spi2-core (2.55.90-1) experimental; urgency=medium
+
+  * New upstream release
+    - Support grabbing keyboard shortcuts through the new
+    org.freedesktop.a11y.KeyboardMonitor interface. This allows key grabs to be
+    supported under Wayland with the latest mutter.
+  * libatk-bridge2.0-0t64.lintian-overrides: Drop duplicate bogus override.
+  * libatk1.0-0t64.lintian-overrides: Drop duplicate bogus override.
+  * libatspi2.0-0t64.lintian-overrides: Drop duplicate bogus override.
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 28 Feb 2025 20:13:29 +0100
+
 at-spi2-core (2.55.2-1) unstable; urgency=medium
 
   * New upstream release
