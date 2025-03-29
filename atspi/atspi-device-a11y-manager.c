@@ -386,7 +386,7 @@ atspi_device_a11y_manager_dispose (GObject *object)
 {
   AtspiDeviceA11yManager *device = ATSPI_DEVICE_A11Y_MANAGER (object);
 
-  g_slist_free_full (device->grabbed_modifiers, g_free);
+  g_slist_free (device->grabbed_modifiers);
   g_slist_free_full (device->grabbed_keys, g_free);
   g_slist_free_full (device->virtual_modifiers, g_free);
   if (device->refresh_timeout_id)
@@ -528,6 +528,7 @@ AtspiDeviceA11yManager *
 atspi_device_a11y_manager_try_new_full (const gchar *app_id)
 {
   GError *error = NULL;
+  g_autofree gchar *owner = NULL;
   GDBusConnection *session_bus = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, NULL);
   GDBusProxy *keyboard_monitor = g_dbus_proxy_new_sync (session_bus,
                                                         G_DBUS_PROXY_FLAGS_NONE,
@@ -542,6 +543,14 @@ atspi_device_a11y_manager_try_new_full (const gchar *app_id)
     {
       g_clear_object (&session_bus);
       g_error_free (error);
+      return NULL;
+    }
+
+  owner = g_dbus_proxy_get_name_owner (keyboard_monitor);
+  if (!owner)
+    {
+      g_clear_object (&session_bus);
+      g_clear_object (&keyboard_monitor);
       return NULL;
     }
 
