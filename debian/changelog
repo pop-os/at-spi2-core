@@ -1,3 +1,9 @@
+at-spi2-core (2.56.1-2) unstable; urgency=medium
+
+  * Rebuild on buildds.
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 31 Mar 2025 04:03:02 +0200
+
 at-spi2-core (2.56.1-1) unstable; urgency=medium
 
   * New upstream release
