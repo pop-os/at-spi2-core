@@ -20,6 +20,7 @@ override_dh_auto_configure:
 	dh_auto_configure -- \
 		-Dintrospection=enabled \
 		$(configure_options) \
+		-Ddbus_broker=/usr/bin/dbus-broker-launch \
 		-Ddbus_daemon=/usr/bin/dbus-daemon \
 		-Ddefault_bus=dbus-broker
 
