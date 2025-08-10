@@ -3,7 +3,7 @@ Section: misc
 Priority: optional
 Maintainer: Debian Accessibility Team <pkg-a11y-devel@alioth-lists.debian.net>
 Uploaders: Samuel Thibault <sthibault@debian.org>, Jordi Mallach <jordi@debian.org>
-Build-Depends: dpkg-dev (>= 1.22.5), debhelper-compat (= 13),
+Build-Depends: dpkg-dev (>= 1.22.5), debhelper-compat (= 13), dh-sequence-python3,
                libdbus-1-dev,
                libsystemd-dev [linux-any],
                libglib2.0-dev (>= 2.62),

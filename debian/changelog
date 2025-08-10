@@ -3,6 +3,7 @@ at-spi2-core (2.57.1-1) unstable; urgency=medium
   [ Samuel Thibault ]
   * New upstream release.
     - control: Bump meson build-dep version accordingly.
+    - control: Build-Depend on dh-sequence-python3.
     - gir1.2-atspi-2.0.install: Install Atspi gi overrides.
     - libatk-bridge2.0-0t64.symbols: Drop droute_context_deregister symbol.
   * copyright: Update.
