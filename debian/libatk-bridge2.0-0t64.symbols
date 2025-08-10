@@ -10,7 +10,6 @@ libatk-bridge-2.0.so.0 libatk-bridge2.0-0t64 #MINVER#
  atk_bridge_set_event_context@Base 2.18.1-2~
  droute_add_many@Base 2.26.0
  droute_add_one@Base 2.26.0
- droute_context_deregister@Base 2.26.0
  droute_context_register@Base 2.26.0
  droute_context_unregister@Base 2.26.0
  droute_free@Base 2.26.0
