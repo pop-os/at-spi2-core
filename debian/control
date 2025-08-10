@@ -103,6 +103,7 @@ Multi-Arch: same
 Depends: ${misc:Depends},
          ${shlibs:Depends},
          ${gir:Depends},
+         ${python3:Depends},
          libatspi2.0-0t64 (= ${binary:Version})
 Replaces: gir1.0-gtk-2.0 (<< 2.22),
           gobject-introspection-repository
