@@ -22,8 +22,9 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef BRIDGE_H
-#define BRIDGE_H
+#pragma once
+
+#include <gio/gio.h>
 
 #include <atk/atk.h>
 #include <droute/droute.h>
@@ -74,6 +75,10 @@ struct _SpiBridge
   gboolean events_initialized;
   GHashTable *property_hash;
   guint registration_pending;
+  gint replies_received;
+
+  GDBusConnection *session_bus;
+  guint name_owner_changed_subscription_id;
 };
 
 extern SpiBridge *spi_global_app_data;
@@ -97,5 +102,3 @@ GType _atk_bridge_type_from_iface (const char *iface);
 void _atk_bridge_schedule_application_registration (SpiBridge *app);
 gboolean _atk_bridge_remove_pending_application_registration (SpiBridge *app);
 G_END_DECLS
-
-#endif /* BRIDGE_H */

@@ -21,8 +21,7 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ACCESSIBLE_LEASING_H
-#define ACCESSIBLE_LEASING_H
+#pragma once
 
 #include <glib-object.h>
 #include <glib.h>
@@ -43,6 +42,7 @@ struct _SpiLeasing
   GObject parent;
 
   GQueue *expiry_queue;
+  GHashTable *expiry_queue_hash;
   guint expiry_func_id;
 };
 
@@ -58,4 +58,3 @@ extern SpiLeasing *spi_global_leasing;
 GObject *spi_leasing_take (SpiLeasing *leasing, GObject *object);
 
 G_END_DECLS
-#endif /* ACCESSIBLE_LEASING_H */

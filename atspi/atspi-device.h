@@ -21,8 +21,7 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef _ATSPI_DEVICE_H_
-#define _ATSPI_DEVICE_H_
+#pragma once
 
 #include "glib-object.h"
 
@@ -33,9 +32,6 @@ G_BEGIN_DECLS
 #define ATSPI_TYPE_DEVICE (atspi_device_get_type ())
 G_DECLARE_DERIVABLE_TYPE (AtspiDevice, atspi_device, ATSPI, DEVICE, GObject)
 
-typedef struct _AtspiDevice AtspiDevice;
-
-typedef struct _AtspiDeviceClass AtspiDeviceClass;
 struct _AtspiDeviceClass
 {
   GObjectClass parent_class;
@@ -106,6 +102,5 @@ void atspi_device_set_app_id (AtspiDevice *device, const gchar *app_id);
 
 AtspiDevice *atspi_device_new_full (const gchar *app_id);
 
+void atspi_device_clear_key_grabs (AtspiDevice *device);
 G_END_DECLS
-
-#endif /* _ATSPI_DEVICE_H_ */

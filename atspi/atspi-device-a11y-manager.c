@@ -111,6 +111,18 @@ find_insertion_point_for_modifier (AtspiDeviceA11yManager *manager_device, guint
   return NULL;
 }
 
+#define MODIFIER_NUMLOCK (1 << ATSPI_MODIFIER_META)
+#define MODIFIER_CAPSLOCK (1 << ATSPI_MODIFIER_SHIFTLOCK)
+
+static void
+add_grab_to_builder (GVariantBuilder *builder, guint32 keysym, guint32 modifiers)
+{
+  g_variant_builder_open (builder, G_VARIANT_TYPE ("(uu)"));
+  g_variant_builder_add (builder, "u", keysym);
+  g_variant_builder_add (builder, "u", modifiers);
+  g_variant_builder_close (builder);
+}
+
 static void
 refresh_grabs (AtspiDeviceA11yManager *manager_device)
 {
@@ -129,10 +141,10 @@ refresh_grabs (AtspiDeviceA11yManager *manager_device)
   for (l = manager_device->grabbed_keys; l; l = l->next)
     {
       AtspiDeviceA11yManagerKey *entry = l->data;
-      g_variant_builder_open (&builder, G_VARIANT_TYPE ("(uu)"));
-      g_variant_builder_add (&builder, "u", entry->keysym);
-      g_variant_builder_add (&builder, "u", entry->modifiers);
-      g_variant_builder_close (&builder);
+      add_grab_to_builder (&builder, entry->keysym, entry->modifiers);
+      add_grab_to_builder (&builder, entry->keysym, entry->modifiers | MODIFIER_NUMLOCK);
+      add_grab_to_builder (&builder, entry->keysym, entry->modifiers | MODIFIER_CAPSLOCK);
+      add_grab_to_builder (&builder, entry->keysym, entry->modifiers | MODIFIER_CAPSLOCK | MODIFIER_NUMLOCK);
     }
   g_variant_builder_close (&builder);
   g_dbus_proxy_call_sync (manager_device->keyboard_monitor,
@@ -316,9 +328,11 @@ atspi_device_a11y_manager_remove_key_grab (AtspiDevice *device, guint id)
           manager_device->grabbed_keys = g_slist_remove (manager_device->grabbed_keys, entry);
           g_free (entry);
           schedule_refresh_grabs (manager_device);
-          return;
+          break;
         }
     }
+
+  g_free (kd);
 }
 
 static void

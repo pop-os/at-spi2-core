@@ -236,6 +236,8 @@ atspi_accessible_dispose (GObject *object)
       accessible->children = NULL;
     }
 
+  _atspi_accessible_set_cached (accessible, FALSE);
+
   G_OBJECT_CLASS (atspi_accessible_parent_class)->dispose (object);
 }
 
@@ -494,6 +496,7 @@ atspi_accessible_get_child_at_index (AtspiAccessible *obj,
   DBusMessage *reply;
 
   g_return_val_if_fail (obj != NULL, NULL);
+  g_return_val_if_fail (child_index >= 0, NULL);
 
   if (_atspi_accessible_test_cache (obj, ATSPI_CACHE_CHILDREN))
     {
@@ -515,7 +518,7 @@ atspi_accessible_get_child_at_index (AtspiAccessible *obj,
   if (!child)
     return NULL;
 
-  if (_atspi_accessible_test_cache (obj, ATSPI_CACHE_CHILDREN))
+  if (_atspi_accessible_test_cache (obj, ATSPI_CACHE_CHILDREN) && child_index < ATSPI_MAX_CHILDREN)
     {
       if (child_index >= obj->children->len)
         g_ptr_array_set_size (obj->children, child_index + 1);
@@ -884,15 +887,21 @@ gchar *
 atspi_accessible_get_toolkit_name (AtspiAccessible *obj, GError **error)
 {
   g_return_val_if_fail (obj != NULL, NULL);
+  gchar *toolkit_name = NULL;
 
   if (!obj->parent.app)
     return NULL;
 
-  if (!obj->parent.app->toolkit_name)
-    _atspi_dbus_get_property (obj, atspi_interface_application, "ToolkitName",
-                              error, "s", &obj->parent.app->toolkit_name);
+  if (obj->parent.app->toolkit_name)
+    return g_strdup (obj->parent.app->toolkit_name);
 
-  return g_strdup (obj->parent.app->toolkit_name);
+  _atspi_dbus_get_property (obj, atspi_interface_application, "ToolkitName",
+                            error, "s", &toolkit_name);
+
+  if (obj->parent.app)
+    obj->parent.app->toolkit_name = g_strdup (toolkit_name);
+
+  return toolkit_name;
 }
 
 /**
@@ -908,15 +917,21 @@ gchar *
 atspi_accessible_get_toolkit_version (AtspiAccessible *obj, GError **error)
 {
   g_return_val_if_fail (obj != NULL, NULL);
+  gchar *toolkit_version = NULL;
 
   if (!obj->parent.app)
     return NULL;
 
-  if (!obj->parent.app->toolkit_version)
-    _atspi_dbus_get_property (obj, atspi_interface_application, "Version",
-                              error, "s", &obj->parent.app->toolkit_version);
+  if (obj->parent.app->toolkit_version)
+    return g_strdup (obj->parent.app->toolkit_version);
 
-  return g_strdup (obj->parent.app->toolkit_version);
+  _atspi_dbus_get_property (obj, atspi_interface_application, "Version",
+                            error, "s", &toolkit_version);
+
+  if (obj->parent.app)
+    obj->parent.app->toolkit_version = g_strdup (toolkit_version);
+
+  return toolkit_version;
 }
 
 /**
@@ -933,15 +948,21 @@ gchar *
 atspi_accessible_get_atspi_version (AtspiAccessible *obj, GError **error)
 {
   g_return_val_if_fail (obj != NULL, NULL);
+  gchar *atspi_version = NULL;
 
   if (!obj->parent.app)
     return NULL;
 
-  if (!obj->parent.app->atspi_version)
-    _atspi_dbus_get_property (obj, atspi_interface_application, "AtspiVersion",
-                              error, "s", &obj->parent.app->atspi_version);
+  if (obj->parent.app->atspi_version)
+    return g_strdup (obj->parent.app->atspi_version);
 
-  return g_strdup (obj->parent.app->atspi_version);
+  _atspi_dbus_get_property (obj, atspi_interface_application, "AtspiVersion",
+                            error, "s", &atspi_version);
+
+  if (obj->parent.app)
+    obj->parent.app->atspi_version = g_strdup (atspi_version);
+
+  return atspi_version;
 }
 
 /**
@@ -1685,6 +1706,8 @@ atspi_accessible_get_interfaces (AtspiAccessible *obj)
   append_const_val (ret, "Accessible");
   if (atspi_accessible_is_action (obj))
     append_const_val (ret, "Action");
+  if (atspi_accessible_is_application (obj))
+    append_const_val (ret, "Application");
   if (atspi_accessible_is_collection (obj))
     append_const_val (ret, "Collection");
   if (atspi_accessible_is_component (obj))
@@ -2003,5 +2026,22 @@ _atspi_accessible_unref_cache (AtspiAccessible *accessible)
       g_hash_table_unref (priv->cache);
       if (--priv->cache_ref_count == 0)
         priv->cache = NULL;
+    }
+}
+
+void
+_atspi_accessible_set_cached (AtspiAccessible *accessible, gboolean cached)
+{
+  AtspiAccessiblePrivate *priv = accessible->priv;
+
+  if (cached && !priv->holds_cache_ref)
+    {
+      priv->holds_cache_ref = TRUE;
+      g_object_ref (accessible);
+    }
+  else if (!cached && priv->holds_cache_ref)
+    {
+      priv->holds_cache_ref = FALSE;
+      g_object_unref (accessible);
     }
 }
