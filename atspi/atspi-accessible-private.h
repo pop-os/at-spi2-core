@@ -23,8 +23,7 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef _ATSPI_ACCESSIBLE_PRIVATE_H_
-#define _ATSPI_ACCESSIBLE_PRIVATE_H_
+#pragma once
 
 #include <glib.h>
 
@@ -38,6 +37,7 @@ struct _AtspiAccessiblePrivate
   GHashTable *cache;
   guint cache_ref_count;
   guint iteration_stamp;
+  gboolean holds_cache_ref;
 };
 
 GHashTable *
@@ -45,6 +45,7 @@ _atspi_accessible_ref_cache (AtspiAccessible *accessible);
 
 void
 _atspi_accessible_unref_cache (AtspiAccessible *accessible);
-G_END_DECLS
 
-#endif /* _ATSPI_ACCESSIBLE_H_ */
+void
+_atspi_accessible_set_cached (AtspiAccessible *accessible, gboolean cached);
+G_END_DECLS

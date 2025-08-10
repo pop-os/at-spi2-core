@@ -1,12 +1,12 @@
 project('at-spi2-core', 'c',
-        version: '2.56.2',
+        version: '2.57.1',
         license: 'LGPLv2.1+',
         default_options: [
           'buildtype=debugoptimized',
           'warning_level=1',
           'c_std=c99',
         ],
-        meson_version: '>= 0.63.0')
+        meson_version: '>= 0.64.0')
 
 add_project_arguments([ '-D_XOPEN_SOURCE=700', '-D_DEFAULT_SOURCE' ], language: 'c')
 
@@ -187,6 +187,11 @@ at_spi_conf.set('ALIGNOF_DBIND_STRUCT', cc.alignment('dbind_struct', prefix: 'ty
 gir = find_program('g-ir-scanner', required : get_option('introspection'))
 have_gir = gir.found() and (not meson.is_cross_build() or get_option('introspection').enabled())
 
+if not get_option('atk_only')
+  pymod = import('python')
+  python = pymod.find_installation(get_option('python'), pure: false)
+endif
+
 xgettext = find_program('xgettext', required : false)
 
 configure_file(output: 'config.h', configuration: at_spi_conf)
@@ -208,6 +213,9 @@ if not get_option('atk_only')
   subdir('droute')
   subdir('atk-adaptor')
   subdir('tests')
+  if python.found()
+    subdir('python')
+  endif
 endif
 
 if get_option('docs')

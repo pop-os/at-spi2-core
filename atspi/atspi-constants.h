@@ -84,8 +84,8 @@
 
  */
 
-#ifndef _ATSPI_CONSTANTS_H_
-#define _ATSPI_CONSTANTS_H_
+#pragma once
+
 /**
  * AtspiConstants:
  *
@@ -1539,7 +1539,8 @@ extern "C"
 #define ATSPI_DBUS_NAME_A11Y_MANAGER "org.freedesktop.a11y.Manager"
 #define ATSPI_DBUS_PATH_A11Y_MANAGER "/org/freedesktop/a11y/Manager"
 
+#define ATSPI_MAX_CHILDREN 65536
+
 #ifdef __cplusplus
 }
 #endif
-#endif /* _ATSPI_CONSTANTS_H_ */

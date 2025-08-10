@@ -1,14 +1,41 @@
-What's new in at-spi2-core 2.56.2:
+What's new in at-spi2-core 2.57.1:
+
+* Fix several crashes introduced by the code to handle the accessibility
+  bus going away.
+
+* Add atspi_device_clear_key_grabs.
+
+* Fix key grabs when num lock or caps lock are on under Wayland.
+
+    atk-bridge: Don't crash when requesting a plug if not activated
+    
+* Have python overrides check DBus object paths when testing for equality.
+
+* Add sanity checks for child indices received via DBus.
+
+What's new in at-spi2-core 2.57.0:
+
+* device-a11y-manager: Fix crash on dispose
+
+* device-a11y-manager: Check properly for the DBus backend presence
 
 * Fix the build with glib < 2.76.
 
 * a11y-manager-device: Fix unmap_keysym_modifier.
 
-What's new in at-spi2-core 2.56.1:
+* DeviceEventController: update mouse coordinates before sending button events
 
-* device-a11y-manager: Fix crash on dispose
+* atspi-device-legacy: Don't crash when XkbGetMap fails
 
-* device-a11y-manager: Check properly for the DBus backend presence
+* Return localized role name for ATSPI_ROLE_EDITBAR
+
+    atk-adaptor: Reconnect when the bus launcher reappears.
+
+* Don't keep references to uncached objects in the application's hash table.
+
+* Add some Python overrides.
+
+    AtspiDeviceX11: Suppress window events following key grabs when needed.
 
 What's new in at-spi2-core 2.56.0:
 

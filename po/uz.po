@@ -1,194 +1,201 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2025 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# Ramal Rəhimov <jhonaluman@gmail.com>, 2025.
+# Uzbek (Latin) translation for at-spi2-core.
+# Copyright (C) 2025 at-spi2-core's COPYRIGHT HOLDER
+# This file is distributed under the same license as the at-spi2-core package.
+# Baxrom Raxmatov <magdiyevbahrom@gmail.com>,  2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: at-spi2-core main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/at-spi2-core/issues/\n"
-"POT-Creation-Date: 2025-06-01 14:06+0000\n"
-"PO-Revision-Date: 2025-06-04 01:12+0400\n"
-"Last-Translator: Ramal Rəhimov <jhonaluman@gmail.com>\n"
-"Language-Team: Azerbaijani <az@li.org>\n"
-"Language: az\n"
+"POT-Creation-Date: 2025-03-31 15:25+0000\n"
+"PO-Revision-Date: 2025-04-07 08:11+0500\n"
+"Last-Translator: \n"
+"Language-Team: Uzbek (Latin) <uz@li.org>\n"
+"Language: uz\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
 
 #: atk/atkhyperlink.c:127
 msgid "Selected Link"
-msgstr "Seçilmiş Link"
+msgstr "Tanlangan havola"
 
 #: atk/atkhyperlink.c:128
 msgid "Specifies whether the AtkHyperlink object is selected"
-msgstr "AtkHyperlink obyektinin seçilib-seçilmədiyini göstərir"
+msgstr "AtkHyperlink ob'ekti tanlangan yoki yo'qligini belgilaydi"
 
 #: atk/atkhyperlink.c:134
 msgid "Number of Anchors"
-msgstr "Ankorların Sayı"
+msgstr "Ankorlar soni"
 
 #: atk/atkhyperlink.c:135
 msgid "The number of anchors associated with the AtkHyperlink object"
-msgstr "AtkHyperlink obyektinə bağlı ankorların sayı"
+msgstr "AtkHyperlink ob'ekti bilan bog'langan langarlar soni"
 
 #: atk/atkhyperlink.c:143
 msgid "End index"
-msgstr "Son indeks"
+msgstr "Yakuniy indeks"
 
 #: atk/atkhyperlink.c:144
 msgid "The end index of the AtkHyperlink object"
-msgstr "AtkHyperlink obyektinin son indeksi"
+msgstr "AtkHyperlink ob'ektining yakuniy indeksi"
 
 #: atk/atkhyperlink.c:152
 msgid "Start index"
-msgstr "Başlanğıc indeks"
+msgstr "Boshlanish indeksi"
 
 #: atk/atkhyperlink.c:153
 msgid "The start index of the AtkHyperlink object"
-msgstr "AtkHyperlink obyektinin başlanğıc indeksi"
+msgstr "AtkHyperlink ob'ektining boshlang'ich indeksi"
 
 #: atk/atkobject.c:273
 msgid "Accessible Name"
-msgstr "Erişimli Ad"
+msgstr "Kirish mumkin bo'lgan ism"
 
 #: atk/atkobject.c:274
 msgid "Object instance’s name formatted for assistive technology access"
-msgstr "Yardım texnologiyalarına giriş üçün formatlaşdırılmış obyekt instansının adı"
+msgstr ""
+"Yordamchi texnologiyaga kirish uchun formatlangan obyekt namunasining nomi"
 
 #: atk/atkobject.c:280
 msgid "Accessible Description"
-msgstr "Erişimli Təsvir"
+msgstr "Foydalanish mumkin bo'lgan tavsif"
 
 #: atk/atkobject.c:281
 msgid "Description of an object, formatted for assistive technology access"
-msgstr "Yardım texnologiyalarına giriş üçün formatlaşdırılmış obyektin təsviri"
+msgstr "Yordamchi texnologiyaga kirish uchun formatlangan ob'ekt tavsifi"
 
 #: atk/atkobject.c:287
 msgid "Accessible Parent"
-msgstr "Erişimli Valideyn"
+msgstr "Mumkin ota-ona"
 
 #: atk/atkobject.c:288
 msgid "Parent of the current accessible as returned by atk_object_get_parent()"
-msgstr "atk_object_get_parent() tərəfindən qaytarılan cari erişimlərin valideyni"
+msgstr ""
+"atk_object_get_parent() tomonidan qaytarilgan joriy kirish mumkin bo'lgan "
+"ota-ona"
 
 #: atk/atkobject.c:304
 msgid "Accessible Value"
-msgstr "Erişimli Dəyər"
+msgstr "Foydalanish mumkin bo'lgan qiymat"
 
 #: atk/atkobject.c:305
 msgid "Is used to notify that the value has changed"
-msgstr "Dəyərin dəyişdiyini xəbərdar etmək üçün istifadə olunur"
+msgstr "Qiymat o'zgarganligi haqida xabar berish uchun ishlatiladi"
 
 #: atk/atkobject.c:313
 msgid "Accessible Role"
-msgstr "Erişimli Rol"
+msgstr "Kirish mumkin bo'lgan rol"
 
 #: atk/atkobject.c:314
 msgid "The accessible role of this object"
-msgstr "Bu obyektin erişimlə rolü"
+msgstr "Ushbu ob'ektning mavjud roli"
 
 #: atk/atkobject.c:321
 msgid "Accessible Layer"
-msgstr "Erişimli Təbəqə"
+msgstr "Kirish mumkin bo'lgan qatlam"
 
 #: atk/atkobject.c:322
 msgid "The accessible layer of this object"
-msgstr "Bu obyektin erişimlə təbəqəsi"
+msgstr "Ushbu ob'ektning kirish mumkin bo'lgan qatlami"
 
 #: atk/atkobject.c:330
 msgid "Accessible MDI Value"
-msgstr "Erişimli MDI Dəyəri"
+msgstr "Kirish mumkin bo'lgan MDI qiymati"
 
 #: atk/atkobject.c:331
 msgid "The accessible MDI value of this object"
-msgstr "Bu obyektin erişimlə MDI dəyəri"
+msgstr "Ushbu ob'ektning kirish mumkin bo'lgan MDI qiymati"
 
 #: atk/atkobject.c:347
 msgid "Accessible Table Caption"
-msgstr "Erişimli Cədvəl Başlığı"
+msgstr "Foydalanish mumkin bo'lgan jadval sarlavhasi"
 
 #: atk/atkobject.c:348
 msgid ""
 "Is used to notify that the table caption has changed; this property should "
 "not be used. accessible-table-caption-object should be used instead"
 msgstr ""
-"Cədvəl başlığının dəyişdiyini xəbərdar etmək üçün istifadə olunur; bu xüsusiyyət "
-"istifadə edilməməlidir. Əvəzinə accessible-table-caption-object istifadə "
-"edilmelidir"
+"Jadval sarlavhasi o'zgarganligi haqida xabar berish uchun ishlatiladi; bu "
+"xususiyat ishlatilmasligi kerak. o‘rniga accessible-table-caption-object-dan "
+"foydalanish kerak"
 
 #: atk/atkobject.c:362
 msgid "Accessible Table Column Header"
-msgstr "Erişimli Cədvəl Sütun Başlığı"
+msgstr "Jadval ustuni sarlavhasi"
 
 #: atk/atkobject.c:363
 msgid "Is used to notify that the table column header has changed"
-msgstr "Cədvəl sütun başlığının dəyişdiyini xəbərdar etmək üçün istifadə olunur"
+msgstr ""
+"Jadval ustuni sarlavhasi o'zgarganligi haqida xabar berish uchun ishlatiladi"
 
 #: atk/atkobject.c:378
 msgid "Accessible Table Column Description"
-msgstr "Erişimli Cədvəl Sütun Təsviri"
+msgstr "Foydalanish mumkin bo'lgan jadval ustuni tavsifi"
 
 #: atk/atkobject.c:379
 msgid "Is used to notify that the table column description has changed"
-msgstr "Cədvəl sütun təsvirinin dəyişdiyini xəbərdar etmək üçün istifadə olunur"
+msgstr ""
+"Jadval ustunining tavsifi o'zgarganligi haqida xabar berish uchun ishlatiladi"
 
 #: atk/atkobject.c:394
 msgid "Accessible Table Row Header"
-msgstr "Erişimli Cədvəl Sətir Başlığı"
+msgstr "Foydalanish mumkin bo'lgan jadval qatori sarlavhasi"
 
 #: atk/atkobject.c:395
 msgid "Is used to notify that the table row header has changed"
-msgstr "Cədvəl sətir başlığının dəyişdiyini xəbərdar etmək üçün istifadə olunur"
+msgstr ""
+"Jadval qatori sarlavhasi o'zgarganligi haqida xabar berish uchun ishlatiladi"
 
 #: atk/atkobject.c:409
 msgid "Accessible Table Row Description"
-msgstr "Erişimli Cədvəl Sətir Təsviri"
+msgstr "Foydalanish mumkin bo'lgan jadval qatori tavsifi"
 
 #: atk/atkobject.c:410
 msgid "Is used to notify that the table row description has changed"
-msgstr "Cədvəl sətir təsvirinin dəyişdiyini xəbərdar etmək üçün istifadə olunur"
+msgstr ""
+"Jadval qatori tavsifi o'zgarganligi haqida xabar berish uchun ishlatiladi"
 
 #: atk/atkobject.c:416
 msgid "Accessible Table Summary"
-msgstr "Erişimli Cədvəl Xülasəsi"
+msgstr "Foydalanish mumkin bo'lgan jadval xulosasi"
 
 #: atk/atkobject.c:417
 msgid "Is used to notify that the table summary has changed"
-msgstr "Cədvəl xülasəsinin dəyişdiyini xəbərdar etmək üçün istifadə olunur"
+msgstr "Jadval xulosasi o'zgarganligi haqida xabar berish uchun ishlatiladi"
 
 #: atk/atkobject.c:423
 msgid "Accessible Table Caption Object"
-msgstr "Erişimli Cədvəl Başlık Obyekti"
+msgstr "Jadval sarlavhasi obyekti"
 
 #: atk/atkobject.c:424
 msgid "Is used to notify that the table caption has changed"
-msgstr "Cədvəl başlığının dəyişdiyini xəbərdar etmək üçün istifadə olunur"
+msgstr "Jadval sarlavhasi o'zgarganligi haqida xabar berish uchun ishlatiladi"
 
 #: atk/atkobject.c:430
 msgid "Number of Accessible Hypertext Links"
-msgstr "Erişimli Hypertext Linklərinin Sayı"
+msgstr "Kirish mumkin bo'lgan gipermatnli havolalar soni"
 
 #: atk/atkobject.c:431
 msgid "The number of links which the current AtkHypertext has"
-msgstr "Cari AtkHypertext-in sahib olduğu linklərin sayı"
+msgstr "Joriy AtkHypertextda mavjud bo'lgan havolalar soni"
 
 #: atk/atkobject.c:440
 msgid "Accessible ID"
-msgstr "Erişimli ID"
+msgstr "Kirish mumkin bo'lgan ID"
 
 #: atk/atkobject.c:441
 msgid "ID for the accessible; useful for automated testing"
-msgstr "Erişimli üçün ID; avtomatik sınaqlar üçün faydalıdır"
+msgstr "kirish uchun ID; avtomatlashtirilgan sinov uchun foydalidir"
 
 #: atk/atkobject.c:447
 msgid "Help text"
-msgstr "Kömək mətni"
+msgstr "Yozdam matni"
 
 #: atk/atkobject.c:448
 msgid "Help text associated with the accessible"
-msgstr "Erişimli ilə əlaqəli kömək mətni"
+msgstr "Foydalanish mumkin bo'lgan matn bilan bog'liq yordam matni"
 
 #. Translators: This string describes a range within value-related
 #. * widgets such as a password-strength meter. Note that what such a
@@ -198,7 +205,7 @@ msgstr "Erişimli ilə əlaqəli kömək mətni"
 #.
 #: atk/atkvalue.c:193
 msgid "very weak"
-msgstr "çox zəif"
+msgstr "juda zaif"
 
 #. Translators: This string describes a range within value-related
 #. * widgets such as a password-strength meter. Note that what such a
@@ -208,7 +215,7 @@ msgstr "çox zəif"
 #.
 #: atk/atkvalue.c:200
 msgid "weak"
-msgstr "zəif"
+msgstr "zaif"
 
 #. Translators: This string describes a range within value-related
 #. * widgets such as a password-strength meter. Note that what such a
@@ -218,7 +225,7 @@ msgstr "zəif"
 #.
 #: atk/atkvalue.c:207
 msgid "acceptable"
-msgstr "qəbul edilə bilər"
+msgstr "qabul qilinadi"
 
 #. Translators: This string describes a range within value-related
 #. * widgets such as a password-strength meter. Note that what such a
@@ -228,7 +235,7 @@ msgstr "qəbul edilə bilər"
 #.
 #: atk/atkvalue.c:214
 msgid "strong"
-msgstr "güclü"
+msgstr "kuchli"
 
 #. Translators: This string describes a range within value-related
 #. * widgets such as a password-strength meter. Note that what such a
@@ -238,7 +245,7 @@ msgstr "güclü"
 #.
 #: atk/atkvalue.c:221
 msgid "very strong"
-msgstr "çox güclü"
+msgstr "juda kuchli"
 
 #. Translators: This string describes a range within value-related
 #. * widgets such as a volume slider. Note that what such a widget
@@ -249,7 +256,7 @@ msgstr "çox güclü"
 #.
 #: atk/atkvalue.c:229
 msgid "very low"
-msgstr "çox aşağı"
+msgstr "Juda past"
 
 #. Translators: This string describes a range within value-related
 #. * widgets such as a volume slider. Note that what such a widget
@@ -260,7 +267,7 @@ msgstr "çox aşağı"
 #.
 #: atk/atkvalue.c:237
 msgid "medium"
-msgstr "orta"
+msgstr "o'rta"
 
 #. Translators: This string describes a range within value-related
 #. * widgets such as a volume slider. Note that what such a widget
@@ -271,7 +278,7 @@ msgstr "orta"
 #.
 #: atk/atkvalue.c:245
 msgid "high"
-msgstr "yüksək"
+msgstr "yuqori"
 
 #. Translators: This string describes a range within value-related
 #. * widgets such as a volume slider. Note that what such a widget
@@ -282,7 +289,7 @@ msgstr "yüksək"
 #.
 #: atk/atkvalue.c:253
 msgid "very high"
-msgstr "çox yüksək"
+msgstr "juda yuqori"
 
 #. Translators: This string describes a range within value-related
 #. * widgets such as a hard drive usage. Note that what such a widget
@@ -293,7 +300,7 @@ msgstr "çox yüksək"
 #.
 #: atk/atkvalue.c:261
 msgid "very bad"
-msgstr "çox pis"
+msgstr "juda yomon"
 
 #. Translators: This string describes a range within value-related
 #. * widgets such as a hard drive usage. Note that what such a widget
@@ -304,7 +311,7 @@ msgstr "çox pis"
 #.
 #: atk/atkvalue.c:269
 msgid "bad"
-msgstr "pis"
+msgstr "yomon"
 
 #. Translators: This string describes a range within value-related
 #. * widgets such as a hard drive usage. Note that what such a widget
@@ -315,7 +322,7 @@ msgstr "pis"
 #.
 #: atk/atkvalue.c:277
 msgid "good"
-msgstr "yaxşı"
+msgstr "yaxshi"
 
 #. Translators: This string describes a range within value-related
 #. * widgets such as a hard drive usage. Note that what such a widget
@@ -326,7 +333,7 @@ msgstr "yaxşı"
 #.
 #: atk/atkvalue.c:285
 msgid "very good"
-msgstr "çox yaxşı"
+msgstr "juda yaxshi"
 
 #. Translators: This string describes a range within value-related
 #. * widgets such as a hard drive usage. Note that what such a widget
@@ -337,35 +344,35 @@ msgstr "çox yaxşı"
 #.
 #: atk/atkvalue.c:293
 msgid "best"
-msgstr "ən yaxşı"
+msgstr "eng yaxshi"
 
 #: atspi/atspi-component.c:352 atspi/atspi-misc.c:1234 atspi/atspi-value.c:123
 msgid "The application no longer exists"
-msgstr "Tətbiq artıq mövcud deyil"
+msgstr "Ilova endi mavjud emas"
 
 #: atspi/atspi-misc.c:49
 msgid "invalid"
-msgstr "etibarsız"
+msgstr "yaroqsiz"
 
 #: atspi/atspi-misc.c:50
 msgid "accelerator label"
-msgstr "təcili etiket"
+msgstr "tezlatgich belgisi"
 
 #: atspi/atspi-misc.c:51
 msgid "alert"
-msgstr "xəbərdarlıq"
+msgstr "ogohlantirish"
 
 #: atspi/atspi-misc.c:52
 msgid "animation"
-msgstr "animasiya"
+msgstr "animatsiya"
 
 #: atspi/atspi-misc.c:53
 msgid "arrow"
-msgstr "ox"
+msgstr "strelka"
 
 #: atspi/atspi-misc.c:54
 msgid "calendar"
-msgstr "təqvim"
+msgstr "kalendar"
 
 #: atspi/atspi-misc.c:55
 msgid "canvas"
@@ -373,72 +380,72 @@ msgstr "tuval"
 
 #: atspi/atspi-misc.c:56
 msgid "check box"
-msgstr "işarə qutusu"
+msgstr "katakchani belgilang"
 
 #: atspi/atspi-misc.c:57
 msgid "check menu item"
-msgstr "işarəli meny elementi"
+msgstr "menyu elementini tekshiring"
 
 #: atspi/atspi-misc.c:58
 msgid "color chooser"
-msgstr "rəng seçici"
+msgstr "rang tanlovchi"
 
 #: atspi/atspi-misc.c:59
 msgid "column header"
-msgstr "sütun başlığı"
+msgstr "ustun sarlavhasi"
 
 #: atspi/atspi-misc.c:60
 msgid "combo box"
-msgstr "birgə qutusu"
+msgstr "kombinatsiyalangan quti"
 
 #: atspi/atspi-misc.c:61
 msgid "dateeditor"
-msgstr "tarich redaktoru"
+msgstr "sana muharriri"
 
 #: atspi/atspi-misc.c:62
 msgid "desktop icon"
-msgstr "məstənci ikonu"
+msgstr "ish stoli belgisi"
 
 #: atspi/atspi-misc.c:63
 msgid "desktop frame"
-msgstr "məstənci çərçivəsi"
+msgstr "ish stoli ramkasi"
 
 #: atspi/atspi-misc.c:64
 msgid "dial"
-msgstr "zəng"
+msgstr "tering"
 
 #: atspi/atspi-misc.c:65
 msgid "dialog"
-msgstr "dialoq"
+msgstr "dialog"
 
 #: atspi/atspi-misc.c:66
 msgid "directory pane"
-msgstr "kataloq paneli"
+msgstr "katalog paneli"
 
 #: atspi/atspi-misc.c:67
 msgid "drawing area"
-msgstr "çəkmə sahəsi"
+msgstr "chizish maydoni"
 
 #: atspi/atspi-misc.c:68
 msgid "file chooser"
-msgstr "fayl seçici"
+msgstr "fayl tanlash"
 
 #: atspi/atspi-misc.c:69
 msgid "filler"
-msgstr "doldurucu"
+msgstr "to'ldiruvchi"
 
 #. I know it looks wrong but that is what Java returns
 #: atspi/atspi-misc.c:71
 msgid "fontchooser"
-msgstr "şrift seçici"
+msgstr "shriftchi"
 
 #: atspi/atspi-misc.c:72
 msgid "frame"
-msgstr "çərçivə"
+msgstr "romka"
 
 #: atspi/atspi-misc.c:73
 msgid "glass pane"
-msgstr "şüşə paneli"
+msgstr "shisha oyna"
 
 #: atspi/atspi-misc.c:74
 msgid "html container"
@@ -446,31 +453,31 @@ msgstr "html konteyneri"
 
 #: atspi/atspi-misc.c:75
 msgid "icon"
-msgstr "ikon"
+msgstr "belgi"
 
 #: atspi/atspi-misc.c:76
 msgid "image"
-msgstr "şəkil"
+msgstr "rasm"
 
 #: atspi/atspi-misc.c:77
 msgid "internal frame"
-msgstr "daxili çərçivə"
+msgstr "ichki ramka"
 
 #: atspi/atspi-misc.c:78
 msgid "label"
-msgstr "etiket"
+msgstr "yorliq"
 
 #: atspi/atspi-misc.c:79
 msgid "layered pane"
-msgstr "təbəqələndirilmiş panel"
+msgstr "qatlamli panel"
 
 #: atspi/atspi-misc.c:80
 msgid "list"
-msgstr "siyahı"
+msgstr "ro'yxat"
 
 #: atspi/atspi-misc.c:81
 msgid "list item"
-msgstr "siyahı elementi"
+msgstr "ro'yxat elementi"
 
 #: atspi/atspi-misc.c:82
 msgid "menu"
@@ -482,7 +489,7 @@ msgstr "menyu paneli"
 
 #: atspi/atspi-misc.c:84
 msgid "menu button"
-msgstr "menyu düyməsi"
+msgstr "menyu tugmasi"
 
 #: atspi/atspi-misc.c:85
 msgid "menu item"
@@ -490,63 +497,63 @@ msgstr "menyu elementi"
 
 #: atspi/atspi-misc.c:86
 msgid "option pane"
-msgstr "seçenek paneli"
+msgstr "variantlar paneli"
 
 #: atspi/atspi-misc.c:87
 msgid "page tab"
-msgstr "səhifə vəbəri"
+msgstr "sahifa yorlig'i"
 
 #: atspi/atspi-misc.c:88
 msgid "page tab list"
-msgstr "səhifə vəbər siyahısı"
+msgstr "sahifalar ro'yxati"
 
 #: atspi/atspi-misc.c:89
 msgid "panel"
-msgstr "panel"
+msgstr "O'ng panelni almashtirish"
 
 #: atspi/atspi-misc.c:90
 msgid "password text"
-msgstr "parol mətni"
+msgstr "parol matni"
 
 #: atspi/atspi-misc.c:91
 msgid "popup menu"
-msgstr "açılan menyu"
+msgstr "qalqib chiquvchi menyu"
 
 #: atspi/atspi-misc.c:92
 msgid "progress bar"
-msgstr "proqres çubuğu"
+msgstr "taraqqiyot paneli"
 
 #: atspi/atspi-misc.c:93
 msgid "button"
-msgstr "düymə"
+msgstr "tugma"
 
 #: atspi/atspi-misc.c:94
 msgid "radio button"
-msgstr "radio düyməsi"
+msgstr "radio tugmasi"
 
 #: atspi/atspi-misc.c:95
 msgid "radio menu item"
-msgstr "radio meny elementi"
+msgstr "radio menyusi elementi"
 
 #: atspi/atspi-misc.c:96
 msgid "root pane"
-msgstr "kök panel"
+msgstr "ildiz paneli"
 
 #: atspi/atspi-misc.c:97
 msgid "row header"
-msgstr "sətir başlığı"
+msgstr "qator sarlavhasi"
 
 #: atspi/atspi-misc.c:98
 msgid "scroll bar"
-msgstr "sürüşdürmə çubuğu"
+msgstr "aylantirish paneli"
 
 #: atspi/atspi-misc.c:99
 msgid "scroll pane"
-msgstr "sürüşdürmə paneli"
+msgstr "aylantirish paneli"
 
 #: atspi/atspi-misc.c:100
 msgid "separator"
-msgstr "ayracaq"
+msgstr "ajratuvchi"
 
 #: atspi/atspi-misc.c:101
 msgid "slider"
@@ -554,143 +561,143 @@ msgstr "slayder"
 
 #: atspi/atspi-misc.c:102
 msgid "split pane"
-msgstr "ayrılmış panel"
+msgstr "ajratilgan panel"
 
 #: atspi/atspi-misc.c:103
 msgid "spin button"
-msgstr "rotasiya düyməsi"
+msgstr "aylantirish tugmasi"
 
 #: atspi/atspi-misc.c:104
 msgid "statusbar"
-msgstr "status çubuğu"
+msgstr "holat paneli"
 
 #: atspi/atspi-misc.c:105
 msgid "switch"
-msgstr "switç"
+msgstr "Tartibni almashtirish: %d-rejim"
 
 #: atspi/atspi-misc.c:106
 msgid "table"
-msgstr "cədvəl"
+msgstr "stol"
 
 #: atspi/atspi-misc.c:107
 msgid "table cell"
-msgstr "cədvəl hüceyrəsi"
+msgstr "stol katakchasi"
 
 #: atspi/atspi-misc.c:108
 msgid "table column header"
-msgstr "cədvəl sütun başlığı"
+msgstr "jadval ustuni sarlavhasi"
 
 #: atspi/atspi-misc.c:109
 msgid "table row header"
-msgstr "cədvəl sətir başlığı"
+msgstr "jadval qatori sarlavhasi"
 
 #: atspi/atspi-misc.c:110
 msgid "tear off menu item"
-msgstr "ayrılmış meny elementi"
+msgstr "menyu elementini yirtib tashlang"
 
 #: atspi/atspi-misc.c:111
 msgid "terminal"
-msgstr "terminal"
+msgstr "Virtual terminal to'xtatildi"
 
 #: atspi/atspi-misc.c:112
 msgid "text"
-msgstr "mətn"
+msgstr "matn"
 
 #: atspi/atspi-misc.c:113
 msgid "toggle button"
-msgstr "açar düyməsi"
+msgstr "almashtirish tugmasi"
 
 #: atspi/atspi-misc.c:114
 msgid "tool bar"
-msgstr "alət paneli"
+msgstr "asboblar paneli"
 
 #: atspi/atspi-misc.c:115
 msgid "tool tip"
-msgstr "alət ipucu"
+msgstr "asbob uchi"
 
 #: atspi/atspi-misc.c:116
 msgid "tree"
-msgstr "ağac"
+msgstr "daraxt"
 
 #: atspi/atspi-misc.c:117
 msgid "tree table"
-msgstr "ağac cədvəli"
+msgstr "daraxt stoli"
 
 #: atspi/atspi-misc.c:118
 msgid "unknown"
-msgstr "naməlum"
+msgstr "noma'lum"
 
 #: atspi/atspi-misc.c:119
 msgid "viewport"
-msgstr "görüş sahəsi"
+msgstr "ko'rish oynasi"
 
 #: atspi/atspi-misc.c:120
 msgid "window"
-msgstr "pəncərə"
+msgstr "oyna"
 
 #: atspi/atspi-misc.c:121
 msgid "header"
-msgstr "başlıq"
+msgstr "bosh qism"
 
 #: atspi/atspi-misc.c:122
 msgid "footer"
-msgstr "alt"
+msgstr "altbilgi"
 
 #: atspi/atspi-misc.c:123
 msgid "paragraph"
-msgstr "paraqraf"
+msgstr "paragraf"
 
 #: atspi/atspi-misc.c:124
 msgid "ruler"
-msgstr "xətt"
+msgstr "chizg'ich"
 
 #: atspi/atspi-misc.c:125
 msgid "application"
-msgstr "tətbiq"
+msgstr "ilova"
 
 #: atspi/atspi-misc.c:126
 msgid "autocomplete"
-msgstr "avtomatik tamamlanış"
+msgstr "avtomatik toʻldirish"
 
 #: atspi/atspi-misc.c:127
 msgid "edit bar"
-msgstr "redaktə paneli"
+msgstr "tahrirlash paneli"
 
 #: atspi/atspi-misc.c:128
 msgid "embedded component"
-msgstr "daxil edilmiş komponent"
+msgstr "o'rnatilgan komponent"
 
 #: atspi/atspi-misc.c:129
 msgid "entry"
-msgstr "giriş"
+msgstr "kirish"
 
 #: atspi/atspi-misc.c:130
 msgid "chart"
-msgstr "diaqram"
+msgstr "diagramma"
 
 #: atspi/atspi-misc.c:131
 msgid "caption"
-msgstr "başlıq"
+msgstr "sarlavha"
 
 #: atspi/atspi-misc.c:132
 msgid "document frame"
-msgstr "sənəd çərçivəsi"
+msgstr "hujjat ramkasi"
 
 #: atspi/atspi-misc.c:133
 msgid "heading"
-msgstr "üz başlığı"
+msgstr "sarlavha"
 
 #: atspi/atspi-misc.c:134
 msgid "page"
-msgstr "səhifə"
+msgstr "sahifa"
 
 #: atspi/atspi-misc.c:135
 msgid "section"
-msgstr "bölmə"
+msgstr "bo'limida"
 
 #: atspi/atspi-misc.c:136
 msgid "redundant object"
-msgstr "çoxlu obyekt"
+msgstr "ortiqcha ob'ekt"
 
 #: atspi/atspi-misc.c:137
 msgid "form"
@@ -698,75 +705,75 @@ msgstr "forma"
 
 #: atspi/atspi-misc.c:138
 msgid "link"
-msgstr "link"
+msgstr "havola"
 
 #: atspi/atspi-misc.c:139
 msgid "input method window"
-msgstr "giriş metodunun pəncərəsi"
+msgstr "kiritish usuli oynasi"
 
 #: atspi/atspi-misc.c:140
 msgid "table row"
-msgstr "cədvəl sətri"
+msgstr "stol qatori"
 
 #: atspi/atspi-misc.c:141
 msgid "tree item"
-msgstr "ağac elementi"
+msgstr "daraxt elementi"
 
 #: atspi/atspi-misc.c:142
 msgid "document spreadsheet"
-msgstr "sənəd cədvəli"
+msgstr "hujjat jadvali"
 
 #: atspi/atspi-misc.c:143
 msgid "document presentation"
-msgstr "sənəd təqdimatı"
+msgstr "pdf;ps;postscript;dvi;xps;djvu;tiff;hujjat;prezentatsiya;tomoshabin;evince;"
 
 #: atspi/atspi-misc.c:144
 msgid "document text"
-msgstr "sənəd mətni"
+msgstr "hujjat matni"
 
 #: atspi/atspi-misc.c:145
 msgid "document web"
-msgstr "sənəd veb"
+msgstr "hujjat tarmog'i"
 
 #: atspi/atspi-misc.c:146
 msgid "document email"
-msgstr "sənəd e-poçt"
+msgstr "hujjat elektron pochta"
 
 #: atspi/atspi-misc.c:147
 msgid "comment"
-msgstr "şərh"
+msgstr "fikr"
 
 #: atspi/atspi-misc.c:148
 msgid "list box"
-msgstr "siyahı qutusu"
+msgstr "ro'yxat oynasi"
 
 #: atspi/atspi-misc.c:149
 msgid "grouping"
-msgstr "qoşma"
+msgstr "guruhlash"
 
 #: atspi/atspi-misc.c:150
 msgid "image map"
-msgstr "şəkil xəritəsi"
+msgstr "tasvir xaritasi"
 
 #: atspi/atspi-misc.c:151
 msgid "notification"
-msgstr "bildiriş"
+msgstr "Bildirishnoma ovozi"
 
 #: atspi/atspi-misc.c:152
 msgid "info bar"
-msgstr "məlumat çubuğu"
+msgstr "ma'lumot paneli"
 
 #: atspi/atspi-misc.c:153
 msgid "level bar"
-msgstr "səviyyə çubuğu"
+msgstr "darajali bar"
 
 #: atspi/atspi-misc.c:154
 msgid "title bar"
-msgstr "başlıq çubuğu"
+msgstr "sarlavha satri"
 
 #: atspi/atspi-misc.c:155
 msgid "block quote"
-msgstr "blok alıntı"
+msgstr "blok iqtibos"
 
 #: atspi/atspi-misc.c:156
 msgid "audio"
@@ -778,15 +785,15 @@ msgstr "video"
 
 #: atspi/atspi-misc.c:158
 msgid "definition"
-msgstr "tərif"
+msgstr "ta'rifi"
 
 #: atspi/atspi-misc.c:159
 msgid "article"
-msgstr "məqalə"
+msgstr "maqola"
 
 #: atspi/atspi-misc.c:160
 msgid "landmark"
-msgstr "xüsusi nöqtə"
+msgstr "diqqatga sazovor joy"
 
 #: atspi/atspi-misc.c:161
 msgid "log"
@@ -794,28 +801,28 @@ msgstr "jurnal"
 
 #: atspi/atspi-misc.c:162
 msgid "marquee"
-msgstr "reklama lövhəsi"
+msgstr "marquee"
 
 #: atspi/atspi-misc.c:163
 msgid "math"
-msgstr "riyaziyyat"
+msgstr "matematika"
 
 #: atspi/atspi-misc.c:164
 msgid "rating"
-msgstr "reytinq"
+msgstr "reyting"
 
 #: atspi/atspi-misc.c:165
 msgid "timer"
-msgstr "timer"
+msgstr "taymer"
 
 #: atspi/atspi-misc.c:166
 msgid "description list"
-msgstr "təsvir siyahısı"
+msgstr "tavsif ro'yxati"
 
 #: atspi/atspi-misc.c:167
 msgid "description term"
-msgstr "təsvir termini"
+msgstr "tavsif atamasi"
 
 #: atspi/atspi-misc.c:168
 msgid "description value"
-msgstr "təsvir dəyəri"
+msgstr "tavsif qiymati"
