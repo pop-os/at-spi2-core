@@ -9,7 +9,7 @@ ifeq ($(DEB_HOST_ARCH),$(DEB_BUILD_ARCH))
 configure_options += --native-file=$(CURDIR)/debian/meson/no-exe-wrapper.ini
 endif
 
-ifeq $((DEB_HOST_ARCH_OS),linux)
+ifeq ($(DEB_HOST_ARCH_OS),linux)
 configure_options += -Ddefault_bus=dbus-broker
 endif
 
