@@ -107,6 +107,7 @@ Depends: ${misc:Depends},
          libatspi2.0-0t64 (= ${binary:Version})
 Replaces: gir1.0-gtk-2.0 (<< 2.22),
           gobject-introspection-repository
+Breaks: python3-pyatspi (<< 2.57.0-1)
 Description: Assistive Technology Service Provider (GObject introspection)
  This package can be used by other packages using the GIRepository format to
  generate dynamic bindings
