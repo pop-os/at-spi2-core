@@ -11,6 +11,9 @@ Copyright: 2001-2003 Sun Microsystems Inc.
   2008-2010 Codethink Ltd.
 License: LGPL-2+
 
+Files: meson.build
+License: LGPL-2.1
+
 Files: atk/*
 Copyright: 2001, 2002, 2003, 2006, 2007 Sun Microsystems Inc.
 License: LGPL-2+
@@ -209,7 +212,7 @@ License: AFL-2.1 or GPL-2+
 Files: atspi/atspi-gmain.h
 Copyright: Copyright 2002, 2003 CodeFactory AB
            Copyright 2005 Red Hat, Inc.
-License: AFL-2.1 or GPL-2+
+License: AFL-2.1 and/or GPL-2+
 
 Files: atspi/atspi-table-cell.c
 Copyright: 2013, SUSE LLC.
@@ -229,6 +232,9 @@ Files: debian/*
 Copyright: Copyright 2009, Mario Lang <mlang@debian.org>
            Akira TAGOH <tagoh@debian.org>
 License: GPL-2
+
+Files: doc/urlmap.js
+License: LGPL-2.1+
 
 Files: droute/droute-pairhash.c
   droute/droute-pairhash.h
@@ -328,7 +334,7 @@ Files: po/fr.po
   po/oc.po
 Copyright: 2011, Listed translators
            Free Software Foundation, Inc.
-License: LGPL-2+
+License: LGPL-2
 
 Files: po/gl.po
 Copyright: Fran Diéguez
@@ -365,7 +371,7 @@ License: LGPL-2+
 Files: po/tk.po
 Copyright: Free Software Foundation
            Mühemmet Amut
-License: LGPL-2+
+License: GPL
 
 Files: po/vi.po
 Copyright: GNOME i18n Project for Vietnamese
@@ -374,6 +380,10 @@ License: LGPL-2+
 Files: po/xh.po
 Copyright: Canonical Ltd.
 License: LGPL-2+
+
+Files: python/Atspi.py
+Copyright: 2025 SUSE LLC.
+License: LGPL-2.1+
 
 Files: registryd/*
 Copyright: 2001, 2002, Ximian, Inc.
@@ -418,7 +428,7 @@ License: LGPL-2.1+
 
 Files: tests/dbusmock/mock-gnome-session.py
 Copyright: 2022 Federico Mena Quintero
-License: LGPL-3.0+
+License: LGPL-3+
 
 Files: tests/at-spi2-atk/*
 Copyright: 2014, 2015, Samsung Electronics Co., Ltd.
@@ -458,6 +468,12 @@ License: LGPL-2.1+
 License: AFL-2.1
  Licensed under the Academic Free License version 2.1
 
+License: GPL
+ This file is distributed under the terms of GNU General Public License (GPL)
+ .
+ On Debian systems, the complete text of version 2 of the GNU General
+ Public License can be found in '/usr/share/common-licenses/GPL-2'.
+
 License: GPL-2
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -493,11 +509,11 @@ License: LGPL-2.1+
  On Debian systems, the complete text of version 2.1 of the GNU Library
  General Public License can be found in `/usr/share/common-licenses/LGPL-2.1'.
 
-License: LGPL-3.0+
+License: LGPL-3+
  This program is free software; you can redistribute it and/or modify it under
  the terms of the GNU Lesser General Public License as published by the Free
  Software Foundation; either version 3 of the License, or (at your option) any
  later version.
  .
- On Debian systems, the complete text of version 3.0 of the GNU Library
+ On Debian systems, the complete text of version 3 of the GNU Library
  General Public License can be found in `/usr/share/common-licenses/LGPL-3'.

@@ -3,6 +3,7 @@ at-spi2-core (2.57.1-2) UNRELEASED; urgency=medium
   * rules: Only make dbus-broker the default bus on Linux.
   * control: Explicit that pyatspi needs to be upgraded to a version that is
     fine with no Atspi.Accessible.children
+  * copyright: Update.
 
  -- Samuel Thibault <sthibault@debian.org>  Mon, 11 Aug 2025 10:45:04 +0200
 
