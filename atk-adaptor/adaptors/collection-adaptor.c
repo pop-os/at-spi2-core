@@ -84,6 +84,8 @@ child_interface_p (AtkObject *child, gchar *repo_id)
         }
       return FALSE;
     }
+  if (!strcasecmp (repo_id, "accessible") || !strcasecmp (repo_id, "collection"))
+    return ATK_IS_OBJECT (child);
   if (!strcasecmp (repo_id, "component"))
     return ATK_IS_COMPONENT (child);
   if (!strcasecmp (repo_id, "editabletext"))
@@ -106,8 +108,6 @@ child_interface_p (AtkObject *child, gchar *repo_id)
     return ATK_IS_DOCUMENT (child);
   return FALSE;
 }
-
-#define child_collection_p(ch) (TRUE)
 
 static gboolean
 match_states_all_p (AtkObject *child, gint *set)
@@ -497,17 +497,8 @@ match_attributes_lookup (AtkObject *child, MatchRulePrivate *mrp)
   return FALSE;
 }
 
-static gboolean
-traverse_p (AtkObject *child, const gboolean traverse)
-{
-  if (traverse)
-    return TRUE;
-  else
-    return !child_collection_p (child);
-}
-
 static int
-sort_order_canonical (MatchRulePrivate *mrp, GList *ls, gint kount, gint max, AtkObject *obj, glong index, gboolean flag, AtkObject *pobj, gboolean recurse, gboolean traverse)
+sort_order_canonical (MatchRulePrivate *mrp, GList *ls, gint kount, gint max, AtkObject *obj, glong index, gboolean flag, AtkObject *pobj, gboolean traverse)
 {
   gint i = index;
   glong acount = atk_object_get_n_accessible_children (obj);
@@ -538,10 +529,10 @@ sort_order_canonical (MatchRulePrivate *mrp, GList *ls, gint kount, gint max, At
       if (!flag)
         flag = TRUE;
 
-      if (recurse && traverse_p (child, traverse))
+      if (traverse)
         kount = sort_order_canonical (mrp, ls, kount,
                                       max, child, 0, TRUE,
-                                      pobj, recurse, traverse);
+                                      pobj, traverse);
       g_object_unref (child);
     }
   return kount;
@@ -606,17 +597,17 @@ sort_order_rev_canonical (MatchRulePrivate *mrp, GList *ls, gint kount, gint max
 }
 
 static int
-query_exec (MatchRulePrivate *mrp, AtspiCollectionSortOrder sortby, GList *ls, gint kount, gint max, AtkObject *obj, glong index, gboolean flag, AtkObject *pobj, gboolean recurse, gboolean traverse)
+query_exec (MatchRulePrivate *mrp, AtspiCollectionSortOrder sortby, GList *ls, gint kount, gint max, AtkObject *obj, glong index, gboolean flag, AtkObject *pobj, gboolean traverse)
 {
   switch (sortby)
     {
     case ATSPI_Collection_SORT_ORDER_CANONICAL:
       kount = sort_order_canonical (mrp, ls, 0, max, obj, index, flag,
-                                    pobj, recurse, traverse);
+                                    pobj, traverse);
       break;
     case ATSPI_Collection_SORT_ORDER_REVERSE_CANONICAL:
       kount = sort_order_canonical (mrp, ls, 0, max, obj, index, flag,
-                                    pobj, recurse, traverse);
+                                    pobj, traverse);
       break;
     default:
       kount = 0;
@@ -815,11 +806,11 @@ GetMatchesFrom (DBusMessage *message,
     {
       parent = atk_object_get_parent (current_object);
       query_exec (mrp, sortby, ls, 0, count, parent, index,
-                  FALSE, NULL, TRUE, traverse);
+                  FALSE, NULL, traverse);
     }
   else
     query_exec (mrp, sortby, ls, 0, count,
-                current_object, 0, FALSE, NULL, TRUE, traverse);
+                current_object, 0, FALSE, NULL, traverse);
 
   ls = g_list_remove (ls, ls->data);
 
@@ -841,7 +832,7 @@ inorder (AtkObject *collection, MatchRulePrivate *mrp, GList *ls, gint kount, gi
 
   /* First, look through the children recursively. */
   kount = sort_order_canonical (mrp, ls, kount, max, obj, 0, TRUE,
-                                NULL, TRUE, TRUE);
+                                NULL, TRUE);
 
   /* Next, we look through the right subtree */
   while ((max == 0 || kount < max) && obj && obj != collection)
@@ -849,7 +840,7 @@ inorder (AtkObject *collection, MatchRulePrivate *mrp, GList *ls, gint kount, gi
       AtkObject *parent = atk_object_get_parent (obj);
       i = atk_object_get_index_in_parent (obj);
       kount = sort_order_canonical (mrp, ls, kount, max, parent,
-                                    i + 1, TRUE, FALSE, TRUE, TRUE);
+                                    i + 1, TRUE, FALSE, TRUE);
       obj = parent;
     }
 
@@ -937,13 +928,13 @@ GetMatchesTo (DBusMessage *message,
     {
       obj = ATK_OBJECT (atk_object_get_parent (current_object));
       query_exec (mrp, sortby, ls, 0, count,
-                  obj, 0, TRUE, current_object, TRUE, traverse);
+                  obj, 0, TRUE, current_object, traverse);
     }
   else
     {
       obj = ATK_OBJECT (spi_register_path_to_object (spi_global_register, dbus_message_get_path (message)));
       query_exec (mrp, sortby, ls, 0, count,
-                  obj, 0, TRUE, current_object, TRUE, traverse);
+                  obj, 0, TRUE, current_object, traverse);
     }
 
   ls = g_list_remove (ls, ls->data);
@@ -1239,7 +1230,7 @@ impl_GetMatches (DBusConnection *bus, DBusMessage *message, void *user_data)
   dbus_message_iter_next (&iter);
   ls = g_list_prepend (ls, obj);
   count = query_exec (&rule, sortby, ls, 0, count,
-                      obj, 0, TRUE, NULL, TRUE, traverse);
+                      obj, 0, TRUE, NULL, traverse);
   ls = g_list_remove (ls, ls->data);
 
   if (sortby == ATSPI_Collection_SORT_ORDER_REVERSE_CANONICAL)

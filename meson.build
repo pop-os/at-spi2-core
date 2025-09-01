@@ -1,5 +1,5 @@
 project('at-spi2-core', 'c',
-        version: '2.57.1',
+        version: '2.57.2',
         license: 'LGPLv2.1+',
         default_options: [
           'buildtype=debugoptimized',
@@ -8,7 +8,7 @@ project('at-spi2-core', 'c',
         ],
         meson_version: '>= 0.64.0')
 
-add_project_arguments([ '-D_XOPEN_SOURCE=700', '-D_DEFAULT_SOURCE' ], language: 'c')
+add_project_arguments([ '-D_XOPEN_SOURCE=700', '-D_GNU_SOURCE' ], language: 'c')
 
 fs = import('fs')
 
