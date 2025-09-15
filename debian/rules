@@ -10,7 +10,8 @@ configure_options += --native-file=$(CURDIR)/debian/meson/no-exe-wrapper.ini
 endif
 
 ifeq ($(DEB_HOST_ARCH_OS),linux)
-configure_options += -Ddefault_bus=dbus-broker
+configure_options += -Ddefault_bus=dbus-broker \
+		     -Ddbus_broker=/usr/bin/dbus-broker-launch
 endif
 
 DO_PACKAGES := $(shell dh_listpackages)
@@ -24,7 +25,6 @@ override_dh_auto_configure:
 	dh_auto_configure -- \
 		-Dintrospection=enabled \
 		$(configure_options) \
-		-Ddbus_broker=/usr/bin/dbus-broker-launch \
 		-Ddbus_daemon=/usr/bin/dbus-daemon
 
 override_dh_auto_test:
