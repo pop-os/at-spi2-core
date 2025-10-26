@@ -1,6 +1,6 @@
 at-spi2-core (2.58.1-1) unstable; urgency=medium
 
-  * New upstream release.
+  * New upstream release (Closes: #911362)
   * rules: Only set dbus_broker on Linux.
 
  -- Samuel Thibault <sthibault@debian.org>  Sat, 11 Oct 2025 21:36:42 +0200
