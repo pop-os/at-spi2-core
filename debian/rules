@@ -38,3 +38,8 @@ override_dh_makeshlibs:
 	dh_makeshlibs -plibatk1.0-0t64 --add-udeb="libatk1.0-udeb" -V -- -c4
 	dh_makeshlibs -a --remaining-packages
 	dh_girepository -pgir1.2-atspi-2.0
+
+
+# Fix i386 builds that are out of memory.
+override_dh_builddeb:
+	dh_builddeb -- -Zzstd -z3
