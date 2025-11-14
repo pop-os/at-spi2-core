@@ -19,12 +19,12 @@ Build-Depends: dpkg-dev (>= 1.22.5), debhelper-compat (= 13), dh-sequence-python
                xvfb <!nocheck>,
                at-spi2-core <!nocheck>,
                dbus-daemon <!nocheck>,
-Build-Depends-Indep: docbook-xml <!nodoc>,
-                     gi-docgen,
-                     gtk-doc-tools,
-                     libglib2.0-doc <!nodoc>,
-                     libglib2.0-dev-bin <!nodoc>,
-                     python3-sphinx,
+               docbook-xml <!nodoc>,
+               gi-docgen,
+               gtk-doc-tools,
+               libglib2.0-doc <!nodoc>,
+               libglib2.0-dev-bin <!nodoc>,
+               python3-sphinx,
 Rules-Requires-Root: no
 Standards-Version: 4.6.2
 Vcs-Browser: https://salsa.debian.org/a11y-team/at-spi2-core
