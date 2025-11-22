@@ -1,3 +1,9 @@
+at-spi2-core (2.58.1-1pop1) noble; urgency=medium
+
+  * Pop packaging
+
+ -- Ian Douglas Scott <idscott@system76.com>  Fri, 21 Nov 2025 16:52:46 -0800
+
 at-spi2-core (2.58.1-1) unstable; urgency=medium
 
   * New upstream release (Closes: #911362)
